@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kapi-ureticileri.com/sitemap-index.xml
+Sitemap: https://kapi-ureticileri.netlify.app/sitemap-index.xml
