@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürünlerimiz - CihanPan Door | İç Oda Kapısı Üreticisi</title>
+    <style>
+            main {
+            margin-top: 70px;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding-top: 70px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header Simulation */
+        .header-sim {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            z-index: 1000;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-sim .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .nav-link:hover {
+            color: #111827;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.75rem;
+            transition: transform 0.2s;
+        }
+
+        .nav-item:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s ease;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: #374151;
+            transition: background-color 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background: #f9fafb;
+            color: #111827;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 3rem 0 2rem;
+            background: #f8fafc;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            color: #6b7280;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            padding: 3rem 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        /* Kapı Türleri Filtreleri */
+        .product-filters {
+            margin-bottom: 3rem;
+        }
+
+        .product-filters h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .product-filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .product-filter-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            transition: left 0.3s ease;
+            z-index: 1;
+        }
+
+        .product-filter-btn span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-filter-btn:hover::before {
+            left: 0;
+        }
+
+        .product-filter-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .product-filter-btn.active {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
+        }
+
+        /* Malzeme Filtreleri */
+        .material-filters h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .material-filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .material-filter-btn {
+            background: white;
+            color: #6b7280;
+            border: 2px solid #e5e7eb;
+            padding: 0.75rem 1.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .material-filter-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .material-filter-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 4rem 0;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            border-color: #d1d5db;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+
+        .product-image {
+            height: 250px;
+            background: #f9fafb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .product-image img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .product-info {
+            padding: 2rem;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+
+        .product-description {
+            color: #6b7280;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-features li {
+            color: #374151;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .product-features li::before {
+            content: "✓";
+            color: #22c55e;
+            font-weight: bold;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-link {
+            background: #111827;
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .product-link:hover {
+            background: #1f2937;
+        }
+
+        /* Hide/Show based on filter */
+        .product-card.hidden {
+            display: none;
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            background: #f8fafc;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .contact-cta h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+
+        .contact-cta p {
+            color: #6b7280;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 0.875rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #111827;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1f2937;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #111827;
+            border: 1px solid #d1d5db;
+        }
+
+        .btn-secondary:hover {
+            background: #f9fafb;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .filter-section {
+                padding: 2rem 0;
+            }
+
+            .filter-tabs {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                max-width: 300px;
+            }
+
+            .filter-btn {
+                padding: 1.2rem 1.5rem;
+                font-size: 0.95rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .filter-btn {
+                padding: 1rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Simulation -->
+    <header class="header-sim">
+        <div class="container">
+            <div class="logo">CihanPan Door</div>
+            <nav class="nav-menu">
+                <a href="/" class="nav-link">Ana Sayfa</a>
+                <a href="/hakkimizda" class="nav-link">Hakkımızda</a>
+
+                <div class="nav-item">
+                    <a href="/urunlerimiz" class="nav-link">
+                        Ürünlerimiz <span class="dropdown-arrow">▼</span>
+                    </a>
+                    <div class="dropdown">
+                        <a href="/pvc-kapilar" class="dropdown-item">PVC Kapılar</a>
+                        <a href="/laminoks-kapilar" class="dropdown-item">Laminoks Kapılar</a>
+                        <a href="/hastane-kapilari" class="dropdown-item">Hastane Kapıları</a>
+                        <a href="/otel-kapilari" class="dropdown-item">Otel Kapıları</a>
+                        <a href="/yanmaya-dayanikli-kapilar" class="dropdown-item">Yanmaya Dayanıklı Kapılar</a>
+                        <!-- Kapı Çeşitleri / Ürünler -->
+                    <div class="product-card" data-category="pvc" data-material="surface">
+                        <div class="product-image">
+                            <img src="/api/placeholder/300/200" alt="PVC Kapılar">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">PVC Kapılar</h3>
+                            <p class="product-description">
+                                PVC iç oda kapıları, su geçirmez ve dayanıklı yapıları sayesinde nemli ortamlarda
+                                kullanım için ideal seçeneklerdir. Ekonomik fiyat avantajı ile birlikte kolay bakım özelliği sunar.
+                            </p>
+                            <ul class="product-features">
+                                <li>Su geçirmez yapı</li>
+                                <li>Kolay bakım</li>
+                                <li>Ekonomik fiyat</li>
+                                <li>Çeşitli renk seçenekleri</li>
+                            </ul>
+                            <div class="product-footer">
+                                <a href="/pvc-kapilar" class="product-link">Detayları Gör</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="laminoks" data-material="surface">
+                        <div class="product-image">
+                            <img src="/api/placeholder/300/200" alt="Laminoks Kapılar">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Laminoks Kapılar</h3>
+                            <p class="product-description">
+                                MDF yüzey üzerine uygulanan yüksek kaliteli laminat kaplama ile üretilir.
+                                Modern tasarım anlayışı ile dayanıklılık ve estetik görünümü bir arada sunar.
+                            </p>
+                            <ul class="product-features">
+                                <li>Yüksek dayanıklılık</li>
+                                <li>Çizilme direnci</li>
+                                <li>Modern tasarım</li>
+                                <li>Çok çeşitli desenler</li>
+                            </ul>
+                            <div class="product-footer">
+                                <a href="/laminoks-kapilar" class="product-link">Detayları Gör</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="otel" data-material="surface">
+                        <div class="product-image">
+                            <img src="/api/placeholder/300/200" alt="Otel Kapıları">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Otel Kapıları</h3>
+                            <p class="product-description">
+                                Yoğun kullanım koşullarına dayanacak şekilde özel olarak tasarlanmıştır.
+                                Ses yalıtımı, yangın direnci ve dayanıklılık özelliklerine sahiptir.
+                            </p>
+                            <ul class="product-features">
+                                <li>Yoğun kullanım direnci</li>
+                                <li>Ses yalıtımı</li>
+                                <li>Yangın direnci</li>
+                                <li>CE belgeli</li>
+                            </ul>
+                            <div class="product-footer">
+                                <a href="/otel-kapilari" class="product-link">Detayları Gör</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="hastane" data-material="surface">
+                        <div class="product-image">
+                            <img src="/api/placeholder/300/200" alt="Hastane Kapıları">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Hastane Kapıları</h3>
+                            <p class="product-description">
+                                Hijyen ve güvenlik standartlarına uygun olarak özel üretilir.
+                                Antibakteriyel yüzey kaplamalı ve kolay temizlenebilir özellikte.
+                            </p>
+                            <ul class="product-features">
+                                <li>Antibakteriyel yüzey</li>
+                                <li>Kolay temizlik</li>
+                                <li>X-ray geçirmez seçenek</li>
+                                <li>Hijyenik tasarım</li>
+                            </ul>
+                            <div class="product-footer">
+                                <a href="/hastane-kapilari" class="product-link">Detayları Gör</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="yangin" data-material="surface">
+                        <div class="product-image">
+                            <img src="/api/placeholder/300/200" alt="Yanmaya Dayanıklı Kapılar">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Yanmaya Dayanıklı Kapılar</h3>
+                            <p class="product-description">
+                                Yangın güvenlik standartlarına uygun özel malzemelerle üretilen kapılar.
+                                Güvenlik ve yaşam koruma öncelikli tasarım.
+                            </p>
+                            <ul class="product-features">
+                                <li>Yangın direnci</li>
+                                <li>Güvenlik sertifikaları</li>
+                                <li>Özel malzeme</li>
+                                <li>Yaşam koruma</li>
+                            </ul>
+                            <div class="product-footer">
+                                <a href="/yanmaya-dayanikli-kapilar" class="product-link">Detayları Gör</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+
+                <a href="/iletisim" class="nav-link">İletişim</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Ürünlerimiz</h1>
+                <p>Kaliteli iç oda kapısı üretiminde kullandığımız malzemeler ve aksesuarlar</p>
+            </div>
+        </section>
+
+        <!-- Filter Section -->
+        <section class="filter-section">
+            <div class="container">
+                <!-- Kapı Türleri Filtreleri -->
+                <div class="product-filters">
+                    <h3>Kapı Türleri</h3>
+                    <div class="product-filter-tabs">
+                        <button class="product-filter-btn active" data-filter="all">Tümü</button>
+                        <button class="product-filter-btn" data-filter="pvc">PVC Kapılar</button>
+                        <button class="product-filter-btn" data-filter="laminoks">Laminoks Kapılar</button>
+                        <button class="product-filter-btn" data-filter="hastane">Hastane Kapıları</button>
+                        <button class="product-filter-btn" data-filter="otel">Otel Kapıları</button>
+                        <button class="product-filter-btn" data-filter="yangin">Yanmaya Dayanıklı</button>
+                    </div>
+                </div>
+
+                <!-- Malzeme Filtreleri -->
+                <div class="material-filters">
+                    <h3>Kullanılan Malzemeler</h3>
+                    <div class="material-filter-tabs">
+                        <button class="material-filter-btn active" data-filter="all-materials">Hepsi</button>
+                        <button class="material-filter-btn" data-filter="core">İç Materyal</button>
+                        <button class="material-filter-btn" data-filter="surface">Yüzey Malzemeleri</button>
+                        <button class="material-filter-btn" data-filter="accessories">Aksesuarlar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="products-section">
+            <div class="container">
+                <div class="products-grid">
+
+                    <!-- Core Materials -->
+                    <div class="product-card" data-category="core">
+                        <div class="product-image">
+                            <img src="/api/placeholder/300/200" alt="Honeycomb Core 1">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Honeycomb Core 1</h3>
+                            <p class="product-description">
+                                Yüksek mukavemet ve hafiflik özelliği sunan honeycomb iç yapı malzemesi.
+                                Kapılarımızın dayanıklılığını artırarak uzun ömürlü kullanım sağlar.
+                            </p>
+                            <ul class="product-features">
+                                <li>Hafif yapı</li>
+                                <li>Yüksek mukavemet</li>
+                                <li>Ses yalıtımı</li>
+                                <li>Nem direnci</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="core">
+                        <div class="product-image">
+                            <img src="/api/placeholder/300/200" alt="Honeycomb Core 2">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Honeycomb Core 2</h3>
+                            <p class="product-description">
+                                Gelişmiş honeycomb teknolojisi ile üretilen, daha yoğun hücre yapısına sahip
+                                iç malzeme. Üstün performans ve dayanıklılık sunar.
+                            </p>
+                            <ul class="product-features">
+                                <li>Yoğun hücre yapısı</li>
+                                <li>Üstün dayanıklılık</li>
+                                <li>İyi ses yalıtımı</li>
+                                <li>Çevre dostu</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="core">
+                        <div class="product-image">
+                            <img src="/api/placeholder/300/200" alt="Semi Solid Wood">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Semi Solid Wood</h3>
+                            <p class="product-description">
+                                Yarı masif ahşap iç yapı, doğal ahşabın sağlamlığını modern üretim
+                                teknikleriyle birleştirir. Premium kalite ürünlerde kullanılır.
+                            </p>
+                            <ul class="product-features">
+                                <li>Doğal ahşap</li>
+                                <li>Yüksek sağlamlık</li>
+                                <li>Premium kalite</li>
+                                <li>Uzun ömürlü</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Surface Materials -->
+                    <div class="product-card" data-category="surface">
+                        <div class="product-image">
+                            <img src="/api/placeholder/300/200" alt="PVC Yüzey">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">PVC Yüzey Malzemeleri</h3>
+                            <p class="product-description">
+                                Su geçirmez ve dayanıklı PVC yüzey kaplamaları. Nemli ortamlarda
+                                kullanım için ideal, kolay temizlenebilir özelliğe sahiptir.
+                            </p>
+                            <ul class="product-features">
+                                <li>Su geçirmez</li>
+                                <li>Kolay temizlik</li>
+                                <li>Çok renk seçeneği</li>
+                                <li>Ekonomik fiyat</li>
+                            </ul>
+                            <div class="product-footer">
+                                <a href="/pvc-kapilar" class="product-link">Detayları Gör</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="surface">
+                        <div class="product-image">
+                            <img src="/api/placeholder/300/200" alt="Laminoks Yüzey">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Laminoks Yüzey Malzemeleri</h3>
+                            <p class="product-description">
+                                MDF yüzey üzerine uygulanan yüksek kaliteli laminat kaplama.
+                                Çizilme ve darbe direnci yüksek, estetik görünüm sunar.
+                            </p>
+                            <ul class="product-features">
+                                <li>Çizilme direnci</li>
+                                <li>Darbe dayanımı</li>
+                                <li>Zengin desen</li>
+                                <li>Mat/Parlak seçenekler</li>
+                            </ul>
+                            <div class="product-footer">
+                                <a href="/laminoks-kapilar" class="product-link">Detayları Gör</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Accessories -->
+                    <div class="product-card" data-category="accessories">
+                        <div class="product-image">
+                            <img src="/api/placeholder/300/200" alt="Kapı Kolları">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Kapı Kolları ve Kilit Sistemleri</h3>
+                            <p class="product-description">
+                                Yüksek kaliteli paslanmaz çelik ve pirinç kapı kolları.
+                                Çeşitli tasarım ve renk seçenekleri ile her tarza uygun çözümler.
+                            </p>
+                            <ul class="product-features">
+                                <li>Paslanmaz malzeme</li>
+                                <li>Ergonomik tasarım</li>
+                                <li>Çeşitli renkler</li>
+                                <li>Güvenlik kilitleri</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="accessories">
+                        <div class="product-image">
+                            <img src="/api/placeholder/300/200" alt="Menteşeler">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Menteşeler ve Bağlantı Elemanları</h3>
+                            <p class="product-description">
+                                Dayanıklı ve sessiz çalışan menteşe sistemleri.
+                                Yüksek kalite malzemeden üretilmiş, uzun ömürlü kullanım garantisi.
+                            </p>
+                            <ul class="product-features">
+                                <li>Sessiz çalışma</li>
+                                <li>Yüksek dayanıklılık</li>
+                                <li>Kolay montaj</li>
+                                <li>Ayarlanabilir</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="accessories">
+                        <div class="product-image">
+                            <img src="/api/placeholder/300/200" alt="Conta ve Fitil">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Conta ve Fitil Sistemleri</h3>
+                            <p class="product-description">
+                                Hava ve ses geçişini engelleyen yüksek kaliteli conta ve fitil sistemleri.
+                                Enerji verimliliği ve konfor için önemli detaylar.
+                            </p>
+                            <ul class="product-features">
+                                <li>Hava sızdırmazlığı</li>
+                                <li>Ses yalıtımı</li>
+                                <li>Enerji tasarrufu</li>
+                                <li>UV dayanımı</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Contact CTA -->
+                <div class="contact-cta">
+                    <h2>Özel Projeleriniz İçin</h2>
+                    <p>
+                        Toptan satış, özel ölçü üretim ve ihracat konularında detaylı bilgi almak için
+                        uzman ekibimizle iletişime geçin.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="/iletisim" class="btn-primary">İletişime Geç</a>
+                        <a href="/katalog.pdf" target="_blank" class="btn-secondary">Katalog İndir</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const productCards = document.querySelectorAll('.product-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Update active button
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Filter products
+                    const filterValue = this.getAttribute('data-filter');
+
+                    productCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            // Smooth scroll for dropdown links
+            document.querySelectorAll('.dropdown-item').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // This would normally navigate to the actual pages
+                    console.log('Navigate to:', this.href);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

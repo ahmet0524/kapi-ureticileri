@@ -1,0 +1,413 @@
+---
+// src/pages/pvc-kapilar.astro
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbItems = [
+  { name: "Ana Sayfa", href: "/" },
+  { name: "Kategoriler", href: "/kategoriler" },
+  { name: "PVC Kapılar" }
+];
+
+// SEO Schema
+const pvcDoorSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "PVC İç Oda Kapısı",
+  "description": "Su geçirmez, dayanıklı ve ekonomik PVC iç oda kapıları. Türkiye üretimi kaliteli kapı modelleri.",
+  "brand": {
+    "@type": "Brand",
+    "name": "CihanPan Door"
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "TRY",
+    "lowPrice": "500",
+    "highPrice": "1500"
+  }
+};
+
+const pvcModels = [
+  {
+    name: "Klasik PVC Kapı",
+    price: "₺500 - ₺800",
+    features: ["Su geçirmez", "Ekonomik", "Kolay montaj"],
+    description: "En temel PVC kapı modeli"
+  },
+  {
+    name: "Modern PVC Kapı",
+    price: "₺700 - ₺1200",
+    features: ["Modern tasarım", "Dayanıklı", "Çeşitli renk"],
+    description: "Çağdaş tasarıma sahip PVC kapı"
+  },
+  {
+    name: "Premium PVC Kapı",
+    price: "₺1000 - ₺1500",
+    features: ["Yüksek kalite", "Ses yalıtımı", "10 yıl garanti"],
+    description: "En kaliteli PVC kapı serisi"
+  }
+];
+---
+
+<Layout
+  title="PVC Kapılar - İç Oda Kapısı Modelleri ve Fiyatları | CihanPan Door"
+  description="PVC iç oda kapısı modelleri ve fiyatları. Su geçirmez, dayanıklı ve ekonomik PVC kapı çeşitleri. Türkiye geneli ücretsiz kargo ve montaj hizmeti."
+  keywords="pvc kapı, pvc iç oda kapısı, pvc kapı fiyatları, su geçirmez kapı, ekonomik kapı modelleri"
+  canonical="https://kapi-ureticileri.web.app/pvc-kapilar"
+  ogImage="/assets/img/og/pvc-kapilar-og.webp"
+  schema={pvcDoorSchema}
+>
+  <Header />
+  <Breadcrumbs items={breadcrumbItems} />
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">PVC İç Oda Kapıları</h1>
+          <p class="hero-subtitle">
+            Su geçirmez, dayanıklı ve ekonomik PVC kapı modelleri. Türkiye'nin en kaliteli PVC kapı üreticilerinden.
+          </p>
+          <div class="hero-features">
+            <span class="feature">Su Geçirmez</span>
+            <span class="feature">Ekonomik</span>
+            <span class="feature">Kolay Bakım</span>
+            <span class="feature">2 Yıl Garanti</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PVC Models -->
+    <section class="models-section">
+      <div class="container">
+        <h2 class="section-title">PVC Kapı Modelleri</h2>
+        <p class="section-subtitle">
+          İhtiyacınıza uygun PVC kapı modelini seçin
+        </p>
+
+        <div class="models-grid">
+          {pvcModels.map((model, index) => (
+            <article class="model-card">
+              <div class="model-header">
+                <h3 class="model-title">{model.name}</h3>
+                <div class="model-price">{model.price}</div>
+              </div>
+
+              <p class="model-description">{model.description}</p>
+
+              <div class="model-features">
+                <h4 class="features-title">Özellikler:</h4>
+                <ul class="features-list">
+                  {model.features.map((feature) => (
+                    <li>{feature}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <button class="contact-btn">Fiyat Al</button>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section">
+      <div class="container">
+        <div class="info-grid">
+          <div class="info-content">
+            <h2>PVC Kapı Nedir?</h2>
+            <p>
+              PVC (Polivinil Klorür) kapılar, plastik malzemeden üretilen, su geçirmez
+              ve dayanıklı iç oda kapılarıdır. Nemli ortamlarda bile şişmez, çatlak yapmaz.
+            </p>
+
+            <h3>PVC Kapının Avantajları</h3>
+            <ul class="advantages-list">
+              <li><strong>Su Geçirmez:</strong> Banyo ve mutfak gibi nemli alanlarda ideal</li>
+              <li><strong>Ekonomik:</strong> Uygun fiyatlı seçenek</li>
+              <li><strong>Kolay Bakım:</strong> Sadece nemli bezle silinir</li>
+              <li><strong>Dayanıklı:</strong> Yıllarca kullanılabilir</li>
+              <li><strong>Çevre Dostu:</strong> Geri dönüştürülebilir</li>
+            </ul>
+
+            <h3>Hangi Alanlarda Kullanılır?</h3>
+            <p>
+              PVC kapılar özellikle nemli ortamlarda tercih edilir:
+            </p>
+            <ul>
+              <li>Banyo kapıları</li>
+              <li>Mutfak kapıları</li>
+              <li>Balkon kapıları</li>
+              <li>Yatak odası kapıları</li>
+              <li>Ofis kapıları</li>
+            </ul>
+          </div>
+
+          <div class="info-visual">
+            <div class="stat-card">
+              <div class="stat-number">2-15</div>
+              <div class="stat-label">Yıl Garanti</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">100%</div>
+              <div class="stat-label">Su Geçirmez</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">500₺</div>
+              <div class="stat-label">En Düşük Fiyat</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>PVC Kapı Fiyat Teklifi Alın</h2>
+        <p>Size en uygun PVC kapı modelini belirlemek için iletişime geçin</p>
+        <div class="cta-buttons">
+          <a href="/iletisim" class="btn btn-primary">İletişim</a>
+          <a href="https://wa.me/905441690038" class="btn btn-secondary">WhatsApp</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .hero {
+    padding: 6rem 0 4rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  }
+
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: #718096;
+    margin-bottom: 2rem;
+    max-width: 600px;
+  }
+
+  .hero-features {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .feature {
+    background: white;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #667eea;
+    border: 2px solid #667eea;
+  }
+
+  .models-section {
+    padding: 5rem 0;
+  }
+
+  .models-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .model-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 2rem;
+  }
+
+  .model-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .model-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a202c;
+  }
+
+  .model-price {
+    background: #10b981;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .model-description {
+    color: #718096;
+    margin-bottom: 1.5rem;
+  }
+
+  .features-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #4a5568;
+  }
+
+  .features-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+
+  .features-list li {
+    padding: 0.25rem 0;
+    color: #718096;
+  }
+
+  .features-list li:before {
+    content: "✓ ";
+    color: #10b981;
+    font-weight: bold;
+  }
+
+  .contact-btn {
+    width: 100%;
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 0.875rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .info-section {
+    padding: 5rem 0;
+    background: #f8fafc;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .info-content h2, .info-content h3 {
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  .info-content h2 {
+    font-size: 2rem;
+    font-weight: 800;
+  }
+
+  .info-content h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 2rem;
+  }
+
+  .info-content p {
+    color: #718096;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .advantages-list {
+    margin-bottom: 2rem;
+  }
+
+  .advantages-list li {
+    margin-bottom: 0.5rem;
+    color: #718096;
+  }
+
+  .info-visual {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #667eea;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    color: #718096;
+    font-weight: 600;
+  }
+
+  .cta-section {
+    padding: 5rem 0;
+    background: #667eea;
+    color: white;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .models-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

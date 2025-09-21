@@ -1,0 +1,746 @@
+---
+// src/pages/iletisim.astro
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbItems = [
+  { name: "Ana Sayfa", href: "/" },
+  { name: "İletişim" }
+];
+
+const contactInfo = {
+  phone: '+90 544 169 00 38',
+  whatsapp: '905441690038',
+  email: 'exportcihanpandoor@gmail.com',
+  website: 'www.cihanpandoor.com',
+  address: 'Organized Industrial Zone 29. Street No:28, Kayseri, Turkey',
+  workingHours: 'Pazartesi - Cuma: 08:00 - 17:00\nCumartesi: 09:00 - 15:00\nPazar: Kapalı'
+};
+
+const socialLinks = [
+  { name: 'WhatsApp', icon: '📱', href: `https://wa.me/${contactInfo.whatsapp}`, color: 'bg-green-500' },
+  { name: 'Instagram', icon: '📷', href: '#', color: 'bg-pink-500' },
+  { name: 'Twitter', icon: '🐦', href: '#', color: 'bg-blue-500' },
+  { name: 'LinkedIn', icon: '💼', href: '#', color: 'bg-blue-700' }
+];
+
+const faqs = [
+  {
+    question: 'Hangi illere teslimat yapıyorsunuz?',
+    answer: 'Türkiye geneline teslimat yapıyoruz. Özel projeler için uluslararası teslimat seçeneklerimiz de mevcuttur.'
+  },
+  {
+    question: 'Montaj hizmeti veriyor musunuz?',
+    answer: 'Evet, uzman montaj ekibimizle İstanbul ve çevre illerde profesyonel montaj hizmeti sunuyoruz.'
+  },
+  {
+    question: 'Garanti süreniz ne kadar?',
+    answer: 'Tüm ürünlerimiz için 2 yıl garanti veriyoruz. Garanti kapsamında bakım ve onarım hizmetleri ücretsizdir.'
+  },
+  {
+    question: 'Toptan satış yapıyor musunuz?',
+    answer: 'Evet, inşaat firmaları ve bayilerimiz için özel toptan fiyatlarımız bulunmaktadır.'
+  }
+];
+---
+
+<Layout
+  title="İletişim - CihanPan Door"
+  description="CihanPan Door ile iletişime geçin. İç oda kapısı ihtiyaçlarınız için uzman desteği alın."
+>
+  <Header />
+
+  <main>
+    <!-- Hero Section -->
+    <section class="contact-hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">İletişim</h1>
+          <p class="hero-subtitle">
+            Size en iyi hizmeti vermek için buradayız. Sorularınız için bizimle iletişime geçin
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="contact-section">
+      <div class="container">
+        <div class="contact-grid">
+          <!-- Contact Form -->
+          <div class="contact-form-container">
+            <div class="form-header">
+              <h2 class="form-title">Bize Ulaşın</h2>
+              <p class="form-subtitle">Mesajınızı gönderin, 24 saat içinde size dönüş yapalım</p>
+            </div>
+
+            <form class="contact-form" id="contact-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName" class="form-label">Ad</label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    class="form-input"
+                    required
+                    placeholder="Adınız"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="lastName" class="form-label">Soyad</label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    class="form-input"
+                    required
+                    placeholder="Soyadınız"
+                  />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email" class="form-label">E-posta</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-input"
+                    required
+                    placeholder="ornek@email.com"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="phone" class="form-label">Telefon</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    class="form-input"
+                    placeholder="0555 555 55 55"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="category" class="form-label">Konu</label>
+                <select id="category" name="category" class="form-select" required>
+                  <option value="">Konu seçin</option>
+                  <option value="pvc-kapilar">PVC Kapılar</option>
+                  <option value="laminoks-kapilar">Laminoks Kapılar</option>
+                  <option value="otel-kapilari">Otel Kapıları</option>
+                  <option value="hastane-kapilari">Hastane Kapıları</option>
+                  <option value="ahsap-kapilar">Ahşap Kapılar</option>
+                  <option value="cam-kapilar">Cam Kapılar</option>
+                  <option value="toptan-satis">Toptan Satış</option>
+                  <option value="montaj-hizmeti">Montaj Hizmeti</option>
+                  <option value="diger">Diğer</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="message" class="form-label">Mesajınız</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  class="form-textarea"
+                  rows="5"
+                  required
+                  placeholder="Mesajınızı buraya yazın..."
+                ></textarea>
+              </div>
+
+              <button type="submit" class="submit-btn">
+                <span class="btn-text">Mesaj Gönder</span>
+                <span class="btn-icon">📤</span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="contact-info-container">
+            <div class="info-header">
+              <h2 class="info-title">İletişim Bilgileri</h2>
+              <p class="info-subtitle">Bize ulaşmanın farklı yolları</p>
+            </div>
+
+            <div class="contact-cards">
+              <div class="contact-card">
+                <div class="card-icon phone-icon">📞</div>
+                <div class="card-content">
+                  <h3 class="card-title">Telefon</h3>
+                  <p class="card-text">{contactInfo.phone}</p>
+                  <a href={`tel:${contactInfo.phone.replace(/\s/g, '')}`} class="card-link">Hemen Ara</a>
+                </div>
+              </div>
+
+              <div class="contact-card">
+                <div class="card-icon email-icon">✉️</div>
+                <div class="card-content">
+                  <h3 class="card-title">E-posta</h3>
+                  <p class="card-text">{contactInfo.email}</p>
+                  <a href={`mailto:${contactInfo.email}`} class="card-link">E-posta Gönder</a>
+                </div>
+              </div>
+
+              <div class="contact-card">
+                <div class="card-icon location-icon">📍</div>
+                <div class="card-content">
+                  <h3 class="card-title">Adres</h3>
+                  <p class="card-text">{contactInfo.address}</p>
+                  <a href="https://maps.google.com/?q=Organized+Industrial+Zone+29+Street+No28+Kayseri+Turkey" target="_blank" class="card-link">Haritada Gör</a>
+                </div>
+              </div>
+
+              <div class="contact-card">
+                <div class="card-icon website-icon">🌐</div>
+                <div class="card-content">
+                  <h3 class="card-title">Website</h3>
+                  <p class="card-text">{contactInfo.website}</p>
+                  <a href={`https://${contactInfo.website}`} target="_blank" class="card-link">Websiteyi Ziyaret Et</a>
+                </div>
+              </div>
+
+              <div class="contact-card">
+                <div class="card-icon time-icon">🕒</div>
+                <div class="card-content">
+                  <h3 class="card-title">Çalışma Saatleri</h3>
+                  <p class="card-text working-hours">{contactInfo.workingHours}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="social-section">
+              <h3 class="social-title">Sosyal Medya</h3>
+              <div class="social-links">
+                {socialLinks.map((social) => (
+                  <a href={social.href} class={`social-link ${social.color}`} target="_blank">
+                    <span class="social-icon">{social.icon}</span>
+                    <span class="social-name">{social.name}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <!-- Quick WhatsApp -->
+            <div class="whatsapp-section">
+              <div class="whatsapp-card">
+                <div class="whatsapp-icon">💬</div>
+                <div class="whatsapp-content">
+                  <h3 class="whatsapp-title">Hızlı İletişim</h3>
+                  <p class="whatsapp-text">WhatsApp'tan anında mesaj gönderin</p>
+                  <a href={`https://wa.me/${contactInfo.whatsapp}`} class="whatsapp-btn" target="_blank">
+                    WhatsApp'ta Mesaj Gönder
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+          <div class="faq-header">
+            <h2 class="faq-title">Sık Sorulan Sorular</h2>
+            <p class="faq-subtitle">En çok merak edilen soruların cevapları</p>
+          </div>
+
+          <div class="faq-grid">
+            {faqs.map((faq, index) => (
+              <div class="faq-item" data-index={index}>
+                <button class="faq-question" type="button">
+                  <span class="question-text">{faq.question}</span>
+                  <span class="question-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <p class="answer-text">{faq.answer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .contact-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 8rem 0 4rem;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .contact-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    margin-bottom: 5rem;
+  }
+
+  /* Form Styles */
+  .contact-form-container {
+    background: white;
+    padding: 3rem;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-subtitle {
+    color: #718096;
+    margin-bottom: 2rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-label {
+    display: block;
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f8fafc;
+  }
+
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 1.25rem 2rem;
+    border-radius: 16px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+  }
+
+  /* Contact Info Styles */
+  .contact-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .info-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 0.5rem;
+  }
+
+  .info-subtitle {
+    color: #718096;
+    margin-bottom: 2rem;
+  }
+
+  .contact-cards {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .contact-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-icon {
+    font-size: 2.5rem;
+    padding: 1rem;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .phone-icon { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+  .email-icon { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); }
+  .location-icon { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
+  .website-icon { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); }
+  .time-icon { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-text {
+    color: #718096;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .working-hours {
+    white-space: pre-line;
+    font-size: 0.9rem;
+  }
+
+  .card-link {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+
+  .card-link:hover {
+    color: #764ba2;
+  }
+
+  /* Social Links */
+  .social-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .social-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 1.5rem;
+  }
+
+  .social-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-radius: 12px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .social-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .bg-green-500 { background: #10b981; }
+  .bg-pink-500 { background: #ec4899; }
+  .bg-blue-500 { background: #3b82f6; }
+  .bg-blue-700 { background: #1d4ed8; }
+
+  /* WhatsApp Section */
+  .whatsapp-section {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .whatsapp-card {
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    color: white;
+  }
+
+  .whatsapp-icon {
+    font-size: 3rem;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 1rem;
+    border-radius: 16px;
+  }
+
+  .whatsapp-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .whatsapp-text {
+    margin-bottom: 1rem;
+    opacity: 0.9;
+  }
+
+  .whatsapp-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .whatsapp-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+  }
+
+  /* FAQ Section */
+  .faq-section {
+    margin-top: 4rem;
+  }
+
+  .faq-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .faq-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  .faq-subtitle {
+    color: #718096;
+    font-size: 1.1rem;
+  }
+
+  .faq-grid {
+    display: grid;
+    gap: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .faq-item.active {
+    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.15);
+  }
+
+  .faq-question {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1a202c;
+    transition: all 0.3s ease;
+  }
+
+  .faq-question:hover {
+    background: #f8fafc;
+  }
+
+  .question-icon {
+    font-size: 1.5rem;
+    color: #667eea;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.active .question-icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 200px;
+  }
+
+  .answer-text {
+    padding: 0 2rem 2rem;
+    color: #718096;
+    line-height: 1.7;
+  }
+
+  /* Responsive */
+  @media (min-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+
+    .contact-form-container {
+      padding: 2rem;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .contact-card {
+      padding: 1.5rem;
+    }
+
+    .social-links {
+      grid-template-columns: 1fr;
+    }
+
+    .whatsapp-card {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+
+      question?.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+
+        // Close all items
+        faqItems.forEach(faq => faq.classList.remove('active'));
+
+        // Open clicked item if it wasn't active
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    // Contact Form
+    const contactForm = document.getElementById('contact-form');
+
+    contactForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Form data'sını topla
+      const formData = new FormData(contactForm);
+      const data = Object.fromEntries(formData);
+
+      // WhatsApp mesajı oluştur
+      const message = `
+Merhaba! Web sitesi üzerinden mesaj gönderiyorum.
+
+Ad Soyad: ${data.firstName} ${data.lastName}
+E-posta: ${data.email}
+Telefon: ${data.phone}
+Konu: ${data.category}
+
+Mesaj: ${data.message}
+      `.trim();
+
+      // WhatsApp'a yönlendir
+      const whatsappNumber = '905441690038'; // Güncellenmiş WhatsApp numarası
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+      window.open(whatsappUrl, '_blank');
+
+      // Form'u temizle
+      contactForm.reset();
+
+      // Başarı mesajı göster
+      alert('Mesajınız WhatsApp üzerinden gönderildi!');
+    });
+  });
+</script>

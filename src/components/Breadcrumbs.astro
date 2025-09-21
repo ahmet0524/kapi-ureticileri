@@ -1,0 +1,48 @@
+---
+export interface Props {
+  items: Array<{
+    name: string;
+    href?: string;
+  }>;
+}
+
+const { items } = Astro.props;
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": items.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    "item": item.href ? `https://pvc-kapi-rehberi.web.app${item.href}` : undefined
+  }))
+};
+---
+
+{items.length > 1 && (
+  <nav aria-label="Breadcrumb" class="py-4 bg-gray-50">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <div class="container mx-auto px-4">
+      <ol class="flex items-center space-x-2 text-sm" itemscope itemtype="https://schema.org/BreadcrumbList">
+        {items.map((item, index) => (
+          <li class="flex items-center" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            {item.href ? (
+              <a href={item.href} class="text-blue-600 hover:text-blue-800" itemprop="item">
+                <span itemprop="name">{item.name}</span>
+              </a>
+            ) : (
+              <span class="text-gray-500" itemprop="name">{item.name}</span>
+            )}
+            <meta itemprop="position" content={String(index + 1)}>
+            {index < items.length - 1 && (
+              <svg class="w-4 h-4 ml-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            )}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </nav>
+)}

@@ -1,0 +1,294 @@
+---
+// src/components/Categories.astro
+const categories = [
+  {
+    title: "PVC Kapılar",
+    description: "Su geçirmez, dayanıklı ve ekonomik PVC iç oda kapıları",
+    image: "pvc-kapilar.webp",
+    alt: "PVC iç oda kapısı modelleri",
+    features: ["Su geçirmez", "Ekonomik", "Kolay bakım"]
+  },
+  {
+    title: "Laminoks Kapılar",
+    description: "Modern tasarım ve yüksek kaliteli laminoks kapılar",
+    image: "laminoks-kapilar.webp",
+    alt: "Laminoks iç oda kapısı modelleri",
+    features: ["Modern tasarım", "Yüksek kalite", "Çeşitli renk"]
+  },
+  {
+    title: "Otel Kapıları",
+    description: "Otel standartlarında profesyonel iç oda kapıları",
+    image: "otel-kapilari.webp",
+    alt: "Otel iç oda kapısı modelleri",
+    features: ["Profesyonel", "Dayanıklı", "Ses yalıtımı"]
+  },
+  {
+    title: "Hastane Kapıları",
+    description: "Hijyenik ve antibakteriyel hastane iç oda kapıları",
+    image: "hastane-kapilari.webp",
+    alt: "Hastane iç oda kapısı modelleri",
+    features: ["Hijyenik", "Antibakteriyel", "Kolay temizlik"]
+  },
+  /*{
+    title: "Yanmaya Dayanıklı Kapılar",
+    description: "Doğal ahşap dokulu premium iç oda kapıları",
+    image: "yanmaya-kapilar.webp",
+    alt: "Yanmaya dayanıklı iç oda kapısı modelleri",
+    features: ["Doğal görünüm", "Premium kalite", "Çevre dostu"]
+  },*/
+
+];
+---
+
+<section class="categories section" id="kategoriler">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Kapı Kategorileri</h2>
+      <p class="section-subtitle">
+        Her ihtiyaca uygun kaliteli iç oda kapısı seçenekleri
+      </p>
+    </div>
+
+    <div class="categories-grid">
+      {categories.map((category) => (
+        <article class="category-card">
+          <div class="card-image">
+            <img
+              src={`/assets/img/categories/${category.image}`}
+              alt={category.alt}
+              width="200"
+              height="200"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="card-body">
+            <div class="card-content">
+              <h3 class="card-title">{category.title}</h3>
+              <p class="card-description">{category.description}</p>
+
+              <ul class="card-features">
+                {category.features.map((feature) => (
+                  <li class="feature-tag">{feature}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="card-footer">
+              <a href={category.title === "PVC Kapılar" ? "/pvc-kapilar" : `/kategoriler/${category.title.toLowerCase().replace(' ', '-')}`} class="card-btn">
+                Detayları Gör
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="section-cta">
+      <a href="/kategoriler" class="btn btn-primary">
+        Tüm Kategorileri Görüntüle
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .categories {
+    background: #ffffff;
+    padding: 4rem 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-subtitle {
+    color: #6b7280;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .category-card {
+    display: flex;
+    align-items: stretch;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+  }
+
+  .category-card:hover {
+    border-color: #d1d5db;
+  }
+
+  .card-image {
+    flex: 0 0 200px;
+    background: #f9fafb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s ease;
+  }
+
+  .category-card:hover .card-image img {
+    transform: scale(1.02);
+  }
+
+  .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem;
+  }
+
+  .card-content {
+    margin-bottom: 1.5rem;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-description {
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .card-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .feature-tag {
+    background: #f3f4f6;
+    color: #374151;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .card-footer {
+    margin-top: auto;
+  }
+
+  .card-btn {
+    display: inline-block;
+    color: #111827;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: color 0.2s ease;
+  }
+
+  .card-btn:hover {
+    color: #6b7280;
+  }
+
+  .section-cta {
+    text-align: center;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary {
+    background: #111827;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #1f2937;
+    color: white;
+  }
+
+  @media (max-width: 768px) {
+    .categories {
+      padding: 3rem 0;
+    }
+
+    .categories-grid {
+      gap: 1.5rem;
+    }
+
+    .card-image {
+      flex: 0 0 120px;
+      height: 120px;
+    }
+
+    .card-body {
+      padding: 1rem;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+    }
+
+    .card-description {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-features {
+      gap: 0.25rem;
+    }
+
+    .feature-tag {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .card-image {
+      flex: 0 0 100px;
+      height: 100px;
+    }
+
+    .card-body {
+      padding: 0.75rem;
+    }
+
+    .card-title {
+      font-size: 1rem;
+    }
+  }
+</style>
