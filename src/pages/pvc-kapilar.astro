@@ -1,66 +1,540 @@
----
-// src/pages/pvc-kapilar.astro
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import Breadcrumbs from '../components/Breadcrumbs.astro';
 
-const breadcrumbItems = [
-  { name: "Ana Sayfa", href: "/" },
-  { name: "Kategoriler", href: "/kategoriler" },
-  { name: "PVC Kapılar" }
-];
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PVC İç Oda Kapıları - 100+ Model | CihanPan Door Kayseri</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-// SEO Schema
-const pvcDoorSchema = {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "PVC İç Oda Kapısı",
-  "description": "Su geçirmez, dayanıklı ve ekonomik PVC iç oda kapıları. Türkiye üretimi kaliteli kapı modelleri.",
-  "brand": {
-    "@type": "Brand",
-    "name": "CihanPan Door"
-  },
-  "offers": {
-    "@type": "AggregateOffer",
-    "priceCurrency": "TRY",
-    "lowPrice": "500",
-    "highPrice": "1500"
-  }
-};
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
 
-const pvcModels = [
-  {
-    name: "Klasik PVC Kapı",
-    price: "₺500 - ₺800",
-    features: ["Su geçirmez", "Ekonomik", "Kolay montaj"],
-    description: "En temel PVC kapı modeli"
-  },
-  {
-    name: "Modern PVC Kapı",
-    price: "₺700 - ₺1200",
-    features: ["Modern tasarım", "Dayanıklı", "Çeşitli renk"],
-    description: "Çağdaş tasarıma sahip PVC kapı"
-  },
-  {
-    name: "Premium PVC Kapı",
-    price: "₺1000 - ₺1500",
-    features: ["Yüksek kalite", "Ses yalıtımı", "10 yıl garanti"],
-    description: "En kaliteli PVC kapı serisi"
-  }
-];
----
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-<Layout
-  title="PVC Kapılar - İç Oda Kapısı Modelleri ve Fiyatları | CihanPan Door"
-  description="PVC iç oda kapısı modelleri ve fiyatları. Su geçirmez, dayanıklı ve ekonomik PVC kapı çeşitleri. Türkiye geneli ücretsiz kargo ve montaj hizmeti."
-  keywords="pvc kapı, pvc iç oda kapısı, pvc kapı fiyatları, su geçirmez kapı, ekonomik kapı modelleri"
-  canonical="https://kapi-ureticileri.web.app/pvc-kapilar"
-  ogImage="/assets/img/og/pvc-kapilar-og.webp"
-  schema={pvcDoorSchema}
->
-  <Header />
-  <Breadcrumbs items={breadcrumbItems} />
+    /* Header placeholder */
+    .header-placeholder {
+      height: 80px;
+      background: #667eea;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs {
+      padding: 1rem 0;
+      background: #f8fafc;
+    }
+
+    .breadcrumb-list {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      list-style: none;
+    }
+
+    .breadcrumb-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .breadcrumb-link {
+      color: #667eea;
+      text-decoration: none;
+    }
+
+    .breadcrumb-link:hover {
+      text-decoration: underline;
+    }
+
+    .breadcrumb-separator {
+      color: #6b7280;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 4rem 0;
+      background: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)),
+                  linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      opacity: 0.95;
+      max-width: 800px;
+      margin: 0 auto;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+
+    /* Products Section */
+    .products-section {
+      padding: 4rem 0;
+    }
+
+    .quote-button-section {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .btn-quote-main {
+      background: #667eea;
+      color: white;
+      border: none;
+      padding: 1rem 3rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .btn-quote-main:hover {
+      background: #5a67d8;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    /* Grid düzeltmesi - eşit genişlik ve hizalama */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      justify-items: center;
+    }
+
+    .product-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      width: 100%;
+      max-width: 350px;
+    }
+
+    .product-card:hover {
+      border-color: #667eea;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
+    }
+
+    /* Görsel konteyner düzeltmesi */
+    .product-image {
+      width: 100%;
+      height: 300px;
+      background: #f9fafb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+      padding: 10px;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.05);
+    }
+
+    .product-info {
+      padding: 1.5rem;
+    }
+
+    .product-model {
+      font-size: 0.85rem;
+      color: #6b7280;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 0.75rem;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 12px;
+      max-width: 800px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      z-index: 1;
+    }
+
+    .modal-image {
+      height: 400px;
+      background: #f9fafb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-image img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .modal-info {
+      padding: 2rem;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .modal-specs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .spec-item {
+      padding: 1rem;
+      background: #f8fafc;
+      border-radius: 8px;
+    }
+
+    .spec-label {
+      font-weight: 500;
+      color: #6b7280;
+      font-size: 0.85rem;
+    }
+
+    .spec-value {
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .btn-whatsapp {
+      background: #10b981;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.2s;
+    }
+
+    .btn-whatsapp:hover {
+      background: #059669;
+    }
+
+    /* Pagination düzeltmesi */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 3rem;
+      padding: 2rem 0;
+    }
+
+    .page-btn {
+      padding: 0.75rem 1rem;
+      border: 1px solid #d1d5db;
+      background: white;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s;
+      font-size: 16px;
+      min-width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .page-btn:hover {
+      border-color: #667eea;
+      color: #667eea;
+    }
+
+    .page-btn.active {
+      background: #667eea;
+      color: white;
+      border-color: #667eea;
+    }
+
+    /* Loading */
+    .loading {
+      text-align: center;
+      padding: 3rem;
+      color: #6b7280;
+    }
+
+    /* Info Section */
+    .info-section {
+      padding: 5rem 0;
+      background: #f8fafc;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .info-content h2, .info-content h3 {
+      color: #1a202c;
+      margin-bottom: 1rem;
+    }
+
+    .info-content h2 {
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    .info-content h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 2rem;
+    }
+
+    .info-content p {
+      color: #718096;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .advantages-list {
+      margin-bottom: 2rem;
+      padding-left: 1rem;
+    }
+
+    .advantages-list li {
+      margin-bottom: 0.5rem;
+      color: #718096;
+    }
+
+    .info-visual {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid #e2e8f0;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #667eea;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      color: #718096;
+      font-weight: 600;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 5rem 0;
+      background: #667eea;
+      color: white;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.875rem 2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: #111827;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #1f2937;
+      color: white;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: #667eea;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .modal-content {
+        margin: 1rem;
+        max-height: 85vh;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 200px;
+        text-align: center;
+      }
+
+      .pagination {
+        flex-wrap: wrap;
+        gap: 0.25rem;
+      }
+
+      .page-btn {
+        min-width: 40px;
+        height: 40px;
+        padding: 0.5rem;
+      }
+    }
+
+    .footer-placeholder {
+      background: #1a202c;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Placeholder -->
+  <div class="header-placeholder">
+    CihanPan Door - Header
+  </div>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumbs">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li class="breadcrumb-item">
+          <a href="/" class="breadcrumb-link">Ana Sayfa</a>
+          <span class="breadcrumb-separator">/</span>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="/urunlerimiz" class="breadcrumb-link">Ürünlerimiz</a>
+          <span class="breadcrumb-separator">/</span>
+        </li>
+        <li class="breadcrumb-item">PVC Kapılar</li>
+      </ol>
+    </div>
+  </nav>
 
   <main>
     <!-- Hero Section -->
@@ -69,48 +543,32 @@ const pvcModels = [
         <div class="hero-content">
           <h1 class="hero-title">PVC İç Oda Kapıları</h1>
           <p class="hero-subtitle">
-            Su geçirmez, dayanıklı ve ekonomik PVC kapı modelleri. Türkiye'nin en kaliteli PVC kapı üreticilerinden.
+            Su geçirmez, antibakteriyel ve ekonomik PVC kapı modelleri. Kayseri'den tüm Türkiye'ye hızlı teslimat.
           </p>
-          <div class="hero-features">
-            <span class="feature">Su Geçirmez</span>
-            <span class="feature">Ekonomik</span>
-            <span class="feature">Kolay Bakım</span>
-            <span class="feature">2 Yıl Garanti</span>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- PVC Models -->
-    <section class="models-section">
+    <!-- Products Section -->
+    <section class="products-section">
       <div class="container">
-        <h2 class="section-title">PVC Kapı Modelleri</h2>
-        <p class="section-subtitle">
-          İhtiyacınıza uygun PVC kapı modelini seçin
-        </p>
+        <div class="quote-button-section">
+          <button class="btn-quote-main" id="quoteBtn">
+            Teklif Al
+          </button>
+        </div>
 
-        <div class="models-grid">
-          {pvcModels.map((model, index) => (
-            <article class="model-card">
-              <div class="model-header">
-                <h3 class="model-title">{model.name}</h3>
-                <div class="model-price">{model.price}</div>
-              </div>
+        <div class="products-grid" id="productsGrid">
+          <!-- Products will be loaded here -->
+        </div>
 
-              <p class="model-description">{model.description}</p>
+        <div class="loading" id="loading">
+          Ürünler yükleniyor...
+        </div>
 
-              <div class="model-features">
-                <h4 class="features-title">Özellikler:</h4>
-                <ul class="features-list">
-                  {model.features.map((feature) => (
-                    <li>{feature}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <button class="contact-btn">Fiyat Al</button>
-            </article>
-          ))}
+        <!-- Pagination -->
+        <div class="pagination" id="pagination">
+          <!-- Pagination will be generated here -->
         </div>
       </div>
     </section>
@@ -136,9 +594,7 @@ const pvcModels = [
             </ul>
 
             <h3>Hangi Alanlarda Kullanılır?</h3>
-            <p>
-              PVC kapılar özellikle nemli ortamlarda tercih edilir:
-            </p>
+            <p>PVC kapılar özellikle nemli ortamlarda tercih edilir:</p>
             <ul>
               <li>Banyo kapıları</li>
               <li>Mutfak kapıları</li>
@@ -150,16 +606,16 @@ const pvcModels = [
 
           <div class="info-visual">
             <div class="stat-card">
-              <div class="stat-number">2-15</div>
-              <div class="stat-label">Yıl Garanti</div>
+              <div class="stat-number">100+</div>
+              <div class="stat-label">Farklı Model</div>
             </div>
             <div class="stat-card">
               <div class="stat-number">100%</div>
               <div class="stat-label">Su Geçirmez</div>
             </div>
             <div class="stat-card">
-              <div class="stat-number">500₺</div>
-              <div class="stat-label">En Düşük Fiyat</div>
+              <div class="stat-number">CE</div>
+              <div class="stat-label">Belgeli</div>
             </div>
           </div>
         </div>
@@ -173,241 +629,234 @@ const pvcModels = [
         <p>Size en uygun PVC kapı modelini belirlemek için iletişime geçin</p>
         <div class="cta-buttons">
           <a href="/iletisim" class="btn btn-primary">İletişim</a>
-          <a href="https://wa.me/905441690038" class="btn btn-secondary">WhatsApp</a>
+          <a href="https://wa.me/905XXXXXXXXX" class="btn btn-secondary" target="_blank">WhatsApp</a>
         </div>
       </div>
     </section>
   </main>
 
-  <Footer />
-</Layout>
+  <!-- Modal -->
+  <div class="modal" id="productModal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <div class="modal-image">
+        <img id="modalImage" src="" alt="">
+      </div>
+      <div class="modal-info">
+        <h3 class="modal-title" id="modalTitle"></h3>
+        <p id="modalDescription"></p>
+        <div class="modal-specs" id="modalSpecs">
+          <!-- Specs will be loaded here -->
+        </div>
+        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+          <button class="btn-quote-main" onclick="requestQuote()">Teklif Al</button>
+          <button class="btn-whatsapp" onclick="contactWhatsApp()">WhatsApp</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<style>
-  .hero {
-    padding: 6rem 0 4rem;
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  }
+  <!-- Footer Placeholder -->
+  <div class="footer-placeholder">
+    CihanPan Door - Footer
+  </div>
 
-  .hero-title {
-    font-size: 3rem;
-    font-weight: 800;
-    color: #1a202c;
-    margin-bottom: 1rem;
-  }
+  <script>
+    // PVC Models Data Generation
+    const pvcModels = [];
+    const colors = ['beyaz', 'kahve', 'gri', 'siyah', 'krem'];
+    const names = ['Düz Panel', 'Çizgili Panel', 'Modern Panel', 'Klasik Panel', 'Basit Panel'];
 
-  .hero-subtitle {
-    font-size: 1.25rem;
-    color: #718096;
-    margin-bottom: 2rem;
-    max-width: 600px;
-  }
+    for (let i = 1; i <= 100; i++) {
+      const modelNum = i.toString().padStart(3, '0');
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const name = names[Math.floor(Math.random() * names.length)];
 
-  .hero-features {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .feature {
-    background: white;
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #667eea;
-    border: 2px solid #667eea;
-  }
-
-  .models-section {
-    padding: 5rem 0;
-  }
-
-  .models-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-  }
-
-  .model-card {
-    background: white;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    padding: 2rem;
-  }
-
-  .model-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 1rem;
-  }
-
-  .model-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #1a202c;
-  }
-
-  .model-price {
-    background: #10b981;
-    color: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: 15px;
-    font-size: 0.875rem;
-    font-weight: 600;
-  }
-
-  .model-description {
-    color: #718096;
-    margin-bottom: 1.5rem;
-  }
-
-  .features-title {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: #4a5568;
-  }
-
-  .features-list {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 2rem;
-  }
-
-  .features-list li {
-    padding: 0.25rem 0;
-    color: #718096;
-  }
-
-  .features-list li:before {
-    content: "✓ ";
-    color: #10b981;
-    font-weight: bold;
-  }
-
-  .contact-btn {
-    width: 100%;
-    background: #667eea;
-    color: white;
-    border: none;
-    padding: 0.875rem;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-  }
-
-  .info-section {
-    padding: 5rem 0;
-    background: #f8fafc;
-  }
-
-  .info-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-
-  .info-content h2, .info-content h3 {
-    color: #1a202c;
-    margin-bottom: 1rem;
-  }
-
-  .info-content h2 {
-    font-size: 2rem;
-    font-weight: 800;
-  }
-
-  .info-content h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-top: 2rem;
-  }
-
-  .info-content p {
-    color: #718096;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-  }
-
-  .advantages-list {
-    margin-bottom: 2rem;
-  }
-
-  .advantages-list li {
-    margin-bottom: 0.5rem;
-    color: #718096;
-  }
-
-  .info-visual {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .stat-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    text-align: center;
-    border: 1px solid #e2e8f0;
-  }
-
-  .stat-number {
-    font-size: 2rem;
-    font-weight: 800;
-    color: #667eea;
-    margin-bottom: 0.5rem;
-  }
-
-  .stat-label {
-    color: #718096;
-    font-weight: 600;
-  }
-
-  .cta-section {
-    padding: 5rem 0;
-    background: #667eea;
-    color: white;
-    text-align: center;
-  }
-
-  .cta-section h2 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
-  }
-
-  .cta-section p {
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-  }
-
-  .cta-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: white;
-    border: 2px solid white;
-  }
-
-  @media (max-width: 768px) {
-    .hero-title {
-      font-size: 2rem;
+      pvcModels.push({
+        id: `PVC-${modelNum}`,
+        name: `${color.charAt(0).toUpperCase() + color.slice(1)} ${name}`,
+        image: `https://picsum.photos/300/400?random=${i}`,
+        color: color,
+        description: `PVC-${modelNum} model ${color} renkli iç oda kapısı. Su geçirmez ve antibakteriyel özellikli.`
+      });
     }
 
-    .info-grid {
-      grid-template-columns: 1fr;
+    // Pagination
+    let currentPage = 1;
+    const itemsPerPage = 20;
+
+    function renderProducts() {
+      const grid = document.getElementById('productsGrid');
+      const loading = document.getElementById('loading');
+
+      loading.style.display = 'block';
+      grid.innerHTML = '';
+
+      setTimeout(() => {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const currentProducts = pvcModels.slice(startIndex, endIndex);
+
+        currentProducts.forEach(product => {
+          const card = createProductCard(product);
+          grid.appendChild(card);
+        });
+
+        loading.style.display = 'none';
+      }, 300);
     }
 
-    .models-grid {
-      grid-template-columns: 1fr;
+    function createProductCard(product) {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.onclick = () => openModal(product);
+
+      const altText = `${product.id} ${product.name} - CihanPan Door PVC İç Oda Kapısı Modeli`;
+
+      card.innerHTML = `
+        <div class="product-image">
+          <img src="${product.image}" alt="${altText}" loading="lazy"
+               title="${product.name} - ${product.id} Model PVC Kapı">
+        </div>
+        <div class="product-info">
+          <div class="product-model">${product.id}</div>
+          <h3 class="product-title">${product.name}</h3>
+        </div>
+      `;
+
+      return card;
     }
-  }
-</style>
+
+    function renderPagination() {
+      const pagination = document.getElementById('pagination');
+      const totalPages = Math.ceil(pvcModels.length / itemsPerPage);
+
+      if (totalPages <= 1) {
+        pagination.innerHTML = '';
+        return;
+      }
+
+      let paginationHTML = '';
+
+      // Önceki sayfa butonu
+      if (currentPage > 1) {
+        paginationHTML += `<button class="page-btn" onclick="changePage(${currentPage - 1})">‹</button>`;
+      }
+
+      // Sayfa numaraları
+      let startPage = Math.max(1, currentPage - 2);
+      let endPage = Math.min(totalPages, currentPage + 2);
+
+      if (startPage > 1) {
+        paginationHTML += `<button class="page-btn" onclick="changePage(1)">1</button>`;
+        if (startPage > 2) {
+          paginationHTML += `<span class="page-btn">...</span>`;
+        }
+      }
+
+      for (let i = startPage; i <= endPage; i++) {
+        paginationHTML += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
+      }
+
+      if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+          paginationHTML += `<span class="page-btn">...</span>`;
+        }
+        paginationHTML += `<button class="page-btn" onclick="changePage(${totalPages})">${totalPages}</button>`;
+      }
+
+      // Sonraki sayfa butonu
+      if (currentPage < totalPages) {
+        paginationHTML += `<button class="page-btn" onclick="changePage(${currentPage + 1})">›</button>`;
+      }
+
+      pagination.innerHTML = paginationHTML;
+    }
+
+    function changePage(page) {
+      currentPage = page;
+      renderProducts();
+      renderPagination();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Modal functions
+    function openModal(product) {
+      const modal = document.getElementById('productModal');
+      const modalImage = document.getElementById('modalImage');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalDescription = document.getElementById('modalDescription');
+      const modalSpecs = document.getElementById('modalSpecs');
+
+      const modalAltText = `${product.id} ${product.name} Detay - CihanPan Door PVC İç Oda Kapısı`;
+
+      modalImage.src = product.image;
+      modalImage.alt = modalAltText;
+      modalImage.title = `${product.name} - ${product.id} PVC Kapı Büyük Görsel`;
+      modalTitle.textContent = `${product.id} - ${product.name}`;
+      modalDescription.textContent = product.description;
+
+      modalSpecs.innerHTML = `
+        <div class="spec-item">
+          <div class="spec-label">Model No</div>
+          <div class="spec-value">${product.id}</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Renk</div>
+          <div class="spec-value">${product.color.charAt(0).toUpperCase() + product.color.slice(1)}</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Malzeme</div>
+          <div class="spec-value">PVC</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-label">Kalınlık</div>
+          <div class="spec-value">40mm</div>
+        </div>
+      `;
+
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('productModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function requestQuote() {
+      alert('Teklif talebi gönderildi! Size en kısa sürede dönüş yapacağız.');
+      closeModal();
+    }
+
+    function contactWhatsApp() {
+      const phone = "905XXXXXXXXX";
+      const message = "Merhaba, PVC kapı modelleri hakkında bilgi almak istiyorum.";
+      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+    }
+
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', () => {
+      renderProducts();
+      renderPagination();
+
+      // Quote button
+      document.getElementById('quoteBtn').addEventListener('click', requestQuote);
+
+      // Modal close
+      document.getElementById('modalClose').addEventListener('click', closeModal);
+
+      // Modal outside click
+      document.getElementById('productModal').addEventListener('click', (e) => {
+        if (e.target.id === 'productModal') closeModal();
+      });
+
+      // Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+      });
+    });
+  </script>
+</body>
+</html>
