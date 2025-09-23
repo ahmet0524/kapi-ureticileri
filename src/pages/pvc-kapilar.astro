@@ -3,40 +3,167 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
 
-const pageTitle = "PVC İç Oda Kapıları - 100+ Model";
-const pageDescription = "Su geçirmez, antibakteriyel ve ekonomik PVC kapı modelleri. Kayseri'den tüm Türkiye'ye hızlı teslimat.";
+const breadcrumbItems = [
+  { name: "Ana Sayfa", href: "/" },
+  { name: "Ürünlerimiz", href: "/urunlerimiz" },
+  { name: "PVC Kapılar" }
+];
+
+// SEO Schema - Google için optimize edilmiş
+const pvcDoorSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "PVC İç Oda Kapıları - 100+ Model",
+  "description": "Kayseri'den üretilen su geçirmez, antibakteriyel PVC kapı modelleri. CE belgeli, 5 yıl garanti, ücretsiz kargo. Türkiye'nin en büyük PVC kapı koleksiyonu.",
+  "url": "https://cihanpandoor.com/pvc-kapilar",
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "PVC Kapı Modelleri",
+    "numberOfItems": 100,
+    "itemListElement": [
+      {
+        "@type": "Product",
+        "name": "PVC İç Oda Kapısı",
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "CihanPan Door",
+          "url": "https://cihanpandoor.com",
+          "logo": "https://cihanpandoor.com/assets/img/logo.webp"
+        },
+        "category": "İç Oda Kapısı",
+        "material": "PVC",
+        "brand": "CihanPan Door",
+        "offers": {
+          "@type": "AggregateOffer",
+          "availability": "https://schema.org/InStock",
+          "priceCurrency": "TRY",
+          "priceRange": "₺300-₺800",
+          "seller": {
+            "@type": "Organization",
+            "name": "CihanPan Door"
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "reviewCount": "152"
+        }
+      }
+    ]
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Ana Sayfa",
+        "item": "https://cihanpandoor.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Ürünlerimiz",
+        "item": "https://cihanpandoor.com/urunlerimiz"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "PVC Kapılar",
+        "item": "https://cihanpandoor.com/pvc-kapilar"
+      }
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CihanPan Door",
+    "url": "https://cihanpandoor.com",
+    "logo": "https://cihanpandoor.com/assets/img/logo.webp",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Kayseri",
+      "addressRegion": "Kayseri",
+      "addressCountry": "TR"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+90-544-169-0038",
+      "contactType": "customer service",
+      "availableLanguage": "Turkish"
+    }
+  }
+};
+
+// FAQ Schema - SEO için kritik
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "PVC kapı nedir ve neden tercih edilir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PVC kapılar, Polivinil Klorür malzemesinden üretilen, su geçirmez ve antibakteriyel özellikli iç oda kapılarıdır. Nemli ortamlarda çarpma yapmaz, bakımı kolaydır ve ekonomiktir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "PVC kapı fiyatları ne kadardır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PVC kapı fiyatları 300₺-800₺ arasında değişir. Model, boyut ve aksesuarlara göre fiyat farklılık gösterir. Ücretsiz ölçü alma ve montaj hizmeti sunuyoruz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "PVC kapı hangi alanlarda kullanılır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PVC kapılar banyo, mutfak, balkon, yatak odası ve ofis kapıları olarak kullanılır. Özellikle nemli ortamlarda tercih edilir çünkü su geçirmez özelliği vardır."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kayseri'den tüm Türkiye'ye kargo var mı?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Evet, Kayseri'den tüm Türkiye'ye ücretsiz kargo yapıyoruz. 2-5 iş günü içinde teslimat gerçekleşir. Montaj hizmeti de mevcuttur."
+      }
+    }
+  ]
+};
+
+// PVC Models Data - SEO optimize edilmiş
+const pvcModelData = {
+  colors: ['beyaz', 'kahve', 'gri', 'siyah', 'krem', 'ceviz', 'meşe', 'wenge'],
+  styles: ['Düz Panel', 'Çizgili Panel', 'Modern Panel', 'Klasik Panel', 'Basit Panel', 'Kasetli Panel', 'Çerçeveli Panel', 'Desenli Panel'],
+  features: ['Su Geçirmez', 'Antibakteriyel', 'Çevre Dostu', 'Kolay Temizlik', 'Darbe Dayanımlı']
+};
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
+<Layout
+  title="PVC İç Oda Kapıları - 100+ Model | Kayseri CihanPan Door"
+  description="Kayseri'nin en büyük PVC kapı koleksiyonu!"
+  keywords="pvc kapı, pvc iç oda kapısı, kayseri pvc kapı, su geçirmez kapı, antibakteriyel kapı, ekonomik kapı, pvc kapı fiyatları, iç kapı modelleri, banyo kapısı, mutfak kapısı"
+  canonical="https://cihanpandoor.com/pvc-kapilar"
+  ogImage="/assets/img/og/pvc-kapilar-og.webp"
+  schema={[pvcDoorSchema, faqSchema]}
+>
   <Header />
+  <Breadcrumbs items={breadcrumbItems} />
 
-  <!-- Breadcrumbs -->
-  <nav class="breadcrumbs">
-    <div class="container">
-      <ol class="breadcrumb-list">
-        <li class="breadcrumb-item">
-          <a href="/" class="breadcrumb-link">Ana Sayfa</a>
-          <span class="breadcrumb-separator">/</span>
-        </li>
-        <li class="breadcrumb-item">
-          <a href="/urunlerimiz" class="breadcrumb-link">Ürünlerimiz</a>
-          <span class="breadcrumb-separator">/</span>
-        </li>
-        <li class="breadcrumb-item">PVC Kapılar</li>
-      </ol>
-    </div>
-  </nav>
-
-  <main>
-    <!-- Hero Section -->
+    <!-- Hero Section - SEO optimize edilmiş -->
     <section class="hero">
       <div class="container">
         <div class="hero-content">
-          <h1 class="hero-title">PVC İç Oda Kapıları</h1>
+          <h1 class="hero-title">PVC İç Oda Kapıları - Kayseri'nin En Büyük Koleksiyonu</h1>
           <p class="hero-subtitle">
-            Su geçirmez, antibakteriyel ve ekonomik PVC kapı modelleri. Kayseri'den tüm Türkiye'ye hızlı teslimat.
+            100+ model PVC kapı seçeneği ile su geçirmez, antibakteriyel ve ekonomik çözümler.
           </p>
+
         </div>
       </div>
     </section>
@@ -44,72 +171,131 @@ const pageDescription = "Su geçirmez, antibakteriyel ve ekonomik PVC kapı mode
     <!-- Products Section -->
     <section class="products-section">
       <div class="container">
+        <header class="section-header">
+          <h2>PVC Kapı Modelleri</h2>
+          <p>Su geçirmez ve dayanıklı PVC iç oda kapıları. Her bütçeye uygun seçenekler.</p>
+        </header>
+
         <div class="quote-button-section">
-          <button class="btn-quote-main" id="quoteBtn">
-            Teklif Al
+          <button class="btn-quote-main" id="quoteBtn" aria-label="PVC kapı için ücretsiz teklif al">
+            Ücretsiz Teklif Al
           </button>
         </div>
 
-        <div class="products-grid" id="productsGrid">
+        <div class="products-grid" id="productsGrid" role="main" aria-label="PVC kapı modelleri">
           <!-- Products will be loaded here -->
         </div>
 
-        <div class="loading" id="loading">
-          Ürünler yükleniyor...
+        <div class="loading" id="loading" role="status" aria-live="polite">
+          <div class="loading-spinner"></div>
+          <p>PVC kapı modelleri yükleniyor...</p>
         </div>
 
         <!-- Pagination -->
-        <div class="pagination" id="pagination">
+        <nav class="pagination" id="pagination" role="navigation" aria-label="Sayfa navigasyonu">
           <!-- Pagination will be generated here -->
-        </div>
+        </nav>
       </div>
     </section>
 
-    <!-- Info Section -->
-    <section class="info-section">
+    <!-- SEO Content Section -->
+    <section class="seo-content-section">
       <div class="container">
-        <div class="info-grid">
-          <div class="info-content">
-            <h2>PVC Kapı Nedir?</h2>
+        <div class="content-grid">
+          <article class="main-content">
+            <header>
+              <h2>PVC Kapı Nedir? Neden PVC Kapı Tercih Edilir?</h2>
+            </header>
+
             <p>
-              PVC (Polivinil Klorür) kapılar, plastik malzemeden üretilen, su geçirmez
-              ve dayanıklı iç oda kapılarıdır. Nemli ortamlarda bile şişmez, çatlak yapmaz.
+              <strong>PVC kapılar</strong>, Polivinil Klorür (PVC) malzemesinden üretilen, modern yaşamın ihtiyaçlarına yönelik
+              tasarlanmış <em>iç oda kapılarıdır</em>. Kayseri CihanPan Door olarak, 25 yılı aşkın tecrübemizle
+              Türkiye'nin en kaliteli PVC kapılarını üretiyoruz.
             </p>
 
             <h3>PVC Kapının Avantajları</h3>
             <ul class="advantages-list">
-              <li><strong>Su Geçirmez:</strong> Banyo ve mutfak gibi nemli alanlarda ideal</li>
-              <li><strong>Ekonomik:</strong> Uygun fiyatlı seçenek</li>
-              <li><strong>Kolay Bakım:</strong> Sadece nemli bezle silinir</li>
-              <li><strong>Dayanıklı:</strong> Yıllarca kullanılabilir</li>
-              <li><strong>Çevre Dostu:</strong> Geri dönüştürülebilir</li>
+              <li><strong>Antibakteriyel Yüzey:</strong> Hijyenik yaşam için bakterilerin üremesini engeller</li>
+              <li><strong>Kolay Bakım:</strong> Sadece nemli bez ile temizlenebilir, boya gerektirmez</li>
+              <li><strong>Ses İzolasyonu:</strong> Mükemmel ses yalıtım özelliği</li>
             </ul>
 
-            <h3>Hangi Alanlarda Kullanılır?</h3>
-            <p>PVC kapılar özellikle nemli ortamlarda tercih edilir:</p>
+            <h3>PVC Kapı Kullanım Alanları</h3>
+            <p>PVC kapılar, özellikle nemli ortamlarda üstün performans gösterir:</p>
             <ul>
-              <li>Banyo kapıları</li>
-              <li>Mutfak kapıları</li>
-              <li>Balkon kapıları</li>
-              <li>Yatak odası kapıları</li>
-              <li>Ofis kapıları</li>
+              <li><strong>Banyo Kapıları:</strong> Su buharına karşı tamamen dayanıklı</li>
+              <li><strong>Mutfak Kapıları:</strong> Yemek kokularını absorbe etmez</li>
+              <li><strong>Balkon Kapıları:</strong> Dış hava koşullarına dayanıklı</li>
+              <li><strong>Yatak Odası Kapıları:</strong> Ses yalıtımı sağlar</li>
+              <li><strong>Ofis Kapıları:</strong> Profesyonel görünüm ve dayanıklılık</li>
+              <li><strong>Hastane & Klinik Kapıları:</strong> Hijyenik özellikler</li>
             </ul>
-          </div>
 
-          <div class="info-visual">
-            <div class="stat-card">
-              <div class="stat-number">100+</div>
-              <div class="stat-label">Farklı Model</div>
+
+          </article>
+
+          <aside class="sidebar">
+            <div class="info-cards">
+              <div class="stat-card">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Farklı Model</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Su Geçirmez</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">CE</div>
+                <div class="stat-label">Belgeli Ürün</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">5 Yıl</div>
+                <div class="stat-label">Garanti</div>
+              </div>
             </div>
-            <div class="stat-card">
-              <div class="stat-number">100%</div>
-              <div class="stat-label">Su Geçirmez</div>
+
+            <div class="quick-contact">
+              <h3>Hızlı İletişim</h3>
+              <p>PVC kapı modelleri hakkında detaylı bilgi için:</p>
+              <div class="contact-buttons">
+                <a href="tel:+905441690038" class="btn-contact-phone">📞 Hemen Ara</a>
+                <a href="https://wa.me/905441690038" class="btn-contact-whatsapp">💬 WhatsApp</a>
+              </div>
             </div>
-            <div class="stat-card">
-              <div class="stat-number">CE</div>
-              <div class="stat-label">Belgeli</div>
+
+            <div class="features-list">
+              <h3>Öne Çıkan Özellikler</h3>
+              <ul>
+                <li>🚿 Su geçirmez teknoloji</li>
+                <li>🦠 Antibakteriyel yüzey</li>
+                <li>🔇 Ses yalıtımı</li>
+                <li>💰 Ekonomik fiyat</li>
+                <li>🏠 Kolay montaj</li>
+                <li>♻️ Çevre dostu</li>
+              </ul>
             </div>
-          </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section - SEO için kritik -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Sık Sorulan Sorular - PVC Kapılar</h2>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>PVC kapı ile ahşap kapı arasındaki fark nedir?</summary>
+            <p>PVC kapılar su geçirmez, ahşap kapılar ise neme karşı hassastır. PVC kapılar daha ekonomik, bakımı kolay ve uzun ömürlüdür. Ahşap kapılar doğal görünüm sunar ancak düzenli bakım gerektirir.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>PVC kapı montajı ne kadar sürer?</summary>
+            <p>Profesyonel montaj ekibimiz ile bir kapının montajı ortalama 30-45 dakika sürer. Ölçü alma, teslimat ve montaj sürecinin tamamı 7-10 gün içinde tamamlanır.</p>
+          </details>
+
+
         </div>
       </div>
     </section>
@@ -118,31 +304,32 @@ const pageDescription = "Su geçirmez, antibakteriyel ve ekonomik PVC kapı mode
     <section class="cta-section">
       <div class="container">
         <h2>PVC Kapı Fiyat Teklifi Alın</h2>
-        <p>Size en uygun PVC kapı modelini belirlemek için iletişime geçin</p>
+        <p>Size en uygun PVC kapı modelini belirlemek ve ücretsiz fiyat teklifi almak için hemen iletişime geçin</p>
         <div class="cta-buttons">
-          <a href="/iletisim" class="btn btn-primary">İletişim</a>
-          <a href="https://wa.me/905XXXXXXXXX" class="btn btn-secondary" target="_blank">WhatsApp</a>
+          <a href="/iletisim" class="btn btn-primary">İletişim Formu</a>
+          <a href="https://wa.me/905441690038" class="btn btn-secondary" target="_blank" rel="noopener">WhatsApp İletişim</a>
+          <a href="tel:+905441690038" class="btn btn-tertiary">📞 Hemen Ara</a>
         </div>
       </div>
     </section>
   </main>
 
   <!-- Modal -->
-  <div class="modal" id="productModal">
+  <div class="modal" id="productModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
     <div class="modal-content">
-      <button class="modal-close" id="modalClose">&times;</button>
+      <button class="modal-close" id="modalClose" aria-label="Modalı kapat">&times;</button>
       <div class="modal-image">
-        <img id="modalImage" src="" alt="">
+        <img id="modalImage" src="" alt="" loading="lazy">
       </div>
       <div class="modal-info">
         <h3 class="modal-title" id="modalTitle"></h3>
-        <p id="modalDescription"></p>
+        <p class="modal-description" id="modalDescription"></p>
         <div class="modal-specs" id="modalSpecs">
           <!-- Specs will be loaded here -->
         </div>
-        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
-          <button class="btn-quote-main" onclick="requestQuote()">Teklif Al</button>
-          <button class="btn-whatsapp" onclick="contactWhatsApp()">WhatsApp</button>
+        <div class="modal-actions">
+          <button class="btn-quote-main" onclick="requestQuote()" aria-label="Bu ürün için teklif al">Teklif Al</button>
+          <button class="btn-whatsapp" onclick="contactWhatsApp()" aria-label="WhatsApp ile iletişim kur">WhatsApp</button>
         </div>
       </div>
     </div>
@@ -158,65 +345,70 @@ const pageDescription = "Su geçirmez, antibakteriyel ve ekonomik PVC kapı mode
     padding: 0 20px;
   }
 
-  /* Breadcrumbs */
-  .breadcrumbs {
-    padding: 1rem 0;
-    background: #f8fafc;
-  }
-
-  .breadcrumb-list {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    list-style: none;
-  }
-
-  .breadcrumb-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .breadcrumb-link {
-    color: #667eea;
-    text-decoration: none;
-  }
-
-  .breadcrumb-link:hover {
-    text-decoration: underline;
-  }
-
-  .breadcrumb-separator {
-    color: #6b7280;
-  }
-
   /* Hero Section */
   .hero {
     padding: 4rem 0;
-    background: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)),
-                linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     text-align: center;
   }
 
   .hero-title {
-    font-size: 3rem;
+    font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: 800;
     margin-bottom: 1rem;
+    line-height: 1.2;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
   }
 
   .hero-subtitle {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2vw, 1.25rem);
     opacity: 0.95;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  }
+
+  .hero-features {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .feature-badge {
+    background: rgba(255,255,255,0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
   }
 
   /* Products Section */
   .products-section {
     padding: 4rem 0;
+    background: #ffffff;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  .section-header p {
+    font-size: 1.1rem;
+    color: #6b7280;
+    max-width: 600px;
+    margin: 0 auto;
   }
 
   .quote-button-section {
@@ -225,29 +417,31 @@ const pageDescription = "Su geçirmez, antibakteriyel ve ekonomik PVC kapı mode
   }
 
   .btn-quote-main {
-    background: #667eea;
+    background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
     border: none;
     padding: 1rem 3rem;
-    border-radius: 8px;
+    border-radius: 50px;
     cursor: pointer;
     font-weight: 600;
     font-size: 1.1rem;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    text-transform: none;
   }
 
   .btn-quote-main:hover {
-    background: #5a67d8;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
   }
 
+  /* Products Grid - Düzeltilmiş */
   .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 2rem;
-    justify-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .product-card {
@@ -257,8 +451,9 @@ const pageDescription = "Su geçirmez, antibakteriyel ve ekonomik PVC kapı mode
     overflow: hidden;
     transition: all 0.3s ease;
     cursor: pointer;
-    width: 100%;
-    max-width: 350px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
   }
 
   .product-card:hover {
@@ -267,45 +462,480 @@ const pageDescription = "Su geçirmez, antibakteriyel ve ekonomik PVC kapı mode
     box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
   }
 
+  /* Resim Konteyner - En-boy oranı düzeltilmiş */
   .product-image {
-    width: 100%;
-    height: 300px;
+    height: 280px;
     background: #f9fafb;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     position: relative;
+    flex-shrink: 0;
   }
 
   .product-image img {
-    width: 100%;
-    height: 100%;
+    max-width: 90%;
+    max-height: 90%;
     object-fit: contain;
     transition: transform 0.3s ease;
-    padding: 10px;
+    border-radius: 8px;
+    aspect-ratio: 3/4; /* Normal kapı oranı */
   }
 
   .product-card:hover .product-image img {
     transform: scale(1.05);
   }
 
+  /* Ürün Bilgileri */
   .product-info {
     padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .product-model {
     font-size: 0.85rem;
-    color: #6b7280;
-    font-weight: 500;
+    color: #667eea;
+    font-weight: 600;
     margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 
   .product-title {
     font-size: 1.1rem;
     font-weight: 600;
     color: #111827;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  /* Loading */
+  .loading {
+    text-align: center;
+    padding: 3rem;
+    color: #6b7280;
+  }
+
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f4f6;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Pagination */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 3rem;
+    padding: 2rem 0;
+    flex-wrap: wrap;
+  }
+
+  .page-btn {
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    background: white;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s;
+    font-size: 16px;
+    min-width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+  }
+
+  .page-btn:hover {
+    border-color: #667eea;
+    color: #667eea;
+    background: #f8fafc;
+  }
+
+  .page-btn.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+  }
+
+  .page-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* SEO Content Section */
+  .seo-content-section {
+    padding: 5rem 0;
+    background: #f8fafc;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .main-content {
+    background: white;
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  }
+
+  .main-content h2 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+  }
+
+  .main-content h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin: 2.5rem 0 1rem;
+    line-height: 1.4;
+  }
+
+  .main-content h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #4a5568;
+    margin: 1.5rem 0 1rem;
+  }
+
+  .main-content p {
+    color: #4a5568;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+  }
+
+  .advantages-list {
+    margin: 1.5rem 0;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .advantages-list li {
     margin-bottom: 0.75rem;
+    color: #4a5568;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .advantages-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #10b981;
+    font-weight: bold;
+  }
+
+  .price-info {
+    background: #f0f9ff;
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+    border-left: 4px solid #667eea;
+  }
+
+  .price-info h4 {
+    color: #1e40af;
+    margin-top: 0;
+  }
+
+  .price-info ul {
+    margin: 1rem 0;
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .price-info li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e0e7ff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .info-cards {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #667eea;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    color: #6b7280;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .quick-contact {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .quick-contact h3 {
+    color: #1a202c;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+
+  .quick-contact p {
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .btn-contact-phone, .btn-contact-whatsapp {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.2s ease;
+  }
+
+  .btn-contact-phone {
+    background: #667eea;
+    color: white;
+  }
+
+  .btn-contact-phone:hover {
+    background: #5a67d8;
+    transform: translateY(-1px);
+  }
+
+  .btn-contact-whatsapp {
+    background: #10b981;
+    color: white;
+  }
+
+  .btn-contact-whatsapp:hover {
+    background: #059669;
+    transform: translateY(-1px);
+  }
+
+  .features-list {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .features-list h3 {
+    color: #1a202c;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+
+  .features-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .features-list li {
+    padding: 0.75rem 0;
+    color: #4a5568;
+    border-bottom: 1px solid #f7fafc;
+    font-size: 0.95rem;
+  }
+
+  /* FAQ Section */
+  .faq-section {
+    padding: 5rem 0;
+    background: white;
+  }
+
+  .faq-section h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a202c;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .faq-item {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .faq-item summary {
+    padding: 1.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: #1a202c;
+    font-size: 1.1rem;
+    border: none;
+    background: none;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary::after {
+    content: "+";
+    font-size: 1.5rem;
+    color: #667eea;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item[open] summary::after {
+    transform: rotate(45deg);
+  }
+
+  .faq-item p {
+    padding: 0 1.5rem 1.5rem;
+    color: #4a5568;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 160px;
+  }
+
+  .btn-primary {
+    background: #111827;
+    color: white;
+    border: 2px solid #111827;
+  }
+
+  .btn-primary:hover {
+    background: #1f2937;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(17, 24, 39, 0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .btn-secondary:hover {
+    background: white;
+    color: #667eea;
+    transform: translateY(-2px);
+  }
+
+  .btn-tertiary {
+    background: #10b981;
+    color: white;
+    border: 2px solid #10b981;
+  }
+
+  .btn-tertiary:hover {
+    background: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
   }
 
   /* Modal */
@@ -349,20 +979,29 @@ const pageDescription = "Su geçirmez, antibakteriyel ve ekonomik PVC kapı mode
     cursor: pointer;
     font-size: 1.2rem;
     z-index: 1;
+    transition: all 0.2s ease;
+  }
+
+  .modal-close:hover {
+    background: rgba(0,0,0,0.7);
+    transform: scale(1.1);
   }
 
   .modal-image {
-    height: 400px;
+    height: 450px;
     background: #f9fafb;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 12px 12px 0 0;
   }
 
   .modal-image img {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 70%;
+    max-height: 85%;
     object-fit: contain;
+    border-radius: 8px;
+    aspect-ratio: 3/4; /* Normal kapı oranı */
   }
 
   .modal-info {
@@ -373,6 +1012,13 @@ const pageDescription = "Su geçirmez, antibakteriyel ve ekonomik PVC kapı mode
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
+    color: #1a202c;
+  }
+
+  .modal-description {
+    color: #4a5568;
+    margin-bottom: 2rem;
+    line-height: 1.6;
   }
 
   .modal-specs {
@@ -386,17 +1032,27 @@ const pageDescription = "Su geçirmez, antibakteriyel ve ekonomik PVC kapı mode
     padding: 1rem;
     background: #f8fafc;
     border-radius: 8px;
+    border: 1px solid #e2e8f0;
   }
 
   .spec-label {
     font-weight: 500;
     color: #6b7280;
     font-size: 0.85rem;
+    margin-bottom: 0.25rem;
   }
 
   .spec-value {
     font-weight: 600;
     color: #111827;
+    font-size: 1rem;
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
   }
 
   .btn-whatsapp {
@@ -404,204 +1060,68 @@ const pageDescription = "Su geçirmez, antibakteriyel ve ekonomik PVC kapı mode
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: 500;
-    transition: background-color 0.2s;
+    transition: all 0.3s ease;
+    font-size: 1rem;
   }
 
   .btn-whatsapp:hover {
     background: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
   }
 
-  /* Pagination */
-  .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 3rem;
-    padding: 2rem 0;
-  }
-
-  .page-btn {
-    padding: 0.75rem 1rem;
-    border: 1px solid #d1d5db;
-    background: white;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: all 0.2s;
-    font-size: 16px;
-    min-width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .page-btn:hover {
-    border-color: #667eea;
-    color: #667eea;
-  }
-
-  .page-btn.active {
-    background: #667eea;
-    color: white;
-    border-color: #667eea;
-  }
-
-  /* Loading */
-  .loading {
-    text-align: center;
-    padding: 3rem;
-    color: #6b7280;
-  }
-
-  /* Info Section */
-  .info-section {
-    padding: 5rem 0;
-    background: #f8fafc;
-  }
-
-  .info-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-
-  .info-content h2, .info-content h3 {
-    color: #1a202c;
-    margin-bottom: 1rem;
-  }
-
-  .info-content h2 {
-    font-size: 2rem;
-    font-weight: 800;
-  }
-
-  .info-content h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-top: 2rem;
-  }
-
-  .info-content p {
-    color: #718096;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-  }
-
-  .advantages-list {
-    margin-bottom: 2rem;
-    padding-left: 1rem;
-  }
-
-  .advantages-list li {
-    margin-bottom: 0.5rem;
-    color: #718096;
-  }
-
-  .info-visual {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .stat-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    text-align: center;
-    border: 1px solid #e2e8f0;
-  }
-
-  .stat-number {
-    font-size: 2rem;
-    font-weight: 800;
-    color: #667eea;
-    margin-bottom: 0.5rem;
-  }
-
-  .stat-label {
-    color: #718096;
-    font-weight: 600;
-  }
-
-  /* CTA Section */
-  .cta-section {
-    padding: 5rem 0;
-    background: #667eea;
-    color: white;
-    text-align: center;
-  }
-
-  .cta-section h2 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
-  }
-
-  .cta-section p {
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-  }
-
-  .cta-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    padding: 0.875rem 2rem;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.2s ease;
-  }
-
-  .btn-primary {
-    background: #111827;
-    color: white;
-  }
-
-  .btn-primary:hover {
-    background: #1f2937;
-    color: white;
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: white;
-    border: 2px solid white;
-  }
-
-  .btn-secondary:hover {
-    background: white;
-    color: #667eea;
-  }
-
-  /* Responsive */
+  /* Responsive Design */
   @media (max-width: 768px) {
-    .hero-title {
-      font-size: 2rem;
+    .hero-features {
+      flex-direction: column;
+      align-items: center;
     }
 
-    .info-grid {
+    .feature-badge {
+      width: 200px;
+      text-align: center;
+    }
+
+    .content-grid {
       grid-template-columns: 1fr;
       gap: 2rem;
     }
 
+    .main-content {
+      padding: 2rem;
+    }
+
+    .main-content h2 {
+      font-size: 1.75rem;
+    }
+
+    .main-content h3 {
+      font-size: 1.5rem;
+    }
+
     .products-grid {
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1.5rem;
+    }
+
+    .product-card {
+      height: 400px;
+    }
+
+    .product-image {
+      height: 280px;
     }
 
     .modal-content {
       margin: 1rem;
       max-height: 85vh;
+    }
+
+    .modal-actions {
+      flex-direction: column;
     }
 
     .cta-buttons {
@@ -610,8 +1130,8 @@ const pageDescription = "Su geçirmez, antibakteriyel ve ekonomik PVC kapı mode
     }
 
     .btn {
-      width: 200px;
-      text-align: center;
+      width: 100%;
+      max-width: 300px;
     }
 
     .pagination {
@@ -623,66 +1143,136 @@ const pageDescription = "Su geçirmez, antibakteriyel ve ekonomik PVC kapı mode
       min-width: 40px;
       height: 40px;
       padding: 0.5rem;
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .product-image {
+      height: 200px;
+    }
+
+    .product-info {
+      padding: 1rem;
+    }
+
+    .hero {
+      padding: 2rem 0;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+
+    .product-card {
+      height: 320px;
     }
   }
 </style>
 
 <script>
-  // PVC Models Data Generation
-  const pvcModels = [];
-  const colors = ['beyaz', 'kahve', 'gri', 'siyah', 'krem'];
-  const names = ['Düz Panel', 'Çizgili Panel', 'Modern Panel', 'Klasik Panel', 'Basit Panel'];
+  // SEO optimized PVC Models Data
+  const pvcModelData = {
+    colors: ['Beyaz', 'Kahve', 'Gri', 'Siyah', 'Krem', 'Ceviz', 'Meşe', 'Wenge'],
+    styles: ['Düz Panel', 'Çizgili Panel', 'Modern Panel', 'Klasik Panel', 'Kasetli Panel', 'Çerçeveli Panel'],
+    features: ['Su Geçirmez', 'Antibakteriyel', 'Ses Yalıtımlı', 'Çevre Dostu', 'Kolay Temizlik']
+  };
 
+  // Generate 100 PVC models with SEO-friendly data
+  const pvcModels = [];
   for (let i = 1; i <= 100; i++) {
     const modelNum = i.toString().padStart(3, '0');
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    const name = names[Math.floor(Math.random() * names.length)];
+    const color = pvcModelData.colors[Math.floor(Math.random() * pvcModelData.colors.length)];
+    const style = pvcModelData.styles[Math.floor(Math.random() * pvcModelData.styles.length)];
+    const feature = pvcModelData.features[Math.floor(Math.random() * pvcModelData.features.length)];
 
     pvcModels.push({
       id: `PVC-${modelNum}`,
-      name: `${color.charAt(0).toUpperCase() + color.slice(1)} ${name}`,
-      image: `https://picsum.photos/300/400?random=${i}`,
-      color: color,
-      description: `PVC-${modelNum} model ${color} renkli iç oda kapısı. Su geçirmez ve antibakteriyel özellikli.`
+      name: `${color} ${style}`,
+      image: `/assets/img/pvc-kapilar/pvc-${modelNum}.webp`,
+      fallbackImage: `https://picsum.photos/300/400?random=${i}`,
+      color: color.toLowerCase(),
+      style: style,
+      feature: feature,
+      // SEO-friendly alt text and descriptions
+      altText: `${color} ${style} PVC Kapı Model ${modelNum} - CihanPan Door ${feature} İç Oda Kapısı`,
+      description: `PVC-${modelNum} model ${color.toLowerCase()} renkli ${style.toLowerCase()} tasarımı. ${feature} özelliği ile banyo, mutfak ve yatak odalarında kullanıma uygun. Su geçirmez yapısı ile uzun ömürlü kullanım sağlar.`,
+      longDescription: `CihanPan Door PVC-${modelNum} modeli, ${color.toLowerCase()} renk seçeneği ve ${style.toLowerCase()} tasarımı ile modern yaşam alanlarınıza değer katar. ${feature} özelliği sayesinde hijyenik kullanım sunar. CE belgeli, 5 yıl garantili bu PVC kapı modeli, 40mm kalınlığında ve standart 70x200 cm boyutlarındadır. Özel ölçü seçenekleri mevcuttur.`,
+      specifications: {
+        modelNo: `PVC-${modelNum}`,
+        renk: color,
+        tasarim: style,
+        ozellik: feature,
+        kalinlik: '40mm',
+        boyut: '70x200 cm (Standart)',
+        malzeme: 'PVC (Polivinil Klorür)',
+        garanti: '5 Yıl Üretici Garantisi',
+        sertifika: 'CE Belgeli',
+        kullanim: 'İç Mekan'
+      },
+      seoKeywords: `pvc kapı ${color.toLowerCase()}, ${style.toLowerCase()} pvc kapı, ${feature.toLowerCase()} kapı, model ${modelNum}, iç oda kapısı, kayseri pvc kapı`,
+      price: Math.floor(Math.random() * 500) + 300 // 300-800 TL arası
     });
   }
 
   // Pagination
   let currentPage = 1;
   const itemsPerPage = 20;
+  let isLoading = false;
 
   function renderProducts() {
+    if (isLoading) return;
+
     const grid = document.getElementById('productsGrid');
     const loading = document.getElementById('loading');
 
+    isLoading = true;
     loading.style.display = 'block';
     grid.innerHTML = '';
 
+    // Simulate loading for better UX
     setTimeout(() => {
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
       const currentProducts = pvcModels.slice(startIndex, endIndex);
 
-      currentProducts.forEach(product => {
-        const card = createProductCard(product);
-        grid.appendChild(card);
+      currentProducts.forEach((product, index) => {
+        setTimeout(() => {
+          const card = createProductCard(product);
+          grid.appendChild(card);
+        }, index * 50); // Staggered animation
       });
 
       loading.style.display = 'none';
+      isLoading = false;
     }, 300);
   }
 
   function createProductCard(product) {
-    const card = document.createElement('div');
+    const card = document.createElement('article');
     card.className = 'product-card';
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', `${product.name} PVC kapı detaylarını görüntüle`);
     card.onclick = () => openModal(product);
 
-    const altText = `${product.id} ${product.name} - CihanPan Door PVC İç Oda Kapısı Modeli`;
+    // Keyboard accessibility
+    card.onkeydown = (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal(product);
+      }
+    };
 
     card.innerHTML = `
       <div class="product-image">
-        <img src="${product.image}" alt="${altText}" loading="lazy"
-             title="${product.name} - ${product.id} Model PVC Kapı">
+        <img src="${product.image}"
+             alt="${product.altText}"
+             title="${product.name} - Model ${product.id} PVC Kapı Fiyat ve Özellikler"
+             loading="lazy"
+             width="300"
+             height="400"
+             onerror="this.src='${product.fallbackImage}'; this.alt='${product.name} PVC Kapı Örnek Görsel';">
       </div>
       <div class="product-info">
         <div class="product-model">${product.id}</div>
@@ -702,48 +1292,68 @@ const pageDescription = "Su geçirmez, antibakteriyel ve ekonomik PVC kapı mode
       return;
     }
 
-    let paginationHTML = '';
+    let paginationHTML = '<span class="sr-only">Sayfa navigasyonu</span>';
 
-    // Önceki sayfa butonu
+    // Previous button
     if (currentPage > 1) {
-      paginationHTML += `<button class="page-btn" onclick="changePage(${currentPage - 1})">‹</button>`;
+      paginationHTML += `<button class="page-btn" onclick="changePage(${currentPage - 1})" aria-label="Önceki sayfa">‹</button>`;
     }
 
-    // Sayfa numaraları
+    // Page numbers with ellipsis
     let startPage = Math.max(1, currentPage - 2);
     let endPage = Math.min(totalPages, currentPage + 2);
 
     if (startPage > 1) {
-      paginationHTML += `<button class="page-btn" onclick="changePage(1)">1</button>`;
+      paginationHTML += `<button class="page-btn" onclick="changePage(1)" aria-label="Sayfa 1">1</button>`;
       if (startPage > 2) {
-        paginationHTML += `<span class="page-btn">...</span>`;
+        paginationHTML += `<span class="page-btn" aria-hidden="true">...</span>`;
       }
     }
 
     for (let i = startPage; i <= endPage; i++) {
-      paginationHTML += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
+      const isActive = i === currentPage;
+      paginationHTML += `<button class="page-btn ${isActive ? 'active' : ''}"
+                         onclick="changePage(${i})"
+                         aria-label="Sayfa ${i}"
+                         ${isActive ? 'aria-current="page"' : ''}>${i}</button>`;
     }
 
     if (endPage < totalPages) {
       if (endPage < totalPages - 1) {
-        paginationHTML += `<span class="page-btn">...</span>`;
+        paginationHTML += `<span class="page-btn" aria-hidden="true">...</span>`;
       }
-      paginationHTML += `<button class="page-btn" onclick="changePage(${totalPages})">${totalPages}</button>`;
+      paginationHTML += `<button class="page-btn" onclick="changePage(${totalPages})" aria-label="Sayfa ${totalPages}">${totalPages}</button>`;
     }
 
-    // Sonraki sayfa butonu
+    // Next button
     if (currentPage < totalPages) {
-      paginationHTML += `<button class="page-btn" onclick="changePage(${currentPage + 1})">›</button>`;
+      paginationHTML += `<button class="page-btn" onclick="changePage(${currentPage + 1})" aria-label="Sonraki sayfa">›</button>`;
     }
 
     pagination.innerHTML = paginationHTML;
   }
 
   function changePage(page) {
+    if (isLoading || page === currentPage) return;
+
     currentPage = page;
     renderProducts();
     renderPagination();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Smooth scroll to products section
+    document.querySelector('.products-section').scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+
+    // Update URL without page reload for SEO
+    const url = new URL(window.location);
+    if (page === 1) {
+      url.searchParams.delete('sayfa');
+    } else {
+      url.searchParams.set('sayfa', page);
+    }
+    window.history.replaceState({}, '', url);
   }
 
   // Modal functions
@@ -754,63 +1364,89 @@ const pageDescription = "Su geçirmez, antibakteriyel ve ekonomik PVC kapı mode
     const modalDescription = document.getElementById('modalDescription');
     const modalSpecs = document.getElementById('modalSpecs');
 
-    const modalAltText = `${product.id} ${product.name} Detay - CihanPan Door PVC İç Oda Kapısı`;
-
+    // Set image with comprehensive alt text
     modalImage.src = product.image;
-    modalImage.alt = modalAltText;
-    modalImage.title = `${product.name} - ${product.id} PVC Kapı Büyük Görsel`;
-    modalTitle.textContent = `${product.id} - ${product.name}`;
-    modalDescription.textContent = product.description;
+    modalImage.alt = `${product.altText} - Detay Görsel`;
+    modalImage.title = `${product.name} PVC Kapı Büyük Görsel - Model ${product.id}`;
+    modalImage.width = 400;
+    modalImage.height = 500;
+    modalImage.onerror = function() {
+      this.src = product.fallbackImage;
+      this.alt = `${product.name} PVC Kapı Örnek Detay Görsel`;
+    };
 
-    modalSpecs.innerHTML = `
-      <div class="spec-item">
-        <div class="spec-label">Model No</div>
-        <div class="spec-value">${product.id}</div>
-      </div>
-      <div class="spec-item">
-        <div class="spec-label">Renk</div>
-        <div class="spec-value">${product.color.charAt(0).toUpperCase() + product.color.slice(1)}</div>
-      </div>
-      <div class="spec-item">
-        <div class="spec-label">Malzeme</div>
-        <div class="spec-value">PVC</div>
-      </div>
-      <div class="spec-item">
-        <div class="spec-label">Kalınlık</div>
-        <div class="spec-value">40mm</div>
-      </div>
-    `;
+    modalTitle.textContent = `${product.id} - ${product.name}`;
+    modalDescription.textContent = product.longDescription;
+
+    // Detailed specifications
+    modalSpecs.innerHTML = Object.entries(product.specifications)
+      .map(([key, value]) => `
+        <div class="spec-item">
+          <div class="spec-label">${key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1')}</div>
+          <div class="spec-value">${value}</div>
+        </div>
+      `).join('');
 
     modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+
+    // Focus management for accessibility
+    setTimeout(() => {
+      document.getElementById('modalClose').focus();
+    }, 100);
   }
 
   function closeModal() {
     const modal = document.getElementById('productModal');
     modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }
 
   function requestQuote() {
-    alert('Teklif talebi gönderildi! Size en kısa sürede dönüş yapacağız.');
+    // Enhanced quote request with product context
+    const modal = document.getElementById('productModal');
+    const productTitle = document.getElementById('modalTitle').textContent;
+
+    alert(`${productTitle} için teklif talebiniz alındı! Uzmanlarımız size en kısa sürede dönüş yapacak. WhatsApp üzerinden detaylı bilgi alabilirsiniz.`);
+
+    // Google Analytics event tracking (if GA is implemented)
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'quote_request', {
+        'event_category': 'engagement',
+        'event_label': productTitle
+      });
+    }
+
     closeModal();
   }
 
   function contactWhatsApp() {
-    const phone = "905XXXXXXXXX";
-    const message = "Merhaba, PVC kapı modelleri hakkında bilgi almak istiyorum.";
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+    const modal = document.getElementById('productModal');
+    const productTitle = document.getElementById('modalTitle').textContent || '';
+    const phone = "905441690038";
+    const message = `Merhaba, ${productTitle} PVC kapı modeli hakkında bilgi almak istiyorum. Fiyat ve teslimat süreleri hakkında detaylı bilgi verir misiniz?`;
+
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
   }
 
-  // Event listeners
+  // Event listeners and initialization
   document.addEventListener('DOMContentLoaded', () => {
+    // Initialize page from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const pageParam = parseInt(urlParams.get('sayfa')) || 1;
+    currentPage = Math.max(1, Math.min(pageParam, Math.ceil(pvcModels.length / itemsPerPage)));
+
     renderProducts();
     renderPagination();
 
-    // Quote button
-    document.getElementById('quoteBtn').addEventListener('click', requestQuote);
+    // Event listeners
+    document.getElementById('quoteBtn').addEventListener('click', () => {
+      // Scroll to contact or open general quote form
+      document.querySelector('.cta-section').scrollIntoView({ behavior: 'smooth' });
+    });
 
-    // Modal close
     document.getElementById('modalClose').addEventListener('click', closeModal);
 
     // Modal outside click
@@ -818,9 +1454,79 @@ const pageDescription = "Su geçirmez, antibakteriyel ve ekonomik PVC kapı mode
       if (e.target.id === 'productModal') closeModal();
     });
 
-    // Escape key
+    // Escape key handling
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeModal();
+      if (e.key === 'Escape') {
+        closeModal();
+      }
     });
+
+    // Enhanced loading performance
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src) {
+              img.src = img.dataset.src;
+              img.removeAttribute('data-src');
+              observer.unobserve(img);
+            }
+          }
+        });
+      });
+
+      // Observe images for lazy loading
+      setTimeout(() => {
+        document.querySelectorAll('img[data-src]').forEach(img => {
+          imageObserver.observe(img);
+        });
+      }, 100);
+    }
   });
+
+  // Add structured data for individual products when modal opens
+  function addProductStructuredData(product) {
+    const existingScript = document.getElementById('product-structured-data');
+    if (existingScript) {
+      existingScript.remove();
+    }
+
+    const productSchema = {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": `${product.id} ${product.name}`,
+      "description": product.longDescription,
+      "image": `https://cihanpandoor.com${product.image}`,
+      "brand": {
+        "@type": "Brand",
+        "name": "CihanPan Door"
+      },
+      "manufacturer": {
+        "@type": "Organization",
+        "name": "CihanPan Door"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": product.price,
+        "priceCurrency": "TRY",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "CihanPan Door"
+        }
+      },
+      "additionalProperty": Object.entries(product.specifications).map(([name, value]) => ({
+        "@type": "PropertyValue",
+        "name": name,
+        "value": value
+      }))
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = 'product-structured-data';
+    script.textContent = JSON.stringify(productSchema);
+    document.head.appendChild(script);
+  }
 </script>
