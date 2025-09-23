@@ -480,7 +480,7 @@ const pvcModelData = {
     object-fit: contain;
     transition: transform 0.3s ease;
     border-radius: 8px;
-    aspect-ratio: 3/4; /* Normal kapı oranı */
+    aspect-ratio: 1/1; /* Normal kapı oranı */
   }
 
   .product-card:hover .product-image img {
@@ -1271,7 +1271,7 @@ const pvcModelData = {
              title="${product.name} - Model ${product.id} PVC Kapı Fiyat ve Özellikler"
              loading="lazy"
              width="300"
-             height="400"
+             height="300"
              onerror="this.src='${product.fallbackImage}'; this.alt='${product.name} PVC Kapı Örnek Görsel';">
       </div>
       <div class="product-info">
