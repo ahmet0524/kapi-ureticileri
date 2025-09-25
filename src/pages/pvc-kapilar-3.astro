@@ -5,7 +5,6 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
-
 // PVC Kapılar sayfası için dynamic schema'lar
 
 // Dynamic URL'ler için base setup
@@ -22,8 +21,8 @@ const breadcrumbItems = [
 const pvcDoorSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "PVC İç Oda Kapıları - 247 Model",
-  "description": "Kayseri'den üretilen su geçirmez, antibakteriyel PVC kapı modelleri. CE belgeli, 5 yıl garanti, ücretsiz kargo. Türkiye'nin en büyük PVC kapı koleksiyonu.",
+  "name": "PVC İç Oda Kapıları",
+  "description": "Kayseri'den üretilen su geçirmez, antibakteriyel PVC kapı modelleri. Türkiye'nin en büyük PVC kapı koleksiyonu.",
   "url": currentUrl, // ✅ Dynamic
   "mainEntity": {
     "@type": "ItemList",
@@ -46,7 +45,7 @@ const pvcDoorSchema = {
           "@type": "AggregateOffer",
           "availability": "https://schema.org/InStock",
           "priceCurrency": "TRY",
-          "priceRange": "₺300-₺800",
+          "priceRange": "₺3000-₺8000",
           "seller": {
             "@type": "Organization",
             "name": "CihanPan Door"
@@ -80,7 +79,7 @@ const faqSchema = {
       "name": "PVC kapı fiyatları ne kadardır?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "PVC kapı fiyatları 300₺-800₺ arasında değişir. Model, boyut ve aksesuarlara göre fiyat farklılık gösterir. Ücretsiz ölçü alma ve montaj hizmeti sunuyoruz."
+        "text": "PVC kapı fiyatları 3500₺-8000₺ arasında değişir. Model, boyut ve aksesuarlara göre fiyat farklılık gösterir."
       }
     },
     {
@@ -123,7 +122,6 @@ const breadcrumbSchema = {
   }))
 };
 ---
-
 <Layout
   title="PVC İç Oda Kapıları - 2 | Kayseri CihanPan Door"
   description="Kayseri'nin en büyük PVC kapı koleksiyonu! 247 farklı model ve renk seçeneği. Su geçirmez, antibakteriyel, CE belgeli PVC kapılar."
@@ -139,12 +137,11 @@ const breadcrumbSchema = {
 
   // Twitter Card Tags
   twitterCard="summary_large_image"
-  twitterTitle="PVC İç Oda Kapıları - 247 Model | CihanPan Door"
+  twitterTitle="PVC İç Oda Kapıları - 300 Model | CihanPan Door"
   twitterDescription="Kayseri'nin en büyük PVC kapı koleksiyonu. Su geçirmez, antibakteriyel, ekonomik fiyatlar."
   twitterImage="/assets/img/og/pvc-kapilar-og.webp"
 
   schema={[pvcDoorSchema, faqSchema, organizationSchema, breadcrumbSchema]}
-
 >
   <Header />
   <Breadcrumbs items={breadcrumbItems} />
@@ -273,20 +270,17 @@ const breadcrumbSchema = {
           <aside class="sidebar">
             <div class="info-cards">
               <div class="stat-card">
-                <div class="stat-number">247</div>
-                <div class="stat-label">Farklı Model</div>
+                <div class="stat-number">300</div>
+                <div class="stat-label" style="font-size:1.5rem; font-weight:bold;font-family:Verdana color:dark red;">FARKLI MODEL</div>
               </div>
               <div class="stat-card">
                 <div class="stat-number">100%</div>
-                <div class="stat-label">Su Geçirmez</div>
+                <div class="stat-label" style="font-size:1.5rem; font-weight:bold;font-family:Verdana color:dark red;">YERLİ</div>
               </div>
+
               <div class="stat-card">
-                <div class="stat-number">CE</div>
-                <div class="stat-label">Belgeli Ürün</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-number">5 Yıl</div>
-                <div class="stat-label">Garanti</div>
+                <div class="stat-number">İhracatta</div>
+                <div class="stat-label" style="font-size:1.5rem; font-weight:bold; font-family:Verdana color:dark red;">FİYAT AVANTAJI</div>
               </div>
             </div>
 
