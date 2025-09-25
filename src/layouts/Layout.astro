@@ -24,7 +24,7 @@ const {
 } = Astro.props;
 
 const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site);
-const siteURL = 'https://kapi-ureticileri.web.app';
+const siteURL = 'https://kapi-ureticileri.netlify.app'; // ✅ Düzeltildi
 ---
 
 <!DOCTYPE html>
@@ -58,12 +58,14 @@ const siteURL = 'https://kapi-ureticileri.web.app';
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:alt" content={`${title} - CihanPan Door`} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(ogImage, siteURL)} />
+    <meta name="twitter:image:alt" content={`${title} - CihanPan Door`} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -84,12 +86,12 @@ const siteURL = 'https://kapi-ureticileri.web.app';
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "CihanPan Door",
-      "url": "https://kapi-ureticileri.web.app",
-      "logo": "https://kapi-ureticileri.web.app/assets/images/logo/header_logo1.webp",
+      "url": "https://kapi-ureticileri.netlify.app",
+      "logo": "https://kapi-ureticileri.netlify.app/assets/images/logo/header_logo1.webp",
       "description": "Türkiye'nin güvenilir iç oda kapısı üreticileri rehberi",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Organized Industrial Zone 29. Street No:28",
+        "streetAddress": "Organize Sanayi Bölgesi 29. Sokak No:28",
         "addressLocality": "Kayseri",
         "addressCountry": "Turkey"
       },
@@ -104,17 +106,18 @@ const siteURL = 'https://kapi-ureticileri.web.app';
       ]
     }
     </script>
-       <!-- Google Search Console -->
-    <meta name="google-site-verification" content="nN4x8ESwMpZfyiBKaBPhy7RdA53P2RHiij4XgDOBbAk" />
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DFR4G5DPVT"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-DFR4G5DPVT');
-</script>
+    <!-- Google Search Console -->
+    <meta name="google-site-verification" content="nN4x8ESwMpZfyiBKaBPhy7RdA53P2RHiij4XgDOBbAk" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DFR4G5DPVT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DFR4G5DPVT');
+    </script>
 
   </head>
   <body>

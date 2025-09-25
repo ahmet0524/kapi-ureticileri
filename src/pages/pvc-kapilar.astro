@@ -5,19 +5,26 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
+
+// PVC Kapılar sayfası için dynamic schema'lar
+
+// Dynamic URL'ler için base setup
+const baseUrl = Astro.site?.toString().slice(0, -1) || 'https://kapi-ureticileri.netlify.app';
+const currentUrl = `${baseUrl}${Astro.url.pathname}`;
+
 const breadcrumbItems = [
   { name: "Ana Sayfa", href: "/" },
   { name: "Ürünlerimiz", href: "/urunlerimiz" },
   { name: "PVC Kapılar" }
 ];
 
-// SEO Schema - Google için optimize edilmiş
+// SEO Schema - Tamamen dynamic
 const pvcDoorSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "name": "PVC İç Oda Kapıları - 247 Model",
   "description": "Kayseri'den üretilen su geçirmez, antibakteriyel PVC kapı modelleri. CE belgeli, 5 yıl garanti, ücretsiz kargo. Türkiye'nin en büyük PVC kapı koleksiyonu.",
-  "url": "https://cihanpandoor.com/pvc-kapilar",
+  "url": currentUrl, // ✅ Dynamic
   "mainEntity": {
     "@type": "ItemList",
     "name": "PVC Kapı Modelleri",
@@ -29,8 +36,8 @@ const pvcDoorSchema = {
         "manufacturer": {
           "@type": "Organization",
           "name": "CihanPan Door",
-          "url": "https://cihanpandoor.com",
-          "logo": "https://cihanpandoor.com/assets/img/logo.webp"
+          "url": baseUrl, // ✅ Dynamic
+          "logo": `${baseUrl}/assets/img/logo.webp` // ✅ Dynamic
         },
         "category": "İç Oda Kapısı",
         "material": "PVC",
@@ -55,7 +62,7 @@ const pvcDoorSchema = {
   }
 };
 
-// FAQ Schema - SEO için kritik
+// FAQ Schema - Dynamic
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -86,15 +93,58 @@ const faqSchema = {
     }
   ]
 };
+
+// Organization Schema - Ana şirket bilgileri için
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "CihanPan Door",
+  "url": baseUrl, // ✅ Dynamic
+  "logo": `${baseUrl}/assets/img/logo.webp`, // ✅ Dynamic
+  "description": "Kayseri'den kaliteli PVC kapı üreticisi",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kayseri",
+    "addressCountry": "TR"
+  },
+  "areaServed": "Turkey",
+  "serviceType": ["PVC Kapı Üretimi", "İç Oda Kapısı", "Kapı Montajı"]
+};
+
+// Breadcrumb Schema - Dynamic
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    "item": item.href ? `${baseUrl}${item.href}` : currentUrl // ✅ Dynamic
+  }))
+};
 ---
 
 <Layout
-  title="PVC İç Oda Kapıları - 247 Model | Kayseri CihanPan Door"
+  title="PVC İç Oda Kapıları - 2 | Kayseri CihanPan Door"
   description="Kayseri'nin en büyük PVC kapı koleksiyonu! 247 farklı model ve renk seçeneği. Su geçirmez, antibakteriyel, CE belgeli PVC kapılar."
   keywords="pvc kapı, pvc iç oda kapısı, kayseri pvc kapı, su geçirmez kapı, antibakteriyel kapı, ekonomik kapı, pvc kapı fiyatları, iç kapı modelleri, banyo kapısı, mutfak kapısı"
-  canonical="https://cihanpandoor.com/pvc-kapilar"
+  canonical={currentUrl}
   ogImage="/assets/img/og/pvc-kapilar-og.webp"
-  schema={[pvcDoorSchema, faqSchema]}
+
+  // Open Graph Tags - Dynamic
+  ogTitle="PVC İç Oda Kapıları - 247 Model | Kayseri CihanPan Door"
+  ogDescription="Kayseri'den üretilen su geçirmez, antibakteriyel PVC kapı modelleri. CE belgeli, 5 yıl garanti, ücretsiz kargo ve montaj."
+  ogType="website"
+  ogUrl={currentUrl}
+
+  // Twitter Card Tags
+  twitterCard="summary_large_image"
+  twitterTitle="PVC İç Oda Kapıları - 247 Model | CihanPan Door"
+  twitterDescription="Kayseri'nin en büyük PVC kapı koleksiyonu. Su geçirmez, antibakteriyel, ekonomik fiyatlar."
+  twitterImage="/assets/img/og/pvc-kapilar-og.webp"
+
+  schema={[pvcDoorSchema, faqSchema, organizationSchema, breadcrumbSchema]}
+>
 >
   <Header />
   <Breadcrumbs items={breadcrumbItems} />
@@ -104,8 +154,10 @@ const faqSchema = {
     <section class="hero">
       <div class="container">
         <div class="hero-content">
-          <h1 class="hero-title">PVC İç Oda Kapıları</h1>
-
+          <h1 class="hero-title">PVC İç Oda Kapıları - 247 Model</h1>
+          <p class="hero-subtitle">
+            Su geçirmez, antibakteriyel ve ekonomik PVC kapı çözümleri. CE belgeli, 5 yıl garanti.
+          </p>
         </div>
       </div>
     </section>
@@ -115,7 +167,7 @@ const faqSchema = {
       <div class="container">
         <header class="section-header">
           <h2>PVC Kapı Modelleri</h2>
-          <p>Model ve renk seçenekleri ile size en uygun PVC kapıyı bulun.</p>
+          <p>247 farklı model ve renk seçeneği ile size en uygun PVC kapıyı bulun.</p>
         </header>
 
         <div class="quote-button-section">
@@ -156,11 +208,36 @@ const faqSchema = {
         <div class="loading" id="loading">
           <div class="loading-spinner"></div>
           <p>PVC kapı modelleri yükleniyor...</p>
+        </div>
 
+        <!-- Page Navigation -->
+        <div class="page-navigation">
+          <div class="nav-info">
+            <span class="current-page">Sayfa 1 / 3</span>
+            <span class="product-count">85 ürün gösteriliyor</span>
+          </div>
+          <div class="nav-buttons">
+            <span class="nav-btn disabled">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Önceki Sayfa
+            </span>
+            <a href="/pvc-kapilar-2" class="nav-btn next">
+              Sayfa 2
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+          <div class="page-dots">
+            <span class="dot active" aria-label="Sayfa 1"></span>
+            <a href="/pvc-kapilar-2" class="dot" aria-label="Sayfa 2'ye git"></a>
+            <a href="/pvc-kapilar-3" class="dot" aria-label="Sayfa 3'e git"></a>
+          </div>
         </div>
       </div>
     </section>
-<section>
 
     <!-- SEO Content Section -->
     <section class="seo-content-section">
@@ -560,6 +637,135 @@ const faqSchema = {
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+  }
+
+  /* Page Navigation */
+  .page-navigation {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-top: 3rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .nav-info {
+    text-align: center;
+  }
+
+  .current-page {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .product-count {
+    font-size: 0.95rem;
+    color: #6b7280;
+    font-weight: 500;
+  }
+
+  .nav-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: none;
+    cursor: pointer;
+    min-width: 160px;
+    justify-content: center;
+  }
+
+  .nav-btn:not(.disabled) {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+
+  .nav-btn:not(.disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  }
+
+  .nav-btn.disabled {
+    background: #f3f4f6;
+    color: #9ca3af;
+    cursor: not-allowed;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  .nav-btn.next {
+    flex-direction: row-reverse;
+  }
+
+  .nav-btn svg {
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-btn:not(.disabled):hover svg {
+    transform: translateX(3px);
+  }
+
+  .nav-btn.next:not(.disabled):hover svg {
+    transform: translateX(-3px);
+  }
+
+  .page-dots {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #d1d5db;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    position: relative;
+  }
+
+  .dot:hover {
+    background: #9ca3af;
+    transform: scale(1.2);
+  }
+
+  .dot.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transform: scale(1.3);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+  }
+
+  .dot::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border-radius: 50%;
   }
 
   /* SEO Content Section */
@@ -1070,6 +1276,19 @@ const faqSchema = {
       font-size: 0.9rem;
     }
 
+    .product-filter-tabs {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .product-filter-btn {
+      width: 100%;
+      max-width: 300px;
+      padding: 0.875rem 1.5rem;
+      font-size: 0.95rem;
+    }
+
     .cta-buttons {
       flex-direction: column;
       align-items: center;
@@ -1367,6 +1586,15 @@ Bu teklif talebi CihanPan Door PVC Kapılar sayfasından gelmiştir.
   document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
 
+    // Filter button event listeners
+    const filterButtons = document.querySelectorAll('.product-filter-btn');
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filter = button.getAttribute('data-filter');
+        filterProducts(filter);
+      });
+    });
+
     // Quote form submission
     document.getElementById('quoteForm').addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -1419,4 +1647,3 @@ Bu teklif talebi CihanPan Door PVC Kapılar sayfasından gelmiştir.
     });
   });
 </script>
-

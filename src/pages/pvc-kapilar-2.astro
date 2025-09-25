@@ -1,23 +1,30 @@
 ---
-// src/pages/pvc-kapilar.astro
+// src/pages/pvc-kapilar-2.astro
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
+
+// PVC Kapılar sayfası için dynamic schema'lar
+
+// Dynamic URL'ler için base setup
+const baseUrl = Astro.site?.toString().slice(0, -1) || 'https://kapi-ureticileri.netlify.app';
+const currentUrl = `${baseUrl}${Astro.url.pathname}`;
+
 const breadcrumbItems = [
   { name: "Ana Sayfa", href: "/" },
   { name: "Ürünlerimiz", href: "/urunlerimiz" },
-  { name: "PVC Kapılar - Sayfa 2" }
+  { name: "PVC Kapılar" }
 ];
 
-// SEO Schema - Google için optimize edilmiş
+// SEO Schema - Tamamen dynamic
 const pvcDoorSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "PVC İç Oda Kapıları ",
+  "name": "PVC İç Oda Kapıları - 247 Model",
   "description": "Kayseri'den üretilen su geçirmez, antibakteriyel PVC kapı modelleri. CE belgeli, 5 yıl garanti, ücretsiz kargo. Türkiye'nin en büyük PVC kapı koleksiyonu.",
-  "url": "https://cihanpandoor.com/pvc-kapilar",
+  "url": currentUrl, // ✅ Dynamic
   "mainEntity": {
     "@type": "ItemList",
     "name": "PVC Kapı Modelleri",
@@ -29,8 +36,8 @@ const pvcDoorSchema = {
         "manufacturer": {
           "@type": "Organization",
           "name": "CihanPan Door",
-          "url": "https://cihanpandoor.com",
-          "logo": "https://cihanpandoor.com/assets/img/logo.webp"
+          "url": baseUrl, // ✅ Dynamic
+          "logo": `${baseUrl}/assets/img/logo.webp` // ✅ Dynamic
         },
         "category": "İç Oda Kapısı",
         "material": "PVC",
@@ -55,7 +62,7 @@ const pvcDoorSchema = {
   }
 };
 
-// FAQ Schema - SEO için kritik
+// FAQ Schema - Dynamic
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -86,15 +93,58 @@ const faqSchema = {
     }
   ]
 };
+
+// Organization Schema - Ana şirket bilgileri için
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "CihanPan Door",
+  "url": baseUrl, // ✅ Dynamic
+  "logo": `${baseUrl}/assets/img/logo.webp`, // ✅ Dynamic
+  "description": "Kayseri'den kaliteli PVC kapı üreticisi",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kayseri",
+    "addressCountry": "TR"
+  },
+  "areaServed": "Turkey",
+  "serviceType": ["PVC Kapı Üretimi", "İç Oda Kapısı", "Kapı Montajı"]
+};
+
+// Breadcrumb Schema - Dynamic
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    "item": item.href ? `${baseUrl}${item.href}` : currentUrl // ✅ Dynamic
+  }))
+};
 ---
 
 <Layout
   title="PVC İç Oda Kapıları - 2 | Kayseri CihanPan Door"
   description="Kayseri'nin en büyük PVC kapı koleksiyonu! 247 farklı model ve renk seçeneği. Su geçirmez, antibakteriyel, CE belgeli PVC kapılar."
   keywords="pvc kapı, pvc iç oda kapısı, kayseri pvc kapı, su geçirmez kapı, antibakteriyel kapı, ekonomik kapı, pvc kapı fiyatları, iç kapı modelleri, banyo kapısı, mutfak kapısı"
-  canonical="https://cihanpandoor.com/pvc-kapilar"
+  canonical={currentUrl}
   ogImage="/assets/img/og/pvc-kapilar-og.webp"
-  schema={[pvcDoorSchema, faqSchema]}
+
+  // Open Graph Tags - Dynamic
+  ogTitle="PVC İç Oda Kapıları - 247 Model | Kayseri CihanPan Door"
+  ogDescription="Kayseri'den üretilen su geçirmez, antibakteriyel PVC kapı modelleri. CE belgeli, 5 yıl garanti, ücretsiz kargo ve montaj."
+  ogType="website"
+  ogUrl={currentUrl}
+
+  // Twitter Card Tags
+  twitterCard="summary_large_image"
+  twitterTitle="PVC İç Oda Kapıları - 247 Model | CihanPan Door"
+  twitterDescription="Kayseri'nin en büyük PVC kapı koleksiyonu. Su geçirmez, antibakteriyel, ekonomik fiyatlar."
+  twitterImage="/assets/img/og/pvc-kapilar-og.webp"
+
+  schema={[pvcDoorSchema, faqSchema, organizationSchema, breadcrumbSchema]}
+
 >
   <Header />
   <Breadcrumbs items={breadcrumbItems} />
@@ -104,8 +154,10 @@ const faqSchema = {
     <section class="hero">
       <div class="container">
         <div class="hero-content">
-          <h1 class="hero-title">PVC İç Oda Kapıları</h1>
-
+          <h1 class="hero-title">PVC İç Oda Kapıları - Sayfa 2</h1>
+          <p class="hero-subtitle">
+            116-128 model arası PVC kapı seçenekleri. Su geçirmez, antibakteriyel ve ekonomik çözümler.
+          </p>
         </div>
       </div>
     </section>
@@ -114,8 +166,8 @@ const faqSchema = {
     <section class="products-section">
       <div class="container">
         <header class="section-header">
-          <h2>PVC Kapı Modelleri</h2>
-          <p>Model ve renk seçenekleri ile size en uygun PVC kapıyı bulun.</p>
+          <h2>PVC Kapı Modelleri - Sayfa 2</h2>
+          <p>116-128 model arasında yer alan PVC kapı çeşitleri.</p>
         </header>
 
         <div class="quote-button-section">
@@ -157,6 +209,33 @@ const faqSchema = {
           <div class="loading-spinner"></div>
           <p>PVC kapı modelleri yükleniyor...</p>
         </div>
+
+        <!-- Page Navigation -->
+        <div class="page-navigation">
+          <div class="nav-info">
+            <span class="current-page">Sayfa 2 / 3</span>
+            <span class="product-count">81 ürün gösteriliyor</span>
+          </div>
+          <div class="nav-buttons">
+            <a href="/pvc-kapilar" class="nav-btn prev">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Sayfa 1
+            </a>
+            <a href="/pvc-kapilar-3" class="nav-btn next">
+              Sayfa 3
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+          <div class="page-dots">
+            <a href="/pvc-kapilar" class="dot" aria-label="Sayfa 1'e git"></a>
+            <span class="dot active" aria-label="Sayfa 2"></span>
+            <a href="/pvc-kapilar-3" class="dot" aria-label="Sayfa 3'e git"></a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -166,39 +245,38 @@ const faqSchema = {
         <div class="content-grid">
           <article class="main-content">
             <header>
-              <h2>PVC Kapı Nedir? Neden PVC Kapı Tercih Edilir?</h2>
+              <h2>PVC Kapı Modelleri 116-128 Serisi</h2>
             </header>
 
             <p>
-              <strong>PVC kapılar</strong>, Polivinil Klorür (PVC) malzemesinden üretilen, modern yaşamın ihtiyaçlarına yönelik
-              tasarlanmış <em>iç oda kapılarıdır</em>. Kayseri CihanPan Door olarak, 25 yılı aşkın tecrübemizle
-              Türkiye'nin en kaliteli PVC kapılarını üretiyoruz.
+              <strong>116-128 model arası PVC kapılarımız</strong>, modern tasarım ve yüksek kalite standartlarıyla
+              öne çıkmaktadır. Bu serideki her model, <em>su geçirmez yapısı</em> ve antibakteriyel yüzeyi ile
+              banyo, mutfak ve yatak odalarında güvenle kullanılabilir.
             </p>
 
-            <h3>PVC Kapının Avantajları</h3>
+            <h3>Bu Serideki Öne Çıkan Özellikler</h3>
             <ul class="advantages-list">
-              <li><strong>Su Geçirmez Yapı:</strong> Nem ve suya karşı tamamen dirençli</li>
-              <li><strong>Antibakteriyel Yüzey:</strong> Hijyenik yaşam için bakterilerin üremesini engeller</li>
-              <li><strong>Kolay Bakım:</strong> Sadece nemli bez ile temizlenebilir, boya gerektirmez</li>
-              <li><strong>Ses İzolasyonu:</strong> Mükemmel ses yalıtım özelliği</li>
+              <li><strong>Gelişmiş Tasarım:</strong> Modern ve klasik çizgilerin birleşimi</li>
+              <li><strong>Çok Renkli Seçenekler:</strong> Beyaz'dan Antrasit'e kadar geniş renk yelpazesi</li>
+              <li><strong>Dayanıklı Yapı:</strong> Yoğun kullanıma uygun sağlam malzeme</li>
+              <li><strong>Kolay Montaj:</strong> Profesyonel montaj ekibi ile hızlı kurulum</li>
             </ul>
 
-            <h3>PVC Kapı Kullanım Alanları</h3>
-            <p>PVC kapılar, özellikle nemli ortamlarda üstün performans gösterir:</p>
+            <h3>Model 116-128 Serisi Kullanım Alanları</h3>
+            <p>Bu seri PVC kapılar özellikle şu alanlarda tercih edilmektedir:</p>
             <ul>
-              <li><strong>Banyo Kapıları:</strong> Su buharına karşı tamamen dayanıklı</li>
-              <li><strong>Mutfak Kapıları:</strong> Yemek kokularını absorbe etmez</li>
-              <li><strong>Balkon Kapıları:</strong> Dış hava koşullarına dayanıklı</li>
-              <li><strong>Yatak Odası Kapıları:</strong> Ses yalıtımı sağlar</li>
-              <li><strong>Ofis Kapıları:</strong> Profesyonel görünüm ve dayanıklılık</li>
+              <li><strong>Konut Projeleri:</strong> Apartman ve villa projelerinde</li>
+              <li><strong>Ticari Alanlar:</strong> Ofis ve mağaza girişlerinde</li>
+              <li><strong>Kamu Binaları:</strong> Okul ve hastane odalarında</li>
+              <li><strong>Otel Odaları:</strong> Konaklama tesislerinde</li>
             </ul>
           </article>
 
           <aside class="sidebar">
             <div class="info-cards">
               <div class="stat-card">
-                <div class="stat-number">247</div>
-                <div class="stat-label">Farklı Model</div>
+                <div class="stat-number">81</div>
+                <div class="stat-label">Bu Sayfada</div>
               </div>
               <div class="stat-card">
                 <div class="stat-number">100%</div>
@@ -246,13 +324,13 @@ const faqSchema = {
 
         <div class="faq-list">
           <details class="faq-item">
-            <summary>PVC kapı ile ahşap kapı arasındaki fark nedir?</summary>
-            <p>PVC kapılar su geçirmez, ahşap kapılar ise neme karşı hassastır. PVC kapılar daha ekonomik, bakımı kolay ve uzun ömürlüdür. Ahşap kapılar doğal görünüm sunar ancak düzenli bakım gerektirir.</p>
+            <summary>116-128 serisi hangi renklerde mevcut?</summary>
+            <p>Bu seride Beyaz, Antrasit, Gri Meşe, İtalyan Ceviz, Tik, ABD Ceviz ve daha birçok renk seçeneği bulunmaktadır. Her modelin farklı renk varyantları mevcuttur.</p>
           </details>
 
           <details class="faq-item">
-            <summary>PVC kapı montajı ne kadar sürer?</summary>
-            <p>Profesyonel montaj ekibimiz ile bir kapının montajı ortalama 30-45 dakika sürer. Ölçü alma, teslimat ve montaj sürecinin tamamı 7-10 gün içinde tamamlanır.</p>
+            <summary>Bu serinin diğer PVC kapılardan farkı nedir?</summary>
+            <p>116-128 serisi daha modern tasarım çizgilerine sahiptir. Gelişmiş yüzey işlemleri ve renk seçenekleri ile öne çıkar. Aynı kalite standartlarında ancak daha çeşitli tasarım seçenekleri sunar.</p>
           </details>
         </div>
       </div>
@@ -262,7 +340,7 @@ const faqSchema = {
     <section class="cta-section">
       <div class="container">
         <h2>PVC Kapı Fiyat Teklifi Alın</h2>
-        <p>Size en uygun PVC kapı modelini belirlemek ve ücretsiz fiyat teklifi almak için hemen iletişime geçin</p>
+        <p>116-128 serisi PVC kapı modellerimiz için özel fiyat teklifi almak istiyorsanız hemen iletişime geçin</p>
         <div class="cta-buttons">
           <a href="/iletisim" class="btn btn-primary">İletişim Formu</a>
           <a href="https://wa.me/905441690038" class="btn btn-secondary" target="_blank" rel="noopener">WhatsApp İletişim</a>
@@ -558,6 +636,129 @@ const faqSchema = {
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+  }
+
+  /* Page Navigation */
+  .page-navigation {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-top: 3rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .nav-info {
+    text-align: center;
+  }
+
+  .current-page {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .product-count {
+    font-size: 0.95rem;
+    color: #6b7280;
+    font-weight: 500;
+  }
+
+  .nav-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: none;
+    cursor: pointer;
+    min-width: 160px;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+
+  .nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  }
+
+  .nav-btn.prev {
+    flex-direction: row;
+  }
+
+  .nav-btn.next {
+    flex-direction: row-reverse;
+  }
+
+  .nav-btn svg {
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-btn.prev:hover svg {
+    transform: translateX(-3px);
+  }
+
+  .nav-btn.next:hover svg {
+    transform: translateX(3px);
+  }
+
+  .page-dots {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #d1d5db;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    position: relative;
+  }
+
+  .dot:hover {
+    background: #9ca3af;
+    transform: scale(1.2);
+  }
+
+  .dot.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transform: scale(1.3);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+  }
+
+  .dot::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border-radius: 50%;
   }
 
   /* SEO Content Section */
@@ -910,6 +1111,7 @@ const faqSchema = {
     max-width: 500px;
     width: 100%;
     max-height: 90vh;
+    overflow-y: auto;
     position: relative;
   }
 
@@ -1068,6 +1270,56 @@ const faqSchema = {
       font-size: 0.9rem;
     }
 
+    .product-filter-tabs {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .product-filter-btn {
+      width: 100%;
+      max-width: 300px;
+      padding: 0.875rem 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .page-navigation {
+      padding: 1.5rem;
+      margin-top: 2rem;
+      gap: 1rem;
+    }
+
+    .nav-buttons {
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .nav-btn {
+      width: 100%;
+      max-width: 280px;
+      padding: 0.875rem 1.5rem;
+      font-size: 0.95rem;
+      min-width: auto;
+    }
+
+    .current-page {
+      font-size: 1.1rem;
+    }
+
+    .product-count {
+      font-size: 0.9rem;
+    }
+
+    .page-dots {
+      gap: 0.75rem;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+    }
+
     .cta-buttons {
       flex-direction: column;
       align-items: center;
@@ -1098,132 +1350,119 @@ const faqSchema = {
   // Generate PVC models based on actual file names from the list
   const pvcModels = [];
 
-  // All 247 file names from your list - İLK 85 ÜRÜN (SAYFA 1)
+  // SAYFA 2 - 116-128 model arası (81 ürün)
   const fileNames = [
-    'CihanpanDoor-PVC-Serisi-101-A-ABD-Ceviz.webp',
     'CihanpanDoor-PVC-Serisi-116-A-Beyaz-Antrasit.webp',
     'CihanpanDoor-PVC-Serisi-116-B-Beyaz.webp',
     'CihanpanDoor-PVC-Serisi-116-C-Italyan-Ceviz.webp',
     'CihanpanDoor-PVC-Serisi-116-D-Antrasit.webp',
     'CihanpanDoor-PVC-Serisi-116-E-Gri-Mese.webp',
-'CihanpanDoor-PVC-Serisi-116-F-ABD-Ceviz.webp',
-'CihanpanDoor-PVC-Serisi-117-A-Dark-Santana.webp',
-'CihanpanDoor-PVC-Serisi-117-B-Beyaz-Antrasit.webp',
-'CihanpanDoor-PVC-Serisi-117-C-Beyaz.webp',
-'CihanpanDoor-PVC-Serisi-117-D-Ayder.webp',
-'CihanpanDoor-PVC-Serisi-117-E-Tik.webp',
-'CihanpanDoor-PVC-Serisi-117-F-Vision-Gri.webp',
-'CihanpanDoor-PVC-Serisi-118-A-Antrasit.webp',
-'CihanpanDoor-PVC-Serisi-118-B-Natural-Mese.webp',
-'CihanpanDoor-PVC-Serisi-118-C-Beyaz.webp',
-'CihanpanDoor-PVC-Serisi-118-D-Vision-Gri.webp',
-'CihanpanDoor-PVC-Serisi-118-E-Kum-Gri.webp',
-'CihanpanDoor-PVC-Serisi-118-F-Beyaz-Tik.webp',
-'CihanpanDoor-PVC-Serisi-119-A-Saruhan.webp',
-'CihanpanDoor-PVC-Serisi-119-B-Kum-Gri.webp',
-'CihanpanDoor-PVC-Serisi-119-C-Beyaz.webp',
-'CihanpanDoor-PVC-Serisi-119-D-Antrasit.webp',
-'CihanpanDoor-PVC-Serisi-119-E-Gold-Mese.webp',
-'CihanpanDoor-PVC-Serisi-119-F-Gri-Mese.webp',
-'CihanpanDoor-PVC-Serisi-120-A-Yildiz-Metal-Antrasit.webp',
-'CihanpanDoor-PVC-Serisi-120-B-Kestane.webp',
-'CihanpanDoor-PVC-Serisi-120-C-Soft-Kapucino.webp',
-'CihanpanDoor-PVC-Serisi-120-D-Beyaz.webp',
-'CihanpanDoor-PVC-Serisi-120-E-Antrasit.webp',
-'CihanpanDoor-PVC-Serisi-120-F-Avola.webp',
-'CihanpanDoor-PVC-Serisi-121-A-Beyaz-Tik.webp',
-'CihanpanDoor-PVC-Serisi-121-B-Tik.webp',
-'CihanpanDoor-PVC-Serisi-121-C-Antrasit.webp',
-'CihanpanDoor-PVC-Serisi-121-D-Avola.webp',
-'CihanpanDoor-PVC-Serisi-121-E-Olimpos.webp',
-'CihanpanDoor-PVC-Serisi-121-F-Beyaz.webp',
-'CihanpanDoor-PVC-Serisi-122-A-Ayder.webp',
-'CihanpanDoor-PVC-Serisi-122-B-Antrasit.webp',
-'CihanpanDoor-PVC-Serisi-122-C-Italyan-Ceviz.webp',
-'CihanpanDoor-PVC-Serisi-122-D-Yildiz-Metal-Tuna-Ceviz.webp',
-'CihanpanDoor-PVC-Serisi-122-E-Beyaz-Tik.webp',
-'CihanpanDoor-PVC-Serisi-122-F-Kum-Gri-Antrasit.webp',
-'CihanpanDoor-PVC-Serisi-123-A-Soft-Kapucino.webp',
-'CihanpanDoor-PVC-Serisi-123-B-Gri-Mese.webp',
-'CihanpanDoor-PVC-Serisi-123-C-Beyaz.webp',
-'CihanpanDoor-PVC-Serisi-123-D-Gri-Kum.webp',
-'CihanpanDoor-PVC-Serisi-123-E-Italyan-Ceviz.webp',
-'CihanpanDoor-PVC-Serisi-123-F-ABD-Ceviz (1).webp',
-'CihanpanDoor-PVC-Serisi-123-F-ABD-Ceviz.webp',
-'CihanpanDoor-PVC-Serisi-124-A-Beyaz.webp',
-'CihanpanDoor-PVC-Serisi-124-B-Kul-Mese.webp',
-'CihanpanDoor-PVC-Serisi-124-C-Koko.webp',
-'CihanpanDoor-PVC-Serisi-124-D-ABD-Ceviz.webp',
-'CihanpanDoor-PVC-Serisi-124-E-Krem.webp',
-'CihanpanDoor-PVC-Serisi-124-F-Beyaz-Venge.webp',
-'CihanpanDoor-PVC-Serisi-125-A-Tik.webp',
-'CihanpanDoor-PVC-Serisi-125-B-Dark-Santana.webp',
-'CihanpanDoor-PVC-Serisi-125-C-Beyaz.webp',
-'CihanpanDoor-PVC-Serisi-125-D-Kum-Gri.webp',
-'CihanpanDoor-PVC-Serisi-125-E-Avola.webp',
-'CihanpanDoor-PVC-Serisi-125-F-Elma.webp',
-'CihanpanDoor-PVC-Serisi-126-A-Gri-Mese.webp',
-'CihanpanDoor-PVC-Serisi-126-B-Antrasit.webp',
-'CihanpanDoor-PVC-Serisi-126-C-Italyan-Ceviz.webp',
-'CihanpanDoor-PVC-Serisi-126-D-Koko.webp',,
-'CihanpanDoor-PVC-Serisi-126-E-Beyaz.webp',
-'CihanpanDoor-PVC-Serisi-126-F-ABD-Ceviz.webp',
-'CihanpanDoor-PVC-Serisi-127-A-Gold-Mese.webp',
-'CihanpanDoor-PVC-Serisi-127-B-Beyaz.webp',
-'CihanpanDoor-PVC-Serisi-127-C-Gri-Mese.webp',
-'CihanpanDoor-PVC-Serisi-127-D-Saruhan.webp',
-'CihanpanDoor-PVC-Serisi-127-E-Gold-Ceviz.webp',
-'CihanpanDoor-PVC-Serisi-127-F-Beyaz-Tik.webp',
-'CihanpanDoor-PVC-Serisi-128-A-Vision-Gri.webp',
-'CihanpanDoor-PVC-Serisi-128-B-Dark-Santa.webp',
-'CihanpanDoor-PVC-Serisi-128-C-Gold-Ceviz.webp',
-'CihanpanDoor-PVC-Serisi-128-D-Beyaz.webp',
-'CihanpanDoor-PVC-Serisi-128-E-Antrasit.webp',
-'CihanpanDoor-PVC-Serisi-128-F-Ayder.webp'
-
+    'CihanpanDoor-PVC-Serisi-116-F-ABD-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-117-A-Dark-Santana.webp',
+    'CihanpanDoor-PVC-Serisi-117-B-Beyaz-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-117-C-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-117-D-Ayder.webp',
+    'CihanpanDoor-PVC-Serisi-117-E-Tik.webp',
+    'CihanpanDoor-PVC-Serisi-117-F-Vision-Gri.webp',
+    'CihanpanDoor-PVC-Serisi-118-A-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-118-B-Natural-Mese.webp',
+    'CihanpanDoor-PVC-Serisi-118-C-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-118-D-Vision-Gri.webp',
+    'CihanpanDoor-PVC-Serisi-118-E-Kum-Gri.webp',
+    'CihanpanDoor-PVC-Serisi-118-F-Beyaz-Tik.webp',
+    'CihanpanDoor-PVC-Serisi-119-A-Saruhan.webp',
+    'CihanpanDoor-PVC-Serisi-119-B-Kum-Gri.webp',
+    'CihanpanDoor-PVC-Serisi-119-C-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-119-D-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-119-E-Gold-Mese.webp',
+    'CihanpanDoor-PVC-Serisi-119-F-Gri-Mese.webp',
+    'CihanpanDoor-PVC-Serisi-120-A-Yildiz-Metal-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-120-B-Kestane.webp',
+    'CihanpanDoor-PVC-Serisi-120-C-Soft-Kapucino.webp',
+    'CihanpanDoor-PVC-Serisi-120-D-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-120-E-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-120-F-Avola.webp',
+    'CihanpanDoor-PVC-Serisi-121-A-Beyaz-Tik.webp',
+    'CihanpanDoor-PVC-Serisi-121-B-Tik.webp',
+    'CihanpanDoor-PVC-Serisi-121-C-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-121-D-Avola.webp',
+    'CihanpanDoor-PVC-Serisi-121-E-Olimpos.webp',
+    'CihanpanDoor-PVC-Serisi-121-F-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-122-A-Ayder.webp',
+    'CihanpanDoor-PVC-Serisi-122-B-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-122-C-Italyan-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-122-D-Yildiz-Metal-Tuna-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-122-E-Beyaz-Tik.webp',
+    'CihanpanDoor-PVC-Serisi-122-F-Kum-Gri-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-123-A-Soft-Kapucino.webp',
+    'CihanpanDoor-PVC-Serisi-123-B-Gri-Mese.webp',
+    'CihanpanDoor-PVC-Serisi-123-C-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-123-D-Gri-Kum.webp',
+    'CihanpanDoor-PVC-Serisi-123-E-Italyan-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-123-F-ABD-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-124-A-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-124-B-Kul-Mese.webp',
+    'CihanpanDoor-PVC-Serisi-124-C-Koko.webp',
+    'CihanpanDoor-PVC-Serisi-124-D-ABD-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-124-E-Krem.webp',
+    'CihanpanDoor-PVC-Serisi-124-F-Beyaz-Venge.webp',
+    'CihanpanDoor-PVC-Serisi-125-A-Tik.webp',
+    'CihanpanDoor-PVC-Serisi-125-B-Dark-Santana.webp',
+    'CihanpanDoor-PVC-Serisi-125-C-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-125-D-Kum-Gri.webp',
+    'CihanpanDoor-PVC-Serisi-125-E-Avola.webp',
+    'CihanpanDoor-PVC-Serisi-125-F-Elma.webp',
+    'CihanpanDoor-PVC-Serisi-126-A-Gri-Mese.webp',
+    'CihanpanDoor-PVC-Serisi-126-B-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-126-C-Italyan-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-126-D-Koko.webp',
+    'CihanpanDoor-PVC-Serisi-126-E-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-126-F-ABD-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-127-A-Gold-Mese.webp',
+    'CihanpanDoor-PVC-Serisi-127-B-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-127-C-Gri-Mese.webp',
+    'CihanpanDoor-PVC-Serisi-127-D-Saruhan.webp',
+    'CihanpanDoor-PVC-Serisi-127-E-Gold-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-127-F-Beyaz-Tik.webp',
+    'CihanpanDoor-PVC-Serisi-128-A-Vision-Gri.webp',
+    'CihanpanDoor-PVC-Serisi-128-B-Dark-Santa.webp',
+    'CihanpanDoor-PVC-Serisi-128-C-Gold-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-128-D-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-128-E-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-128-F-Ayder.webp'
   ];
 
   // Parse file names and create products
   fileNames.forEach((fileName, index) => {
-    // Parse filename: CihanpanDoor-PVC-Serisi-116-A-Beyaz-Antrasit.webp
     const parts = fileName.replace('.webp', '').split('-');
-    const modelNumber = parts[3]; // 116
-    const variant = parts[4]; // A
-    const colorName = parts.slice(5).join('-'); // Beyaz-Antrasit
+    const modelNumber = parts[3];
+    const variant = parts[4];
+    const colorName = parts.slice(5).join('-');
 
-    // Format display name
     const displayName = `${modelNumber}-${variant} ${colorName.replace(/-/g, ' ')}`;
 
     pvcModels.push({
       id: `PVC-${modelNumber}-${variant}`,
-      name: displayName, // 116-A Beyaz Antrasit
-      category: 'pvc', // Her ürün PVC kategorisinde
+      name: displayName,
+      category: 'pvc',
 
-      // Use actual file name
       image: `/assets/img/pvc-kapilar/${fileName}`,
-      fallbackImage: `https://picsum.photos/300/400?random=${index + 1}`,
+      fallbackImage: `https://picsum.photos/300/400?random=${index + 86}`,
 
-      // SEO için zengin alt text (kullanıcı görmez, arama motorları görür)
       altText: `CihanPan Door PVC Interior Door Model ${modelNumber}-${variant} ${colorName.replace(/-/g, ' ')} - Waterproof Panel Door for Bathroom Kitchen Bedroom, Turkish Manufacturer`,
 
-      // SEO için detaylı description
-      description: `PVC door model ${modelNumber}-${variant} in ${colorName.replace(/-/g, ' ')} color. Modern design PVC interior door suitable for bathroom, kitchen and bedroom. Waterproof, antibacterial surface, 5-year warranty. Standard size 70x200cm, custom sizes available. CE certified Turkish manufacturer CihanPan Door.`,
+      description: `PVC door model ${modelNumber}-${variant} in ${colorName.replace(/-/g, ' ')} color. Modern design PVC interior door suitable for bathroom, kitchen and bedroom. Waterproof, antibacterial surface, 5-year warranty.`,
 
-      // SEO keywords (backend için)
-      seoKeywords: `pvc door ${colorName.replace(/-/g, ' ').toLowerCase()}, interior doors model ${modelNumber}, waterproof doors, bathroom doors, kitchen doors, turkish manufacturer, CihanPan door, modern interior doors`,
+      seoKeywords: `pvc door ${colorName.replace(/-/g, ' ').toLowerCase()}, interior doors model ${modelNumber}, waterproof doors, CihanPan door`,
 
-      // Fiyat (opsiyonel)
       price: Math.floor(Math.random() * 500) + 300,
 
-      // Schema.org için yapısal data (SEO)
       schemaData: {
         "@type": "Product",
         "name": `PVC Interior Door Model ${modelNumber}-${variant} ${colorName.replace(/-/g, ' ')}`,
-        "description": `PVC door model ${modelNumber}-${variant} for interior use in ${colorName.replace(/-/g, ' ')} finish`,
         "brand": "CihanPan Door",
         "material": "PVC",
-        "category": "Interior Doors",
-        "color": colorName.replace(/-/g, ' ')
+        "category": "Interior Doors"
       }
     });
   });
@@ -1264,7 +1503,6 @@ const faqSchema = {
     loading.style.display = 'block';
     grid.innerHTML = '';
 
-    // Direkt ürünleri göster
     setTimeout(() => {
       if (filteredProducts.length === 0) {
         grid.innerHTML = `
@@ -1329,7 +1567,7 @@ const faqSchema = {
 
   // Email sending function
   async function sendQuoteEmail(formData) {
-    const subject = encodeURIComponent('Yeni PVC Kapı Teklif Talebi - CihanPan Door');
+    const subject = encodeURIComponent('Yeni PVC Kapı Teklif Talebi - Sayfa 2 - CihanPan Door');
     const body = encodeURIComponent(`
 Müşteri Bilgileri:
 ━━━━━━━━━━━━━━━━━━━━━━━━
@@ -1346,7 +1584,7 @@ ${formData.customerMessage || 'Mesaj yok'}
 🌐 Sayfa: ${window.location.href}
 📅 Tarih: ${new Date().toLocaleString('tr-TR')}
 
-Bu teklif talebi CihanPan Door PVC Kapılar sayfasından gelmiştir.
+Bu teklif talebi PVC Kapılar Sayfa 2'den gelmiştir (Model 116-128).
     `);
 
     window.location.href = `mailto:exportcihanpandoor@gmail.com?subject=${subject}&body=${body}`;
@@ -1357,6 +1595,15 @@ Bu teklif talebi CihanPan Door PVC Kapılar sayfasından gelmiştir.
   document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
 
+    // Filter button event listeners
+    const filterButtons = document.querySelectorAll('.product-filter-btn');
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filter = button.getAttribute('data-filter');
+        filterProducts(filter);
+      });
+    });
+
     // Quote form submission
     document.getElementById('quoteForm').addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -1364,7 +1611,6 @@ Bu teklif talebi CihanPan Door PVC Kapılar sayfasından gelmiştir.
       const formData = new FormData(e.target);
       const data = Object.fromEntries(formData.entries());
 
-      // Validate required fields
       if (!data.customerName || !data.customerPhone) {
         alert('Lütfen zorunlu alanları doldurunuz (Ad Soyad ve Telefon)');
         return;
