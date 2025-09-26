@@ -13,7 +13,7 @@ const breadcrumbItems = [
   { name: "Ana Sayfa", href: "/" },
   { name: "Ürünlerimiz", href: "/urunlerimiz" },
   { name: "Laminoks Kapılar", href: "/laminoks-kapilar" },
-  { name: "Sayfa 2" }
+  { name: "Sayfa 1" }
 ];
 
 // SEO Schema - 2. sayfa için
@@ -25,7 +25,7 @@ const laminoksSchema = {
   "url": currentUrl,
   "mainEntity": {
     "@type": "ItemList",
-    "name": "Laminoks Kapı Modelleri - Sayfa 2",
+    "name": "Laminoks Kapı Modelleri - Sayfa 1",
     "numberOfItems": 60,
     "itemListElement": [
       {
@@ -78,19 +78,19 @@ const breadcrumbSchema = {
 <Layout
   title="Laminoks İç Oda Kapıları - Sayfa 2 | Premium Seri Kayseri CihanPan Door"
   description="Kayseri'nin premium kalite Laminoks kapı koleksiyonu 2. sayfa! 60+ ek model, özelleştirilebilir boyutlar, üretici fiyat avantajı. Toptan satış imkanı."
-  keywords="laminoks kapı sayfa 2, premium iç kapı modelleri, kayseri laminoks üreticisi, toptan kapı satışı, özel tasarım kapı, ticari kapı projeleri"
+  keywords="laminoks kapı sayfa 1, premium iç kapı modelleri, kayseri laminoks üreticisi, toptan kapı satışı, özel tasarım kapı, ticari kapı projeleri"
   canonical={currentUrl}
   ogImage="/assets/img/og/laminoks-kapilar-og.webp"
 
   // Open Graph Tags
-  ogTitle="Laminoks İç Oda Kapıları - Sayfa 2 | Premium Seri CihanPan Door"
+  ogTitle="Laminoks İç Oda Kapıları - Sayfa 1 | Premium Seri CihanPan Door"
   ogDescription="Premium kalite Laminoks kapı koleksiyonunun devamı. 60+ ek model, üretici fiyat avantajı, customized çözümler."
   ogType="website"
   ogUrl={currentUrl}
 
   // Twitter Card Tags
   twitterCard="summary_large_image"
-  twitterTitle="Laminoks İç Oda Kapıları - Sayfa 2 | Premium Seri"
+  twitterTitle="Laminoks İç Oda Kapıları - Sayfa 1 | Premium Seri"
   twitterDescription="Premium Laminoks kapı koleksiyonunun devamı. Üretici fiyat avantajı, toptan satış."
   twitterImage="/assets/img/og/laminoks-kapilar-og.webp"
 
@@ -105,7 +105,7 @@ const breadcrumbSchema = {
     <section class="hero">
       <div class="container">
         <div class="hero-content">
-          <h1 class="hero-title">Laminoks Kapılar - Sayfa 2</h1>
+          <h1 class="hero-title">Laminoks Kapılar - Sayfa 1</h1>
           <p class="hero-subtitle">
             Premium kalite Laminoks koleksiyonumuzun devamı
           </p>
@@ -202,7 +202,7 @@ const breadcrumbSchema = {
             </header>
 
             <p>
-              <strong>İkinci sayfa koleksiyonumuzda</strong> yer alan premium Laminoks kapılar,
+              <strong>Birinci sayfa koleksiyonumuzda</strong> yer alan premium Laminoks kapılar,
               özel projeler için tasarlanmış <em>yüksek kalite modellerdir</em>. Her biri
               customized çözümler sunar ve toptan satış avantajı ile sunulur.
             </p>
@@ -345,9 +345,10 @@ const breadcrumbSchema = {
   }
 
   /* Hero Section - 2. sayfa için özelleştirilmiş */
+
   .hero {
     padding: 4rem 0;
-    background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     text-align: center;
   }
@@ -417,7 +418,7 @@ const breadcrumbSchema = {
   }
 
   .btn-quote-main {
-    background: linear-gradient(135deg, #374151, #1f2937);
+    background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
     border: none;
     padding: 1rem 3rem;
@@ -426,12 +427,12 @@ const breadcrumbSchema = {
     font-weight: 600;
     font-size: 1.1rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(55, 65, 81, 0.3);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
   }
 
   .btn-quote-main:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(55, 65, 81, 0.4);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
   }
 
   /* Product Filters */
@@ -455,7 +456,7 @@ const breadcrumbSchema = {
   }
 
   .product-filter-btn {
-    background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     border: none;
     padding: 1rem 2rem;
@@ -476,7 +477,7 @@ const breadcrumbSchema = {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
     transition: left 0.3s ease;
     z-index: 1;
   }
@@ -626,7 +627,7 @@ const breadcrumbSchema = {
     align-items: center;
   }
 
-  .nav-btn {
+ .nav-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
@@ -644,7 +645,7 @@ const breadcrumbSchema = {
   }
 
   .nav-btn:not(.disabled) {
-    background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
   }
 
@@ -859,7 +860,7 @@ const breadcrumbSchema = {
   /* CTA Section */
   .cta-section {
     padding: 5rem 0;
-    background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     text-align: center;
   }
@@ -1175,7 +1176,7 @@ const breadcrumbSchema = {
   // Generate Laminoks models from the remaining file list (60 products for page 2)
   const laminoksModels = [];
 
-  // KALAN 60 ÜRÜN (SAYFA 2) - liste.txt'den alınan dosya adları
+  // KALAN 60 ÜRÜN (SAYFA 1) - liste.txt'den alınan dosya adları
   const fileNames = [
 "CihanpanDoor-Laminoks-Serisi-201-A-Beyaz.webp",
 "CihanpanDoor-Laminoks-Serisi-201-B-Gri-Mese.webp",
@@ -1427,9 +1428,9 @@ const breadcrumbSchema = {
 
       } catch (error) {
         // Fallback - Email ile gönderim
-        const subject = encodeURIComponent('Premium Laminoks Kapı - Sayfa 2 Toptan Fiyat Teklifi - CihanPan Door');
+        const subject = encodeURIComponent('Premium Laminoks Kapı - Sayfa 1 Toptan Fiyat Teklifi - CihanPan Door');
         const body = encodeURIComponent(`
-Premium Laminoks Toptan Satış Talebi (Sayfa 2):
+Premium Laminoks Toptan Satış Talebi (Sayfa 1):
 ═══════════════════════════════════════════════
 👤 Ad Soyad: ${data.customerName}
 📞 Telefon: ${data.customerPhone}
@@ -1445,7 +1446,7 @@ ${data.customerMessage || 'Mesaj yok'}
 🌐 Sayfa: ${window.location.href}
 📅 Tarih: ${new Date().toLocaleString('tr-TR')}
 
-Bu premium Laminoks toptan fiyat teklifi talebi 2. sayfa koleksiyonundan gelmiştir.
+Bu premium Laminoks toptan fiyat teklifi talebi 1. sayfa koleksiyonundan gelmiştir.
         `);
 
         window.location.href = `mailto:exportcihanpandoor@gmail.com?subject=${subject}&body=${body}`;
