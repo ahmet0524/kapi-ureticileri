@@ -1,0 +1,1479 @@
+---
+// src/pages/laminoks-kapilar-2.astro
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+// Dynamic URL'ler için base setup
+const baseUrl = Astro.site?.toString().slice(0, -1) || 'https://kapi-ureticileri.netlify.app';
+const currentUrl = `${baseUrl}${Astro.url.pathname}`;
+
+const breadcrumbItems = [
+  { name: "Ana Sayfa", href: "/" },
+  { name: "Ürünlerimiz", href: "/urunlerimiz" },
+  { name: "Laminoks Kapılar", href: "/laminoks-kapilar" },
+  { name: "Sayfa 2" }
+];
+
+// SEO Schema - 2. sayfa için
+const laminoksSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Laminoks İç Oda Kapıları - Premium Seri Sayfa 2",
+  "description": "Kayseri'den üretilen premium kalite Laminoks kapı modelleri. 60+ ek model, üretici fiyat avantajı, özelleştirilebilir boyutlar.",
+  "url": currentUrl,
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "Laminoks Kapı Modelleri - Sayfa 2",
+    "numberOfItems": 60,
+    "itemListElement": [
+      {
+        "@type": "Product",
+        "name": "Laminoks İç Oda Kapısı - Ek Modeller",
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "CihanPan Door",
+          "url": baseUrl,
+          "logo": `${baseUrl}/assets/img/logo.webp`
+        },
+        "category": "İç Oda Kapısı",
+        "material": "Laminoks",
+        "brand": "CihanPan Door"
+      }
+    ]
+  }
+};
+
+// Organization Schema
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "CihanPan Door",
+  "url": baseUrl,
+  "logo": `${baseUrl}/assets/img/logo.webp`,
+  "description": "Kayseri'den premium kalite Laminoks kapı üreticisi - Yurt içi ve yurt dışı toptan satış",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kayseri",
+    "addressCountry": "TR"
+  },
+  "areaServed": ["Turkey", "Europe", "Middle East"],
+  "serviceType": ["Laminoks Kapı Üretimi", "Toptan Satış", "İhracat", "Özelleştirilmiş Üretim"]
+};
+
+// Breadcrumb Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    "item": item.href ? `${baseUrl}${item.href}` : currentUrl
+  }))
+};
+---
+
+<Layout
+  title="Laminoks İç Oda Kapıları - Sayfa 2 | Premium Seri Kayseri CihanPan Door"
+  description="Kayseri'nin premium kalite Laminoks kapı koleksiyonu 2. sayfa! 60+ ek model, özelleştirilebilir boyutlar, üretici fiyat avantajı. Toptan satış imkanı."
+  keywords="laminoks kapı sayfa 2, premium iç kapı modelleri, kayseri laminoks üreticisi, toptan kapı satışı, özel tasarım kapı, ticari kapı projeleri"
+  canonical={currentUrl}
+  ogImage="/assets/img/og/laminoks-kapilar-og.webp"
+
+  // Open Graph Tags
+  ogTitle="Laminoks İç Oda Kapıları - Sayfa 2 | Premium Seri CihanPan Door"
+  ogDescription="Premium kalite Laminoks kapı koleksiyonunun devamı. 60+ ek model, üretici fiyat avantajı, customized çözümler."
+  ogType="website"
+  ogUrl={currentUrl}
+
+  // Twitter Card Tags
+  twitterCard="summary_large_image"
+  twitterTitle="Laminoks İç Oda Kapıları - Sayfa 2 | Premium Seri"
+  twitterDescription="Premium Laminoks kapı koleksiyonunun devamı. Üretici fiyat avantajı, toptan satış."
+  twitterImage="/assets/img/og/laminoks-kapilar-og.webp"
+
+  schema={[laminoksSchema, organizationSchema, breadcrumbSchema]}
+>
+
+  <Header />
+  <Breadcrumbs items={breadcrumbItems} />
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">Laminoks Kapılar - Sayfa 2</h1>
+          <p class="hero-subtitle">
+            Premium kalite Laminoks koleksiyonumuzun devamı
+          </p>
+          <div class="hero-badges">
+            <span class="badge">60+ Ek Model</span>
+            <span class="badge">Premium Kalite</span>
+            <span class="badge">Toptan Fiyat</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+      <div class="container">
+        <header class="section-header">
+          <h2>Laminoks Kapı Modelleri - Devamı</h2>
+          <p>Premium kalite Laminoks serinin diğer model seçenekleri</p>
+        </header>
+
+        <div class="quote-button-section">
+          <button class="btn-quote-main" onclick="openQuoteModal()" aria-label="Laminoks kapı için toptan fiyat teklifi al">
+            Toptan Fiyat Teklifi Al
+          </button>
+        </div>
+
+        <!-- Filter Section -->
+        <div class="product-filters">
+          <h3>Kapı Serileri</h3>
+          <div class="product-filter-tabs">
+            <button class="product-filter-btn active" data-filter="all">
+              <span>Tümü</span>
+            </button>
+            <button class="product-filter-btn" data-filter="laminoks">
+              <span>Laminoks Serisi</span>
+            </button>
+            <button class="product-filter-btn" data-filter="hastane">
+              <span>Hastane Kapıları</span>
+            </button>
+            <button class="product-filter-btn" data-filter="otel">
+              <span>Otel Kapıları</span>
+            </button>
+            <button class="product-filter-btn" data-filter="ofis">
+              <span>Ofis Kapıları</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+          <!-- Products will be loaded here -->
+        </div>
+
+        <div class="loading" id="loading">
+          <div class="loading-spinner"></div>
+          <p>Laminoks kapı modelleri yükleniyor...</p>
+        </div>
+
+        <!-- Page Navigation -->
+        <div class="page-navigation">
+          <div class="nav-info">
+            <span class="current-page">Sayfa 2 / 2</span>
+            <span class="product-count">60 ürün gösteriliyor</span>
+          </div>
+          <div class="nav-buttons">
+            <a href="/laminoks-kapilar" class="nav-btn prev">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Önceki Sayfa
+            </a>
+            <span class="nav-btn disabled">
+              Son Sayfa
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+          <div class="page-dots">
+            <a href="/laminoks-kapilar" class="dot" aria-label="Sayfa 1'e git"></a>
+            <span class="dot active" aria-label="Sayfa 2"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Highlights -->
+    <section class="highlights-section">
+      <div class="container">
+        <div class="content-grid">
+          <article class="highlights-content">
+            <header>
+              <h2>Laminoks Premium Serinin Avantajları</h2>
+            </header>
+
+            <p>
+              <strong>İkinci sayfa koleksiyonumuzda</strong> yer alan premium Laminoks kapılar,
+              özel projeler için tasarlanmış <em>yüksek kalite modellerdir</em>. Her biri
+              customized çözümler sunar ve toptan satış avantajı ile sunulur.
+            </p>
+
+            <h3>Bu Sayfadaki Modellerin Öne Çıkan Özellikleri</h3>
+            <ul class="advantages-list">
+              <li><strong>Premium Tasarımlar:</strong> Özel projeler için geliştirilmiş estetik</li>
+              <li><strong>İhracat Kalitesi:</strong> Avrupa standartlarında üretim</li>
+              <li><strong>Bulk Order:</strong> Büyük projeler için özel indirimler</li>
+              <li><strong>Technical Support:</strong> Proje danışmanlığı hizmeti</li>
+            </ul>
+
+            <h3>Projenize Uygun Çözümler</h3>
+            <p>Bu sayfadaki modeller özellikle büyük ölçekli projeler için tasarlanmıştır.
+            Hastane kompleksleri, otel zincirleri, ofis binaları ve residential projeler
+            için customized çözümler sunuyoruz.</p>
+          </article>
+
+          <aside class="highlights-sidebar">
+            <div class="info-cards">
+              <div class="stat-card">
+                <div class="stat-number">60+</div>
+                <div class="stat-label">EK MODEL</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">B2B</div>
+                <div class="stat-label">WHOLESALE</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">CUSTOM</div>
+                <div class="stat-label">DESIGN</div>
+              </div>
+            </div>
+
+            <div class="quick-contact">
+              <h3>Proje Danışmanlığı</h3>
+              <p>Büyük projeniz için özel çözümler:</p>
+              <div class="contact-buttons">
+                <a href="tel:+905441690038" class="btn-contact-phone">📞 Proje Danışmanı</a>
+                <a href="https://wa.me/905441690038" class="btn-contact-whatsapp">💬 WhatsApp</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>Premium Laminoks Kapı Koleksiyonu Tamamlandı</h2>
+        <p>120+ model ile Türkiye'nin en geniş premium kapı koleksiyonu. Projeniz için ideal çözümü bulun</p>
+        <div class="cta-buttons">
+          <a href="/laminoks-kapilar" class="btn btn-secondary">← İlk Sayfaya Dön</a>
+          <a href="/iletisim" class="btn btn-primary">Proje Danışmanlığı</a>
+          <a href="https://wa.me/905441690038" class="btn btn-tertiary">📞 Hemen Ara</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Quote Modal -->
+  <div class="modal" id="quoteModal" role="dialog" aria-labelledby="quoteModalTitle" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" id="quoteModalClose" aria-label="Modalı kapat">&times;</button>
+      <div class="modal-body">
+        <h3 id="quoteModalTitle">Premium Laminoks Kapı - Toptan Fiyat Teklifi</h3>
+        <form id="quoteForm" class="quote-form" name="laminoks-quote-page2" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="laminoks-quote-page2">
+
+          <div class="form-group">
+            <label for="customerName">Adınız Soyadınız *</label>
+            <input type="text" id="customerName" name="customerName" required>
+          </div>
+
+          <div class="form-group">
+            <label for="customerPhone">Telefon Numaranız *</label>
+            <input type="tel" id="customerPhone" name="customerPhone" required>
+          </div>
+
+          <div class="form-group">
+            <label for="customerEmail">E-posta Adresiniz *</label>
+            <input type="email" id="customerEmail" name="customerEmail" required>
+          </div>
+
+          <div class="form-group">
+            <label for="customerCompany">Firma Adı</label>
+            <input type="text" id="customerCompany" name="customerCompany">
+          </div>
+
+          <div class="form-group">
+            <label for="doorCount">Kaç Adet Kapı?</label>
+            <select id="doorCount" name="doorCount">
+              <option value="100-250">100-250 Adet</option>
+              <option value="250-500">250-500 Adet</option>
+              <option value="500-1000">500-1000 Adet</option>
+              <option value="1000+">1000+ Adet</option>
+              <option value="mega-proje">Mega Proje</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="projectType">Proje Türü</label>
+            <select id="projectType" name="projectType">
+              <option value="">Seçiniz</option>
+              <option value="hastane-kompleksi">Hastane Kompleksi</option>
+              <option value="otel-zinciri">Otel Zinciri</option>
+              <option value="ofis-binasi">Ofis Binası</option>
+              <option value="residential">Residential Proje</option>
+              <option value="egitim-kampusu">Eğitim Kampüsü</option>
+              <option value="ihracat">İhracat</option>
+              <option value="diger">Diğer</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="customerMessage">Proje Detayları</label>
+            <textarea id="customerMessage" name="customerMessage" rows="4" placeholder="Projenizin büyüklüğü, zaman çizelgesi, özel gereksinimler..."></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-submit">Proje Teklifi Gönder</button>
+            <button type="button" class="btn-cancel" onclick="closeQuoteModal()">İptal</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Base styles - Laminoks 1. sayfa ile aynı */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* Hero Section - 2. sayfa için özelleştirilmiş */
+  .hero {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+    color: white;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    opacity: 0.95;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  }
+
+  .hero-badges {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  /* Products Section - 1. sayfa ile aynı stiller */
+  .products-section {
+    padding: 4rem 0;
+    background: #ffffff;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  .section-header p {
+    font-size: 1.1rem;
+    color: #6b7280;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .quote-button-section {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .btn-quote-main {
+    background: linear-gradient(135deg, #374151, #1f2937);
+    color: white;
+    border: none;
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(55, 65, 81, 0.3);
+  }
+
+  .btn-quote-main:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(55, 65, 81, 0.4);
+  }
+
+  /* Product Filters */
+  .product-filters {
+    margin-bottom: 3rem;
+  }
+
+  .product-filters h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .product-filter-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .product-filter-btn {
+    background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(55, 65, 81, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    transition: left 0.3s ease;
+    z-index: 1;
+  }
+
+  .product-filter-btn span {
+    position: relative;
+    z-index: 2;
+  }
+
+  .product-filter-btn:hover::before {
+    left: 0;
+  }
+
+  .product-filter-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(55, 65, 81, 0.4);
+  }
+
+  .product-filter-btn.active {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+  }
+
+  /* Products Grid */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-items: center;
+  }
+
+  .product-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .product-card:hover {
+    border-color: #374151;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(55, 65, 81, 0.1);
+  }
+
+  .product-image {
+    height: 240px;
+    width: 100%;
+    background: #f9fafb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .product-image img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    border-radius: 8px;
+  }
+
+  .product-card:hover .product-image img {
+    transform: scale(1.05);
+  }
+
+  .product-info {
+    padding: 1rem;
+    text-align: center;
+    background: white;
+  }
+
+  .product-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  /* Loading */
+  .loading {
+    text-align: center;
+    padding: 3rem;
+    color: #6b7280;
+  }
+
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f4f6;
+    border-top: 4px solid #374151;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Page Navigation - 2. sayfa için özelleştirilmiş */
+  .page-navigation {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-top: 3rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .nav-info {
+    text-align: center;
+  }
+
+  .current-page {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .product-count {
+    font-size: 0.95rem;
+    color: #6b7280;
+    font-weight: 500;
+  }
+
+  .nav-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: none;
+    cursor: pointer;
+    min-width: 160px;
+    justify-content: center;
+  }
+
+  .nav-btn:not(.disabled) {
+    background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+    color: white;
+  }
+
+  .nav-btn:not(.disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(55, 65, 81, 0.4);
+  }
+
+  .nav-btn.disabled {
+    background: #f3f4f6;
+    color: #9ca3af;
+    cursor: not-allowed;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  .nav-btn.prev {
+    flex-direction: row;
+  }
+
+  .nav-btn svg {
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-btn:not(.disabled):hover svg {
+    transform: translateX(-3px);
+  }
+
+  .page-dots {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #d1d5db;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    position: relative;
+  }
+
+  .dot:hover {
+    background: #9ca3af;
+    transform: scale(1.2);
+  }
+
+  .dot.active {
+    background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+    transform: scale(1.3);
+    box-shadow: 0 2px 8px rgba(55, 65, 81, 0.4);
+  }
+
+  /* Highlights Section - 2. sayfa için özel */
+  .highlights-section {
+    padding: 5rem 0;
+    background: #f8fafc;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .highlights-content {
+    background: white;
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  }
+
+  .highlights-content h2 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+  }
+
+  .highlights-content h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #374151;
+    margin: 2.5rem 0 1rem;
+    line-height: 1.4;
+  }
+
+  .highlights-content p {
+    color: #4a5568;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+  }
+
+  .advantages-list {
+    margin: 1.5rem 0;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .advantages-list li {
+    margin-bottom: 0.75rem;
+    color: #4a5568;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .advantages-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #10b981;
+    font-weight: bold;
+  }
+
+  /* Highlights Sidebar */
+  .highlights-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .info-cards {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #374151;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    color: #6b7280;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .quick-contact {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .quick-contact h3 {
+    color: #1a202c;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+
+  .quick-contact p {
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .btn-contact-phone, .btn-contact-whatsapp {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.2s ease;
+  }
+
+  .btn-contact-phone {
+    background: #374151;
+    color: white;
+  }
+
+  .btn-contact-phone:hover {
+    background: #1f2937;
+    transform: translateY(-1px);
+  }
+
+  .btn-contact-whatsapp {
+    background: #10b981;
+    color: white;
+  }
+
+  .btn-contact-whatsapp:hover {
+    background: #059669;
+    transform: translateY(-1px);
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+    color: white;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 160px;
+  }
+
+  .btn-primary {
+    background: #111827;
+    color: white;
+    border: 2px solid #111827;
+  }
+
+  .btn-primary:hover {
+    background: #1f2937;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(17, 24, 39, 0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .btn-secondary:hover {
+    background: white;
+    color: #374151;
+    transform: translateY(-2px);
+  }
+
+  .btn-tertiary {
+    background: #10b981;
+    color: white;
+    border: 2px solid #10b981;
+  }
+
+  .btn-tertiary:hover {
+    background: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  }
+
+  /* Modal Styles - Laminoks 1. sayfa ile aynı */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .modal.active {
+    display: flex;
+  }
+
+  .modal-content {
+    background: white;
+    border-radius: 12px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    position: relative;
+    overflow-y: auto;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    z-index: 1;
+    transition: all 0.2s ease;
+  }
+
+  .modal-close:hover {
+    background: rgba(0,0,0,0.7);
+    transform: scale(1.1);
+  }
+
+  .modal-body {
+    padding: 2rem;
+  }
+
+  .modal-body h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #1a202c;
+    text-align: center;
+  }
+
+  .quote-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group label {
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #374151;
+    box-shadow: 0 0 0 3px rgba(55, 65, 81, 0.1);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .btn-submit {
+    flex: 1;
+    background: linear-gradient(135deg, #374151, #1f2937);
+    color: white;
+    border: none;
+    padding: 0.875rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(55, 65, 81, 0.3);
+  }
+
+  .btn-cancel {
+    flex: 1;
+    background: #6b7280;
+    color: white;
+    border: none;
+    padding: 0.875rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .btn-cancel:hover {
+    background: #4b5563;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .highlights-content {
+      padding: 2rem;
+    }
+
+    .highlights-content h2 {
+      font-size: 1.75rem;
+    }
+
+    .highlights-content h3 {
+      font-size: 1.5rem;
+    }
+
+    .products-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .product-card {
+      width: 200px;
+    }
+
+    .product-image {
+      height: 200px;
+    }
+
+    .product-info {
+      padding: 0.75rem;
+    }
+
+    .product-title {
+      font-size: 0.9rem;
+    }
+
+    .product-filter-tabs {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .product-filter-btn {
+      width: 100%;
+      max-width: 300px;
+      padding: 0.875rem 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .hero-badges {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .badge {
+      width: fit-content;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      padding: 2rem 0;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+
+    .modal-content {
+      margin: 1rem;
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  // Generate Laminoks models from the remaining file list (60 products for page 2)
+  const laminoksModels = [];
+
+  // KALAN 60 ÜRÜN (SAYFA 2) - liste.txt'den alınan dosya adları
+  const fileNames = [
+    'CihanpanDoor-Laminoks-Serisi-211-A-Saruhan.webp',
+    'CihanpanDoor-Laminoks-Serisi-211-B-Tuna-Ceviz-Kapucino.webp',
+    'CihanpanDoor-Laminoks-Serisi-211-C-Viktorya-Ceviz-Siyah.webp',
+    'CihanpanDoor-Laminoks-Serisi-211-D-Antrasit-Beyaz.webp',
+    'CihanpanDoor-Laminoks-Serisi-211-E-Gri-Mese.webp',
+    'CihanpanDoor-Laminoks-Serisi-211-F-Elma.webp',
+    'CihanpanDoor-Laminoks-Serisi-212-A-Metalik-Ceviz.webp',
+    'CihanpanDoor-Laminoks-Serisi-212-B-Tanganiko-Kapucino.webp',
+    'CihanpanDoor-Laminoks-Serisi-212-C-ABD-Ceviz.webp',
+    'CihanpanDoor-Laminoks-Serisi-212-D-Venge.webp',
+    'CihanpanDoor-Laminoks-Serisi-212-E-Antrasit-Beyaz.webp',
+    'CihanpanDoor-Laminoks-Serisi-212-F-Elma-Siyah.webp',
+    'CihanpanDoor-Laminoks-Serisi-213-A-Antrasit-Saruhan-Siyah.webp',
+    'CihanpanDoor-Laminoks-Serisi-213-B-Sedir-Antrasit-Beyaz.webp',
+    'CihanpanDoor-Laminoks-Serisi-213-C-Beyaz-ABD-Ceviz.webp',
+    'CihanpanDoor-Laminoks-Serisi-213-D-Antrasit-Mistik.webp',
+    'CihanpanDoor-Laminoks-Serisi-213-E-Elma-Siyah-Beyaz.webp',
+    'CihanpanDoor-Laminoks-Serisi-213-F-Acik-Otantik-Siyah-Kapucino.webp',
+    'CihanpanDoor-Laminoks-Serisi-214-A-Saruhan-Antrasit.webp',
+    'CihanpanDoor-Laminoks-Serisi-214-B-Sonomo-Tuna-Ceviz.webp',
+    'CihanpanDoor-Laminoks-Serisi-214-C-Venge.webp',
+    'CihanpanDoor-Laminoks-Serisi-214-D-Elma.webp',
+    'CihanpanDoor-Laminoks-Serisi-214-E-Beyaz-Siyah.webp',
+    'CihanpanDoor-Laminoks-Serisi-214-F-ABD-Ceviz.webp',
+    'CihanpanDoor-Laminoks-Serisi-215-A-Mistik-Siyah.webp',
+    'CihanpanDoor-Laminoks-Serisi-215-B-Kapucino-Tuna-Ceviz.webp',
+    'CihanpanDoor-Laminoks-Serisi-215-C-Beyaz-ABD-Ceviz.webp',
+    'CihanpanDoor-Laminoks-Serisi-215-D-Sedir-Artrasit.webp',
+    'CihanpanDoor-Laminoks-Serisi-215-E-Beyaz-Artrasit.webp',
+    'CihanpanDoor-Laminoks-Serisi-215-F-Beyaz-Venge.webp',
+    'CihanpanDoor-Laminoks-Serisi-216-A-Kapucino-Venge.webp',
+    'CihanpanDoor-Laminoks-Serisi-216-B-Saruhan-Antrasit.webp',
+    'CihanpanDoor-Laminoks-Serisi-216-C-Beyaz-Antrasit.webp',
+    'CihanpanDoor-Laminoks-Serisi-216-D-ABD-Ceviz.webp',
+    'CihanpanDoor-Laminoks-Serisi-216-E-Gri-Mese-Beyaz.webp',
+    'CihanpanDoor-Laminoks-Serisi-216-F-Elma-Siyah.webp',
+    'CihanpanDoor-Laminoks-Serisi-217-A-Antrasit.webp',
+    'CihanpanDoor-Laminoks-Serisi-217-B-Kapucino.webp',
+    'CihanpanDoor-Laminoks-Serisi-217-C-ABD-Ceviz.webp',
+    'CihanpanDoor-Laminoks-Serisi-217-D-Kardoba.webp',
+    'CihanpanDoor-Laminoks-Serisi-217-E-Beyaz.webp',
+    'CihanpanDoor-Laminoks-Serisi-217-F-Metalik-Ceviz.webp',
+    'CihanpanDoor-Laminoks-Serisi-218-A-Antrasit.webp',
+    'CihanpanDoor-Laminoks-Serisi-218-B-Beyaz-Antrasit.webp',
+    'CihanpanDoor-Laminoks-Serisi-218-C-Sonomo-Antrasit.webp',
+    'CihanpanDoor-Laminoks-Serisi-218-D-Isparta-Ceviz.webp',
+    'CihanpanDoor-Laminoks-Serisi-218-E-ABD-Ceviz.webp',
+    'CihanpanDoor-Laminoks-Serisi-218-F-ABD-Kapucino.webp',
+    'CihanpanDoor-Laminoks-Serisi-219-A-Gri-Mese.webp',
+    'CihanpanDoor-Laminoks-Serisi-219-B-Saruhan.webp',
+    'CihanpanDoor-Laminoks-Serisi-219-C-Kapucino.webp',
+    'CihanpanDoor-Laminoks-Serisi-219-D-Beyaz.webp',
+    'CihanpanDoor-Laminoks-Serisi-219-E-Tanganika.webp',
+    'CihanpanDoor-Laminoks-Serisi-219-F-Antrasit.webp',
+    'CihanpanDoor-Laminoks-Serisi-220-A-Gri-Elma.webp',
+    'CihanpanDoor-Laminoks-Serisi-220-A-Isparta-Ceviz.webp',
+    'CihanpanDoor-Laminoks-Serisi-220-C-Viktorya-Ceviz-Antrasit.webp',
+    'CihanpanDoor-Laminoks-Serisi-220-D-Tuna-Ceviz.webp',
+    'CihanpanDoor-Laminoks-Serisi-220-E-Kordoba.webp',
+    'CihanpanDoor-Laminoks-Serisi-220-F-Saruhan.webp',
+    'CihanpanDoor-Laminoks-Serisi-221-A-Beyaz.webp',
+    'CihanpanDoor-Laminoks-Serisi-221-B-Saruhan.webp'
+  ];
+
+  // Parse file names and create products
+  fileNames.forEach((fileName, index) => {
+    // Parse filename: CihanpanDoor-Laminoks-Serisi-211-A-Saruhan.webp
+    const parts = fileName.replace('.webp', '').split('-');
+    const modelNumber = parts[3]; // 211
+    const variant = parts[4]; // A
+    const colorName = parts.slice(5).join('-'); // Saruhan
+
+    // Format display name
+    const displayName = `${modelNumber}-${variant} ${colorName.replace(/-/g, ' ')}`;
+
+    laminoksModels.push({
+      id: `Laminoks-${modelNumber}-${variant}`,
+      name: displayName, // 211-A Saruhan
+      category: 'laminoks', // Her ürün Laminoks kategorisinde
+
+      // Use actual file name
+      image: `/assets/img/laminoks-kapilar/${fileName}`,
+      fallbackImage: `https://picsum.photos/300/400?random=${index + 300}`,
+
+      // SEO için zengin alt text
+      altText: `CihanPan Door Laminoks Interior Door Model ${modelNumber}-${variant} ${colorName.replace(/-/g, ' ')} - Premium Quality Laminate Door for Commercial Projects, Turkish Manufacturer`,
+
+      // SEO için detaylı description
+      description: `Premium Laminoks door model ${modelNumber}-${variant} in ${colorName.replace(/-/g, ' ')} finish. High-end laminate interior door suitable for luxury projects, hotels, hospitals and commercial buildings. Scratch resistant surface, customizable sizes. Wholesale manufacturer prices from Kayseri, Turkey.`,
+
+      // SEO keywords
+      seoKeywords: `premium laminoks door ${colorName.replace(/-/g, ' ').toLowerCase()}, luxury interior doors model ${modelNumber}, commercial doors page 2, premium turkish manufacturer wholesale, CihanPan door premium series`,
+
+      // Schema.org için yapısal data
+      schemaData: {
+        "@type": "Product",
+        "name": `Premium Laminoks Interior Door Model ${modelNumber}-${variant} ${colorName.replace(/-/g, ' ')}`,
+        "description": `Premium Laminoks door model ${modelNumber}-${variant} in ${colorName.replace(/-/g, ' ')} finish for luxury commercial use`,
+        "brand": "CihanPan Door",
+        "material": "Premium Laminoks",
+        "category": "Luxury Interior Doors",
+        "color": colorName.replace(/-/g, ' ')
+      }
+    });
+  });
+
+  // Current filter state
+  let currentFilter = 'all';
+  let filteredProducts = laminoksModels;
+
+  function filterProducts(category) {
+    currentFilter = category;
+
+    if (category === 'all') {
+      filteredProducts = laminoksModels;
+    } else {
+      filteredProducts = laminoksModels.filter(product => product.category === category);
+    }
+
+    renderProducts();
+    updateFilterButtons();
+  }
+
+  function updateFilterButtons() {
+    const buttons = document.querySelectorAll('.product-filter-btn');
+    buttons.forEach(btn => {
+      const filter = btn.getAttribute('data-filter');
+      if (filter === currentFilter) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+  }
+
+  function renderProducts() {
+    const grid = document.getElementById('productsGrid');
+    const loading = document.getElementById('loading');
+
+    loading.style.display = 'block';
+    grid.innerHTML = '';
+
+    setTimeout(() => {
+      if (filteredProducts.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
+            <h3 style="color: #6b7280; margin-bottom: 1rem;">Bu kategoride henüz ürün bulunmuyor</h3>
+            <p style="color: #9ca3af;">Yakında yeni ürünler eklenecek.</p>
+          </div>
+        `;
+      } else {
+        filteredProducts.forEach((product, index) => {
+          const card = createProductCard(product);
+          grid.appendChild(card);
+        });
+      }
+
+      loading.style.display = 'none';
+    }, 200);
+  }
+
+  function createProductCard(product) {
+    const card = document.createElement('article');
+    card.className = 'product-card';
+    card.setAttribute('aria-label', `${product.name} Premium Laminoks kapı modeli`);
+
+    card.innerHTML = `
+      <div class="product-image">
+        <img src="${product.image}"
+             alt="${product.altText}"
+             title="${product.name} - CihanPan Door Premium Laminoks Interior Door Model"
+             loading="lazy"
+             width="300"
+             height="300"
+             onerror="this.src='${product.fallbackImage}'; this.alt='${product.name} Premium Laminoks Door Sample';">
+      </div>
+      <div class="product-info">
+        <h3 class="product-title">${product.name}</h3>
+      </div>
+    `;
+
+    return card;
+  }
+
+  // Quote Modal Functions
+  function openQuoteModal() {
+    const modal = document.getElementById('quoteModal');
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    setTimeout(() => {
+      document.getElementById('customerName').focus();
+    }, 100);
+  }
+
+  function closeQuoteModal() {
+    const modal = document.getElementById('quoteModal');
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    document.getElementById('quoteForm').reset();
+  }
+
+  // Event listeners and initialization
+  document.addEventListener('DOMContentLoaded', () => {
+    renderProducts();
+
+    // Filter button event listeners
+    const filterButtons = document.querySelectorAll('.product-filter-btn');
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filter = button.getAttribute('data-filter');
+        filterProducts(filter);
+      });
+    });
+
+    // Quote form submission - Netlify Forms kullanımı
+    document.getElementById('quoteForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+
+      // Validate required fields
+      if (!data.customerName || !data.customerPhone || !data.customerEmail) {
+        alert('Lütfen zorunlu alanları doldurunuz (Ad Soyad, Telefon ve E-posta)');
+        return;
+      }
+
+      try {
+        const submitBtn = e.target.querySelector('.btn-submit');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Gönderiliyor...';
+        submitBtn.disabled = true;
+
+        // Netlify Forms ile form gönderimi
+        const response = await fetch(window.location.pathname, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString()
+        });
+
+        if (response.ok) {
+          alert('Premium Laminoks kapı teklifi talebiniz alındı! En kısa sürede size dönüş yapacağız.');
+          closeQuoteModal();
+        } else {
+          throw new Error('Form gönderim hatası');
+        }
+
+      } catch (error) {
+        // Fallback - Email ile gönderim
+        const subject = encodeURIComponent('Premium Laminoks Kapı - Sayfa 2 Toptan Fiyat Teklifi - CihanPan Door');
+        const body = encodeURIComponent(`
+Premium Laminoks Toptan Satış Talebi (Sayfa 2):
+═══════════════════════════════════════════════
+👤 Ad Soyad: ${data.customerName}
+📞 Telefon: ${data.customerPhone}
+📧 E-posta: ${data.customerEmail}
+🏢 Firma: ${data.customerCompany || 'Belirtilmedi'}
+🚪 Kapı Adeti: ${data.doorCount}
+🏗️ Proje Türü: ${data.projectType || 'Belirtilmedi'}
+
+📝 Proje Detayları:
+${data.customerMessage || 'Mesaj yok'}
+
+═══════════════════════════════════════════════
+🌐 Sayfa: ${window.location.href}
+📅 Tarih: ${new Date().toLocaleString('tr-TR')}
+
+Bu premium Laminoks toptan fiyat teklifi talebi 2. sayfa koleksiyonundan gelmiştir.
+        `);
+
+        window.location.href = `mailto:exportcihanpandoor@gmail.com?subject=${subject}&body=${body}`;
+        alert('Form e-posta ile gönderildi. Premium projeleriniz için en kısa sürede size dönüş yapacağız.');
+        closeQuoteModal();
+
+      } finally {
+        const submitBtn = e.target.querySelector('.btn-submit');
+        if (submitBtn) {
+          submitBtn.textContent = 'Proje Teklifi Gönder';
+          submitBtn.disabled = false;
+        }
+      }
+    });
+
+    // Modal close events
+    document.getElementById('quoteModalClose').addEventListener('click', closeQuoteModal);
+
+    document.getElementById('quoteModal').addEventListener('click', (e) => {
+      if (e.target.id === 'quoteModal') {
+        closeQuoteModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeQuoteModal();
+      }
+    });
+  });
+</script>
