@@ -1,5 +1,5 @@
 ---
-// src/pages/laminoks-kapilar-2.astro
+// src/pages/elitpan-kapilar.astro
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -12,25 +12,25 @@ const currentUrl = `${baseUrl}${Astro.url.pathname}`;
 const breadcrumbItems = [
   { name: "Ana Sayfa", href: "/" },
   { name: "Ürünlerimiz", href: "/urunlerimiz" },
-  { name: "Laminoks Kapılar", href: "/laminoks-kapilar" },
+  { name: "Elitpan Kapılar", href: "/elitpan-kapilar" },
   { name: "Sayfa 1" }
 ];
 
-// SEO Schema - 2. sayfa için
-const laminoksSchema = {
+// SEO Schema
+const elitpanSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "Laminoks İç Oda Kapıları - Premium Seri Sayfa 2",
-  "description": "Kayseri'den üretilen premium kalite Laminoks kapı modelleri. 60+ ek model, üretici fiyat avantajı, özelleştirilebilir boyutlar.",
+  "name": "Elitpan İç Oda Kapıları - Premium Seri Sayfa 1",
+  "description": "Kayseri'den üretilen premium kalite Elitpan kapı modelleri. 60+ model, üretici fiyat avantajı, özelleştirilebilir boyutlar.",
   "url": currentUrl,
   "mainEntity": {
     "@type": "ItemList",
-    "name": "Laminoks Kapı Modelleri - Sayfa 1",
-    "numberOfItems": 60,
+    "name": "Elitpan Kapı Modelleri - Sayfa 1",
+    "numberOfItems": 26,
     "itemListElement": [
       {
         "@type": "Product",
-        "name": "Laminoks İç Oda Kapısı - Ek Modeller",
+        "name": "Elitpan İç Oda Kapısı",
         "manufacturer": {
           "@type": "Organization",
           "name": "CihanPan Door",
@@ -38,7 +38,7 @@ const laminoksSchema = {
           "logo": `${baseUrl}/assets/img/logo.webp`
         },
         "category": "İç Oda Kapısı",
-        "material": "Laminoks",
+        "material": "Elitpan",
         "brand": "CihanPan Door"
       }
     ]
@@ -52,14 +52,14 @@ const organizationSchema = {
   "name": "CihanPan Door",
   "url": baseUrl,
   "logo": `${baseUrl}/assets/img/logo.webp`,
-  "description": "Kayseri'den premium kalite Laminoks kapı üreticisi - Yurt içi ve yurt dışı toptan satış",
+  "description": "Kayseri'den premium kalite Elitpan kapı üreticisi - Yurt içi ve yurt dışı toptan satış",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Kayseri",
     "addressCountry": "TR"
   },
   "areaServed": ["Turkey", "Europe", "Middle East"],
-  "serviceType": ["Laminoks Kapı Üretimi", "Toptan Satış", "İhracat", "Özelleştirilmiş Üretim"]
+  "serviceType": ["Elitpan Kapı Üretimi", "Toptan Satış", "İhracat", "Özelleştirilmiş Üretim"]
 };
 
 // Breadcrumb Schema
@@ -76,25 +76,25 @@ const breadcrumbSchema = {
 ---
 
 <Layout
-  title="Laminoks İç Oda Kapıları - Sayfa 2 | Premium Seri Kayseri CihanPan Door"
-  description="Kayseri'nin premium kalite Laminoks kapı koleksiyonu 2. sayfa! 60+ ek model, özelleştirilebilir boyutlar, üretici fiyat avantajı. Toptan satış imkanı."
-  keywords="laminoks kapı sayfa 1, premium iç kapı modelleri, kayseri laminoks üreticisi, toptan kapı satışı, özel tasarım kapı, ticari kapı projeleri"
+  title="Elitpan İç Oda Kapıları - Sayfa 1 | Premium Seri Kayseri CihanPan Door"
+  description="Kayseri'nin premium kalite Elitpan kapı koleksiyonu, özelleştirilebilir boyutlar, üretici fiyat avantajı. Toptan satış imkanı."
+  keywords="Elitpan kapı sayfa, premium iç kapı modelleri, kayseri elitpan üreticisi, toptan kapı satışı, özel tasarım kapı, ticari kapı projeleri"
   canonical={currentUrl}
-  ogImage="/assets/img/og/laminoks-kapilar-og.webp"
+  ogImage="/assets/img/og/elitpan-kapilar-og.webp"
 
   // Open Graph Tags
-  ogTitle="Laminoks İç Oda Kapıları - Sayfa 1 | Premium Seri CihanPan Door"
-  ogDescription="Premium kalite Laminoks kapı koleksiyonunun devamı. 60+ ek model, üretici fiyat avantajı, customized çözümler."
+  ogTitle="Elitpan İç Oda Kapıları - Sayfa 1 | Premium Seri CihanPan Door"
+  ogDescription="Premium kalite Elitpan kapı koleksiyonunun devamı. 26 model, üretici fiyat avantajı, customized çözümler."
   ogType="website"
   ogUrl={currentUrl}
 
   // Twitter Card Tags
   twitterCard="summary_large_image"
-  twitterTitle="Laminoks İç Oda Kapıları - Sayfa 1 | Premium Seri"
-  twitterDescription="Premium Laminoks kapı koleksiyonunun devamı. Üretici fiyat avantajı, toptan satış."
-  twitterImage="/assets/img/og/laminoks-kapilar-og.webp"
+  twitterTitle="Elitpan İç Oda Kapıları - Sayfa 1 | Premium Seri"
+  twitterDescription="Premium Elitpan kapı koleksiyonu. Üretici fiyat avantajı, toptan satış."
+  twitterImage="/assets/img/og/elitpan-kapilar-og.webp"
 
-  schema={[laminoksSchema, organizationSchema, breadcrumbSchema]}
+  schema={[elitpanSchema, organizationSchema, breadcrumbSchema]}
 >
 
   <Header />
@@ -105,12 +105,12 @@ const breadcrumbSchema = {
     <section class="hero">
       <div class="container">
         <div class="hero-content">
-          <h1 class="hero-title">Laminoks Kapılar - Sayfa 1</h1>
+          <h1 class="hero-title">Elitpan Kapılar - Sayfa 1</h1>
           <p class="hero-subtitle">
-            Premium kalite Laminoks koleksiyonumuzun devamı
+            Premium kalite Elitpan koleksiyonumuzun devamı
           </p>
           <div class="hero-badges">
-            <span class="badge">60+ Ek Model</span>
+            <span class="badge">26 Model</span>
             <span class="badge">Premium Kalite</span>
             <span class="badge">Toptan Fiyat</span>
           </div>
@@ -122,12 +122,12 @@ const breadcrumbSchema = {
     <section class="products-section">
       <div class="container">
         <header class="section-header">
-          <h2>Laminoks Kapı Modelleri - Devamı</h2>
-          <p>Premium kalite Laminoks serinin diğer model seçenekleri</p>
+          <h2>Elitpan Kapı Modelleri - Devamı</h2>
+          <p>Premium kalite Elitpan model seçenekleri</p>
         </header>
 
         <div class="quote-button-section">
-          <button class="btn-quote-main" onclick="openQuoteModal()" aria-label="Laminoks kapı için toptan fiyat teklifi al">
+          <button class="btn-quote-main" onclick="openQuoteModal()" aria-label="Elitpan kapı için toptan fiyat teklifi al">
             Toptan Fiyat Teklifi Al
           </button>
         </div>
@@ -139,8 +139,14 @@ const breadcrumbSchema = {
             <button class="product-filter-btn active" data-filter="all">
               <span>Tümü</span>
             </button>
-            <button class="product-filter-btn" data-filter="laminoks">
-              <span>Laminoks Serisi</span>
+             <button class="product-filter-btn" data-filter="PVC">
+              <span>PVC Serisi</span>
+            </button>
+            <button class="product-filter-btn" data-filter="elitpan">
+              <span>Elitpan Serisi</span>
+            </button>
+             <button class="product-filter-btn" data-filter="Elitpan">
+              <span>Elitpan Serisi</span>
             </button>
             <button class="product-filter-btn" data-filter="hastane">
               <span>Hastane Kapıları</span>
@@ -160,35 +166,10 @@ const breadcrumbSchema = {
 
         <div class="loading" id="loading">
           <div class="loading-spinner"></div>
-          <p>Laminoks kapı modelleri yükleniyor...</p>
+          <p>Elitpan kapı modelleri yükleniyor...</p>
         </div>
 
-        <!-- Page Navigation -->
-        <div class="page-navigation">
-          <div class="nav-info">
-            <span class="current-page">Sayfa 1 / 2</span>
-            <span class="product-count">60 ürün gösteriliyor</span>
-          </div>
-          <div class="nav-buttons">
-            <span class="nav-btn disabled">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              Sonraki Sayfa
-            </span>
-            <a href="/laminoks-kapilar-2" class="nav-btn next">
-              Sayfa 2
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </div>
-          <div class="page-dots">
-            <span class="dot active" aria-label="Sayfa 1"></span>
-            <a href="/laminoks-kapilar-2" class="dot" aria-label="Sayfa 2'ye git"></a>
 
-          </div>
-        </div>
       </div>
     </section>
 
@@ -198,11 +179,11 @@ const breadcrumbSchema = {
         <div class="content-grid">
           <article class="highlights-content">
             <header>
-              <h2>Laminoks Premium Serinin Avantajları</h2>
+              <h2>Elitpan Premium Serinin Avantajları</h2>
             </header>
 
             <p>
-              <strong>Birinci sayfa koleksiyonumuzda</strong> yer alan premium Laminoks kapılar,
+              <strong>Koleksiyonumuzda</strong> yer alan premium Elitpan kapılar,
               özel projeler için tasarlanmış <em>yüksek kalite modellerdir</em>. Her biri
               customized çözümler sunar ve toptan satış avantajı ile sunulur.
             </p>
@@ -224,8 +205,8 @@ const breadcrumbSchema = {
           <aside class="highlights-sidebar">
             <div class="info-cards">
               <div class="stat-card">
-                <div class="stat-number">60+</div>
-                <div class="stat-label">EK MODEL</div>
+                <div class="stat-number">26</div>
+                <div class="stat-label">MODEL</div>
               </div>
               <div class="stat-card">
                 <div class="stat-number">B2B</div>
@@ -253,13 +234,13 @@ const breadcrumbSchema = {
     <!-- CTA Section -->
     <section class="cta-section">
       <div class="container">
-        <h2>Premium Laminoks Kapı Koleksiyonu</h2>
+        <h2>Premium Elitpan Kapı Koleksiyonu</h2>
         <p>120+ model ile Türkiye'nin en geniş premium kapı koleksiyonu. Projeniz için ideal çözümü bulun</p>
         <div class="cta-buttons">
            <a href="https://wa.me/905441690038" class="btn btn-tertiary">📞 Hemen Ara</a>
 
           <a href="/iletisim" class="btn btn-primary">Proje Danışmanlığı</a>
-            <a href="/laminoks-kapilar-2" class="btn btn-secondary">→ İkinci Safaya Git</a>
+
         </div>
       </div>
     </section>
@@ -270,9 +251,9 @@ const breadcrumbSchema = {
     <div class="modal-content">
       <button class="modal-close" id="quoteModalClose" aria-label="Modalı kapat">&times;</button>
       <div class="modal-body">
-        <h3 id="quoteModalTitle">Premium Laminoks Kapı - Toptan Fiyat Teklifi</h3>
-        <form id="quoteForm" class="quote-form" name="laminoks-quote-page2" method="POST" data-netlify="true">
-          <input type="hidden" name="form-name" value="laminoks-quote-page2">
+        <h3 id="quoteModalTitle">Premium Elitpan Kapı - Toptan Fiyat Teklifi</h3>
+        <form id="quoteForm" class="quote-form" name="elitpan-quote" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="elitpan-quote">
 
           <div class="form-group">
             <label for="customerName">Adınız Soyadınız *</label>
@@ -337,7 +318,7 @@ const breadcrumbSchema = {
 </Layout>
 
 <style>
-  /* Base styles - Laminoks 1. sayfa ile aynı */
+  /* Base styles - Elitpan 1. sayfa ile aynı */
   .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -936,7 +917,7 @@ const breadcrumbSchema = {
     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
   }
 
-  /* Modal Styles - Laminoks 1. sayfa ile aynı */
+  /* Modal Styles - Elitpan 1. sayfa ile aynı */
   .modal {
     display: none;
     position: fixed;
@@ -1173,126 +1154,89 @@ const breadcrumbSchema = {
 </style>
 
 <script>
-  // Generate Laminoks models from the remaining file list (60 products for page 2)
-  const laminoksModels = [];
+  // Generate Elitpan models from the remaining file list (26 products for page 1)
+  const elitpanModels = [];
 
-  // KALAN 60 ÜRÜN (SAYFA 1) - liste.txt'den alınan dosya adları
+  // 26 ÜRÜN (SAYFA 1) - liste.txt'den alınan dosya adları
   const fileNames = [
-"CihanpanDoor-Laminoks-Serisi-201-A-Beyaz.webp",
-"CihanpanDoor-Laminoks-Serisi-201-B-Gri-Mese.webp",
-"CihanpanDoor-Laminoks-Serisi-201-C-Saruhan.webp",
-"CihanpanDoor-Laminoks-Serisi-201-D-Kapucino.webp",
-"CihanpanDoor-Laminoks-Serisi-201-E-Tanganika.webp",
-"CihanpanDoor-Laminoks-Serisi-201-F-Antrasit.webp",
-"CihanpanDoor-Laminoks-Serisi-202-A-Elma-Siyah.webp",
-"CihanpanDoor-Laminoks-Serisi-202-B-Isparta-Ceviz-Beyaz.webp",
-"CihanpanDoor-Laminoks-Serisi-202-C-Acik-Otantik-Siyah.webp",
-"CihanpanDoor-Laminoks-Serisi-202-D-Saruhan-Antrasit.webp",
-"CihanpanDoor-Laminoks-Serisi-202-E-Tanganika-Antrasit.webp",
-"CihanpanDoor-Laminoks-Serisi-202-F-Antrasit-Beyaz.webp",
-"CihanpanDoor-Laminoks-Serisi-203-A-ABD-Ceviz.webp",
-"CihanpanDoor-Laminoks-Serisi-203-B-Viktorya-Ceviz-Kapucino.webp",
-"CihanpanDoor-Laminoks-Serisi-203-C-Elma.webp",
-"CihanpanDoor-Laminoks-Serisi-203-D-Antrasit.webp",
-"CihanpanDoor-Laminoks-Serisi-203-E-Kordoba.webp",
-"CihanpanDoor-Laminoks-Serisi-203-F-Beyaz.webp",
-"CihanpanDoor-Laminoks-Serisi-204-A-Viktorya-Ceviz-Kapucino.webp",
-"CihanpanDoor-Laminoks-Serisi-204-B-Kapucino-Venge.webp",
-"CihanpanDoor-Laminoks-Serisi-204-C-Gri-Mese-Beyaz.webp",
-"CihanpanDoor-Laminoks-Serisi-204-D-Beyaz-Antrasit.webp",
-"CihanpanDoor-Laminoks-Serisi-204-E-Elma.webp",
-"CihanpanDoor-Laminoks-Serisi-204-F-ABD-Ceviz-Beyaz.webp",
-"CihanpanDoor-Laminoks-Serisi-205-A-Tuna-Ceviz-Viktorya-Ceviz.webp",
-"CihanpanDoor-Laminoks-Serisi-205-B-Sedir-Antrasit.webp",
-"CihanpanDoor-Laminoks-Serisi-205-C-ABD-Ceviz-Beyaz.webp",
-"CihanpanDoor-Laminoks-Serisi-205-D-ABD-Kardoba.webp",
-"CihanpanDoor-Laminoks-Serisi-205-E-Antrasit-Beyaz.webp",
-"CihanpanDoor-Laminoks-Serisi-205-F-Acik-Otantik.webp",
-"CihanpanDoor-Laminoks-Serisi-206-A-Gri-Mese-Antrasit.webp",
-"CihanpanDoor-Laminoks-Serisi-206-B-Beyaz.webp",
-"CihanpanDoor-Laminoks-Serisi-206-C-Tuna-Ceviz.webp",
-"CihanpanDoor-Laminoks-Serisi-206-D-Saruhan-Kapucino.webp",
-"CihanpanDoor-Laminoks-Serisi-206-E-Beyaz-Antrasit.webp",
-"CihanpanDoor-Laminoks-Serisi-206-F-Elma-Beyaz.webp",
-"CihanpanDoor-Laminoks-Serisi-207-A-Tuna-Ceviz-Beyaz.webp",
-"CihanpanDoor-Laminoks-Serisi-207-B-Metalik-Ceviz.webp",
-"CihanpanDoor-Laminoks-Serisi-207-C-Mistik.webp",
-"CihanpanDoor-Laminoks-Serisi-207-D-ABD-Ceviz.webp",
-"CihanpanDoor-Laminoks-Serisi-207-E-Tangonika.webp",
-"CihanpanDoor-Laminoks-Serisi-207-F-Antrasit-Beyaz.webp",
-"CihanpanDoor-Laminoks-Serisi-208-A-Antrasit-Beyaz.webp",
-"CihanpanDoor-Laminoks-Serisi-208-B-ABD-Ceviz.webp",
-"CihanpanDoor-Laminoks-Serisi-208-C-Kapucino.webp",
-"CihanpanDoor-Laminoks-Serisi-208-D-Tanganika-Beyaz.webp",
-"CihanpanDoor-Laminoks-Serisi-208-E-Saruhan.webp",
-"CihanpanDoor-Laminoks-Serisi-208-F-Isparta-Ceviz.webp",
-"CihanpanDoor-Laminoks-Serisi-209-A-Venge.webp",
-"CihanpanDoor-Laminoks-Serisi-209-B-Gri-Mese.webp",
-"CihanpanDoor-Laminoks-Serisi-209-C-ABD-Ceviz.webp",
-"CihanpanDoor-Laminoks-Serisi-209-D-Elma.webp",
-"CihanpanDoor-Laminoks-Serisi-209-E-Antrasit-Beyaz.webp",
-"CihanpanDoor-Laminoks-Serisi-209-F-Tanganika.webp",
-"CihanpanDoor-Laminoks-Serisi-210-A-Sedir-Antrasit.webp",
-"CihanpanDoor-Laminoks-Serisi-210-B-Acik-Otantik.webp",
-"CihanpanDoor-Laminoks-Serisi-210-C-ABD-Ceviz.webp",
-"CihanpanDoor-Laminoks-Serisi-210-D-Antrasit-Beyaz.webp",
-"CihanpanDoor-Laminoks-Serisi-210-E-Metalik-Ceviz.webp",
-"CihanpanDoor-Laminoks-Serisi-210-F-Kapucino.webp"
+    "CihanpanDoor-Elitpan-Serisi-301.webp",
+    "CihanpanDoor-Elitpan-Serisi-302.webp",
+    "CihanpanDoor-Elitpan-Serisi-303.webp",
+    "CihanpanDoor-Elitpan-Serisi-304.webp",
+    "CihanpanDoor-Elitpan-Serisi-305.webp",
+    "CihanpanDoor-Elitpan-Serisi-306.webp",
+    "CihanpanDoor-Elitpan-Serisi-307.webp",
+    "CihanpanDoor-Elitpan-Serisi-308.webp",
+    "CihanpanDoor-Elitpan-Serisi-309.webp",
+    "CihanpanDoor-Elitpan-Serisi-310.webp",
+    "CihanpanDoor-Elitpan-Serisi-311.webp",
+    "CihanpanDoor-Elitpan-Serisi-312.webp",
+    "CihanpanDoor-Elitpan-Serisi-313.webp",
+    "CihanpanDoor-Elitpan-Serisi-314.webp",
+    "CihanpanDoor-Elitpan-Serisi-315.webp",
+    "CihanpanDoor-Elitpan-Serisi-316.webp",
+    "CihanpanDoor-Elitpan-Serisi-317.webp",
+    "CihanpanDoor-Elitpan-Serisi-318.webp",
+    "CihanpanDoor-Elitpan-Serisi-319.webp",
+    "CihanpanDoor-Elitpan-Serisi-320.webp",
+    "CihanpanDoor-Elitpan-Serisi-321.webp",
+    "CihanpanDoor-Elitpan-Serisi-322.webp",
+    "CihanpanDoor-Elitpan-Serisi-323.webp",
+    "CihanpanDoor-Elitpan-Serisi-324.webp",
+    "CihanpanDoor-Elitpan-Serisi-325.webp",
+    "CihanpanDoor-Elitpan-Serisi-326.webp"
   ];
 
   // Parse file names and create products
   fileNames.forEach((fileName, index) => {
-    // Parse filename: CihanpanDoor-Laminoks-Serisi-211-A-Saruhan.webp
+    // Parse filename: CihanpanDoor-Elitpan-Serisi-301.webp
     const parts = fileName.replace('.webp', '').split('-');
-    const modelNumber = parts[3]; // 211
-    const variant = parts[4]; // A
-    const colorName = parts.slice(5).join('-'); // Saruhan
+    const modelNumber = parts[3]; // 301
 
     // Format display name
-    const displayName = `${modelNumber}-${variant} ${colorName.replace(/-/g, ' ')}`;
+    const displayName = `Elitpan ${modelNumber}`;
 
-    laminoksModels.push({
-      id: `Laminoks-${modelNumber}-${variant}`,
-      name: displayName, // 211-A Saruhan
-      category: 'laminoks', // Her ürün Laminoks kategorisinde
+    elitpanModels.push({
+      id: `Elitpan-${modelNumber}`,
+      name: displayName, // Elitpan 301
+      category: 'elitpan', // Her ürün Elitpan kategorisinde
 
       // Use actual file name
-      image: `/assets/img/laminoks-kapilar/${fileName}`,
+      image: `/assets/img/elitpan-kapilar/${fileName}`,
       fallbackImage: `https://picsum.photos/300/400?random=${index + 300}`,
 
-      // SEO için zengin alt text
-      altText: `CihanPan Door Laminoks Interior Door Model ${modelNumber}-${variant} ${colorName.replace(/-/g, ' ')} - Premium Quality Laminate Door for Commercial Projects, Turkish Manufacturer`,
+      // SEO için zenginleştirilmiş alt text
+      altText: `CihanPan Door Elitpan Interior Door Model ${modelNumber} - Premium Quality Laminate Door for Commercial Projects, Turkish Manufacturer`,
 
       // SEO için detaylı description
-      description: `Premium Laminoks door model ${modelNumber}-${variant} in ${colorName.replace(/-/g, ' ')} finish. High-end laminate interior door suitable for luxury projects, hotels, hospitals and commercial buildings. Scratch resistant surface, customizable sizes. Wholesale manufacturer prices from Kayseri, Turkey.`,
+      description: `Premium Elitpan door model ${modelNumber}. High-end laminate interior door suitable for luxury projects, hotels, hospitals and commercial buildings. Scratch resistant surface, customizable sizes. Wholesale manufacturer prices from Kayseri, Turkey.`,
 
       // SEO keywords
-      seoKeywords: `premium laminoks door ${colorName.replace(/-/g, ' ').toLowerCase()}, luxury interior doors model ${modelNumber}, commercial doors page 2, premium turkish manufacturer wholesale, CihanPan door premium series`,
+      seoKeywords: `premium elitpan door model ${modelNumber}, luxury interior doors, commercial doors page 1, premium turkish manufacturer wholesale, CihanPan door premium series`,
 
       // Schema.org için yapısal data
       schemaData: {
         "@type": "Product",
-        "name": `Premium Laminoks Interior Door Model ${modelNumber}-${variant} ${colorName.replace(/-/g, ' ')}`,
-        "description": `Premium Laminoks door model ${modelNumber}-${variant} in ${colorName.replace(/-/g, ' ')} finish for luxury commercial use`,
+        "name": `Premium Elitpan Interior Door Model ${modelNumber}`,
+        "description": `Premium Elitpan door model ${modelNumber} for luxury commercial use`,
         "brand": "CihanPan Door",
-        "material": "Premium Laminoks",
-        "category": "Luxury Interior Doors",
-        "color": colorName.replace(/-/g, ' ')
+        "material": "Premium Elitpan",
+        "category": "Luxury Interior Doors"
       }
     });
   });
 
   // Current filter state
   let currentFilter = 'all';
-  let filteredProducts = laminoksModels;
+  let filteredProducts = elitpanModels;
 
   function filterProducts(category) {
     currentFilter = category;
 
     if (category === 'all') {
-      filteredProducts = laminoksModels;
+      filteredProducts = elitpanModels;
     } else {
-      filteredProducts = laminoksModels.filter(product => product.category === category);
+      filteredProducts = elitpanModels.filter(product => product.category === category);
     }
 
     renderProducts();
@@ -1340,17 +1284,17 @@ const breadcrumbSchema = {
   function createProductCard(product) {
     const card = document.createElement('article');
     card.className = 'product-card';
-    card.setAttribute('aria-label', `${product.name} Premium Laminoks kapı modeli`);
+    card.setAttribute('aria-label', `${product.name} Premium Elitpan kapı modeli`);
 
     card.innerHTML = `
       <div class="product-image">
         <img src="${product.image}"
              alt="${product.altText}"
-             title="${product.name} - CihanPan Door Premium Laminoks Interior Door Model"
+             title="${product.name} - CihanPan Door Premium Elitpan Interior Door Model"
              loading="lazy"
              width="300"
              height="300"
-             onerror="this.src='${product.fallbackImage}'; this.alt='${product.name} Premium Laminoks Door Sample';">
+             onerror="this.src='${product.fallbackImage}'; this.alt='${product.name} Premium Elitpan Door Sample';">
       </div>
       <div class="product-info">
         <h3 class="product-title">${product.name}</h3>
@@ -1420,7 +1364,7 @@ const breadcrumbSchema = {
         });
 
         if (response.ok) {
-          alert('Premium Laminoks kapı teklifi talebiniz alındı! En kısa sürede size dönüş yapacağız.');
+          alert('Premium Elitpan kapı teklifi talebiniz alındı! En kısa sürede size dönüş yapacağız.');
           closeQuoteModal();
         } else {
           throw new Error('Form gönderim hatası');
@@ -1428,10 +1372,10 @@ const breadcrumbSchema = {
 
       } catch (error) {
         // Fallback - Email ile gönderim
-        const subject = encodeURIComponent('Premium Laminoks Kapı - Sayfa 1 Toptan Fiyat Teklifi - CihanPan Door');
+        const subject = encodeURIComponent('Premium Elitpan Kapı - Sayfa 1 Toptan Fiyat Teklifi - CihanPan Door');
         const body = encodeURIComponent(`
-Premium Laminoks Toptan Satış Talebi (Sayfa 1):
-═══════════════════════════════════════════════
+Premium Elitpan Toptan Satış Talebi (Sayfa 1):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 👤 Ad Soyad: ${data.customerName}
 📞 Telefon: ${data.customerPhone}
 📧 E-posta: ${data.customerEmail}
@@ -1442,11 +1386,11 @@ Premium Laminoks Toptan Satış Talebi (Sayfa 1):
 📝 Proje Detayları:
 ${data.customerMessage || 'Mesaj yok'}
 
-═══════════════════════════════════════════════
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🌐 Sayfa: ${window.location.href}
 📅 Tarih: ${new Date().toLocaleString('tr-TR')}
 
-Bu premium Laminoks toptan fiyat teklifi talebi 1. sayfa koleksiyonundan gelmiştir.
+Bu premium Elitpan toptan fiyat teklifi talebi 1. sayfa koleksiyonundan gelmiştir.
         `);
 
         window.location.href = `mailto:exportcihanpandoor@gmail.com?subject=${subject}&body=${body}`;
