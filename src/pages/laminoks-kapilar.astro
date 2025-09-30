@@ -133,26 +133,29 @@ const breadcrumbSchema = {
         </div>
 
         <!-- Filter Section -->
-        <div class="product-filters">
-          <h3>Kapı Serileri</h3>
-          <div class="product-filter-tabs">
-            <button class="product-filter-btn active" data-filter="all">
-              <span>Tümü</span>
-            </button>
-            <button class="product-filter-btn" data-filter="laminoks">
-              <span>Laminoks Serisi</span>
-            </button>
-            <button class="product-filter-btn" data-filter="hastane">
-              <span>Hastane Kapıları</span>
-            </button>
-            <button class="product-filter-btn" data-filter="otel">
-              <span>Otel Kapıları</span>
-            </button>
-            <button class="product-filter-btn" data-filter="ofis">
-              <span>Ofis Kapıları</span>
-            </button>
-          </div>
-        </div>
+<div class="product-filter-tabs">
+  <a href="/urunlerimiz" class="product-filter-btn">
+    <span>Tümü</span>
+  </a>
+  <a href="/pvc-kapilar" class="product-filter-btn">
+    <span>PVC Kapılar</span>
+  </a>
+  <a href="/laminoks-kapilar" class="product-filter-btn active">
+    <span>Laminoks Kapılar</span>
+  </a>
+  <a href="/elitpan-kapilar" class="product-filter-btn">
+    <span>Elitpan Kapılar</span>
+  </a>
+  <a href="/hastane-kapilari" class="product-filter-btn">
+    <span>Hastane Kapıları</span>
+  </a>
+  <a href="/otel-kapilari" class="product-filter-btn">
+    <span>Otel Kapıları</span>
+  </a>
+  <a href="/yangina-dayanikli-kapilar" class="product-filter-btn">
+    <span>Yanmaya Dayanıklı Kapılar</span>
+  </a>
+</div>
 
         <div class="products-grid" id="productsGrid">
           <!-- Products will be loaded here -->
@@ -455,20 +458,22 @@ const breadcrumbSchema = {
     flex-wrap: wrap;
   }
 
-  .product-filter-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 600;
-    font-size: 1rem;
-    box-shadow: 0 4px 15px rgba(55, 65, 81, 0.3);
-    position: relative;
-    overflow: hidden;
-  }
+.product-filter-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;        /* YENİ - Link alt çizgisini kaldır */
+  display: inline-block;        /* YENİ - Link'i buton gibi göster */
+}
 
   .product-filter-btn::before {
     content: '';
@@ -1286,31 +1291,6 @@ const breadcrumbSchema = {
   let currentFilter = 'all';
   let filteredProducts = laminoksModels;
 
-  function filterProducts(category) {
-    currentFilter = category;
-
-    if (category === 'all') {
-      filteredProducts = laminoksModels;
-    } else {
-      filteredProducts = laminoksModels.filter(product => product.category === category);
-    }
-
-    renderProducts();
-    updateFilterButtons();
-  }
-
-  function updateFilterButtons() {
-    const buttons = document.querySelectorAll('.product-filter-btn');
-    buttons.forEach(btn => {
-      const filter = btn.getAttribute('data-filter');
-      if (filter === currentFilter) {
-        btn.classList.add('active');
-      } else {
-        btn.classList.remove('active');
-      }
-    });
-  }
-
   function renderProducts() {
     const grid = document.getElementById('productsGrid');
     const loading = document.getElementById('loading');
@@ -1385,13 +1365,7 @@ const breadcrumbSchema = {
     renderProducts();
 
     // Filter button event listeners
-    const filterButtons = document.querySelectorAll('.product-filter-btn');
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const filter = button.getAttribute('data-filter');
-        filterProducts(filter);
-      });
-    });
+
 
     // Quote form submission - Netlify Forms kullanımı
     document.getElementById('quoteForm').addEventListener('submit', async (e) => {

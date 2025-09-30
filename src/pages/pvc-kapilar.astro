@@ -5,10 +5,6 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
-
-// PVC Kapılar sayfası için dynamic schema'lar
-
-// Dynamic URL'ler için base setup
 const baseUrl = Astro.site?.toString().slice(0, -1) || 'https://kapi-ureticileri.netlify.app';
 const currentUrl = `${baseUrl}${Astro.url.pathname}`;
 
@@ -18,13 +14,12 @@ const breadcrumbItems = [
   { name: "PVC Kapılar" }
 ];
 
-// SEO Schema - Tamamen dynamic
 const pvcDoorSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "name": "PVC İç Oda Kapıları",
   "description": "Kayseri'den üretilen su geçirmez, antibakteriyel PVC kapı modelleri. CE belgeli, 5 yıl garanti, ücretsiz kargo. Türkiye'nin en büyük PVC kapı koleksiyonu.",
-  "url": currentUrl, // ✅ Dynamic
+  "url": currentUrl,
   "mainEntity": {
     "@type": "ItemList",
     "name": "PVC Kapı Modelleri",
@@ -36,8 +31,8 @@ const pvcDoorSchema = {
         "manufacturer": {
           "@type": "Organization",
           "name": "CihanPan Door",
-          "url": baseUrl, // ✅ Dynamic
-          "logo": `${baseUrl}/assets/img/logo.webp` // ✅ Dynamic
+          "url": baseUrl,
+          "logo": `${baseUrl}/assets/img/logo.webp`
         },
         "category": "İç Oda Kapısı",
         "material": "PVC",
@@ -62,7 +57,6 @@ const pvcDoorSchema = {
   }
 };
 
-// FAQ Schema - Dynamic
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -94,13 +88,12 @@ const faqSchema = {
   ]
 };
 
-// Organization Schema - Ana şirket bilgileri için
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "CihanPan Door",
-  "url": baseUrl, // ✅ Dynamic
-  "logo": `${baseUrl}/assets/img/logo.webp`, // ✅ Dynamic
+  "url": baseUrl,
+  "logo": `${baseUrl}/assets/img/logo.webp`,
   "description": "Kayseri'den kaliteli PVC kapı üreticisi",
   "address": {
     "@type": "PostalAddress",
@@ -111,7 +104,6 @@ const organizationSchema = {
   "serviceType": ["PVC Kapı Üretimi", "İç Oda Kapısı", "Kapı Montajı"]
 };
 
-// Breadcrumb Schema - Dynamic
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -119,7 +111,7 @@ const breadcrumbSchema = {
     "@type": "ListItem",
     "position": index + 1,
     "name": item.name,
-    "item": item.href ? `${baseUrl}${item.href}` : currentUrl // ✅ Dynamic
+    "item": item.href ? `${baseUrl}${item.href}` : currentUrl
   }))
 };
 ---
@@ -130,19 +122,14 @@ const breadcrumbSchema = {
   keywords="pvc kapı, pvc iç oda kapısı, kayseri pvc kapı, su geçirmez kapı, antibakteriyel kapı, ekonomik kapı, pvc kapı fiyatları, iç kapı modelleri, banyo kapısı, mutfak kapısı"
   canonical={currentUrl}
   ogImage="/assets/img/og/pvc-kapilar-og.webp"
-
-  // Open Graph Tags - Dynamic
   ogTitle="PVC İç Oda Kapıları - 300 Model | Kayseri CihanPan Door"
   ogDescription="Kayseri'den üretilen su geçirmez, antibakteriyel PVC kapı modelleri. CE belgeli, 5 yıl garanti, ücretsiz kargo ve montaj."
   ogType="website"
   ogUrl={currentUrl}
-
-  // Twitter Card Tags
   twitterCard="summary_large_image"
   twitterTitle="PVC İç Oda Kapıları - 300 Model | CihanPan Door"
   twitterDescription="Kayseri'nin en büyük PVC kapı koleksiyonu. Su geçirmez, antibakteriyel, ekonomik fiyatlar."
   twitterImage="/assets/img/og/pvc-kapilar-og.webp"
-
   schema={[pvcDoorSchema, faqSchema, organizationSchema, breadcrumbSchema]}
 >
 
@@ -176,28 +163,31 @@ const breadcrumbSchema = {
           </button>
         </div>
 
-        <!-- Filter Section -->
+        <!-- Filter Section - Sayfa Yönlendirmeli -->
         <div class="product-filters">
           <h3>Kapı Türleri</h3>
           <div class="product-filter-tabs">
-            <button class="product-filter-btn active" data-filter="all">
+            <a href="/urunlerimiz" class="product-filter-btn">
               <span>Tümü</span>
-            </button>
-            <button class="product-filter-btn" data-filter="pvc">
+            </a>
+            <a href="/pvc-kapilar" class="product-filter-btn active">
               <span>PVC Kapılar</span>
-            </button>
-            <button class="product-filter-btn" data-filter="laminoks">
+            </a>
+            <a href="/laminoks-kapilar" class="product-filter-btn">
               <span>Laminoks Kapılar</span>
-            </button>
-            <button class="product-filter-btn" data-filter="hastane">
+            </a>
+            <a href="/elitpan-kapilar" class="product-filter-btn">
+              <span>Elitpan Kapılar</span>
+            </a>
+            <a href="/hastane-kapilari" class="product-filter-btn">
               <span>Hastane Kapıları</span>
-            </button>
-            <button class="product-filter-btn" data-filter="otel">
+            </a>
+            <a href="/otel-kapilari" class="product-filter-btn">
               <span>Otel Kapıları</span>
-            </button>
-            <button class="product-filter-btn" data-filter="yangin">
+            </a>
+            <a href="/yangina-dayanikli-kapilar" class="product-filter-btn">
               <span>Yanmaya Dayanıklı Kapılar</span>
-            </button>
+            </a>
           </div>
         </div>
 
@@ -277,16 +267,15 @@ const breadcrumbSchema = {
             <div class="info-cards">
               <div class="stat-card">
                 <div class="stat-number">300</div>
-                <div class="stat-label" style="font-size:1.5rem; font-weight:bold;font-family:Verdana color:dark red;">FARKLI MODEL</div>
+                <div class="stat-label">FARKLI MODEL</div>
               </div>
               <div class="stat-card">
                 <div class="stat-number">100%</div>
-                <div class="stat-label" style="font-size:1.5rem; font-weight:bold;font-family:Verdana color:dark red;">YERLİ</div>
+                <div class="stat-label">YERLİ</div>
               </div>
-
               <div class="stat-card">
                 <div class="stat-number">İhracatta</div>
-                <div class="stat-label" style="font-size:1.5rem; font-weight:bold; font-family:Verdana color:dark red;">FİYAT AVANTAJI</div>
+                <div class="stat-label">FİYAT AVANTAJI</div>
               </div>
             </div>
 
@@ -409,7 +398,6 @@ const breadcrumbSchema = {
     padding: 0 20px;
   }
 
-  /* Hero Section */
   .hero {
     padding: 4rem 0;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -434,7 +422,6 @@ const breadcrumbSchema = {
     text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
   }
 
-  /* Products Section */
   .products-section {
     padding: 4rem 0;
     background: #ffffff;
@@ -482,7 +469,6 @@ const breadcrumbSchema = {
     box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
   }
 
-  /* Kapı Türleri Filtreleri */
   .product-filters {
     margin-bottom: 3rem;
   }
@@ -515,6 +501,8 @@ const breadcrumbSchema = {
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
     position: relative;
     overflow: hidden;
+    text-decoration: none;
+    display: inline-block;
   }
 
   .product-filter-btn::before {
@@ -549,7 +537,6 @@ const breadcrumbSchema = {
     box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
   }
 
-  /* Products Grid - Ortalanmış düzen */
   .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -614,7 +601,6 @@ const breadcrumbSchema = {
     margin: 0;
   }
 
-  /* Loading */
   .loading {
     text-align: center;
     padding: 3rem;
@@ -636,7 +622,6 @@ const breadcrumbSchema = {
     100% { transform: rotate(360deg); }
   }
 
-  /* Page Navigation */
   .page-navigation {
     background: white;
     border-radius: 16px;
@@ -765,7 +750,6 @@ const breadcrumbSchema = {
     border-radius: 50%;
   }
 
-  /* SEO Content Section */
   .seo-content-section {
     padding: 5rem 0;
     background: #f8fafc;
@@ -830,7 +814,6 @@ const breadcrumbSchema = {
     font-weight: bold;
   }
 
-  /* Sidebar */
   .sidebar {
     display: flex;
     flex-direction: column;
@@ -859,9 +842,9 @@ const breadcrumbSchema = {
   }
 
   .stat-label {
-    color: #6b7280;
-    font-weight: 600;
-    font-size: 0.9rem;
+    color: #1a202c;
+    font-weight: 700;
+    font-size: 1.1rem;
   }
 
   .quick-contact {
@@ -945,7 +928,6 @@ const breadcrumbSchema = {
     font-size: 0.95rem;
   }
 
-  /* FAQ Section */
   .faq-section {
     padding: 5rem 0;
     background: white;
@@ -1011,7 +993,6 @@ const breadcrumbSchema = {
     margin: 0;
   }
 
-  /* CTA Section */
   .cta-section {
     padding: 5rem 0;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -1090,7 +1071,6 @@ const breadcrumbSchema = {
     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
   }
 
-  /* Quote Modal Styles */
   .modal {
     display: none;
     position: fixed;
@@ -1116,6 +1096,7 @@ const breadcrumbSchema = {
     width: 100%;
     max-height: 90vh;
     position: relative;
+    overflow-y: auto;
   }
 
   .modal-close {
@@ -1233,7 +1214,6 @@ const breadcrumbSchema = {
     background: #4b5563;
   }
 
-  /* Responsive Design */
   @media (max-width: 768px) {
     .content-grid {
       grid-template-columns: 1fr;
@@ -1295,6 +1275,15 @@ const breadcrumbSchema = {
       width: 100%;
       max-width: 300px;
     }
+
+    .nav-buttons {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .nav-btn {
+      width: 100%;
+    }
   }
 
   @media (max-width: 480px) {
@@ -1309,14 +1298,16 @@ const breadcrumbSchema = {
     .modal-content {
       margin: 1rem;
     }
+
+    .stat-label {
+      font-size: 0.9rem;
+    }
   }
 </style>
 
 <script>
-  // Generate PVC models based on actual file names from the list
   const pvcModels = [];
 
-  // All 247 file names from your list - İLK 85 ÜRÜN (SAYFA 1)
   const fileNames = [
     'CihanpanDoor-PVC-Serisi-101-A-ABD-Ceviz.webp',
     'CihanpanDoor-PVC-Serisi-101-B-Beyaz.webp',
@@ -1409,39 +1400,23 @@ const breadcrumbSchema = {
     'CihanpanDoor-PVC-Serisi-115-E-Kum-Gri-Antrasit.webp'
   ];
 
-  // Parse file names and create products
   fileNames.forEach((fileName, index) => {
-    // Parse filename: CihanpanDoor-PVC-Serisi-101-A-ABD-Ceviz.webp
     const parts = fileName.replace('.webp', '').split('-');
-    const modelNumber = parts[3]; // 101
-    const variant = parts[4]; // A
-    const colorName = parts.slice(5).join('-'); // ABD-Ceviz
-
-    // Format display name
+    const modelNumber = parts[3];
+    const variant = parts[4];
+    const colorName = parts.slice(5).join('-');
     const displayName = `${modelNumber}-${variant} ${colorName.replace(/-/g, ' ')}`;
 
     pvcModels.push({
       id: `PVC-${modelNumber}-${variant}`,
-      name: displayName, // 101-A ABD Ceviz
-      category: 'pvc', // Her ürün PVC kategorisinde
-
-      // Use actual file name
+      name: displayName,
+      category: 'pvc',
       image: `/assets/img/pvc-kapilar/${fileName}`,
       fallbackImage: `https://picsum.photos/300/400?random=${index + 1}`,
-
-      // SEO için zengin alt text (kullanıcı görmez, arama motorları görür)
       altText: `CihanPan Door PVC Interior Door Model ${modelNumber}-${variant} ${colorName.replace(/-/g, ' ')} - Waterproof Panel Door for Bathroom Kitchen Bedroom, Turkish Manufacturer`,
-
-      // SEO için detaylı description
       description: `PVC door model ${modelNumber}-${variant} in ${colorName.replace(/-/g, ' ')} color. Modern design PVC interior door suitable for bathroom, kitchen and bedroom. Waterproof, antibacterial surface, 5-year warranty. Standard size 70x200cm, custom sizes available. CE certified Turkish manufacturer CihanPan Door.`,
-
-      // SEO keywords (backend için)
       seoKeywords: `pvc door ${colorName.replace(/-/g, ' ').toLowerCase()}, interior doors model ${modelNumber}, waterproof doors, bathroom doors, kitchen doors, turkish manufacturer, CihanPan door, modern interior doors`,
-
-      // Fiyat (opsiyonel)
       price: Math.floor(Math.random() * 500) + 300,
-
-      // Schema.org için yapısal data (SEO)
       schemaData: {
         "@type": "Product",
         "name": `PVC Interior Door Model ${modelNumber}-${variant} ${colorName.replace(/-/g, ' ')}`,
@@ -1454,35 +1429,6 @@ const breadcrumbSchema = {
     });
   });
 
-  // Current filter state
-  let currentFilter = 'all';
-  let filteredProducts = pvcModels;
-
-  function filterProducts(category) {
-    currentFilter = category;
-
-    if (category === 'all') {
-      filteredProducts = pvcModels;
-    } else {
-      filteredProducts = pvcModels.filter(product => product.category === category);
-    }
-
-    renderProducts();
-    updateFilterButtons();
-  }
-
-  function updateFilterButtons() {
-    const buttons = document.querySelectorAll('.product-filter-btn');
-    buttons.forEach(btn => {
-      const filter = btn.getAttribute('data-filter');
-      if (filter === currentFilter) {
-        btn.classList.add('active');
-      } else {
-        btn.classList.remove('active');
-      }
-    });
-  }
-
   function renderProducts() {
     const grid = document.getElementById('productsGrid');
     const loading = document.getElementById('loading');
@@ -1490,22 +1436,11 @@ const breadcrumbSchema = {
     loading.style.display = 'block';
     grid.innerHTML = '';
 
-    // Direkt ürünleri göster
     setTimeout(() => {
-      if (filteredProducts.length === 0) {
-        grid.innerHTML = `
-          <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
-            <h3 style="color: #6b7280; margin-bottom: 1rem;">Bu kategoride henüz ürün bulunmuyor</h3>
-            <p style="color: #9ca3af;">Yakında yeni ürünler eklenecek.</p>
-          </div>
-        `;
-      } else {
-        filteredProducts.forEach((product, index) => {
-          const card = createProductCard(product);
-          grid.appendChild(card);
-        });
-      }
-
+      pvcModels.forEach((product) => {
+        const card = createProductCard(product);
+        grid.appendChild(card);
+      });
       loading.style.display = 'none';
     }, 200);
   }
@@ -1533,7 +1468,6 @@ const breadcrumbSchema = {
     return card;
   }
 
-  // Quote Modal Functions
   function openQuoteModal() {
     const modal = document.getElementById('quoteModal');
     modal.classList.add('active');
@@ -1553,7 +1487,6 @@ const breadcrumbSchema = {
     document.getElementById('quoteForm').reset();
   }
 
-  // Email sending function
   async function sendQuoteEmail(formData) {
     const subject = encodeURIComponent('Yeni PVC Kapı Teklif Talebi - CihanPan Door');
     const body = encodeURIComponent(`
@@ -1579,27 +1512,15 @@ Bu teklif talebi CihanPan Door PVC Kapılar sayfasından gelmiştir.
     return true;
   }
 
-  // Event listeners and initialization
   document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
 
-    // Filter button event listeners
-    const filterButtons = document.querySelectorAll('.product-filter-btn');
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const filter = button.getAttribute('data-filter');
-        filterProducts(filter);
-      });
-    });
-
-    // Quote form submission
     document.getElementById('quoteForm').addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const formData = new FormData(e.target);
       const data = Object.fromEntries(formData.entries());
 
-      // Validate required fields
       if (!data.customerName || !data.customerPhone) {
         alert('Lütfen zorunlu alanları doldurunuz (Ad Soyad ve Telefon)');
         return;
@@ -1628,7 +1549,6 @@ Bu teklif talebi CihanPan Door PVC Kapılar sayfasından gelmiştir.
       }
     });
 
-    // Modal close events
     document.getElementById('quoteModalClose').addEventListener('click', closeQuoteModal);
 
     document.getElementById('quoteModal').addEventListener('click', (e) => {
