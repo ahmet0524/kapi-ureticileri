@@ -1,6 +1,7 @@
 ---
 // src/layouts/Layout.astro
 import logo from "../../assets/images/logo/header_logo1.webp";
+
 export interface Props {
   title: string;
   description: string;
@@ -24,7 +25,13 @@ const {
 } = Astro.props;
 
 const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site);
-const siteURL = 'https://kapi-ureticileri.netlify.app'; // ✅ Düzeltildi
+const siteURL = 'https://kapi-ureticileri.netlify.app';
+
+// Define alternate language URLs if needed
+const alternateLanguages = [
+  { lang: 'tr', url: `${siteURL}${Astro.url.pathname}` },
+  { lang: 'x-default', url: `${siteURL}${Astro.url.pathname}` }
+];
 ---
 
 <!DOCTYPE html>
@@ -46,6 +53,11 @@ const siteURL = 'https://kapi-ureticileri.netlify.app'; // ✅ Düzeltildi
 
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalURL} />
+
+    <!-- Alternate Languages -->
+    {alternateLanguages.map(({lang, url}) => (
+      <link rel="alternate" hreflang={lang} href={url} />
+    ))}
 
     <!-- Open Graph -->
     <meta property="og:locale" content="tr_TR" />
@@ -81,8 +93,7 @@ const siteURL = 'https://kapi-ureticileri.netlify.app'; // ✅ Düzeltildi
     )}
 
     <!-- Additional Organization Schema -->
-    <script type="application/ld+json">
-    {
+    <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "CihanPan Door",
@@ -104,8 +115,7 @@ const siteURL = 'https://kapi-ureticileri.netlify.app'; // ✅ Düzeltildi
       "sameAs": [
         "https://www.cihanpandoor.com"
       ]
-    }
-    </script>
+    })} />
 
     <!-- Google Search Console -->
     <meta name="google-site-verification" content="nN4x8ESwMpZfyiBKaBPhy7RdA53P2RHiij4XgDOBbAk" />
