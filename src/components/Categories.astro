@@ -6,35 +6,40 @@ const categories = [
     description: "Su geçirmez, dayanıklı ve ekonomik PVC iç oda kapıları",
     image: "pvc-kapilar.webp",
     alt: "PVC iç oda kapısı modelleri",
-    features: ["Su geçirmez", "Ekonomik", "Kolay bakım"]
+    features: ["Su geçirmez", "Ekonomik", "Kolay bakım"],
+    link: "/pvc-kapilar"
   },
   {
     title: "Laminoks Kapılar",
     description: "Modern tasarım ve yüksek kaliteli laminoks kapılar",
     image: "laminoks-kapilar.webp",
     alt: "Laminoks iç oda kapısı modelleri",
-    features: ["Modern tasarım", "Yüksek kalite", "Çeşitli renk"]
+    features: ["Modern tasarım", "Yüksek kalite", "Çeşitli renk"],
+    link: "/laminoks-kapilar"
   },
   {
     title: "Otel Kapıları",
     description: "Otel standartlarında profesyonel iç oda kapıları",
     image: "otel-kapilari.webp",
     alt: "Otel iç oda kapısı modelleri",
-    features: ["Profesyonel", "Dayanıklı", "Ses yalıtımı"]
+    features: ["Profesyonel", "Dayanıklı", "Ses yalıtımı"],
+    link: "/otel-kapilari"
   },
   {
     title: "Hastane Kapıları",
     description: "Hijyenik ve antibakteriyel hastane iç oda kapıları",
     image: "hastane-kapilari.webp",
     alt: "Hastane iç oda kapısı modelleri",
-    features: ["Hijyenik", "Antibakteriyel", "Kolay temizlik"]
+    features: ["Hijyenik", "Antibakteriyel", "Kolay temizlik"],
+    link: "/hastane-kapilari"
   },
   /*{
     title: "Yanmaya Dayanıklı Kapılar",
     description: "Doğal ahşap dokulu premium iç oda kapıları",
     image: "yanmaya-kapilar.webp",
     alt: "Yanmaya dayanıklı iç oda kapısı modelleri",
-    features: ["Doğal görünüm", "Premium kalite", "Çevre dostu"]
+    features: ["Doğal görünüm", "Premium kalite", "Çevre dostu"],
+    link: "/yanmaya-dayanikli-kapilar"
   },*/
 
 ];
@@ -75,7 +80,7 @@ const categories = [
             </div>
 
             <div class="card-footer">
-              <a href={category.title === "PVC Kapılar" ? "/pvc-kapilar" : `/kategoriler/${category.title.toLowerCase().replace(' ', '-')}`} class="card-btn">
+              <a href={category.link} class="card-btn">
                 Detayları Gör
               </a>
             </div>
