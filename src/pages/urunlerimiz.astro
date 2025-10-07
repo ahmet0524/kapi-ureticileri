@@ -6,7 +6,7 @@ import Footer from '../components/Footer.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
 // Dynamic URL'ler için base setup
-const baseUrl = Astro.site?.toString().slice(0, -1) || 'https://kapi-ureticileri.netlify.app';
+const baseUrl = Astro.site?.toString().slice(0, -1) || 'https://kapi-ureticileri.vercel.app';
 const currentUrl = `${baseUrl}${Astro.url.pathname}`;
 
 const breadcrumbItems = [

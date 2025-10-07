@@ -6,7 +6,7 @@ import Footer from '../components/Footer.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
 // Dynamic URL'ler için base setup
-const baseUrl = Astro.site?.toString().slice(0, -1) || 'https://kapi-ureticileri.netlify.app';
+const baseUrl = Astro.site?.toString().slice(0, -1) || 'https://kapi-ureticileri.vercel.app';
 const currentUrl = `${baseUrl}${Astro.url.pathname}`;
 
 const breadcrumbItems = [
@@ -316,7 +316,7 @@ const breadcrumbSchema = {
       <button class="modal-close" id="quoteModalClose" aria-label="Modalı kapat">&times;</button>
       <div class="modal-body">
         <h3 id="quoteModalTitle">Hastane Kapısı - Medikal Proje Teklifi</h3>
-        <form id="quoteForm" class="quote-form" name="hastane-quote" method="POST" data-netlify="true">
+        <form id="quoteForm" class="quote-form" name="hastane-quote" method="POST" data-vercel="true">
           <input type="hidden" name="form-name" value="hastane-quote">
 
           <div class="form-group">
@@ -1398,7 +1398,7 @@ const breadcrumbSchema = {
         submitBtn.textContent = 'Gönderiliyor...';
         submitBtn.disabled = true;
 
-        // Netlify Forms ile form gönderimi
+        // vercel Forms ile form gönderimi
         const response = await fetch(window.location.pathname, {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
