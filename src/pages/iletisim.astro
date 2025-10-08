@@ -75,21 +75,12 @@ const faqs = [
               <p class="section-subtitle">Mesajınızı gönderin, kısa sürede size dönüş yapalım</p>
             </div>
 
-            <!-- Form with Web3Forms (Vercel compatible) -->
+            <!-- Contact Form -->
             <form
               class="contact-form"
               id="contactForm"
-              action="https://api.web3forms.com/submit"
-              method="POST"
             >
-              <!-- Web3Forms Access Key (ücretsiz hesap açıp alabilirsiniz) -->
-              <input type="hidden" name="access_key" value="d890c520-d1c8-428f-9abb-f510ef10e1ff" />
-
-              <!-- Optional: Redirect after submission -->
-              <input type="hidden" name="redirect" value="https://kapi-ureticileri.vercel.app/iletisim?success=true" />
-
-              <!-- Honeypot spam protection -->
-              <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+              <!-- Form gönderimi JavaScript ile yapılacak -->
 
               <div class="form-grid">
                 <div class="form-group">
@@ -732,22 +723,36 @@ const faqs = [
       submitBtn.disabled = true;
 
       try {
+        // Form verilerini al
         const formData = new FormData(contactForm as HTMLFormElement);
-        const response = await fetch(contactForm.action, {
+        const data = {
+          access_key: "d890c520-d1c8-428f-9abb-f510ef10e1ff", // Buraya kendi key'inizi yazın
+          name: formData.get('name'),
+          email: formData.get('email'),
+          phone: formData.get('phone'),
+          subject: formData.get('subject'),
+          message: formData.get('message'),
+        };
+
+        const response = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
-          body: formData,
           headers: {
+            'Content-Type': 'application/json',
             'Accept': 'application/json'
-          }
+          },
+          body: JSON.stringify(data)
         });
 
-        if (response.ok) {
+        const result = await response.json();
+
+        if (result.success) {
           showSuccessMessage();
           contactForm.reset();
         } else {
           showErrorMessage();
         }
       } catch (error) {
+        console.error('Form gönderim hatası:', error);
         showErrorMessage();
       } finally {
         submitBtn.innerHTML = originalText;
