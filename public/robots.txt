@@ -1,4 +1,3 @@
-User-agent: *
+﻿User-agent: *
 Allow: /
-
 Sitemap: https://kapi-ureticileri.vercel.app/sitemap-index.xml
