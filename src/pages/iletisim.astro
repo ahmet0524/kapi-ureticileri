@@ -21,8 +21,8 @@ const contactInfo = {
 
 const socialLinks = [
   { name: 'WhatsApp', icon: '📱', href: `https://wa.me/${contactInfo.whatsapp}`, color: 'bg-emerald-500' },
-  { name: 'Instagram', icon: '📷', href: 'https://www.instagram.com/cihanpandoor', color: 'bg-pink-500' }, // Gerçek URL ekle
-  { name: 'LinkedIn', icon: '💼', href: 'https://www.linkedin.com/company/cihanpandoor', color: 'bg-blue-600' } // Gerçek URL ekle
+  { name: 'Instagram', icon: '📷', href: 'https://www.instagram.com/cihanpandoor', color: 'bg-pink-500' },
+  { name: 'LinkedIn', icon: '💼', href: 'https://www.linkedin.com/company/cihanpandoor', color: 'bg-blue-600' }
 ];
 
 const faqs = [
@@ -44,7 +44,37 @@ const faqs = [
   }
 ];
 
-const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c8-428f-9abb-f510ef10e1ff';
+const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
+
+if (!publicWeb3formsKey) {
+  console.error('PUBLIC_WEB3FORMS_KEY environment variable is not set');
+}
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "CihanPan Door İletişim",
+  "description": "CihanPan Door ile iletişime geçin. İç oda kapısı ihtiyaçlarınız için uzman desteği alın.",
+  "url": "https://www.cihanpandoor.com/iletisim",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "CihanPan Door",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+90-544-169-00-38",
+      "contactType": "customer service",
+      "areaServed": "TR",
+      "availableLanguage": "Turkish",
+      "email": "exportcihanpandoor@gmail.com"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Organized Industrial Zone 29. Street No:28",
+      "addressLocality": "Kayseri",
+      "addressCountry": "TR"
+    }
+  }
+};
 ---
 
 <Layout
@@ -52,6 +82,8 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
   description="CihanPan Door ile iletişime geçin. İç oda kapısı ihtiyaçlarınız için uzman desteği alın."
 >
   <Header />
+
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
   <main class="min-h-screen bg-gray-50">
     <!-- Hero Section -->
@@ -79,6 +111,11 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
             </div>
 
             <form class="contact-form" id="contactForm" novalidate>
+              <!-- Honeypot for bot protection -->
+              <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                <input type="text" name="honeypot" tabindex="-1" autocomplete="off" />
+              </div>
+
               <div class="form-grid">
                 <div class="form-group">
                   <label for="name" class="form-label">Ad Soyad *</label>
@@ -89,10 +126,13 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
                     class="form-input"
                     required
                     aria-required="true"
+                    aria-describedby="name-error"
+                    aria-invalid="false"
                     placeholder="Adınız ve soyadınız"
                     minlength="2"
+                    maxlength="100"
                   />
-                  <span class="error-message" aria-live="polite"></span>
+                  <span id="name-error" class="error-message" role="alert" aria-live="polite"></span>
                 </div>
 
                 <div class="form-group">
@@ -104,9 +144,12 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
                     class="form-input"
                     required
                     aria-required="true"
+                    aria-describedby="email-error"
+                    aria-invalid="false"
                     placeholder="ornek@email.com"
+                    maxlength="100"
                   />
-                  <span class="error-message" aria-live="polite"></span>
+                  <span id="email-error" class="error-message" role="alert" aria-live="polite"></span>
                 </div>
 
                 <div class="form-group">
@@ -116,14 +159,17 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
                     id="phone"
                     name="phone"
                     class="form-input"
+                    aria-describedby="phone-error"
                     placeholder="0555 555 55 55"
                     pattern="[0-9]{10,}"
+                    maxlength="20"
                   />
+                  <span id="phone-error" class="error-message" role="alert" aria-live="polite"></span>
                 </div>
 
                 <div class="form-group">
                   <label for="subject" class="form-label">Konu *</label>
-                  <select id="subject" name="subject" class="form-select" required aria-required="true">
+                  <select id="subject" name="subject" class="form-select" required aria-required="true" aria-describedby="subject-error" aria-invalid="false">
                     <option value="">Konu seçin</option>
                     <option value="pvc-kapilar">PVC Kapılar</option>
                     <option value="laminoks-kapilar">Laminoks Kapılar</option>
@@ -135,6 +181,7 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
                     <option value="montaj-hizmeti">Montaj Hizmeti</option>
                     <option value="diger">Diğer</option>
                   </select>
+                  <span id="subject-error" class="error-message" role="alert" aria-live="polite"></span>
                 </div>
               </div>
 
@@ -147,14 +194,17 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
                   rows="5"
                   required
                   aria-required="true"
+                  aria-describedby="message-error"
+                  aria-invalid="false"
                   placeholder="Mesajınızı detaylı bir şekilde yazın..."
                   minlength="10"
+                  maxlength="2000"
                 ></textarea>
-                <span class="error-message" aria-live="polite"></span>
+                <span id="message-error" class="error-message" role="alert" aria-live="polite"></span>
               </div>
 
-              <button type="submit" class="submit-btn">
-                Mesaj Gönder
+              <button type="submit" class="submit-btn" aria-label="Formu gönder">
+                <span class="btn-text">Mesaj Gönder</span>
               </button>
             </form>
           </div>
@@ -182,7 +232,7 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
                 <div>
                   <h3 class="card-title">Adres</h3>
                   <p class="card-text">{contactInfo.address}</p>
-                  <a href="https://maps.google.com/?q=Organized+Industrial+Zone+29+Street+No28+Kayseri+Turkey" target="_blank" rel="noopener" class="card-link">Haritada Gör</a>
+                  <a href="https://maps.google.com/?q=Organized+Industrial+Zone+29+Street+No28+Kayseri+Turkey" target="_blank" rel="noopener noreferrer" class="card-link">Haritada Gör</a>
                 </div>
               </div>
 
@@ -198,7 +248,7 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
             <div class="whatsapp-cta">
               <div class="whatsapp-content">
                 <div class="whatsapp-icon">
-                  <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.688"/>
                   </svg>
                 </div>
@@ -207,7 +257,7 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
                   <p class="whatsapp-text">WhatsApp'tan hızlı destek alın</p>
                 </div>
               </div>
-              <a href={`https://wa.me/${contactInfo.whatsapp}`} class="whatsapp-btn" target="_blank" rel="noopener">
+              <a href={`https://wa.me/${contactInfo.whatsapp}`} class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
                 WhatsApp'ta Yazın
               </a>
             </div>
@@ -217,8 +267,8 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
               <h3 class="social-title">Sosyal Medya</h3>
               <div class="social-links">
                 {socialLinks.map((social) => (
-                  <a href={social.href} class={`social-link ${social.color}`} target="_blank" rel="noopener">
-                    <span class="social-icon">{social.icon}</span>
+                  <a href={social.href} class={`social-link ${social.color}`} target="_blank" rel="noopener noreferrer" aria-label={`${social.name} sayfamızı ziyaret edin`}>
+                    <span class="social-icon" aria-hidden="true">{social.icon}</span>
                     <span class="social-name">{social.name}</span>
                   </a>
                 ))}
@@ -234,14 +284,15 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
             <p class="section-subtitle text-center">En çok merak edilen soruların cevapları</p>
           </div>
 
-          <div class="faq-container">
+          <div class="faq-container" role="list">
             {faqs.map((faq, index) => (
-              <div class="faq-item" data-index={index}>
+              <div class="faq-item" data-index={index} role="listitem">
                 <button
                   class="faq-question"
                   type="button"
                   aria-expanded="false"
                   aria-controls={`faq-answer-${index}`}
+                  id={`faq-question-${index}`}
                 >
                   <span class="question-text">{faq.question}</span>
                   <svg class="question-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -299,6 +350,12 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     border: 1px solid #e5e7eb;
+    transition: opacity 0.3s ease;
+  }
+
+  .form-container.submitting {
+    opacity: 0.6;
+    pointer-events: none;
   }
 
   .form-header {
@@ -353,6 +410,15 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
   }
 
+  .form-input.error, .form-select.error, .form-textarea.error {
+    border-color: #ef4444;
+    background: #fef2f2;
+  }
+
+  .form-input[aria-invalid="true"], .form-select[aria-invalid="true"], .form-textarea[aria-invalid="true"] {
+    border-color: #ef4444;
+  }
+
   .form-textarea {
     resize: vertical;
     min-height: 100px;
@@ -372,9 +438,10 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 0.5rem;
   }
 
-  .submit-btn:hover {
+  .submit-btn:hover:not(:disabled) {
     transform: translateY(-1px);
     box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
   }
@@ -382,6 +449,11 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
   .submit-btn:disabled {
     opacity: 0.7;
     cursor: not-allowed;
+  }
+
+  .submit-btn:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
   }
 
   .info-container {
@@ -440,6 +512,12 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
     color: #1d4ed8;
   }
 
+  .card-link:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
   .whatsapp-cta {
     background: linear-gradient(135deg, #10b981 0%, #059669 100%);
     padding: 2rem;
@@ -492,6 +570,11 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
     transform: translateY(-1px);
   }
 
+  .whatsapp-btn:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 2px;
+  }
+
   .social-section {
     background: white;
     padding: 2rem;
@@ -529,6 +612,11 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
   .social-link:hover {
     transform: translateY(-1px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .social-link:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
   }
 
   .bg-emerald-500 { background: #10b981; }
@@ -582,6 +670,11 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
 
   .faq-question:hover {
     background: #f9fafb;
+  }
+
+  .faq-question:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: -2px;
   }
 
   .question-icon {
@@ -642,6 +735,11 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
     color: white;
   }
 
+  .notification.info {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: white;
+  }
+
   .notification-content {
     display: flex;
     align-items: flex-start;
@@ -697,13 +795,7 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
     color: #ef4444;
     font-size: 0.75rem;
     margin-top: 0.25rem;
-    min-height: 1em;
-  }
-
-  .form-input:invalid:not(:placeholder-shown) ~ .error-message,
-  .form-select:invalid:not(:placeholder-shown) ~ .error-message,
-  .form-textarea:invalid:not(:placeholder-shown) ~ .error-message {
-    content: "Bu alan zorunludur.";
+    min-height: 1rem;
   }
 
   .faq-question[aria-expanded="true"] {
@@ -770,6 +862,21 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
     .social-section {
       padding: 1.25rem;
     }
+
+    .notification {
+      top: 0.5rem;
+      right: 0.5rem;
+      left: 0.5rem;
+      padding: 1rem 1.25rem;
+    }
+
+    .notification-title {
+      font-size: 0.9375rem;
+    }
+
+    .notification-text {
+      font-size: 0.8125rem;
+    }
   }
 
   @keyframes spin {
@@ -789,124 +896,139 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
   document.addEventListener('DOMContentLoaded', function() {
     const accessKey = publicWeb3formsKey;
 
-    // FAQ Accordion
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(function(item, index) {
-      const question = item.querySelector('.faq-question');
-      const answer = item.querySelector('.faq-answer');
-      question.setAttribute('aria-controls', `faq-answer-${index}`);
-      question.setAttribute('id', `faq-question-${index}`);
-      if (question) {
-        question.addEventListener('click', function() {
-          const isActive = item.classList.contains('active');
-          faqItems.forEach(function(faq) {
-            faq.classList.remove('active');
-            faq.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-          });
-          if (!isActive) {
-            item.classList.add('active');
-            question.setAttribute('aria-expanded', 'true');
-          }
-        });
-        question.addEventListener('keydown', function(e) {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            question.click();
-          }
-        });
-      }
-    });
-
-    // Form Validation & Submission
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-      contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-
-        // Client-side validation
-        let isValid = true;
-        const requiredFields = contactForm.querySelectorAll('[required]');
-        requiredFields.forEach(field => {
-          const errorSpan = field.nextElementSibling;
-          if (!field.value.trim()) {
-            field.classList.add('error');
-            errorSpan.textContent = 'Bu alan zorunludur.';
-            isValid = false;
-          } else {
-            field.classList.remove('error');
-            errorSpan.textContent = '';
-          }
-        });
-        if (!isValid) return;
-
-        const submitBtn = contactForm.querySelector('.submit-btn');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<svg class="animate-spin mr-2" width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Gönderiliyor...';
-        submitBtn.disabled = true;
-
-        try {
-          const formData = new FormData(contactForm);
-          const data = {
-            access_key: accessKey,
-            name: formData.get('name'),
-            email: formData.get('email'),
-            phone: formData.get('phone') || 'Belirtilmedi',
-            subject: formData.get('subject'),
-            message: formData.get('message')
-          };
-
-          const response = await fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            },
-            body: JSON.stringify(data)
-          });
-
-          const result = await response.json();
-
-          if (result.success) {
-            showNotification('success', '✓ Başarıyla Gönderildi!', 'Mesajınız başarıyla alınmıştır. En kısa sürede size dönüş yapacağız.');
-            contactForm.reset();
-          } else {
-            showNotification('error', '✗ Gönderim Başarısız!', result.message || 'Bir hata oluştu. Lütfen tekrar deneyin veya telefon ile iletişime geçin.');
-          }
-        } catch (error) {
-          showNotification('error', '✗ Gönderim Başarısız!', 'Bağlantı hatası. Lütfen internet bağlantınızı kontrol edin.');
-        } finally {
-          submitBtn.innerHTML = originalText;
-          submitBtn.disabled = false;
-        }
-      });
-
-      // Input events for real-time validation
-      contactForm.querySelectorAll('input, textarea, select').forEach(field => {
-        field.addEventListener('blur', function() {
-          if (this.hasAttribute('required') && !this.value.trim()) {
-            this.nextElementSibling.textContent = 'Bu alan zorunludur.';
-          }
-        });
-      });
+    if (!accessKey) {
+      console.error('Web3Forms access key is not configured. Please set PUBLIC_WEB3FORMS_KEY environment variable.');
+      return;
     }
 
-    // Notification Helper
+    // Form submission state
+    let isSubmitting = false;
+    let lastSubmitTime = 0;
+    const SUBMIT_COOLDOWN = 3000;
+
+    // Validation functions
+    function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function isValidPhone(phone) {
+      const cleaned = phone.replace(/\D/g, '');
+      return !phone || cleaned.length >= 10;
+    }
+
+    function isValidName(name) {
+      return name.trim().length >= 2;
+    }
+
+    function isValidMessage(message) {
+      return message.trim().length >= 10;
+    }
+
+    // Show error message
+    function showError(field, message) {
+      const errorSpan = document.getElementById(`${field.id}-error`);
+      if (errorSpan) {
+        errorSpan.textContent = message;
+        field.setAttribute('aria-invalid', 'true');
+        field.classList.add('error');
+      }
+    }
+
+    // Clear error message
+    function clearError(field) {
+      const errorSpan = document.getElementById(`${field.id}-error`);
+      if (errorSpan) {
+        errorSpan.textContent = '';
+        field.setAttribute('aria-invalid', 'false');
+        field.classList.remove('error');
+      }
+    }
+
+    // Validate field
+    function validateField(field) {
+      clearError(field);
+
+      if (field.hasAttribute('required') && !field.value.trim()) {
+        showError(field, 'Bu alan zorunludur.');
+        return false;
+      }
+
+      if (field.type === 'email' && field.value) {
+        if (!isValidEmail(field.value)) {
+          showError(field, 'Geçerli bir e-posta adresi girin.');
+          return false;
+        }
+      }
+
+      if (field.type === 'tel' && field.value) {
+        if (!isValidPhone(field.value)) {
+          showError(field, 'Geçerli bir telefon numarası girin (en az 10 rakam).');
+          return false;
+        }
+      }
+
+      if (field.id === 'name' && field.value) {
+        if (!isValidName(field.value)) {
+          showError(field, 'Adınız en az 2 karakter olmalıdır.');
+          return false;
+        }
+      }
+
+      if (field.id === 'message' && field.value) {
+        if (!isValidMessage(field.value)) {
+          showError(field, 'Mesajınız en az 10 karakter olmalıdır.');
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    // Set button loading state
+    function setButtonLoading(button, isLoading) {
+      const btnText = button.querySelector('.btn-text');
+      if (isLoading) {
+        button.dataset.originalText = btnText.textContent;
+        btnText.innerHTML = `
+          <svg class="animate-spin inline-block mr-2" width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Gönderiliyor...
+        `;
+        button.disabled = true;
+      } else {
+        btnText.textContent = button.dataset.originalText || 'Mesaj Gönder';
+        button.disabled = false;
+      }
+    }
+
+    // Notification helper
     function showNotification(type, title, text) {
       const oldNotification = document.querySelector('.notification');
       if (oldNotification) oldNotification.remove();
 
       const notification = document.createElement('div');
       notification.className = `notification ${type}`;
+      notification.setAttribute('role', 'alert');
+      notification.setAttribute('aria-live', 'assertive');
+
+      const iconPath = type === 'success'
+        ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>'
+        : type === 'error'
+        ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path>'
+        : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>';
+
       notification.innerHTML = `
         <div class="notification-content">
           <svg class="notification-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            ${type === 'success' ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>' : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path>'}
+            ${iconPath}
           </svg>
           <div>
             <div class="notification-title">${title}</div>
             <div class="notification-text">${text}</div>
           </div>
-          <button class="notification-close" aria-label="Kapat">&times;</button>
+          <button class="notification-close" aria-label="Bildirimi kapat" type="button">&times;</button>
         </div>
       `;
 
@@ -924,5 +1046,249 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
         setTimeout(() => notification.remove(), 400);
       }, 5000);
     }
+
+    // Auto-save draft
+    function saveDraft() {
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        subject: document.getElementById('subject').value,
+        message: document.getElementById('message').value,
+        timestamp: Date.now()
+      };
+
+      try {
+        localStorage.setItem('contactFormDraft', JSON.stringify(formData));
+      } catch (e) {
+        console.warn('Could not save form draft:', e);
+      }
+    }
+
+    // Load draft
+    function loadDraft() {
+      try {
+        const draft = localStorage.getItem('contactFormDraft');
+        if (draft) {
+          const data = JSON.parse(draft);
+          const ONE_DAY = 86400000;
+
+          if (Date.now() - data.timestamp < ONE_DAY) {
+            const hasContent = data.name || data.email || data.message;
+            if (hasContent && confirm('Daha önce yazmaya başladığınız bir mesaj bulundu. Yüklemek ister misiniz?')) {
+              document.getElementById('name').value = data.name || '';
+              document.getElementById('email').value = data.email || '';
+              document.getElementById('phone').value = data.phone || '';
+              document.getElementById('subject').value = data.subject || '';
+              document.getElementById('message').value = data.message || '';
+              showNotification('info', 'Taslak Yüklendi', 'Önceki mesajınız geri yüklendi.');
+            }
+          } else {
+            localStorage.removeItem('contactFormDraft');
+          }
+        }
+      } catch (e) {
+        console.warn('Could not load form draft:', e);
+      }
+    }
+
+    // FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(function(item, index) {
+      const question = item.querySelector('.faq-question');
+
+      if (question) {
+        question.addEventListener('click', function() {
+          const isActive = item.classList.contains('active');
+
+          faqItems.forEach(function(faq) {
+            faq.classList.remove('active');
+            const btn = faq.querySelector('.faq-question');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+          });
+
+          if (!isActive) {
+            item.classList.add('active');
+            question.setAttribute('aria-expanded', 'true');
+          }
+        });
+
+        question.addEventListener('keydown', function(e) {
+          let targetIndex;
+
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            question.click();
+          } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            targetIndex = (index + 1) % faqItems.length;
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            targetIndex = (index - 1 + faqItems.length) % faqItems.length;
+          } else if (e.key === 'Home') {
+            e.preventDefault();
+            targetIndex = 0;
+          } else if (e.key === 'End') {
+            e.preventDefault();
+            targetIndex = faqItems.length - 1;
+          }
+
+          if (targetIndex !== undefined) {
+            const targetBtn = faqItems[targetIndex].querySelector('.faq-question');
+            if (targetBtn) targetBtn.focus();
+          }
+        });
+      }
+    });
+
+    // Form handling
+    const contactForm = document.getElementById('contactForm');
+    if (!contactForm) return;
+
+    // Load draft on page load
+    loadDraft();
+
+    // Auto-save on input (debounced)
+    let saveTimeout;
+    contactForm.addEventListener('input', function() {
+      clearTimeout(saveTimeout);
+      saveTimeout = setTimeout(saveDraft, 1000);
+    });
+
+    // Real-time validation on blur
+    contactForm.addEventListener('blur', function(e) {
+      if (e.target.matches('input, textarea, select')) {
+        validateField(e.target);
+      }
+    }, true);
+
+    // Form submission
+    contactForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      // Check rate limiting
+      const now = Date.now();
+      if (now - lastSubmitTime < SUBMIT_COOLDOWN) {
+        showNotification('error', 'Çok Hızlı!', 'Lütfen birkaç saniye bekleyip tekrar deneyin.');
+        return;
+      }
+
+      // Check if already submitting
+      if (isSubmitting) {
+        return;
+      }
+
+      // Validate all fields
+      let isValid = true;
+      const fields = contactForm.querySelectorAll('input, textarea, select');
+      fields.forEach(field => {
+        if (field.name !== 'honeypot' && !validateField(field)) {
+          isValid = false;
+        }
+      });
+
+      if (!isValid) {
+        showNotification('error', 'Form Hatası', 'Lütfen tüm zorunlu alanları doğru şekilde doldurun.');
+        return;
+      }
+
+      // Check honeypot
+      const honeypot = contactForm.querySelector('input[name="honeypot"]');
+      if (honeypot && honeypot.value) {
+        console.log('Bot detected via honeypot');
+        showNotification('error', 'Hata', 'Form gönderilemedi. Lütfen sayfayı yenileyip tekrar deneyin.');
+        return;
+      }
+
+      const submitBtn = contactForm.querySelector('.submit-btn');
+      const formContainer = document.querySelector('.form-container');
+
+      isSubmitting = true;
+      lastSubmitTime = now;
+      setButtonLoading(submitBtn, true);
+      formContainer.classList.add('submitting');
+
+      try {
+        const formData = new FormData(contactForm);
+        const data = {
+          access_key: accessKey,
+          name: formData.get('name'),
+          email: formData.get('email'),
+          phone: formData.get('phone') || 'Belirtilmedi',
+          subject: formData.get('subject'),
+          message: formData.get('message'),
+          from_name: 'CihanPan Door İletişim Formu',
+          replyto: formData.get('email')
+        };
+
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 15000);
+
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(data),
+          signal: controller.signal
+        });
+
+        clearTimeout(timeoutId);
+        const result = await response.json();
+
+        if (result.success) {
+          showNotification('success', '✓ Başarıyla Gönderildi!', 'Mesajınız başarıyla alınmıştır. En kısa sürede size dönüş yapacağız.');
+          contactForm.reset();
+
+          // Clear draft
+          try {
+            localStorage.removeItem('contactFormDraft');
+          } catch (e) {
+            console.warn('Could not clear draft:', e);
+          }
+
+          // Track successful submission
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'form_submit', {
+              event_category: 'Contact',
+              event_label: data.subject
+            });
+          }
+        } else {
+          throw new Error(result.message || 'Form gönderilemedi');
+        }
+      } catch (error) {
+        console.error('Form submission error:', error);
+
+        let errorMessage = 'Bir hata oluştu. Lütfen tekrar deneyin.';
+
+        if (error.name === 'AbortError') {
+          errorMessage = 'İstek zaman aşımına uğradı. İnternet bağlantınızı kontrol edip tekrar deneyin.';
+        } else if (error.message.includes('fetch') || error.message.includes('network')) {
+          errorMessage = 'Bağlantı hatası. İnternet bağlantınızı kontrol edin.';
+        }
+
+        showNotification('error', '✗ Gönderim Başarısız!', errorMessage + ' Alternatif olarak telefon veya e-posta ile iletişime geçebilirsiniz.');
+      } finally {
+        isSubmitting = false;
+        setButtonLoading(submitBtn, false);
+        formContainer.classList.remove('submitting');
+      }
+    });
+
+    // Track form engagement
+    let formEngaged = false;
+    contactForm.addEventListener('focus', function() {
+      if (!formEngaged) {
+        formEngaged = true;
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'form_start', {
+            event_category: 'Contact',
+            event_label: 'Contact Form'
+          });
+        }
+      }
+    }, true);
   });
 </script>
