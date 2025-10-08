@@ -778,12 +778,12 @@ const faqs = [
       `;
       submitBtn.disabled = true;
 
-      try {
+            try {
         const formData = new FormData(contactForm);
 
         // Web3Forms için veri hazırlama
         const data = {
-          access_key: "d890c520-d1c8-428f-9abb-f510ef10e1ff", // Buraya web3forms.com'dan aldığınız key'i yazın
+          access_key: "d890c520-d1c8-428f-9abb-f510ef10e1ff",
           name: formData.get('name'),
           email: formData.get('email'),
           phone: formData.get('phone') || 'Belirtilmedi',
@@ -791,16 +791,11 @@ const faqs = [
           message: formData.get('message'),
         };
 
-        // Simülasyon (TEST MODU)
-        // Gerçek kullanım için alttaki yorumlanmış kodu aktif edin
-        //await new Promise(resolve => setTimeout(resolve, 1500));
-        //const result = { success: true };
-
-         GERÇEK API KULLANIMI (Web3Forms key gerektirir)
-         const response = await fetch('https://api.web3forms.com/submit', {
-           method: 'POST',
-           headers: {
-             'Content-Type': 'application/json',
+        // GERÇEK API KULLANIMI
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
              'Accept': 'application/json'
            },
            body: JSON.stringify(data)
