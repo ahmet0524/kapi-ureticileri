@@ -803,20 +803,6 @@ const faqs = [
          const result = await response.json();
 
         if (result.success) {
-          showSuccessMessage();
-          contactForm.reset();
-        } else {
-          showErrorMessage();
-        }
-      } catch (error) {
-        console.error('Form gönderim hatası:', error);
-        showErrorMessage();
-      } finally {
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-      }
-    });
-
     function showSuccessMessage() {
       const oldNotification = document.querySelector('.notification');
       if (oldNotification) {
@@ -831,8 +817,8 @@ const faqs = [
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
           </svg>
           <div>
-            <div class="notification-title">✓ Mesajınız Gönderildi!</div>
-            <div class="notification-text">En kısa sürede sizinle iletişime geçeceğiz.</div>
+            <div class="notification-title">✓ Başvurunuz Başarıyla Alındı!</div>
+            <div class="notification-text">Başvurunuz başarılı şekilde alınmıştır. Yetkililer en kısa zamanda size ulaşacaktır.</div>
           </div>
           <button class="notification-close" onclick="this.parentElement.parentElement.remove()">×</button>
         </div>
