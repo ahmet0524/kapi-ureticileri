@@ -761,48 +761,7 @@ const faqs = [
       });
     });
 
-    // Form Submission
-    const contactForm = document.getElementById('contactForm') as HTMLFormElement;
-    contactForm?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const submitBtn = contactForm.querySelector('.submit-btn') as HTMLButtonElement;
-      const originalText = submitBtn.innerHTML;
-
-      submitBtn.innerHTML = `
-        <svg class="animate-spin h-5 w-5 text-white inline mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-        </svg>
-        Gönderiliyor...
-      `;
-      submitBtn.disabled = true;
-
-            try {
-        const formData = new FormData(contactForm);
-
-        // Web3Forms için veri hazırlama
-        const data = {
-          access_key: "d890c520-d1c8-428f-9abb-f510ef10e1ff",
-          name: formData.get('name'),
-          email: formData.get('email'),
-          phone: formData.get('phone') || 'Belirtilmedi',
-          subject: formData.get('subject'),
-          message: formData.get('message'),
-        };
-
-        // GERÇEK API KULLANIMI
-        const response = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-             'Accept': 'application/json'
-           },
-           body: JSON.stringify(data)
-         });
-         const result = await response.json();
-
-        if (result.success) {
+    // Bildirim fonksiyonları
     function showSuccessMessage() {
       const oldNotification = document.querySelector('.notification');
       if (oldNotification) {
@@ -817,8 +776,8 @@ const faqs = [
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
           </svg>
           <div>
-            <div class="notification-title">✓ Başvurunuz Başarıyla Alındı!</div>
-            <div class="notification-text">Başvurunuz başarılı şekilde alınmıştır. Yetkililer en kısa zamanda size ulaşacaktır.</div>
+            <div class="notification-title">✓ Başarıyla Gönderildi!</div>
+            <div class="notification-text">Mesajınız başarıyla alınmıştır. En kısa sürede size dönüş yapacağız.</div>
           </div>
           <button class="notification-close" onclick="this.parentElement.parentElement.remove()">×</button>
         </div>
@@ -837,7 +796,7 @@ const faqs = [
             notification.remove();
           }
         }, 400);
-      }, 8000);
+      }, 5000);
     }
 
     function showErrorMessage() {
@@ -855,7 +814,7 @@ const faqs = [
           </svg>
           <div>
             <div class="notification-title">✗ Gönderim Başarısız!</div>
-            <div class="notification-text">Bir hata oluştu. Lütfen tekrar deneyin.</div>
+            <div class="notification-text">Bir hata oluştu. Lütfen tekrar deneyin veya telefon ile iletişime geçin.</div>
           </div>
           <button class="notification-close" onclick="this.parentElement.parentElement.remove()">×</button>
         </div>
@@ -874,7 +833,64 @@ const faqs = [
             notification.remove();
           }
         }, 400);
-      }, 6000);
+      }, 5000);
     }
+
+    // Form Submission
+    const contactForm = document.getElementById('contactForm') as HTMLFormElement;
+    contactForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const submitBtn = contactForm.querySelector('.submit-btn') as HTMLButtonElement;
+      const originalText = submitBtn.innerHTML;
+
+      submitBtn.innerHTML = `
+        <svg class="animate-spin" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Gönderiliyor...
+      `;
+      submitBtn.disabled = true;
+
+      try {
+        const formData = new FormData(contactForm);
+
+        // Web3Forms için veri hazırlama
+        const data = {
+          access_key: "d890c520-d1c8-428f-9abb-f510ef10e1ff",
+          name: formData.get('name'),
+          email: formData.get('email'),
+          phone: formData.get('phone') || 'Belirtilmedi',
+          subject: formData.get('subject'),
+          message: formData.get('message'),
+        };
+
+        // API'ye gönderim
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          showSuccessMessage();
+          contactForm.reset(); // Formu temizle
+        } else {
+          showErrorMessage();
+        }
+      } catch (error) {
+        console.error('Form gönderme hatası:', error);
+        showErrorMessage();
+      } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }
+    });
   });
 </script>
