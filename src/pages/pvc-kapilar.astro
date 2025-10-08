@@ -5,7 +5,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
-const baseUrl = Astro.site?.toString().slice(0, -1) || 'https://kapi-ureticileri.netlify.app';
+const baseUrl = Astro.site?.toString().slice(0, -1) || 'https://kapi-ureticileri.vercel.app';
 const currentUrl = `${baseUrl}${Astro.url.pathname}`;
 
 const breadcrumbItems = [
@@ -36,15 +36,23 @@ const pvcDoorSchema = {
         },
         "category": "İç Oda Kapısı",
         "material": "PVC",
-        "brand": "CihanPan Door",
+        "brand": {
+          "@type": "Brand",
+          "name": "CihanPan Door"
+        },
         "offers": {
           "@type": "AggregateOffer",
-          "availability": "https://schema.org/InStock",
+          "url": currentUrl,
           "priceCurrency": "TRY",
-          "priceRange": "₺3000-₺8000",
+          "lowPrice": "3000",
+          "highPrice": "8000",
+          "offerCount": 247,
+          "availability": "https://schema.org/InStock",
+          "priceValidUntil": "2025-12-31",
           "seller": {
             "@type": "Organization",
-            "name": "CihanPan Door"
+            "name": "CihanPan Door",
+            "url": baseUrl
           }
         },
         "aggregateRating": {
