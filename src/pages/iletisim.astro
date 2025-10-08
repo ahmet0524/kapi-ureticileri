@@ -778,7 +778,7 @@ const faqs = [
         // Form verilerini al
         const formData = new FormData(contactForm);
         const data = {
-          access_key: "d890c520-d1c8-428f-9abb-f510ef10e1ff", // Buraya kendi key'inizi yazın
+          access_key: "YOUR_WEB3FORMS_ACCESS_KEY", // Buraya kendi key'inizi yazın
           name: formData.get('name'),
           email: formData.get('email'),
           phone: formData.get('phone'),
@@ -820,6 +820,12 @@ const faqs = [
     function showSuccessMessage() {
       console.log('showSuccessMessage çalıştı!'); // Debug
 
+      // Eski bildirimi kaldır
+      const oldNotification = document.querySelector('.notification');
+      if (oldNotification) {
+        oldNotification.remove();
+      }
+
       const notification = document.createElement('div');
       notification.className = 'notification success';
       notification.innerHTML = `
@@ -828,9 +834,10 @@ const faqs = [
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
           <div>
-            <div class="notification-title">Mesajınız alındı!</div>
+            <div class="notification-title">✓ Mesajınız alındı!</div>
             <div class="notification-text">En kısa zamanda sizinle iletişime geçilecektir.</div>
           </div>
+          <button class="notification-close" onclick="this.parentElement.remove()">✕</button>
         </div>
       `;
 
@@ -842,12 +849,15 @@ const faqs = [
         console.log('Show class eklendi'); // Debug
       }, 100);
 
+      // 10 saniye sonra otomatik kapan
       setTimeout(() => {
         notification.classList.remove('show');
         setTimeout(() => {
-          notification.remove();
+          if (notification.parentElement) {
+            notification.remove();
+          }
         }, 300);
-      }, 5000);
+      }, 10000);
     }
 
     function showErrorMessage() {
