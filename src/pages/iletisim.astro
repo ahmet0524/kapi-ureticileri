@@ -21,8 +21,8 @@ const contactInfo = {
 
 const socialLinks = [
   { name: 'WhatsApp', icon: '📱', href: `https://wa.me/${contactInfo.whatsapp}`, color: 'bg-emerald-500' },
-  { name: 'Instagram', icon: '📷', href: '#', color: 'bg-pink-500' },
-  { name: 'LinkedIn', icon: '💼', href: '#', color: 'bg-blue-600' }
+  { name: 'Instagram', icon: '📷', href: 'https://www.instagram.com/cihanpandoor', color: 'bg-pink-500' }, // Gerçek URL ekle
+  { name: 'LinkedIn', icon: '💼', href: 'https://www.linkedin.com/company/cihanpandoor', color: 'bg-blue-600' } // Gerçek URL ekle
 ];
 
 const faqs = [
@@ -43,6 +43,8 @@ const faqs = [
     answer: 'Evet, inşaat firmaları ve bayilerimiz için özel toptan fiyatlarımız bulunmaktadır.'
   }
 ];
+
+const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c8-428f-9abb-f510ef10e1ff';
 ---
 
 <Layout
@@ -55,6 +57,7 @@ const faqs = [
     <!-- Hero Section -->
     <section class="hero-section">
       <div class="container mx-auto px-4">
+        <Breadcrumbs items={breadcrumbItems} />
         <div class="text-center">
           <h1 class="hero-title">İletişim</h1>
           <p class="hero-subtitle">
@@ -75,7 +78,7 @@ const faqs = [
               <p class="section-subtitle">Mesajınızı gönderin, kısa sürede size dönüş yapalım</p>
             </div>
 
-            <form class="contact-form" id="contactForm">
+            <form class="contact-form" id="contactForm" novalidate>
               <div class="form-grid">
                 <div class="form-group">
                   <label for="name" class="form-label">Ad Soyad *</label>
@@ -85,8 +88,11 @@ const faqs = [
                     name="name"
                     class="form-input"
                     required
+                    aria-required="true"
                     placeholder="Adınız ve soyadınız"
+                    minlength="2"
                   />
+                  <span class="error-message" aria-live="polite"></span>
                 </div>
 
                 <div class="form-group">
@@ -97,8 +103,10 @@ const faqs = [
                     name="email"
                     class="form-input"
                     required
+                    aria-required="true"
                     placeholder="ornek@email.com"
                   />
+                  <span class="error-message" aria-live="polite"></span>
                 </div>
 
                 <div class="form-group">
@@ -109,12 +117,13 @@ const faqs = [
                     name="phone"
                     class="form-input"
                     placeholder="0555 555 55 55"
+                    pattern="[0-9]{10,}"
                   />
                 </div>
 
                 <div class="form-group">
                   <label for="subject" class="form-label">Konu *</label>
-                  <select id="subject" name="subject" class="form-select" required>
+                  <select id="subject" name="subject" class="form-select" required aria-required="true">
                     <option value="">Konu seçin</option>
                     <option value="pvc-kapilar">PVC Kapılar</option>
                     <option value="laminoks-kapilar">Laminoks Kapılar</option>
@@ -137,8 +146,11 @@ const faqs = [
                   class="form-textarea"
                   rows="5"
                   required
+                  aria-required="true"
                   placeholder="Mesajınızı detaylı bir şekilde yazın..."
+                  minlength="10"
                 ></textarea>
+                <span class="error-message" aria-live="polite"></span>
               </div>
 
               <button type="submit" class="submit-btn">
@@ -170,7 +182,7 @@ const faqs = [
                 <div>
                   <h3 class="card-title">Adres</h3>
                   <p class="card-text">{contactInfo.address}</p>
-                  <a href="https://maps.google.com/?q=Organized+Industrial+Zone+29+Street+No28+Kayseri+Turkey" target="_blank" class="card-link">Haritada Gör</a>
+                  <a href="https://maps.google.com/?q=Organized+Industrial+Zone+29+Street+No28+Kayseri+Turkey" target="_blank" rel="noopener" class="card-link">Haritada Gör</a>
                 </div>
               </div>
 
@@ -195,7 +207,7 @@ const faqs = [
                   <p class="whatsapp-text">WhatsApp'tan hızlı destek alın</p>
                 </div>
               </div>
-              <a href={`https://wa.me/${contactInfo.whatsapp}`} class="whatsapp-btn" target="_blank">
+              <a href={`https://wa.me/${contactInfo.whatsapp}`} class="whatsapp-btn" target="_blank" rel="noopener">
                 WhatsApp'ta Yazın
               </a>
             </div>
@@ -225,13 +237,18 @@ const faqs = [
           <div class="faq-container">
             {faqs.map((faq, index) => (
               <div class="faq-item" data-index={index}>
-                <button class="faq-question" type="button">
+                <button
+                  class="faq-question"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls={`faq-answer-${index}`}
+                >
                   <span class="question-text">{faq.question}</span>
-                  <svg class="question-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="question-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                   </svg>
                 </button>
-                <div class="faq-answer">
+                <div id={`faq-answer-${index}`} class="faq-answer" role="region" aria-labelledby={`faq-question-${index}`}>
                   <p class="answer-text">{faq.answer}</p>
                 </div>
               </div>
@@ -675,6 +692,24 @@ const faqs = [
     line-height: 1.4;
   }
 
+  .error-message {
+    display: block;
+    color: #ef4444;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    min-height: 1em;
+  }
+
+  .form-input:invalid:not(:placeholder-shown) ~ .error-message,
+  .form-select:invalid:not(:placeholder-shown) ~ .error-message,
+  .form-textarea:invalid:not(:placeholder-shown) ~ .error-message {
+    content: "Bu alan zorunludur.";
+  }
+
+  .faq-question[aria-expanded="true"] {
+    background: #f9fafb;
+  }
+
   @media (min-width: 768px) {
     .contact-grid {
       grid-template-columns: 1.2fr 1fr;
@@ -703,6 +738,10 @@ const faqs = [
     .whatsapp-cta {
       flex-direction: column;
       text-align: center;
+    }
+
+    .whatsapp-content {
+      justify-content: center;
     }
 
     .social-links {
@@ -746,41 +785,69 @@ const faqs = [
   .text-center { text-align: center; }
 </style>
 
-<script is:inline>
-  // FAQ Accordion
+<script type="module" is:inline define:vars={{ publicWeb3formsKey }}>
   document.addEventListener('DOMContentLoaded', function() {
+    const accessKey = publicWeb3formsKey;
+
+    // FAQ Accordion
     const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(function(item) {
+    faqItems.forEach(function(item, index) {
       const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      question.setAttribute('aria-controls', `faq-answer-${index}`);
+      question.setAttribute('id', `faq-question-${index}`);
       if (question) {
         question.addEventListener('click', function() {
           const isActive = item.classList.contains('active');
           faqItems.forEach(function(faq) {
             faq.classList.remove('active');
+            faq.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
           });
           if (!isActive) {
             item.classList.add('active');
+            question.setAttribute('aria-expanded', 'true');
+          }
+        });
+        question.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            question.click();
           }
         });
       }
     });
 
-    // Form Submission
+    // Form Validation & Submission
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
       contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
 
+        // Client-side validation
+        let isValid = true;
+        const requiredFields = contactForm.querySelectorAll('[required]');
+        requiredFields.forEach(field => {
+          const errorSpan = field.nextElementSibling;
+          if (!field.value.trim()) {
+            field.classList.add('error');
+            errorSpan.textContent = 'Bu alan zorunludur.';
+            isValid = false;
+          } else {
+            field.classList.remove('error');
+            errorSpan.textContent = '';
+          }
+        });
+        if (!isValid) return;
+
         const submitBtn = contactForm.querySelector('.submit-btn');
         const originalText = submitBtn.innerHTML;
-
-        submitBtn.innerHTML = '<svg class="animate-spin" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Gönderiliyor...';
+        submitBtn.innerHTML = '<svg class="animate-spin mr-2" width="16" height="16" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Gönderiliyor...';
         submitBtn.disabled = true;
 
         try {
           const formData = new FormData(contactForm);
           const data = {
-            access_key: "d890c520-d1c8-428f-9abb-f510ef10e1ff",
+            access_key: accessKey,
             name: formData.get('name'),
             email: formData.get('email'),
             phone: formData.get('phone') || 'Belirtilmedi',
@@ -798,88 +865,64 @@ const faqs = [
           });
 
           const result = await response.json();
-          console.log('API Response:', result);
 
           if (result.success) {
-            // Başarı bildirimi
-            const oldNotification = document.querySelector('.notification');
-            if (oldNotification) oldNotification.remove();
-
-            const notification = document.createElement('div');
-            notification.className = 'notification success';
-            notification.innerHTML = '<div class="notification-content"><svg class="notification-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg><div><div class="notification-title">✓ Başarıyla Gönderildi!</div><div class="notification-text">Mesajınız başarıyla alınmıştır. En kısa sürede size dönüş yapacağız.</div></div><button class="notification-close" onclick="this.parentElement.parentElement.remove()">×</button></div>';
-
-            document.body.appendChild(notification);
-            console.log('Notification added to body');
-
-            setTimeout(function() {
-              notification.classList.add('show');
-            }, 100);
-
-            setTimeout(function() {
-              notification.classList.remove('show');
-              setTimeout(function() {
-                if (notification.parentElement) {
-                  notification.remove();
-                }
-              }, 400);
-            }, 5000);
-
+            showNotification('success', '✓ Başarıyla Gönderildi!', 'Mesajınız başarıyla alınmıştır. En kısa sürede size dönüş yapacağız.');
             contactForm.reset();
           } else {
-            // Hata bildirimi
-            const oldNotification = document.querySelector('.notification');
-            if (oldNotification) oldNotification.remove();
-
-            const notification = document.createElement('div');
-            notification.className = 'notification error';
-            notification.innerHTML = '<div class="notification-content"><svg class="notification-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg><div><div class="notification-title">✗ Gönderim Başarısız!</div><div class="notification-text">Bir hata oluştu. Lütfen tekrar deneyin veya telefon ile iletişime geçin.</div></div><button class="notification-close" onclick="this.parentElement.parentElement.remove()">×</button></div>';
-
-            document.body.appendChild(notification);
-
-            setTimeout(function() {
-              notification.classList.add('show');
-            }, 100);
-
-            setTimeout(function() {
-              notification.classList.remove('show');
-              setTimeout(function() {
-                if (notification.parentElement) {
-                  notification.remove();
-                }
-              }, 400);
-            }, 5000);
+            showNotification('error', '✗ Gönderim Başarısız!', result.message || 'Bir hata oluştu. Lütfen tekrar deneyin veya telefon ile iletişime geçin.');
           }
         } catch (error) {
-          console.error('Form gönderme hatası:', error);
-
-          // Hata bildirimi
-          const oldNotification = document.querySelector('.notification');
-          if (oldNotification) oldNotification.remove();
-
-          const notification = document.createElement('div');
-          notification.className = 'notification error';
-          notification.innerHTML = '<div class="notification-content"><svg class="notification-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg><div><div class="notification-title">✗ Gönderim Başarısız!</div><div class="notification-text">Bir hata oluştu. Lütfen tekrar deneyin veya telefon ile iletişime geçin.</div></div><button class="notification-close" onclick="this.parentElement.parentElement.remove()">×</button></div>';
-
-          document.body.appendChild(notification);
-
-          setTimeout(function() {
-            notification.classList.add('show');
-          }, 100);
-
-          setTimeout(function() {
-            notification.classList.remove('show');
-            setTimeout(function() {
-              if (notification.parentElement) {
-                notification.remove();
-              }
-            }, 400);
-          }, 5000);
+          showNotification('error', '✗ Gönderim Başarısız!', 'Bağlantı hatası. Lütfen internet bağlantınızı kontrol edin.');
         } finally {
           submitBtn.innerHTML = originalText;
           submitBtn.disabled = false;
         }
       });
+
+      // Input events for real-time validation
+      contactForm.querySelectorAll('input, textarea, select').forEach(field => {
+        field.addEventListener('blur', function() {
+          if (this.hasAttribute('required') && !this.value.trim()) {
+            this.nextElementSibling.textContent = 'Bu alan zorunludur.';
+          }
+        });
+      });
+    }
+
+    // Notification Helper
+    function showNotification(type, title, text) {
+      const oldNotification = document.querySelector('.notification');
+      if (oldNotification) oldNotification.remove();
+
+      const notification = document.createElement('div');
+      notification.className = `notification ${type}`;
+      notification.innerHTML = `
+        <div class="notification-content">
+          <svg class="notification-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            ${type === 'success' ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>' : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path>'}
+          </svg>
+          <div>
+            <div class="notification-title">${title}</div>
+            <div class="notification-text">${text}</div>
+          </div>
+          <button class="notification-close" aria-label="Kapat">&times;</button>
+        </div>
+      `;
+
+      document.body.appendChild(notification);
+      setTimeout(() => notification.classList.add('show'), 100);
+
+      const closeBtn = notification.querySelector('.notification-close');
+      closeBtn.addEventListener('click', () => {
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 400);
+      });
+
+      setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 400);
+      }, 5000);
     }
   });
 </script>
