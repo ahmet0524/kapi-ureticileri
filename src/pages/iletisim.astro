@@ -760,7 +760,9 @@ const faqs = [
     contactForm?.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const submitBtn = contactForm.querySelector('.submit-btn') as HTMLButtonElement;
+      console.log('Form gönderiliyor...'); // Debug
+
+      const submitBtn = contactForm.querySelector('.submit-btn');
       const originalText = submitBtn.innerHTML;
 
       submitBtn.innerHTML = `
@@ -774,7 +776,7 @@ const faqs = [
 
       try {
         // Form verilerini al
-        const formData = new FormData(contactForm as HTMLFormElement);
+        const formData = new FormData(contactForm);
         const data = {
           access_key: "d890c520-d1c8-428f-9abb-f510ef10e1ff", // Buraya kendi key'inizi yazın
           name: formData.get('name'),
@@ -783,6 +785,8 @@ const faqs = [
           subject: formData.get('subject'),
           message: formData.get('message'),
         };
+
+        console.log('Gönderilen data:', data); // Debug
 
         const response = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
@@ -794,11 +798,14 @@ const faqs = [
         });
 
         const result = await response.json();
+        console.log('API Cevabı:', result); // Debug
 
         if (result.success) {
+          console.log('Başarılı! Bildirim gösteriliyor...'); // Debug
           showSuccessMessage();
           contactForm.reset();
         } else {
+          console.log('Hata! Error bildirimi gösteriliyor...'); // Debug
           showErrorMessage();
         }
       } catch (error) {
@@ -811,6 +818,8 @@ const faqs = [
     });
 
     function showSuccessMessage() {
+      console.log('showSuccessMessage çalıştı!'); // Debug
+
       const notification = document.createElement('div');
       notification.className = 'notification success';
       notification.innerHTML = `
@@ -826,9 +835,11 @@ const faqs = [
       `;
 
       document.body.appendChild(notification);
+      console.log('Bildirim DOM\'a eklendi'); // Debug
 
       setTimeout(() => {
         notification.classList.add('show');
+        console.log('Show class eklendi'); // Debug
       }, 100);
 
       setTimeout(() => {
@@ -840,6 +851,8 @@ const faqs = [
     }
 
     function showErrorMessage() {
+      console.log('showErrorMessage çalıştı!'); // Debug
+
       const notification = document.createElement('div');
       notification.className = 'notification error';
       notification.innerHTML = `
