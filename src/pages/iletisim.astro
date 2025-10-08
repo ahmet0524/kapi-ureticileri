@@ -75,19 +75,21 @@ const faqs = [
               <p class="section-subtitle">Mesajınızı gönderin, kısa sürede size dönüş yapalım</p>
             </div>
 
-            <!-- Netlify Form -->
+            <!-- Form with Web3Forms (Vercel compatible) -->
             <form
               class="contact-form"
-              name="contact"
+              id="contactForm"
+              action="https://api.web3forms.com/submit"
               method="POST"
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
             >
-              <!-- Hidden fields for Netlify -->
-              <input type="hidden" name="form-name" value="contact" />
-              <p class="hidden">
-                <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-              </p>
+              <!-- Web3Forms Access Key (ücretsiz hesap açıp alabilirsiniz) -->
+              <input type="hidden" name="access_key" value="d890c520-d1c8-428f-9abb-f510ef10e1ff" />
+
+              <!-- Optional: Redirect after submission -->
+              <input type="hidden" name="redirect" value="https://kapi-ureticileri.vercel.app/iletisim?success=true" />
+
+              <!-- Honeypot spam protection -->
+              <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
 
               <div class="form-grid">
                 <div class="form-group">
@@ -374,6 +376,11 @@ const faqs = [
   .submit-btn:hover {
     transform: translateY(-1px);
     box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 
   /* Contact Info Styles */
@@ -673,40 +680,6 @@ const faqs = [
     animation: spin 1s linear infinite;
   }
 
-  /* Success notification styles */
-  .fixed {
-    position: fixed;
-  }
-
-  .top-4 {
-    top: 1rem;
-  }
-
-  .right-4 {
-    right: 1rem;
-  }
-
-  .z-50 {
-    z-index: 50;
-  }
-
-  .transform {
-    transform: translateZ(0);
-  }
-
-  .translate-x-full {
-    transform: translateX(100%);
-  }
-
-  .transition-transform {
-    transition-property: transform;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .duration-300 {
-    transition-duration: 300ms;
-  }
-
   /* Utility Classes */
   .hidden { display: none; }
   .text-center { text-align: center; }
@@ -736,52 +709,104 @@ const faqs = [
     // Form submission success handling
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('success') === 'true') {
-      // Show success message
       showSuccessMessage();
       // Clean URL
       window.history.replaceState({}, document.title, window.location.pathname);
     }
 
-    // Form submission handling
-    const contactForm = document.querySelector('.contact-form');
-    contactForm?.addEventListener('submit', (e) => {
-      const submitBtn = contactForm.querySelector('.submit-btn');
+    // Form submission handling with fetch
+    const contactForm = document.getElementById('contactForm');
+    contactForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const submitBtn = contactForm.querySelector('.submit-btn') as HTMLButtonElement;
+      const originalText = submitBtn.innerHTML;
+
       submitBtn.innerHTML = `
-        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
           <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
           <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
         </svg>
         Gönderiliyor...
       `;
       submitBtn.disabled = true;
+
+      try {
+        const formData = new FormData(contactForm as HTMLFormElement);
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          showSuccessMessage();
+          contactForm.reset();
+        } else {
+          showErrorMessage();
+        }
+      } catch (error) {
+        showErrorMessage();
+      } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }
     });
 
     function showSuccessMessage() {
-      // Create success notification
       const notification = document.createElement('div');
       notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300';
       notification.innerHTML = `
-        <div class="flex items-center gap-3">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <svg style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
           </svg>
           <div>
-            <div class="font-semibold">Mesajınız başarıyla gönderildi!</div>
-            <div class="text-sm opacity-90">En kısa sürede size dönüş yapacağız.</div>
+            <div style="font-weight: 600;">Mesajınız başarıyla gönderildi!</div>
+            <div style="font-size: 0.875rem; opacity: 0.9;">En kısa sürede size dönüş yapacağız.</div>
           </div>
         </div>
       `;
 
       document.body.appendChild(notification);
 
-      // Show notification
       setTimeout(() => {
-        notification.classList.remove('translate-x-full');
+        notification.style.transform = 'translateX(0)';
       }, 100);
 
-      // Hide notification after 5 seconds
       setTimeout(() => {
-        notification.classList.add('translate-x-full');
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 300);
+      }, 5000);
+    }
+
+    function showErrorMessage() {
+      const notification = document.createElement('div');
+      notification.className = 'fixed top-4 right-4 bg-red-500 text-white px-6 py-4 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300';
+      notification.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <svg style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+          <div>
+            <div style="font-weight: 600;">Bir hata oluştu!</div>
+            <div style="font-size: 0.875rem; opacity: 0.9;">Lütfen daha sonra tekrar deneyin.</div>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(notification);
+
+      setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+      }, 100);
+
+      setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
         setTimeout(() => {
           document.body.removeChild(notification);
         }, 300);
