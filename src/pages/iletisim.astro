@@ -892,13 +892,12 @@ const structuredData = {
   .text-center { text-align: center; }
 </style>
 
-<script type="module" is:inline define:vars={{ publicWeb3formsKey }}>
-  document.addEventListener('DOMContentLoaded', function() {
+<script is:inline define:vars={{ publicWeb3formsKey }}>
+  (function() {
     const accessKey = publicWeb3formsKey;
 
     if (!accessKey) {
       console.error('Web3Forms access key is not configured. Please set PUBLIC_WEB3FORMS_KEY environment variable.');
-      return;
     }
 
     // Form submission state
@@ -1047,51 +1046,6 @@ const structuredData = {
       }, 5000);
     }
 
-    // Auto-save draft
-    function saveDraft() {
-      const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        subject: document.getElementById('subject').value,
-        message: document.getElementById('message').value,
-        timestamp: Date.now()
-      };
-
-      try {
-        localStorage.setItem('contactFormDraft', JSON.stringify(formData));
-      } catch (e) {
-        console.warn('Could not save form draft:', e);
-      }
-    }
-
-    // Load draft
-    function loadDraft() {
-      try {
-        const draft = localStorage.getItem('contactFormDraft');
-        if (draft) {
-          const data = JSON.parse(draft);
-          const ONE_DAY = 86400000;
-
-          if (Date.now() - data.timestamp < ONE_DAY) {
-            const hasContent = data.name || data.email || data.message;
-            if (hasContent && confirm('Daha önce yazmaya başladığınız bir mesaj bulundu. Yüklemek ister misiniz?')) {
-              document.getElementById('name').value = data.name || '';
-              document.getElementById('email').value = data.email || '';
-              document.getElementById('phone').value = data.phone || '';
-              document.getElementById('subject').value = data.subject || '';
-              document.getElementById('message').value = data.message || '';
-              showNotification('info', 'Taslak Yüklendi', 'Önceki mesajınız geri yüklendi.');
-            }
-          } else {
-            localStorage.removeItem('contactFormDraft');
-          }
-        }
-      } catch (e) {
-        console.warn('Could not load form draft:', e);
-      }
-    }
-
     // FAQ Accordion
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach(function(item, index) {
@@ -1143,17 +1097,12 @@ const structuredData = {
 
     // Form handling
     const contactForm = document.getElementById('contactForm');
-    if (!contactForm) return;
+    if (!contactForm) {
+      console.error('Contact form not found');
+      return;
+    }
 
-    // Load draft on page load
-    loadDraft();
-
-    // Auto-save on input (debounced)
-    let saveTimeout;
-    contactForm.addEventListener('input', function() {
-      clearTimeout(saveTimeout);
-      saveTimeout = setTimeout(saveDraft, 1000);
-    });
+    console.log('Contact form initialized');
 
     // Real-time validation on blur
     contactForm.addEventListener('blur', function(e) {
@@ -1165,6 +1114,14 @@ const structuredData = {
     // Form submission
     contactForm.addEventListener('submit', async function(e) {
       e.preventDefault();
+      e.stopPropagation();
+
+      console.log('Form submit event triggered');
+
+      if (!accessKey) {
+        showNotification('error', 'Yapılandırma Hatası', 'Form gönderimi yapılandırılmamış. Lütfen site yöneticisiyle iletişime geçin.');
+        return;
+      }
 
       // Check rate limiting
       const now = Date.now();
@@ -1241,13 +1198,6 @@ const structuredData = {
           showNotification('success', '✓ Başarıyla Gönderildi!', 'Mesajınız başarıyla alınmıştır. En kısa sürede size dönüş yapacağız.');
           contactForm.reset();
 
-          // Clear draft
-          try {
-            localStorage.removeItem('contactFormDraft');
-          } catch (e) {
-            console.warn('Could not clear draft:', e);
-          }
-
           // Track successful submission
           if (typeof gtag !== 'undefined') {
             gtag('event', 'form_submit', {
@@ -1290,5 +1240,5 @@ const structuredData = {
         }
       }
     }, true);
-  });
+  })();
 </script>
