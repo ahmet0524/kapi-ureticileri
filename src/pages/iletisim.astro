@@ -891,8 +891,7 @@ const structuredData = {
   .hidden { display: none; }
   .text-center { text-align: center; }
 
-  /* Custom Notification Styles */
-  .custom-notification {
+.custom-notification {
     position: fixed;
     top: 20px;
     right: 20px;
@@ -901,11 +900,12 @@ const structuredData = {
     background: white;
     border-radius: 12px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
-    z-index: 99999;
+    z-index: 999999;
     transform: translateX(150%);
     transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.3s ease;
     opacity: 0;
     overflow: hidden;
+    pointer-events: auto;
   }
 
   .custom-notification-show {
