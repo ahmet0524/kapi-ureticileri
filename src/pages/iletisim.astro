@@ -1019,64 +1019,77 @@ const structuredData = {
       }
     }
 
-    // Notification helper
+    // Notification helper - Modern and beautiful
     function showNotification(type, title, text) {
       console.log('📢 Showing notification:', type, title, text);
 
-      const oldNotification = document.querySelector('.notification');
+      // Remove any existing notifications
+      const oldNotification = document.querySelector('.custom-notification');
       if (oldNotification) {
-        console.log('Removing old notification');
         oldNotification.remove();
       }
 
+      // Create notification element
       const notification = document.createElement('div');
-      notification.className = `notification ${type}`;
-      notification.setAttribute('role', 'alert');
-      notification.setAttribute('aria-live', 'assertive');
+      notification.className = `custom-notification custom-notification-${type}`;
 
-      const iconPath = type === 'success'
-        ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>'
-        : type === 'error'
-        ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path>'
-        : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>';
+      // Icon based on type
+      let icon = '';
+      if (type === 'success') {
+        icon = `<svg class="custom-notification-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>`;
+      } else if (type === 'error') {
+        icon = `<svg class="custom-notification-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>`;
+      } else {
+        icon = `<svg class="custom-notification-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>`;
+      }
 
       notification.innerHTML = `
-        <div class="notification-content">
-          <svg class="notification-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            ${iconPath}
-          </svg>
-          <div>
-            <div class="notification-title">${title}</div>
-            <div class="notification-text">${text}</div>
+        <div class="custom-notification-content">
+          <div class="custom-notification-icon-wrapper">
+            ${icon}
           </div>
-          <button class="notification-close" aria-label="Bildirimi kapat" type="button">&times;</button>
+          <div class="custom-notification-text">
+            <div class="custom-notification-title">${title}</div>
+            <div class="custom-notification-message">${text}</div>
+          </div>
+          <button class="custom-notification-close" aria-label="Kapat">&times;</button>
         </div>
+        <div class="custom-notification-progress"></div>
       `;
 
-      console.log('Appending notification to body');
       document.body.appendChild(notification);
 
-      // Force reflow
-      notification.offsetHeight;
-
-      console.log('Adding show class');
+      // Trigger animation
       setTimeout(() => {
-        notification.classList.add('show');
-        console.log('Notification should be visible now');
-      }, 100);
+        notification.classList.add('custom-notification-show');
+      }, 10);
 
-      const closeBtn = notification.querySelector('.notification-close');
+      // Close button handler
+      const closeBtn = notification.querySelector('.custom-notification-close');
       closeBtn.addEventListener('click', () => {
-        console.log('Close button clicked');
-        notification.classList.remove('show');
-        setTimeout(() => notification.remove(), 400);
+        hideNotification(notification);
       });
 
+      // Auto hide after 5 seconds
       setTimeout(() => {
-        console.log('Auto-hiding notification after 5s');
-        notification.classList.remove('show');
-        setTimeout(() => notification.remove(), 400);
+        hideNotification(notification);
       }, 5000);
+    }
+
+    function hideNotification(notification) {
+      notification.classList.remove('custom-notification-show');
+      notification.classList.add('custom-notification-hide');
+      setTimeout(() => {
+        if (notification.parentNode) {
+          notification.remove();
+        }
+      }, 300);
     }
 
     // FAQ Accordion
@@ -1135,8 +1148,6 @@ const structuredData = {
       e.preventDefault();
       e.stopPropagation();
 
-      alert('Form gönderiliyor! Console\'u kontrol edin.');
-
       console.log('=== FORM SUBMIT STARTED ===');
       console.log('Access Key:', accessKey ? 'EXISTS' : 'MISSING');
 
@@ -1178,7 +1189,7 @@ const structuredData = {
       console.log('Overall validation:', isValid ? 'PASSED' : 'FAILED');
 
       if (!isValid) {
-        showNotification('error', 'Form Hatası', 'Lütfen tüm zorunlu alanları doğru şekilde doldurun.');
+        alert('⚠️ Form Hatası\n\nLütfen tüm zorunlu alanları doğru şekilde doldurun.');
         return;
       }
 
@@ -1186,7 +1197,7 @@ const structuredData = {
       const honeypot = contactForm.querySelector('input[name="honeypot"]');
       if (honeypot && honeypot.value) {
         console.log('Bot detected via honeypot');
-        showNotification('error', 'Hata', 'Form gönderilemedi. Lütfen sayfayı yenileyip tekrar deneyin.');
+        alert('❌ Hata\n\nForm gönderilemedi. Lütfen sayfayı yenileyip tekrar deneyin.');
         return;
       }
 
@@ -1249,8 +1260,7 @@ const structuredData = {
         if (result.success) {
           console.log('✓ SUCCESS - Form submitted successfully!');
 
-          // Simple alert instead of notification
-          alert('✅ Mesajınız Başarıyla Gönderildi!\n\nEn kısa sürede size dönüş yapacağız.');
+          showNotification('success', 'Başarıyla Gönderildi!', 'Mesajınız başarıyla alınmıştır. En kısa sürede size dönüş yapacağız.');
 
           contactForm.reset();
           console.log('Form reset completed');
@@ -1281,7 +1291,8 @@ const structuredData = {
           errorMessage = 'Bağlantı hatası. İnternet bağlantınızı kontrol edin.';
         }
 
-        showNotification('error', '✗ Gönderim Başarısız!', errorMessage + ' Alternatif olarak telefon veya e-posta ile iletişime geçebilirsiniz.');
+        alert('❌ Gönderim Başarısız!\n\n' + errorMessage + '\n\nAlternatif olarak telefon veya e-posta ile iletişime geçebilirsiniz.');
+        showNotification('error', 'Gönderim Başarısız', errorMessage);
       } finally {
         console.log('Cleaning up...');
         isSubmitting = false;
