@@ -890,6 +890,186 @@ const structuredData = {
 
   .hidden { display: none; }
   .text-center { text-align: center; }
+
+  /* Custom Notification Styles */
+  .custom-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    min-width: 320px;
+    max-width: 420px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    z-index: 99999;
+    transform: translateX(150%);
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.3s ease;
+    opacity: 0;
+    overflow: hidden;
+  }
+
+  .custom-notification-show {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .custom-notification-hide {
+    transform: translateX(150%);
+    opacity: 0;
+  }
+
+  .custom-notification-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 20px;
+    position: relative;
+  }
+
+  .custom-notification-icon-wrapper {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .custom-notification-success .custom-notification-icon-wrapper {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  }
+
+  .custom-notification-error .custom-notification-icon-wrapper {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  }
+
+  .custom-notification-info .custom-notification-icon-wrapper {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  }
+
+  .custom-notification-icon {
+    width: 24px;
+    height: 24px;
+    color: white;
+  }
+
+  .custom-notification-text {
+    flex: 1;
+    padding-top: 2px;
+  }
+
+  .custom-notification-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .custom-notification-message {
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.5;
+  }
+
+  .custom-notification-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .custom-notification-close:hover {
+    background: #f3f4f6;
+    color: #374151;
+  }
+
+  .custom-notification-progress {
+    height: 4px;
+    background: linear-gradient(90deg, #e5e7eb 0%, #e5e7eb 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .custom-notification-success .custom-notification-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    animation: progressBar 5s linear forwards;
+  }
+
+  .custom-notification-error .custom-notification-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    animation: progressBar 5s linear forwards;
+  }
+
+  .custom-notification-info .custom-notification-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    animation: progressBar 5s linear forwards;
+  }
+
+  @keyframes progressBar {
+    from {
+      width: 100%;
+    }
+    to {
+      width: 0%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .custom-notification {
+      top: 10px;
+      right: 10px;
+      left: 10px;
+      min-width: auto;
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .custom-notification-content {
+      padding: 14px 16px;
+    }
+
+    .custom-notification-title {
+      font-size: 15px;
+    }
+
+    .custom-notification-message {
+      font-size: 13px;
+    }
+  }
 </style>
 
 <script is:inline define:vars={{ publicWeb3formsKey }}>
@@ -1189,7 +1369,7 @@ const structuredData = {
       console.log('Overall validation:', isValid ? 'PASSED' : 'FAILED');
 
       if (!isValid) {
-        alert('⚠️ Form Hatası\n\nLütfen tüm zorunlu alanları doğru şekilde doldurun.');
+        showNotification('error', 'Form Hatası', 'Lütfen tüm zorunlu alanları doğru şekilde doldurun.');
         return;
       }
 
