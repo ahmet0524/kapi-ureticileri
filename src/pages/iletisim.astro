@@ -1116,33 +1116,45 @@ const structuredData = {
       e.preventDefault();
       e.stopPropagation();
 
-      console.log('Form submit event triggered');
+      console.log('=== FORM SUBMIT STARTED ===');
+      console.log('Access Key:', accessKey ? 'EXISTS' : 'MISSING');
 
       if (!accessKey) {
+        console.error('Access key is missing!');
         showNotification('error', 'Yapılandırma Hatası', 'Form gönderimi yapılandırılmamış. Lütfen site yöneticisiyle iletişime geçin.');
         return;
       }
 
       // Check rate limiting
       const now = Date.now();
+      console.log('Rate limit check:', { now, lastSubmitTime, cooldown: SUBMIT_COOLDOWN, timeSince: now - lastSubmitTime });
+
       if (now - lastSubmitTime < SUBMIT_COOLDOWN) {
+        console.warn('Rate limit exceeded');
         showNotification('error', 'Çok Hızlı!', 'Lütfen birkaç saniye bekleyip tekrar deneyin.');
         return;
       }
 
       // Check if already submitting
+      console.log('Is submitting:', isSubmitting);
       if (isSubmitting) {
+        console.warn('Already submitting, ignoring...');
         return;
       }
 
       // Validate all fields
+      console.log('Starting validation...');
       let isValid = true;
       const fields = contactForm.querySelectorAll('input, textarea, select');
       fields.forEach(field => {
-        if (field.name !== 'honeypot' && !validateField(field)) {
-          isValid = false;
+        if (field.name !== 'honeypot') {
+          const valid = validateField(field);
+          console.log(`Field ${field.name}: ${valid ? 'VALID' : 'INVALID'}`);
+          if (!valid) isValid = false;
         }
       });
+
+      console.log('Overall validation:', isValid ? 'PASSED' : 'FAILED');
 
       if (!isValid) {
         showNotification('error', 'Form Hatası', 'Lütfen tüm zorunlu alanları doğru şekilde doldurun.');
@@ -1157,6 +1169,8 @@ const structuredData = {
         return;
       }
 
+      console.log('All checks passed, preparing to submit...');
+
       const submitBtn = contactForm.querySelector('.submit-btn');
       const formContainer = document.querySelector('.form-container');
 
@@ -1164,6 +1178,8 @@ const structuredData = {
       lastSubmitTime = now;
       setButtonLoading(submitBtn, true);
       formContainer.classList.add('submitting');
+
+      console.log('UI updated, starting API call...');
 
       try {
         const formData = new FormData(contactForm);
@@ -1177,6 +1193,16 @@ const structuredData = {
           from_name: 'CihanPan Door İletişim Formu',
           replyto: formData.get('email')
         };
+
+        console.log('Form data prepared:', {
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          subject: data.subject,
+          messageLength: data.message.length
+        });
+
+        console.log('Sending request to Web3Forms API...');
 
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 15000);
@@ -1192,11 +1218,18 @@ const structuredData = {
         });
 
         clearTimeout(timeoutId);
+
+        console.log('Response received:', response.status, response.statusText);
+
         const result = await response.json();
 
+        console.log('Response data:', result);
+
         if (result.success) {
+          console.log('✓ SUCCESS - Form submitted successfully!');
           showNotification('success', '✓ Başarıyla Gönderildi!', 'Mesajınız başarıyla alınmıştır. En kısa sürede size dönüş yapacağız.');
           contactForm.reset();
+          console.log('Form reset completed');
 
           // Track successful submission
           if (typeof gtag !== 'undefined') {
@@ -1204,12 +1237,17 @@ const structuredData = {
               event_category: 'Contact',
               event_label: data.subject
             });
+            console.log('Analytics event sent');
           }
         } else {
+          console.error('✗ API returned success: false', result);
           throw new Error(result.message || 'Form gönderilemedi');
         }
       } catch (error) {
-        console.error('Form submission error:', error);
+        console.error('✗ SUBMISSION ERROR:', error);
+        console.error('Error name:', error.name);
+        console.error('Error message:', error.message);
+        console.error('Error stack:', error.stack);
 
         let errorMessage = 'Bir hata oluştu. Lütfen tekrar deneyin.';
 
@@ -1221,9 +1259,11 @@ const structuredData = {
 
         showNotification('error', '✗ Gönderim Başarısız!', errorMessage + ' Alternatif olarak telefon veya e-posta ile iletişime geçebilirsiniz.');
       } finally {
+        console.log('Cleaning up...');
         isSubmitting = false;
         setButtonLoading(submitBtn, false);
         formContainer.classList.remove('submitting');
+        console.log('=== FORM SUBMIT ENDED ===');
       }
     });
 
