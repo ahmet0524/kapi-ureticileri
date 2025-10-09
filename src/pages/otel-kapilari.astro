@@ -12,7 +12,7 @@ const currentUrl = `${baseUrl}${Astro.url.pathname}`;
 const breadcrumbItems = [
   { name: "Ana Sayfa", href: "/" },
   { name: "Ürünlerimiz", href: "/urunlerimiz" },
-  { name: "Hastane Kapıları", href: "/otel-kapilari" }
+  { name: "Otel Kapıları", href: "/otel-kapilari" }
 ];
 
 // SEO Schema
@@ -20,7 +20,7 @@ const otelSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "name": "Otel Kapıları",
-  "description": "Kayseri'den üretilen hastane ve sağlık tesisleri için özel tasarlanmış kapı modelleri. Antibakteriyel özellikli, hijyen standartlarına uygun.",
+  "description": "Kayseri'den üretilen otel ve konaklama tesisleri için özel tasarlanmış kapı modelleri. Premium kalite, şık tasarım.",
   "url": currentUrl,
   "mainEntity": {
     "@type": "ItemList",
@@ -36,8 +36,8 @@ const otelSchema = {
           "url": baseUrl,
           "logo": `${baseUrl}/assets/img/logo.webp`
         },
-        "category": "Hastane Kapısı",
-        "material": "Antibakteriyel Laminat",
+        "category": "Otel Kapısı",
+        "material": "Premium Laminat",
         "brand": "CihanPan Door"
       }
     ]
@@ -51,14 +51,14 @@ const organizationSchema = {
   "name": "CihanPan Door",
   "url": baseUrl,
   "logo": `${baseUrl}/assets/img/logo.webp`,
-  "description": "Kayseri'den hastane ve sağlık tesisleri için özel kapı üreticisi - Antibakteriyel özellikli, hijyen standartlarına uygun",
+  "description": "Kayseri'den otel ve konaklama tesisleri için özel kapı üreticisi - Premium kalite, şık tasarım",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Kayseri",
     "addressCountry": "TR"
   },
   "areaServed": ["Turkey", "Europe", "Middle East"],
-  "serviceType": ["Hastane Kapı Üretimi", "Medikal Kapı Çözümleri", "Toptan Satış", "İhracat"]
+  "serviceType": ["Otel Kapı Üretimi", "Premium Kapı Çözümleri", "Toptan Satış", "İhracat"]
 };
 
 // Breadcrumb Schema
@@ -75,24 +75,19 @@ const breadcrumbSchema = {
 ---
 
 <Layout
-  title="Otel Kapıları | Medikal Seri Kayseri CihanPan Door"
-  description="Kayseri'nin hastane ve sağlık tesisleri için özel tasarlanmış kapı koleksiyonu. Antibakteriyel özellikli, hijyen standartlarına uygun, üretici fiyat avantajı."
-  keywords="hastane kapısı, medikal kapı, antibakteriyel kapı, sağlık tesisi kapısı, kayseri hastane kapısı üreticisi, hijyenik kapı çözümleri"
+  title="Otel Kapıları | Premium Seri Kayseri CihanPan Door"
+  description="Kayseri'nin otel ve konaklama tesisleri için özel tasarlanmış kapı koleksiyonu. Premium kalite, şık tasarım, üretici fiyat avantajı."
+  keywords="otel kapısı, konaklama tesisi kapısı, premium kapı, şık kapı tasarımı, kayseri otel kapısı üreticisi, luxury door"
   canonical={currentUrl}
   ogImage="/assets/img/og/otel-kapilari-og.webp"
-
-  // Open Graph Tags
-  ogTitle="Hastane Kapıları - Medikal Seri | CihanPan Door"
-  ogDescription="Hastane ve sağlık tesisleri için özel tasarlanmış kapı koleksiyonu. Antibakteriyel özellikli, hijyen standartlarına uygun."
+  ogTitle="Otel Kapıları - Premium Seri | CihanPan Door"
+  ogDescription="Otel ve konaklama tesisleri için özel tasarlanmış kapı koleksiyonu. Premium kalite, şık tasarım."
   ogType="website"
   ogUrl={currentUrl}
-
-  // Twitter Card Tags
   twitterCard="summary_large_image"
-  twitterTitle="Hastane Kapıları | Medikal Seri"
-  twitterDescription="Sağlık tesisleri için özel tasarlanmış kapı koleksiyonu. Antibakteriyel ve hijyenik çözümler."
+  twitterTitle="Otel Kapıları | Premium Seri"
+  twitterDescription="Konaklama tesisleri için özel tasarlanmış kapı koleksiyonu. Premium ve şık çözümler."
   twitterImage="/assets/img/og/otel-kapilari-og.webp"
-
   schema={[otelSchema, organizationSchema, breadcrumbSchema]}
 >
 
@@ -106,13 +101,13 @@ const breadcrumbSchema = {
         <div class="hero-content">
           <h1 class="hero-title">Otel Kapıları</h1>
           <p class="hero-subtitle">
-            Sağlık tesisleri için özel tasarlanmış antibakteriyel kapı koleksiyonumuz
+            Konaklama tesisleri için özel tasarlanmış premium kapı koleksiyonumuz
           </p>
           <div class="hero-badges">
             <span class="badge">6 Model</span>
-            <span class="badge">Antibakteriyel</span>
-            <span class="badge">Hijyenik</span>
-            <span class="badge">Medikal Standart</span>
+            <span class="badge">Premium Kalite</span>
+            <span class="badge">Şık Tasarım</span>
+            <span class="badge">Lüks Görünüm</span>
           </div>
         </div>
       </div>
@@ -123,38 +118,38 @@ const breadcrumbSchema = {
       <div class="container">
         <header class="section-header">
           <h2>Otel Kapı Modelleri</h2>
-          <p>Sağlık tesisleri için özel tasarlanmış hijyenik kapı çözümleri</p>
+          <p>Konaklama tesisleri için özel tasarlanmış premium kapı çözümleri</p>
         </header>
 
         <div class="quote-button-section">
-          <button class="btn-quote-main" onclick="openQuoteModal()" aria-label="Otel kapısı için toptan fiyat teklifi al">
+          <a href="/iletisim" class="btn-quote-main" aria-label="Otel kapısı için toptan fiyat teklifi al">
             Otel Proje Teklifi Al
-          </button>
+          </a>
         </div>
 
-<div class="product-filter-tabs">
-  <a href="/urunlerimiz" class="product-filter-btn">
-    <span>Tümü</span>
-  </a>
-  <a href="/pvc-kapilar" class="product-filter-btn">
-    <span>PVC Kapılar</span>
-  </a>
-  <a href="/laminoks-kapilar" class="product-filter-btn">
-    <span>Laminoks Kapılar</span>
-  </a>
-    <a href="/elitpan-kapilar" class="product-filter-btn">
-    <span>Elitpan Kapılar</span>
-  </a>
-  <a href="/hastane-kapilari" class="product-filter-btn">
-    <span>Hastane Kapıları</span>
-  </a>
-  <a href="/otel-kapilari" class="product-filter-btn active">
-    <span>Otel Kapıları</span>
-  </a>
-  <a href="/yangina-dayanikli-kapilar" class="product-filter-btn">
-    <span>Yanmaya Dayanıklı Kapılar</span>
-  </a>
-</div>
+        <div class="product-filter-tabs">
+          <a href="/urunlerimiz" class="product-filter-btn">
+            <span>Tümü</span>
+          </a>
+          <a href="/pvc-kapilar" class="product-filter-btn">
+            <span>PVC Kapılar</span>
+          </a>
+          <a href="/laminoks-kapilar" class="product-filter-btn">
+            <span>Laminoks Kapılar</span>
+          </a>
+          <a href="/elitpan-kapilar" class="product-filter-btn">
+            <span>Elitpan Kapılar</span>
+          </a>
+          <a href="/hastane-kapilari" class="product-filter-btn">
+            <span>Hastane Kapıları</span>
+          </a>
+          <a href="/otel-kapilari" class="product-filter-btn active">
+            <span>Otel Kapıları</span>
+          </a>
+          <a href="/yangina-dayanikli-kapilar" class="product-filter-btn">
+            <span>Yanmaya Dayanıklı Kapılar</span>
+          </a>
+        </div>
 
         <div class="products-grid" id="productsGrid">
           <!-- Products will be loaded here -->
@@ -162,7 +157,7 @@ const breadcrumbSchema = {
 
         <div class="loading" id="loading">
           <div class="loading-spinner"></div>
-          <p>Hastane kapı modelleri yükleniyor...</p>
+          <p>Otel kapı modelleri yükleniyor...</p>
         </div>
       </div>
     </section>
@@ -173,39 +168,39 @@ const breadcrumbSchema = {
         <div class="content-grid">
           <article class="highlights-content">
             <header>
-              <h2>Hastane Kapılarımızın Özel Özellikleri</h2>
+              <h2>Otel Kapılarımızın Özel Özellikleri</h2>
             </header>
 
             <p>
-              <strong>Medikal serisi</strong> kapılarımız, sağlık tesislerinin özel gereksinimlerini
-              karşılamak için tasarlanmış <em>antibakteriyel ve hijyenik özellikli</em> profesyonel
-              çözümlerdir. Her model sağlık standartlarına uygun olarak üretilir.
+              <strong>Otel serisi</strong> kapılarımız, konaklama tesislerinin özel gereksinimlerini
+              karşılamak için tasarlanmış <em>premium kalite ve şık tasarımlı</em> profesyonel
+              çözümlerdir. Her model lüks standartlara uygun olarak üretilir.
             </p>
 
-            <h3>Sağlık Tesisleri İçin Özel Özellikler</h3>
+            <h3>Konaklama Tesisleri İçin Özel Özellikler</h3>
             <ul class="advantages-list">
-              <li><strong>Antibakteriyel Yüzey:</strong> Bakteri ve virüs oluşumunu önleyen özel kaplama</li>
-              <li><strong>Kolay Temizlik:</strong> Dezenfektan ile temizlenebilir yüzey</li>
+              <li><strong>Premium Yüzey:</strong> Lüks görünüm sağlayan özel kaplama</li>
+              <li><strong>Ses Yalıtımı:</strong> Misafir konforu için gelişmiş akustik performans</li>
               <li><strong>Dayanıklılık:</strong> Yoğun kullanıma uygun özel yapı</li>
-              <li><strong>Ses İzolasyonu:</strong> Hasta konforu için gelişmiş ses yalıtımı</li>
-              <li><strong>Yangın Dayanımı:</strong> Sağlık tesisleri güvenlik standartlarına uygun</li>
-              <li><strong>Çarpma Dayanımı:</strong> Sedye ve tıbbi ekipman geçişine uygun</li>
+              <li><strong>Şık Tasarım:</strong> Modern ve zarif estetik seçenekler</li>
+              <li><strong>Yangın Güvenliği:</strong> Konaklama tesisleri standartlarına uygun</li>
+              <li><strong>Kolay Bakım:</strong> Pratik temizlik ve uzun ömür</li>
             </ul>
 
             <h3>Kullanım Alanları</h3>
-            <p>Hastane kapılarımız şu alanlarda kullanım için uygundur:</p>
+            <p>Otel kapılarımız şu alanlarda kullanım için uygundur:</p>
             <ul class="advantages-list">
-              <li><strong>Hasta Odaları:</strong> Konforlu ve hijyenik hasta ortamı</li>
-              <li><strong>Ameliyathaneler:</strong> Steril ortam gereksinimleri</li>
-              <li><strong>Poliklinikler:</strong> Yoğun hasta trafiğine dayanıklı</li>
-              <li><strong>Laboratuvarlar:</strong> Kimyasal dayanıklılık</li>
-              <li><strong>Eczaneler:</strong> Profesyonel görünüm</li>
-              <li><strong>Özel Klinikler:</strong> Prestijli tasarım seçenekleri</li>
+              <li><strong>Otel Odaları:</strong> Konforlu ve şık misafir deneyimi</li>
+              <li><strong>Apart Oteller:</strong> Modern ve dayanıklı çözümler</li>
+              <li><strong>Butik Oteller:</strong> Özel tasarım seçenekleri</li>
+              <li><strong>Pansiyonlar:</strong> Ekonomik ve kaliteli alternatifler</li>
+              <li><strong>Tatil Köyleri:</strong> Toplu proje çözümleri</li>
+              <li><strong>Konaklama Tesisleri:</strong> Çok amaçlı kullanım</li>
             </ul>
 
             <h3>Kalite Standartları</h3>
-            <p>Tüm hastane kapılarımız TSE standartlarına uygun olarak üretilir ve
-            sağlık tesislerinin hijyen gereksinimlerini karşılar. İhracat kalitesinde
+            <p>Tüm otel kapılarımız TSE standartlarına uygun olarak üretilir ve
+            konaklama tesislerinin kalite gereksinimlerini karşılar. İhracat kalitesinde
             üretim ile uluslararası projelerde de tercih edilir.</p>
           </article>
 
@@ -221,7 +216,7 @@ const breadcrumbSchema = {
               </div>
               <div class="stat-card">
                 <div class="stat-number">A+</div>
-                <div class="stat-label">HİJYEN</div>
+                <div class="stat-label">KALİTE</div>
               </div>
               <div class="stat-card">
                 <div class="stat-number">24/7</div>
@@ -230,18 +225,18 @@ const breadcrumbSchema = {
             </div>
 
             <div class="quick-contact">
-              <h3>Medikal Proje Danışmanlığı</h3>
-              <p>Sağlık tesisiniz için özel çözümler:</p>
+              <h3>Otel Proje Danışmanlığı</h3>
+              <p>Konaklama tesisiniz için özel çözümler:</p>
               <div class="contact-buttons">
-                <a href="tel:+905441690038" class="btn-contact-phone">🏥 Hastane Uzmanı</a>
+                <a href="tel:+905441690038" class="btn-contact-phone">🏨 Otel Uzmanı</a>
                 <a href="https://wa.me/905441690038" class="btn-contact-whatsapp">💬 WhatsApp</a>
               </div>
 
               <div class="special-features">
                 <h4>Özel Hizmetler</h4>
                 <ul>
-                  <li>✓ Antibakteriyel test raporu</li>
-                  <li>✓ Hijyen sertifikası</li>
+                  <li>✓ Kalite sertifikası</li>
+                  <li>✓ Ses yalıtım raporu</li>
                   <li>✓ Proje bazlı özelleştirme</li>
                   <li>✓ Teknik destek</li>
                 </ul>
@@ -260,9 +255,9 @@ const breadcrumbSchema = {
           <div class="tech-card">
             <h3>Malzeme Özellikleri</h3>
             <ul>
-              <li>Antibakteriyel laminat yüzey</li>
+              <li>Premium laminat yüzey</li>
               <li>MDF çekirdek yapı</li>
-              <li>Nem dirençli kenar bandı</li>
+              <li>Su dirençli kenar bandı</li>
               <li>Çelik kapı kasası seçeneği</li>
             </ul>
           </div>
@@ -278,17 +273,17 @@ const breadcrumbSchema = {
           <div class="tech-card">
             <h3>Renk Seçenekleri</h3>
             <ul>
-              <li>Beyaz (Hastane standartı)</li>
-              <li>Krem tonu</li>
-              <li>Açık gri</li>
+              <li>İtalyan Ceviz</li>
+              <li>Kestane</li>
+              <li>Tik</li>
               <li>Özel renk seçenekleri</li>
             </ul>
           </div>
           <div class="tech-card">
             <h3>Aksesuarlar</h3>
             <ul>
-              <li>Antibakteriyel menteşeler</li>
-              <li>Hijyenik kapı kolları</li>
+              <li>Premium menteşeler</li>
+              <li>Şık kapı kolları</li>
               <li>Otomatik kapanma sistemi</li>
               <li>Cam panel seçenekleri</li>
             </ul>
@@ -300,109 +295,26 @@ const breadcrumbSchema = {
     <!-- CTA Section -->
     <section class="cta-section">
       <div class="container">
-        <h2>Sağlık Tesisiniz İçin Profesyonel Çözümler</h2>
-        <p>Hastane, klinik ve sağlık tesisleri için özel tasarlanmış kapı koleksiyonumuzla projelerinizi güvenilir çözümlerle tamamlayın</p>
+        <h2>Konaklama Tesisiniz İçin Profesyonel Çözümler</h2>
+        <p>Otel, apart ve konaklama tesisleri için özel tasarlanmış kapı koleksiyonumuzla projelerinizi güvenilir çözümlerle tamamlayın</p>
         <div class="cta-buttons">
-          <a href="tel:+905441690038" class="btn btn-tertiary">🏥 Hastane Uzmanı Ara</a>
-          <a href="/iletisim" class="btn btn-primary">Medikal Proje Danışmanlığı</a>
+          <a href="tel:+905441690038" class="btn btn-tertiary">🏨 Otel Uzmanı Ara</a>
+          <a href="/iletisim" class="btn btn-primary">Otel Proje Danışmanlığı</a>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Quote Modal -->
-  <div class="modal" id="quoteModal" role="dialog" aria-labelledby="quoteModalTitle" aria-hidden="true">
-    <div class="modal-content">
-      <button class="modal-close" id="quoteModalClose" aria-label="Modalı kapat">&times;</button>
-      <div class="modal-body">
-        <h3 id="quoteModalTitle">Hastane Kapısı - Medikal Proje Teklifi</h3>
-        <form id="quoteForm" class="quote-form" name="hastane-quote" method="POST" data-netlify="true">
-          <input type="hidden" name="form-name" value="hastane-quote">
-
-          <div class="form-group">
-            <label for="customerName">Adınız Soyadınız *</label>
-            <input type="text" id="customerName" name="customerName" required>
-          </div>
-
-          <div class="form-group">
-            <label for="customerPhone">Telefon Numaranız *</label>
-            <input type="tel" id="customerPhone" name="customerPhone" required>
-          </div>
-
-          <div class="form-group">
-            <label for="customerEmail">E-posta Adresiniz *</label>
-            <input type="email" id="customerEmail" name="customerEmail" required>
-          </div>
-
-          <div class="form-group">
-            <label for="customerCompany">Hastane/Kurum Adı</label>
-            <input type="text" id="customerCompany" name="customerCompany">
-          </div>
-
-          <div class="form-group">
-            <label for="doorCount">Kaç Adet Kapı?</label>
-            <select id="doorCount" name="doorCount">
-              <option value="10-25">10-25 Adet</option>
-              <option value="25-50">25-50 Adet</option>
-              <option value="50-100">50-100 Adet</option>
-              <option value="100+">100+ Adet</option>
-              <option value="hastane-kompleksi">Hastane Kompleksi</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="projectType">Tesis Türü</label>
-            <select id="projectType" name="projectType">
-              <option value="">Seçiniz</option>
-              <option value="hastane">Hastane</option>
-              <option value="ozel-klinik">Özel Klinik</option>
-              <option value="poliklinik">Poliklinik</option>
-              <option value="eczane">Eczane</option>
-              <option value="laboratuvar">Laboratuvar</option>
-              <option value="saglik-ocagi">Sağlık Ocağı</option>
-              <option value="dis-klinigi">Diş Kliniği</option>
-              <option value="veteriner-klinik">Veteriner Klinik</option>
-              <option value="diger">Diğer</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="specialRequirements">Özel Gereksinimler</label>
-            <div class="checkbox-group">
-              <label><input type="checkbox" name="antibakteriyel" value="1"> Antibakteriyel özellik</label>
-              <label><input type="checkbox" name="yanginDayanimi" value="1"> Yangın dayanımı</label>
-              <label><input type="checkbox" name="sesIzolasyon" value="1"> Ses izolasyonu</label>
-              <label><input type="checkbox" name="otomatikKapanma" value="1"> Otomatik kapanma</label>
-              <label><input type="checkbox" name="camPanel" value="1"> Cam panel</label>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="customerMessage">Proje Detayları</label>
-            <textarea id="customerMessage" name="customerMessage" rows="4" placeholder="Tesisinizin büyüklüğü, özel gereksinimler, zaman çizelgesi..."></textarea>
-          </div>
-
-          <div class="form-actions">
-            <button type="submit" class="btn-submit">Medikal Proje Teklifi Gönder</button>
-            <button type="button" class="btn-cancel" onclick="closeQuoteModal()">İptal</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
   <Footer />
 </Layout>
 
 <style>
-  /* Base styles */
   .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
   }
 
-  /* Hero Section - Medikal tema */
   .hero {
     padding: 4rem 0;
     background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
@@ -444,7 +356,6 @@ const breadcrumbSchema = {
     border: 1px solid rgba(255, 255, 255, 0.3);
   }
 
-  /* Products Section */
   .products-section {
     padding: 4rem 0;
     background: #ffffff;
@@ -475,16 +386,17 @@ const breadcrumbSchema = {
   }
 
   .btn-quote-main {
+    display: inline-block;
     background: linear-gradient(135deg, #0891b2, #0e7490);
     color: white;
     border: none;
     padding: 1rem 3rem;
     border-radius: 50px;
-    cursor: pointer;
     font-weight: 600;
     font-size: 1.1rem;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(8, 145, 178, 0.3);
+    text-decoration: none;
   }
 
   .btn-quote-main:hover {
@@ -492,42 +404,30 @@ const breadcrumbSchema = {
     box-shadow: 0 6px 20px rgba(8, 145, 178, 0.4);
   }
 
-  /* Product Filters */
-  .product-filters {
-    margin-bottom: 3rem;
-  }
-
-  .product-filters h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 1.5rem;
-    text-align: center;
-  }
-
   .product-filter-tabs {
     display: flex;
     justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;
+    margin-bottom: 3rem;
   }
 
-.product-filter-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 600;
-  font-size: 1rem;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-  position: relative;
-  overflow: hidden;
-  text-decoration: none;        /* YENİ - Link alt çizgisini kaldır */
-  display: inline-block;        /* YENİ - Link'i buton gibi göster */
-}
+  .product-filter-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: inline-block;
+  }
 
   .product-filter-btn::before {
     content: '';
@@ -561,7 +461,6 @@ const breadcrumbSchema = {
     box-shadow: 0 6px 20px rgba(13, 148, 136, 0.4);
   }
 
-  /* Products Grid */
   .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -637,7 +536,6 @@ const breadcrumbSchema = {
     font-weight: 500;
   }
 
-  /* Loading */
   .loading {
     text-align: center;
     padding: 3rem;
@@ -659,7 +557,6 @@ const breadcrumbSchema = {
     100% { transform: rotate(360deg); }
   }
 
-  /* Highlights Section */
   .highlights-section {
     padding: 5rem 0;
     background: #f8fafc;
@@ -717,13 +614,12 @@ const breadcrumbSchema = {
   }
 
   .advantages-list li::before {
-    content: "🏥";
+    content: "🏨";
     position: absolute;
     left: 0;
     font-size: 1rem;
   }
 
-  /* Highlights Sidebar */
   .highlights-sidebar {
     display: flex;
     flex-direction: column;
@@ -835,7 +731,6 @@ const breadcrumbSchema = {
     margin-bottom: 0.5rem;
   }
 
-  /* Technical Section */
   .technical-section {
     padding: 4rem 0;
     background: white;
@@ -892,7 +787,6 @@ const breadcrumbSchema = {
     font-weight: bold;
   }
 
-  /* CTA Section */
   .cta-section {
     padding: 5rem 0;
     background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
@@ -959,171 +853,6 @@ const breadcrumbSchema = {
     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
   }
 
-  /* Modal Styles */
-  .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.8);
-    z-index: 2000;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-  }
-
-  .modal.active {
-    display: flex;
-  }
-
-  .modal-content {
-    background: white;
-    border-radius: 12px;
-    max-width: 600px;
-    width: 100%;
-    max-height: 90vh;
-    position: relative;
-    overflow-y: auto;
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: rgba(0,0,0,0.5);
-    color: white;
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.2rem;
-    z-index: 1;
-    transition: all 0.2s ease;
-  }
-
-  .modal-close:hover {
-    background: rgba(0,0,0,0.7);
-    transform: scale(1.1);
-  }
-
-  .modal-body {
-    padding: 2rem;
-  }
-
-  .modal-body h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    color: #1a202c;
-    text-align: center;
-  }
-
-  .quote-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .form-group label {
-    font-weight: 600;
-    color: #374151;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-  }
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    padding: 0.75rem;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: border-color 0.2s ease;
-  }
-
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: #0891b2;
-    box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.1);
-  }
-
-  .form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-
-  .checkbox-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-  }
-
-  .checkbox-group label {
-    display: flex;
-    align-items: center;
-    font-weight: normal;
-    margin: 0;
-    cursor: pointer;
-  }
-
-  .checkbox-group input[type="checkbox"] {
-    margin-right: 0.5rem;
-    width: auto;
-  }
-
-  .form-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-
-  .btn-submit {
-    flex: 1;
-    background: linear-gradient(135deg, #0891b2, #0e7490);
-    color: white;
-    border: none;
-    padding: 0.875rem 1.5rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .btn-submit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(8, 145, 178, 0.3);
-  }
-
-  .btn-cancel {
-    flex: 1;
-    background: #6b7280;
-    color: white;
-    border: none;
-    padding: 0.875rem 1.5rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .btn-cancel:hover {
-    background: #4b5563;
-  }
-
-  /* Responsive Design */
   @media (max-width: 768px) {
     .content-grid {
       grid-template-columns: 1fr;
@@ -1214,26 +943,12 @@ const breadcrumbSchema = {
     .section-header h2 {
       font-size: 2rem;
     }
-
-    .modal-content {
-      margin: 1rem;
-    }
-
-    .modal-body {
-      padding: 1.5rem;
-    }
-
-    .form-actions {
-      flex-direction: column;
-    }
   }
 </style>
 
 <script>
-  // Hastane kapı modelleri
   const otelModels = [];
 
-  // 6 HASTANE KAPI MODELİ
   const fileNames = [
     "CihanpanDoor-Otel-Serisi-401-Italyan-Ceviz.webp",
     "CihanpanDoor-Otel-Serisi-402-Kestane.webp",
@@ -1243,13 +958,10 @@ const breadcrumbSchema = {
     "CihanpanDoor-Otel-Serisi-406-Dark-Santana.webp"
   ];
 
-  // Parse file names and create products
   fileNames.forEach((fileName, index) => {
     const parts = fileName.replace('.webp', '').split('-');
-    const modelNumber = parts[3]; // 501, 502, etc.
-    const colorInfo = parts.slice(4).join(' '); // Tik Antrasit, Avola Krem, etc.
-
-    // Format display name
+    const modelNumber = parts[3];
+    const colorInfo = parts.slice(4).join(' ');
     const displayName = `Otel ${modelNumber}`;
     const colorName = colorInfo.replace(/-/g, ' ');
 
@@ -1257,43 +969,25 @@ const breadcrumbSchema = {
       id: `otel-${modelNumber}`,
       name: displayName,
       category: 'otel',
-      subcategory: index < 2 ? 'antibakteriyel' : 'hijyenik', // İlk 2 model antibakteriyel, diğerleri hijyenik
-
-      // Use actual file name
+      subcategory: index < 3 ? 'premium' : 'luxury',
       image: `/assets/img/otel-kapilari/${fileName}`,
-      fallbackImage: `https://picsum.photos/300/400?random=${index + 500}`,
-
-      // SEO için zenginleştirilmiş alt text
-      altText: `CihanPan Door Hastane Kapısı Model ${modelNumber} ${colorName} - Antibakteriyel Özellikli Sağlık Tesisi Kapısı`,
-
-      // Ürün özellikleri
-      features: index < 2 ? 'Antibakteriyel • Hijyenik' : 'Hijyenik • Dayanıklı',
+      fallbackImage: `https://picsum.photos/300/400?random=${index + 400}`,
+      altText: `CihanPan Door Otel Kapısı Model ${modelNumber} ${colorName} - Premium Kalite Konaklama Tesisi Kapısı`,
+      features: index < 3 ? 'Premium • Şık Tasarım' : 'Luxury • Özel Tasarım',
       colorInfo: colorName,
-
-      // SEO için detaylı description
-      description: `Hastane kapısı model ${modelNumber} ${colorName}. Sağlık tesisleri için özel tasarlanmış antibakteriyel ve hijyenik özellikli kapı. TSE standartlarına uygun, kolay temizlenebilir yüzey. Kayseri üretimi, toptan satış avantajı.`,
-
-      // SEO keywords
-      seoKeywords: `hastane kapısı model ${modelNumber}, antibakteriyel kapı, sağlık tesisi kapısı, hijyenik kapı, medikal kapı ${colorName.toLowerCase()}, kayseri hastane kapısı üreticisi`,
-
-      // Schema.org için yapısal data
+      description: `Otel kapısı model ${modelNumber} ${colorName}. Konaklama tesisleri için özel tasarlanmış premium kalite ve şık kapı. TSE standartlarına uygun, modern tasarım. Kayseri üretimi, toptan satış avantajı.`,
+      seoKeywords: `otel kapısı model ${modelNumber}, premium kapı, konaklama tesisi kapısı, şık kapı tasarımı, luxury door ${colorName.toLowerCase()}, kayseri otel kapısı üreticisi`,
       schemaData: {
         "@type": "Product",
-        "name": `Hastane Kapısı Model ${modelNumber} - ${colorName}`,
-        "description": `Sağlık tesisleri için antibakteriyel özellikli hastane kapısı`,
+        "name": `Otel Kapısı Model ${modelNumber} - ${colorName}`,
+        "description": `Konaklama tesisleri için premium kalite otel kapısı`,
         "brand": "CihanPan Door",
-        "material": "Antibakteriyel Laminat",
+        "material": "Premium Laminat",
         "category": "Otel Kapıları",
         "color": colorName
       }
     });
   });
-
-  // Current filter state
-  let currentFilter = 'all';
-  let filteredProducts = otelModels;
-
-
 
   function renderProducts() {
     const grid = document.getElementById('productsGrid');
@@ -1303,15 +997,15 @@ const breadcrumbSchema = {
     grid.innerHTML = '';
 
     setTimeout(() => {
-      if (filteredProducts.length === 0) {
+      if (otelModels.length === 0) {
         grid.innerHTML = `
           <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
             <h3 style="color: #6b7280; margin-bottom: 1rem;">Bu kategoride henüz ürün bulunmuyor</h3>
-            <p style="color: #9ca3af;">Yakında yeni hastane kapı modelleri eklenecek.</p>
+            <p style="color: #9ca3af;">Yakında yeni otel kapı modelleri eklenecek.</p>
           </div>
         `;
       } else {
-        filteredProducts.forEach((product, index) => {
+        otelModels.forEach((product) => {
           const card = createProductCard(product);
           grid.appendChild(card);
         });
@@ -1324,17 +1018,17 @@ const breadcrumbSchema = {
   function createProductCard(product) {
     const card = document.createElement('article');
     card.className = 'product-card';
-    card.setAttribute('aria-label', `${product.name} ${product.colorInfo} hastane kapısı modeli`);
+    card.setAttribute('aria-label', `${product.name} ${product.colorInfo} otel kapısı modeli`);
 
     card.innerHTML = `
       <div class="product-image">
         <img src="${product.image}"
              alt="${product.altText}"
-             title="${product.name} ${product.colorInfo} - CihanPan Door Hastane Kapısı"
+             title="${product.name} ${product.colorInfo} - CihanPan Door Otel Kapısı"
              loading="lazy"
              width="300"
              height="300"
-             onerror="this.src='${product.fallbackImage}'; this.alt='${product.name} Hastane Kapısı Örneği';">
+             onerror="this.src='${product.fallbackImage}'; this.alt='${product.name} Otel Kapısı Örneği';">
       </div>
       <div class="product-info">
         <h3 class="product-title">${product.name}</h3>
@@ -1346,126 +1040,7 @@ const breadcrumbSchema = {
     return card;
   }
 
-  // Quote Modal Functions
-  function openQuoteModal() {
-    const modal = document.getElementById('quoteModal');
-    modal.classList.add('active');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-
-    setTimeout(() => {
-      document.getElementById('customerName').focus();
-    }, 100);
-  }
-
-  function closeQuoteModal() {
-    const modal = document.getElementById('quoteModal');
-    modal.classList.remove('active');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    document.getElementById('quoteForm').reset();
-  }
-
-  // Event listeners and initialization
   document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
-
-
-
-    // Quote form submission
-    document.getElementById('quoteForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const formData = new FormData(e.target);
-      const data = Object.fromEntries(formData.entries());
-
-      // Checkbox değerlerini topla
-      const specialReqs = [];
-      if (formData.get('antibakteriyel')) specialReqs.push('Antibakteriyel özellik');
-      if (formData.get('yanginDayanimi')) specialReqs.push('Yangın dayanımı');
-      if (formData.get('sesIzolasyon')) specialReqs.push('Ses izolasyonu');
-      if (formData.get('otomatikKapanma')) specialReqs.push('Otomatik kapanma');
-      if (formData.get('camPanel')) specialReqs.push('Cam panel');
-
-      // Validate required fields
-      if (!data.customerName || !data.customerPhone || !data.customerEmail) {
-        alert('Lütfen zorunlu alanları doldurunuz (Ad Soyad, Telefon ve E-posta)');
-        return;
-      }
-
-      try {
-        const submitBtn = e.target.querySelector('.btn-submit');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Gönderiliyor...';
-        submitBtn.disabled = true;
-
-        // Netlify Forms ile form gönderimi
-        const response = await fetch(window.location.pathname, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(formData).toString()
-        });
-
-        if (response.ok) {
-          alert('Hastane kapısı proje talebiniz alındı! Medikal uzmanımız en kısa sürede size dönüş yapacak.');
-          closeQuoteModal();
-        } else {
-          throw new Error('Form gönderim hatası');
-        }
-
-      } catch (error) {
-        // Fallback - Email ile gönderim
-        const subject = encodeURIComponent('Hastane Kapısı - Medikal Proje Teklifi - CihanPan Door');
-        const body = encodeURIComponent(`
-Hastane Kapısı Medikal Proje Talebi:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-👤 Ad Soyad: ${data.customerName}
-📞 Telefon: ${data.customerPhone}
-📧 E-posta: ${data.customerEmail}
-🏥 Hastane/Kurum: ${data.customerCompany || 'Belirtilmedi'}
-🚪 Kapı Adeti: ${data.doorCount}
-🏗️ Tesis Türü: ${data.projectType || 'Belirtilmedi'}
-
-🔹 Özel Gereksinimler:
-${specialReqs.length > 0 ? specialReqs.join(', ') : 'Belirtilmedi'}
-
-📝 Proje Detayları:
-${data.customerMessage || 'Mesaj yok'}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🌐 Sayfa: ${window.location.href}
-📅 Tarih: ${new Date().toLocaleString('tr-TR')}
-
-Bu hastane kapısı teklifi medikal serimizden talep edilmiştir.
-Antibakteriyel özellikli, sağlık standartlarına uygun çözümler.
-        `);
-
-        window.location.href = `mailto:exportcihanpandoor@gmail.com?subject=${subject}&body=${body}`;
-        alert('Form e-posta ile gönderildi. Hastane projeniz için en kısa sürede size dönüş yapacağız.');
-        closeQuoteModal();
-
-      } finally {
-        const submitBtn = e.target.querySelector('.btn-submit');
-        if (submitBtn) {
-          submitBtn.textContent = 'Medikal Proje Teklifi Gönder';
-          submitBtn.disabled = false;
-        }
-      }
-    });
-
-    // Modal close events
-    document.getElementById('quoteModalClose').addEventListener('click', closeQuoteModal);
-
-    document.getElementById('quoteModal').addEventListener('click', (e) => {
-      if (e.target.id === 'quoteModal') {
-        closeQuoteModal();
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeQuoteModal();
-      }
-    });
   });
 </script>

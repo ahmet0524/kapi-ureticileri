@@ -125,7 +125,7 @@ const breadcrumbSchema = {
 ---
 
 <Layout
-  title="PVC İç Oda Kapıları - 2 | Kayseri CihanPan Door"
+  title="PVC İç Oda Kapıları - 1 | Kayseri CihanPan Door"
   description="Kayseri'nin en büyük PVC kapı koleksiyonu! 300 farklı model ve renk seçeneği. Su geçirmez, antibakteriyel, CE belgeli PVC kapılar."
   keywords="pvc kapı, pvc iç oda kapısı, kayseri pvc kapı, su geçirmez kapı, antibakteriyel kapı, ekonomik kapı, pvc kapı fiyatları, iç kapı modelleri, banyo kapısı, mutfak kapısı"
   canonical={currentUrl}
@@ -165,11 +165,11 @@ const breadcrumbSchema = {
           <p>Model ve renk seçenekleri ile size en uygun PVC kapıyı bulun.</p>
         </header>
 
-        <a class="quote-button-section">
-          <a href="/iletisim" class="btn-quote-main" onclick="openQuoteModal()" aria-label="PVC kapı için ücretsiz teklif al">
+        <div class="quote-button-section">
+          <a href="/iletisim" class="btn-quote-main" aria-label="PVC kapı için ücretsiz teklif al">
             Ücretsiz Teklif Al
-          </button>
-        </a>
+          </a>
+        </div>
 
         <!-- Filter Section - Sayfa Yönlendirmeli -->
         <div class="product-filters">
@@ -345,57 +345,6 @@ const breadcrumbSchema = {
     </section>
   </main>
 
-  <!-- Quote Modal -->
-  <div class="modal" id="quoteModal" role="dialog" aria-labelledby="quoteModalTitle" aria-hidden="true">
-    <div class="modal-content">
-      <button class="modal-close" id="quoteModalClose" aria-label="Modalı kapat">&times;</button>
-      <div class="modal-body">
-        <h3 id="quoteModalTitle">Ücretsiz PVC Kapı Teklifi</h3>
-        <form id="quoteForm" class="quote-form">
-          <div class="form-group">
-            <label for="customerName">Adınız Soyadınız *</label>
-            <input type="text" id="customerName" name="customerName" required>
-          </div>
-
-          <div class="form-group">
-            <label for="customerPhone">Telefon Numaranız *</label>
-            <input type="tel" id="customerPhone" name="customerPhone" required>
-          </div>
-
-          <div class="form-group">
-            <label for="customerEmail">E-posta Adresiniz</label>
-            <input type="email" id="customerEmail" name="customerEmail">
-          </div>
-
-          <div class="form-group">
-            <label for="customerCity">Şehir</label>
-            <input type="text" id="customerCity" name="customerCity">
-          </div>
-
-          <div class="form-group">
-            <label for="doorCount">Kaç Adet Kapı?</label>
-            <select id="doorCount" name="doorCount">
-              <option value="1">1 Adet</option>
-              <option value="2-3">2-3 Adet</option>
-              <option value="4-5">4-5 Adet</option>
-              <option value="6+">6+ Adet</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="customerMessage">Mesajınız</label>
-            <textarea id="customerMessage" name="customerMessage" rows="4" placeholder="Hangi model/renkler ilginizi çekiyor? Özel ölçü ihtiyacınız var mı?"></textarea>
-          </div>
-
-          <div class="form-actions">
-            <button type="submit" class="btn-submit">Teklif Gönder</button>
-            <button type="button" class="btn-cancel" onclick="closeQuoteModal()">İptal</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
   <Footer />
 </Layout>
 
@@ -460,16 +409,17 @@ const breadcrumbSchema = {
   }
 
   .btn-quote-main {
+    display: inline-block;
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
     border: none;
     padding: 1rem 3rem;
     border-radius: 50px;
-    cursor: pointer;
     font-weight: 600;
     font-size: 1.1rem;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    text-decoration: none;
   }
 
   .btn-quote-main:hover {
@@ -1079,149 +1029,6 @@ const breadcrumbSchema = {
     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
   }
 
-  .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.8);
-    z-index: 2000;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-  }
-
-  .modal.active {
-    display: flex;
-  }
-
-  .modal-content {
-    background: white;
-    border-radius: 12px;
-    max-width: 500px;
-    width: 100%;
-    max-height: 90vh;
-    position: relative;
-    overflow-y: auto;
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: rgba(0,0,0,0.5);
-    color: white;
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.2rem;
-    z-index: 1;
-    transition: all 0.2s ease;
-  }
-
-  .modal-close:hover {
-    background: rgba(0,0,0,0.7);
-    transform: scale(1.1);
-  }
-
-  .modal-body {
-    padding: 2rem;
-  }
-
-  .modal-body h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    color: #1a202c;
-    text-align: center;
-  }
-
-  .quote-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .form-group label {
-    font-weight: 600;
-    color: #374151;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-  }
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    padding: 0.75rem;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: border-color 0.2s ease;
-  }
-
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-  }
-
-  .form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-
-  .form-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-
-  .btn-submit {
-    flex: 1;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    border: none;
-    padding: 0.875rem 1.5rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .btn-submit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-  }
-
-  .btn-cancel {
-    flex: 1;
-    background: #6b7280;
-    color: white;
-    border: none;
-    padding: 0.875rem 1.5rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .btn-cancel:hover {
-    background: #4b5563;
-  }
-
   @media (max-width: 768px) {
     .content-grid {
       grid-template-columns: 1fr;
@@ -1301,10 +1108,6 @@ const breadcrumbSchema = {
 
     .section-header h2 {
       font-size: 2rem;
-    }
-
-    .modal-content {
-      margin: 1rem;
     }
 
     .stat-label {
@@ -1476,99 +1279,7 @@ const breadcrumbSchema = {
     return card;
   }
 
-  function openQuoteModal() {
-    const modal = document.getElementById('quoteModal');
-    modal.classList.add('active');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-
-    setTimeout(() => {
-      document.getElementById('customerName').focus();
-    }, 100);
-  }
-
-  function closeQuoteModal() {
-    const modal = document.getElementById('quoteModal');
-    modal.classList.remove('active');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    document.getElementById('quoteForm').reset();
-  }
-
-  async function sendQuoteEmail(formData) {
-    const subject = encodeURIComponent('Yeni PVC Kapı Teklif Talebi - CihanPan Door');
-    const body = encodeURIComponent(`
-Müşteri Bilgileri:
-━━━━━━━━━━━━━━━━━━━━━━━━
-👤 Ad Soyad: ${formData.customerName}
-📞 Telefon: ${formData.customerPhone}
-📧 E-posta: ${formData.customerEmail || 'Belirtilmedi'}
-🏠 Şehir: ${formData.customerCity || 'Belirtilmedi'}
-🚪 Kapı Adeti: ${formData.doorCount}
-
-📝 Müşteri Mesajı:
-${formData.customerMessage || 'Mesaj yok'}
-
-━━━━━━━━━━━━━━━━━━━━━━━━
-🌐 Sayfa: ${window.location.href}
-📅 Tarih: ${new Date().toLocaleString('tr-TR')}
-
-Bu teklif talebi CihanPan Door PVC Kapılar sayfasından gelmiştir.
-    `);
-
-    window.location.href = `mailto:exportcihanpandoor@gmail.com?subject=${subject}&body=${body}`;
-    return true;
-  }
-
   document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
-
-    document.getElementById('quoteForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const formData = new FormData(e.target);
-      const data = Object.fromEntries(formData.entries());
-
-      if (!data.customerName || !data.customerPhone) {
-        alert('Lütfen zorunlu alanları doldurunuz (Ad Soyad ve Telefon)');
-        return;
-      }
-
-      try {
-        const submitBtn = e.target.querySelector('.btn-submit');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Gönderiliyor...';
-        submitBtn.disabled = true;
-
-        await sendQuoteEmail(data);
-
-        alert('Teklif talebiniz alındı! En kısa sürede size dönüş yapacağız.');
-        closeQuoteModal();
-
-      } catch (error) {
-        alert('Bir hata oluştu. Lütfen telefon ile iletişime geçiniz: +90 544 169 0038');
-        console.error('Email sending error:', error);
-      } finally {
-        const submitBtn = e.target.querySelector('.btn-submit');
-        if (submitBtn) {
-          submitBtn.textContent = 'Teklif Gönder';
-          submitBtn.disabled = false;
-        }
-      }
-    });
-
-    document.getElementById('quoteModalClose').addEventListener('click', closeQuoteModal);
-
-    document.getElementById('quoteModal').addEventListener('click', (e) => {
-      if (e.target.id === 'quoteModal') {
-        closeQuoteModal();
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeQuoteModal();
-      }
-    });
   });
 </script>
