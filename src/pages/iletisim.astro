@@ -1248,7 +1248,10 @@ const structuredData = {
 
         if (result.success) {
           console.log('✓ SUCCESS - Form submitted successfully!');
-          showNotification('success', '✓ Başarıyla Gönderildi!', 'Mesajınız başarıyla alınmıştır. En kısa sürede size dönüş yapacağız.');
+
+          // Simple alert instead of notification
+          alert('✅ Mesajınız Başarıyla Gönderildi!\n\nEn kısa sürede size dönüş yapacağız.');
+
           contactForm.reset();
           console.log('Form reset completed');
 
