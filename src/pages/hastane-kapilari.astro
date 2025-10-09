@@ -80,19 +80,14 @@ const breadcrumbSchema = {
   keywords="hastane kapısı, medikal kapı, antibakteriyel kapı, sağlık tesisi kapısı, kayseri hastane kapısı üreticisi, hijyenik kapı çözümleri"
   canonical={currentUrl}
   ogImage="/assets/img/og/hastane-kapilar-og.webp"
-
-  // Open Graph Tags
   ogTitle="Hastane Kapıları - Medikal Seri | CihanPan Door"
   ogDescription="Hastane ve sağlık tesisleri için özel tasarlanmış kapı koleksiyonu. Antibakteriyel özellikli, hijyen standartlarına uygun."
   ogType="website"
   ogUrl={currentUrl}
-
-  // Twitter Card Tags
   twitterCard="summary_large_image"
   twitterTitle="Hastane Kapıları | Medikal Seri"
   twitterDescription="Sağlık tesisleri için özel tasarlanmış kapı koleksiyonu. Antibakteriyel ve hijyenik çözümler."
   twitterImage="/assets/img/og/hastane-kapilar-og.webp"
-
   schema={[hastaneSchema, organizationSchema, breadcrumbSchema]}
 >
 
@@ -127,34 +122,34 @@ const breadcrumbSchema = {
         </header>
 
         <div class="quote-button-section">
-          <button class="btn-quote-main" onclick="openQuoteModal()" aria-label="Hastane kapısı için toptan fiyat teklifi al">
+          <a href="/iletisim" class="btn-quote-main" aria-label="Hastane kapısı için toptan fiyat teklifi al">
             Medikal Proje Teklifi Al
-          </button>
+          </a>
         </div>
 
-<div class="product-filter-tabs">
-  <a href="/urunlerimiz" class="product-filter-btn">
-    <span>Tümü</span>
-  </a>
-  <a href="/pvc-kapilar" class="product-filter-btn">
-    <span>PVC Kapılar</span>
-  </a>
-  <a href="/laminoks-kapilar" class="product-filter-btn">
-    <span>Laminoks Kapılar</span>
-  </a>
-  <a href="/elitpan-kapilar" class="product-filter-btn">
-    <span>Elitpan Kapılar</span>
-  </a>
-  <a href="/hastane-kapilari" class="product-filter-btn active">
-    <span>Hastane Kapıları</span>
-  </a>
-  <a href="/otel-kapilari" class="product-filter-btn">
-    <span>Otel Kapıları</span>
-  </a>
-  <a href="/yangina-dayanikli-kapilar" class="product-filter-btn">
-    <span>Yanmaya Dayanıklı Kapılar</span>
-  </a>
-</div>
+        <div class="product-filter-tabs">
+          <a href="/urunlerimiz" class="product-filter-btn">
+            <span>Tümü</span>
+          </a>
+          <a href="/pvc-kapilar" class="product-filter-btn">
+            <span>PVC Kapılar</span>
+          </a>
+          <a href="/laminoks-kapilar" class="product-filter-btn">
+            <span>Laminoks Kapılar</span>
+          </a>
+          <a href="/elitpan-kapilar" class="product-filter-btn">
+            <span>Elitpan Kapılar</span>
+          </a>
+          <a href="/hastane-kapilari" class="product-filter-btn active">
+            <span>Hastane Kapıları</span>
+          </a>
+          <a href="/otel-kapilari" class="product-filter-btn">
+            <span>Otel Kapıları</span>
+          </a>
+          <a href="/yangina-dayanikli-kapilar" class="product-filter-btn">
+            <span>Yanmaya Dayanıklı Kapılar</span>
+          </a>
+        </div>
 
         <div class="products-grid" id="productsGrid">
           <!-- Products will be loaded here -->
@@ -303,93 +298,13 @@ const breadcrumbSchema = {
         <h2>Sağlık Tesisiniz İçin Profesyonel Çözümler</h2>
         <p>Hastane, klinik ve sağlık tesisleri için özel tasarlanmış kapı koleksiyonumuzla projelerinizi güvenilir çözümlerle tamamlayın</p>
         <div class="cta-buttons">
-          <a href="tel:+905441690038" class="btn btn-tertiary">🏥 Hastane Uzmanı Ara</a>
           <a href="/iletisim" class="btn btn-primary">Medikal Proje Danışmanlığı</a>
+          <a href="https://wa.me/905441690038" class="btn btn-secondary" target="_blank" rel="noopener">WhatsApp İletişim</a>
+          <a href="tel:+905441690038" class="btn btn-tertiary">🏥 Hastane Uzmanı Ara</a>
         </div>
       </div>
     </section>
   </main>
-
-  <!-- Quote Modal -->
-  <div class="modal" id="quoteModal" role="dialog" aria-labelledby="quoteModalTitle" aria-hidden="true">
-    <div class="modal-content">
-      <button class="modal-close" id="quoteModalClose" aria-label="Modalı kapat">&times;</button>
-      <div class="modal-body">
-        <h3 id="quoteModalTitle">Hastane Kapısı - Medikal Proje Teklifi</h3>
-        <form id="quoteForm" class="quote-form" name="hastane-quote" method="POST" data-vercel="true">
-          <input type="hidden" name="form-name" value="hastane-quote">
-
-          <div class="form-group">
-            <label for="customerName">Adınız Soyadınız *</label>
-            <input type="text" id="customerName" name="customerName" required>
-          </div>
-
-          <div class="form-group">
-            <label for="customerPhone">Telefon Numaranız *</label>
-            <input type="tel" id="customerPhone" name="customerPhone" required>
-          </div>
-
-          <div class="form-group">
-            <label for="customerEmail">E-posta Adresiniz *</label>
-            <input type="email" id="customerEmail" name="customerEmail" required>
-          </div>
-
-          <div class="form-group">
-            <label for="customerCompany">Hastane/Kurum Adı</label>
-            <input type="text" id="customerCompany" name="customerCompany">
-          </div>
-
-          <div class="form-group">
-            <label for="doorCount">Kaç Adet Kapı?</label>
-            <select id="doorCount" name="doorCount">
-              <option value="10-25">10-25 Adet</option>
-              <option value="25-50">25-50 Adet</option>
-              <option value="50-100">50-100 Adet</option>
-              <option value="100+">100+ Adet</option>
-              <option value="hastane-kompleksi">Hastane Kompleksi</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="projectType">Tesis Türü</label>
-            <select id="projectType" name="projectType">
-              <option value="">Seçiniz</option>
-              <option value="hastane">Hastane</option>
-              <option value="ozel-klinik">Özel Klinik</option>
-              <option value="poliklinik">Poliklinik</option>
-              <option value="eczane">Eczane</option>
-              <option value="laboratuvar">Laboratuvar</option>
-              <option value="saglik-ocagi">Sağlık Ocağı</option>
-              <option value="dis-klinigi">Diş Kliniği</option>
-              <option value="veteriner-klinik">Veteriner Klinik</option>
-              <option value="diger">Diğer</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="specialRequirements">Özel Gereksinimler</label>
-            <div class="checkbox-group">
-              <label><input type="checkbox" name="antibakteriyel" value="1"> Antibakteriyel özellik</label>
-              <label><input type="checkbox" name="yanginDayanimi" value="1"> Yangın dayanımı</label>
-              <label><input type="checkbox" name="sesIzolasyon" value="1"> Ses izolasyonu</label>
-              <label><input type="checkbox" name="otomatikKapanma" value="1"> Otomatik kapanma</label>
-              <label><input type="checkbox" name="camPanel" value="1"> Cam panel</label>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="customerMessage">Proje Detayları</label>
-            <textarea id="customerMessage" name="customerMessage" rows="4" placeholder="Tesisinizin büyüklüğü, özel gereksinimler, zaman çizelgesi..."></textarea>
-          </div>
-
-          <div class="form-actions">
-            <button type="submit" class="btn-submit">Medikal Proje Teklifi Gönder</button>
-            <button type="button" class="btn-cancel" onclick="closeQuoteModal()">İptal</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
 
   <Footer />
 </Layout>
@@ -475,16 +390,18 @@ const breadcrumbSchema = {
   }
 
   .btn-quote-main {
+    display: inline-block;
     background: linear-gradient(135deg, #0891b2, #0e7490);
     color: white;
     border: none;
     padding: 1rem 3rem;
     border-radius: 50px;
-    cursor: pointer;
     font-weight: 600;
     font-size: 1.1rem;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(8, 145, 178, 0.3);
+    text-decoration: none;
+    text-align: center;
   }
 
   .btn-quote-main:hover {
@@ -493,41 +410,30 @@ const breadcrumbSchema = {
   }
 
   /* Product Filters */
-  .product-filters {
-    margin-bottom: 3rem;
-  }
-
-  .product-filters h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 1.5rem;
-    text-align: center;
-  }
-
   .product-filter-tabs {
     display: flex;
     justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;
+    margin-bottom: 3rem;
   }
 
-.product-filter-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 600;
-  font-size: 1rem;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-  position: relative;
-  overflow: hidden;
-  text-decoration: none;        /* YENİ - Link alt çizgisini kaldır */
-  display: inline-block;        /* YENİ - Link'i buton gibi göster */
-}
+  .product-filter-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: inline-block;
+  }
 
   .product-filter-btn::before {
     content: '';
@@ -947,6 +853,18 @@ const breadcrumbSchema = {
     box-shadow: 0 4px 12px rgba(17, 24, 39, 0.3);
   }
 
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .btn-secondary:hover {
+    background: white;
+    color: #0891b2;
+    transform: translateY(-2px);
+  }
+
   .btn-tertiary {
     background: #10b981;
     color: white;
@@ -957,170 +875,6 @@ const breadcrumbSchema = {
     background: #059669;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-  }
-
-  /* Modal Styles */
-  .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.8);
-    z-index: 2000;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-  }
-
-  .modal.active {
-    display: flex;
-  }
-
-  .modal-content {
-    background: white;
-    border-radius: 12px;
-    max-width: 600px;
-    width: 100%;
-    max-height: 90vh;
-    position: relative;
-    overflow-y: auto;
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: rgba(0,0,0,0.5);
-    color: white;
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.2rem;
-    z-index: 1;
-    transition: all 0.2s ease;
-  }
-
-  .modal-close:hover {
-    background: rgba(0,0,0,0.7);
-    transform: scale(1.1);
-  }
-
-  .modal-body {
-    padding: 2rem;
-  }
-
-  .modal-body h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    color: #1a202c;
-    text-align: center;
-  }
-
-  .quote-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .form-group label {
-    font-weight: 600;
-    color: #374151;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-  }
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    padding: 0.75rem;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: border-color 0.2s ease;
-  }
-
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: #0891b2;
-    box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.1);
-  }
-
-  .form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-
-  .checkbox-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-  }
-
-  .checkbox-group label {
-    display: flex;
-    align-items: center;
-    font-weight: normal;
-    margin: 0;
-    cursor: pointer;
-  }
-
-  .checkbox-group input[type="checkbox"] {
-    margin-right: 0.5rem;
-    width: auto;
-  }
-
-  .form-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-
-  .btn-submit {
-    flex: 1;
-    background: linear-gradient(135deg, #0891b2, #0e7490);
-    color: white;
-    border: none;
-    padding: 0.875rem 1.5rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .btn-submit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(8, 145, 178, 0.3);
-  }
-
-  .btn-cancel {
-    flex: 1;
-    background: #6b7280;
-    color: white;
-    border: none;
-    padding: 0.875rem 1.5rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .btn-cancel:hover {
-    background: #4b5563;
   }
 
   /* Responsive Design */
@@ -1214,18 +968,6 @@ const breadcrumbSchema = {
     .section-header h2 {
       font-size: 2rem;
     }
-
-    .modal-content {
-      margin: 1rem;
-    }
-
-    .modal-body {
-      padding: 1.5rem;
-    }
-
-    .form-actions {
-      flex-direction: column;
-    }
   }
 </style>
 
@@ -1246,10 +988,9 @@ const breadcrumbSchema = {
   // Parse file names and create products
   fileNames.forEach((fileName, index) => {
     const parts = fileName.replace('.webp', '').split('-');
-    const modelNumber = parts[3]; // 501, 502, etc.
-    const colorInfo = parts.slice(4).join(' '); // Tik Antrasit, Avola Krem, etc.
+    const modelNumber = parts[3];
+    const colorInfo = parts.slice(4).join(' ');
 
-    // Format display name
     const displayName = `Hastane ${modelNumber}`;
     const colorName = colorInfo.replace(/-/g, ' ');
 
@@ -1257,26 +998,14 @@ const breadcrumbSchema = {
       id: `hastane-${modelNumber}`,
       name: displayName,
       category: 'hastane',
-      subcategory: index < 2 ? 'antibakteriyel' : 'hijyenik', // İlk 2 model antibakteriyel, diğerleri hijyenik
-
-      // Use actual file name
+      subcategory: index < 2 ? 'antibakteriyel' : 'hijyenik',
       image: `/assets/img/hastane-kapilari/${fileName}`,
       fallbackImage: `https://picsum.photos/300/400?random=${index + 500}`,
-
-      // SEO için zenginleştirilmiş alt text
       altText: `CihanPan Door Hastane Kapısı Model ${modelNumber} ${colorName} - Antibakteriyel Özellikli Sağlık Tesisi Kapısı`,
-
-      // Ürün özellikleri
       features: index < 2 ? 'Antibakteriyel • Hijyenik' : 'Hijyenik • Dayanıklı',
       colorInfo: colorName,
-
-      // SEO için detaylı description
       description: `Hastane kapısı model ${modelNumber} ${colorName}. Sağlık tesisleri için özel tasarlanmış antibakteriyel ve hijyenik özellikli kapı. TSE standartlarına uygun, kolay temizlenebilir yüzey. Kayseri üretimi, toptan satış avantajı.`,
-
-      // SEO keywords
       seoKeywords: `hastane kapısı model ${modelNumber}, antibakteriyel kapı, sağlık tesisi kapısı, hijyenik kapı, medikal kapı ${colorName.toLowerCase()}, kayseri hastane kapısı üreticisi`,
-
-      // Schema.org için yapısal data
       schemaData: {
         "@type": "Product",
         "name": `Hastane Kapısı Model ${modelNumber} - ${colorName}`,
@@ -1289,12 +1018,6 @@ const breadcrumbSchema = {
     });
   });
 
-  // Current filter state
-  let currentFilter = 'all';
-  let filteredProducts = hastaneModels;
-
-
-
   function renderProducts() {
     const grid = document.getElementById('productsGrid');
     const loading = document.getElementById('loading');
@@ -1303,20 +1026,10 @@ const breadcrumbSchema = {
     grid.innerHTML = '';
 
     setTimeout(() => {
-      if (filteredProducts.length === 0) {
-        grid.innerHTML = `
-          <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
-            <h3 style="color: #6b7280; margin-bottom: 1rem;">Bu kategoride henüz ürün bulunmuyor</h3>
-            <p style="color: #9ca3af;">Yakında yeni hastane kapı modelleri eklenecek.</p>
-          </div>
-        `;
-      } else {
-        filteredProducts.forEach((product, index) => {
-          const card = createProductCard(product);
-          grid.appendChild(card);
-        });
-      }
-
+      hastaneModels.forEach((product) => {
+        const card = createProductCard(product);
+        grid.appendChild(card);
+      });
       loading.style.display = 'none';
     }, 300);
   }
@@ -1346,125 +1059,8 @@ const breadcrumbSchema = {
     return card;
   }
 
-  // Quote Modal Functions
-  function openQuoteModal() {
-    const modal = document.getElementById('quoteModal');
-    modal.classList.add('active');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-
-    setTimeout(() => {
-      document.getElementById('customerName').focus();
-    }, 100);
-  }
-
-  function closeQuoteModal() {
-    const modal = document.getElementById('quoteModal');
-    modal.classList.remove('active');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    document.getElementById('quoteForm').reset();
-  }
-
-  // Event listeners and initialization
+  // Initialize on page load
   document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
-
-
-    // Quote form submission
-    document.getElementById('quoteForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const formData = new FormData(e.target);
-      const data = Object.fromEntries(formData.entries());
-
-      // Checkbox değerlerini topla
-      const specialReqs = [];
-      if (formData.get('antibakteriyel')) specialReqs.push('Antibakteriyel özellik');
-      if (formData.get('yanginDayanimi')) specialReqs.push('Yangın dayanımı');
-      if (formData.get('sesIzolasyon')) specialReqs.push('Ses izolasyonu');
-      if (formData.get('otomatikKapanma')) specialReqs.push('Otomatik kapanma');
-      if (formData.get('camPanel')) specialReqs.push('Cam panel');
-
-      // Validate required fields
-      if (!data.customerName || !data.customerPhone || !data.customerEmail) {
-        alert('Lütfen zorunlu alanları doldurunuz (Ad Soyad, Telefon ve E-posta)');
-        return;
-      }
-
-      try {
-        const submitBtn = e.target.querySelector('.btn-submit');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Gönderiliyor...';
-        submitBtn.disabled = true;
-
-        // vercel Forms ile form gönderimi
-        const response = await fetch(window.location.pathname, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(formData).toString()
-        });
-
-        if (response.ok) {
-          alert('Hastane kapısı proje talebiniz alındı! Medikal uzmanımız en kısa sürede size dönüş yapacak.');
-          closeQuoteModal();
-        } else {
-          throw new Error('Form gönderim hatası');
-        }
-
-      } catch (error) {
-        // Fallback - Email ile gönderim
-        const subject = encodeURIComponent('Hastane Kapısı - Medikal Proje Teklifi - CihanPan Door');
-        const body = encodeURIComponent(`
-Hastane Kapısı Medikal Proje Talebi:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-👤 Ad Soyad: ${data.customerName}
-📞 Telefon: ${data.customerPhone}
-📧 E-posta: ${data.customerEmail}
-🏥 Hastane/Kurum: ${data.customerCompany || 'Belirtilmedi'}
-🚪 Kapı Adeti: ${data.doorCount}
-🏗️ Tesis Türü: ${data.projectType || 'Belirtilmedi'}
-
-🔹 Özel Gereksinimler:
-${specialReqs.length > 0 ? specialReqs.join(', ') : 'Belirtilmedi'}
-
-📝 Proje Detayları:
-${data.customerMessage || 'Mesaj yok'}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🌐 Sayfa: ${window.location.href}
-📅 Tarih: ${new Date().toLocaleString('tr-TR')}
-
-Bu hastane kapısı teklifi medikal serimizden talep edilmiştir.
-Antibakteriyel özellikli, sağlık standartlarına uygun çözümler.
-        `);
-
-        window.location.href = `mailto:exportcihanpandoor@gmail.com?subject=${subject}&body=${body}`;
-        alert('Form e-posta ile gönderildi. Hastane projeniz için en kısa sürede size dönüş yapacağız.');
-        closeQuoteModal();
-
-      } finally {
-        const submitBtn = e.target.querySelector('.btn-submit');
-        if (submitBtn) {
-          submitBtn.textContent = 'Medikal Proje Teklifi Gönder';
-          submitBtn.disabled = false;
-        }
-      }
-    });
-
-    // Modal close events
-    document.getElementById('quoteModalClose').addEventListener('click', closeQuoteModal);
-
-    document.getElementById('quoteModal').addEventListener('click', (e) => {
-      if (e.target.id === 'quoteModal') {
-        closeQuoteModal();
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeQuoteModal();
-      }
-    });
   });
 </script>

@@ -81,19 +81,14 @@ const breadcrumbSchema = {
   keywords="Elitpan kapı sayfa, premium iç kapı modelleri, kayseri elitpan üreticisi, toptan kapı satışı, özel tasarım kapı, ticari kapı projeleri"
   canonical={currentUrl}
   ogImage="/assets/img/og/elitpan-kapilar-og.webp"
-
-  // Open Graph Tags
   ogTitle="Elitpan İç Oda Kapıları - Sayfa 1 | Premium Seri CihanPan Door"
   ogDescription="Premium kalite Elitpan kapı koleksiyonunun devamı. 26 model, üretici fiyat avantajı, customized çözümler."
   ogType="website"
   ogUrl={currentUrl}
-
-  // Twitter Card Tags
   twitterCard="summary_large_image"
   twitterTitle="Elitpan İç Oda Kapıları - Sayfa 1 | Premium Seri"
   twitterDescription="Premium Elitpan kapı koleksiyonu. Üretici fiyat avantajı, toptan satış."
   twitterImage="/assets/img/og/elitpan-kapilar-og.webp"
-
   schema={[elitpanSchema, organizationSchema, breadcrumbSchema]}
 >
 
@@ -127,34 +122,34 @@ const breadcrumbSchema = {
         </header>
 
         <div class="quote-button-section">
-          <button class="btn-quote-main" onclick="openQuoteModal()" aria-label="Elitpan kapı için toptan fiyat teklifi al">
+          <a href="/iletisim" class="btn-quote-main" aria-label="Elitpan kapı için toptan fiyat teklifi al">
             Toptan Fiyat Teklifi Al
-          </button>
+          </a>
         </div>
 
-<div class="product-filter-tabs">
-  <a href="/urunlerimiz" class="product-filter-btn">
-    <span>Tümü</span>
-  </a>
-  <a href="/pvc-kapilar" class="product-filter-btn">
-    <span>PVC Kapılar</span>
-  </a>
-  <a href="/laminoks-kapilar" class="product-filter-btn">
-    <span>Laminoks Kapılar</span>
-  </a>
-  <a href="/elitpan-kapilar" class="product-filter-btn active">
-    <span>Elitpan Kapılar</span>
-  </a>
-  <a href="/hastane-kapilari" class="product-filter-btn">
-    <span>Hastane Kapıları</span>
-  </a>
-  <a href="/otel-kapilari" class="product-filter-btn">
-    <span>Otel Kapıları</span>
-  </a>
-  <a href="/yangina-dayanikli-kapilar" class="product-filter-btn">
-    <span>Yanmaya Dayanıklı Kapılar</span>
-  </a>
-</div>
+        <div class="product-filter-tabs">
+          <a href="/urunlerimiz" class="product-filter-btn">
+            <span>Tümü</span>
+          </a>
+          <a href="/pvc-kapilar" class="product-filter-btn">
+            <span>PVC Kapılar</span>
+          </a>
+          <a href="/laminoks-kapilar" class="product-filter-btn">
+            <span>Laminoks Kapılar</span>
+          </a>
+          <a href="/elitpan-kapilar" class="product-filter-btn active">
+            <span>Elitpan Kapılar</span>
+          </a>
+          <a href="/hastane-kapilari" class="product-filter-btn">
+            <span>Hastane Kapıları</span>
+          </a>
+          <a href="/otel-kapilari" class="product-filter-btn">
+            <span>Otel Kapıları</span>
+          </a>
+          <a href="/yangina-dayanikli-kapilar" class="product-filter-btn">
+            <span>Yanmaya Dayanıklı Kapılar</span>
+          </a>
+        </div>
 
         <div class="products-grid" id="productsGrid">
           <!-- Products will be loaded here -->
@@ -164,8 +159,6 @@ const breadcrumbSchema = {
           <div class="loading-spinner"></div>
           <p>Elitpan kapı modelleri yükleniyor...</p>
         </div>
-
-
       </div>
     </section>
 
@@ -233,96 +226,26 @@ const breadcrumbSchema = {
         <h2>Premium Elitpan Kapı Koleksiyonu</h2>
         <p>120+ model ile Türkiye'nin en geniş premium kapı koleksiyonu. Projeniz için ideal çözümü bulun</p>
         <div class="cta-buttons">
-           <a href="https://wa.me/905441690038" class="btn btn-tertiary">📞 Hemen Ara</a>
-
           <a href="/iletisim" class="btn btn-primary">Proje Danışmanlığı</a>
-
+          <a href="https://wa.me/905441690038" class="btn btn-secondary" target="_blank" rel="noopener">WhatsApp İletişim</a>
+          <a href="tel:+905441690038" class="btn btn-tertiary">📞 Hemen Ara</a>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Quote Modal -->
-  <div class="modal" id="quoteModal" role="dialog" aria-labelledby="quoteModalTitle" aria-hidden="true">
-    <div class="modal-content">
-      <button class="modal-close" id="quoteModalClose" aria-label="Modalı kapat">&times;</button>
-      <div class="modal-body">
-        <h3 id="quoteModalTitle">Premium Elitpan Kapı - Toptan Fiyat Teklifi</h3>
-        <form id="quoteForm" class="quote-form" name="elitpan-quote" method="POST" data-vercel="true">
-          <input type="hidden" name="form-name" value="elitpan-quote">
-
-          <div class="form-group">
-            <label for="customerName">Adınız Soyadınız *</label>
-            <input type="text" id="customerName" name="customerName" required>
-          </div>
-
-          <div class="form-group">
-            <label for="customerPhone">Telefon Numaranız *</label>
-            <input type="tel" id="customerPhone" name="customerPhone" required>
-          </div>
-
-          <div class="form-group">
-            <label for="customerEmail">E-posta Adresiniz *</label>
-            <input type="email" id="customerEmail" name="customerEmail" required>
-          </div>
-
-          <div class="form-group">
-            <label for="customerCompany">Firma Adı</label>
-            <input type="text" id="customerCompany" name="customerCompany">
-          </div>
-
-          <div class="form-group">
-            <label for="doorCount">Kaç Adet Kapı?</label>
-            <select id="doorCount" name="doorCount">
-              <option value="100-250">100-250 Adet</option>
-              <option value="250-500">250-500 Adet</option>
-              <option value="500-1000">500-1000 Adet</option>
-              <option value="1000+">1000+ Adet</option>
-              <option value="mega-proje">Mega Proje</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="projectType">Proje Türü</label>
-            <select id="projectType" name="projectType">
-              <option value="">Seçiniz</option>
-              <option value="hastane-kompleksi">Hastane Kompleksi</option>
-              <option value="otel-zinciri">Otel Zinciri</option>
-              <option value="ofis-binasi">Ofis Binası</option>
-              <option value="residential">Residential Proje</option>
-              <option value="egitim-kampusu">Eğitim Kampüsü</option>
-              <option value="ihracat">İhracat</option>
-              <option value="diger">Diğer</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="customerMessage">Proje Detayları</label>
-            <textarea id="customerMessage" name="customerMessage" rows="4" placeholder="Projenizin büyüklüğü, zaman çizelgesi, özel gereksinimler..."></textarea>
-          </div>
-
-          <div class="form-actions">
-            <button type="submit" class="btn-submit">Proje Teklifi Gönder</button>
-            <button type="button" class="btn-cancel" onclick="closeQuoteModal()">İptal</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
   <Footer />
 </Layout>
 
 <style>
-  /* Base styles - Elitpan 1. sayfa ile aynı */
+  /* Base styles */
   .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
   }
 
-  /* Hero Section - 2. sayfa için özelleştirilmiş */
-
+  /* Hero Section */
   .hero {
     padding: 4rem 0;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -364,7 +287,7 @@ const breadcrumbSchema = {
     border: 1px solid rgba(255, 255, 255, 0.3);
   }
 
-  /* Products Section - 1. sayfa ile aynı stiller */
+  /* Products Section */
   .products-section {
     padding: 4rem 0;
     background: #ffffff;
@@ -395,16 +318,18 @@ const breadcrumbSchema = {
   }
 
   .btn-quote-main {
+    display: inline-block;
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
     border: none;
     padding: 1rem 3rem;
     border-radius: 50px;
-    cursor: pointer;
     font-weight: 600;
     font-size: 1.1rem;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    text-decoration: none;
+    text-align: center;
   }
 
   .btn-quote-main:hover {
@@ -413,41 +338,30 @@ const breadcrumbSchema = {
   }
 
   /* Product Filters */
-  .product-filters {
-    margin-bottom: 3rem;
-  }
-
-  .product-filters h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 1.5rem;
-    text-align: center;
-  }
-
   .product-filter-tabs {
     display: flex;
     justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;
+    margin-bottom: 3rem;
   }
 
- .product-filter-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 600;
-  font-size: 1rem;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-  position: relative;
-  overflow: hidden;
-  text-decoration: none;        /* YENİ - Link alt çizgisini kaldır */
-  display: inline-block;        /* YENİ - Link'i buton gibi göster */
-}
+  .product-filter-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: inline-block;
+  }
 
   .product-filter-btn::before {
     content: '';
@@ -568,122 +482,7 @@ const breadcrumbSchema = {
     100% { transform: rotate(360deg); }
   }
 
-  /* Page Navigation - 2. sayfa için özelleştirilmiş */
-  .page-navigation {
-    background: white;
-    border-radius: 16px;
-    padding: 2rem;
-    margin-top: 3rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e5e7eb;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    align-items: center;
-  }
-
-  .nav-info {
-    text-align: center;
-  }
-
-  .current-page {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #111827;
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-
-  .product-count {
-    font-size: 0.95rem;
-    color: #6b7280;
-    font-weight: 500;
-  }
-
-  .nav-buttons {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-  }
-
- .nav-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1rem 2rem;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 1rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    border: none;
-    cursor: pointer;
-    min-width: 160px;
-    justify-content: center;
-  }
-
-  .nav-btn:not(.disabled) {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-  }
-
-  .nav-btn:not(.disabled):hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(55, 65, 81, 0.4);
-  }
-
-  .nav-btn.disabled {
-    background: #f3f4f6;
-    color: #9ca3af;
-    cursor: not-allowed;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  }
-
-  .nav-btn.prev {
-    flex-direction: row;
-  }
-
-  .nav-btn svg {
-    flex-shrink: 0;
-    transition: transform 0.3s ease;
-  }
-
-  .nav-btn:not(.disabled):hover svg {
-    transform: translateX(-3px);
-  }
-
-  .page-dots {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    margin-top: 0.5rem;
-  }
-
-  .dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #d1d5db;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    text-decoration: none;
-    display: block;
-    position: relative;
-  }
-
-  .dot:hover {
-    background: #9ca3af;
-    transform: scale(1.2);
-  }
-
-  .dot.active {
-    background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
-    transform: scale(1.3);
-    box-shadow: 0 2px 8px rgba(55, 65, 81, 0.4);
-  }
-
-  /* Highlights Section - 2. sayfa için özel */
+  /* Highlights Section */
   .highlights-section {
     padding: 5rem 0;
     background: #f8fafc;
@@ -915,150 +714,6 @@ const breadcrumbSchema = {
     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
   }
 
-  /* Modal Styles - Elitpan 1. sayfa ile aynı */
-  .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.8);
-    z-index: 2000;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-  }
-
-  .modal.active {
-    display: flex;
-  }
-
-  .modal-content {
-    background: white;
-    border-radius: 12px;
-    max-width: 600px;
-    width: 100%;
-    max-height: 90vh;
-    position: relative;
-    overflow-y: auto;
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: rgba(0,0,0,0.5);
-    color: white;
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.2rem;
-    z-index: 1;
-    transition: all 0.2s ease;
-  }
-
-  .modal-close:hover {
-    background: rgba(0,0,0,0.7);
-    transform: scale(1.1);
-  }
-
-  .modal-body {
-    padding: 2rem;
-  }
-
-  .modal-body h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    color: #1a202c;
-    text-align: center;
-  }
-
-  .quote-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .form-group label {
-    font-weight: 600;
-    color: #374151;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-  }
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    padding: 0.75rem;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: border-color 0.2s ease;
-  }
-
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: #374151;
-    box-shadow: 0 0 0 3px rgba(55, 65, 81, 0.1);
-  }
-
-  .form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-
-  .form-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-
-  .btn-submit {
-    flex: 1;
-    background: linear-gradient(135deg, #374151, #1f2937);
-    color: white;
-    border: none;
-    padding: 0.875rem 1.5rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .btn-submit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(55, 65, 81, 0.3);
-  }
-
-  .btn-cancel {
-    flex: 1;
-    background: #6b7280;
-    color: white;
-    border: none;
-    padding: 0.875rem 1.5rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .btn-cancel:hover {
-    background: #4b5563;
-  }
-
   /* Responsive Design */
   @media (max-width: 768px) {
     .content-grid {
@@ -1140,22 +795,13 @@ const breadcrumbSchema = {
     .section-header h2 {
       font-size: 2rem;
     }
-
-    .modal-content {
-      margin: 1rem;
-    }
-
-    .modal-body {
-      padding: 1.5rem;
-    }
   }
 </style>
 
 <script>
-  // Generate Elitpan models from the remaining file list (26 products for page 1)
+  // Generate Elitpan models from the remaining file list (26 products)
   const elitpanModels = [];
 
-  // 26 ÜRÜN (SAYFA 1) - liste.txt'den alınan dosya adları
   const fileNames = [
     "CihanpanDoor-Elitpan-Serisi-301.webp",
     "CihanpanDoor-Elitpan-Serisi-302.webp",
@@ -1187,32 +833,19 @@ const breadcrumbSchema = {
 
   // Parse file names and create products
   fileNames.forEach((fileName, index) => {
-    // Parse filename: CihanpanDoor-Elitpan-Serisi-301.webp
     const parts = fileName.replace('.webp', '').split('-');
-    const modelNumber = parts[3]; // 301
-
-    // Format display name
+    const modelNumber = parts[3];
     const displayName = `Elitpan ${modelNumber}`;
 
     elitpanModels.push({
       id: `Elitpan-${modelNumber}`,
-      name: displayName, // Elitpan 301
-      category: 'elitpan', // Her ürün Elitpan kategorisinde
-
-      // Use actual file name
+      name: displayName,
+      category: 'elitpan',
       image: `/assets/img/elitpan-kapilar/${fileName}`,
       fallbackImage: `https://picsum.photos/300/400?random=${index + 300}`,
-
-      // SEO için zenginleştirilmiş alt text
       altText: `CihanPan Door Elitpan Interior Door Model ${modelNumber} - Premium Quality Laminate Door for Commercial Projects, Turkish Manufacturer`,
-
-      // SEO için detaylı description
       description: `Premium Elitpan door model ${modelNumber}. High-end laminate interior door suitable for luxury projects, hotels, hospitals and commercial buildings. Scratch resistant surface, customizable sizes. Wholesale manufacturer prices from Kayseri, Turkey.`,
-
-      // SEO keywords
-      seoKeywords: `premium elitpan door model ${modelNumber}, luxury interior doors, commercial doors page 1, premium turkish manufacturer wholesale, CihanPan door premium series`,
-
-      // Schema.org için yapısal data
+      seoKeywords: `premium elitpan door model ${modelNumber}, luxury interior doors, commercial doors, premium turkish manufacturer wholesale, CihanPan door premium series`,
       schemaData: {
         "@type": "Product",
         "name": `Premium Elitpan Interior Door Model ${modelNumber}`,
@@ -1224,11 +857,6 @@ const breadcrumbSchema = {
     });
   });
 
-  // Current filter state
-  let currentFilter = 'all';
-  let filteredProducts = elitpanModels;
-
-
   function renderProducts() {
     const grid = document.getElementById('productsGrid');
     const loading = document.getElementById('loading');
@@ -1237,20 +865,10 @@ const breadcrumbSchema = {
     grid.innerHTML = '';
 
     setTimeout(() => {
-      if (filteredProducts.length === 0) {
-        grid.innerHTML = `
-          <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
-            <h3 style="color: #6b7280; margin-bottom: 1rem;">Bu kategoride henüz ürün bulunmuyor</h3>
-            <p style="color: #9ca3af;">Yakında yeni ürünler eklenecek.</p>
-          </div>
-        `;
-      } else {
-        filteredProducts.forEach((product, index) => {
-          const card = createProductCard(product);
-          grid.appendChild(card);
-        });
-      }
-
+      elitpanModels.forEach((product) => {
+        const card = createProductCard(product);
+        grid.appendChild(card);
+      });
       loading.style.display = 'none';
     }, 200);
   }
@@ -1278,113 +896,8 @@ const breadcrumbSchema = {
     return card;
   }
 
-  // Quote Modal Functions
-  function openQuoteModal() {
-    const modal = document.getElementById('quoteModal');
-    modal.classList.add('active');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-
-    setTimeout(() => {
-      document.getElementById('customerName').focus();
-    }, 100);
-  }
-
-  function closeQuoteModal() {
-    const modal = document.getElementById('quoteModal');
-    modal.classList.remove('active');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    document.getElementById('quoteForm').reset();
-  }
-
-  // Event listeners and initialization
+  // Initialize on page load
   document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
-
-
-    // Quote form submission - vercel Forms kullanımı
-    document.getElementById('quoteForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const formData = new FormData(e.target);
-      const data = Object.fromEntries(formData.entries());
-
-      // Validate required fields
-      if (!data.customerName || !data.customerPhone || !data.customerEmail) {
-        alert('Lütfen zorunlu alanları doldurunuz (Ad Soyad, Telefon ve E-posta)');
-        return;
-      }
-
-      try {
-        const submitBtn = e.target.querySelector('.btn-submit');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Gönderiliyor...';
-        submitBtn.disabled = true;
-
-        // vercel Forms ile form gönderimi
-        const response = await fetch(window.location.pathname, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(formData).toString()
-        });
-
-        if (response.ok) {
-          alert('Premium Elitpan kapı teklifi talebiniz alındı! En kısa sürede size dönüş yapacağız.');
-          closeQuoteModal();
-        } else {
-          throw new Error('Form gönderim hatası');
-        }
-
-      } catch (error) {
-        // Fallback - Email ile gönderim
-        const subject = encodeURIComponent('Premium Elitpan Kapı - Sayfa 1 Toptan Fiyat Teklifi - CihanPan Door');
-        const body = encodeURIComponent(`
-Premium Elitpan Toptan Satış Talebi (Sayfa 1):
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-👤 Ad Soyad: ${data.customerName}
-📞 Telefon: ${data.customerPhone}
-📧 E-posta: ${data.customerEmail}
-🏢 Firma: ${data.customerCompany || 'Belirtilmedi'}
-🚪 Kapı Adeti: ${data.doorCount}
-🏗️ Proje Türü: ${data.projectType || 'Belirtilmedi'}
-
-📝 Proje Detayları:
-${data.customerMessage || 'Mesaj yok'}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🌐 Sayfa: ${window.location.href}
-📅 Tarih: ${new Date().toLocaleString('tr-TR')}
-
-Bu premium Elitpan toptan fiyat teklifi talebi 1. sayfa koleksiyonundan gelmiştir.
-        `);
-
-        window.location.href = `mailto:exportcihanpandoor@gmail.com?subject=${subject}&body=${body}`;
-        alert('Form e-posta ile gönderildi. Premium projeleriniz için en kısa sürede size dönüş yapacağız.');
-        closeQuoteModal();
-
-      } finally {
-        const submitBtn = e.target.querySelector('.btn-submit');
-        if (submitBtn) {
-          submitBtn.textContent = 'Proje Teklifi Gönder';
-          submitBtn.disabled = false;
-        }
-      }
-    });
-
-    // Modal close events
-    document.getElementById('quoteModalClose').addEventListener('click', closeQuoteModal);
-
-    document.getElementById('quoteModal').addEventListener('click', (e) => {
-      if (e.target.id === 'quoteModal') {
-        closeQuoteModal();
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeQuoteModal();
-      }
-    });
   });
 </script>
