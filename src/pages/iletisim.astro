@@ -893,12 +893,29 @@ const structuredData = {
 </style>
 
 <script is:inline define:vars={{ publicWeb3formsKey }}>
-  (function() {
+  console.log('🔵 Script loaded!');
+  console.log('🔵 Access Key:', publicWeb3formsKey ? 'EXISTS' : 'MISSING');
+
+  window.addEventListener('load', function() {
+    console.log('🟢 Page loaded!');
+
+    const contactForm = document.getElementById('contactForm');
+    console.log('🟢 Form element:', contactForm ? 'FOUND' : 'NOT FOUND');
+
+    if (!contactForm) {
+      alert('HATA: Form bulunamadı!');
+      return;
+    }
+
     const accessKey = publicWeb3formsKey;
 
     if (!accessKey) {
-      console.error('Web3Forms access key is not configured. Please set PUBLIC_WEB3FORMS_KEY environment variable.');
+      console.error('❌ Web3Forms access key is not configured');
+      alert('HATA: Web3Forms API key tanımlı değil!');
+      return;
     }
+
+    console.log('✅ Access key configured');
 
     // Form submission state
     let isSubmitting = false;
@@ -1004,8 +1021,13 @@ const structuredData = {
 
     // Notification helper
     function showNotification(type, title, text) {
+      console.log('📢 Showing notification:', type, title, text);
+
       const oldNotification = document.querySelector('.notification');
-      if (oldNotification) oldNotification.remove();
+      if (oldNotification) {
+        console.log('Removing old notification');
+        oldNotification.remove();
+      }
 
       const notification = document.createElement('div');
       notification.className = `notification ${type}`;
@@ -1031,16 +1053,27 @@ const structuredData = {
         </div>
       `;
 
+      console.log('Appending notification to body');
       document.body.appendChild(notification);
-      setTimeout(() => notification.classList.add('show'), 100);
+
+      // Force reflow
+      notification.offsetHeight;
+
+      console.log('Adding show class');
+      setTimeout(() => {
+        notification.classList.add('show');
+        console.log('Notification should be visible now');
+      }, 100);
 
       const closeBtn = notification.querySelector('.notification-close');
       closeBtn.addEventListener('click', () => {
+        console.log('Close button clicked');
         notification.classList.remove('show');
         setTimeout(() => notification.remove(), 400);
       });
 
       setTimeout(() => {
+        console.log('Auto-hiding notification after 5s');
         notification.classList.remove('show');
         setTimeout(() => notification.remove(), 400);
       }, 5000);
@@ -1096,25 +1129,13 @@ const structuredData = {
     });
 
     // Form handling
-    const contactForm = document.getElementById('contactForm');
-    if (!contactForm) {
-      console.error('Contact form not found');
-      return;
-    }
+    console.log('🟢 Setting up form listener...');
 
-    console.log('Contact form initialized');
-
-    // Real-time validation on blur
-    contactForm.addEventListener('blur', function(e) {
-      if (e.target.matches('input, textarea, select')) {
-        validateField(e.target);
-      }
-    }, true);
-
-    // Form submission
     contactForm.addEventListener('submit', async function(e) {
       e.preventDefault();
       e.stopPropagation();
+
+      alert('Form gönderiliyor! Console\'u kontrol edin.');
 
       console.log('=== FORM SUBMIT STARTED ===');
       console.log('Access Key:', accessKey ? 'EXISTS' : 'MISSING');
@@ -1272,6 +1293,7 @@ const structuredData = {
     contactForm.addEventListener('focus', function() {
       if (!formEngaged) {
         formEngaged = true;
+        console.log('📝 Form engaged');
         if (typeof gtag !== 'undefined') {
           gtag('event', 'form_start', {
             event_category: 'Contact',
@@ -1280,5 +1302,7 @@ const structuredData = {
         }
       }
     }, true);
-  })();
+
+    console.log('✅ Form initialized successfully!');
+  });
 </script>
