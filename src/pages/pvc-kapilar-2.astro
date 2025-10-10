@@ -5,30 +5,26 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
-
-// PVC Kapılar sayfası için dynamic schema'lar
-
-// Dynamic URL'ler için base setup
 const baseUrl = Astro.site?.toString().slice(0, -1) || 'https://kapi-ureticileri.netlify.app';
 const currentUrl = `${baseUrl}${Astro.url.pathname}`;
 
 const breadcrumbItems = [
   { name: "Ana Sayfa", href: "/" },
   { name: "Ürünlerimiz", href: "/urunlerimiz" },
-  { name: "PVC Kapılar" }
+  { name: "PVC Kapılar", href: "/pvc-kapilar" },
+  { name: "Sayfa 2" }
 ];
 
-// SEO Schema - Tamamen dynamic
 const pvcDoorSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "PVC İç Oda Kapıları",
-  "description": "Kayseri'den üretilen su geçirmez, antibakteriyel PVC kapı modelleri. ",
-  "url": currentUrl, // ✅ Dynamic
+  "name": "PVC İç Oda Kapıları - Sayfa 2",
+  "description": "Kayseri'den üretilen su geçirmez, antibakteriyel PVC kapı modelleri. 116-128 model arası.",
+  "url": currentUrl,
   "mainEntity": {
     "@type": "ItemList",
-    "name": "PVC Kapı Modelleri",
-    "numberOfItems": 247,
+    "name": "PVC Kapı Modelleri - Sayfa 2",
+    "numberOfItems": 81,
     "itemListElement": [
       {
         "@type": "Product",
@@ -36,8 +32,8 @@ const pvcDoorSchema = {
         "manufacturer": {
           "@type": "Organization",
           "name": "CihanPan Door",
-          "url": baseUrl, // ✅ Dynamic
-          "logo": `${baseUrl}/assets/img/logo.webp` // ✅ Dynamic
+          "url": baseUrl,
+          "logo": `${baseUrl}/assets/img/logo.webp`
         },
         "category": "İç Oda Kapısı",
         "material": "PVC",
@@ -62,7 +58,6 @@ const pvcDoorSchema = {
   }
 };
 
-// FAQ Schema - Dynamic
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -94,13 +89,12 @@ const faqSchema = {
   ]
 };
 
-// Organization Schema - Ana şirket bilgileri için
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "CihanPan Door",
-  "url": baseUrl, // ✅ Dynamic
-  "logo": `${baseUrl}/assets/img/logo.webp`, // ✅ Dynamic
+  "url": baseUrl,
+  "logo": `${baseUrl}/assets/img/logo.webp`,
   "description": "Kayseri'den kaliteli PVC kapı üreticisi",
   "address": {
     "@type": "PostalAddress",
@@ -111,7 +105,6 @@ const organizationSchema = {
   "serviceType": ["PVC Kapı Üretimi", "İç Oda Kapısı", "Kapı Montajı"]
 };
 
-// Breadcrumb Schema - Dynamic
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -119,32 +112,26 @@ const breadcrumbSchema = {
     "@type": "ListItem",
     "position": index + 1,
     "name": item.name,
-    "item": item.href ? `${baseUrl}${item.href}` : currentUrl // ✅ Dynamic
+    "item": item.href ? `${baseUrl}${item.href}` : currentUrl
   }))
 };
 ---
 
 <Layout
   title="PVC İç Oda Kapıları - 2 | Kayseri CihanPan Door"
-  description="Kayseri'nin en büyük PVC kapı koleksiyonu! 300 farklı model ve renk seçeneği. Su geçirmez, antibakteriyel PVC kapılar."
+  description="Kayseri'nin en büyük PVC kapı koleksiyonu! 116-128 model arası. Su geçirmez, antibakteriyel PVC kapılar."
   keywords="pvc kapı, pvc iç oda kapısı, kayseri pvc kapı, su geçirmez kapı, antibakteriyel kapı, ekonomik kapı, pvc kapı fiyatları, iç kapı modelleri, banyo kapısı, mutfak kapısı"
   canonical={currentUrl}
   ogImage="/assets/img/og/pvc-kapilar-og.webp"
-
-  // Open Graph Tags - Dynamic
-  ogTitle="PVC İç Oda Kapıları - 300 Model | Kayseri CihanPan Door"
-  ogDescription="Kayseri'den üretilen su geçirmez, antibakteriyel PVC kapı modelleri. "
+  ogTitle="PVC İç Oda Kapıları - Sayfa 2 | Kayseri CihanPan Door"
+  ogDescription="116-128 model arası PVC kapı koleksiyonu. Su geçirmez, antibakteriyel."
   ogType="website"
   ogUrl={currentUrl}
-
-  // Twitter Card Tags
   twitterCard="summary_large_image"
-  twitterTitle="PVC İç Oda Kapıları - 300 Model | CihanPan Door"
-  twitterDescription="Kayseri'nin en büyük PVC kapı koleksiyonu. Su geçirmez, antibakteriyel, ekonomik fiyatlar."
+  twitterTitle="PVC İç Oda Kapıları - Sayfa 2 | CihanPan Door"
+  twitterDescription="PVC kapı koleksiyonu sayfa 2. Su geçirmez, antibakteriyel, ekonomik fiyatlar."
   twitterImage="/assets/img/og/pvc-kapilar-og.webp"
-
   schema={[pvcDoorSchema, faqSchema, organizationSchema, breadcrumbSchema]}
-
 >
   <Header />
   <Breadcrumbs items={breadcrumbItems} />
@@ -170,35 +157,35 @@ const breadcrumbSchema = {
           <p>116-128 model arasında yer alan PVC kapı çeşitleri.</p>
         </header>
 
-        <a class="quote-button-section">
-          <a href="/iletisim" class="btn-quote-main" onclick="openQuoteModal()" aria-label="PVC kapı için ücretsiz teklif al">
+        <div class="quote-button-section">
+          <a href="/iletisim" class="btn-quote-main" aria-label="PVC kapı için ücretsiz teklif al">
             Ücretsiz Teklif Al
-          </button>
-        </a>
+          </a>
+        </div>
 
-<div class="product-filter-tabs">
-  <a href="/urunlerimiz" class="product-filter-btn">
-    <span>Tümü</span>
-  </a>
-  <a href="/pvc-kapilar" class="product-filter-btn active">
-    <span>PVC Kapılar</span>
-  </a>
-  <a href="/laminoks-kapilar" class="product-filter-btn">
-    <span>Laminoks Kapılar</span>
-  </a>
-    <a href="/elitpan-kapilar" class="product-filter-btn">
-    <span>Elitpan Kapılar</span>
-  </a>
-  <a href="/hastane-kapilari" class="product-filter-btn">
-    <span>Hastane Kapıları</span>
-  </a>
-  <a href="/otel-kapilari" class="product-filter-btn">
-    <span>Otel Kapıları</span>
-  </a>
-  <a href="/yangina-dayanikli-kapilar" class="product-filter-btn">
-    <span>Yanmaya Dayanıklı Kapılar</span>
-  </a>
-</div>
+        <div class="product-filter-tabs">
+          <a href="/urunlerimiz" class="product-filter-btn">
+            <span>Tümü</span>
+          </a>
+          <a href="/pvc-kapilar" class="product-filter-btn active">
+            <span>PVC Kapılar</span>
+          </a>
+          <a href="/laminoks-kapilar" class="product-filter-btn">
+            <span>Laminoks Kapılar</span>
+          </a>
+          <a href="/elitpan-kapilar" class="product-filter-btn">
+            <span>Elitpan Kapılar</span>
+          </a>
+          <a href="/hastane-kapilari" class="product-filter-btn">
+            <span>Hastane Kapıları</span>
+          </a>
+          <a href="/otel-kapilari" class="product-filter-btn">
+            <span>Otel Kapıları</span>
+          </a>
+          <a href="/yangina-dayanikli-kapilar" class="product-filter-btn">
+            <span>Yanmaya Dayanıklı Kapılar</span>
+          </a>
+        </div>
 
         <div class="products-grid" id="productsGrid">
           <!-- Products will be loaded here -->
@@ -271,20 +258,19 @@ const breadcrumbSchema = {
             </ul>
           </article>
 
-         <aside class="sidebar">
+          <aside class="sidebar">
             <div class="info-cards">
               <div class="stat-card">
                 <div class="stat-number">300</div>
-                <div class="stat-label" style="font-size:1.5rem; font-weight:bold;font-family:Verdana color:dark red;">FARKLI MODEL</div>
+                <div class="stat-label">FARKLI MODEL</div>
               </div>
               <div class="stat-card">
                 <div class="stat-number">100%</div>
-                <div class="stat-label" style="font-size:1.5rem; font-weight:bold;font-family:Verdana color:dark red;">YERLİ</div>
+                <div class="stat-label">YERLİ</div>
               </div>
-
               <div class="stat-card">
                 <div class="stat-number">İhracatta</div>
-                <div class="stat-label" style="font-size:1.5rem; font-weight:bold; font-family:Verdana color:dark red;">FİYAT AVANTAJI</div>
+                <div class="stat-label">FİYAT AVANTAJI</div>
               </div>
             </div>
 
@@ -346,57 +332,6 @@ const breadcrumbSchema = {
     </section>
   </main>
 
-  <!-- Quote Modal -->
-  <div class="modal" id="quoteModal" role="dialog" aria-labelledby="quoteModalTitle" aria-hidden="true">
-    <div class="modal-content">
-      <button class="modal-close" id="quoteModalClose" aria-label="Modalı kapat">&times;</button>
-      <div class="modal-body">
-        <h3 id="quoteModalTitle">Ücretsiz PVC Kapı Teklifi</h3>
-        <form id="quoteForm" class="quote-form">
-          <div class="form-group">
-            <label for="customerName">Adınız Soyadınız *</label>
-            <input type="text" id="customerName" name="customerName" required>
-          </div>
-
-          <div class="form-group">
-            <label for="customerPhone">Telefon Numaranız *</label>
-            <input type="tel" id="customerPhone" name="customerPhone" required>
-          </div>
-
-          <div class="form-group">
-            <label for="customerEmail">E-posta Adresiniz</label>
-            <input type="email" id="customerEmail" name="customerEmail">
-          </div>
-
-          <div class="form-group">
-            <label for="customerCity">Şehir</label>
-            <input type="text" id="customerCity" name="customerCity">
-          </div>
-
-          <div class="form-group">
-            <label for="doorCount">Kaç Adet Kapı?</label>
-            <select id="doorCount" name="doorCount">
-              <option value="1">1 Adet</option>
-              <option value="2-3">2-3 Adet</option>
-              <option value="4-5">4-5 Adet</option>
-              <option value="6+">6+ Adet</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="customerMessage">Mesajınız</label>
-            <textarea id="customerMessage" name="customerMessage" rows="4" placeholder="Hangi model/renkler ilginizi çekiyor? Özel ölçü ihtiyacınız var mı?"></textarea>
-          </div>
-
-          <div class="form-actions">
-            <button type="submit" class="btn-submit">Teklif Gönder</button>
-            <button type="button" class="btn-cancel" onclick="closeQuoteModal()">İptal</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
   <Footer />
 </Layout>
 
@@ -407,7 +342,6 @@ const breadcrumbSchema = {
     padding: 0 20px;
   }
 
-  /* Hero Section */
   .hero {
     padding: 4rem 0;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -432,7 +366,6 @@ const breadcrumbSchema = {
     text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
   }
 
-  /* Products Section */
   .products-section {
     padding: 4rem 0;
     background: #ffffff;
@@ -463,16 +396,17 @@ const breadcrumbSchema = {
   }
 
   .btn-quote-main {
+    display: inline-block;
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
     border: none;
     padding: 1rem 3rem;
     border-radius: 50px;
-    cursor: pointer;
     font-weight: 600;
     font-size: 1.1rem;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    text-decoration: none;
   }
 
   .btn-quote-main:hover {
@@ -480,42 +414,30 @@ const breadcrumbSchema = {
     box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
   }
 
-  /* Kapı Türleri Filtreleri */
-  .product-filters {
-    margin-bottom: 3rem;
-  }
-
-  .product-filters h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 1.5rem;
-    text-align: center;
-  }
-
   .product-filter-tabs {
     display: flex;
     justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;
+    margin-bottom: 3rem;
   }
 
-.product-filter-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 600;
-  font-size: 1rem;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-  position: relative;
-  overflow: hidden;
-  text-decoration: none;        /* YENİ - Link alt çizgisini kaldır */
-  display: inline-block;        /* YENİ - Link'i buton gibi göster */
-}
+  .product-filter-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: inline-block;
+  }
 
   .product-filter-btn::before {
     content: '';
@@ -549,7 +471,6 @@ const breadcrumbSchema = {
     box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
   }
 
-  /* Products Grid - Ortalanmış düzen */
   .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -614,7 +535,6 @@ const breadcrumbSchema = {
     margin: 0;
   }
 
-  /* Loading */
   .loading {
     text-align: center;
     padding: 3rem;
@@ -636,7 +556,6 @@ const breadcrumbSchema = {
     100% { transform: rotate(360deg); }
   }
 
-  /* Page Navigation */
   .page-navigation {
     background: white;
     border-radius: 16px;
@@ -759,7 +678,6 @@ const breadcrumbSchema = {
     border-radius: 50%;
   }
 
-  /* SEO Content Section */
   .seo-content-section {
     padding: 5rem 0;
     background: #f8fafc;
@@ -824,7 +742,6 @@ const breadcrumbSchema = {
     font-weight: bold;
   }
 
-  /* Sidebar */
   .sidebar {
     display: flex;
     flex-direction: column;
@@ -853,9 +770,9 @@ const breadcrumbSchema = {
   }
 
   .stat-label {
-    color: #6b7280;
-    font-weight: 600;
-    font-size: 0.9rem;
+    color: #1a202c;
+    font-weight: 700;
+    font-size: 1.1rem;
   }
 
   .quick-contact {
@@ -939,7 +856,6 @@ const breadcrumbSchema = {
     font-size: 0.95rem;
   }
 
-  /* FAQ Section */
   .faq-section {
     padding: 5rem 0;
     background: white;
@@ -1005,7 +921,6 @@ const breadcrumbSchema = {
     margin: 0;
   }
 
-  /* CTA Section */
   .cta-section {
     padding: 5rem 0;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -1084,151 +999,6 @@ const breadcrumbSchema = {
     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
   }
 
-  /* Quote Modal Styles */
-  .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.8);
-    z-index: 2000;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-  }
-
-  .modal.active {
-    display: flex;
-  }
-
-  .modal-content {
-    background: white;
-    border-radius: 12px;
-    max-width: 500px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: rgba(0,0,0,0.5);
-    color: white;
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.2rem;
-    z-index: 1;
-    transition: all 0.2s ease;
-  }
-
-  .modal-close:hover {
-    background: rgba(0,0,0,0.7);
-    transform: scale(1.1);
-  }
-
-  .modal-body {
-    padding: 2rem;
-  }
-
-  .modal-body h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    color: #1a202c;
-    text-align: center;
-  }
-
-  .quote-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .form-group label {
-    font-weight: 600;
-    color: #374151;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-  }
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    padding: 0.75rem;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: border-color 0.2s ease;
-  }
-
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-  }
-
-  .form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-
-  .form-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-
-  .btn-submit {
-    flex: 1;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    border: none;
-    padding: 0.875rem 1.5rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .btn-submit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-  }
-
-  .btn-cancel {
-    flex: 1;
-    background: #6b7280;
-    color: white;
-    border: none;
-    padding: 0.875rem 1.5rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .btn-cancel:hover {
-    background: #4b5563;
-  }
-
-  /* Responsive Design */
   @media (max-width: 768px) {
     .content-grid {
       grid-template-columns: 1fr;
@@ -1338,17 +1108,15 @@ const breadcrumbSchema = {
       font-size: 2rem;
     }
 
-    .modal-content {
-      margin: 1rem;
+    .stat-label {
+      font-size: 0.9rem;
     }
   }
 </style>
 
 <script>
-  // Generate PVC models based on actual file names from the list
   const pvcModels = [];
 
-  // SAYFA 2 - 116-128 model arası (81 ürün)
   const fileNames = [
     'CihanpanDoor-PVC-Serisi-116-A-Beyaz-Antrasit.webp',
     'CihanpanDoor-PVC-Serisi-116-B-Beyaz.webp',
@@ -1430,31 +1198,23 @@ const breadcrumbSchema = {
     'CihanpanDoor-PVC-Serisi-128-F-Ayder.webp'
   ];
 
-  // Parse file names and create products
   fileNames.forEach((fileName, index) => {
     const parts = fileName.replace('.webp', '').split('-');
     const modelNumber = parts[3];
     const variant = parts[4];
     const colorName = parts.slice(5).join('-');
-
     const displayName = `${modelNumber}-${variant} ${colorName.replace(/-/g, ' ')}`;
 
     pvcModels.push({
       id: `PVC-${modelNumber}-${variant}`,
       name: displayName,
       category: 'pvc',
-
       image: `/assets/img/pvc-kapilar/${fileName}`,
       fallbackImage: `https://picsum.photos/300/400?random=${index + 86}`,
-
       altText: `CihanPan Door PVC Interior Door Model ${modelNumber}-${variant} ${colorName.replace(/-/g, ' ')} - Waterproof Panel Door for Bathroom Kitchen Bedroom, Turkish Manufacturer`,
-
       description: `PVC door model ${modelNumber}-${variant} in ${colorName.replace(/-/g, ' ')} color. Modern design PVC interior door suitable for bathroom, kitchen and bedroom. Waterproof, antibacterial surface, 5-year warranty.`,
-
       seoKeywords: `pvc door ${colorName.replace(/-/g, ' ').toLowerCase()}, interior doors model ${modelNumber}, waterproof doors, CihanPan door`,
-
       price: Math.floor(Math.random() * 500) + 300,
-
       schemaData: {
         "@type": "Product",
         "name": `PVC Interior Door Model ${modelNumber}-${variant} ${colorName.replace(/-/g, ' ')}`,
@@ -1465,12 +1225,6 @@ const breadcrumbSchema = {
     });
   });
 
-  // Current filter state
-  let currentFilter = 'all';
-  let filteredProducts = pvcModels;
-
-
-
   function renderProducts() {
     const grid = document.getElementById('productsGrid');
     const loading = document.getElementById('loading');
@@ -1479,20 +1233,10 @@ const breadcrumbSchema = {
     grid.innerHTML = '';
 
     setTimeout(() => {
-      if (filteredProducts.length === 0) {
-        grid.innerHTML = `
-          <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
-            <h3 style="color: #6b7280; margin-bottom: 1rem;">Bu kategoride henüz ürün bulunmuyor</h3>
-            <p style="color: #9ca3af;">Yakında yeni ürünler eklenecek.</p>
-          </div>
-        `;
-      } else {
-        filteredProducts.forEach((product, index) => {
-          const card = createProductCard(product);
-          grid.appendChild(card);
-        });
-      }
-
+      pvcModels.forEach((product) => {
+        const card = createProductCard(product);
+        grid.appendChild(card);
+      });
       loading.style.display = 'none';
     }, 200);
   }
@@ -1520,106 +1264,7 @@ const breadcrumbSchema = {
     return card;
   }
 
-  // Quote Modal Functions
-  function openQuoteModal() {
-    const modal = document.getElementById('quoteModal');
-    modal.classList.add('active');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-
-    setTimeout(() => {
-      document.getElementById('customerName').focus();
-    }, 100);
-  }
-
-  function closeQuoteModal() {
-    const modal = document.getElementById('quoteModal');
-    modal.classList.remove('active');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    document.getElementById('quoteForm').reset();
-  }
-
-  // Email sending function
-  async function sendQuoteEmail(formData) {
-    const subject = encodeURIComponent('Yeni PVC Kapı Teklif Talebi - Sayfa 2 - CihanPan Door');
-    const body = encodeURIComponent(`
-Müşteri Bilgileri:
-━━━━━━━━━━━━━━━━━━━━━━━━
-👤 Ad Soyad: ${formData.customerName}
-📞 Telefon: ${formData.customerPhone}
-📧 E-posta: ${formData.customerEmail || 'Belirtilmedi'}
-🏠 Şehir: ${formData.customerCity || 'Belirtilmedi'}
-🚪 Kapı Adeti: ${formData.doorCount}
-
-📝 Müşteri Mesajı:
-${formData.customerMessage || 'Mesaj yok'}
-
-━━━━━━━━━━━━━━━━━━━━━━━━
-🌐 Sayfa: ${window.location.href}
-📅 Tarih: ${new Date().toLocaleString('tr-TR')}
-
-Bu teklif talebi PVC Kapılar Sayfa 2'den gelmiştir (Model 116-128).
-    `);
-
-    window.location.href = `mailto:exportcihanpandoor@gmail.com?subject=${subject}&body=${body}`;
-    return true;
-  }
-
-  // Event listeners and initialization
   document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
-
-
-
-    // Quote form submission
-    document.getElementById('quoteForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const formData = new FormData(e.target);
-      const data = Object.fromEntries(formData.entries());
-
-      if (!data.customerName || !data.customerPhone) {
-        alert('Lütfen zorunlu alanları doldurunuz (Ad Soyad ve Telefon)');
-        return;
-      }
-
-      try {
-        const submitBtn = e.target.querySelector('.btn-submit');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Gönderiliyor...';
-        submitBtn.disabled = true;
-
-        await sendQuoteEmail(data);
-
-        alert('Teklif talebiniz alındı! En kısa sürede size dönüş yapacağız.');
-        closeQuoteModal();
-
-      } catch (error) {
-        alert('Bir hata oluştu. Lütfen telefon ile iletişime geçiniz: +90 544 169 0038');
-        console.error('Email sending error:', error);
-      } finally {
-        const submitBtn = e.target.querySelector('.btn-submit');
-        if (submitBtn) {
-          submitBtn.textContent = 'Teklif Gönder';
-          submitBtn.disabled = false;
-        }
-      }
-    });
-
-    // Modal close events
-    document.getElementById('quoteModalClose').addEventListener('click', closeQuoteModal);
-
-    document.getElementById('quoteModal').addEventListener('click', (e) => {
-      if (e.target.id === 'quoteModal') {
-        closeQuoteModal();
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeQuoteModal();
-      }
-    });
   });
 </script>
