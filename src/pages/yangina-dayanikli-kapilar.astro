@@ -5,7 +5,6 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
-// Dynamic URL'ler için base setup
 const baseUrl = Astro.site?.toString().slice(0, -1) || 'https://kapi-ureticileri.vercel.app';
 const currentUrl = `${baseUrl}${Astro.url.pathname}`;
 
@@ -15,7 +14,6 @@ const breadcrumbItems = [
   { name: "Yangına Dayanıklı Kapılar", href: "/yangina-dayanikli-kapilar" }
 ];
 
-// SEO Schema
 const yanginaSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
@@ -44,7 +42,6 @@ const yanginaSchema = {
   }
 };
 
-// Organization Schema
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -61,7 +58,6 @@ const organizationSchema = {
   "serviceType": ["Yangın Kapısı Üretimi", "Yangın Güvenlik Çözümleri", "Toptan Satış", "İhracat"]
 };
 
-// Breadcrumb Schema
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -80,19 +76,14 @@ const breadcrumbSchema = {
   keywords="yangın kapısı, yangına dayanıklı kapı, yangın güvenlik kapısı, EI-30 kapı, EI-60 kapı, kayseri yangın kapısı üreticisi, TSE onaylı yangın kapısı"
   canonical={currentUrl}
   ogImage="/assets/img/og/yangina-dayanikli-kapilar-og.webp"
-
-  // Open Graph Tags
   ogTitle="Yangına Dayanıklı Kapılar - Yangın Güvenlik Serisi | CihanPan Door"
   ogDescription="Yangın güvenlik standartlarına uygun yangına dayanıklı kapı koleksiyonu. EI-30, EI-60, EI-90 sertifikalı, TSE onaylı."
   ogType="website"
   ogUrl={currentUrl}
-
-  // Twitter Card Tags
   twitterCard="summary_large_image"
   twitterTitle="Yangına Dayanıklı Kapılar | Yangın Güvenlik Serisi"
   twitterDescription="Yangın güvenlik standartlarına uygun yangına dayanıklı kapı koleksiyonu. Sertifikalı ve güvenli çözümler."
   twitterImage="/assets/img/og/yangina-dayanikli-kapilar-og.webp"
-
   schema={[yanginaSchema, organizationSchema, breadcrumbSchema]}
 >
 
@@ -127,34 +118,34 @@ const breadcrumbSchema = {
         </header>
 
         <div class="quote-button-section">
-          <button class="btn-quote-main" onclick="openQuoteModal()" aria-label="Yangın kapısı için toptan fiyat teklifi al">
+          <a href="/iletisim" class="btn-quote-main" aria-label="Yangın kapısı için toptan fiyat teklifi al">
             Yangın Güvenlik Projesi Teklifi Al
-          </button>
+          </a>
         </div>
 
-<div class="product-filter-tabs">
-  <a href="/urunlerimiz" class="product-filter-btn">
-    <span>Tümü</span>
-  </a>
-  <a href="/pvc-kapilar" class="product-filter-btn">
-    <span>PVC Kapılar</span>
-  </a>
-  <a href="/laminoks-kapilar" class="product-filter-btn">
-    <span>Laminoks Kapılar</span>
-  </a>
-  <a href="/elitpan-kapilar" class="product-filter-btn">
-    <span>Elitpan Kapılar</span>
-  </a>
-  <a href="/hastane-kapilari" class="product-filter-btn">
-    <span>Hastane Kapıları</span>
-  </a>
-  <a href="/otel-kapilari" class="product-filter-btn">
-    <span>Otel Kapıları</span>
-  </a>
-  <a href="/yangina-dayanikli-kapilar" class="product-filter-btn active">
-    <span>Yangına Dayanıklı Kapılar</span>
-  </a>
-</div>
+        <div class="product-filter-tabs">
+          <a href="/urunlerimiz" class="product-filter-btn">
+            <span>Tümü</span>
+          </a>
+          <a href="/pvc-kapilar" class="product-filter-btn">
+            <span>PVC Kapılar</span>
+          </a>
+          <a href="/laminoks-kapilar" class="product-filter-btn">
+            <span>Laminoks Kapılar</span>
+          </a>
+          <a href="/elitpan-kapilar" class="product-filter-btn">
+            <span>Elitpan Kapılar</span>
+          </a>
+          <a href="/hastane-kapilari" class="product-filter-btn">
+            <span>Hastane Kapıları</span>
+          </a>
+          <a href="/otel-kapilari" class="product-filter-btn">
+            <span>Otel Kapıları</span>
+          </a>
+          <a href="/yangina-dayanikli-kapilar" class="product-filter-btn active">
+            <span>Yangına Dayanıklı Kapılar</span>
+          </a>
+        </div>
 
         <div class="products-grid" id="productsGrid">
           <!-- Products will be loaded here -->
@@ -233,8 +224,8 @@ const breadcrumbSchema = {
               <h3>Yangın Güvenlik Danışmanlığı</h3>
               <p>Projeniz için özel çözümler:</p>
               <div class="contact-buttons">
-                <a href="tel:+905441690038" class="btn-contact-phone">🔥 Yangın Uzmanı</a>
-                <a href="https://wa.me/905441690038" class="btn-contact-whatsapp">💬 WhatsApp</a>
+                <a href="tel:+905441690038" class="btn-contact-phone">Yangın Uzmanı</a>
+                <a href="https://wa.me/905441690038" class="btn-contact-whatsapp">WhatsApp</a>
               </div>
 
               <div class="special-features">
@@ -303,118 +294,23 @@ const breadcrumbSchema = {
         <h2>Projeniz İçin Yangın Güvenlik Çözümleri</h2>
         <p>AVM, hastane, otel ve tüm ticari binalar için yangın güvenlik standartlarına uygun kapı koleksiyonumuzla projelerinizi güvenle tamamlayın</p>
         <div class="cta-buttons">
-          <a href="tel:+905441690038" class="btn btn-tertiary">🔥 Yangın Uzmanı Ara</a>
+          <a href="tel:+905441690038" class="btn btn-tertiary">Yangın Uzmanı Ara</a>
           <a href="/iletisim" class="btn btn-primary">Yangın Güvenlik Danışmanlığı</a>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Quote Modal -->
-  <div class="modal" id="quoteModal" role="dialog" aria-labelledby="quoteModalTitle" aria-hidden="true">
-    <div class="modal-content">
-      <button class="modal-close" id="quoteModalClose" aria-label="Modalı kapat">&times;</button>
-      <div class="modal-body">
-        <h3 id="quoteModalTitle">Yangına Dayanıklı Kapı - Güvenlik Projesi Teklifi</h3>
-        <form id="quoteForm" class="quote-form" name="yangin-quote" method="POST" data-netlify="true">
-          <input type="hidden" name="form-name" value="yangin-quote">
-
-          <div class="form-group">
-            <label for="customerName">Adınız Soyadınız *</label>
-            <input type="text" id="customerName" name="customerName" required>
-          </div>
-
-          <div class="form-group">
-            <label for="customerPhone">Telefon Numaranız *</label>
-            <input type="tel" id="customerPhone" name="customerPhone" required>
-          </div>
-
-          <div class="form-group">
-            <label for="customerEmail">E-posta Adresiniz *</label>
-            <input type="email" id="customerEmail" name="customerEmail" required>
-          </div>
-
-          <div class="form-group">
-            <label for="customerCompany">Firma/Kurum Adı</label>
-            <input type="text" id="customerCompany" name="customerCompany">
-          </div>
-
-          <div class="form-group">
-            <label for="doorCount">Kaç Adet Kapı?</label>
-            <select id="doorCount" name="doorCount">
-              <option value="5-10">5-10 Adet</option>
-              <option value="10-25">10-25 Adet</option>
-              <option value="25-50">25-50 Adet</option>
-              <option value="50-100">50-100 Adet</option>
-              <option value="100+">100+ Adet</option>
-              <option value="bina-kompleksi">Bina Kompleksi</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="projectType">Proje Türü</label>
-            <select id="projectType" name="projectType">
-              <option value="">Seçiniz</option>
-              <option value="avm">AVM / Alışveriş Merkezi</option>
-              <option value="otel">Otel</option>
-              <option value="hastane">Hastane</option>
-              <option value="fabrika">Fabrika</option>
-              <option value="is-merkezi">İş Merkezi</option>
-              <option value="apartman">Apartman</option>
-              <option value="kamu-binasi">Kamu Binası</option>
-              <option value="egitim">Eğitim Kurumu</option>
-              <option value="diger">Diğer</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="fireRating">Yangın Dayanım Süresi</label>
-            <select id="fireRating" name="fireRating">
-              <option value="">Seçiniz</option>
-              <option value="EI-30">EI-30 (30 dakika)</option>
-              <option value="EI-60">EI-60 (60 dakika)</option>
-              <option value="EI-90">EI-90 (90 dakika)</option>
-              <option value="karmasik">Karışık (Farklı süreler)</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="specialRequirements">Özel Gereksinimler</label>
-            <div class="checkbox-group">
-              <label><input type="checkbox" name="tseSertifikasi" value="1"> TSE sertifikası</label>
-              <label><input type="checkbox" name="otomatikKapanma" value="1"> Otomatik kapanma sistemi</label>
-              <label><input type="checkbox" name="panikBar" value="1"> Panik bar</label>
-              <label><input type="checkbox" name="dumanKontrolu" value="1"> Duman kontrolü</label>
-              <label><input type="checkbox" name="camPanel" value="1"> Cam panel</label>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="customerMessage">Proje Detayları</label>
-            <textarea id="customerMessage" name="customerMessage" rows="4" placeholder="Binanın türü, kat sayısı, özel gereksinimler, zaman çizelgesi..."></textarea>
-          </div>
-
-          <div class="form-actions">
-            <button type="submit" class="btn-submit">Yangın Güvenlik Teklifi Gönder</button>
-            <button type="button" class="btn-cancel" onclick="closeQuoteModal()">İptal</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
   <Footer />
 </Layout>
 
 <style>
-  /* Base styles */
   .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
   }
 
-  /* Hero Section - Yangın teması */
   .hero {
     padding: 4rem 0;
     background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
@@ -456,7 +352,6 @@ const breadcrumbSchema = {
     border: 1px solid rgba(255, 255, 255, 0.3);
   }
 
-  /* Products Section */
   .products-section {
     padding: 4rem 0;
     background: #ffffff;
@@ -487,16 +382,17 @@ const breadcrumbSchema = {
   }
 
   .btn-quote-main {
+    display: inline-block;
     background: linear-gradient(135deg, #dc2626, #991b1b);
     color: white;
     border: none;
     padding: 1rem 3rem;
     border-radius: 50px;
-    cursor: pointer;
     font-weight: 600;
     font-size: 1.1rem;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+    text-decoration: none;
   }
 
   .btn-quote-main:hover {
@@ -504,7 +400,6 @@ const breadcrumbSchema = {
     box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
   }
 
-  /* Product Filters */
   .product-filter-tabs {
     display: flex;
     justify-content: center;
@@ -562,7 +457,6 @@ const breadcrumbSchema = {
     box-shadow: 0 6px 20px rgba(185, 28, 28, 0.4);
   }
 
-  /* Products Grid */
   .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -638,7 +532,6 @@ const breadcrumbSchema = {
     font-weight: 500;
   }
 
-  /* Loading */
   .loading {
     text-align: center;
     padding: 3rem;
@@ -660,7 +553,6 @@ const breadcrumbSchema = {
     100% { transform: rotate(360deg); }
   }
 
-  /* Highlights Section */
   .highlights-section {
     padding: 5rem 0;
     background: #f8fafc;
@@ -718,13 +610,13 @@ const breadcrumbSchema = {
   }
 
   .advantages-list li::before {
-    content: "🔥";
+    content: "✓";
     position: absolute;
     left: 0;
-    font-size: 1rem;
+    color: #dc2626;
+    font-weight: bold;
   }
 
-  /* Highlights Sidebar */
   .highlights-sidebar {
     display: flex;
     flex-direction: column;
@@ -836,7 +728,6 @@ const breadcrumbSchema = {
     margin-bottom: 0.5rem;
   }
 
-  /* Technical Section */
   .technical-section {
     padding: 4rem 0;
     background: white;
@@ -893,7 +784,6 @@ const breadcrumbSchema = {
     font-weight: bold;
   }
 
-  /* CTA Section */
   .cta-section {
     padding: 5rem 0;
     background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
@@ -960,171 +850,6 @@ const breadcrumbSchema = {
     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
   }
 
-  /* Modal Styles */
-  .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.8);
-    z-index: 2000;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-  }
-
-  .modal.active {
-    display: flex;
-  }
-
-  .modal-content {
-    background: white;
-    border-radius: 12px;
-    max-width: 600px;
-    width: 100%;
-    max-height: 90vh;
-    position: relative;
-    overflow-y: auto;
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: rgba(0,0,0,0.5);
-    color: white;
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.2rem;
-    z-index: 1;
-    transition: all 0.2s ease;
-  }
-
-  .modal-close:hover {
-    background: rgba(0,0,0,0.7);
-    transform: scale(1.1);
-  }
-
-  .modal-body {
-    padding: 2rem;
-  }
-
-  .modal-body h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    color: #1a202c;
-    text-align: center;
-  }
-
-  .quote-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .form-group label {
-    font-weight: 600;
-    color: #374151;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-  }
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    padding: 0.75rem;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: border-color 0.2s ease;
-  }
-
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: #dc2626;
-    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
-  }
-
-  .form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-
-  .checkbox-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-  }
-
-  .checkbox-group label {
-    display: flex;
-    align-items: center;
-    font-weight: normal;
-    margin: 0;
-    cursor: pointer;
-  }
-
-  .checkbox-group input[type="checkbox"] {
-    margin-right: 0.5rem;
-    width: auto;
-  }
-
-  .form-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-
-  .btn-submit {
-    flex: 1;
-    background: linear-gradient(135deg, #dc2626, #991b1b);
-    color: white;
-    border: none;
-    padding: 0.875rem 1.5rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .btn-submit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
-  }
-
-  .btn-cancel {
-    flex: 1;
-    background: #6b7280;
-    color: white;
-    border: none;
-    padding: 0.875rem 1.5rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .btn-cancel:hover {
-    background: #4b5563;
-  }
-
-  /* Responsive Design */
   @media (max-width: 768px) {
     .content-grid {
       grid-template-columns: 1fr;
@@ -1216,25 +941,15 @@ const breadcrumbSchema = {
       font-size: 2rem;
     }
 
-    .modal-content {
-      margin: 1rem;
-    }
-
-    .modal-body {
-      padding: 1.5rem;
-    }
-
-    .form-actions {
-      flex-direction: column;
+    .stat-label {
+      font-size: 0.9rem;
     }
   }
 </style>
 
 <script>
-  // Yangına dayanıklı kapı modelleri
   const yanginModels = [];
 
-  // 8 YANGIN KAPISI MODELİ
   const fileNames = [
     "CihanpanDoor-Yangin-Serisi-601-EI30-Beyaz.webp",
     "CihanpanDoor-Yangin-Serisi-602-EI60-Antrasit.webp",
@@ -1246,14 +961,12 @@ const breadcrumbSchema = {
     "CihanpanDoor-Yangin-Serisi-608-EI60-Siyah.webp"
   ];
 
-  // Parse file names and create products
   fileNames.forEach((fileName, index) => {
     const parts = fileName.replace('.webp', '').split('-');
-    const modelNumber = parts[3]; // 601, 602, etc.
-    const fireRating = parts[4]; // EI30, EI60, EI90
-    const colorInfo = parts[5]; // Beyaz, Antrasit, etc.
+    const modelNumber = parts[3];
+    const fireRating = parts[4];
+    const colorInfo = parts[5];
 
-    // Format display name
     const displayName = `Yangın ${modelNumber}`;
     const colorName = colorInfo.replace(/-/g, ' ');
     const fireRatingText = fireRating.replace('EI', 'EI-');
@@ -1263,25 +976,13 @@ const breadcrumbSchema = {
       name: displayName,
       category: 'yangin',
       fireRating: fireRating,
-
-      // Use actual file name
       image: `/assets/img/yangina-dayanikli-kapilar/${fileName}`,
       fallbackImage: `https://picsum.photos/300/400?random=${index + 600}`,
-
-      // SEO için zenginleştirilmiş alt text
       altText: `CihanPan Door Yangına Dayanıklı Kapı Model ${modelNumber} ${colorName} ${fireRatingText} Sertifikalı - TSE Onaylı Yangın Kapısı`,
-
-      // Ürün özellikleri
       features: `${fireRatingText} • TSE Onaylı`,
       colorInfo: colorName,
-
-      // SEO için detaylı description
       description: `Yangın kapısı model ${modelNumber} ${colorName}. ${fireRatingText} yangın dayanım sertifikası ile TSE onaylı. Bina yangın güvenliği için profesyonel çözüm. Kayseri üretimi, toptan satış avantajı.`,
-
-      // SEO keywords
       seoKeywords: `yangın kapısı model ${modelNumber}, ${fireRatingText} yangın kapısı, TSE onaylı yangın kapısı, yangın güvenlik kapısı ${colorName.toLowerCase()}, kayseri yangın kapısı üreticisi`,
-
-      // Schema.org için yapısal data
       schemaData: {
         "@type": "Product",
         "name": `Yangın Kapısı Model ${modelNumber} - ${colorName} ${fireRatingText}`,
@@ -1294,10 +995,6 @@ const breadcrumbSchema = {
     });
   });
 
-  // Current filter state
-  let currentFilter = 'all';
-  let filteredProducts = yanginModels;
-
   function renderProducts() {
     const grid = document.getElementById('productsGrid');
     const loading = document.getElementById('loading');
@@ -1306,7 +1003,7 @@ const breadcrumbSchema = {
     grid.innerHTML = '';
 
     setTimeout(() => {
-      if (filteredProducts.length === 0) {
+      if (yanginModels.length === 0) {
         grid.innerHTML = `
           <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
             <h3 style="color: #6b7280; margin-bottom: 1rem;">Bu kategoride henüz ürün bulunmuyor</h3>
@@ -1314,7 +1011,7 @@ const breadcrumbSchema = {
           </div>
         `;
       } else {
-        filteredProducts.forEach((product, index) => {
+        yanginModels.forEach((product) => {
           const card = createProductCard(product);
           grid.appendChild(card);
         });
@@ -1349,125 +1046,7 @@ const breadcrumbSchema = {
     return card;
   }
 
-  // Quote Modal Functions
-  function openQuoteModal() {
-    const modal = document.getElementById('quoteModal');
-    modal.classList.add('active');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-
-    setTimeout(() => {
-      document.getElementById('customerName').focus();
-    }, 100);
-  }
-
-  function closeQuoteModal() {
-    const modal = document.getElementById('quoteModal');
-    modal.classList.remove('active');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    document.getElementById('quoteForm').reset();
-  }
-
-  // Event listeners and initialization
   document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
-
-    // Quote form submission
-    document.getElementById('quoteForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const formData = new FormData(e.target);
-      const data = Object.fromEntries(formData.entries());
-
-      // Checkbox değerlerini topla
-      const specialReqs = [];
-      if (formData.get('tseSertifikasi')) specialReqs.push('TSE sertifikası');
-      if (formData.get('otomatikKapanma')) specialReqs.push('Otomatik kapanma sistemi');
-      if (formData.get('panikBar')) specialReqs.push('Panik bar');
-      if (formData.get('dumanKontrolu')) specialReqs.push('Duman kontrolü');
-      if (formData.get('camPanel')) specialReqs.push('Cam panel');
-
-      // Validate required fields
-      if (!data.customerName || !data.customerPhone || !data.customerEmail) {
-        alert('Lütfen zorunlu alanları doldurunuz (Ad Soyad, Telefon ve E-posta)');
-        return;
-      }
-
-      try {
-        const submitBtn = e.target.querySelector('.btn-submit');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Gönderiliyor...';
-        submitBtn.disabled = true;
-
-        // Netlify Forms ile form gönderimi
-        const response = await fetch(window.location.pathname, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(formData).toString()
-        });
-
-        if (response.ok) {
-          alert('Yangın kapısı proje talebiniz alındı! Yangın güvenlik uzmanımız en kısa sürede size dönüş yapacak.');
-          closeQuoteModal();
-        } else {
-          throw new Error('Form gönderim hatası');
-        }
-
-      } catch (error) {
-        // Fallback - Email ile gönderim
-        const subject = encodeURIComponent('Yangına Dayanıklı Kapı - Güvenlik Projesi Teklifi - CihanPan Door');
-        const body = encodeURIComponent(`
-Yangın Kapısı Güvenlik Projesi Talebi:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-👤 Ad Soyad: ${data.customerName}
-📞 Telefon: ${data.customerPhone}
-📧 E-posta: ${data.customerEmail}
-🏢 Firma/Kurum: ${data.customerCompany || 'Belirtilmedi'}
-🚪 Kapı Adeti: ${data.doorCount}
-🏗️ Proje Türü: ${data.projectType || 'Belirtilmedi'}
-🔥 Yangın Dayanım: ${data.fireRating || 'Belirtilmedi'}
-
-🔹 Özel Gereksinimler:
-${specialReqs.length > 0 ? specialReqs.join(', ') : 'Belirtilmedi'}
-
-📝 Proje Detayları:
-${data.customerMessage || 'Mesaj yok'}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🌐 Sayfa: ${window.location.href}
-📅 Tarih: ${new Date().toLocaleString('tr-TR')}
-
-Bu yangın kapısı teklifi yangın güvenlik serimizden talep edilmiştir.
-TSE onaylı, EI sertifikalı, yangın yönetmeliklerine uygun çözümler.
-        `);
-
-        window.location.href = `mailto:exportcihanpandoor@gmail.com?subject=${subject}&body=${body}`;
-        alert('Form e-posta ile gönderildi. Yangın güvenlik projeniz için en kısa sürede size dönüş yapacağız.');
-        closeQuoteModal();
-
-      } finally {
-        const submitBtn = e.target.querySelector('.btn-submit');
-        if (submitBtn) {
-          submitBtn.textContent = 'Yangın Güvenlik Teklifi Gönder';
-          submitBtn.disabled = false;
-        }
-      }
-    });
-
-    // Modal close events
-    document.getElementById('quoteModalClose').addEventListener('click', closeQuoteModal);
-
-    document.getElementById('quoteModal').addEventListener('click', (e) => {
-      if (e.target.id === 'quoteModal') {
-        closeQuoteModal();
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeQuoteModal();
-      }
-    });
   });
 </script>
