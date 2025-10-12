@@ -139,19 +139,128 @@ const regularPosts = blogPosts.filter(post => !post.featured);
       </div>
     </section>
 
-    <!-- Newsletter CTA -->
-    <section class="newsletter-section">
-      <div class="container">
-        <div class="newsletter-box">
-          <h2>📬 Blog Yazılarımızdan Haberdar Olun</h2>
-          <p>PVC kapı sektöründeki yenilikler, fiyat güncellemeleri ve özel tekliflerden ilk siz haberdar olun.</p>
-          <form class="newsletter-form" action="#" method="post">
-            <input type="email" placeholder="E-posta adresiniz" required />
-            <button type="submit" class="btn-subscribe">Abone Ol</button>
-          </form>
+   <!-- Newsletter CTA -->
+<section class="newsletter-section" style="background:#f9f9f9; padding:40px 0;">
+  <div class="container" style="max-width:700px; margin:0 auto; text-align:center;">
+    <h2 style="font-size:24px; margin-bottom:10px;">📬 Blog Yazılarımızdan Haberdar Olun</h2>
+    <p style="font-size:16px; color:#555; margin-bottom:30px;">
+      PVC kapı sektöründeki yenilikler, fiyat güncellemeleri ve özel tekliflerden ilk siz haberdar olun.
+    </p>
+
+    <!-- Mailchimp Form -->
+    <div id="mc_embed_signup">
+      <form
+        action="https://cihanpandoor.us20.list-manage.com/subscribe/post?u=bff5a1a34a72f4c4f5c4fb675&amp;id=c057853d71&amp;f_id=0011c2e1f0"
+        method="post"
+        id="mc-embedded-subscribe-form"
+        name="mc-embedded-subscribe-form"
+        target="_blank"
+        novalidate
+        style="background:#fff; padding:20px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1);"
+      >
+        <div class="mc-field-group" style="margin-bottom:15px; text-align:left;">
+          <label for="mce-EMAIL">E-posta Adresi <span style="color:red">*</span></label>
+          <input
+            type="email"
+            name="EMAIL"
+            id="mce-EMAIL"
+            required
+            style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;"
+          />
         </div>
-      </div>
-    </section>
+
+        <div class="mc-field-group" style="margin-bottom:15px; text-align:left;">
+          <label for="mce-FNAME">Adınız</label>
+          <input
+            type="text"
+            name="FNAME"
+            id="mce-FNAME"
+            style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;"
+          />
+        </div>
+
+        <div class="mc-field-group" style="margin-bottom:15px; text-align:left;">
+          <label for="mce-LNAME">Soyadınız</label>
+          <input
+            type="text"
+            name="LNAME"
+            id="mce-LNAME"
+            style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;"
+          />
+        </div>
+
+        <div class="mc-field-group" style="margin-bottom:15px; text-align:left;">
+          <label for="mce-PHONE">Telefon</label>
+          <input
+            type="text"
+            name="PHONE"
+            id="mce-PHONE"
+            style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;"
+          />
+        </div>
+
+        <div class="mc-field-group" style="margin-bottom:20px; text-align:left;">
+          <label for="mce-COMPANY">Firma Adı</label>
+          <input
+            type="text"
+            name="COMPANY"
+            id="mce-COMPANY"
+            style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;"
+          />
+        </div>
+
+        <!-- Hidden anti-bot alanı -->
+        <div aria-hidden="true" style="position:absolute; left:-5000px;">
+          <input
+            type="text"
+            name="b_bff5a1a34a72f4c4f5c4fb675_c057853d71"
+            tabindex="-1"
+            value=""
+          />
+        </div>
+
+        <!-- Submit -->
+        <div>
+          <input
+            type="submit"
+            name="subscribe"
+            id="mc-embedded-subscribe"
+            class="button"
+            value="Abone Ol"
+            style="background:#0073e6; color:#fff; padding:12px 25px; border:none; border-radius:6px; cursor:pointer; font-size:16px;"
+          />
+        </div>
+
+        <!-- Response -->
+        <div id="mce-responses" style="margin-top:15px;">
+          <div class="response" id="mce-error-response" style="display:none; color:red;"></div>
+          <div class="response" id="mce-success-response" style="display:none; color:green;"></div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Mailchimp Validation -->
+    <script src="https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+    <script>
+      (function ($) {
+        window.fnames = [];
+        window.ftypes = [];
+        fnames[0] = "EMAIL";
+        ftypes[0] = "email";
+        fnames[1] = "FNAME";
+        ftypes[1] = "text";
+        fnames[2] = "LNAME";
+        ftypes[2] = "text";
+        fnames[3] = "PHONE";
+        ftypes[3] = "phone";
+        fnames[4] = "COMPANY";
+        ftypes[4] = "text";
+      })(jQuery);
+      var $mcj = jQuery.noConflict(true);
+    </script>
+  </div>
+</section>
+
   </main>
 
   <Footer />
