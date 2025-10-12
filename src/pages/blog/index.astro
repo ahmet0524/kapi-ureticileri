@@ -2,28 +2,217 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+
+const baseUrl = Astro.site?.toString().slice(0, -1) || 'https://kapi-ureticileri.vercel.app';
+
+const blogPosts = [
+  {
+    slug: 'pvc-kapi-ureticileri',
+    title: 'PVC Kapı Üreticileri: Türkiye\'den Dünyaya Kaliteli Çözümler',
+    excerpt: 'Türkiye\'nin önde gelen PVC kapı üreticileri hakkında kapsamlı rehber. Kayseri\'den dünyaya kaliteli PVC kapı üretimi, fiyatlar ve modeller.',
+    image: '/assets/img/blog/pvc-kapi-ureticileri-thumb.webp',
+    date: '2025-01-15',
+    readTime: '8 dakika',
+    category: 'Üretim',
+    featured: true
+  },
+  {
+    slug: 'pvc-kapi-fiyatlari-2025',
+    title: 'PVC Kapı Fiyatları 2025 Rehberi',
+    excerpt: 'Güncel PVC kapı fiyatları, model bazlı karşılaştırmalar ve bütçe planlama önerileri.',
+    image: '/assets/img/blog/pvc-kapi-fiyatlari-thumb.webp',
+    date: '2025-01-20',
+    readTime: '6 dakika',
+    category: 'Fiyatlandırma',
+    featured: false
+  },
+  {
+    slug: 'otel-kapilari-secimi',
+    title: 'Otel Projeleri İçin Doğru Kapı Seçimi',
+    excerpt: 'Otel projelerinde kaliteli kapı seçimi için püf noktalar, ses yalıtımı ve dayanıklılık kriterleri.',
+    image: '/assets/img/blog/otel-kapilari-thumb.webp',
+    date: '2025-01-22',
+    readTime: '7 dakika',
+    category: 'Projeler',
+    featured: false
+  },
+  {
+    slug: 'hastane-kapilari-ozellikleri',
+    title: 'Hastane Kapıları: Hijyen ve Dayanıklılık',
+    excerpt: 'Sağlık tesisleri için özel hastane kapıları, antibakteriyel yüzeyler ve güvenlik standartları.',
+    image: '/assets/img/blog/hastane-kapilari-thumb.webp',
+    date: '2025-01-25',
+    readTime: '5 dakika',
+    category: 'Sağlık',
+    featured: false
+  }
+];
+
+const featuredPost = blogPosts.find(post => post.featured);
+const regularPosts = blogPosts.filter(post => !post.featured);
 ---
 
-<Layout title="Blog | CihanPan Door">
+<Layout
+  title="Blog | CihanPan Door - PVC Kapı Üretimi, Modeller ve Fiyatlar"
+  description="PVC kapı üretimi, modeller, fiyatlar, otel ve hastane projeleri hakkında güncel blog yazıları ve uzman tavsiyeleri."
+  keywords="pvc kapı blog, kapı üretimi, pvc kapı fiyatları, otel kapıları, hastane kapıları, kapı rehberi"
+  canonical={`${baseUrl}/blog`}
+>
   <Header />
+
   <main>
-    <div class="container">
-      <h1>Blog Yazıları</h1>
-      <div class="blog-list">
-        <article>
-          <h2><a href="/blog/pvc-kapi-ureticileri">PVC Kapı Üreticileri</a></h2>
-          <p>Türkiye'nin önde gelen PVC kapı üreticileri hakkında...</p>
-        </article>
+    <!-- Hero Section -->
+    <section class="blog-hero">
+      <div class="container">
+        <h1>📚 PVC Kapı Blog</h1>
+        <p>Kapı dünyasından haberler, rehberler ve uzman tavsiyeleri</p>
       </div>
-    </div>
+    </section>
+
+    <!-- Featured Post -->
+    {featuredPost && (
+      <section class="featured-post-section">
+        <div class="container">
+          <h2 class="section-title">⭐ Öne Çıkan Yazı</h2>
+          <article class="featured-post">
+            <a href={`/blog/${featuredPost.slug}`} class="featured-link">
+              <div class="featured-image">
+                <img src={featuredPost.image} alt={featuredPost.title} loading="eager" />
+                <span class="featured-badge">Öne Çıkan</span>
+              </div>
+              <div class="featured-content">
+                <div class="blog-meta">
+                  <span class="category-badge">{featuredPost.category}</span>
+                  <span class="separator">•</span>
+                  <time datetime={featuredPost.date}>
+                    {new Date(featuredPost.date).toLocaleDateString('tr-TR', {
+                      day: 'numeric',
+                      month: 'long',
+                      year: 'numeric'
+                    })}
+                  </time>
+                  <span class="separator">•</span>
+                  <span>⏱️ {featuredPost.readTime}</span>
+                </div>
+                <h2>{featuredPost.title}</h2>
+                <p>{featuredPost.excerpt}</p>
+                <span class="read-more-btn">Yazıyı Oku →</span>
+              </div>
+            </a>
+          </article>
+        </div>
+      </section>
+    )}
+
+    <!-- Blog Grid -->
+    <section class="blog-grid-section">
+      <div class="container">
+        <h2 class="section-title">📖 Tüm Yazılar</h2>
+        <div class="blog-grid">
+          {regularPosts.map(post => (
+            <article class="blog-card">
+              <a href={`/blog/${post.slug}`} class="blog-card-link">
+                <div class="blog-card-image">
+                  <img src={post.image} alt={post.title} loading="lazy" />
+                  <span class="blog-category">{post.category}</span>
+                </div>
+                <div class="blog-card-content">
+                  <div class="blog-meta">
+                    <time datetime={post.date}>
+                      {new Date(post.date).toLocaleDateString('tr-TR', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric'
+                      })}
+                    </time>
+                    <span>•</span>
+                    <span>⏱️ {post.readTime}</span>
+                  </div>
+                  <h3>{post.title}</h3>
+                  <p>{post.excerpt}</p>
+                  <span class="read-more">Devamını Oku →</span>
+                </div>
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter CTA -->
+    <section class="newsletter-section">
+      <div class="container">
+        <div class="newsletter-box">
+          <h2>📬 Blog Yazılarımızdan Haberdar Olun</h2>
+          <p>PVC kapı sektöründeki yenilikler, fiyat güncellemeleri ve özel tekliflerden ilk siz haberdar olun.</p>
+          <form class="newsletter-form" action="#" method="post">
+            <input type="email" placeholder="E-posta adresiniz" required />
+            <button type="submit" class="btn-subscribe">Abone Ol</button>
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
+
   <Footer />
 </Layout>
 
 <style>
-.container{max-width:1200px;margin:0 auto;padding:4rem 20px}
-.blog-list{display:grid;gap:2rem;margin-top:2rem}
-.blog-list article{background:#fff;padding:2rem;border-radius:12px;border:1px solid #e5e7eb}
-.blog-list h2 a{color:#111827;text-decoration:none}
-.blog-list h2 a:hover{color:#667eea}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+.blog-hero{padding:5rem 0 3rem;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;text-align:center}
+.blog-hero h1{font-size:clamp(2.5rem,5vw,3.5rem);margin-bottom:1rem;font-weight:800}
+.blog-hero p{font-size:1.25rem;opacity:.95;max-width:600px;margin:0 auto}
+.section-title{font-size:2rem;font-weight:700;color:#111827;margin-bottom:2rem;text-align:center}
+.featured-post-section{padding:4rem 0 2rem;background:#f9fafb}
+.featured-post{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.1);transition:all .3s ease}
+.featured-post:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.15)}
+.featured-link{display:grid;grid-template-columns:1fr 1fr;gap:0;text-decoration:none;color:inherit}
+.featured-image{position:relative;height:400px;overflow:hidden}
+.featured-image img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.featured-post:hover .featured-image img{transform:scale(1.05)}
+.featured-badge{position:absolute;top:1.5rem;left:1.5rem;background:#f59e0b;color:#fff;padding:.75rem 1.5rem;border-radius:25px;font-size:.9rem;font-weight:700;box-shadow:0 4px 12px rgba(245,158,11,.3)}
+.featured-content{padding:3rem;display:flex;flex-direction:column;justify-content:center}
+.blog-meta{display:flex;gap:.75rem;align-items:center;font-size:.9rem;color:#6b7280;margin-bottom:1rem;flex-wrap:wrap}
+.category-badge{background:#667eea;color:#fff;padding:.4rem 1rem;border-radius:15px;font-weight:600;font-size:.85rem}
+.separator{color:#d1d5db}
+.featured-content h2{font-size:2rem;font-weight:800;color:#111827;margin-bottom:1rem;line-height:1.3}
+.featured-content p{color:#4b5563;line-height:1.7;font-size:1.1rem;margin-bottom:1.5rem}
+.read-more-btn{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:1rem 2rem;border-radius:50px;font-weight:600;transition:all .3s ease}
+.featured-post:hover .read-more-btn{transform:translateX(5px);box-shadow:0 4px 15px rgba(102,126,234,.4)}
+.blog-grid-section{padding:4rem 0}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:2rem;margin-top:2rem}
+.blog-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.08);transition:all .3s ease;height:100%}
+.blog-card:hover{transform:translateY(-8px);box-shadow:0 12px 30px rgba(0,0,0,.15)}
+.blog-card-link{text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%}
+.blog-card-image{position:relative;height:220px;overflow:hidden}
+.blog-card-image img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+.blog-card:hover .blog-card-image img{transform:scale(1.05)}
+.blog-category{position:absolute;top:1rem;left:1rem;background:#667eea;color:#fff;padding:.5rem 1rem;border-radius:20px;font-size:.85rem;font-weight:600}
+.blog-card-content{padding:1.5rem;flex:1;display:flex;flex-direction:column}
+.blog-card h3{font-size:1.35rem;font-weight:700;color:#111827;margin-bottom:.75rem;line-height:1.4}
+.blog-card p{color:#4b5563;line-height:1.6;margin-bottom:1rem;flex:1}
+.read-more{color:#667eea;font-weight:600;font-size:.95rem;margin-top:auto}
+.newsletter-section{padding:5rem 0;background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
+.newsletter-box{background:#fff;padding:3rem;border-radius:20px;text-align:center;max-width:700px;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.08)}
+.newsletter-box h2{font-size:2rem;font-weight:800;color:#111827;margin-bottom:1rem}
+.newsletter-box p{color:#4b5563;font-size:1.1rem;margin-bottom:2rem}
+.newsletter-form{display:flex;gap:1rem;max-width:500px;margin:0 auto}
+.newsletter-form input{flex:1;padding:1rem 1.5rem;border:2px solid #e5e7eb;border-radius:12px;font-size:1rem;transition:all .3s ease}
+.newsletter-form input:focus{outline:none;border-color:#667eea;box-shadow:0 0 0 3px rgba(102,126,234,.1)}
+.btn-subscribe{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:1rem 2rem;border:none;border-radius:12px;font-weight:600;font-size:1rem;cursor:pointer;transition:all .3s ease;white-space:nowrap}
+.btn-subscribe:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(102,126,234,.3)}
+@media(max-width:1024px){
+.featured-link{grid-template-columns:1fr}
+.featured-image{height:300px}
+.featured-content{padding:2rem}
+.featured-content h2{font-size:1.75rem}
+}
+@media(max-width:768px){
+.blog-hero{padding:3rem 0 2rem}
+.blog-hero h1{font-size:2rem}
+.blog-grid{grid-template-columns:1fr;gap:1.5rem}
+.featured-content h2{font-size:1.5rem}
+.newsletter-form{flex-direction:column}
+.newsletter-box{padding:2rem}
+}
 </style>

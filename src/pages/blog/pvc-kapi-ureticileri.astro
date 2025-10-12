@@ -1,0 +1,771 @@
+---
+// src/pages/blog/pvc-kapi-ureticileri.astro
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+const baseUrl = Astro.site?.toString().slice(0, -1) || 'https://kapi-ureticileri.vercel.app';
+const currentUrl = `${baseUrl}${Astro.url.pathname}`;
+
+const breadcrumbItems = [
+  { name: "Ana Sayfa", href: "/" },
+  { name: "Blog", href: "/blog" },
+  { name: "PVC Kapı Üreticileri" }
+];
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "PVC Kapı Üreticileri: Türkiye'den Dünyaya Kaliteli Çözümler",
+  "description": "Türkiye'nin önde gelen PVC kapı üreticileri, üretim süreçleri, fiyatlar ve kalite standartları hakkında kapsamlı rehber.",
+  "image": `${baseUrl}/assets/img/blog/pvc-kapi-ureticileri-og.webp`,
+  "author": {
+    "@type": "Organization",
+    "name": "CihanPan Door",
+    "url": baseUrl
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "CihanPan Door",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${baseUrl}/assets/img/logo.webp`
+    }
+  },
+  "datePublished": "2025-01-15",
+  "dateModified": "2025-01-15",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": currentUrl
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "PVC kapı üreticileri hangi bölgelerde yoğunlaşmış?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Türkiye'de PVC kapı üretimi özellikle Kayseri, İstanbul ve İzmir'de yoğunlaşmıştır. Kayseri, Organize Sanayi Bölgesi ile öne çıkmaktadır."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Toplu sipariş için minimum adet nedir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Toplu siparişler genellikle 50 adet ve üzerinden kabul edilir. Daha küçük siparişler için de özel fiyat teklifleri alınabilir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "PVC kapı montajı ne kadar sürer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Profesyonel montaj ekibi ile bir kapının montajı 30-45 dakika sürer. Ölçü alma, üretim ve teslimat süreci 7-10 gün içinde tamamlanır."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Özel ölçü üretim yapılıyor mu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Evet, standart ölçülerin dışında projeye özel boyutlarda üretim yapılabilmektedir. Teknik çizim ve ölçüler paylaşıldığında teklif hazırlanır."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "PVC kapıların garanti süresi ne kadardır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CihanPan Door ürünlerinde 5 yıl garanti sunulmaktadır. Garanti kapsamında üretim hatalarından kaynaklanan sorunlar ücretsiz giderilir."
+      }
+    }
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    "item": item.href ? `${baseUrl}${item.href}` : currentUrl
+  }))
+};
+---
+
+<Layout
+  title="PVC Kapı Üreticileri: Türkiye'den Dünyaya Kaliteli Çözümler | CihanPan Door"
+  description="Türkiye'nin önde gelen PVC kapı üreticileri hakkında kapsamlı rehber. Kayseri'den dünyaya kaliteli PVC kapı üretimi, fiyatlar, modeller ve ihracat bilgileri."
+  keywords="pvc kapı üreticileri, türkiye pvc kapı, kayseri kapı üretimi, toptan iç kapı, su geçirmez kapılar, antibakteriyel kapı, otel kapısı üretici, hastane kapısı, cihanpan door, modern iç kapı, pvc kapı fabrikası, ihracat pvc kapı"
+  canonical={currentUrl}
+  ogImage="/assets/img/blog/pvc-kapi-ureticileri-og.webp"
+  ogTitle="PVC Kapı Üreticileri: Türkiye'den Dünyaya Kaliteli Çözümler"
+  ogDescription="Türkiye'nin önde gelen PVC kapı üreticileri, üretim süreçleri, fiyatlar ve kalite standartları hakkında kapsamlı rehber."
+  ogType="article"
+  ogUrl={currentUrl}
+  twitterCard="summary_large_image"
+  twitterTitle="PVC Kapı Üreticileri: Türkiye'den Dünyaya Kaliteli Çözümler"
+  twitterDescription="Kayseri'den dünyaya PVC kapı üretimi. 25 yıllık tecrübe, 300+ model, CE belgeli ürünler."
+  twitterImage="/assets/img/blog/pvc-kapi-ureticileri-og.webp"
+  schema={[articleSchema, faqSchema, breadcrumbSchema]}
+>
+
+<Header />
+<Breadcrumbs items={breadcrumbItems} />
+
+<main>
+<article class="blog-article">
+<div class="container">
+<header class="article-header">
+<div class="article-meta">
+<time datetime="2025-01-15" class="publish-date">15 Ocak 2025</time>
+<span class="reading-time">⏱️ 8 dakika okuma</span>
+<span class="category">🏭 Üretim</span>
+</div>
+<h1>PVC Kapı Üreticileri: Türkiye'den Dünyaya Kaliteli Çözümler</h1>
+<p class="article-lead">Türkiye'nin inşaat ve mobilya sektöründeki başarısı, <strong>PVC kapı üreticileri</strong> alanında da kendini gösteriyor. Özellikle Kayseri'de yoğunlaşan üretim merkezleri, yurt içi ve yurt dışı pazarlara yüksek kaliteli, ekonomik ve modern tasarımlı PVC iç oda kapıları sunuyor.</p>
+<div class="article-image">
+<img src="/assets/img/blog/pvc-kapi-ureticileri-hero.webp" alt="PVC Kapı Üretim Fabrikası - Modern Üretim Hattı" width="1200" height="600" loading="eager" />
+</div>
+</header>
+
+<div class="article-content">
+<section class="content-section">
+<h2>Türkiye'de PVC Kapı Üretimi</h2>
+<p>Son yıllarda <strong>PVC kapı üretimi</strong>, Türkiye'nin mobilya ihracatında önemli bir paya sahip. Gelişmiş makine parkları, kalite kontrol sistemleri ve deneyimli işgücü ile Türk üreticileri, uluslararası standartlarda ürünler geliştiriyor.</p>
+<p>Kayseri başta olmak üzere birçok şehirde faaliyet gösteren <strong>PVC kapı üreticileri</strong>, hem konut projelerine hem de otel, hastane ve ofis gibi ticari yapılara özel çözümler sunmaktadır.</p>
+
+<h3>Türk PVC Kapı Üreticilerinin Avantajları</h3>
+<div class="highlight-box">
+<ul class="checkmark-list">
+<li><strong>Rekabetçi fiyatlandırma:</strong> Hammadde maliyetleri ve üretim verimliliği sayesinde uygun fiyatlar</li>
+<li><strong>Hızlı üretim kapasitesi:</strong> Büyük ölçekli projelere kısa sürede teslimat</li>
+<li><strong>Avrupa standartları:</strong> CE belgeli, kalite sertifikalı ürünler</li>
+<li><strong>Geniş ürün yelpazesi:</strong> 300'den fazla model ve renk seçeneği</li>
+<li><strong>Özelleştirme imkanı:</strong> Projeye özel boyut ve tasarım</li>
+</ul>
+</div>
+<p>Bu özellikler, Türk <strong>PVC kapı üreticilerini</strong> dünya pazarında tercih edilen tedarikçiler haline getiriyor.</p>
+</section>
+
+<section class="content-section">
+<h2>Neden PVC Kapı Üreticilerini Tercih Etmelisiniz?</h2>
+<div class="features-grid">
+<div class="feature-card">
+<div class="feature-icon">💧</div>
+<h3>Su Geçirmez Teknoloji</h3>
+<p>PVC kapılar, özellikle nemli ortamlarda üstün performans gösterir. Banyo, mutfak ve balkon gibi alanlarda ahşap kapıların aksine şişme, çarpılma veya çatlama sorunu yaşanmaz.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">🦠</div>
+<h3>Antibakteriyel Yüzey</h3>
+<p>Hijyen gerektiren alanlarda PVC kapılar ideal seçimdir. Yüzey yapısı bakterilerin üremesini engeller, bu da özellikle hastane ve klinikler için önemli bir avantajdır.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">💰</div>
+<h3>Ekonomik Çözüm</h3>
+<p>Ahşap ve lake kapılara göre daha uygun fiyatlı olan PVC kapılar, uzun ömürleri ile de tasarruf sağlar. Düzenli boya bakımı gerektirmez.</p>
+</div>
+<div class="feature-card">
+<div class="feature-icon">✨</div>
+<h3>Kolay Bakım</h3>
+<p>Sadece nemli bez ile silinebilen PVC kapılar, temizlik ve bakım açısından son derece pratiktir. Özel temizlik ürünlerine ihtiyaç duymaz.</p>
+</div>
+</div>
+</section>
+
+<section class="content-section cta-section-inline">
+<div class="inline-cta">
+<h3>🏭 CihanPan Door: Lider PVC Kapı Üreticisi</h3>
+<p><a href="https://cihanpandoor.com" target="_blank" rel="noopener">CihanPan Door</a>, Kayseri'de 25 yılı aşkın tecrübesiyle Türkiye'nin önde gelen <strong>PVC kapı üreticileri</strong> arasında yer alıyor. 300'den fazla model ve renk seçeneği ile her projeye özel çözümler sunan firma, yurt içi ve yurt dışı pazarlarda güvenilir bir marka olarak tanınıyor.</p>
+<a href="/iletisim" class="btn-cta-inline">Ücretsiz Teklif Alın</a>
+</div>
+</section>
+
+<section class="content-section">
+<h3>Ürün Gamı</h3>
+<ul class="product-list">
+<li><strong>PVC İç Oda Kapıları:</strong> Standart ve özel ölçülerde</li>
+<li><strong>Hastane Kapıları:</strong> Hijyenik, darbelere dayanıklı</li>
+<li><strong>Otel Kapıları:</strong> Ses yalıtımlı, estetik tasarımlar</li>
+<li><strong>Ofis Kapıları:</strong> Modern ve profesyonel görünüm</li>
+<li><strong>Banyo Kapıları:</strong> Su geçirmez, nemlenmeye karşı dirençli</li>
+</ul>
+
+<h3>Üretim Kapasitesi ve Kalite</h3>
+<p>CihanPan Door'un modern üretim tesisleri, aylık 10.000 adet kapı üretim kapasitesine sahip. Her üretim aşamasında kalite kontrol yapılarak, müşterilere kusursuz ürünler sunuluyor.</p>
+
+<div class="info-box">
+<h4>Kalite Standartları:</h4>
+<ul class="compact-list">
+<li>✓ CE belgesi</li>
+<li>✓ ISO 9001 kalite yönetim sistemi</li>
+<li>✓ TSE uygunluk sertifikası</li>
+<li>✓ 5 yıl garanti</li>
+<li>✓ Yangın dayanımı testleri</li>
+</ul>
+</div>
+</section>
+
+<section class="content-section">
+<h2>PVC Kapı Modelleri ve Seçenekleri</h2>
+<h3>Model Serileri</h3>
+<div class="model-series">
+<div class="series-card">
+<h4>101 Serisi</h4>
+<p>Klasik ve zamansız tasarımlar. ABD Ceviz, Beyaz, İtalyan Ceviz gibi popüler renk seçenekleri.</p>
+</div>
+<div class="series-card">
+<h4>102 Serisi</h4>
+<p>Modern çizgiler ve doğal ahşap görünümlü yüzeyler. Kül Meşe, Koko, Gold Meşe alternatifleri.</p>
+</div>
+<div class="series-card">
+<h4>103-115 Serileri</h4>
+<p>Çağdaş mimariye uygun, minimalist ve şık tasarımlar. Antrasit, Kum Gri, Vision Gri gibi modern renkler.</p>
+</div>
+</div>
+
+<h3>Renk ve Doku Çeşitliliği</h3>
+<div class="color-categories">
+<div class="color-category">
+<h4>🌳 Ahşap Görünümlü:</h4>
+<ul>
+<li>Ceviz tonları (İtalyan Ceviz, Milano Ceviz, Tuna Ceviz)</li>
+<li>Meşe tonları (Gold Meşe, Kül Meşe, Gri Meşe)</li>
+<li>Tik, Kestane, Barok</li>
+</ul>
+</div>
+<div class="color-category">
+<h4>🎨 Modern Renkler:</h4>
+<ul>
+<li>Beyaz (Mat ve Parlak)</li>
+<li>Gri tonları (Kum Gri, Vision Gri, Soft Kapuçino)</li>
+<li>Koyu tonlar (Antrasit, Olimpos, Dark Santana)</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="content-section">
+<h2>PVC Kapı Üretim Süreci</h2>
+<div class="process-steps">
+<div class="process-step">
+<div class="step-number">1</div>
+<h3>Tasarım ve Planlama</h3>
+<p>Müşteri ihtiyaçlarına göre model seçimi ve ölçü alımı yapılır. Projeye özel tasarımlar için 3D modelleme hizmeti sunulur.</p>
+</div>
+<div class="process-step">
+<div class="step-number">2</div>
+<h3>Malzeme Seçimi</h3>
+<p>Yüksek kaliteli MDF gövde ve PVC kaplama malzemeleri tedarik edilir. Tüm malzemeler çevre dostu ve sağlık standartlarına uygundur.</p>
+</div>
+<div class="process-step">
+<div class="step-number">3</div>
+<h3>Üretim Aşamaları</h3>
+<ul>
+<li>MDF gövde kesimi ve şekillendirme</li>
+<li>PVC kaplama işlemi</li>
+<li>Kenar bantlama</li>
+<li>Aksesuar montajı (menteşe, kilit yuvası)</li>
+<li>Kalite kontrol</li>
+</ul>
+</div>
+<div class="process-step">
+<div class="step-number">4</div>
+<h3>Paketleme ve Sevkiyat</h3>
+<p>Her kapı özel koruyucu ambalajla paketlenir. Yurt içi ve yurt dışı kargo seçenekleri mevcuttur.</p>
+</div>
+</div>
+</section>
+
+<section class="content-section pricing-section">
+<h2>PVC Kapı Fiyatları</h2>
+<p>PVC kapı fiyatları, modele, boyuta ve aksesuarlara göre değişiklik gösterir:</p>
+<div class="price-cards">
+<div class="price-card">
+<h3>Standart Modeller</h3>
+<div class="price">3.500₺ - 5.500₺</div>
+<p>Klasik tasarımlar, standart ölçüler</p>
+</div>
+<div class="price-card featured">
+<div class="badge">Popüler</div>
+<h3>Premium Modeller</h3>
+<div class="price">5.500₺ - 8.000₺</div>
+<p>Modern tasarım, özel yüzey işlemleri</p>
+</div>
+<div class="price-card">
+<h3>Özel Tasarım</h3>
+<div class="price">Teklif Üzerine</div>
+<p>Projeye özel ölçü ve tasarım</p>
+</div>
+</div>
+
+<div class="info-box">
+<h4>💼 Fiyata Dahil Olan Hizmetler:</h4>
+<ul class="included-services">
+<li>✓ Ücretsiz ölçü alma (belirli bölgelerde)</li>
+<li>✓ Profesyonel montaj</li>
+<li>✓ 5 yıl garanti</li>
+<li>✓ Ücretsiz kargo (toplu siparişlerde)</li>
+</ul>
+</div>
+</section>
+
+<section class="content-section">
+<h2>PVC Kapı Seçerken Dikkat Edilmesi Gerekenler</h2>
+<h3>Kalite Kontrol Noktaları</h3>
+<ul class="checkmark-list">
+<li><strong>Yüzey Kalitesi:</strong> Pürüzsüz, homojen PVC kaplama</li>
+<li><strong>Kenar Bantlama:</strong> Düzgün ve sızdırmaz kenarlar</li>
+<li><strong>Menteşe Kalitesi:</strong> Sessiz ve dayanıklı menteşeler</li>
+<li><strong>Gövde Yoğunluğu:</strong> Yüksek yoğunluklu MDF kullanımı</li>
+</ul>
+
+<h3>Boyut ve Ölçü</h3>
+<p>Standart kapı ölçüsü 70x200 cm olmakla birlikte, 60cm, 80cm ve 90cm genişlik seçenekleri de mevcuttur. Özel ölçüler için üretim yapılabilir.</p>
+</section>
+
+<section class="content-section">
+<h2>PVC Kapı Kullanım Alanları</h2>
+<div class="usage-areas">
+<div class="usage-card">
+<h3>🏠 Konut Projeleri</h3>
+<ul>
+<li>Site içi toplu uygulamalar</li>
+<li>Müstakil ev projeleri</li>
+<li>Tadilat ve yenileme işleri</li>
+</ul>
+</div>
+<div class="usage-card">
+<h3>🏢 Ticari Projeler</h3>
+<ul>
+<li><strong>Otel Projeleri:</strong> Ses yalıtımlı, dayanıklı modeller</li>
+<li><strong>Hastane Projeleri:</strong> Hijyenik, antibakteriyel yüzeyler</li>
+<li><strong>Ofis Binaları:</strong> Profesyonel görünüm</li>
+<li><strong>Eğitim Kurumları:</strong> Darbelere dayanıklı yapı</li>
+</ul>
+</div>
+<div class="usage-card">
+<h3>🎯 Özel Kullanım Alanları</h3>
+<ul>
+<li>Spa ve wellness merkezleri</li>
+<li>Spor salonları</li>
+<li>Alışveriş merkezleri</li>
+<li>Restoranlar ve kafeler</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="content-section export-section">
+<h2>🌍 PVC Kapı İhracatı</h2>
+<p>Türk <strong>PVC kapı üreticileri</strong>, dünya pazarında önemli bir konuma sahip. Başlıca ihracat pazarları:</p>
+<div class="export-regions">
+<div class="region">
+<h4>🇪🇺 Avrupa</h4>
+<p>Almanya, Fransa, İngiltere, Hollanda</p>
+</div>
+<div class="region">
+<h4>🕌 Orta Doğu</h4>
+<p>Suudi Arabistan, BAE, Irak, Katar</p>
+</div>
+<div class="region">
+<h4>🌍 Afrika</h4>
+<p>Libya, Cezayir, Mısır</p>
+</div>
+<div class="region">
+<h4>🏔️ Orta Asya</h4>
+<p>Kazakistan, Özbekistan, Türkmenistan</p>
+</div>
+</div>
+
+<h3>İhracat Avantajları</h3>
+<ul class="checkmark-list">
+<li>Rekabetçi fiyatlar</li>
+<li>Hızlı teslimat</li>
+<li>CE ve uluslararası sertifikalar</li>
+<li>Konteyner ve yükleme desteği</li>
+<li>Çok dilli müşteri hizmeti</li>
+</ul>
+</section>
+
+<section class="content-section">
+<h2>Bakım ve Kullanım Önerileri</h2>
+<div class="maintenance-tips">
+<div class="tip-card">
+<h3>🧹 Günlük Bakım</h3>
+<ul>
+<li>Nemli bezle silin</li>
+<li>Aşındırıcı temizlik ürünleri kullanmayın</li>
+<li>Kapı yüzeyine aşırı kuvvet uygulamayın</li>
+</ul>
+</div>
+<div class="tip-card">
+<h3>🔧 Uzun Ömür İçin</h3>
+<ul>
+<li>Menteşeleri yılda bir kez yağlayın</li>
+<li>Kilit mekanizmasını kontrol edin</li>
+<li>Kapı stoperi kullanın</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="content-section faq-section">
+<h2>❓ Sıkça Sorulan Sorular</h2>
+<div class="faq-list">
+<details class="faq-item">
+<summary>PVC kapı üreticileri hangi bölgelerde yoğunlaşmış?</summary>
+<p>Türkiye'de PVC kapı üretimi özellikle Kayseri, İstanbul ve İzmir'de yoğunlaşmıştır. Kayseri, Organize Sanayi Bölgesi ile öne çıkmaktadır.</p>
+</details>
+<details class="faq-item">
+<summary>Toplu sipariş için minimum adet nedir?</summary>
+<p>Toplu siparişler genellikle 50 adet ve üzerinden kabul edilir. Daha küçük siparişler için de özel fiyat teklifleri alınabilir.</p>
+</details>
+<details class="faq-item">
+<summary>PVC kapı montajı ne kadar sürer?</summary>
+<p>Profesyonel montaj ekibi ile bir kapının montajı 30-45 dakika sürer. Ölçü alma, üretim ve teslimat süreci 7-10 gün içinde tamamlanır.</p>
+</details>
+<details class="faq-item">
+<summary>Özel ölçü üretim yapılıyor mu?</summary>
+<p>Evet, standart ölçülerin dışında projeye özel boyutlarda üretim yapılabilmektedir. Teknik çizim ve ölçüler paylaşıldığında teklif hazırlanır.</p>
+</details>
+<details class="faq-item">
+<summary>PVC kapıların garanti süresi ne kadardır?</summary>
+<p>CihanPan Door ürünlerinde 5 yıl garanti sunulmaktadır. Garanti kapsamında üretim hatalarından kaynaklanan sorunlar ücretsiz giderilir.</p>
+</details>
+</div>
+</section>
+
+<section class="content-section conclusion">
+<h2>Sonuç: Doğru PVC Kapı Üreticisini Seçin</h2>
+<p>PVC kapı yatırımı, uzun vadeli bir karardır. Kaliteli <strong>PVC kapı üreticileri</strong> ile çalışmak, hem estetik hem de fonksiyonel açıdan memnuniyet sağlar.</p>
+<p>CihanPan Door olarak, 25 yıllık tecrübemiz, geniş ürün yelpazemiz ve müşteri odaklı hizmet anlayışımızla projelerinize değer katmaya hazırız.</p>
+</section>
+
+<section class="content-section contact-info-section">
+<h3>📞 İletişim Bilgileri</h3>
+<div class="contact-grid">
+<div class="contact-item">
+<strong>🌐 Web:</strong> <a href="https://cihanpandoor.com" target="_blank" rel="noopener">cihanpandoor.com</a>
+</div>
+<div class="contact-item">
+<strong>📱 Telefon:</strong> <a href="tel:+905441690038">+90 544 169 00 38</a>
+</div>
+<div class="contact-item">
+<strong>💬 WhatsApp:</strong> <a href="https://wa.me/905441690038" target="_blank" rel="noopener">+90 544 169 00 38</a>
+</div>
+<div class="contact-item">
+<strong>📧 E-posta:</strong> <a href="mailto:export@cihanpandoor.com">export@cihanpandoor.com</a>
+</div>
+<div class="contact-item">
+<strong>📍 Adres:</strong> Organize Sanayi Bölgesi, 29. Cadde No:28, Kayseri/TÜRKİYE
+</div>
+</div>
+</section>
+</div>
+
+<aside class="article-sidebar">
+<div class="sidebar-widget">
+<h3>📋 İçindekiler</h3>
+<nav class="table-of-contents">
+<ul>
+<li><a href="#turkiyede-pvc-kapi-uretimi">Türkiye'de PVC Kapı Üretimi</a></li>
+<li><a href="#neden-pvc-kapi">Neden PVC Kapı Üreticileri?</a></li>
+<li><a href="#cihanpan-door">CihanPan Door</a></li>
+<li><a href="#modeller">Modeller ve Seçenekler</a></li>
+<li><a href="#uretim-sureci">Üretim Süreci</a></li>
+<li><a href="#fiyatlar">Fiyatlar</a></li>
+<li><a href="#kullanim-alanlari">Kullanım Alanları</a></li>
+<li><a href="#ihracat">İhracat</a></li>
+<li><a href="#bakim">Bakım Önerileri</a></li>
+</ul>
+</nav>
+</div>
+<div class="sidebar-widget cta-widget">
+<h3>🎯 Hemen Teklif Alın</h3>
+<p>Projeniz için en uygun PVC kapı modellerini keşfedin.</p>
+<a href="/iletisim" class="btn-sidebar-cta">Ücretsiz Teklif</a>
+<a href="https://wa.me/905441690038" class="btn-sidebar-whatsapp" target="_blank" rel="noopener">💬 WhatsApp</a>
+</div>
+<div class="sidebar-widget stats-widget">
+<h3>📊 Hızlı Bilgiler</h3>
+<div class="stat-item">
+<div class="stat-value">25+</div>
+<div class="stat-label">Yıl Tecrübe</div>
+</div>
+<div class="stat-item">
+<div class="stat-value">300+</div>
+<div class="stat-label">Farklı Model</div>
+</div>
+<div class="stat-item">
+<div class="stat-value">10.000</div>
+<div class="stat-label">Aylık Kapasite</div>
+</div>
+<div class="stat-item">
+<div class="stat-value">50+</div>
+<div class="stat-label">İhracat Ülkesi</div>
+</div>
+</div>
+<div class="sidebar-widget related-links">
+<h3>🔗 İlgili Sayfalar</h3>
+<ul>
+<li><a href="/pvc-kapilar">PVC Kapı Modelleri</a></li>
+<li><a href="/laminoks-kapilar">Laminoks Kapılar</a></li>
+<li><a href="/otel-kapilari">Otel Kapıları</a></li>
+<li><a href="/hastane-kapilari">Hastane Kapıları</a></li>
+<li><a href="/iletisim">İletişim</a></li>
+</ul>
+</div>
+</aside>
+</div>
+</article>
+<section class="final-cta-section">
+<div class="container">
+<h2>PVC Kapı Fiyat Teklifi İçin Hemen İletişime Geçin</h2>
+<p>Uzman ekibimiz size en uygun çözümü sunmak için hazır. Projelerinizi gerçeğe dönüştürelim.</p>
+<div class="cta-buttons">
+<a href="/iletisim" class="btn btn-primary">İletişim Formu</a>
+<a href="https://wa.me/905441690038" class="btn btn-whatsapp" target="_blank" rel="noopener">💬 WhatsApp İletişim</a>
+<a href="tel:+905441690038" class="btn btn-phone">📞 Hemen Ara</a>
+</div>
+</div>
+</section>
+<section class="related-articles-section">
+<div class="container">
+<h2>📚 İlgili Makaleler</h2>
+<div class="articles-grid">
+<article class="article-card">
+<img src="/assets/img/blog/pvc-kapi-modelleri.webp" alt="PVC Kapı Modelleri" loading="lazy" />
+<div class="article-card-content">
+<h3><a href="/blog/pvc-kapi-modelleri">2025 PVC Kapı Modelleri ve Trendleri</a></h3>
+<p>Yılın en popüler PVC kapı modelleri ve tasarım trendleri.</p>
+<span class="read-more">Devamını Oku →</span>
+</div>
+</article>
+<article class="article-card">
+<img src="/assets/img/blog/pvc-kapi-fiyatlari.webp" alt="PVC Kapı Fiyatları" loading="lazy" />
+<div class="article-card-content">
+<h3><a href="/blog/pvc-kapi-fiyatlari">PVC Kapı Fiyatları 2025 Rehberi</a></h3>
+<p>Güncel PVC kapı fiyatları ve bütçe planlama önerileri.</p>
+<span class="read-more">Devamını Oku →</span>
+</div>
+</article>
+<article class="article-card">
+<img src="/assets/img/blog/otel-kapilari.webp" alt="Otel Kapıları" loading="lazy" />
+<div class="article-card-content">
+<h3><a href="/blog/otel-kapilari">Otel Projeleri İçin Kapı Seçimi</a></h3>
+<p>Otel projelerinde kaliteli kapı seçimi için püf noktalar.</p>
+<span class="read-more">Devamını Oku →</span>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section class="tags-section">
+<div class="container">
+<h3>🏷️ Etiketler</h3>
+<div class="tags-cloud">
+<a href="/etiket/pvc-kapi-ureticileri" class="tag">PVC Kapı Üreticileri</a>
+<a href="/etiket/turkiye-pvc-kapi" class="tag">Türkiye PVC Kapı</a>
+<a href="/etiket/kayseri-kapi-uretimi" class="tag">Kayseri Kapı Üretimi</a>
+<a href="/etiket/toptan-ic-kapi" class="tag">Toptan İç Kapı</a>
+<a href="/etiket/su-gecirmez-kapilar" class="tag">Su Geçirmez Kapılar</a>
+<a href="/etiket/antibakteriyel-kapi" class="tag">Antibakteriyel Kapı</a>
+<a href="/etiket/otel-kapisi-uretici" class="tag">Otel Kapısı Üretici</a>
+<a href="/etiket/hastane-kapisi" class="tag">Hastane Kapısı</a>
+<a href="/etiket/cihanpan-door" class="tag">CihanPan Door</a>
+<a href="/etiket/modern-ic-kapi" class="tag">Modern İç Kapı</a>
+<a href="/etiket/pvc-kapi-fabrikasi" class="tag">PVC Kapı Fabrikası</a>
+<a href="/etiket/ihracat-pvc-kapi" class="tag">İhracat PVC Kapı</a>
+</div>
+</div>
+</section>
+</main>
+<Footer />
+</Layout>
+<style>
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+.blog-article{padding:4rem 0;background:#fff}
+.blog-article .container{display:grid;grid-template-columns:1fr 300px;gap:4rem;align-items:start}
+.article-header{grid-column:1/-1;margin-bottom:3rem}
+.article-meta{display:flex;gap:1.5rem;margin-bottom:1.5rem;font-size:.95rem;color:#6b7280;flex-wrap:wrap}
+.publish-date,.reading-time,.category{display:flex;align-items:center;gap:.5rem}
+.article-header h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;color:#111827;line-height:1.2;margin-bottom:1.5rem}
+.article-lead{font-size:1.25rem;line-height:1.7;color:#4b5563;margin-bottom:2rem}
+.article-image{width:100%;border-radius:16px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.1)}
+.article-image img{width:100%;height:auto;display:block}
+.article-content{grid-column:1}
+.content-section{margin-bottom:3rem}
+.content-section h2{font-size:2rem;font-weight:700;color:#111827;margin-bottom:1.5rem;line-height:1.3}
+.content-section h3{font-size:1.5rem;font-weight:600;color:#1f2937;margin:2rem 0 1rem}
+.content-section h4{font-size:1.25rem;font-weight:600;color:#374151;margin:1.5rem 0 .75rem}
+.content-section p{font-size:1.05rem;line-height:1.8;color:#374151;margin-bottom:1.25rem}
+.content-section strong{color:#111827;font-weight:600}
+.checkmark-list{list-style:none;padding-left:0;margin:1.5rem 0}
+.checkmark-list li{padding-left:2rem;margin-bottom:.75rem;position:relative;line-height:1.6}
+.checkmark-list li::before{content:"✓";position:absolute;left:0;color:#10b981;font-weight:bold;font-size:1.2rem}
+.product-list,.compact-list{margin:1rem 0;padding-left:1.5rem}
+.product-list li,.compact-list li{margin-bottom:.75rem;line-height:1.6}
+.highlight-box{background:linear-gradient(135deg,#667eea15,#764ba215);border-left:4px solid #667eea;padding:2rem;border-radius:8px;margin:2rem 0}
+.info-box{background:#f0fdf4;border:2px solid #10b981;border-radius:12px;padding:1.5rem;margin:2rem 0}
+.info-box h4{color:#065f46;margin-top:0}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;margin:2rem 0}
+.feature-card{background:#fff;border:2px solid #e5e7eb;border-radius:12px;padding:2rem;text-align:center;transition:all .3s ease}
+.feature-card:hover{border-color:#667eea;transform:translateY(-5px);box-shadow:0 10px 30px rgba(102,126,234,.15)}
+.feature-icon{font-size:3rem;margin-bottom:1rem}
+.feature-card h3{font-size:1.25rem;margin:1rem 0}
+.feature-card p{font-size:.95rem;color:#6b7280}
+.inline-cta{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:2.5rem;border-radius:16px;text-align:center;margin:3rem 0}
+.inline-cta h3{color:#fff;margin-top:0}
+.inline-cta p{color:rgba(255,255,255,.95);font-size:1.1rem}
+.inline-cta a:not(.btn-cta-inline){color:#fff;text-decoration:underline}
+.btn-cta-inline{display:inline-block;background:#fff;color:#667eea;padding:1rem 2.5rem;border-radius:50px;font-weight:600;text-decoration:none;margin-top:1.5rem;transition:all .3s ease}
+.btn-cta-inline:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,255,255,.3)}
+.model-series{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin:2rem 0}
+.series-card{background:#f9fafb;padding:1.5rem;border-radius:8px;border:1px solid #e5e7eb}
+.series-card h4{color:#667eea;margin-top:0}
+.color-categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin:2rem 0}
+.color-category{background:#fff;border:2px solid #e5e7eb;border-radius:12px;padding:1.5rem}
+.color-category h4{margin-top:0}
+.process-steps{margin:2rem 0}
+.process-step{background:#fff;border-left:4px solid #667eea;padding:2rem 2rem 2rem 5rem;margin-bottom:2rem;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.05);position:relative}
+.step-number{position:absolute;left:1.5rem;top:2rem;width:50px;height:50px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:bold}
+.process-step h3{margin-top:0}
+.process-step ul{margin:.5rem 0 0 1rem}
+.price-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;margin:2rem 0}
+.price-card{background:#fff;border:2px solid #e5e7eb;border-radius:16px;padding:2rem;text-align:center;position:relative;transition:all .3s ease}
+.price-card:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,.1)}
+.price-card.featured{border-color:#667eea;background:linear-gradient(135deg,#667eea15,#764ba215)}
+.price-card .badge{position:absolute;top:-12px;right:20px;background:#10b981;color:#fff;padding:.5rem 1rem;border-radius:20px;font-size:.85rem;font-weight:600}
+.price-card h3{margin-top:0;font-size:1.25rem}
+.price{font-size:2rem;font-weight:800;color:#667eea;margin:1rem 0}
+.price-card p{font-size:.95rem;color:#6b7280}
+.included-services{list-style:none;padding-left:0}
+.included-services li{padding:.5rem 0;border-bottom:1px solid #d1fae5}
+.included-services li:last-child{border-bottom:none}
+.usage-areas{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin:2rem 0}
+.usage-card{background:#f9fafb;padding:2rem;border-radius:12px;border:1px solid #e5e7eb}
+.usage-card h3{margin-top:0;color:#111827}
+.usage-card ul{margin:1rem 0 0 1rem}
+.export-regions{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin:2rem 0}
+.region{background:#fff;padding:1.5rem;border-radius:8px;border:2px solid #e5e7eb;text-align:center}
+.region h4{margin:0 0 .5rem;font-size:1.5rem}
+.region p{margin:0;font-size:.9rem;color:#6b7280}
+.maintenance-tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin:2rem 0}
+.tip-card{background:#fffbeb;border:2px solid #fbbf24;border-radius:12px;padding:2rem}
+.tip-card h3{margin-top:0;color:#92400e}
+.tip-card ul{margin:1rem 0 0 1rem}
+.faq-list{margin:2rem 0}
+.faq-item{background:#fff;border:2px solid #e5e7eb;border-radius:12px;margin-bottom:1rem;overflow:hidden}
+.faq-item summary{padding:1.5rem;cursor:pointer;font-weight:600;font-size:1.1rem;color:#111827;list-style:none;display:flex;justify-content:space-between;align-items:center;transition:background .2s ease}
+.faq-item summary:hover{background:#f9fafb}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";font-size:1.5rem;color:#667eea;transition:transform .3s ease}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item p{padding:0 1.5rem 1.5rem;margin:0;color:#4b5563;line-height:1.7}
+.contact-info-section{background:linear-gradient(135deg,#667eea15,#764ba215);border-radius:16px;padding:2.5rem}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin-top:1.5rem}
+.contact-item{background:#fff;padding:1.25rem;border-radius:8px;border:1px solid #e5e7eb}
+.contact-item strong{display:block;margin-bottom:.5rem;color:#667eea}
+.contact-item a{color:#374151;text-decoration:none}
+.contact-item a:hover{color:#667eea;text-decoration:underline}
+.article-sidebar{grid-column:2;position:sticky;top:100px}
+.sidebar-widget{background:#fff;border:2px solid #e5e7eb;border-radius:12px;padding:1.5rem;margin-bottom:2rem}
+.sidebar-widget h3{font-size:1.25rem;margin-top:0;margin-bottom:1rem;color:#111827}
+.table-of-contents ul{list-style:none;padding:0;margin:0}
+.table-of-contents li{margin-bottom:.75rem}
+.table-of-contents a{color:#4b5563;text-decoration:none;font-size:.95rem;transition:color .2s ease}
+.table-of-contents a:hover{color:#667eea}
+.cta-widget{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;text-align:center}
+.cta-widget h3{color:#fff}
+.cta-widget p{color:rgba(255,255,255,.95);font-size:.95rem}
+.btn-sidebar-cta,.btn-sidebar-whatsapp{display:block;width:100%;padding:.875rem;border-radius:8px;text-decoration:none;font-weight:600;text-align:center;margin-top:1rem;transition:all .3s ease}
+.btn-sidebar-cta{background:#fff;color:#667eea}
+.btn-sidebar-cta:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(255,255,255,.3)}
+.btn-sidebar-whatsapp{background:#10b981;color:#fff}
+.btn-sidebar-whatsapp:hover{background:#059669}
+.stats-widget{text-align:center}
+.stat-item{padding:1rem 0;border-bottom:1px solid #e5e7eb}
+.stat-item:last-child{border-bottom:none}
+.stat-value{font-size:2rem;font-weight:800;color:#667eea}
+.stat-label{font-size:.85rem;color:#6b7280;text-transform:uppercase;letter-spacing:.5px}
+.related-links ul{list-style:none;padding:0;margin:0}
+.related-links li{margin-bottom:.75rem}
+.related-links a{color:#4b5563;text-decoration:none;display:block;padding:.5rem;border-radius:6px;transition:all .2s ease}
+.related-links a:hover{background:#f9fafb;color:#667eea}
+.final-cta-section{padding:5rem 0;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;text-align:center}
+.final-cta-section h2{font-size:2.5rem;font-weight:800;margin-bottom:1rem;color:#fff}
+.final-cta-section p{font-size:1.25rem;margin-bottom:2.5rem;opacity:.95}
+.cta-buttons{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.btn{padding:1rem 2.5rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:1.05rem;transition:all .3s ease;display:inline-flex;align-items:center;justify-content:center;gap:.5rem}
+.btn-primary{background:#111827;color:#fff;border:2px solid #111827}
+.btn-primary:hover{background:#1f2937;transform:translateY(-2px);box-shadow:0 10px 30px rgba(17,24,39,.3)}
+.btn-whatsapp{background:#10b981;color:#fff;border:2px solid #10b981}
+.btn-whatsapp:hover{background:#059669;transform:translateY(-2px)}
+.btn-phone{background:transparent;color:#fff;border:2px solid #fff}
+.btn-phone:hover{background:#fff;color:#667eea;transform:translateY(-2px)}
+.related-articles-section{padding:5rem 0;background:#f9fafb}
+.related-articles-section h2{font-size:2.5rem;font-weight:800;color:#111827;text-align:center;margin-bottom:3rem}
+.articles-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
+.article-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.05);transition:all .3s ease}
+.article-card:hover{transform:translateY(-5px);box-shadow:0 12px 30px rgba(0,0,0,.1)}
+.article-card img{width:100%;height:200px;object-fit:cover}
+.article-card-content{padding:1.5rem}
+.article-card h3{margin:0 0 .75rem;font-size:1.25rem}
+.article-card h3 a{color:#111827;text-decoration:none;transition:color .2s ease}
+.article-card h3 a:hover{color:#667eea}
+.article-card p{color:#6b7280;font-size:.95rem;margin-bottom:1rem}
+.read-more{color:#667eea;font-weight:600;font-size:.95rem}
+.tags-section{padding:3rem 0;background:#fff;border-top:1px solid #e5e7eb}
+.tags-section h3{font-size:1.5rem;font-weight:700;color:#111827;margin-bottom:1.5rem;text-align:center}
+.tags-cloud{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center}
+.tag{display:inline-block;padding:.5rem 1rem;background:#f3f4f6;color:#4b5563;border-radius:20px;text-decoration:none;font-size:.9rem;transition:all .2s ease}
+.tag:hover{background:#667eea;color:#fff;transform:translateY(-2px)}
+.conclusion{background:linear-gradient(135deg,#fff5f5,#fef2f2);border:2px solid #fca5a5;border-radius:16px;padding:2.5rem;margin:3rem 0}
+.conclusion h2{color:#991b1b;margin-top:0}
+.conclusion p{color:#7f1d1d}
+.article-content a:not(.btn):not(.btn-cta-inline){color:#667eea;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;transition:all .2s ease}
+.article-content a:not(.btn):not(.btn-cta-inline):hover{color:#5a67d8;text-decoration-thickness:2px}
+@media(max-width:1024px){
+.blog-article .container{grid-template-columns:1fr}
+.article-sidebar{position:static;grid-column:1;margin-top:3rem}
+}
+@media(max-width:768px){
+.article-header h1{font-size:2rem}
+.article-lead{font-size:1.1rem}
+.content-section h2{font-size:1.75rem}
+.content-section h3{font-size:1.25rem}
+.features-grid,.price-cards,.usage-areas,.model-series{grid-template-columns:1fr}
+.process-step{padding-left:2rem}
+.step-number{position:static;margin-bottom:1rem}
+.inline-cta{padding:2rem 1.5rem}
+.final-cta-section h2{font-size:2rem}
+.final-cta-section p{font-size:1.1rem}
+.cta-buttons{flex-direction:column;align-items:center}
+.btn{width:100%;max-width:300px}
+.articles-grid{grid-template-columns:1fr}
+.contact-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+.blog-article{padding:2rem 0}
+.article-header h1{font-size:1.5rem}
+.article-lead{font-size:1rem}
+.content-section h2{font-size:1.5rem}
+.feature-icon{font-size:2rem}
+.price{font-size:1.5rem}
+.inline-cta h3{font-size:1.25rem}
+.sidebar-widget{padding:1.25rem}
+.stat-value{font-size:1.5rem}
+}
+</style>
+<script>
+const backToTopBtn=document.createElement('button');backToTopBtn.className='back-to-top';backToTopBtn.innerHTML='↑';backToTopBtn.setAttribute('aria-label','Yukarı çık');backToTopBtn.style.cssText='position:fixed;bottom:2rem;right:2rem;width:50px;height:50px;background:#667eea;color:#fff;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 4px 12px rgba(102,126,234,.3);transition:all .3s ease;z-index:1000;opacity:0;visibility:hidden';document.body.appendChild(backToTopBtn);window.addEventListener('scroll',()=>{backToTopBtn.classList.toggle('visible',window.pageYOffset>300)});backToTopBtn.addEventListener('click',()=>{window.scrollTo({top:0,behavior:'smooth'})});const progressBar=document.createElement('div');progressBar.className='reading-progress';progressBar.style.cssText='position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,#667eea,#764ba2);z-index:9999;transition:width .1s ease';document.body.appendChild(progressBar);window.addEventListener('scroll',()=>{const progress=(window.pageYOffset/(document.documentElement.scrollHeight-window.innerHeight))*100;progressBar.style.width=`${progress}%`});const stickyCTA=document.createElement('div');stickyCTA.className='sticky-cta-bar';stickyCTA.style.cssText='position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:2px solid #e5e7eb;padding:1rem;box-shadow:0 -4px 12px rgba(0,0,0,.1);z-index:999;display:none';stickyCTA.innerHTML='<div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:1rem"><span style="font-weight:600;color:#111827">🚀 PVC kapı projeniz için ücretsiz teklif alın</span><div style="display:flex;gap:.75rem"><a href="/iletisim" style="padding:.75rem 1.5rem;background:#667eea;color:#fff;text-decoration:none;border-radius:8px;font-weight:600">İletişim</a><a href="https://wa.me/905441690038" style="padding:.75rem 1.5rem;background:#667eea;color:#fff;text-decoration:none;border-radius:8px;font-weight:600" target="_blank" rel="noopener">WhatsApp</a></div></div>';document.body.appendChild(stickyCTA);let lastScrollTop=0;window.addEventListener('scroll',()=>{const scrollTop=window.pageYOffset;if(scrollTop>1000&&scrollTop>lastScrollTop){stickyCTA.style.display='block'}else if(scrollTop<lastScrollTop){stickyCTA.style.display='none'}lastScrollTop=scrollTop},{passive:true});document.querySelectorAll('a[href^="http"]').forEach(link=>{if(!link.href.includes(window.location.hostname)){link.setAttribute('target','_blank');link.setAttribute('rel','noopener noreferrer')}});document.querySelectorAll('.back-to-top.visible').forEach(el=>{el.style.opacity='1';el.style.visibility='visible'});
+</script>
