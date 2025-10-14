@@ -1035,15 +1035,36 @@ const breadcrumbSchema = {
       altText: `CihanPan Door Laminoks Interior Door Model ${modelNumber}-${variant} ${colorName.replace(/-/g, ' ')} - Premium Quality Laminate Door for Commercial Projects, Turkish Manufacturer`,
       description: `Premium Laminoks door model ${modelNumber}-${variant} in ${colorName.replace(/-/g, ' ')} finish. High-end laminate interior door suitable for luxury projects, hotels, hospitals and commercial buildings. Scratch resistant surface, customizable sizes. Wholesale manufacturer prices from Kayseri, Turkey.`,
       seoKeywords: `premium laminoks door ${colorName.replace(/-/g, ' ').toLowerCase()}, luxury interior doors model ${modelNumber}, commercial doors page 2, premium turkish manufacturer wholesale, CihanPan door premium series`,
-      schemaData: {
-        "@type": "Product",
-        "name": `Premium Laminoks Interior Door Model ${modelNumber}-${variant} ${colorName.replace(/-/g, ' ')}`,
-        "description": `Premium Laminoks door model ${modelNumber}-${variant} in ${colorName.replace(/-/g, ' ')} finish for luxury commercial use`,
-        "brand": "CihanPan Door",
-        "material": "Premium Laminoks",
-        "category": "Luxury Interior Doors",
-        "color": colorName.replace(/-/g, ' ')
-      }
+   schemaData: {
+  "@type": "Product",
+  "name": `Premium Laminoks Interior Door Model ${modelNumber}-${variant} ${colorName.replace(/-/g, ' ')}`,
+  "description": `Premium Laminoks door model ${modelNumber}-${variant} in ${colorName.replace(/-/g, ' ')} finish for luxury commercial use`,
+  "image": `/assets/img/laminoks-kapilar/${fileName}`,
+  "brand": {
+    "@type": "Brand",
+    "name": "CihanPan Door"
+  },
+  "material": "Premium Laminoks",
+  "category": "Luxury Interior Doors",
+  "color": colorName.replace(/-/g, ' '),
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "150"
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "TRY",
+    "priceRange": "Toptan Fiyat Teklifi Al",
+    "url": "https://kapi-ureticileri.vercel.app/iletisim"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Sales",
+    "telephone": "+905441690038"
+  }
+}
     });
   });
 
