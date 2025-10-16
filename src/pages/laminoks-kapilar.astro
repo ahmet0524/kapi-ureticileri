@@ -1,68 +1,147 @@
 ---
-// src/pages/laminoks-kapilar-2.astro
+// src/pages/laminoks-kapilar-1.astro
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
 // Dynamic URL'ler için base setup
-const baseUrl = Astro.site?.toString().slice(0, -1) || 'https://kapi-ureticileri.netlify.app';
+const baseUrl = 'https://kapi-ureticileri.netlify.app';
 const currentUrl = `${baseUrl}${Astro.url.pathname}`;
 
 const breadcrumbItems = [
   { name: "Ana Sayfa", href: "/" },
   { name: "Ürünlerimiz", href: "/urunlerimiz" },
   { name: "Laminoks Kapılar", href: "/laminoks-kapilar" },
-  { name: "Sayfa 2" }
+  { name: "Sayfa 1" }
 ];
 
-// SEO Schema - 2. sayfa için
 const laminoksSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "Laminoks İç Oda Kapıları - Premium Seri Sayfa 2",
-  "description": "Kayseri'den üretilen premium kalite Laminoks kapı modelleri. 60+ ek model, üretici fiyat avantajı, özelleştirilebilir boyutlar.",
+  "name": "Laminoks (Melamin) İç Oda Kapıları",
+  "description": "Kayseri'den üretilen su geçirmez, antibakteriyel Laminoks kapı modelleri. CE belgeli, Türkiye'nin en büyük Laminoks kapı koleksiyonu.",
   "url": currentUrl,
+  "inLanguage": "tr-TR",
   "mainEntity": {
     "@type": "ItemList",
-    "name": "Laminoks Kapı Modelleri - Sayfa 2",
-    "numberOfItems": 60,
+    "name": "Laminoks Kapı Modelleri",
+    "numberOfItems": 80,
     "itemListElement": [
       {
         "@type": "Product",
-        "name": "Laminoks İç Oda Kapısı - Ek Modeller",
+        "name": "Laminoks (Melamin) İç Oda Kapısı",
         "manufacturer": {
           "@type": "Organization",
           "name": "CihanPan Door",
           "url": baseUrl,
-          "logo": `${baseUrl}/assets/img/logo.webp`
+          "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`
         },
         "category": "İç Oda Kapısı",
         "material": "Laminoks",
-        "brand": "CihanPan Door"
+        "brand": {
+          "@type": "Brand",
+          "name": "CihanPan Door"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": currentUrl,
+          "availability": "https://schema.org/InStock",
+          "businessFunction": "http://purl.org/goodrelations/v1#Sell",
+          "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business", // Sadece B2B
+          "seller": {
+            "@type": "Organization",
+            "name": "CihanPan Door",
+            "url": baseUrl
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "reviewCount": "152",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
       }
     ]
   }
 };
 
-// Organization Schema
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Laminoks kapı nedir ve neden tercih edilir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Laminoks kapılar, su geçirmez ve antibakteriyel özellikli iç oda kapılarıdır. Nemli ortamlarda çarpma yapmaz, bakımı kolaydır ve ekonomiktir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Laminoks kapı fiyatları ne kadardır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Laminoks kapı fiyatları 5000₺-8000₺ arasında değişir. Model, boyut ve aksesuarlara göre fiyat farklılık gösterir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Laminoks kapı hangi alanlarda kullanılır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Laminoks kapılar oda, banyo, mutfak, balkon, yatak odası ve ofis kapıları olarak kullanılır. Özellikle nemli ortamlarda tercih edilir çünkü su geçirmez özelliği vardır."
+      }
+    }
+  ]
+};
+
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "CihanPan Door",
   "url": baseUrl,
-  "logo": `${baseUrl}/assets/img/logo.webp`,
-  "description": "Kayseri'den premium kalite Laminoks kapı üreticisi - Yurt içi ve yurt dışı toptan satış",
+  "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`,
+  "description": "Kayseri'den kaliteli iç oda kapısı üreticisi - B2B toptan satış",
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "Organize Sanayi Bölgesi 29. Sokak No:28",
     "addressLocality": "Kayseri",
+    "addressRegion": "Kayseri",
+    "postalCode": "38070",
     "addressCountry": "TR"
   },
-  "areaServed": ["Turkey", "Europe", "Middle East"],
-  "serviceType": ["Laminoks Kapı Üretimi", "Toptan Satış", "İhracat", "Özelleştirilmiş Üretim"]
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+90-544-169-0038",
+    "contactType": "Sales",
+    "availableLanguage": ["Turkish", "English", "German", "Arabic"],
+    "areaServed": ["TR", "EU", "ME"]
+  },
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "Turkey"
+    },
+    {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": "38.7312",
+        "longitude": "35.4787"
+      },
+      "geoRadius": "2000000" // 2000km yarıçap (Avrupa + Orta Doğu)
+    }
+  ],
+"sameAs": [
+  "https://www.cihanpandoor.com",
+  "https://www.instagram.com/cihanpandoor",
+  "https://www.linkedin.com/company/cihanpandoor"
+]
 };
 
-// Breadcrumb Schema
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -74,22 +153,21 @@ const breadcrumbSchema = {
   }))
 };
 ---
-
 <Layout
-  title="Laminoks İç Oda Kapıları - Sayfa 2 | Premium Seri Kayseri CihanPan Door"
-  description="Kayseri'nin premium kalite Laminoks kapı koleksiyonu 2. sayfa! 60+ ek model, özelleştirilebilir boyutlar, üretici fiyat avantajı. Toptan satış imkanı."
+  title="Laminoks İç Oda Kapıları - Sayfa 1 | Premium Seri Kayseri CihanPan Door"
+  description="Kayseri'nin premium kalite Laminoks kapı koleksiyonu 1. sayfa! 60+ ek model, özelleştirilebilir boyutlar, üretici fiyat avantajı. Toptan satış imkanı."
   keywords="laminoks kapı sayfa 2, premium iç kapı modelleri, kayseri laminoks üreticisi, toptan kapı satışı, özel tasarım kapı, ticari kapı projeleri"
   canonical={currentUrl}
   ogImage="/assets/img/og/laminoks-kapilar-og.webp"
-  ogTitle="Laminoks İç Oda Kapıları - Sayfa 2 | Premium Seri CihanPan Door"
+  ogTitle="Laminoks İç Oda Kapıları - Sayfa 1 | Premium Seri CihanPan Door"
   ogDescription="Premium kalite Laminoks kapı koleksiyonunun devamı. 60+ ek model, üretici fiyat avantajı, customized çözümler."
   ogType="website"
   ogUrl={currentUrl}
   twitterCard="summary_large_image"
-  twitterTitle="Laminoks İç Oda Kapıları - Sayfa 2 | Premium Seri"
+  twitterTitle="Laminoks İç Oda Kapıları - Sayfa 1 | Premium Seri"
   twitterDescription="Premium Laminoks kapı koleksiyonunun devamı. Üretici fiyat avantajı, toptan satış."
   twitterImage="/assets/img/og/laminoks-kapilar-og.webp"
-  schema={[laminoksSchema, organizationSchema, breadcrumbSchema]}
+  schema={[laminoksSchema, faqSchema, organizationSchema, breadcrumbSchema]}
 >
 
   <Header />
@@ -100,7 +178,7 @@ const breadcrumbSchema = {
     <section class="hero">
       <div class="container">
         <div class="hero-content">
-          <h1 class="hero-title">Laminoks Kapılar - Sayfa 2</h1>
+          <h1 class="hero-title">Laminoks Kapılar - Sayfa 1</h1>
           <p class="hero-subtitle">
             Premium kalite Laminoks koleksiyonumuzun devamı
           </p>
@@ -161,31 +239,31 @@ const breadcrumbSchema = {
           <p>Laminoks kapı modelleri yükleniyor...</p>
         </div>
 
-        <!-- Page Navigation -->
-        <div class="page-navigation">
-          <div class="nav-info">
-            <span class="current-page">Sayfa 2 / 2</span>
-            <span class="product-count">60 ürün gösteriliyor</span>
-          </div>
-          <div class="nav-buttons">
-            <a href="/laminoks-kapilar" class="nav-btn prev">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              Önceki Sayfa
-            </a>
-            <span class="nav-btn disabled">
-              Sonraki Sayfa
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </div>
-          <div class="page-dots">
-            <a href="/laminoks-kapilar" class="dot" aria-label="Sayfa 1'e git"></a>
-            <span class="dot active" aria-label="Sayfa 2"></span>
-          </div>
-        </div>
+<!-- Page Navigation -->
+<div class="page-navigation">
+  <div class="nav-info">
+    <span class="current-page">Sayfa 1 / 2</span>
+    <span class="product-count">60 ürün gösteriliyor</span>
+  </div>
+  <div class="nav-buttons">
+    <div class="nav-btn prev disabled">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Önceki Sayfa
+    </div>
+    <a href="/laminoks-kapilar-2" class="nav-btn">
+      Sonraki Sayfa
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+  <div class="page-dots">
+    <span class="dot active" aria-label="Sayfa 1"></span>
+    <a href="/laminoks-kapilar-2" class="dot" aria-label="Sayfa 2'ye git"></a>
+  </div>
+</div>
       </div>
     </section>
 
@@ -953,7 +1031,7 @@ const breadcrumbSchema = {
   // Generate Laminoks models from the remaining file list (60 products for page 2)
   const laminoksModels = [];
 
-  // KALAN 60 ÜRÜN (SAYFA 2) - liste.txt'den alınan dosya adları
+  // 60 ÜRÜN (SAYFA 1) - liste.txt'den alınan dosya adları
   const fileNames = [
     "CihanpanDoor-Laminoks-Serisi-201-A-Beyaz.webp",
     "CihanpanDoor-Laminoks-Serisi-201-B-Gri-Mese.webp",
