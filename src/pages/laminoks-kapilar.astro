@@ -31,6 +31,8 @@ const laminoksSchema = {
       {
         "@type": "Product",
         "name": "Laminoks (Melamin) İç Oda Kapısı",
+        "description": "Su geçirmez ve antibakteriyel özellikli Laminoks iç oda kapısı. Nemli ortamlarda çarpma yapmaz, bakımı kolaydır.",
+        "image": `${baseUrl}/assets/images/laminoks-kapi.webp`,
         "manufacturer": {
           "@type": "Organization",
           "name": "CihanPan Door",
@@ -47,8 +49,14 @@ const laminoksSchema = {
           "@type": "Offer",
           "url": currentUrl,
           "availability": "https://schema.org/InStock",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "priceCurrency": "TRY",
+            "price": "0",
+            "valueAddedTaxIncluded": "false"
+          },
           "businessFunction": "http://purl.org/goodrelations/v1#Sell",
-          "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business", // Sadece B2B
+          "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business",
           "seller": {
             "@type": "Organization",
             "name": "CihanPan Door",
