@@ -2,12 +2,17 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
-
 export const prerender = true;
 
 export async function getStaticPaths() {
-  // MDX içeriklerini article koleksiyonundan alıyoruz
   const posts = await getCollection('article');
+
+  // Debug: Hangi route'lar oluşturuluyor görelim
+  console.log('📄 Oluşturulan article route\'ları:');
+  posts.forEach(post => {
+    console.log(`  - /${post.slug}`);
+  });
+
   return posts.map((post) => ({
     params: { slug: post.slug },
     props: { post },

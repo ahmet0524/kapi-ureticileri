@@ -5,97 +5,72 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
-// ==========================================
-// BASE URL VE CURRENT URL
-// ==========================================
 const baseUrl = 'https://kapi-ureticileri.vercel.app';
 const currentUrl = `${baseUrl}${Astro.url.pathname}`;
 
 // ==========================================
-// İLETİŞİM BİLGİLERİ (Tek Kaynak)
+// İLETİŞİM BİLGİLERİ
 // ==========================================
+
 const contactInfo = {
-  // Telefon numaraları
   phone: {
     display: '+90 544 169 00 38',
     schema: '+90-544-169-0038',
     href: 'tel:+905441690038',
     whatsapp: '905441690038'
   },
-
-  // Email adresleri
   email: {
-    sales: 'export@cihanpandoor.com',
-    general: 'exportcihanpandoor@gmail.com',
-    support: 'info@cihanpandoor.com'
+    primary: 'export@cihanpandoor.com',
+    alternative: 'exportcihanpandoor@gmail.com'
   },
-
-  // Web adresi
   website: 'https://www.cihanpandoor.com',
-
-  // Adres bilgileri
   address: {
+    full: 'Organize Sanayi Bölgesi 29. Sokak No:28, Melikgazi, Kayseri 38070, Turkey',
     street: 'Organize Sanayi Bölgesi 29. Sokak No:28',
     city: 'Kayseri',
-    postalCode: '38070',
-    country: 'TR',
-    countryName: 'Turkey',
-    full: 'Organize Sanayi Bölgesi 29. Sokak No:28, Kayseri, Turkey'
+    postalCode: '38070'
   },
-
-  // Çalışma saatleri
-  workingHours: {
-    weekday: 'Pazartesi - Cuma: 08:00 - 17:00',
-    saturday: 'Cumartesi: 09:00 - 15:00',
-    sunday: 'Pazar: Kapalı',
-    full: 'Pazartesi - Cuma: 08:00 - 17:00\nCumartesi: 09:00 - 15:00\nPazar: Kapalı'
-  },
-
-  // Koordinatlar
   coordinates: {
-    latitude: 38.7312,
-    longitude: 35.4787
+    latitude: 38.713006945276334,
+    longitude: 35.32028880684966
+  },
+  maps: {
+    url: 'https://maps.app.goo.gl/XFKFB7tBeBGJ435N9',
+    embedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d49811.34634400007!2d35.32028880684966!3d38.713006945276334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x152b05342e965841%3A0xfa7a02f50cdebeee!2zQ2loYW5wYW5kb29yIMSww6cgT2RhIEthcMSxc8SxIMSwbWFsYXTEsSB2ZSDEsGhyYWNhdMSx!5e0!3m2!1sen!2str!4v1760624358805!5m2!1sen!2str'
   }
 };
 
-// ==========================================
-// SOSYAL MEDYA LİNKLERİ
-// ==========================================
 const socialLinks = [
   {
     name: 'WhatsApp',
     icon: '📱',
-    href: `https://wa.me/${contactInfo.phone.whatsapp}?text=Merhaba, kapı modelleri hakkında bilgi almak istiyorum.`,
-    color: 'bg-emerald-500',
-    ariaLabel: 'WhatsApp ile iletişime geç'
+    href: `https://wa.me/${contactInfo.phone.whatsapp}?text=Merhaba, CihanPan Door kapı modelleri hakkında bilgi almak istiyorum.`,
+    color: 'bg-emerald-500'
+  },
+  {
+    name: 'Google Maps',
+    icon: '📍',
+    href: contactInfo.maps.url,
+    color: 'bg-red-500'
   },
   {
     name: 'Instagram',
     icon: '📷',
     href: 'https://www.instagram.com/cihanpandoor',
-    color: 'bg-pink-500',
-    ariaLabel: 'Instagram profilimizi ziyaret edin'
+    color: 'bg-pink-500'
   },
   {
     name: 'LinkedIn',
     icon: '💼',
     href: 'https://www.linkedin.com/company/cihanpandoor',
-    color: 'bg-blue-600',
-    ariaLabel: 'LinkedIn sayfamızı ziyaret edin'
+    color: 'bg-blue-600'
   }
 ];
 
 // ==========================================
-// BREADCRUMB
+// FAQ
 // ==========================================
-const breadcrumbItems = [
-  { name: "Ana Sayfa", href: "/" },
-  { name: "İletişim" }
-];
 
-// ==========================================
-// FAQ (Geliştirilmiş)
-// ==========================================
 const faqs = [
   {
     question: 'Hangi illere teslimat yapıyorsunuz?',
@@ -103,122 +78,114 @@ const faqs = [
   },
   {
     question: 'Montaj hizmeti veriyor musunuz?',
-    answer: 'Evet, tüm Türkiye genelinde profesyonel montaj hizmeti sunuyoruz. Uzman montaj ekibimiz kapı montajını bir günde tamamlar. Montaj hizmeti fiyatları bölgeye ve kapı sayısına göre değişkenlik göstermektedir. Detaylı bilgi için lütfen bizimle iletişime geçin.'
+    answer: 'Evet, tüm Türkiye genelinde profesyonel montaj hizmeti sunuyoruz. Uzman montaj ekibimiz kapı montajını bir günde tamamlar. Montaj hizmeti fiyatları bölgeye ve kapı sayısına göre değişkenlik göstermektedir.'
   },
   {
     question: 'Garanti süreniz ne kadar?',
-    answer: 'Tüm PVC, Laminoks ve Elitpan kapı modellerimiz için 5 yıl üretici garantisi veriyoruz. Garanti kapsamına malzeme ve işçilik hataları, renk solması, yüzey bozulmaları dahildir. Garanti süresi boyunca bakım ve onarım hizmetleri ücretsizdir. Yanlış kullanım ve montajdan kaynaklanan hasarlar garanti kapsamı dışındadır.'
+    answer: 'Tüm PVC, Laminoks ve Elitpan kapı modellerimiz için 5 yıl üretici garantisi veriyoruz. Garanti kapsamına malzeme ve işçilik hataları, renk solması, yüzey bozulmaları dahildir.'
   },
   {
     question: 'Toptan satış yapıyor musunuz?',
-    answer: 'Evet, inşaat firmaları, müteahhitler, yapı marketleri ve bayiler için özel toptan fiyatlarımız bulunmaktadır. Minimum 50 adet kapı siparişlerinde %15-25 arası indirim uyguluyoruz. Proje bazlı teklifler için lütfen satış ekibimizle görüşün. Bayilik başvuruları için detaylı bilgi alabilirsiniz.'
+    answer: 'Evet, inşaat firmaları, müteahhitler ve bayiler için özel toptan fiyatlarımız bulunmaktadır. Minimum 50 adet siparişlerde özel indirimler uyguluyoruz.'
   },
   {
     question: 'Ödeme seçenekleri nelerdir?',
-    answer: 'Kredi kartı, banka havalesi ve kapıda ödeme (havale) seçeneklerimiz mevcuttur. Toptan siparişlerde %50 peşin, %50 teslimatta ödeme veya 30-60-90 gün vadeli ödeme planları sunuyoruz. Kurumsal müşterilerimiz için özel ödeme koşulları oluşturuyoruz.'
+    answer: 'Kredi kartı, banka havalesi ve kapıda ödeme seçeneklerimiz mevcuttur. Toptan siparişlerde vadeli ödeme planları sunuyoruz.'
   },
   {
     question: 'Özel ölçülerde kapı üretimi yapıyor musunuz?',
-    answer: 'Evet, standart ölçülerin (70x200cm, 80x200cm, 90x200cm) dışında özel ölçülerde kapı üretimi yapıyoruz. Maksimum genişlik 120cm, maksimum yükseklik 250cm olabilir. Özel ölçü kapılar için üretim süresi 10-15 iş günüdür. Detaylı ölçüler için teknik ekibimizle iletişime geçebilirsiniz.'
+    answer: 'Evet, standart ölçülerin dışında özel ölçülerde kapı üretimi yapıyoruz. Maksimum genişlik 120cm, maksimum yükseklik 250cm olabilir. Özel ölçü kapılar için üretim süresi 10-15 iş günüdür.'
   }
 ];
 
 // ==========================================
-// SCHEMA MARKUPS
+// BREADCRUMB
 // ==========================================
 
-// 1. CONTACT PAGE SCHEMA
+const breadcrumbItems = [
+  { name: "Ana Sayfa", href: "/" },
+  { name: "İletişim" }
+];
+
+// ==========================================
+// SCHEMAS
+// ==========================================
+
 const contactPageSchema = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
   "name": "İletişim - CihanPan Door",
-  "description": "CihanPan Door ile iletişime geçin. PVC, Laminoks, Elitpan kapı modelleri için fiyat teklifi alın. Türkiye geneline teslimat ve montaj hizmeti.",
+  "description": "CihanPan Door ile iletişime geçin. PVC, Laminoks, Elitpan kapı modelleri için fiyat teklifi alın.",
   "url": currentUrl,
   "inLanguage": "tr-TR",
   "mainEntity": {
     "@type": "Organization",
-    "@id": `${baseUrl}/#organization`,
     "name": "CihanPan Door",
-    "legalName": "CihanPan Kapı Sanayi ve Ticaret Ltd. Şti.",
     "url": baseUrl,
     "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`,
-    "image": `${baseUrl}/assets/images/logo/header_logo1.webp`,
-    "description": "Kayseri'den kaliteli iç oda kapısı üreticisi - B2B toptan satış",
-
     "contactPoint": [
       {
         "@type": "ContactPoint",
         "telephone": contactInfo.phone.schema,
         "contactType": "Sales",
-        "email": contactInfo.email.sales,
+        "email": contactInfo.email.primary,
         "areaServed": ["TR", "EU", "ME"],
-        "availableLanguage": ["Turkish", "English", "German", "Arabic"],
-        "contactOption": "TollFree",
-        "hoursAvailable": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "08:00",
-            "closes": "17:00"
-          },
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": "Saturday",
-            "opens": "09:00",
-            "closes": "15:00"
-          }
-        ]
-      },
-      {
-        "@type": "ContactPoint",
-        "telephone": contactInfo.phone.schema,
-        "contactType": "Customer Service",
-        "email": contactInfo.email.general,
-        "areaServed": "TR",
-        "availableLanguage": "Turkish"
+        "availableLanguage": ["Turkish", "English", "German", "Arabic"]
       }
     ],
-
     "address": {
       "@type": "PostalAddress",
       "streetAddress": contactInfo.address.street,
       "addressLocality": contactInfo.address.city,
       "postalCode": contactInfo.address.postalCode,
-      "addressCountry": contactInfo.address.country,
-      "addressRegion": contactInfo.address.city
+      "addressCountry": "TR"
     },
-
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": contactInfo.coordinates.latitude,
       "longitude": contactInfo.coordinates.longitude
     },
-
-    "areaServed": [
-      {
-        "@type": "Country",
-        "name": "Turkey"
-      },
-      {
-        "@type": "GeoCircle",
-        "geoMidpoint": {
-          "@type": "GeoCoordinates",
-          "latitude": contactInfo.coordinates.latitude,
-          "longitude": contactInfo.coordinates.longitude
-        },
-        "geoRadius": "2000000"
-      }
-    ],
-
-    "sameAs": [
-      "https://www.instagram.com/cihanpandoor",
-      "https://www.linkedin.com/company/cihanpandoor",
-      contactInfo.website
-    ]
+    "hasMap": contactInfo.maps.url
   }
 };
 
-// 2. FAQ SCHEMA
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "CihanPan Door",
+  "image": `${baseUrl}/assets/images/logo/header_logo1.webp`,
+  "url": baseUrl,
+  "telephone": contactInfo.phone.schema,
+  "email": contactInfo.email.primary,
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": contactInfo.address.street,
+    "addressLocality": contactInfo.address.city,
+    "postalCode": contactInfo.address.postalCode,
+    "addressCountry": "TR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": contactInfo.coordinates.latitude,
+    "longitude": contactInfo.coordinates.longitude
+  },
+  "hasMap": contactInfo.maps.url,
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "08:00",
+      "closes": "18:00"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "152"
+  }
+};
+
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -232,7 +199,6 @@ const faqSchema = {
   }))
 };
 
-// 3. BREADCRUMB SCHEMA
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -244,299 +210,553 @@ const breadcrumbSchema = {
   }))
 };
 
-// 4. LOCAL BUSINESS SCHEMA (Opsiyonel - İsterseniz ekleyin)
-const localBusinessSchema = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "CihanPan Door",
-  "image": `${baseUrl}/assets/images/logo/header_logo1.webp`,
-  "@id": `${baseUrl}/#localbusiness`,
-  "url": baseUrl,
-  "telephone": contactInfo.phone.schema,
-  "email": contactInfo.email.sales,
-  "priceRange": "$$",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": contactInfo.address.street,
-    "addressLocality": contactInfo.address.city,
-    "postalCode": contactInfo.address.postalCode,
-    "addressCountry": contactInfo.address.country
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": contactInfo.coordinates.latitude,
-    "longitude": contactInfo.coordinates.longitude
-  },
-  "openingHoursSpecification": [
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      "opens": "08:00",
-      "closes": "17:00"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Saturday",
-      "opens": "09:00",
-      "closes": "15:00"
-    }
-  ],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "reviewCount": "152",
-    "bestRating": "5",
-    "worstRating": "1"
-  }
-};
-
-// Web3Forms Key
 const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
-
-if (!publicWeb3formsKey) {
-  console.error('❌ PUBLIC_WEB3FORMS_KEY environment variable is not set');
-}
 ---
 
 <Layout
-  title="İletişim - CihanPan Door | Kapı Fiyat Teklifi Alın"
-  description="CihanPan Door ile iletişime geçin. PVC, Laminoks, Elitpan kapı modelleri için ücretsiz fiyat teklifi alın. Türkiye geneline teslimat ve montaj hizmeti. ☎️ +90 544 169 00 38"
-  keywords="cihanpan door iletişim, kapı fiyat teklifi, pvc kapı fiyatları, kayseri kapı üreticisi, toptan kapı satışı, kapı montaj hizmeti"
+  title="İletişim - CihanPan Door | Kapı Fiyat Teklifi ☎️ +90 544 169 00 38"
+  description="CihanPan Door Kayseri. PVC, Laminoks, Elitpan kapı modelleri için ücretsiz fiyat teklifi alın. Türkiye geneline teslimat ve montaj hizmeti."
+  keywords="cihanpan door iletişim, kayseri kapı üreticisi, pvc kapı fiyat teklifi, toptan kapı satışı"
   canonical={currentUrl}
   ogImage="/assets/img/og/iletisim-og.webp"
   ogType="website"
-  schema={[contactPageSchema, faqSchema, breadcrumbSchema, localBusinessSchema]}
+  schema={[contactPageSchema, localBusinessSchema, faqSchema, breadcrumbSchema]}
 >
   <Header />
+  <Breadcrumbs items={breadcrumbItems} />
 
-  <main class="min-h-screen bg-gray-50">
+  <main>
     <!-- Hero Section -->
-    <section class="hero-section">
-      <div class="container mx-auto px-4">
-        <Breadcrumbs items={breadcrumbItems} />
-        <div class="text-center">
-          <h1 class="hero-title">İletişim</h1>
-          <p class="hero-subtitle">
-            Size en iyi hizmeti vermek için buradayız
-          </p>
+    <section class="hero">
+      <div class="container">
+        <h1 class="hero-title">İletişime Geçin</h1>
+        <p class="hero-subtitle">
+          Kapı modelleri hakkında detaylı bilgi almak ve ücretsiz fiyat teklifi için bizimle iletişime geçin.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact Info Cards -->
+    <section class="contact-section">
+      <div class="container">
+        <div class="contact-grid">
+
+          <!-- Telefon -->
+          <div class="contact-card">
+            <div class="icon">📞</div>
+            <h3>Telefon</h3>
+            <a href={contactInfo.phone.href} class="contact-link">
+              {contactInfo.phone.display}
+            </a>
+            <p class="text-sm">Pazartesi - Cumartesi: 08:00 - 18:00</p>
+          </div>
+
+          <!-- WhatsApp -->
+          <div class="contact-card">
+            <div class="icon">💬</div>
+            <h3>WhatsApp</h3>
+            <a href={socialLinks[0].href} target="_blank" rel="noopener" class="contact-link">
+              Mesaj Gönder
+            </a>
+            <p class="text-sm">7/24 Mesaj Atabilirsiniz</p>
+          </div>
+
+          <!-- Email -->
+          <div class="contact-card">
+            <div class="icon">✉️</div>
+            <h3>Email</h3>
+            <a href={`mailto:${contactInfo.email.primary}`} class="contact-link">
+              {contactInfo.email.primary}
+            </a>
+            <p class="text-sm">24 saat içinde yanıt</p>
+          </div>
+
+          <!-- Adres -->
+          <div class="contact-card">
+            <div class="icon">📍</div>
+            <h3>Adres</h3>
+            <address style="font-style: normal;">
+              {contactInfo.address.street}<br/>
+              {contactInfo.address.city} {contactInfo.address.postalCode}
+            </address>
+            <a href={contactInfo.maps.url} target="_blank" rel="noopener" class="contact-link">
+              Haritada Gör →
+            </a>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- Contact Content -->
-    <section class="contact-section">
-      <div class="container mx-auto px-4">
-        <div class="contact-grid">
-          <!-- Contact Form -->
-          <div class="form-container">
-            <div class="form-header">
-              <h2 class="section-title">Mesaj Gönderin</h2>
-              <p class="section-subtitle">Mesajınızı gönderin, kısa sürede size dönüş yapalım</p>
-            </div>
+    <!-- Contact Form -->
+    <section class="form-section">
+      <div class="container">
+        <div class="form-wrapper">
+          <div class="form-header">
+            <h2>Ücretsiz Fiyat Teklifi Alın</h2>
+            <p>Formu doldurun, en kısa sürede size dönelim.</p>
+          </div>
 
-            <form class="contact-form" id="contactForm" novalidate>
-              <!-- Honeypot for bot protection -->
-              <div style="position: absolute; left: -5000px;" aria-hidden="true">
-                <input type="text" name="honeypot" tabindex="-1" autocomplete="off" />
-              </div>
+          <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+            <input type="hidden" name="access_key" value={publicWeb3formsKey} />
+            <input type="hidden" name="subject" value="Yeni İletişim Formu - CihanPan Door" />
+            <input type="hidden" name="from_name" value="CihanPan Door Website" />
 
-              <div class="form-grid">
-                <div class="form-group">
-                  <label for="name" class="form-label">Ad Soyad *</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    class="form-input"
-                    required
-                    aria-required="true"
-                    aria-describedby="name-error"
-                    aria-invalid="false"
-                    placeholder="Adınız ve soyadınız"
-                    minlength="2"
-                    maxlength="100"
-                  />
-                  <span id="name-error" class="error-message" role="alert" aria-live="polite"></span>
-                </div>
-
-                <div class="form-group">
-                  <label for="email" class="form-label">E-posta *</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    class="form-input"
-                    required
-                    aria-required="true"
-                    aria-describedby="email-error"
-                    aria-invalid="false"
-                    placeholder="ornek@email.com"
-                    maxlength="100"
-                  />
-                  <span id="email-error" class="error-message" role="alert" aria-live="polite"></span>
-                </div>
-
-                <div class="form-group">
-                  <label for="phone" class="form-label">Telefon</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    class="form-input"
-                    aria-describedby="phone-error"
-                    placeholder="0555 555 55 55"
-                    pattern="[0-9]{10,}"
-                    maxlength="20"
-                  />
-                  <span id="phone-error" class="error-message" role="alert" aria-live="polite"></span>
-                </div>
-
-                <div class="form-group">
-                  <label for="subject" class="form-label">Konu *</label>
-                  <select id="subject" name="subject" class="form-select" required aria-required="true" aria-describedby="subject-error" aria-invalid="false">
-                    <option value="">Konu seçin</option>
-                    <option value="pvc-kapilar">PVC Kapılar</option>
-                    <option value="laminoks-kapilar">Laminoks Kapılar</option>
-                    <option value="otel-kapilari">Otel Kapıları</option>
-                    <option value="hastane-kapilari">Hastane Kapıları</option>
-                    <option value="ahsap-kapilar">Ahşap Kapılar</option>
-                    <option value="cam-kapilar">Cam Kapılar</option>
-                    <option value="toptan-satis">Toptan Satış</option>
-                    <option value="montaj-hizmeti">Montaj Hizmeti</option>
-                    <option value="diger">Diğer</option>
-                  </select>
-                  <span id="subject-error" class="error-message" role="alert" aria-live="polite"></span>
-                </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Ad Soyad *</label>
+                <input type="text" id="name" name="name" required placeholder="Adınız Soyadınız" />
               </div>
 
               <div class="form-group">
-                <label for="message" class="form-label">Mesajınız *</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  class="form-textarea"
-                  rows="5"
-                  required
-                  aria-required="true"
-                  aria-describedby="message-error"
-                  aria-invalid="false"
-                  placeholder="Mesajınızı detaylı bir şekilde yazın..."
-                  minlength="10"
-                  maxlength="2000"
-                ></textarea>
-                <span id="message-error" class="error-message" role="alert" aria-live="polite"></span>
-              </div>
-
-              <button type="submit" class="submit-btn" aria-label="Formu gönder">
-                <span class="btn-text">Mesaj Gönder</span>
-              </button>
-            </form>
-          </div>
-
-          <!-- Contact Info -->
-          <div class="info-container">
-            <div class="contact-cards">
-              <div class="contact-card">
-                <div>
-                  <h3 class="card-title">Telefon</h3>
-                  <p class="card-text">{contactInfo.phone.display}</p>
-                  <a href={contactInfo.phone.href} class="card-link">Hemen Ara</a>
-                </div>
-              </div>
-
-              <div class="contact-card">
-                <div>
-                  <h3 class="card-title">E-posta</h3>
-                  <p class="card-text">{contactInfo.email.sales}</p>
-                  <a href={`mailto:${contactInfo.email.sales}`} class="card-link">E-posta Gönder</a>
-                </div>
-              </div>
-
-              <div class="contact-card">
-                <div>
-                  <h3 class="card-title">Adres</h3>
-                  <p class="card-text">{contactInfo.address.full}</p>
-                  <a href={`https://www.google.com/maps?q=${contactInfo.coordinates.latitude},${contactInfo.coordinates.longitude}`} target="_blank" rel="noopener noreferrer" class="card-link">Haritada Gör</a>
-                </div>
-              </div>
-
-              <div class="contact-card">
-                <div>
-                  <h3 class="card-title">Çalışma Saatleri</h3>
-                  <p class="card-text working-hours">{contactInfo.workingHours.full}</p>
-                </div>
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required placeholder="ornek@email.com" />
               </div>
             </div>
 
-            <!-- WhatsApp CTA -->
-            <div class="whatsapp-cta">
-              <div class="whatsapp-content">
-                <div class="whatsapp-icon">
-                  <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.688"/>
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="whatsapp-title">Anında İletişim</h3>
-                  <p class="whatsapp-text">WhatsApp'tan hızlı destek alın</p>
-                </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Telefon *</label>
+                <input type="tel" id="phone" name="phone" required placeholder="+90 5XX XXX XX XX" />
               </div>
-              <a href={`https://wa.me/${contactInfo.phone.whatsapp}?text=Merhaba, kapı modelleri hakkında bilgi almak istiyorum.`} class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
-                WhatsApp'ta Yazın
-              </a>
-            </div>
 
-            <!-- Social Links -->
-            <div class="social-section">
-              <h3 class="social-title">Sosyal Medya</h3>
-              <div class="social-links">
-                {socialLinks.map((social) => (
-                  <a href={social.href} class={`social-link ${social.color}`} target="_blank" rel="noopener noreferrer" aria-label={social.ariaLabel}>
-                    <span class="social-icon" aria-hidden="true">{social.icon}</span>
-                    <span class="social-name">{social.name}</span>
-                  </a>
-                ))}
+              <div class="form-group">
+                <label for="company">Firma Adı</label>
+                <input type="text" id="company" name="company" placeholder="Firma Adınız (Opsiyonel)" />
               </div>
             </div>
-          </div>
-        </div>
 
-        <!-- FAQ Section -->
-        <div class="faq-section">
-          <div class="faq-header">
-            <h2 class="section-title text-center">Sık Sorulan Sorular</h2>
-            <p class="section-subtitle text-center">En çok merak edilen soruların cevapları</p>
-          </div>
+            <div class="form-group">
+              <label for="product">Ürün İlgi Alanı</label>
+              <select id="product" name="product">
+                <option value="">Seçiniz</option>
+                <option value="pvc">PVC Kapılar</option>
+                <option value="laminoks">Laminoks Kapılar</option>
+                <option value="elitpan">Elitpan Kapılar</option>
+                <option value="hastane">Hastane Kapıları</option>
+                <option value="otel">Otel Kapıları</option>
+                <option value="yangin">Yangına Dayanıklı Kapılar</option>
+                <option value="diger">Diğer</option>
+              </select>
+            </div>
 
-          <div class="faq-container" role="list">
-            {faqs.map((faq, index) => (
-              <div class="faq-item" data-index={index} role="listitem">
-                <button
-                  class="faq-question"
-                  type="button"
-                  aria-expanded="false"
-                  aria-controls={`faq-answer-${index}`}
-                  id={`faq-question-${index}`}
-                >
-                  <span class="question-text">{faq.question}</span>
-                  <svg class="question-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                  </svg>
-                </button>
-                <div id={`faq-answer-${index}`} class="faq-answer" role="region" aria-labelledby={`faq-question-${index}`}>
-                  <p class="answer-text">{faq.answer}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+            <div class="form-group">
+              <label for="message">Mesajınız *</label>
+              <textarea id="message" name="message" required rows="5" placeholder="Proje detaylarınızı, kapı adedi, teslimat yeri gibi bilgileri paylaşın..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">
+              Teklif İsteyin
+            </button>
+          </form>
         </div>
       </div>
     </section>
+
+    <!-- Google Maps -->
+    <section class="map-section">
+      <div class="container">
+        <h2>Bizi Ziyaret Edin</h2>
+        <div class="map-wrapper">
+          <iframe
+            src={contactInfo.maps.embedUrl}
+            width="100%"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="CihanPan Door Kayseri Organize Sanayi Konumu"
+          ></iframe>
+        </div>
+        <div class="map-actions">
+          <a href={contactInfo.maps.url} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            📍 Google Maps'te Aç
+          </a>
+          <a href={`https://www.google.com/maps/dir//${contactInfo.coordinates.latitude},${contactInfo.coordinates.longitude}`}
+             target="_blank"
+             rel="noopener noreferrer"
+             class="btn btn-secondary">
+            🧭 Yol Tarifi Al
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Sık Sorulan Sorular</h2>
+        <div class="faq-list">
+          {faqs.map((faq) => (
+            <details class="faq-item">
+              <summary>{faq.question}</summary>
+              <p>{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Links -->
+    <section class="social-section">
+      <div class="container">
+        <h2>Sosyal Medyada Bizi Takip Edin</h2>
+        <div class="social-grid">
+          {socialLinks.map((link) => (
+            <a href={link.href} target="_blank" rel="noopener noreferrer" class={`social-card ${link.color}`}>
+              <span class="social-icon">{link.icon}</span>
+              <span class="social-name">{link.name}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <Footer />
 </Layout>
 
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .hero {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .contact-section {
+    padding: 5rem 0;
+    background: #f8fafc;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .contact-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .contact-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .contact-card h3 {
+    font-size: 1.5rem;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  .contact-link {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-link:hover {
+    text-decoration: underline;
+  }
+
+  .text-sm {
+    color: #6b7280;
+    font-size: 0.9rem;
+  }
+
+  .form-section {
+    padding: 5rem 0;
+    background: white;
+  }
+
+  .form-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #f8fafc;
+    padding: 3rem;
+    border-radius: 12px;
+  }
+
+  .form-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .form-header h2 {
+    font-size: 2.5rem;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  .form-header p {
+    color: #6b7280;
+    font-size: 1.1rem;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group label {
+    color: #1a202c;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+  }
+
+  .btn-submit {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem 3rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .btn-submit:hover {
+    transform: translateY(-2px);
+  }
+
+  .map-section {
+    padding: 5rem 0;
+    background: #f8fafc;
+  }
+
+  .map-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #1a202c;
+    margin-bottom: 3rem;
+  }
+
+  .map-wrapper {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  .map-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary {
+    background: #667eea;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #5a67d8;
+  }
+
+  .btn-secondary {
+    background: white;
+    color: #667eea;
+    border: 2px solid #667eea;
+  }
+
+  .btn-secondary:hover {
+    background: #667eea;
+    color: white;
+  }
+
+  .faq-section {
+    padding: 5rem 0;
+    background: white;
+  }
+
+  .faq-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #1a202c;
+    margin-bottom: 3rem;
+  }
+
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .faq-item {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .faq-item summary {
+    padding: 1.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: #1a202c;
+    list-style: none;
+  }
+
+  .faq-item summary::after {
+    content: "+";
+    float: right;
+    font-size: 1.5rem;
+    color: #667eea;
+  }
+
+  .faq-item[open] summary::after {
+    content: "−";
+  }
+
+  .faq-item p {
+    padding: 0 1.5rem 1.5rem;
+    color: #4a5568;
+    line-height: 1.6;
+  }
+
+  .social-section {
+    padding: 5rem 0;
+    background: #f8fafc;
+  }
+
+  .social-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #1a202c;
+    margin-bottom: 3rem;
+  }
+
+  .social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .social-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 12px;
+    color: white;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+
+  .social-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .social-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .social-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  .bg-emerald-500 { background: #10b981; }
+  .bg-red-500 { background: #ef4444; }
+  .bg-pink-500 { background: #ec4899; }
+  .bg-blue-600 { background: #2563eb; }
+
+  @media (max-width: 768px) {
+    .form-wrapper {
+      padding: 2rem 1.5rem;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .map-actions {
+      flex-direction: column;
+    }
+
+    .btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>
 
 
 
