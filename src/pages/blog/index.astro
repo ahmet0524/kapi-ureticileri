@@ -1,63 +1,60 @@
 ---
+// src/pages/blog/index.astro
+import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 
 const baseUrl = 'https://kapi-ureticileri.vercel.app';
-const currentUrl = `${baseUrl}${Astro.url.pathname}`;
+const currentUrl = `${baseUrl}/blog`;
 
-const blogPosts = [
+// Content collection'dan tüm article'ları al
+const allArticles = await getCollection('article');
+
+// Article'ları blog post formatına dönüştür
+const articlesAsPosts = allArticles.map(article => ({
+  slug: article.slug,
+  title: article.data.title,
+  excerpt: article.data.description,
+  image: article.data.heroImage?.src || article.data.heroImage || '/assets/img/blog/default-thumb.webp',
+  date: article.data.pubDate.toISOString().split('T')[0],
+  readTime: article.data.readTime || '5 dakika',
+  category: article.data.category || 'Genel',
+  featured: article.data.featured || false
+}));
+
+// Hardcoded blog postları (statik sayfalar için)
+const staticPosts = [
   {
-    slug: 'pvc-kapi-ureticileri',
-    title: 'PVC Kapı Üreticileri: Türkiye\'den Dünyaya Kaliteli Çözümler',
-    excerpt: 'Türkiye\'nin önde gelen PVC kapı üreticileri hakkında kapsamlı rehber. Kayseri\'den dünyaya kaliteli PVC kapı üretimi, fiyatlar ve modeller.',
-    image: '/assets/img/blog/pvc-kapi-ureticileri-thumb.webp',
-    date: '2025-01-15',
-    readTime: '8 dakika',
-    category: 'Üretim',
-    featured: true
-  },
-  {
-    slug: 'pvc-kapi-fiyatlari-2025',
-    title: 'PVC Kapı Fiyatları 2025 Rehberi',
-    excerpt: 'Güncel PVC kapı fiyatları, model bazlı karşılaştırmalar ve bütçe planlama önerileri.',
-    image: '/assets/img/blog/pvc-kapi-fiyatlari-thumb.webp',
-    date: '2025-01-20',
+    slug: 'pvc-kapi-ihracati',
+    title: 'PVC Kapı İhracatı: Türkiye\'den Dünyaya',
+    excerpt: 'Türkiye PVC kapı ihracatı hakkında detaylı bilgiler, ihracat prosedürleri ve hedef pazarlar.',
+    image: '/assets/img/blog/pvc-kapi-ihracati-thumb.webp',
+    date: '2025-01-10',
     readTime: '6 dakika',
-    category: 'Fiyatlandırma',
-    featured: false
-  },
-  {
-    slug: 'otel-kapilari-secimi',
-    title: 'Otel Projeleri İçin Doğru Kapı Seçimi',
-    excerpt: 'Otel projelerinde kaliteli kapı seçimi için püf noktalar, ses yalıtımı ve dayanıklılık kriterleri.',
-    image: '/assets/img/blog/otel-kapilari-thumb.webp',
-    date: '2025-01-22',
-    readTime: '7 dakika',
-    category: 'Projeler',
-    featured: false
-  },
-  {
-    slug: 'hastane-kapilari-ozellikleri',
-    title: 'Hastane Kapıları: Hijyen ve Dayanıklılık',
-    excerpt: 'Sağlık tesisleri için özel hastane kapıları, antibakteriyel yüzeyler ve güvenlik standartları.',
-    image: '/assets/img/blog/hastane-kapilari-thumb.webp',
-    date: '2025-01-25',
-    readTime: '5 dakika',
-    category: 'Sağlık',
+    category: 'İhracat',
     featured: false
   }
 ];
 
-const featuredPost = blogPosts.find(post => post.featured);
-const regularPosts = blogPosts.filter(post => !post.featured);
+// Tüm postları birleştir
+const allPosts = [...articlesAsPosts, ...staticPosts];
+
+// Tarihe göre sırala (en yeni önce)
+allPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+const featuredPost = allPosts.find(post => post.featured);
+const regularPosts = allPosts.filter(post => !post.featured);
+
+console.log('📚 Blog Index - Tüm Postlar:', allPosts.length);
+console.log('⭐ Featured Post:', featuredPost?.title || 'Yok');
 ---
 
 <Layout
   title="Blog | CihanPan Door - PVC Kapı Üretimi, Modeller ve Fiyatlar"
   description="PVC kapı üretimi, modeller, fiyatlar, otel ve hastane projeleri hakkında güncel blog yazıları ve uzman tavsiyeleri."
   keywords="pvc kapı blog, kapı üretimi, pvc kapı fiyatları, otel kapıları, hastane kapıları, kapı rehberi"
-  canonical={`${baseUrl}/blog`}
+  canonical={currentUrl}
 >
   <Header />
 
@@ -108,7 +105,7 @@ const regularPosts = blogPosts.filter(post => !post.featured);
     <!-- Blog Grid -->
     <section class="blog-grid-section">
       <div class="container">
-        <h2 class="section-title">📖 Tüm Yazılar</h2>
+        <h2 class="section-title">📖 Tüm Yazılar ({regularPosts.length})</h2>
         <div class="blog-grid">
           {regularPosts.map(post => (
             <article class="blog-card">
@@ -140,127 +137,127 @@ const regularPosts = blogPosts.filter(post => !post.featured);
       </div>
     </section>
 
-   <!-- Newsletter CTA -->
-<section class="newsletter-section" style="background:#f9f9f9; padding:40px 0;">
-  <div class="container" style="max-width:700px; margin:0 auto; text-align:center;">
-    <h2 style="font-size:24px; margin-bottom:10px;">📬 Blog Yazılarımızdan Haberdar Olun</h2>
-    <p style="font-size:16px; color:#555; margin-bottom:30px;">
-      PVC kapı sektöründeki yenilikler, fiyat güncellemeleri ve özel tekliflerden ilk siz haberdar olun.
-    </p>
+    <!-- Newsletter CTA -->
+    <section class="newsletter-section" style="background:#f9f9f9; padding:40px 0;">
+      <div class="container" style="max-width:700px; margin:0 auto; text-align:center;">
+        <h2 style="font-size:24px; margin-bottom:10px;">📬 Blog Yazılarımızdan Haberdar Olun</h2>
+        <p style="font-size:16px; color:#555; margin-bottom:30px;">
+          PVC kapı sektöründeki yenilikler, fiyat güncellemeleri ve özel tekliflerden ilk siz haberdar olun.
+        </p>
 
-    <!-- Mailchimp Form -->
-    <div id="mc_embed_signup">
-      <form
-        action="https://cihanpandoor.us20.list-manage.com/subscribe/post?u=bff5a1a34a72f4c4f5c4fb675&amp;id=c057853d71&amp;f_id=0011c2e1f0"
-        method="post"
-        id="mc-embedded-subscribe-form"
-        name="mc-embedded-subscribe-form"
-        target="_blank"
-        novalidate
-        style="background:#fff; padding:20px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1);"
-      >
-        <div class="mc-field-group" style="margin-bottom:15px; text-align:left;">
-          <label for="mce-EMAIL">E-posta Adresi <span style="color:red">*</span></label>
-          <input
-            type="email"
-            name="EMAIL"
-            id="mce-EMAIL"
-            required
-            style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;"
-          />
+        <!-- Mailchimp Form -->
+        <div id="mc_embed_signup">
+          <form
+            action="https://cihanpandoor.us20.list-manage.com/subscribe/post?u=bff5a1a34a72f4c4f5c4fb675&amp;id=c057853d71&amp;f_id=0011c2e1f0"
+            method="post"
+            id="mc-embedded-subscribe-form"
+            name="mc-embedded-subscribe-form"
+            target="_blank"
+            novalidate
+            style="background:#fff; padding:20px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1);"
+          >
+            <div class="mc-field-group" style="margin-bottom:15px; text-align:left;">
+              <label for="mce-EMAIL">E-posta Adresi <span style="color:red">*</span></label>
+              <input
+                type="email"
+                name="EMAIL"
+                id="mce-EMAIL"
+                required
+                style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;"
+              />
+            </div>
+
+            <div class="mc-field-group" style="margin-bottom:15px; text-align:left;">
+              <label for="mce-FNAME">Adınız</label>
+              <input
+                type="text"
+                name="FNAME"
+                id="mce-FNAME"
+                style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;"
+              />
+            </div>
+
+            <div class="mc-field-group" style="margin-bottom:15px; text-align:left;">
+              <label for="mce-LNAME">Soyadınız</label>
+              <input
+                type="text"
+                name="LNAME"
+                id="mce-LNAME"
+                style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;"
+              />
+            </div>
+
+            <div class="mc-field-group" style="margin-bottom:15px; text-align:left;">
+              <label for="mce-PHONE">Telefon</label>
+              <input
+                type="text"
+                name="PHONE"
+                id="mce-PHONE"
+                style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;"
+              />
+            </div>
+
+            <div class="mc-field-group" style="margin-bottom:20px; text-align:left;">
+              <label for="mce-COMPANY">Firma Adı</label>
+              <input
+                type="text"
+                name="COMPANY"
+                id="mce-COMPANY"
+                style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;"
+              />
+            </div>
+
+            <!-- Hidden anti-bot alanı -->
+            <div aria-hidden="true" style="position:absolute; left:-5000px;">
+              <input
+                type="text"
+                name="b_bff5a1a34a72f4c4f5c4fb675_c057853d71"
+                tabindex="-1"
+                value=""
+              />
+            </div>
+
+            <!-- Submit -->
+            <div>
+              <input
+                type="submit"
+                name="subscribe"
+                id="mc-embedded-subscribe"
+                class="button"
+                value="Abone Ol"
+                style="background:#0073e6; color:#fff; padding:12px 25px; border:none; border-radius:6px; cursor:pointer; font-size:16px;"
+              />
+            </div>
+
+            <!-- Response -->
+            <div id="mce-responses" style="margin-top:15px;">
+              <div class="response" id="mce-error-response" style="display:none; color:red;"></div>
+              <div class="response" id="mce-success-response" style="display:none; color:green;"></div>
+            </div>
+          </form>
         </div>
 
-        <div class="mc-field-group" style="margin-bottom:15px; text-align:left;">
-          <label for="mce-FNAME">Adınız</label>
-          <input
-            type="text"
-            name="FNAME"
-            id="mce-FNAME"
-            style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;"
-          />
-        </div>
-
-        <div class="mc-field-group" style="margin-bottom:15px; text-align:left;">
-          <label for="mce-LNAME">Soyadınız</label>
-          <input
-            type="text"
-            name="LNAME"
-            id="mce-LNAME"
-            style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;"
-          />
-        </div>
-
-        <div class="mc-field-group" style="margin-bottom:15px; text-align:left;">
-          <label for="mce-PHONE">Telefon</label>
-          <input
-            type="text"
-            name="PHONE"
-            id="mce-PHONE"
-            style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;"
-          />
-        </div>
-
-        <div class="mc-field-group" style="margin-bottom:20px; text-align:left;">
-          <label for="mce-COMPANY">Firma Adı</label>
-          <input
-            type="text"
-            name="COMPANY"
-            id="mce-COMPANY"
-            style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;"
-          />
-        </div>
-
-        <!-- Hidden anti-bot alanı -->
-        <div aria-hidden="true" style="position:absolute; left:-5000px;">
-          <input
-            type="text"
-            name="b_bff5a1a34a72f4c4f5c4fb675_c057853d71"
-            tabindex="-1"
-            value=""
-          />
-        </div>
-
-        <!-- Submit -->
-        <div>
-          <input
-            type="submit"
-            name="subscribe"
-            id="mc-embedded-subscribe"
-            class="button"
-            value="Abone Ol"
-            style="background:#0073e6; color:#fff; padding:12px 25px; border:none; border-radius:6px; cursor:pointer; font-size:16px;"
-          />
-        </div>
-
-        <!-- Response -->
-        <div id="mce-responses" style="margin-top:15px;">
-          <div class="response" id="mce-error-response" style="display:none; color:red;"></div>
-          <div class="response" id="mce-success-response" style="display:none; color:green;"></div>
-        </div>
-      </form>
-    </div>
-
-    <!-- Mailchimp Validation -->
-    <script src="https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
-    <script>
-      (function ($) {
-        window.fnames = [];
-        window.ftypes = [];
-        fnames[0] = "EMAIL";
-        ftypes[0] = "email";
-        fnames[1] = "FNAME";
-        ftypes[1] = "text";
-        fnames[2] = "LNAME";
-        ftypes[2] = "text";
-        fnames[3] = "PHONE";
-        ftypes[3] = "phone";
-        fnames[4] = "COMPANY";
-        ftypes[4] = "text";
-      })(jQuery);
-      var $mcj = jQuery.noConflict(true);
-    </script>
-  </div>
-</section>
+        <!-- Mailchimp Validation -->
+        <script src="https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+        <script>
+          (function ($) {
+            window.fnames = [];
+            window.ftypes = [];
+            fnames[0] = "EMAIL";
+            ftypes[0] = "email";
+            fnames[1] = "FNAME";
+            ftypes[1] = "text";
+            fnames[2] = "LNAME";
+            ftypes[2] = "text";
+            fnames[3] = "PHONE";
+            ftypes[3] = "phone";
+            fnames[4] = "COMPANY";
+            ftypes[4] = "text";
+          })(jQuery);
+          var $mcj = jQuery.noConflict(true);
+        </script>
+      </div>
+    </section>
 
   </main>
 
@@ -302,15 +299,6 @@ const regularPosts = blogPosts.filter(post => !post.featured);
 .blog-card h3{font-size:1.35rem;font-weight:700;color:#111827;margin-bottom:.75rem;line-height:1.4}
 .blog-card p{color:#4b5563;line-height:1.6;margin-bottom:1rem;flex:1}
 .read-more{color:#667eea;font-weight:600;font-size:.95rem;margin-top:auto}
-.newsletter-section{padding:5rem 0;background:linear-gradient(135deg,#f0fdf4,#dcfce7)}
-.newsletter-box{background:#fff;padding:3rem;border-radius:20px;text-align:center;max-width:700px;margin:0 auto;box-shadow:0 10px 40px rgba(0,0,0,.08)}
-.newsletter-box h2{font-size:2rem;font-weight:800;color:#111827;margin-bottom:1rem}
-.newsletter-box p{color:#4b5563;font-size:1.1rem;margin-bottom:2rem}
-.newsletter-form{display:flex;gap:1rem;max-width:500px;margin:0 auto}
-.newsletter-form input{flex:1;padding:1rem 1.5rem;border:2px solid #e5e7eb;border-radius:12px;font-size:1rem;transition:all .3s ease}
-.newsletter-form input:focus{outline:none;border-color:#667eea;box-shadow:0 0 0 3px rgba(102,126,234,.1)}
-.btn-subscribe{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:1rem 2rem;border:none;border-radius:12px;font-weight:600;font-size:1rem;cursor:pointer;transition:all .3s ease;white-space:nowrap}
-.btn-subscribe:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(102,126,234,.3)}
 @media(max-width:1024px){
 .featured-link{grid-template-columns:1fr}
 .featured-image{height:300px}
@@ -322,7 +310,5 @@ const regularPosts = blogPosts.filter(post => !post.featured);
 .blog-hero h1{font-size:2rem}
 .blog-grid{grid-template-columns:1fr;gap:1.5rem}
 .featured-content h2{font-size:1.5rem}
-.newsletter-form{flex-direction:column}
-.newsletter-box{padding:2rem}
 }
 </style>

@@ -1,47 +1,75 @@
 ---
-import { getCollection } from 'astro:content';
+// src/pages/blog/[slug].astro
+import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
 
 export const prerender = true;
 
 export async function getStaticPaths() {
   const posts = await getCollection('article');
 
-  // Debug: Hangi route'lar oluşturuluyor görelim
   console.log('📄 Oluşturulan article route\'ları:');
   posts.forEach(post => {
-    console.log(`  - /${post.slug}`);
+    console.log(`  - /blog/${post.id}`);
   });
 
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: { post },
   }));
 }
 
 const { post } = Astro.props;
+
+// Astro v5: render() fonksiyonunu import edin ve kullanın
+const { Content } = await render(post);
+
+const baseUrl = 'https://kapi-ureticileri.vercel.app';
+const currentUrl = `${baseUrl}/blog/${post.id}`;
+
+const allPosts = await getCollection('article');
+const relatedPosts = allPosts
+  .filter(p => p.id !== post.id)
+  .filter(p => p.data.category === post.data.category)
+  .slice(0, 3);
 ---
 
-<Layout title={post.data.title} description={post.data.description}>
-  <main class="max-w-3xl mx-auto px-6 py-10">
-    <article class="bg-white dark:bg-zinc-900 shadow-xl rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-700">
-      {post.data.heroImage && (
-        <img
-          src={post.data.heroImage.src || post.data.heroImage}
-          alt={post.data.title}
-          class="w-full h-64 object-cover"
-        />
-      )}
-      <div class="p-6 prose dark:prose-invert">
-        <h1 class="text-4xl font-bold mb-4">{post.data.title}</h1>
-        <div class="text-sm text-gray-500 mb-6 flex justify-between">
-          <span>🗓️ {post.data.pubDate.toLocaleDateString()}</span>
-          {post.data.updatedDate && (
-            <span>🔄 {post.data.updatedDate.toLocaleDateString()}</span>
+<Layout
+  title={`${post.data.title} | CihanPan Door Blog`}
+  description={post.data.description}
+  canonical={currentUrl}
+>
+  <Header />
+
+  <main class="blog-post-page">
+    <article class="article-container">
+      <div class="container">
+        <div class="article-header">
+          {post.data.category && (
+            <span class="category-badge">{post.data.category}</span>
           )}
+          <h1>{post.data.title}</h1>
+          <div class="article-meta">
+            <time datetime={post.data.pubDate.toISOString()}>
+              📅 {post.data.pubDate.toLocaleDateString('tr-TR')}
+            </time>
+            {post.data.readTime && (
+              <>
+                <span class="separator">•</span>
+                <span>⏱️ {post.data.readTime}</span>
+              </>
+            )}
+          </div>
         </div>
-        <post.Content />
+
+        <div class="article-content prose">
+          <Content />
+        </div>
       </div>
     </article>
   </main>
+
+  <Footer />
 </Layout>
