@@ -288,7 +288,7 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
       </div>
     </section>
 
-    <!-- Contact Form -->
+   <!-- Contact Form -->
     <section class="form-section">
       <div class="container">
         <div class="form-wrapper">
@@ -297,27 +297,31 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
             <p>Formu doldurun, en kısa sürede size dönelim.</p>
           </div>
 
-          <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+          <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="contact-form">
             <input type="hidden" name="access_key" value={publicWeb3formsKey} />
             <input type="hidden" name="subject" value="Yeni İletişim Formu - CihanPan Door" />
             <input type="hidden" name="from_name" value="CihanPan Door Website" />
+            <input type="text" name="honeypot" style="display:none" />
 
             <div class="form-row">
               <div class="form-group">
                 <label for="name">Ad Soyad *</label>
-                <input type="text" id="name" name="name" required placeholder="Adınız Soyadınız" />
+                <input type="text" id="name" name="name" required placeholder="Adınız Soyadınız" aria-invalid="false" />
+                <span id="name-error" class="error-message"></span>
               </div>
 
               <div class="form-group">
                 <label for="email">Email *</label>
-                <input type="email" id="email" name="email" required placeholder="ornek@email.com" />
+                <input type="email" id="email" name="email" required placeholder="ornek@email.com" aria-invalid="false" />
+                <span id="email-error" class="error-message"></span>
               </div>
             </div>
 
             <div class="form-row">
               <div class="form-group">
                 <label for="phone">Telefon *</label>
-                <input type="tel" id="phone" name="phone" required placeholder="+90 5XX XXX XX XX" />
+                <input type="tel" id="phone" name="phone" required placeholder="+90 5XX XXX XX XX" aria-invalid="false" />
+                <span id="phone-error" class="error-message"></span>
               </div>
 
               <div class="form-group">
@@ -342,11 +346,12 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 
             <div class="form-group">
               <label for="message">Mesajınız *</label>
-              <textarea id="message" name="message" required rows="5" placeholder="Proje detaylarınızı, kapı adedi, teslimat yeri gibi bilgileri paylaşın..."></textarea>
+              <textarea id="message" name="message" required rows="5" placeholder="Proje detaylarınızı, kapı adedi, teslimat yeri gibi bilgileri paylaşın..." aria-invalid="false"></textarea>
+              <span id="message-error" class="error-message"></span>
             </div>
 
             <button type="submit" class="btn-submit">
-              Teklif İsteyin
+              <span class="btn-text">Teklif İsteyin</span>
             </button>
           </form>
         </div>
