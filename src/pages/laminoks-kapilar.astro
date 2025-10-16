@@ -46,15 +46,12 @@ const laminoksSchema = {
           "name": "CihanPan Door"
         },
         "offers": {
-          "@type": "Offer",
+          "@type": "AggregateOffer",
           "url": currentUrl,
+          "priceCurrency": "TRY",
+          "lowPrice": "1",
           "availability": "https://schema.org/InStock",
-          "priceSpecification": {
-            "@type": "PriceSpecification",
-            "priceCurrency": "TRY",
-            "price": "0",
-            "valueAddedTaxIncluded": "false"
-          },
+          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
           "businessFunction": "http://purl.org/goodrelations/v1#Sell",
           "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business",
           "seller": {
