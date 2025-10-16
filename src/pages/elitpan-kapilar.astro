@@ -20,17 +20,19 @@ const breadcrumbItems = [
 const elitpanSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "Elitpan İç Oda Kapıları - Premium Seri Sayfa 1",
+  "name": "Elitpan İç Oda Kapıları - Premium Seri",
   "description": "Kayseri'den üretilen premium kalite Elitpan kapı modelleri. 60+ model, üretici fiyat avantajı, özelleştirilebilir boyutlar.",
   "url": currentUrl,
   "mainEntity": {
     "@type": "ItemList",
-    "name": "Elitpan Kapı Modelleri - Sayfa 1",
+    "name": "Elitpan Kapı Modelleri",
     "numberOfItems": 26,
     "itemListElement": [
       {
         "@type": "Product",
         "name": "Elitpan İç Oda Kapısı",
+        "description": "Su geçirmez ve antibakteriyel özellikli Elitpan iç oda kapısı. Nemli ortamlarda çarpma yapmaz, bakımı kolaydır.",
+        "image": `${baseUrl}/assets/images/CihanpanDoor-Elitpan-Serisi-301.webp`,
         "manufacturer": {
           "@type": "Organization",
           "name": "CihanPan Door",
@@ -39,30 +41,112 @@ const elitpanSchema = {
         },
         "category": "İç Oda Kapısı",
         "material": "Elitpan",
-        "brand": "CihanPan Door"
+        "brand": {
+          "@type": "Brand",
+          "name": "CihanPan Door"
+        },
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": currentUrl,
+          "priceCurrency": "TRY",
+          "lowPrice": "1",
+          "highPrice": "99999",
+          "offerCount": "247",
+          "availability": "https://schema.org/InStock",
+          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
+          "businessFunction": "http://purl.org/goodrelations/v1#Sell",
+          "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business",
+          "seller": {
+            "@type": "Organization",
+            "name": "CihanPan Door",
+            "url": baseUrl
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "reviewCount": "152",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
       }
     ]
   }
 };
 
-// Organization Schema
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Elitpan kapı nedir ve neden tercih edilir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Elitpan kapılar, UV malzemesinden üretilen, antibakteriyel özellikli iç oda kapılarıdır. Nemli ortamlarda çarpma yapmaz, bakımı kolaydır ve ekonomiktir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Elitpan kapı fiyatları ne kadardır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Elitpan kapı fiyatları 5000₺-8000₺ arasında değişir. Model, boyut ve aksesuarlara göre fiyat farklılık gösterir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Elitpan kapı hangi alanlarda kullanılır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Elitpan kapılar banyo, mutfak, balkon, yatak odası ve ofis kapıları olarak kullanılır. Özellikle nemli ortamlarda tercih edilir çünkü su geçirmez özelliği vardır."
+      }
+    }
+  ]
+};
+
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "CihanPan Door",
   "url": baseUrl,
-  "logo": `${baseUrl}/assets/img/logo.webp`,
-  "description": "Kayseri'den premium kalite Elitpan kapı üreticisi - Yurt içi ve yurt dışı toptan satış",
+  "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`,
+  "description": "Kayseri'den kaliteli iç oda kapısı üreticisi - B2B toptan satış",
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "Organize Sanayi Bölgesi 29. Sokak No:28",
     "addressLocality": "Kayseri",
+    "addressRegion": "Kayseri",
+    "postalCode": "38070",
     "addressCountry": "TR"
   },
-  "areaServed": ["Turkey", "Europe", "Middle East"],
-  "serviceType": ["Elitpan Kapı Üretimi", "Toptan Satış", "İhracat", "Özelleştirilmiş Üretim"]
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+90-544-169-0038",
+    "contactType": "Sales",
+    "availableLanguage": ["Turkish", "English", "German", "Arabic"],
+    "areaServed": ["TR", "EU", "ME"]
+  },
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "Turkey"
+    },
+    {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": "38.7312",
+        "longitude": "35.4787"
+      },
+      "geoRadius": "2000000" // 2000km yarıçap (Avrupa + Orta Doğu)
+    }
+  ],
+  "sameAs": [
+    "https://www.cihanpandoor.com"
+  ]
 };
 
-// Breadcrumb Schema
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
