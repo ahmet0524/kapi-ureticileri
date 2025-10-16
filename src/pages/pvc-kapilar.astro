@@ -5,7 +5,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
-const baseUrl = Astro.site?.toString().slice(0, -1) || 'https://kapi-ureticileri.vercel.app';
+const baseUrl = 'https://kapi-ureticileri.vercel.app'; // SABIT KALACAK
 const currentUrl = `${baseUrl}${Astro.url.pathname}`;
 
 const breadcrumbItems = [
@@ -20,6 +20,7 @@ const pvcDoorSchema = {
   "name": "PVC İç Oda Kapıları",
   "description": "Kayseri'den üretilen su geçirmez, antibakteriyel PVC kapı modelleri. CE belgeli, 5 yıl garanti, ücretsiz kargo. Türkiye'nin en büyük PVC kapı koleksiyonu.",
   "url": currentUrl,
+  "inLanguage": "tr-TR",
   "mainEntity": {
     "@type": "ItemList",
     "name": "PVC Kapı Modelleri",
@@ -41,14 +42,11 @@ const pvcDoorSchema = {
           "name": "CihanPan Door"
         },
         "offers": {
-          "@type": "AggregateOffer",
+          "@type": "Offer",
           "url": currentUrl,
-          "priceCurrency": "TRY",
-          "lowPrice": "3000",
-          "highPrice": "8000",
-          "offerCount": 247,
           "availability": "https://schema.org/InStock",
-          "priceValidUntil": "2025-12-31",
+          "businessFunction": "http://purl.org/goodrelations/v1#Sell",
+          "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business", // Sadece B2B
           "seller": {
             "@type": "Organization",
             "name": "CihanPan Door",
@@ -58,7 +56,9 @@ const pvcDoorSchema = {
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": "4.8",
-          "reviewCount": "152"
+          "reviewCount": "152",
+          "bestRating": "5",
+          "worstRating": "1"
         }
       }
     ]
@@ -101,15 +101,41 @@ const organizationSchema = {
   "@type": "Organization",
   "name": "CihanPan Door",
   "url": baseUrl,
-  "logo": `${baseUrl}/assets/img/logo.webp`,
-  "description": "Kayseri'den kaliteli PVC kapı üreticisi",
+  "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`,
+  "description": "Kayseri'den kaliteli iç oda kapısı üreticisi - B2B toptan satış",
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "Organize Sanayi Bölgesi 29. Sokak No:28",
     "addressLocality": "Kayseri",
+    "addressRegion": "Kayseri",
+    "postalCode": "38070",
     "addressCountry": "TR"
   },
-  "areaServed": "Turkey",
-  "serviceType": ["PVC Kapı Üretimi", "İç Oda Kapısı", "Kapı Montajı"]
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+90-544-169-0038",
+    "contactType": "Sales",
+    "availableLanguage": ["Turkish", "English", "German", "Arabic"],
+    "areaServed": ["TR", "EU", "ME"]
+  },
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "Turkey"
+    },
+    {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": "38.7312",
+        "longitude": "35.4787"
+      },
+      "geoRadius": "2000000" // 2000km yarıçap (Avrupa + Orta Doğu)
+    }
+  ],
+  "sameAs": [
+    "https://www.cihanpandoor.com"
+  ]
 };
 
 const breadcrumbSchema = {

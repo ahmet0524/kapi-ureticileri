@@ -5,85 +5,309 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
+// ==========================================
+// BASE URL VE CURRENT URL
+// ==========================================
+const baseUrl = 'https://kapi-ureticileri.vercel.app';
+const currentUrl = `${baseUrl}${Astro.url.pathname}`;
+
+// ==========================================
+// İLETİŞİM BİLGİLERİ (Tek Kaynak)
+// ==========================================
+const contactInfo = {
+  // Telefon numaraları
+  phone: {
+    display: '+90 544 169 00 38',
+    schema: '+90-544-169-0038',
+    href: 'tel:+905441690038',
+    whatsapp: '905441690038'
+  },
+
+  // Email adresleri
+  email: {
+    sales: 'export@cihanpandoor.com',
+    general: 'exportcihanpandoor@gmail.com',
+    support: 'info@cihanpandoor.com'
+  },
+
+  // Web adresi
+  website: 'https://www.cihanpandoor.com',
+
+  // Adres bilgileri
+  address: {
+    street: 'Organize Sanayi Bölgesi 29. Sokak No:28',
+    city: 'Kayseri',
+    postalCode: '38070',
+    country: 'TR',
+    countryName: 'Turkey',
+    full: 'Organize Sanayi Bölgesi 29. Sokak No:28, Kayseri, Turkey'
+  },
+
+  // Çalışma saatleri
+  workingHours: {
+    weekday: 'Pazartesi - Cuma: 08:00 - 17:00',
+    saturday: 'Cumartesi: 09:00 - 15:00',
+    sunday: 'Pazar: Kapalı',
+    full: 'Pazartesi - Cuma: 08:00 - 17:00\nCumartesi: 09:00 - 15:00\nPazar: Kapalı'
+  },
+
+  // Koordinatlar
+  coordinates: {
+    latitude: 38.7312,
+    longitude: 35.4787
+  }
+};
+
+// ==========================================
+// SOSYAL MEDYA LİNKLERİ
+// ==========================================
+const socialLinks = [
+  {
+    name: 'WhatsApp',
+    icon: '📱',
+    href: `https://wa.me/${contactInfo.phone.whatsapp}?text=Merhaba, kapı modelleri hakkında bilgi almak istiyorum.`,
+    color: 'bg-emerald-500',
+    ariaLabel: 'WhatsApp ile iletişime geç'
+  },
+  {
+    name: 'Instagram',
+    icon: '📷',
+    href: 'https://www.instagram.com/cihanpandoor',
+    color: 'bg-pink-500',
+    ariaLabel: 'Instagram profilimizi ziyaret edin'
+  },
+  {
+    name: 'LinkedIn',
+    icon: '💼',
+    href: 'https://www.linkedin.com/company/cihanpandoor',
+    color: 'bg-blue-600',
+    ariaLabel: 'LinkedIn sayfamızı ziyaret edin'
+  }
+];
+
+// ==========================================
+// BREADCRUMB
+// ==========================================
 const breadcrumbItems = [
   { name: "Ana Sayfa", href: "/" },
   { name: "İletişim" }
 ];
 
-const contactInfo = {
-  phone: '+90 544 169 00 38',
-  whatsapp: '905441690038',
-  email: 'exportcihanpandoor@gmail.com',
-  website: 'www.cihanpandoor.com',
-  address: 'Organized Industrial Zone 29. Street No:28, Kayseri, Turkey',
-  workingHours: 'Pazartesi - Cuma: 08:00 - 17:00\nCumartesi: 09:00 - 15:00\nPazar: Kapalı'
-};
-
-const socialLinks = [
-  { name: 'WhatsApp', icon: '📱', href: `https://wa.me/${contactInfo.whatsapp}`, color: 'bg-emerald-500' },
-  { name: 'Instagram', icon: '📷', href: 'https://www.instagram.com/cihanpandoor', color: 'bg-pink-500' },
-  { name: 'LinkedIn', icon: '💼', href: 'https://www.linkedin.com/company/cihanpandoor', color: 'bg-blue-600' }
-];
-
+// ==========================================
+// FAQ (Geliştirilmiş)
+// ==========================================
 const faqs = [
   {
     question: 'Hangi illere teslimat yapıyorsunuz?',
-    answer: 'Türkiye geneline teslimat yapıyoruz. Özel projeler için uluslararası teslimat seçeneklerimiz de mevcuttur.'
+    answer: 'Türkiye geneline teslimat yapıyoruz. İstanbul, Ankara, İzmir, Bursa, Antalya dahil tüm illere hızlı kargo ile gönderim sağlıyoruz. Büyük projeler için özel nakliye seçenekleri ve uluslararası teslimat imkanlarımız da mevcuttur. Teslimat süreleri bölgeye göre 3-7 iş günü arasında değişmektedir.'
   },
   {
     question: 'Montaj hizmeti veriyor musunuz?',
-    answer: 'Evet, uzman montaj ekibimizle profesyonel montaj hizmeti sunuyoruz.'
+    answer: 'Evet, tüm Türkiye genelinde profesyonel montaj hizmeti sunuyoruz. Uzman montaj ekibimiz kapı montajını bir günde tamamlar. Montaj hizmeti fiyatları bölgeye ve kapı sayısına göre değişkenlik göstermektedir. Detaylı bilgi için lütfen bizimle iletişime geçin.'
   },
   {
     question: 'Garanti süreniz ne kadar?',
-    answer: 'Tüm ürünlerimiz için 2 yıl garanti veriyoruz. Garanti kapsamında bakım ve onarım hizmetleri ücretsizdir.'
+    answer: 'Tüm PVC, Laminoks ve Elitpan kapı modellerimiz için 5 yıl üretici garantisi veriyoruz. Garanti kapsamına malzeme ve işçilik hataları, renk solması, yüzey bozulmaları dahildir. Garanti süresi boyunca bakım ve onarım hizmetleri ücretsizdir. Yanlış kullanım ve montajdan kaynaklanan hasarlar garanti kapsamı dışındadır.'
   },
   {
     question: 'Toptan satış yapıyor musunuz?',
-    answer: 'Evet, inşaat firmaları ve bayilerimiz için özel toptan fiyatlarımız bulunmaktadır.'
+    answer: 'Evet, inşaat firmaları, müteahhitler, yapı marketleri ve bayiler için özel toptan fiyatlarımız bulunmaktadır. Minimum 50 adet kapı siparişlerinde %15-25 arası indirim uyguluyoruz. Proje bazlı teklifler için lütfen satış ekibimizle görüşün. Bayilik başvuruları için detaylı bilgi alabilirsiniz.'
+  },
+  {
+    question: 'Ödeme seçenekleri nelerdir?',
+    answer: 'Kredi kartı, banka havalesi ve kapıda ödeme (havale) seçeneklerimiz mevcuttur. Toptan siparişlerde %50 peşin, %50 teslimatta ödeme veya 30-60-90 gün vadeli ödeme planları sunuyoruz. Kurumsal müşterilerimiz için özel ödeme koşulları oluşturuyoruz.'
+  },
+  {
+    question: 'Özel ölçülerde kapı üretimi yapıyor musunuz?',
+    answer: 'Evet, standart ölçülerin (70x200cm, 80x200cm, 90x200cm) dışında özel ölçülerde kapı üretimi yapıyoruz. Maksimum genişlik 120cm, maksimum yükseklik 250cm olabilir. Özel ölçü kapılar için üretim süresi 10-15 iş günüdür. Detaylı ölçüler için teknik ekibimizle iletişime geçebilirsiniz.'
   }
 ];
 
+// ==========================================
+// SCHEMA MARKUPS
+// ==========================================
+
+// 1. CONTACT PAGE SCHEMA
+const contactPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "İletişim - CihanPan Door",
+  "description": "CihanPan Door ile iletişime geçin. PVC, Laminoks, Elitpan kapı modelleri için fiyat teklifi alın. Türkiye geneline teslimat ve montaj hizmeti.",
+  "url": currentUrl,
+  "inLanguage": "tr-TR",
+  "mainEntity": {
+    "@type": "Organization",
+    "@id": `${baseUrl}/#organization`,
+    "name": "CihanPan Door",
+    "legalName": "CihanPan Kapı Sanayi ve Ticaret Ltd. Şti.",
+    "url": baseUrl,
+    "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`,
+    "image": `${baseUrl}/assets/images/logo/header_logo1.webp`,
+    "description": "Kayseri'den kaliteli iç oda kapısı üreticisi - B2B toptan satış",
+
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": contactInfo.phone.schema,
+        "contactType": "Sales",
+        "email": contactInfo.email.sales,
+        "areaServed": ["TR", "EU", "ME"],
+        "availableLanguage": ["Turkish", "English", "German", "Arabic"],
+        "contactOption": "TollFree",
+        "hoursAvailable": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "08:00",
+            "closes": "17:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Saturday",
+            "opens": "09:00",
+            "closes": "15:00"
+          }
+        ]
+      },
+      {
+        "@type": "ContactPoint",
+        "telephone": contactInfo.phone.schema,
+        "contactType": "Customer Service",
+        "email": contactInfo.email.general,
+        "areaServed": "TR",
+        "availableLanguage": "Turkish"
+      }
+    ],
+
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": contactInfo.address.street,
+      "addressLocality": contactInfo.address.city,
+      "postalCode": contactInfo.address.postalCode,
+      "addressCountry": contactInfo.address.country,
+      "addressRegion": contactInfo.address.city
+    },
+
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": contactInfo.coordinates.latitude,
+      "longitude": contactInfo.coordinates.longitude
+    },
+
+    "areaServed": [
+      {
+        "@type": "Country",
+        "name": "Turkey"
+      },
+      {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": contactInfo.coordinates.latitude,
+          "longitude": contactInfo.coordinates.longitude
+        },
+        "geoRadius": "2000000"
+      }
+    ],
+
+    "sameAs": [
+      "https://www.instagram.com/cihanpandoor",
+      "https://www.linkedin.com/company/cihanpandoor",
+      contactInfo.website
+    ]
+  }
+};
+
+// 2. FAQ SCHEMA
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+
+// 3. BREADCRUMB SCHEMA
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    "item": item.href ? `${baseUrl}${item.href}` : currentUrl
+  }))
+};
+
+// 4. LOCAL BUSINESS SCHEMA (Opsiyonel - İsterseniz ekleyin)
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "CihanPan Door",
+  "image": `${baseUrl}/assets/images/logo/header_logo1.webp`,
+  "@id": `${baseUrl}/#localbusiness`,
+  "url": baseUrl,
+  "telephone": contactInfo.phone.schema,
+  "email": contactInfo.email.sales,
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": contactInfo.address.street,
+    "addressLocality": contactInfo.address.city,
+    "postalCode": contactInfo.address.postalCode,
+    "addressCountry": contactInfo.address.country
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": contactInfo.coordinates.latitude,
+    "longitude": contactInfo.coordinates.longitude
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "08:00",
+      "closes": "17:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "09:00",
+      "closes": "15:00"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "152",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+};
+
+// Web3Forms Key
 const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 
 if (!publicWeb3formsKey) {
-  console.error('PUBLIC_WEB3FORMS_KEY environment variable is not set');
+  console.error('❌ PUBLIC_WEB3FORMS_KEY environment variable is not set');
 }
-
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "ContactPage",
-  "name": "CihanPan Door İletişim",
-  "description": "CihanPan Door ile iletişime geçin. İç oda kapısı ihtiyaçlarınız için uzman desteği alın.",
-  "url": "https://www.cihanpandoor.com/iletisim",
-  "mainEntity": {
-    "@type": "Organization",
-    "name": "CihanPan Door",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+90-544-169-00-38",
-      "contactType": "customer service",
-      "areaServed": "TR",
-      "availableLanguage": "Turkish",
-      "email": "exportcihanpandoor@gmail.com"
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Organized Industrial Zone 29. Street No:28",
-      "addressLocality": "Kayseri",
-      "addressCountry": "TR"
-    }
-  }
-};
 ---
 
 <Layout
-  title="İletişim - CihanPan Door"
-  description="CihanPan Door ile iletişime geçin. İç oda kapısı ihtiyaçlarınız için uzman desteği alın."
+  title="İletişim - CihanPan Door | Kapı Fiyat Teklifi Alın"
+  description="CihanPan Door ile iletişime geçin. PVC, Laminoks, Elitpan kapı modelleri için ücretsiz fiyat teklifi alın. Türkiye geneline teslimat ve montaj hizmeti. ☎️ +90 544 169 00 38"
+  keywords="cihanpan door iletişim, kapı fiyat teklifi, pvc kapı fiyatları, kayseri kapı üreticisi, toptan kapı satışı, kapı montaj hizmeti"
+  canonical={currentUrl}
+  ogImage="/assets/img/og/iletisim-og.webp"
+  ogType="website"
+  schema={[contactPageSchema, faqSchema, breadcrumbSchema, localBusinessSchema]}
 >
   <Header />
-
-  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
   <main class="min-h-screen bg-gray-50">
     <!-- Hero Section -->
@@ -215,31 +439,31 @@ const structuredData = {
               <div class="contact-card">
                 <div>
                   <h3 class="card-title">Telefon</h3>
-                  <p class="card-text">{contactInfo.phone}</p>
-                  <a href={`tel:${contactInfo.phone.replace(/\s/g, '')}`} class="card-link">Hemen Ara</a>
+                  <p class="card-text">{contactInfo.phone.display}</p>
+                  <a href={contactInfo.phone.href} class="card-link">Hemen Ara</a>
                 </div>
               </div>
 
               <div class="contact-card">
                 <div>
                   <h3 class="card-title">E-posta</h3>
-                  <p class="card-text">{contactInfo.email}</p>
-                  <a href={`mailto:${contactInfo.email}`} class="card-link">E-posta Gönder</a>
+                  <p class="card-text">{contactInfo.email.sales}</p>
+                  <a href={`mailto:${contactInfo.email.sales}`} class="card-link">E-posta Gönder</a>
                 </div>
               </div>
 
               <div class="contact-card">
                 <div>
                   <h3 class="card-title">Adres</h3>
-                  <p class="card-text">{contactInfo.address}</p>
-                  <a href="https://maps.google.com/?q=Organized+Industrial+Zone+29+Street+No28+Kayseri+Turkey" target="_blank" rel="noopener noreferrer" class="card-link">Haritada Gör</a>
+                  <p class="card-text">{contactInfo.address.full}</p>
+                  <a href={`https://www.google.com/maps?q=${contactInfo.coordinates.latitude},${contactInfo.coordinates.longitude}`} target="_blank" rel="noopener noreferrer" class="card-link">Haritada Gör</a>
                 </div>
               </div>
 
               <div class="contact-card">
                 <div>
                   <h3 class="card-title">Çalışma Saatleri</h3>
-                  <p class="card-text working-hours">{contactInfo.workingHours}</p>
+                  <p class="card-text working-hours">{contactInfo.workingHours.full}</p>
                 </div>
               </div>
             </div>
@@ -257,7 +481,7 @@ const structuredData = {
                   <p class="whatsapp-text">WhatsApp'tan hızlı destek alın</p>
                 </div>
               </div>
-              <a href={`https://wa.me/${contactInfo.whatsapp}`} class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
+              <a href={`https://wa.me/${contactInfo.phone.whatsapp}?text=Merhaba, kapı modelleri hakkında bilgi almak istiyorum.`} class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
                 WhatsApp'ta Yazın
               </a>
             </div>
@@ -267,7 +491,7 @@ const structuredData = {
               <h3 class="social-title">Sosyal Medya</h3>
               <div class="social-links">
                 {socialLinks.map((social) => (
-                  <a href={social.href} class={`social-link ${social.color}`} target="_blank" rel="noopener noreferrer" aria-label={`${social.name} sayfamızı ziyaret edin`}>
+                  <a href={social.href} class={`social-link ${social.color}`} target="_blank" rel="noopener noreferrer" aria-label={social.ariaLabel}>
                     <span class="social-icon" aria-hidden="true">{social.icon}</span>
                     <span class="social-name">{social.name}</span>
                   </a>
@@ -312,6 +536,10 @@ const structuredData = {
 
   <Footer />
 </Layout>
+
+
+
+
 
 <style>
   .hero-section {
@@ -1175,7 +1403,7 @@ function showNotification(type, title, text) {
           phone: formData.get('phone') || 'Belirtilmedi',
           subject: formData.get('subject'),
           message: formData.get('message'),
-          from_name: 'CihanPan Door İletişim Formu',
+          from_name: 'CihanPan Door Iletisim Formu',
           replyto: formData.get('email')
         };
 
