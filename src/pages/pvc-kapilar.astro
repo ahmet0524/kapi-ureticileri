@@ -29,11 +29,13 @@ const pvcDoorSchema = {
       {
         "@type": "Product",
         "name": "PVC İç Oda Kapısı",
+        "description": "Su geçirmez ve antibakteriyel özellikli PVC iç oda kapısı. Nemli ortamlarda çarpma yapmaz, 5 yıl garanti, bakımı kolaydır.",
+        "image": `${baseUrl}/assets/images/pvc-kapi.webp`,
         "manufacturer": {
           "@type": "Organization",
           "name": "CihanPan Door",
           "url": baseUrl,
-          "logo": `${baseUrl}/assets/img/logo.webp`
+          "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`
         },
         "category": "İç Oda Kapısı",
         "material": "PVC",
@@ -42,11 +44,16 @@ const pvcDoorSchema = {
           "name": "CihanPan Door"
         },
         "offers": {
-          "@type": "Offer",
+          "@type": "AggregateOffer",
           "url": currentUrl,
+          "priceCurrency": "TRY",
+          "lowPrice": "1",
+          "highPrice": "99999",
+          "offerCount": "247",
           "availability": "https://schema.org/InStock",
+          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
           "businessFunction": "http://purl.org/goodrelations/v1#Sell",
-          "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business", // Sadece B2B
+          "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business",
           "seller": {
             "@type": "Organization",
             "name": "CihanPan Door",
