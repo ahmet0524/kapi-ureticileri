@@ -8,10 +8,6 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
 const baseUrl = 'https://kapi-ureticileri.vercel.app';
 const currentUrl = `${baseUrl}${Astro.url.pathname}`;
 
-// ==========================================
-// İLETİŞİM BİLGİLERİ
-// ==========================================
-
 const contactInfo = {
   phone: {
     display: '+90 544 169 00 38',
@@ -67,10 +63,6 @@ const socialLinks = [
   }
 ];
 
-// ==========================================
-// FAQ
-// ==========================================
-
 const faqs = [
   {
     question: 'Hangi illere teslimat yapıyorsunuz?',
@@ -98,18 +90,10 @@ const faqs = [
   }
 ];
 
-// ==========================================
-// BREADCRUMB
-// ==========================================
-
 const breadcrumbItems = [
   { name: "Ana Sayfa", href: "/" },
   { name: "İletişim" }
 ];
-
-// ==========================================
-// SCHEMAS
-// ==========================================
 
 const contactPageSchema = {
   "@context": "https://schema.org",
@@ -210,7 +194,7 @@ const breadcrumbSchema = {
   }))
 };
 
-const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
+const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c8-428f-9abb-f510ef10e1ff';
 ---
 
 <Layout
@@ -297,22 +281,19 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
             <p>Formu doldurun, en kısa sürede size dönelim.</p>
           </div>
 
-          <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="contact-form">
-            <input type="hidden" name="access_key" value={publicWeb3formsKey} />
-            <input type="hidden" name="subject" value="Yeni İletişim Formu - CihanPan Door" />
-            <input type="hidden" name="from_name" value="CihanPan Door Website" />
-            <input type="text" name="honeypot" style="display:none" />
+          <form id="contactForm" class="contact-form" novalidate>
+            <input type="text" name="honeypot" style="display:none" tabindex="-1" autocomplete="off" />
 
             <div class="form-row">
               <div class="form-group">
                 <label for="name">Ad Soyad *</label>
-                <input type="text" id="name" name="name" required placeholder="Adınız Soyadınız" aria-invalid="false" />
+                <input type="text" id="name" name="name" required placeholder="Adınız Soyadınız" minlength="2" />
                 <span id="name-error" class="error-message"></span>
               </div>
 
               <div class="form-group">
                 <label for="email">Email *</label>
-                <input type="email" id="email" name="email" required placeholder="ornek@email.com" aria-invalid="false" />
+                <input type="email" id="email" name="email" required placeholder="ornek@email.com" />
                 <span id="email-error" class="error-message"></span>
               </div>
             </div>
@@ -320,7 +301,7 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
             <div class="form-row">
               <div class="form-group">
                 <label for="phone">Telefon *</label>
-                <input type="tel" id="phone" name="phone" required placeholder="+90 5XX XXX XX XX" aria-invalid="false" />
+                <input type="tel" id="phone" name="phone" required placeholder="+90 5XX XXX XX XX" />
                 <span id="phone-error" class="error-message"></span>
               </div>
 
@@ -346,7 +327,7 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 
             <div class="form-group">
               <label for="message">Mesajınız *</label>
-              <textarea id="message" name="message" required rows="5" placeholder="Proje detaylarınızı, kapı adedi, teslimat yeri gibi bilgileri paylaşın..." aria-invalid="false"></textarea>
+              <textarea id="message" name="message" required rows="5" placeholder="Proje detaylarınızı, kapı adedi, teslimat yeri gibi bilgileri paylaşın..." minlength="10"></textarea>
               <span id="message-error" class="error-message"></span>
             </div>
 
@@ -572,6 +553,18 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
     border-color: #667eea;
   }
 
+  .form-group input.error,
+  .form-group textarea.error {
+    border-color: #ef4444;
+  }
+
+  .error-message {
+    color: #ef4444;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    min-height: 1rem;
+  }
+
   .btn-submit {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
@@ -584,8 +577,13 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
     transition: transform 0.3s ease;
   }
 
-  .btn-submit:hover {
+  .btn-submit:hover:not(:disabled) {
     transform: translateY(-2px);
+  }
+
+  .btn-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 
   .map-section {
@@ -743,6 +741,15 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
   .bg-pink-500 { background: #ec4899; }
   .bg-blue-600 { background: #2563eb; }
 
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+
   @media (max-width: 768px) {
     .form-wrapper {
       padding: 2rem 1.5rem;
@@ -763,617 +770,9 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
   }
 </style>
 
-
-
-
-<style>
-  .hero-section {
-    background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%);
-    color: white;
-    padding: 6rem 0 3rem;
-  }
-
-  .hero-title {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1.125rem;
-    opacity: 0.9;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
-  .contact-section {
-    padding: 4rem 0;
-  }
-
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    margin-bottom: 4rem;
-  }
-
-  .form-container {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e5e7eb;
-    transition: opacity 0.3s ease;
-  }
-
-  .form-container.submitting {
-    opacity: 0.6;
-    pointer-events: none;
-  }
-
-  .form-header {
-    margin-bottom: 2rem;
-  }
-
-  .section-title {
-    font-size: 1.875rem;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 0.5rem;
-  }
-
-  .section-subtitle {
-    color: #6b7280;
-    font-size: 1rem;
-  }
-
-  .form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .form-group {
-    margin-bottom: 1.5rem;
-  }
-
-  .form-label {
-    display: block;
-    font-weight: 500;
-    color: #374151;
-    margin-bottom: 0.5rem;
-    font-size: 0.875rem;
-  }
-
-  .form-input, .form-select, .form-textarea {
-    width: 100%;
-    padding: 0.875rem 1rem;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    font-size: 0.875rem;
-    transition: all 0.2s ease;
-    background: #fafafa;
-  }
-
-  .form-input:focus, .form-select:focus, .form-textarea:focus {
-    outline: none;
-    border-color: #3b82f6;
-    background: white;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-  }
-
-  .form-input.error, .form-select.error, .form-textarea.error {
-    border-color: #ef4444;
-    background: #fef2f2;
-  }
-
-  .form-input[aria-invalid="true"], .form-select[aria-invalid="true"], .form-textarea[aria-invalid="true"] {
-    border-color: #ef4444;
-  }
-
-  .form-textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-
-  .submit-btn {
-    width: 100%;
-    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-    color: white;
-    border: none;
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-  }
-
-  .submit-btn:hover:not(:disabled) {
-    transform: translateY(-1px);
-    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
-  }
-
-  .submit-btn:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
-
-  .submit-btn:focus-visible {
-    outline: 2px solid #3b82f6;
-    outline-offset: 2px;
-  }
-
-  .info-container {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .contact-cards {
-    display: grid;
-    gap: 1.25rem;
-  }
-
-  .contact-card {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e5e7eb;
-    transition: all 0.2s ease;
-  }
-
-  .contact-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-  }
-
-  .card-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #111827;
-    margin-bottom: 0.25rem;
-  }
-
-  .card-text {
-    color: #6b7280;
-    margin-bottom: 0.75rem;
-    font-size: 0.875rem;
-    line-height: 1.5;
-  }
-
-  .working-hours {
-    white-space: pre-line;
-    font-size: 0.8125rem;
-  }
-
-  .card-link {
-    color: #3b82f6;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.8125rem;
-    transition: color 0.2s ease;
-  }
-
-  .card-link:hover {
-    color: #1d4ed8;
-  }
-
-  .card-link:focus-visible {
-    outline: 2px solid #3b82f6;
-    outline-offset: 2px;
-    border-radius: 4px;
-  }
-
-  .whatsapp-cta {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    padding: 2rem;
-    border-radius: 12px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-  }
-
-  .whatsapp-content {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .whatsapp-icon {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 1rem;
-    border-radius: 50%;
-  }
-
-  .whatsapp-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-  }
-
-  .whatsapp-text {
-    opacity: 0.9;
-    font-size: 0.875rem;
-  }
-
-  .whatsapp-btn {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.875rem;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-  }
-
-  .whatsapp-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-1px);
-  }
-
-  .whatsapp-btn:focus-visible {
-    outline: 2px solid white;
-    outline-offset: 2px;
-  }
-
-  .social-section {
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e5e7eb;
-  }
-
-  .social-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #111827;
-    margin-bottom: 1rem;
-  }
-
-  .social-links {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 0.75rem;
-  }
-
-  .social-link {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    text-decoration: none;
-    color: white;
-    font-weight: 500;
-    font-size: 0.8125rem;
-    transition: all 0.2s ease;
-  }
-
-  .social-link:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  }
-
-  .social-link:focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: 2px;
-  }
-
-  .bg-emerald-500 { background: #10b981; }
-  .bg-pink-500 { background: #ec4899; }
-  .bg-blue-600 { background: #2563eb; }
-
-  .faq-section {
-    margin-top: 3rem;
-  }
-
-  .faq-header {
-    margin-bottom: 2rem;
-  }
-
-  .faq-container {
-    max-width: 768px;
-    margin: 0 auto;
-    display: grid;
-    gap: 0.75rem;
-  }
-
-  .faq-item {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    border: 1px solid #e5e7eb;
-    transition: all 0.2s ease;
-  }
-
-  .faq-item.active {
-    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
-    border-color: #3b82f6;
-  }
-
-  .faq-question {
-    width: 100%;
-    padding: 1.25rem 1.5rem;
-    background: none;
-    border: none;
-    text-align: left;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.9375rem;
-    font-weight: 500;
-    color: #111827;
-    transition: all 0.2s ease;
-  }
-
-  .faq-question:hover {
-    background: #f9fafb;
-  }
-
-  .faq-question:focus-visible {
-    outline: 2px solid #3b82f6;
-    outline-offset: -2px;
-  }
-
-  .question-icon {
-    width: 1.25rem;
-    height: 1.25rem;
-    color: #6b7280;
-    transition: transform 0.2s ease;
-    flex-shrink: 0;
-  }
-
-  .faq-item.active .question-icon {
-    transform: rotate(45deg);
-    color: #3b82f6;
-  }
-
-  .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-  }
-
-  .faq-item.active .faq-answer {
-    max-height: 200px;
-  }
-
-  .answer-text {
-    padding: 0 1.5rem 1.5rem;
-    color: #6b7280;
-    line-height: 1.6;
-    font-size: 0.875rem;
-  }
-
-  .notification {
-    position: fixed;
-    top: 2rem;
-    right: 2rem;
-    padding: 1.5rem 2rem;
-    border-radius: 12px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-    z-index: 99999;
-    transform: translateX(120%);
-    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    max-width: 400px;
-    min-width: 320px;
-  }
-
-  .notification.show {
-    transform: translateX(0);
-  }
-
-  .notification.success {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    color: white;
-  }
-
-  .notification.error {
-    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-    color: white;
-  }
-
-  .notification.info {
-    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-    color: white;
-  }
-
-  .notification-content {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    position: relative;
-  }
-
-  .notification-icon {
-    width: 1.75rem;
-    height: 1.75rem;
-    flex-shrink: 0;
-    margin-top: 0.125rem;
-  }
-
-  .notification-close {
-    position: absolute;
-    top: -0.5rem;
-    right: -0.75rem;
-    background: rgba(0, 0, 0, 0.2);
-    border: none;
-    color: white;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.125rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-    font-weight: bold;
-  }
-
-  .notification-close:hover {
-    background: rgba(0, 0, 0, 0.3);
-    transform: scale(1.1);
-  }
-
-  .notification-title {
-    font-weight: 700;
-    margin-bottom: 0.375rem;
-    font-size: 1.0625rem;
-  }
-
-  .notification-text {
-    font-size: 0.9375rem;
-    opacity: 0.95;
-    line-height: 1.4;
-  }
-
-  .error-message {
-    display: block;
-    color: #ef4444;
-    font-size: 0.75rem;
-    margin-top: 0.25rem;
-    min-height: 1rem;
-  }
-
-  .faq-question[aria-expanded="true"] {
-    background: #f9fafb;
-  }
-
-  @media (min-width: 768px) {
-    .contact-grid {
-      grid-template-columns: 1.2fr 1fr;
-      gap: 4rem;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .hero-title {
-      font-size: 2.25rem;
-    }
-
-    .form-container {
-      padding: 1.5rem;
-    }
-
-    .form-grid {
-      grid-template-columns: 1fr;
-      gap: 0;
-    }
-
-    .contact-card {
-      padding: 1.25rem;
-    }
-
-    .whatsapp-cta {
-      flex-direction: column;
-      text-align: center;
-    }
-
-    .whatsapp-content {
-      justify-content: center;
-    }
-
-    .social-links {
-      grid-template-columns: 1fr;
-    }
-
-    .notification {
-      top: 1rem;
-      right: 1rem;
-      left: 1rem;
-      max-width: none;
-      min-width: auto;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .hero-section {
-      padding: 4rem 0 2rem;
-    }
-
-    .contact-section {
-      padding: 2rem 0;
-    }
-
-    .form-container,
-    .social-section {
-      padding: 1.25rem;
-    }
-
-    .notification {
-      top: 0.5rem;
-      right: 0.5rem;
-      left: 0.5rem;
-      padding: 1rem 1.25rem;
-    }
-
-    .notification-title {
-      font-size: 0.9375rem;
-    }
-
-    .notification-text {
-      font-size: 0.8125rem;
-    }
-  }
-
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  .animate-spin {
-    animation: spin 1s linear infinite;
-  }
-
-  .hidden { display: none; }
-  .text-center { text-align: center; }
-</style>
-
 <script is:inline define:vars={{ publicWeb3formsKey }}>
-  console.log('🔵 Script loaded!');
-  console.log('🔵 Access Key:', publicWeb3formsKey ? 'EXISTS' : 'MISSING');
-
-  window.addEventListener('load', function() {
-    console.log('🟢 Page loaded!');
-
-    const contactForm = document.getElementById('contactForm');
-    console.log('🟢 Form element:', contactForm ? 'FOUND' : 'NOT FOUND');
-
-    if (!contactForm) {
-      alert('HATA: Form bulunamadı!');
-      return;
-    }
-
+  document.addEventListener('DOMContentLoaded', function() {
     const accessKey = publicWeb3formsKey;
-
-    if (!accessKey) {
-      console.error('❌ Web3Forms access key is not configured');
-      alert('HATA: Web3Forms API key tanımlı değil!');
-      return;
-    }
-
-    console.log('✅ Access key configured');
-
-    // Form submission state
-    let isSubmitting = false;
-    let lastSubmitTime = 0;
-    const SUBMIT_COOLDOWN = 3000;
 
     // Validation functions
     function isValidEmail(email) {
@@ -1382,7 +781,7 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 
     function isValidPhone(phone) {
       const cleaned = phone.replace(/\D/g, '');
-      return !phone || cleaned.length >= 10;
+      return cleaned.length >= 10;
     }
 
     function isValidName(name) {
@@ -1393,27 +792,22 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
       return message.trim().length >= 10;
     }
 
-    // Show error message
     function showError(field, message) {
       const errorSpan = document.getElementById(`${field.id}-error`);
       if (errorSpan) {
         errorSpan.textContent = message;
-        field.setAttribute('aria-invalid', 'true');
         field.classList.add('error');
       }
     }
 
-    // Clear error message
     function clearError(field) {
       const errorSpan = document.getElementById(`${field.id}-error`);
       if (errorSpan) {
         errorSpan.textContent = '';
-        field.setAttribute('aria-invalid', 'false');
         field.classList.remove('error');
       }
     }
 
-    // Validate field
     function validateField(field) {
       clearError(field);
 
@@ -1453,7 +847,6 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
       return true;
     }
 
-    // Set button loading state
     function setButtonLoading(button, isLoading) {
       const btnText = button.querySelector('.btn-text');
       if (isLoading) {
@@ -1467,132 +860,162 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
         `;
         button.disabled = true;
       } else {
-        btnText.textContent = button.dataset.originalText || 'Mesaj Gönder';
+        btnText.textContent = button.dataset.originalText || 'Teklif İsteyin';
         button.disabled = false;
       }
     }
 
-function showNotification(type, title, text) {
-  console.log('📢 Showing notification:', type, title, text);
+    // Gelişmiş Notification Sistemi
+    function showNotification(type, title, text) {
+      console.log('📢 Showing notification:', type, title, text);
 
-  const oldNotif = document.getElementById('customNotification');
-  if (oldNotif) oldNotif.remove();
+      const oldNotif = document.getElementById('customNotification');
+      if (oldNotif) oldNotif.remove();
 
-  const notif = document.createElement('div');
-  notif.id = 'customNotification';
-  notif.style.cssText = `position: fixed; top: 20px; right: 20px; min-width: 350px; max-width: 450px; background: white; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); z-index: 999999; animation: slideIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); overflow: hidden;`;
+      const notif = document.createElement('div');
+      notif.id = 'customNotification';
+      notif.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        min-width: 350px;
+        max-width: 450px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        z-index: 999999;
+        animation: slideIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        overflow: hidden;
+      `;
 
-  let bgColor = type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6';
-  let icon = type === 'success' ? '✓' : type === 'error' ? '✕' : 'ℹ';
+      let bgColor = type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6';
+      let icon = type === 'success' ? '✓' : type === 'error' ? '✕' : 'ℹ';
 
-  notif.innerHTML = `<style>@keyframes slideIn{from{transform:translateX(120%);opacity:0}to{transform:translateX(0);opacity:1}}@keyframes slideOut{from{transform:translateX(0);opacity:1}to{transform:translateX(120%);opacity:0}}@keyframes progressBar{from{width:100%}to{width:0%}}@media(max-width:768px){#customNotification{top:10px!important;right:10px!important;left:10px!important;min-width:auto!important;max-width:none!important}}</style><div style="display:flex;align-items:flex-start;padding:20px;gap:15px"><div style="width:48px;height:48px;border-radius:50%;background:${bgColor};display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:bold;color:white;flex-shrink:0">${icon}</div><div style="flex:1;padding-top:4px"><div style="font-size:17px;font-weight:700;color:#111827;margin-bottom:6px">${title}</div><div style="font-size:14px;color:#6b7280;line-height:1.5">${text}</div></div><button onclick="this.closest('#customNotification').remove()" style="background:transparent;border:none;color:#9ca3af;font-size:28px;cursor:pointer;padding:0;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:6px;transition:all 0.2s;line-height:1;margin-top:-4px" onmouseover="this.style.background='#f3f4f6';this.style.color='#374151'" onmouseout="this.style.background='transparent';this.style.color='#9ca3af'">&times;</button></div><div style="height:4px;background:#e5e7eb;position:relative;overflow:hidden"><div style="height:100%;background:${bgColor};animation:progressBar 5s linear forwards"></div></div>`;
+      notif.innerHTML = `
+        <style>
+          @keyframes slideIn {
+            from { transform: translateX(120%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+          }
+          @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(120%); opacity: 0; }
+          }
+          @keyframes progressBar {
+            from { width: 100%; }
+            to { width: 0%; }
+          }
+          @media (max-width: 768px) {
+            #customNotification {
+              top: 10px !important;
+              right: 10px !important;
+              left: 10px !important;
+              min-width: auto !important;
+              max-width: none !important;
+            }
+          }
+        </style>
+        <div style="display: flex; align-items: flex-start; padding: 20px; gap: 15px;">
+          <div style="
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: ${bgColor};
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+          ">${icon}</div>
+          <div style="flex: 1; padding-top: 4px;">
+            <div style="
+              font-size: 17px;
+              font-weight: 700;
+              color: #111827;
+              margin-bottom: 6px;
+            ">${title}</div>
+            <div style="
+              font-size: 14px;
+              color: #6b7280;
+              line-height: 1.5;
+            ">${text}</div>
+          </div>
+          <button onclick="this.closest('#customNotification').remove()" style="
+            background: transparent;
+            border: none;
+            color: #9ca3af;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            transition: all 0.2s;
+            line-height: 1;
+            margin-top: -4px;
+          " onmouseover="this.style.background='#f3f4f6'; this.style.color='#374151';" onmouseout="this.style.background='transparent'; this.style.color='#9ca3af';">&times;</button>
+        </div>
+        <div style="height: 4px; background: #e5e7eb; position: relative; overflow: hidden;">
+          <div style="
+            height: 100%;
+            background: ${bgColor};
+            animation: progressBar 5s linear forwards;
+          "></div>
+        </div>
+      `;
 
-  document.body.appendChild(notif);
+      document.body.appendChild(notif);
+      console.log('✅ Notification added to DOM');
 
-  setTimeout(() => {
-    if (notif && notif.parentNode) {
-      notif.style.animation = 'slideOut 0.3s ease forwards';
-      setTimeout(() => notif.remove(), 300);
+      setTimeout(() => {
+        if (notif && notif.parentNode) {
+          notif.style.animation = 'slideOut 0.3s ease forwards';
+          setTimeout(() => notif.remove(), 300);
+        }
+      }, 5000);
     }
-  }, 5000);
-}
-
-    // FAQ Accordion
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(function(item, index) {
-      const question = item.querySelector('.faq-question');
-
-      if (question) {
-        question.addEventListener('click', function() {
-          const isActive = item.classList.contains('active');
-
-          faqItems.forEach(function(faq) {
-            faq.classList.remove('active');
-            const btn = faq.querySelector('.faq-question');
-            if (btn) btn.setAttribute('aria-expanded', 'false');
-          });
-
-          if (!isActive) {
-            item.classList.add('active');
-            question.setAttribute('aria-expanded', 'true');
-          }
-        });
-
-        question.addEventListener('keydown', function(e) {
-          let targetIndex;
-
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            question.click();
-          } else if (e.key === 'ArrowDown') {
-            e.preventDefault();
-            targetIndex = (index + 1) % faqItems.length;
-          } else if (e.key === 'ArrowUp') {
-            e.preventDefault();
-            targetIndex = (index - 1 + faqItems.length) % faqItems.length;
-          } else if (e.key === 'Home') {
-            e.preventDefault();
-            targetIndex = 0;
-          } else if (e.key === 'End') {
-            e.preventDefault();
-            targetIndex = faqItems.length - 1;
-          }
-
-          if (targetIndex !== undefined) {
-            const targetBtn = faqItems[targetIndex].querySelector('.faq-question');
-            if (targetBtn) targetBtn.focus();
-          }
-        });
-      }
-    });
 
     // Form handling
-    console.log('🟢 Setting up form listener...');
+    const contactForm = document.getElementById('contactForm');
+    if (!contactForm) return;
+
+    let isSubmitting = false;
+    let lastSubmitTime = 0;
+    const SUBMIT_COOLDOWN = 3000;
+
+    // Real-time validation
+    contactForm.addEventListener('blur', function(e) {
+      if (e.target.matches('input, textarea, select')) {
+        validateField(e.target);
+      }
+    }, true);
 
     contactForm.addEventListener('submit', async function(e) {
       e.preventDefault();
-      e.stopPropagation();
 
-
-      console.log('=== FORM SUBMIT STARTED ===');
-      console.log('Access Key:', accessKey ? 'EXISTS' : 'MISSING');
-
-      if (!accessKey) {
-        console.error('Access key is missing!');
-        showNotification('error', 'Yapılandırma Hatası', 'Form gönderimi yapılandırılmamış. Lütfen site yöneticisiyle iletişime geçin.');
-        return;
-      }
-
-      // Check rate limiting
       const now = Date.now();
-      console.log('Rate limit check:', { now, lastSubmitTime, cooldown: SUBMIT_COOLDOWN, timeSince: now - lastSubmitTime });
-
       if (now - lastSubmitTime < SUBMIT_COOLDOWN) {
-        console.warn('Rate limit exceeded');
         showNotification('error', 'Çok Hızlı!', 'Lütfen birkaç saniye bekleyip tekrar deneyin.');
         return;
       }
 
-      // Check if already submitting
-      console.log('Is submitting:', isSubmitting);
       if (isSubmitting) {
-        console.warn('Already submitting, ignoring...');
         return;
       }
 
       // Validate all fields
-      console.log('Starting validation...');
       let isValid = true;
       const fields = contactForm.querySelectorAll('input, textarea, select');
       fields.forEach(field => {
-        if (field.name !== 'honeypot') {
-          const valid = validateField(field);
-          console.log(`Field ${field.name}: ${valid ? 'VALID' : 'INVALID'}`);
-          if (!valid) isValid = false;
+        if (field.name !== 'honeypot' && !validateField(field)) {
+          isValid = false;
         }
       });
-
-      console.log('Overall validation:', isValid ? 'PASSED' : 'FAILED');
 
       if (!isValid) {
         showNotification('error', 'Form Hatası', 'Lütfen tüm zorunlu alanları doğru şekilde doldurun.');
@@ -1607,17 +1030,11 @@ function showNotification(type, title, text) {
         return;
       }
 
-      console.log('All checks passed, preparing to submit...');
-
-      const submitBtn = contactForm.querySelector('.submit-btn');
-      const formContainer = document.querySelector('.form-container');
+      const submitBtn = contactForm.querySelector('.btn-submit');
 
       isSubmitting = true;
       lastSubmitTime = now;
       setButtonLoading(submitBtn, true);
-      formContainer.classList.add('submitting');
-
-      console.log('UI updated, starting API call...');
 
       try {
         const formData = new FormData(contactForm);
@@ -1626,21 +1043,13 @@ function showNotification(type, title, text) {
           name: formData.get('name'),
           email: formData.get('email'),
           phone: formData.get('phone') || 'Belirtilmedi',
-          subject: formData.get('subject'),
+          company: formData.get('company') || 'Belirtilmedi',
+          product: formData.get('product') || 'Belirtilmedi',
           message: formData.get('message'),
-          from_name: 'CihanPan Door Iletisim Formu',
+          from_name: 'CihanPan Door Website',
+          subject: 'Yeni İletişim Formu - CihanPan Door',
           replyto: formData.get('email')
         };
-
-        console.log('Form data prepared:', {
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          subject: data.subject,
-          messageLength: data.message.length
-        });
-
-        console.log('Sending request to Web3Forms API...');
 
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 15000);
@@ -1656,39 +1065,16 @@ function showNotification(type, title, text) {
         });
 
         clearTimeout(timeoutId);
-
-        console.log('Response received:', response.status, response.statusText);
-
         const result = await response.json();
 
-        console.log('Response data:', result);
-
         if (result.success) {
-          console.log('✓ SUCCESS - Form submitted successfully!');
-
-          // Simple alert instead of notification
           showNotification('success', 'Başarıyla Gönderildi!', 'Mesajınız başarıyla alınmıştır. En kısa sürede size dönüş yapacağız.');
-
           contactForm.reset();
-          console.log('Form reset completed');
-
-          // Track successful submission
-          if (typeof gtag !== 'undefined') {
-            gtag('event', 'form_submit', {
-              event_category: 'Contact',
-              event_label: data.subject
-            });
-            console.log('Analytics event sent');
-          }
         } else {
-          console.error('✗ API returned success: false', result);
           throw new Error(result.message || 'Form gönderilemedi');
         }
       } catch (error) {
-        console.error('✗ SUBMISSION ERROR:', error);
-        console.error('Error name:', error.name);
-        console.error('Error message:', error.message);
-        console.error('Error stack:', error.stack);
+        console.error('Form submission error:', error);
 
         let errorMessage = 'Bir hata oluştu. Lütfen tekrar deneyin.';
 
@@ -1698,31 +1084,11 @@ function showNotification(type, title, text) {
           errorMessage = 'Bağlantı hatası. İnternet bağlantınızı kontrol edin.';
         }
 
-        showNotification('error', '✗ Gönderim Başarısız!', errorMessage + ' Alternatif olarak telefon veya e-posta ile iletişime geçebilirsiniz.');
+        showNotification('error', 'Gönderim Başarısız', errorMessage + '\n\nAlternatif olarak telefon veya e-posta ile iletişime geçebilirsiniz.');
       } finally {
-        console.log('Cleaning up...');
         isSubmitting = false;
         setButtonLoading(submitBtn, false);
-        formContainer.classList.remove('submitting');
-        console.log('=== FORM SUBMIT ENDED ===');
       }
     });
-
-    // Track form engagement
-    let formEngaged = false;
-    contactForm.addEventListener('focus', function() {
-      if (!formEngaged) {
-        formEngaged = true;
-        console.log('📝 Form engaged');
-        if (typeof gtag !== 'undefined') {
-          gtag('event', 'form_start', {
-            event_category: 'Contact',
-            event_label: 'Contact Form'
-          });
-        }
-      }
-    }, true);
-
-    console.log('✅ Form initialized successfully!');
   });
 </script>
