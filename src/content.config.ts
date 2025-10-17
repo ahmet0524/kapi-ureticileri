@@ -1,4 +1,4 @@
-// src/content/config.ts
+
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
@@ -22,4 +22,4 @@ const article = defineCollection({
        }),
 });
 
-export const collections = { article };
+export const collections = {};
