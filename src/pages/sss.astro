@@ -1,0 +1,563 @@
+---
+// src/pages/sss.astro
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const baseUrl = 'https://kapi-ureticileri.vercel.app';
+const currentUrl = `${baseUrl}/sss`;
+
+const breadcrumbItems = [
+  { name: "Ana Sayfa", href: "/" },
+  { name: "Sıkça Sorulan Sorular", href: "/sss" }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "CihanPan Door nerede üretim yapıyor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kayseri'de bulunan modern üretim tesisimizde tüm kapı modellerimizi üretiyoruz. Türkiye'nin dört bir yanına ve yurt dışına ihracat yapıyoruz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Minimum sipariş adedi nedir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Toptan satış için minimum sipariş miktarları değişkenlik gösterebilir. Detaylı bilgi için iletişime geçmenizi öneririz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Teslimat süresi ne kadar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Standart ürünlerde 2-3 hafta, özel üretimlerde 4-6 hafta teslimat süresi bulunmaktadır. Acil siparişler için özel çözümler sunuyoruz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Garanti süresi ne kadar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tüm ürünlerimizde 2 yıl üretici garantisi bulunmaktadır. Montaj hatalarından kaynaklanan sorunlar garanti kapsamı dışındadır."
+      }
+    }
+  ]
+};
+---
+
+<Layout
+  title="Sıkça Sorulan Sorular | CihanPan Door"
+  description="CihanPan Door ürünleri, teslimat, fiyatlandırma ve hizmetler hakkında sıkça sorulan sorular ve cevapları."
+  canonical={currentUrl}
+  schema={[faqSchema]}
+>
+  <Header />
+  <Breadcrumbs items={breadcrumbItems} />
+
+  <main class="faq-page">
+    <div class="container">
+      <header class="page-header">
+        <h1>Sıkça Sorulan Sorular</h1>
+        <p>CihanPan Door hakkında merak ettikleriniz</p>
+      </header>
+
+      <div class="faq-container">
+        <!-- Genel Sorular -->
+        <section class="faq-section">
+          <h2>Genel Sorular</h2>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>CihanPan Door nerede üretim yapıyor?</span>
+              <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Kayseri'de bulunan modern üretim tesisimizde tüm kapı modellerimizi üretiyoruz.
+                Türkiye'nin dört bir yanına ve yurt dışına ihracat yapıyoruz.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Hangi ürünleri üretiyorsunuz?</span>
+              <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                PVC kapılar, Laminoks kapılar, Elitpan kapılar, hastane kapıları, otel kapıları
+                ve yangına dayanıklı kapılar olmak üzere geniş bir ürün yelpazesi sunuyoruz.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Bireysel müşterilere satış yapıyor musunuz?</span>
+              <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Evet, hem bireysel müşterilere hem de toptan alıcılara satış yapıyoruz.
+                Toptan alımlarda özel fiyat avantajları sunuyoruz.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sipariş ve Teslimat -->
+        <section class="faq-section">
+          <h2>Sipariş ve Teslimat</h2>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Minimum sipariş adedi nedir?</span>
+              <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Toptan satış için minimum sipariş miktarları ürün tipine göre değişkenlik gösterir.
+                Detaylı bilgi için iletişime geçmenizi öneririz.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Teslimat süresi ne kadar?</span>
+              <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Standart ürünlerde 2-3 hafta, özel üretimlerde 4-6 hafta teslimat süresi bulunmaktadır.
+                Acil siparişler için özel çözümler sunuyoruz.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Hangi şehirlere teslimat yapıyorsunuz?</span>
+              <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Türkiye'nin tüm illerine teslimat yapıyoruz. Ayrıca yurt dışı ihracatımız da bulunmaktadır.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Kargo ücreti ne kadar?</span>
+              <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Kargo ücretleri sipariş miktarı, ürün tipi ve teslimat noktasına göre değişiklik gösterir.
+                Belirli miktarın üzerindeki siparişlerde kargo ücretsizdir.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Ürün ve Kalite -->
+        <section class="faq-section">
+          <h2>Ürün ve Kalite</h2>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Garanti süresi ne kadar?</span>
+              <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Tüm ürünlerimizde 2 yıl üretici garantisi bulunmaktadır.
+                Montaj hatalarından kaynaklanan sorunlar garanti kapsamı dışındadır.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Ürünler TSE belgeli mi?</span>
+              <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Evet, tüm ürünlerimiz TSE standartlarına uygun olarak üretilmekte ve
+                gerekli sertifikalara sahiptir.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Özel ölçü üretim yapıyor musunuz?</span>
+              <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Evet, standart ölçülerin yanında özel ölçü üretim de yapıyoruz.
+                Proje bazlı özel tasarım hizmeti sunuyoruz.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Numune gönderiyor musunuz?</span>
+              <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Toptan alım yapacak müşterilerimize numune gönderimi yapıyoruz.
+                Detaylar için iletişime geçiniz.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Fiyatlandırma -->
+        <section class="faq-section">
+          <h2>Fiyatlandırma</h2>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Fiyat listesi var mı?</span>
+              <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Güncel fiyat listesi için iletişim formunu doldurabilir veya
+                direkt olarak bizi arayabilirsiniz. Toptan alımlarda özel fiyatlandırma yapılır.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Ödeme seçenekleri nelerdir?</span>
+              <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Havale/EFT, çek ve nakit ödeme seçenekleri mevcuttur.
+                Toptan alımlarda vade seçenekleri sunuyoruz.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Bayi olmak için ne yapmam gerekir?</span>
+              <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Bayi başvurusu için iletişim sayfasından başvurabilir veya
+                doğrudan bizi arayarak detaylı bilgi alabilirsiniz.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- CTA Section -->
+      <section class="faq-cta">
+        <h2>Sorunuza cevap bulamadınız mı?</h2>
+        <p>Bize ulaşın, size yardımcı olmaktan mutluluk duyarız</p>
+        <div class="cta-buttons">
+          <a href="/iletisim" class="btn btn-primary">İletişime Geçin</a>
+          <a href="https://wa.me/905441690038" class="btn btn-secondary">WhatsApp</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .faq-page {
+    padding: 4rem 0;
+    background: #f8fafc;
+    min-height: 60vh;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header p {
+    font-size: 1.1rem;
+    color: #6b7280;
+  }
+
+  .faq-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .faq-section {
+    margin-bottom: 3rem;
+  }
+
+  .faq-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .faq-section h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #0891b2;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e5e7eb;
+  }
+
+  .faq-item {
+    margin-bottom: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .faq-item:hover {
+    border-color: #0891b2;
+    box-shadow: 0 2px 8px rgba(8, 145, 178, 0.1);
+  }
+
+  .faq-question {
+    width: 100%;
+    padding: 1.25rem;
+    background: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #1a202c;
+    transition: all 0.3s ease;
+  }
+
+  .faq-question:hover {
+    background: #f8fafc;
+  }
+
+  .faq-question[aria-expanded="true"] {
+    background: #f0f9ff;
+    color: #0891b2;
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    color: #6b7280;
+  }
+
+  .faq-question[aria-expanded="true"] .faq-icon {
+    transform: rotate(180deg);
+    color: #0891b2;
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .faq-answer p {
+    padding: 1.25rem;
+    color: #4a5568;
+    line-height: 1.7;
+    margin: 0;
+    background: #fafbfc;
+  }
+
+  .faq-cta {
+    margin-top: 4rem;
+    text-align: center;
+    background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    color: white;
+  }
+
+  .faq-cta h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .faq-cta p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: white;
+    color: #0891b2;
+  }
+
+  .btn-primary:hover {
+    background: #f8fafc;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    background: #10b981;
+    color: white;
+    border: 2px solid #10b981;
+  }
+
+  .btn-secondary:hover {
+    background: #059669;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .page-header h1 {
+      font-size: 2rem;
+    }
+
+    .faq-container {
+      padding: 1.5rem;
+    }
+
+    .faq-section h2 {
+      font-size: 1.5rem;
+    }
+
+    .faq-question {
+      font-size: 1rem;
+      padding: 1rem;
+    }
+
+    .faq-answer p {
+      padding: 1rem;
+    }
+
+    .faq-cta {
+      padding: 2rem 1.5rem;
+    }
+
+    .faq-cta h2 {
+      font-size: 1.5rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+    }
+
+    .btn {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+
+    faqQuestions.forEach(question => {
+      question.addEventListener('click', () => {
+        const isExpanded = question.getAttribute('aria-expanded') === 'true';
+        const answer = question.nextElementSibling;
+
+        // Close all other answers
+        faqQuestions.forEach(q => {
+          if (q !== question) {
+            q.setAttribute('aria-expanded', 'false');
+            const a = q.nextElementSibling;
+            if (a) a.style.maxHeight = '0';
+          }
+        });
+
+        // Toggle current answer
+        if (isExpanded) {
+          question.setAttribute('aria-expanded', 'false');
+          answer.style.maxHeight = '0';
+        } else {
+          question.setAttribute('aria-expanded', 'true');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
+  });
+</script>
