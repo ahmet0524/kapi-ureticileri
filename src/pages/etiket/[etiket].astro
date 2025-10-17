@@ -1,0 +1,357 @@
+---
+// src/pages/etiket/[etiket].astro
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('article');
+
+  // Tüm etiketleri topla
+  const allTags = new Set();
+  allPosts.forEach(post => {
+    post.data.tags?.forEach(tag => {
+      allTags.add(tag);
+    });
+  });
+
+  // Her etiket için sayfa oluştur
+  return Array.from(allTags).map(tag => {
+    const tagSlug = tag
+      .toLowerCase()
+      .replace(/ı/g, 'i')
+      .replace(/ğ/g, 'g')
+      .replace(/ü/g, 'u')
+      .replace(/ş/g, 's')
+      .replace(/ö/g, 'o')
+      .replace(/ç/g, 'c')
+      .replace(/\s+/g, '-')
+      .replace(/[^a-z0-9-]/g, '');
+
+    return {
+      params: { etiket: tagSlug },
+      props: {
+        tag: tag,
+        tagSlug: tagSlug,
+        posts: allPosts.filter(post =>
+          post.data.tags?.includes(tag)
+        )
+      }
+    };
+  });
+}
+
+const { tag, tagSlug, posts } = Astro.props;
+
+const baseUrl = 'https://kapi-ureticileri.vercel.app';
+const currentUrl = `${baseUrl}/etiket/${tagSlug}`;
+
+const breadcrumbItems = [
+  { name: "Ana Sayfa", href: "/" },
+  { name: "Blog", href: "/blog" },
+  { name: `Etiket: ${tag}`, href: `/etiket/${tagSlug}` }
+];
+
+// Schema
+const collectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": `${tag} - İçerikler`,
+  "description": `${tag} etiketiyle ilgili tüm içerikler`,
+  "url": currentUrl,
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": posts.map((post, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "url": `${baseUrl}/blog/${post.id}`
+    }))
+  }
+};
+---
+
+<Layout
+  title={`${tag} - CihanPan Door Blog`}
+  description={`${tag} etiketiyle ilgili tüm blog yazıları ve içerikler. Kayseri'den kaliteli kapı üretimi hakkında detaylı bilgiler.`}
+  canonical={currentUrl}
+  schema={[collectionSchema]}
+>
+  <Header />
+  <Breadcrumbs items={breadcrumbItems} />
+
+  <main class="tag-page">
+    <div class="container">
+      <header class="page-header">
+        <div class="tag-badge">{tag}</div>
+        <h1>{posts.length} İçerik Bulundu</h1>
+        <p>"{tag}" etiketiyle ilgili tüm yazılar</p>
+      </header>
+
+      <div class="posts-grid">
+        {posts.map((post) => (
+          <article class="post-card">
+            {post.data.heroImage && (
+              <a href={`/blog/${post.id}`} class="post-image">
+                <img
+                  src={post.data.heroImage}
+                  alt={post.data.title}
+                  loading="lazy"
+                  width="400"
+                  height="250"
+                />
+              </a>
+            )}
+            <div class="post-content">
+              {post.data.category && (
+                <span class="post-category">{post.data.category}</span>
+              )}
+              <h2 class="post-title">
+                <a href={`/blog/${post.id}`}>{post.data.title}</a>
+              </h2>
+              <p class="post-description">{post.data.description}</p>
+              <div class="post-meta">
+                <time datetime={post.data.pubDate.toISOString()}>
+                  {post.data.pubDate.toLocaleDateString('tr-TR', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </time>
+                {post.data.readTime && (
+                  <>
+                    <span class="separator">•</span>
+                    <span>{post.data.readTime}</span>
+                  </>
+                )}
+              </div>
+              {post.data.tags && post.data.tags.length > 0 && (
+                <div class="post-tags">
+                  {post.data.tags.slice(0, 3).map(t => {
+                    const tSlug = t
+                      .toLowerCase()
+                      .replace(/ı/g, 'i')
+                      .replace(/ğ/g, 'g')
+                      .replace(/ü/g, 'u')
+                      .replace(/ş/g, 's')
+                      .replace(/ö/g, 'o')
+                      .replace(/ç/g, 'c')
+                      .replace(/\s+/g, '-')
+                      .replace(/[^a-z0-9-]/g, '');
+                    return (
+                      <a href={`/etiket/${tSlug}`} class="tag-link">#{t}</a>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="back-link">
+        <a href="/blog" class="btn-back">← Tüm Blog Yazılarına Dön</a>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .tag-page {
+    padding: 4rem 0;
+    background: #f8fafc;
+    min-height: 60vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .tag-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header p {
+    font-size: 1.1rem;
+    color: #6b7280;
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .post-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(8, 145, 178, 0.15);
+  }
+
+  .post-image {
+    display: block;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background: #f8fafc;
+  }
+
+  .post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .post-card:hover .post-image img {
+    transform: scale(1.05);
+  }
+
+  .post-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .post-category {
+    display: inline-block;
+    background: #e0f2fe;
+    color: #0891b2;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    width: fit-content;
+  }
+
+  .post-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .post-title a {
+    color: #1a202c;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .post-title a:hover {
+    color: #0891b2;
+  }
+
+  .post-description {
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #9ca3af;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .separator {
+    color: #d1d5db;
+  }
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag-link {
+    color: #0891b2;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .tag-link:hover {
+    color: #0e7490;
+    text-decoration: underline;
+  }
+
+  .back-link {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .btn-back {
+    display: inline-block;
+    background: white;
+    color: #0891b2;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid #0891b2;
+    transition: all 0.3s ease;
+  }
+
+  .btn-back:hover {
+    background: #0891b2;
+    color: white;
+    transform: translateX(-5px);
+  }
+
+  @media (max-width: 768px) {
+    .posts-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .page-header h1 {
+      font-size: 2rem;
+    }
+
+    .post-title {
+      font-size: 1.25rem;
+    }
+  }
+</style>

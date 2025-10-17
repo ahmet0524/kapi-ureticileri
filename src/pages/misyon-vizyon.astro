@@ -1,0 +1,78 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbItems = [
+  { name: "Ana Sayfa", href: "/" },
+  { name: "Misyon & Vizyon", href: "/misyon-vizyon" }
+];
+---
+
+<Layout title="Misyon & Vizyon | CihanPan Door" description="CihanPan Door'un misyonu, vizyonu ve değerleri.">
+  <Header />
+  <Breadcrumbs items={breadcrumbItems} />
+  <main class="mission-page">
+    <div class="container">
+      <div class="mission-grid">
+        <article class="mission-card">
+          <div class="card-icon">🎯</div>
+          <h2>Misyonumuz</h2>
+          <p>
+            Kayseri'den dünyaya kaliteli ve yenilikçi kapı çözümleri sunarak,
+            müşterilerimizin beklentilerini aşan ürünler üretmek. Sürdürülebilir
+            üretim anlayışı ile sektöre değer katmak.
+          </p>
+        </article>
+
+        <article class="mission-card">
+          <div class="card-icon">🚀</div>
+          <h2>Vizyonumuz</h2>
+          <p>
+            Türkiye'nin önde gelen kapı üreticilerinden biri olmak ve uluslararası
+            pazarda CihanPan Door markasını güvenilir bir isim haline getirmek.
+            İnovasyon ve kalite standartlarında lider konumda olmak.
+          </p>
+        </article>
+
+        <article class="mission-card">
+          <div class="card-icon">💎</div>
+          <h2>Değerlerimiz</h2>
+          <ul>
+            <li>Kalite ve mükemmellik</li>
+            <li>Müşteri memnuniyeti</li>
+            <li>Yenilikçilik ve gelişim</li>
+            <li>Dürüstlük ve güvenilirlik</li>
+            <li>Sürdürülebilirlik</li>
+            <li>Ekip çalışması</li>
+          </ul>
+        </article>
+
+        <article class="mission-card">
+          <div class="card-icon">🌍</div>
+          <h2>Sürdürülebilirlik</h2>
+          <p>
+            Çevre dostu üretim süreçleri, geri dönüştürülebilir malzemeler ve
+            enerji verimliliği odaklı yaklaşımımızla geleceğe sorumlu adımlar atıyoruz.
+          </p>
+        </article>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .mission-page { padding: 4rem 0; background: #f8fafc; min-height: 60vh; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+  .mission-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+  .mission-card { background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: all 0.3s ease; }
+  .mission-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(8, 145, 178, 0.15); }
+  .card-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .mission-card h2 { font-size: 1.75rem; font-weight: 700; color: #0891b2; margin-bottom: 1rem; }
+  .mission-card p { color: #4a5568; line-height: 1.7; }
+  .mission-card ul { list-style: none; padding: 0; }
+  .mission-card li { color: #4a5568; padding: 0.5rem 0; padding-left: 1.5rem; position: relative; }
+  .mission-card li::before { content: "✓"; color: #10b981; font-weight: bold; position: absolute; left: 0; }
+</style>
