@@ -730,7 +730,9 @@ const breadcrumbSchema = {
   }
 </style>
 
-<script>
+// urunlerimiz.astro dosyasının sonundaki <script> kısmını şununla değiştirin:
+
+<script is:inline>
   // Filter functionality
   document.addEventListener('DOMContentLoaded', function() {
     const materialFilterBtns = document.querySelectorAll('.material-filter-btn');
@@ -738,12 +740,14 @@ const breadcrumbSchema = {
 
     materialFilterBtns.forEach(btn => {
       btn.addEventListener('click', function() {
+        const clickedBtn = this;
+
         // Update active button
         materialFilterBtns.forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
+        clickedBtn.classList.add('active');
 
         // Filter products
-        const filterValue = this.getAttribute('data-filter');
+        const filterValue = clickedBtn.getAttribute('data-filter');
 
         productCards.forEach(card => {
           if (filterValue === 'all-materials' || card.getAttribute('data-category') === filterValue) {

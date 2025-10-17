@@ -1,6 +1,5 @@
 ---
-// src/pages/blog/index.astro
-import { getCollection } from 'astro:content';
+// src/pages/blog/index.astro - Collection kullanmayan versiyon
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
@@ -8,23 +7,8 @@ import Footer from '../../components/Footer.astro';
 const baseUrl = 'https://kapi-ureticileri.vercel.app';
 const currentUrl = `${baseUrl}/blog`;
 
-// Content collection'dan tüm article'ları al
-const allArticles = await getCollection('article');
-
-// Article'ları blog post formatına dönüştür
-const articlesAsPosts = allArticles.map(article => ({
-  slug: article.slug,
-  title: article.data.title,
-  excerpt: article.data.description,
-  image: article.data.heroImage?.src || article.data.heroImage || '/assets/img/blog/default-thumb.webp',
-  date: article.data.pubDate.toISOString().split('T')[0],
-  readTime: article.data.readTime || '5 dakika',
-  category: article.data.category || 'Genel',
-  featured: article.data.featured || false
-}));
-
-// Hardcoded blog postları (statik sayfalar için)
-const staticPosts = [
+// Statik blog postları listesi
+const allPosts = [
   {
     slug: 'pvc-kapi-ihracati',
     title: 'PVC Kapı İhracatı: Türkiye\'den Dünyaya',
@@ -33,21 +17,35 @@ const staticPosts = [
     date: '2025-01-10',
     readTime: '6 dakika',
     category: 'İhracat',
+    featured: true
+  },
+  {
+    slug: 'hastane-kapilari',
+    title: 'Hastane Kapıları: Medikal Seri Özellikleri',
+    excerpt: 'Sağlık tesisleri için özel tasarlanmış antibakteriyel hastane kapıları hakkında detaylı rehber.',
+    image: '/assets/img/blog/hastane-thumb.webp',
+    date: '2025-01-08',
+    readTime: '8 dakika',
+    category: 'Ürünler',
+    featured: false
+  },
+  {
+    slug: 'otel-kapilari',
+    title: 'Otel Kapıları: Konfor ve Estetik',
+    excerpt: 'Otel ve konaklama tesisleri için ideal kapı modelleri ve özellikleri.',
+    image: '/assets/img/blog/otel-thumb.webp',
+    date: '2025-01-05',
+    readTime: '7 dakika',
+    category: 'Ürünler',
     featured: false
   }
 ];
-
-// Tüm postları birleştir
-const allPosts = [...articlesAsPosts, ...staticPosts];
 
 // Tarihe göre sırala (en yeni önce)
 allPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 const featuredPost = allPosts.find(post => post.featured);
 const regularPosts = allPosts.filter(post => !post.featured);
-
-console.log('📚 Blog Index - Tüm Postlar:', allPosts.length);
-console.log('⭐ Featured Post:', featuredPost?.title || 'Yok');
 ---
 
 <Layout
@@ -75,7 +73,7 @@ console.log('⭐ Featured Post:', featuredPost?.title || 'Yok');
           <article class="featured-post">
             <a href={`/blog/${featuredPost.slug}`} class="featured-link">
               <div class="featured-image">
-                <img src={featuredPost.image} alt={featuredPost.title} loading="eager" />
+                <img src={featuredPost.image} alt={featuredPost.title} loading="eager" width="600" height="400" />
                 <span class="featured-badge">Öne Çıkan</span>
               </div>
               <div class="featured-content">
@@ -111,7 +109,7 @@ console.log('⭐ Featured Post:', featuredPost?.title || 'Yok');
             <article class="blog-card">
               <a href={`/blog/${post.slug}`} class="blog-card-link">
                 <div class="blog-card-image">
-                  <img src={post.image} alt={post.title} loading="lazy" />
+                  <img src={post.image} alt={post.title} loading="lazy" width="350" height="220" />
                   <span class="blog-category">{post.category}</span>
                 </div>
                 <div class="blog-card-content">
@@ -138,10 +136,10 @@ console.log('⭐ Featured Post:', featuredPost?.title || 'Yok');
     </section>
 
     <!-- Newsletter CTA -->
-    <section class="newsletter-section" style="background:#f9f9f9; padding:40px 0;">
-      <div class="container" style="max-width:700px; margin:0 auto; text-align:center;">
-        <h2 style="font-size:24px; margin-bottom:10px;">📬 Blog Yazılarımızdan Haberdar Olun</h2>
-        <p style="font-size:16px; color:#555; margin-bottom:30px;">
+    <section class="newsletter-section">
+      <div class="container newsletter-container">
+        <h2>📬 Blog Yazılarımızdan Haberdar Olun</h2>
+        <p>
           PVC kapı sektöründeki yenilikler, fiyat güncellemeleri ve özel tekliflerden ilk siz haberdar olun.
         </p>
 
@@ -152,63 +150,44 @@ console.log('⭐ Featured Post:', featuredPost?.title || 'Yok');
             method="post"
             id="mc-embedded-subscribe-form"
             name="mc-embedded-subscribe-form"
+            class="validate"
             target="_blank"
             novalidate
-            style="background:#fff; padding:20px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1);"
           >
-            <div class="mc-field-group" style="margin-bottom:15px; text-align:left;">
-              <label for="mce-EMAIL">E-posta Adresi <span style="color:red">*</span></label>
+            <div class="mc-field-group">
+              <label for="mce-EMAIL">E-posta Adresi <span class="asterisk">*</span></label>
               <input
                 type="email"
                 name="EMAIL"
+                class="required email"
                 id="mce-EMAIL"
                 required
-                style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;"
+                placeholder="ornek@email.com"
               />
             </div>
 
-            <div class="mc-field-group" style="margin-bottom:15px; text-align:left;">
+            <div class="mc-field-group">
               <label for="mce-FNAME">Adınız</label>
-              <input
-                type="text"
-                name="FNAME"
-                id="mce-FNAME"
-                style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;"
-              />
+              <input type="text" name="FNAME" id="mce-FNAME" placeholder="Adınız" />
             </div>
 
-            <div class="mc-field-group" style="margin-bottom:15px; text-align:left;">
+            <div class="mc-field-group">
               <label for="mce-LNAME">Soyadınız</label>
-              <input
-                type="text"
-                name="LNAME"
-                id="mce-LNAME"
-                style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;"
-              />
+              <input type="text" name="LNAME" id="mce-LNAME" placeholder="Soyadınız" />
             </div>
 
-            <div class="mc-field-group" style="margin-bottom:15px; text-align:left;">
+            <div class="mc-field-group">
               <label for="mce-PHONE">Telefon</label>
-              <input
-                type="text"
-                name="PHONE"
-                id="mce-PHONE"
-                style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;"
-              />
+              <input type="text" name="PHONE" id="mce-PHONE" placeholder="0500 000 00 00" />
             </div>
 
-            <div class="mc-field-group" style="margin-bottom:20px; text-align:left;">
+            <div class="mc-field-group">
               <label for="mce-COMPANY">Firma Adı</label>
-              <input
-                type="text"
-                name="COMPANY"
-                id="mce-COMPANY"
-                style="width:100%; padding:10px; border:1px solid #ccc; border-radius:6px;"
-              />
+              <input type="text" name="COMPANY" id="mce-COMPANY" placeholder="Firma Adı" />
             </div>
 
-            <!-- Hidden anti-bot alanı -->
-            <div aria-hidden="true" style="position:absolute; left:-5000px;">
+            <!-- Hidden anti-bot -->
+            <div aria-hidden="true" style="position: absolute; left: -5000px;">
               <input
                 type="text"
                 name="b_bff5a1a34a72f4c4f5c4fb675_c057853d71"
@@ -218,97 +197,111 @@ console.log('⭐ Featured Post:', featuredPost?.title || 'Yok');
             </div>
 
             <!-- Submit -->
-            <div>
+            <div class="clear">
               <input
                 type="submit"
                 name="subscribe"
                 id="mc-embedded-subscribe"
                 class="button"
                 value="Abone Ol"
-                style="background:#0073e6; color:#fff; padding:12px 25px; border:none; border-radius:6px; cursor:pointer; font-size:16px;"
               />
             </div>
 
             <!-- Response -->
-            <div id="mce-responses" style="margin-top:15px;">
-              <div class="response" id="mce-error-response" style="display:none; color:red;"></div>
-              <div class="response" id="mce-success-response" style="display:none; color:green;"></div>
+            <div id="mce-responses" class="clear">
+              <div class="response" id="mce-error-response" style="display:none"></div>
+              <div class="response" id="mce-success-response" style="display:none"></div>
             </div>
           </form>
         </div>
-
-        <!-- Mailchimp Validation -->
-        <script src="https://s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
-        <script>
-          (function ($) {
-            window.fnames = [];
-            window.ftypes = [];
-            fnames[0] = "EMAIL";
-            ftypes[0] = "email";
-            fnames[1] = "FNAME";
-            ftypes[1] = "text";
-            fnames[2] = "LNAME";
-            ftypes[2] = "text";
-            fnames[3] = "PHONE";
-            ftypes[3] = "phone";
-            fnames[4] = "COMPANY";
-            ftypes[4] = "text";
-          })(jQuery);
-          var $mcj = jQuery.noConflict(true);
-        </script>
       </div>
     </section>
-
   </main>
 
   <Footer />
 </Layout>
 
 <style>
-.container{max-width:1200px;margin:0 auto;padding:0 20px}
-.blog-hero{padding:5rem 0 3rem;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;text-align:center}
-.blog-hero h1{font-size:clamp(2.5rem,5vw,3.5rem);margin-bottom:1rem;font-weight:800}
-.blog-hero p{font-size:1.25rem;opacity:.95;max-width:600px;margin:0 auto}
-.section-title{font-size:2rem;font-weight:700;color:#111827;margin-bottom:2rem;text-align:center}
-.featured-post-section{padding:4rem 0 2rem;background:#f9fafb}
-.featured-post{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.1);transition:all .3s ease}
-.featured-post:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.15)}
-.featured-link{display:grid;grid-template-columns:1fr 1fr;gap:0;text-decoration:none;color:inherit}
-.featured-image{position:relative;height:400px;overflow:hidden}
-.featured-image img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
-.featured-post:hover .featured-image img{transform:scale(1.05)}
-.featured-badge{position:absolute;top:1.5rem;left:1.5rem;background:#f59e0b;color:#fff;padding:.75rem 1.5rem;border-radius:25px;font-size:.9rem;font-weight:700;box-shadow:0 4px 12px rgba(245,158,11,.3)}
-.featured-content{padding:3rem;display:flex;flex-direction:column;justify-content:center}
-.blog-meta{display:flex;gap:.75rem;align-items:center;font-size:.9rem;color:#6b7280;margin-bottom:1rem;flex-wrap:wrap}
-.category-badge{background:#667eea;color:#fff;padding:.4rem 1rem;border-radius:15px;font-weight:600;font-size:.85rem}
-.separator{color:#d1d5db}
-.featured-content h2{font-size:2rem;font-weight:800;color:#111827;margin-bottom:1rem;line-height:1.3}
-.featured-content p{color:#4b5563;line-height:1.7;font-size:1.1rem;margin-bottom:1.5rem}
-.read-more-btn{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:1rem 2rem;border-radius:50px;font-weight:600;transition:all .3s ease}
-.featured-post:hover .read-more-btn{transform:translateX(5px);box-shadow:0 4px 15px rgba(102,126,234,.4)}
-.blog-grid-section{padding:4rem 0}
-.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:2rem;margin-top:2rem}
-.blog-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.08);transition:all .3s ease;height:100%}
-.blog-card:hover{transform:translateY(-8px);box-shadow:0 12px 30px rgba(0,0,0,.15)}
-.blog-card-link{text-decoration:none;color:inherit;display:flex;flex-direction:column;height:100%}
-.blog-card-image{position:relative;height:220px;overflow:hidden}
-.blog-card-image img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
-.blog-card:hover .blog-card-image img{transform:scale(1.05)}
-.blog-category{position:absolute;top:1rem;left:1rem;background:#667eea;color:#fff;padding:.5rem 1rem;border-radius:20px;font-size:.85rem;font-weight:600}
-.blog-card-content{padding:1.5rem;flex:1;display:flex;flex-direction:column}
-.blog-card h3{font-size:1.35rem;font-weight:700;color:#111827;margin-bottom:.75rem;line-height:1.4}
-.blog-card p{color:#4b5563;line-height:1.6;margin-bottom:1rem;flex:1}
-.read-more{color:#667eea;font-weight:600;font-size:.95rem;margin-top:auto}
-@media(max-width:1024px){
-.featured-link{grid-template-columns:1fr}
-.featured-image{height:300px}
-.featured-content{padding:2rem}
-.featured-content h2{font-size:1.75rem}
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.blog-hero { padding: 5rem 0 3rem; background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; text-align: center; }
+.blog-hero h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 1rem; font-weight: 800; }
+.blog-hero p { font-size: 1.25rem; opacity: .95; max-width: 600px; margin: 0 auto; }
+.section-title { font-size: 2rem; font-weight: 700; color: #111827; margin-bottom: 2rem; text-align: center; }
+.featured-post-section { padding: 4rem 0 2rem; background: #f9fafb; }
+.featured-post { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,.1); transition: all .3s ease; }
+.featured-post:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,.15); }
+.featured-link { display: grid; grid-template-columns: 1fr 1fr; gap: 0; text-decoration: none; color: inherit; }
+.featured-image { position: relative; height: 400px; overflow: hidden; }
+.featured-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.featured-post:hover .featured-image img { transform: scale(1.05); }
+.featured-badge { position: absolute; top: 1.5rem; left: 1.5rem; background: #f59e0b; color: #fff; padding: .75rem 1.5rem; border-radius: 25px; font-size: .9rem; font-weight: 700; box-shadow: 0 4px 12px rgba(245,158,11,.3); }
+.featured-content { padding: 3rem; display: flex; flex-direction: column; justify-content: center; }
+.blog-meta { display: flex; gap: .75rem; align-items: center; font-size: .9rem; color: #6b7280; margin-bottom: 1rem; flex-wrap: wrap; }
+.category-badge { background: #667eea; color: #fff; padding: .4rem 1rem; border-radius: 15px; font-weight: 600; font-size: .85rem; }
+.separator { color: #d1d5db; }
+.featured-content h2 { font-size: 2rem; font-weight: 800; color: #111827; margin-bottom: 1rem; line-height: 1.3; }
+.featured-content p { color: #4b5563; line-height: 1.7; font-size: 1.1rem; margin-bottom: 1.5rem; }
+.read-more-btn { display: inline-flex; align-items: center; gap: .5rem; background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; padding: 1rem 2rem; border-radius: 50px; font-weight: 600; transition: all .3s ease; width: fit-content; }
+.featured-post:hover .read-more-btn { transform: translateX(5px); box-shadow: 0 4px 15px rgba(102,126,234,.4); }
+.blog-grid-section { padding: 4rem 0; }
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem; margin-top: 2rem; }
+.blog-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,.08); transition: all .3s ease; height: 100%; }
+.blog-card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(0,0,0,.15); }
+.blog-card-link { text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%; }
+.blog-card-image { position: relative; height: 220px; overflow: hidden; }
+.blog-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
+.blog-card:hover .blog-card-image img { transform: scale(1.05); }
+.blog-category { position: absolute; top: 1rem; left: 1rem; background: #667eea; color: #fff; padding: .5rem 1rem; border-radius: 20px; font-size: .85rem; font-weight: 600; }
+.blog-card-content { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+.blog-card h3 { font-size: 1.35rem; font-weight: 700; color: #111827; margin-bottom: .75rem; line-height: 1.4; }
+.blog-card p { color: #4b5563; line-height: 1.6; margin-bottom: 1rem; flex: 1; }
+.read-more { color: #667eea; font-weight: 600; font-size: .95rem; margin-top: auto; }
+
+/* Newsletter */
+.newsletter-section { background: #f9f9f9; padding: 40px 0; }
+.newsletter-container { max-width: 700px; margin: 0 auto; text-align: center; }
+.newsletter-container h2 { font-size: 24px; margin-bottom: 10px; color: #111827; }
+.newsletter-container p { font-size: 16px; color: #555; margin-bottom: 30px; }
+#mc_embed_signup { background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+.mc-field-group { margin-bottom: 15px; text-align: left; }
+.mc-field-group label { display: block; margin-bottom: 5px; font-weight: 600; color: #333; }
+.mc-field-group input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; }
+.asterisk { color: red; }
+.button { background: #0073e6; color: #fff; padding: 12px 25px; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: 600; width: 100%; transition: all 0.3s ease; }
+.button:hover { background: #005bb5; }
+.response { margin-top: 15px; padding: 10px; border-radius: 4px; }
+#mce-error-response { background: #fee; color: #c33; border: 1px solid #fcc; }
+#mce-success-response { background: #efe; color: #3c3; border: 1px solid #cfc; }
+
+@media(max-width:1024px) {
+.featured-link { grid-template-columns: 1fr; }
+.featured-image { height: 300px; }
+.featured-content { padding: 2rem; }
+.featured-content h2 { font-size: 1.75rem; }
 }
-@media(max-width:768px){
-.blog-hero{padding:3rem 0 2rem}
-.blog-hero h1{font-size:2rem}
-.blog-grid{grid-template-columns:1fr;gap:1.5rem}
-.featured-content h2{font-size:1.5rem}
+@media(max-width:768px) {
+.blog-hero { padding: 3rem 0 2rem; }
+.blog-hero h1 { font-size: 2rem; }
+.blog-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+.featured-content h2 { font-size: 1.5rem; }
 }
 </style>
+
+<script is:inline>
+  // Mailchimp validation - inline script olmalı
+  // @ts-nocheck
+  if (typeof window !== 'undefined') {
+    window.fnames = [];
+    window.ftypes = [];
+    window.fnames[0] = 'EMAIL';
+    window.ftypes[0] = 'email';
+    window.fnames[1] = 'FNAME';
+    window.ftypes[1] = 'text';
+    window.fnames[2] = 'LNAME';
+    window.ftypes[2] = 'text';
+    window.fnames[3] = 'PHONE';
+    window.ftypes[3] = 'phone';
+    window.fnames[4] = 'COMPANY';
+    window.ftypes[4] = 'text';
+  }
+</script>
