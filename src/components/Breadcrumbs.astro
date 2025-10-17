@@ -26,7 +26,7 @@ const breadcrumbSchema = {
 
 {items.length > 1 && (
   <nav aria-label="Breadcrumb" class="breadcrumbs">
-    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
     <div class="container">
       <ol class="breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
         {items.map((item, index) => (

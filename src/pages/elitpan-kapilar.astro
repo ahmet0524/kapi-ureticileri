@@ -139,7 +139,7 @@ const organizationSchema = {
         "latitude": "38.7312",
         "longitude": "35.4787"
       },
-      "geoRadius": "2000000" // 2000km yarıçap (Avrupa + Orta Doğu)
+      "geoRadius": "2000000"
     }
   ],
   "sameAs": [
@@ -157,6 +157,9 @@ const breadcrumbSchema = {
     "item": item.href ? `${baseUrl}${item.href}` : currentUrl
   }))
 };
+
+// Tüm schema'ları birleştir
+const allSchemas = [elitpanSchema, faqSchema, organizationSchema, breadcrumbSchema];
 ---
 
 <Layout
@@ -173,7 +176,7 @@ const breadcrumbSchema = {
   twitterTitle="Elitpan İç Oda Kapıları | Premium Seri"
   twitterDescription="Premium Elitpan kapı koleksiyonu. Üretici fiyat avantajı, toptan satış."
   twitterImage="/assets/img/og/elitpan-kapilar-og.webp"
-  schema={[elitpanSchema, organizationSchema, breadcrumbSchema]}
+  schema={allSchemas}
 >
 
   <Header />
@@ -883,8 +886,28 @@ const breadcrumbSchema = {
 </style>
 
 <script>
+  // Product type definition
+  interface Product {
+    id: string;
+    name: string;
+    category: string;
+    image: string;
+    fallbackImage: string;
+    altText: string;
+    description: string;
+    seoKeywords: string;
+    schemaData: {
+      "@type": string;
+      name: string;
+      description: string;
+      brand: string;
+      material: string;
+      category: string;
+    };
+  }
+
   // Generate Elitpan models from the remaining file list (26 products)
-  const elitpanModels = [];
+  const elitpanModels: Product[] = [];
 
   const fileNames = [
     "CihanpanDoor-Elitpan-Serisi-301.webp",
@@ -945,6 +968,8 @@ const breadcrumbSchema = {
     const grid = document.getElementById('productsGrid');
     const loading = document.getElementById('loading');
 
+    if (!grid || !loading) return;
+
     loading.style.display = 'block';
     grid.innerHTML = '';
 
@@ -957,7 +982,7 @@ const breadcrumbSchema = {
     }, 200);
   }
 
-  function createProductCard(product) {
+  function createProductCard(product: Product): HTMLElement {
     const card = document.createElement('article');
     card.className = 'product-card';
     card.setAttribute('aria-label', `${product.name} Premium Elitpan kapı modeli`);

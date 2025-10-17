@@ -50,7 +50,7 @@ const articleSchema = {
 ---
 
 <article class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow" itemscope itemtype="https://schema.org/Article">
-  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)}></script>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)}></script>
 
   <div class="relative">
     <img
