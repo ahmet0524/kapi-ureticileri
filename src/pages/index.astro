@@ -7,16 +7,18 @@ import Categories from '../components/Categories.astro';
 import Features from '../components/Features.astro';
 import Footer from '../components/Footer.astro';
 
+const baseUrl = 'https://kapi-ureticileri.vercel.app';
+
 // Website schema for homepage
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "CihanPan Door - İç Oda Kapısı Rehberi",
-  "url": "https://kapi-ureticileri.web.app",
+  "url": baseUrl,
   "description": "Türkiye'nin önde gelen iç oda kapısı üreticileri rehberi",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://kapi-ureticileri.web.app/ara?q={search_term_string}",
+    "target": `${baseUrl}/ara?q={search_term_string}`,
     "query-input": "required name=search_term_string"
   }
 };
@@ -25,8 +27,9 @@ const websiteSchema = {
 <Layout
   title="İç Oda Kapısı Üreticileri | Türkiye'den Toptan Kapı İhracatı - CihanPan Door"
   description="Türkiye'nin önde gelen iç oda kapısı üreticileri arasında yer alan CihanPan Door'dan toptan kapı tedarik edin. PVC, laminoks ve otel kapıları ile Avrupa ve Orta Doğu'ya ihracat yapıyoruz."
+  canonical={baseUrl}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)}></script>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(websiteSchema)}></script>
 
   <Header />
   <main>
