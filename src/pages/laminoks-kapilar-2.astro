@@ -6,13 +6,13 @@ import Footer from '../components/Footer.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
 // Dynamic URL'ler için base setup
-const baseUrl = 'https://kapi-ureticileri.netlify.app';
+const baseUrl = 'https://kapi-ureticileri.vercel.app';
 const currentUrl = `${baseUrl}${Astro.url.pathname}`;
 
 const breadcrumbItems = [
   { name: "Ana Sayfa", href: "/" },
   { name: "Ürünlerimiz", href: "/urunlerimiz" },
-  { name: "Laminoks Kapılar", href: "/laminoks-kapilar" },
+  { name: "Laminoks Kapılar", href: "/laminoks-kapilar-2" },
   { name: "Sayfa 2" }
 ];
 
@@ -31,38 +31,125 @@ const laminoksSchema = {
       {
         "@type": "Product",
         "name": "Laminoks İç Oda Kapısı - Ek Modeller",
+        "description": "Su geçirmez ve antibakteriyel özellikli Laminoks iç oda kapısı. Nemli ortamlarda çarpma yapmaz, bakımı kolaydır.",
+        "image": `${baseUrl}/assets/images/laminoks-kapi.webp`,
         "manufacturer": {
           "@type": "Organization",
           "name": "CihanPan Door",
           "url": baseUrl,
-          "logo": `${baseUrl}/assets/img/logo.webp`
-        },
+          "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`
+         },
         "category": "İç Oda Kapısı",
         "material": "Laminoks",
-        "brand": "CihanPan Door"
+        "brand": {
+          "@type": "Brand",
+          "name": "CihanPan Door"
+        },
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": currentUrl,
+          "priceCurrency": "TRY",
+          "lowPrice": "1",
+          "highPrice": "99999",
+          "offerCount": "80",
+          "availability": "https://schema.org/InStock",
+          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
+          "businessFunction": "http://purl.org/goodrelations/v1#Sell",
+          "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business",
+          "seller": {
+            "@type": "Organization",
+            "name": "CihanPan Door",
+            "url": baseUrl
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "reviewCount": "152",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
       }
     ]
   }
 };
 
-// Organization Schema
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Laminoks kapı nedir ve neden tercih edilir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Laminoks kapılar, su geçirmez ve antibakteriyel özellikli iç oda kapılarıdır. Nemli ortamlarda çarpma yapmaz, bakımı kolaydır ve ekonomiktir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Laminoks kapı fiyatları ne kadardır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Laminoks kapı fiyatları 5000₺-8000₺ arasında değişir. Model, boyut ve aksesuarlara göre fiyat farklılık gösterir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Laminoks kapı hangi alanlarda kullanılır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Laminoks kapılar oda, banyo, mutfak, balkon, yatak odası ve ofis kapıları olarak kullanılır. Özellikle nemli ortamlarda tercih edilir çünkü su geçirmez özelliği vardır."
+      }
+    }
+  ]
+};
+
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "CihanPan Door",
   "url": baseUrl,
-  "logo": `${baseUrl}/assets/img/logo.webp`,
-  "description": "Kayseri'den premium kalite Laminoks kapı üreticisi - Yurt içi ve yurt dışı toptan satış",
+  "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`,
+  "description": "Kayseri'den kaliteli iç oda kapısı üreticisi - B2B toptan satış",
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "Organize Sanayi Bölgesi 29. Sokak No:28",
     "addressLocality": "Kayseri",
+    "addressRegion": "Kayseri",
+    "postalCode": "38070",
     "addressCountry": "TR"
   },
-  "areaServed": ["Turkey", "Europe", "Middle East"],
-  "serviceType": ["Laminoks Kapı Üretimi", "Toptan Satış", "İhracat", "Özelleştirilmiş Üretim"]
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+90-544-169-0038",
+    "contactType": "Sales",
+    "availableLanguage": ["Turkish", "English", "German", "Arabic"],
+    "areaServed": ["TR", "EU", "ME"]
+  },
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "Turkey"
+    },
+    {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": "38.7312",
+        "longitude": "35.4787"
+      },
+      "geoRadius": "2000000" // 2000km yarıçap (Avrupa + Orta Doğu)
+    }
+  ],
+"sameAs": [
+  "https://www.cihanpandoor.com",
+  "https://www.facebook.com/cihanpandoor",
+  "https://www.instagram.com/cihanpan_door",
+  "https://www.linkedin.com/company/cihanpan-door"
+]
 };
 
-// Breadcrumb Schema
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -955,66 +1042,72 @@ const breadcrumbSchema = {
 
   // KALAN 60 ÜRÜN (SAYFA 2) - liste.txt'den alınan dosya adları
   const fileNames = [
-    "CihanpanDoor-Laminoks-Serisi-201-A-Beyaz.webp",
-    "CihanpanDoor-Laminoks-Serisi-201-B-Gri-Mese.webp",
-    "CihanpanDoor-Laminoks-Serisi-201-C-Saruhan.webp",
-    "CihanpanDoor-Laminoks-Serisi-201-D-Kapucino.webp",
-    "CihanpanDoor-Laminoks-Serisi-201-E-Tanganika.webp",
-    "CihanpanDoor-Laminoks-Serisi-201-F-Antrasit.webp",
-    "CihanpanDoor-Laminoks-Serisi-202-A-Elma-Siyah.webp",
-    "CihanpanDoor-Laminoks-Serisi-202-B-Isparta-Ceviz-Beyaz.webp",
-    "CihanpanDoor-Laminoks-Serisi-202-C-Acik-Otantik-Siyah.webp",
-    "CihanpanDoor-Laminoks-Serisi-202-D-Saruhan-Antrasit.webp",
-    "CihanpanDoor-Laminoks-Serisi-202-E-Tanganika-Antrasit.webp",
-    "CihanpanDoor-Laminoks-Serisi-202-F-Antrasit-Beyaz.webp",
-    "CihanpanDoor-Laminoks-Serisi-203-A-ABD-Ceviz.webp",
-    "CihanpanDoor-Laminoks-Serisi-203-B-Viktorya-Ceviz-Kapucino.webp",
-    "CihanpanDoor-Laminoks-Serisi-203-C-Elma.webp",
-    "CihanpanDoor-Laminoks-Serisi-203-D-Antrasit.webp",
-    "CihanpanDoor-Laminoks-Serisi-203-E-Kordoba.webp",
-    "CihanpanDoor-Laminoks-Serisi-203-F-Beyaz.webp",
-    "CihanpanDoor-Laminoks-Serisi-204-A-Viktorya-Ceviz-Kapucino.webp",
-    "CihanpanDoor-Laminoks-Serisi-204-B-Kapucino-Venge.webp",
-    "CihanpanDoor-Laminoks-Serisi-204-C-Gri-Mese-Beyaz.webp",
-    "CihanpanDoor-Laminoks-Serisi-204-D-Beyaz-Antrasit.webp",
-    "CihanpanDoor-Laminoks-Serisi-204-E-Elma.webp",
-    "CihanpanDoor-Laminoks-Serisi-204-F-ABD-Ceviz-Beyaz.webp",
-    "CihanpanDoor-Laminoks-Serisi-205-A-Tuna-Ceviz-Viktorya-Ceviz.webp",
-    "CihanpanDoor-Laminoks-Serisi-205-B-Sedir-Antrasit.webp",
-    "CihanpanDoor-Laminoks-Serisi-205-C-ABD-Ceviz-Beyaz.webp",
-    "CihanpanDoor-Laminoks-Serisi-205-D-ABD-Kardoba.webp",
-    "CihanpanDoor-Laminoks-Serisi-205-E-Antrasit-Beyaz.webp",
-    "CihanpanDoor-Laminoks-Serisi-205-F-Acik-Otantik.webp",
-    "CihanpanDoor-Laminoks-Serisi-206-A-Gri-Mese-Antrasit.webp",
-    "CihanpanDoor-Laminoks-Serisi-206-B-Beyaz.webp",
-    "CihanpanDoor-Laminoks-Serisi-206-C-Tuna-Ceviz.webp",
-    "CihanpanDoor-Laminoks-Serisi-206-D-Saruhan-Kapucino.webp",
-    "CihanpanDoor-Laminoks-Serisi-206-E-Beyaz-Antrasit.webp",
-    "CihanpanDoor-Laminoks-Serisi-206-F-Elma-Beyaz.webp",
-    "CihanpanDoor-Laminoks-Serisi-207-A-Tuna-Ceviz-Beyaz.webp",
-    "CihanpanDoor-Laminoks-Serisi-207-B-Metalik-Ceviz.webp",
-    "CihanpanDoor-Laminoks-Serisi-207-C-Mistik.webp",
-    "CihanpanDoor-Laminoks-Serisi-207-D-ABD-Ceviz.webp",
-    "CihanpanDoor-Laminoks-Serisi-207-E-Tangonika.webp",
-    "CihanpanDoor-Laminoks-Serisi-207-F-Antrasit-Beyaz.webp",
-    "CihanpanDoor-Laminoks-Serisi-208-A-Antrasit-Beyaz.webp",
-    "CihanpanDoor-Laminoks-Serisi-208-B-ABD-Ceviz.webp",
-    "CihanpanDoor-Laminoks-Serisi-208-C-Kapucino.webp",
-    "CihanpanDoor-Laminoks-Serisi-208-D-Tanganika-Beyaz.webp",
-    "CihanpanDoor-Laminoks-Serisi-208-E-Saruhan.webp",
-    "CihanpanDoor-Laminoks-Serisi-208-F-Isparta-Ceviz.webp",
-    "CihanpanDoor-Laminoks-Serisi-209-A-Venge.webp",
-    "CihanpanDoor-Laminoks-Serisi-209-B-Gri-Mese.webp",
-    "CihanpanDoor-Laminoks-Serisi-209-C-ABD-Ceviz.webp",
-    "CihanpanDoor-Laminoks-Serisi-209-D-Elma.webp",
-    "CihanpanDoor-Laminoks-Serisi-209-E-Antrasit-Beyaz.webp",
-    "CihanpanDoor-Laminoks-Serisi-209-F-Tanganika.webp",
-    "CihanpanDoor-Laminoks-Serisi-210-A-Sedir-Antrasit.webp",
-    "CihanpanDoor-Laminoks-Serisi-210-B-Acik-Otantik.webp",
-    "CihanpanDoor-Laminoks-Serisi-210-C-ABD-Ceviz.webp",
-    "CihanpanDoor-Laminoks-Serisi-210-D-Antrasit-Beyaz.webp",
-    "CihanpanDoor-Laminoks-Serisi-210-E-Metalik-Ceviz.webp",
-    "CihanpanDoor-Laminoks-Serisi-210-F-Kapucino.webp"
+    "CihanpanDoor-Laminoks-Serisi-211-A-Saruhan.webp",
+    "CihanpanDoor-Laminoks-Serisi-211-B-Tuna-Ceviz-Kapucino.webp",
+    "CihanpanDoor-Laminoks-Serisi-211-C-Viktorya-Ceviz-Siyah.webp",
+    "CihanpanDoor-Laminoks-Serisi-211-D-Antrasit-Beyaz.webp",
+    "CihanpanDoor-Laminoks-Serisi-211-E-Gri-Mese.webp",
+    "CihanpanDoor-Laminoks-Serisi-211-F-Elma.webp",
+    "CihanpanDoor-Laminoks-Serisi-212-A-Metalik-Ceviz.webp",
+    "CihanpanDoor-Laminoks-Serisi-212-B-Tanganiko-Kapucino.webp",
+    "CihanpanDoor-Laminoks-Serisi-212-C-ABD-Ceviz.webp",
+    "CihanpanDoor-Laminoks-Serisi-212-D-Venge.webp",
+    "CihanpanDoor-Laminoks-Serisi-212-E-Antrasit-Beyaz.webp",
+    "CihanpanDoor-Laminoks-Serisi-212-F-Elma-Siyah.webp",
+    "CihanpanDoor-Laminoks-Serisi-213-A-Antrasit-Saruhan-Siyah.webp",
+    "CihanpanDoor-Laminoks-Serisi-213-B-Sedir-Antrasit-Beyaz.webp",
+    "CihanpanDoor-Laminoks-Serisi-213-C-Beyaz-ABD-Ceviz.webp",
+    "CihanpanDoor-Laminoks-Serisi-213-D-Antrasit-Mistik.webp",
+    "CihanpanDoor-Laminoks-Serisi-213-E-Elma-Siyah-Beyaz.webp",
+    "CihanpanDoor-Laminoks-Serisi-213-F-Acik-Otantik-Siyah-Kapucino.webp",
+    "CihanpanDoor-Laminoks-Serisi-214-A-Saruhan-Antrasit.webp",
+    "CihanpanDoor-Laminoks-Serisi-214-B-Sonomo-Tuna-Ceviz.webp",
+"CihanpanDoor-Laminoks-Serisi-214-C-Venge.webp",
+"CihanpanDoor-Laminoks-Serisi-214-D-Elma.webp",
+"CihanpanDoor-Laminoks-Serisi-214-E-Beyaz-Siyah.webp",
+"CihanpanDoor-Laminoks-Serisi-214-F-ABD-Ceviz.webp",
+"CihanpanDoor-Laminoks-Serisi-215-A-Mistik-Siyah.webp",
+"CihanpanDoor-Laminoks-Serisi-215-B-Kapucino-Tuna-Ceviz.webp",
+"CihanpanDoor-Laminoks-Serisi-215-C-Beyaz-ABD-Ceviz.webp",
+"CihanpanDoor-Laminoks-Serisi-215-D-Sedir-Artrasit.webp",
+"CihanpanDoor-Laminoks-Serisi-215-E-Beyaz-Artrasit.webp",
+"CihanpanDoor-Laminoks-Serisi-215-F-Beyaz-Venge.webp",
+"CihanpanDoor-Laminoks-Serisi-216-A-Kapucino-Venge.webp",
+"CihanpanDoor-Laminoks-Serisi-216-B-Saruhan-Antrasit.webp",
+"CihanpanDoor-Laminoks-Serisi-216-C-Beyaz-Antrasit.webp",
+"CihanpanDoor-Laminoks-Serisi-216-D-ABD-Ceviz.webp",
+"CihanpanDoor-Laminoks-Serisi-216-E-Gri-Mese-Beyaz.webp",
+"CihanpanDoor-Laminoks-Serisi-216-F-Elma-Siyah.webp",
+"CihanpanDoor-Laminoks-Serisi-217-A-Antrasit.webp",
+"CihanpanDoor-Laminoks-Serisi-217-B-Kapucino.webp",
+"CihanpanDoor-Laminoks-Serisi-217-C-ABD-Ceviz.webp",
+"CihanpanDoor-Laminoks-Serisi-217-D-Kardoba.webp",
+"CihanpanDoor-Laminoks-Serisi-217-E-Beyaz.webp",
+"CihanpanDoor-Laminoks-Serisi-217-F-Metalik-Ceviz.webp",
+"CihanpanDoor-Laminoks-Serisi-218-A-Antrasit.webp",
+"CihanpanDoor-Laminoks-Serisi-218-B-Beyaz-Antrasit.webp",
+"CihanpanDoor-Laminoks-Serisi-218-C-Sonomo-Antrasit.webp",
+"CihanpanDoor-Laminoks-Serisi-218-D-Isparta-Ceviz.webp",
+"CihanpanDoor-Laminoks-Serisi-218-E-ABD-Ceviz.webp",
+"CihanpanDoor-Laminoks-Serisi-218-F-ABD-Kapucino.webp",
+"CihanpanDoor-Laminoks-Serisi-219-A-Gri-Mese.webp",
+"CihanpanDoor-Laminoks-Serisi-219-B-Saruhan.webp",
+"CihanpanDoor-Laminoks-Serisi-219-C-Kapucino.webp",
+"CihanpanDoor-Laminoks-Serisi-219-D-Beyaz.webp",
+"CihanpanDoor-Laminoks-Serisi-219-E-Tanganika.webp",
+"CihanpanDoor-Laminoks-Serisi-219-F-Antrasit.webp",
+"CihanpanDoor-Laminoks-Serisi-220-A-Gri-Elma.webp",
+"CihanpanDoor-Laminoks-Serisi-220-A-Isparta-Ceviz.webp",
+"CihanpanDoor-Laminoks-Serisi-220-C-Viktorya-Ceviz-Antrasit.webp",
+"CihanpanDoor-Laminoks-Serisi-220-D-Tuna-Ceviz.webp",
+"CihanpanDoor-Laminoks-Serisi-220-E-Kordoba.webp",
+"CihanpanDoor-Laminoks-Serisi-220-F-Saruhan.webp",
+"CihanpanDoor-Laminoks-Serisi-221-A-Beyaz.webp",
+"CihanpanDoor-Laminoks-Serisi-221-B-Saruhan.webp",
+"CihanpanDoor-Laminoks-Serisi-221-C-Metalik-Ceviz.webp",
+"CihanpanDoor-Laminoks-Serisi-221-D-Tanganika.webp",
+"CihanpanDoor-Laminoks-Serisi-221-E-Tuna-Ceviz.webp",
+"CihanpanDoor-Laminoks-Serisi-221-F-Gri-Mese.webp"
   ];
 
   // Parse file names and create products

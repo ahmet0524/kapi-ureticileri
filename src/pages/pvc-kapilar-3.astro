@@ -5,53 +5,67 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
-const baseUrl = 'https://kapi-ureticileri.netlify.app';
+const baseUrl = 'https://kapi-ureticileri.vercel.app'; // SABIT KALACAK
 const currentUrl = `${baseUrl}${Astro.url.pathname}`;
 
 const breadcrumbItems = [
   { name: "Ana Sayfa", href: "/" },
   { name: "Ürünlerimiz", href: "/urunlerimiz" },
-  { name: "PVC Kapılar", href: "/pvc-kapilar" },
-  { name: "Sayfa 3" }
+  { name: "PVC Kapılar" }
 ];
 
 const pvcDoorSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "PVC İç Oda Kapıları - Sayfa 3",
-  "description": "Kayseri'den üretilen su geçirmez, antibakteriyel PVC kapı modelleri. 129-140 model arası.",
+  "name": "PVC İç Oda Kapıları",
+  "description": "Kayseri'den üretilen su geçirmez, antibakteriyel PVC kapı modelleri. CE belgeli, 5 yıl garanti, ücretsiz kargo. Türkiye'nin en büyük PVC kapı koleksiyonu.",
   "url": currentUrl,
+  "inLanguage": "tr-TR",
   "mainEntity": {
     "@type": "ItemList",
-    "name": "PVC Kapı Modelleri - Sayfa 3",
-    "numberOfItems": 72,
+    "name": "PVC Kapı Modelleri",
+    "numberOfItems": 247,
     "itemListElement": [
       {
         "@type": "Product",
         "name": "PVC İç Oda Kapısı",
+        "description": "Su geçirmez ve antibakteriyel özellikli PVC iç oda kapısı. Nemli ortamlarda çarpma yapmaz, 5 yıl garanti, bakımı kolaydır.",
+        "image": `${baseUrl}/assets/images/pvc-kapi.webp`,
         "manufacturer": {
           "@type": "Organization",
           "name": "CihanPan Door",
           "url": baseUrl,
-          "logo": `${baseUrl}/assets/img/logo.webp`
+          "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`
         },
         "category": "İç Oda Kapısı",
         "material": "PVC",
-        "brand": "CihanPan Door",
+        "brand": {
+          "@type": "Brand",
+          "name": "CihanPan Door"
+        },
         "offers": {
           "@type": "AggregateOffer",
-          "availability": "https://schema.org/InStock",
+          "url": currentUrl,
           "priceCurrency": "TRY",
-          "priceRange": "₺3000-₺8000",
+          "lowPrice": "1",
+          "highPrice": "99999",
+          "offerCount": "247",
+          "availability": "https://schema.org/InStock",
+          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
+          "businessFunction": "http://purl.org/goodrelations/v1#Sell",
+          "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business",
           "seller": {
             "@type": "Organization",
-            "name": "CihanPan Door"
+            "name": "CihanPan Door",
+            "url": baseUrl
           }
         },
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": "4.8",
-          "reviewCount": "152"
+          "reviewCount": "152",
+          "bestRating": "5",
+          "worstRating": "1"
         }
       }
     ]
@@ -75,7 +89,7 @@ const faqSchema = {
       "name": "PVC kapı fiyatları ne kadardır?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "PVC kapı fiyatları 3500₺-8000₺ arasında değişir. Model, boyut ve aksesuarlara göre fiyat farklılık gösterir."
+        "text": "PVC kapı fiyatları 5000₺-8000₺ arasında değişir. Model, boyut ve aksesuarlara göre fiyat farklılık gösterir."
       }
     },
     {
@@ -94,15 +108,44 @@ const organizationSchema = {
   "@type": "Organization",
   "name": "CihanPan Door",
   "url": baseUrl,
-  "logo": `${baseUrl}/assets/img/logo.webp`,
-  "description": "Kayseri'den kaliteli PVC kapı üreticisi",
+  "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`,
+  "description": "Kayseri'den kaliteli iç oda kapısı üreticisi - B2B toptan satış",
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "Organize Sanayi Bölgesi 29. Sokak No:28",
     "addressLocality": "Kayseri",
+    "addressRegion": "Kayseri",
+    "postalCode": "38070",
     "addressCountry": "TR"
   },
-  "areaServed": "Turkey",
-  "serviceType": ["PVC Kapı Üretimi", "İç Oda Kapısı", "Kapı Montajı"]
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+90-544-169-0038",
+    "contactType": "Sales",
+    "availableLanguage": ["Turkish", "English", "German", "Arabic"],
+    "areaServed": ["TR", "EU", "ME"]
+  },
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "Turkey"
+    },
+    {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": "38.7312",
+        "longitude": "35.4787"
+      },
+      "geoRadius": "2000000" // 2000km yarıçap (Avrupa + Orta Doğu)
+    }
+  ],
+  "sameAs": [
+    "https://www.cihanpandoor.com"
+    "https://www.facebook.com/cihanpandoor"
+    "https://www.instagram.com/cihanpan_door"
+    "https://www.linkedin.com/company/cihanpan-door"
+  ]
 };
 
 const breadcrumbSchema = {
@@ -116,6 +159,7 @@ const breadcrumbSchema = {
   }))
 };
 ---
+
 
 <Layout
   title="PVC İç Oda Kapıları - 3 | Kayseri CihanPan Door"
