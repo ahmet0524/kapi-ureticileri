@@ -22,7 +22,7 @@ export interface Props {
 const {
   title,
   description,
-  noindex = false, // Sadece bir kez tanımlandı
+  noindex = false,
   keywords,
   canonical,
   ogImage = '/assets/img/og-default.webp',
@@ -33,7 +33,6 @@ const {
 const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site);
 const siteURL = 'https://kapi-ureticileri.vercel.app';
 
-// Define alternate language URLs if needed
 const alternateLanguages = [
   { lang: 'tr', url: `${siteURL}${Astro.url.pathname}` },
   { lang: 'x-default', url: `${siteURL}${Astro.url.pathname}` }
@@ -45,17 +44,17 @@ const alternateLanguages = [
   <head>
     <!-- Google Tag Manager -->
     <script is:inline>
-  (function(w,d,s,l,i){
-    w[l]=w[l]||[];
-    w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
-    var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),
-        dl=l!='dataLayer'?'&l='+l:'';
-    j.async=true;
-    j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-    f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-XXXXXXX');
-</script>
+      (function(w,d,s,l,i){
+        w[l]=w[l]||[];
+        w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),
+            dl=l!='dataLayer'?'&l='+l:'';
+        j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+        f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MS3MJ2QR');
+    </script>
     <!-- End Google Tag Manager -->
 
     <!-- Basic Meta Tags -->
@@ -138,9 +137,8 @@ const alternateLanguages = [
       ]
     })} />
 
-    <!-- Google Search Console (GTM üzerinden yönetilecek) -->
+    <!-- Google Search Console -->
     <meta name="google-site-verification" content="nN4x8ESwMpZfyiBKaBPhy7RdA53P2RHiij4XgDOBbAk" />
-
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -152,6 +150,7 @@ const alternateLanguages = [
   </body>
 </html>
 
+<!-- LAYOUT GLOBAL STYLES - Minimal, sadece gerekli -->
 <style is:global>
   * {
     margin: 0;
@@ -170,35 +169,14 @@ const alternateLanguages = [
     background-color: #ffffff;
   }
 
+  /* Container - ÖNEMLİ! */
   .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 20px;
   }
 
-  .btn {
-    display: inline-block;
-    padding: 0.875rem 2rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    text-align: center;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border: none;
-    font-size: 1rem;
-  }
-
-  .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
-  }
-
+  /* Section Utilities */
   .section {
     padding: 5rem 0;
   }
@@ -221,6 +199,19 @@ const alternateLanguages = [
     margin-right: auto;
   }
 
+  /* Card Utility */
+  .card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Responsive */
   @media (max-width: 768px) {
     .section {
       padding: 3rem 0;
@@ -231,19 +222,7 @@ const alternateLanguages = [
     }
 
     .container {
-      padding: 0 1rem;
+      padding: 0 15px;
     }
-  }
-
-  /* Clean minimal styles - no excessive animations */
-  .card {
-    background: white;
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
-    transition: box-shadow 0.2s ease;
-  }
-
-  .card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 </style>
