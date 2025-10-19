@@ -14,6 +14,7 @@ const breadcrumbItems = [
   { name: "PVC Kapılar" }
 ];
 
+// SEO Schemas - PVC Kapı
 const pvcDoorSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
@@ -158,8 +159,10 @@ const breadcrumbSchema = {
     "item": item.href ? `${baseUrl}${item.href}` : currentUrl
   }))
 };
----
 
+// ✅ CRITICAL: Bu satır eksikti!
+const allSchemas = [pvcDoorSchema, faqSchema, organizationSchema, breadcrumbSchema];
+---
 
 <Layout
   title="PVC İç Oda Kapıları - 3 | Kayseri CihanPan Door"
@@ -176,6 +179,7 @@ const breadcrumbSchema = {
   twitterDescription="PVC kapı koleksiyonu sayfa 3. Su geçirmez, antibakteriyel, ekonomik fiyatlar."
   twitterImage="/assets/img/og/pvc-kapilar-og.webp"
   schema={[pvcDoorSchema, faqSchema, organizationSchema, breadcrumbSchema]}
+
 >
   <Header />
   <Breadcrumbs items={breadcrumbItems} />

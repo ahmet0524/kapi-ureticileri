@@ -17,6 +17,9 @@ export interface Props {
   twitterDescription?: string;
   twitterImage?: string;
   schema?: any;
+  author?: string; // ✅ YENİ
+  publishedTime?: string; // ✅ YENİ
+  modifiedTime?: string; // ✅ YENİ
 }
 
 const {
@@ -27,20 +30,47 @@ const {
   canonical,
   ogImage = '/assets/img/og-default.webp',
   ogType = 'website',
-  schema
+  ogTitle,
+  ogDescription,
+  twitterTitle,
+  twitterDescription,
+  twitterImage,
+  schema,
+  author = 'CihanPan Door',
+  publishedTime,
+  modifiedTime
 } = Astro.props;
 
 const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site);
 const siteURL = 'https://kapi-ureticileri.vercel.app';
 
+// ✅ Daha geniş dil desteği
 const alternateLanguages = [
   { lang: 'tr', url: `${siteURL}${Astro.url.pathname}` },
+  { lang: 'en', url: `${siteURL}/en${Astro.url.pathname}` },
+  { lang: 'de', url: `${siteURL}/de${Astro.url.pathname}` },
+  { lang: 'ar', url: `${siteURL}/ar${Astro.url.pathname}` },
   { lang: 'x-default', url: `${siteURL}${Astro.url.pathname}` }
 ];
+
+// Schema'yı array'e çevir
+const schemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+
+// ✅ Dinamik meta title optimizasyonu
+const metaTitle = title.length > 60 ? title.substring(0, 57) + '...' : title;
+const metaDescription = description.length > 160 ? description.substring(0, 157) + '...' : description;
+
+// ✅ Open Graph için optimize edilmiş değerler
+const finalOgTitle = ogTitle || title;
+const finalOgDescription = ogDescription || description;
+const finalOgImage = new URL(ogImage, siteURL);
+const finalTwitterTitle = twitterTitle || title;
+const finalTwitterDescription = twitterDescription || description;
+const finalTwitterImage = new URL(twitterImage || ogImage, siteURL);
 ---
 
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" dir="ltr">
   <head>
     <!-- Google Tag Manager -->
     <script is:inline>
@@ -57,100 +87,216 @@ const alternateLanguages = [
     </script>
     <!-- End Google Tag Manager -->
 
-    <!-- Basic Meta Tags -->
+    <!-- ✅ Charset ve viewport en üstte -->
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <!-- ✅ Theme color (mobile browser bar) -->
+    <meta name="theme-color" content="#667eea" />
+    <meta name="msapplication-TileColor" content="#667eea" />
+
+    <!-- Basic Meta Tags -->
+    <title>{metaTitle}</title>
+    <meta name="description" content={metaDescription} />
     {keywords && <meta name="keywords" content={keywords} />}
+    {author && <meta name="author" content={author} />}
+
+    <!-- ✅ Ek SEO meta tags -->
+    <meta name="generator" content={Astro.generator} />
+    <meta name="format-detection" content="telephone=yes" />
+    <meta name="HandheldFriendly" content="true" />
+
+    <!-- ✅ Geographic targeting -->
+    <meta name="geo.region" content="TR-38" />
+    <meta name="geo.placename" content="Kayseri" />
+    <meta name="geo.position" content="38.7312;35.4787" />
+    <meta name="ICBM" content="38.7312, 35.4787" />
 
     <!-- Robots -->
     {noindex ? (
       <meta name="robots" content="noindex, nofollow" />
+      <meta name="googlebot" content="noindex, nofollow" />
     ) : (
-      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      <>
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+      </>
     )}
 
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- Alternate Languages -->
+    <!-- ✅ Alternate Languages (hreflang) -->
     {alternateLanguages.map(({lang, url}) => (
       <link rel="alternate" hreflang={lang} href={url} />
     ))}
 
-    <!-- Open Graph -->
+    <!-- Open Graph / Facebook -->
     <meta property="og:locale" content="tr_TR" />
     <meta property="og:type" content={ogType} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={finalOgTitle} />
+    <meta property="og:description" content={finalOgDescription} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content="CihanPan Door" />
-    <meta property="og:image" content={new URL(ogImage, siteURL)} />
+    <meta property="og:image" content={finalOgImage} />
+    <meta property="og:image:secure_url" content={finalOgImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/webp" />
     <meta property="og:image:alt" content={`${title} - CihanPan Door`} />
 
+    <!-- ✅ Article specific OG tags -->
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+    {author && <meta property="article:author" content={author} />}
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL(ogImage, siteURL)} />
+    <meta name="twitter:site" content="@cihanpandoor" />
+    <meta name="twitter:creator" content="@cihanpandoor" />
+    <meta name="twitter:title" content={finalTwitterTitle} />
+    <meta name="twitter:description" content={finalTwitterDescription} />
+    <meta name="twitter:image" content={finalTwitterImage} />
     <meta name="twitter:image:alt" content={`${title} - CihanPan Door`} />
 
-    <!-- Favicon -->
+    <!-- ✅ Additional Social Meta Tags -->
+    <meta property="fb:app_id" content="YOUR_FB_APP_ID" />
+    <meta name="pinterest:description" content={description} />
+    <meta property="og:phone_number" content="+90-544-169-0038" />
+    <meta property="og:email" content="info@cihanpandoor.com" />
+
+    <!-- Favicon & Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Preconnect for Performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- ✅ Safari pinned tab -->
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#667eea" />
 
-    <!-- Structured Data -->
-    {schema && (
-      <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
-    )}
+    <!-- ✅ Preconnect for Performance (critical third-party domains) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
 
-    <!-- Additional Organization Schema -->
-    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+
+    <!-- Structured Data - MULTIPLE SCHEMAS SUPPORT -->
+    {schemas.map((schemaItem) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schemaItem)} />
+    ))}
+
+    <!-- Global Organization Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "CihanPan Door",
+      "alternateName": "CihanPan Kapı",
       "url": "https://kapi-ureticileri.vercel.app",
       "logo": "https://kapi-ureticileri.vercel.app/assets/images/logo/header_logo1.webp",
-      "description": "Türkiye'nin güvenilir iç oda kapısı üreticileri rehberi",
+      "description": "Kayseri'den iç oda kapısı üreticisi. PVC, Laminoks, Elitpan kapılar. 1995'ten beri kaliteli üretim, ihracat.",
+      "foundingDate": "1995",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Organize Sanayi Bölgesi 29. Sokak No:28",
         "addressLocality": "Kayseri",
-        "addressCountry": "Turkey"
+        "addressRegion": "Kayseri",
+        "postalCode": "38070",
+        "addressCountry": "TR"
       },
-      "contactPoint": {
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "38.7312",
+        "longitude": "35.4787"
+      },
+      "contactPoint": [{
         "@type": "ContactPoint",
-        "telephone": "+90-544-169-00-38",
-        "contactType": "customer service",
-        "availableLanguage": ["Turkish", "English"]
-      },
+        "telephone": "+90-544-169-0038",
+        "contactType": "Sales",
+        "availableLanguage": ["Turkish", "English", "German", "Arabic"],
+        "areaServed": ["TR", "EU", "ME"],
+        "contactOption": "TollFree",
+        "hoursAvailable": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "18:00"
+        }
+      }],
+      "areaServed": [
+        {
+          "@type": "Country",
+          "name": "Turkey"
+        },
+        {
+          "@type": "Place",
+          "name": "Europe"
+        },
+        {
+          "@type": "Place",
+          "name": "Middle East"
+        }
+      ],
       "sameAs": [
-        "https://www.cihanpandoor.com"
-      ]
+        "https://www.cihanpandoor.com",
+        "https://www.facebook.com/cihanpandoor",
+        "https://www.instagram.com/cihanpan_door",
+        "https://www.linkedin.com/company/cihanpan-door",
+        "https://twitter.com/cihanpandoor"
+      ],
+      "knowsAbout": ["Kapı Üretimi", "PVC Kapı", "Laminoks Kapı", "Elitpan Kapı", "Hastane Kapısı", "Otel Kapısı"],
+      "slogan": "Kaliteli Kapı, Güvenilir Üretici",
+      "priceRange": "₺₺-₺₺₺"
+    })} />
+
+    <!-- ✅ WebSite Schema with SearchAction -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "CihanPan Door",
+      "url": siteURL,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": `${siteURL}/search?q={search_term_string}`
+        },
+        "query-input": "required name=search_term_string"
+      }
     })} />
 
     <!-- Google Search Console -->
     <meta name="google-site-verification" content="nN4x8ESwMpZfyiBKaBPhy7RdA53P2RHiij4XgDOBbAk" />
+
+    <!-- ✅ Bing Webmaster -->
+    <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE" />
+
+    <!-- ✅ Yandex Webmaster -->
+    <meta name="yandex-verification" content="YOUR_YANDEX_VERIFICATION_CODE" />
   </head>
+
   <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MS3MJ2QR"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-MS3MJ2QR"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+        title="Google Tag Manager">
+      </iframe>
+    </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
     <slot />
+
+    <!-- ✅ Skip to main content (accessibility + SEO) -->
+    <a href="#main-content" class="skip-link">Ana içeriğe git</a>
   </body>
 </html>
 
-<!-- LAYOUT GLOBAL STYLES - Minimal, sadece gerekli -->
 <style is:global>
   * {
     margin: 0;
@@ -161,15 +307,34 @@ const alternateLanguages = [
   html {
     scroll-behavior: smooth;
     font-family: system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
     line-height: 1.6;
     color: #2d3748;
     background-color: #ffffff;
+    overflow-x: hidden;
   }
 
-  /* Container - ÖNEMLİ! */
+  /* ✅ Skip link (accessibility) */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #667eea;
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 100;
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
+
+  /* Container */
   .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -209,6 +374,25 @@ const alternateLanguages = [
 
   .card:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  /* ✅ Image optimization */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* ✅ Performance: Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 
   /* Responsive */

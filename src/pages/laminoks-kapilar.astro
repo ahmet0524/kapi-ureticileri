@@ -15,23 +15,23 @@ const breadcrumbItems = [
   { name: "Laminoks Kapılar", href: "/laminoks-kapilar" },
   { name: "Sayfa 1" }
 ];
-
+// SEO Schemas - Laminoks Optimized
 const laminoksSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "Laminoks (Melamin) İç Oda Kapıları",
-  "description": "Kayseri'den üretilen su geçirmez, antibakteriyel Laminoks kapı modelleri. CE belgeli, Türkiye'nin en büyük Laminoks kapı koleksiyonu.",
+  "name": "Laminoks (Melamin) İç Oda Kapıları - Sayfa 1",
+  "description": "Kayseri'den üretilen su geçirmez, antibakteriyel Laminoks (melamin kaplı) kapı modelleri. 80+ model, CE belgeli, 5 yıl garanti, ücretsiz kargo.",
   "url": currentUrl,
   "inLanguage": "tr-TR",
   "mainEntity": {
     "@type": "ItemList",
     "name": "Laminoks Kapı Modelleri",
-    "numberOfItems": 80,
+    "numberOfItems": 60,
     "itemListElement": [
       {
         "@type": "Product",
         "name": "Laminoks (Melamin) İç Oda Kapısı",
-        "description": "Su geçirmez ve antibakteriyel özellikli Laminoks iç oda kapısı. Nemli ortamlarda çarpma yapmaz, bakımı kolaydır.",
+        "description": "Su geçirmez ve antibakteriyel özellikli Laminoks iç oda kapısı. Nemli ortamlarda çarpma yapmaz, 5 yıl garanti, bakımı kolaydır.",
         "image": `${baseUrl}/assets/images/laminoks-kapi.webp`,
         "manufacturer": {
           "@type": "Organization",
@@ -40,7 +40,7 @@ const laminoksSchema = {
           "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`
         },
         "category": "İç Oda Kapısı",
-        "material": "Laminoks",
+        "material": "Laminoks (Yüksek Basınçlı Melamin)",
         "brand": {
           "@type": "Brand",
           "name": "CihanPan Door"
@@ -51,7 +51,7 @@ const laminoksSchema = {
           "priceCurrency": "TRY",
           "lowPrice": "1",
           "highPrice": "99999",
-          "offerCount": "80",
+          "offerCount": "60",
           "availability": "https://schema.org/InStock",
           "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
           "businessFunction": "http://purl.org/goodrelations/v1#Sell",
@@ -83,7 +83,7 @@ const faqSchema = {
       "name": "Laminoks kapı nedir ve neden tercih edilir?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Laminoks kapılar, su geçirmez ve antibakteriyel özellikli iç oda kapılarıdır. Nemli ortamlarda çarpma yapmaz, bakımı kolaydır ve ekonomiktir."
+        "text": "Laminoks kapılar, yüksek basınçlı melamin (HPL) kaplama ile üretilen, su geçirmez ve antibakteriyel özellikli iç oda kapılarıdır. Nemli ortamlarda çarpma yapmaz, çizilmeye dayanıklıdır, bakımı kolaydır ve ekonomiktir."
       }
     },
     {
@@ -91,15 +91,7 @@ const faqSchema = {
       "name": "Laminoks kapı fiyatları ne kadardır?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Laminoks kapı fiyatları 5000₺-8000₺ arasında değişir. Model, boyut ve aksesuarlara göre fiyat farklılık gösterir."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Laminoks kapı hangi alanlarda kullanılır?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Laminoks kapılar oda, banyo, mutfak, balkon, yatak odası ve ofis kapıları olarak kullanılır. Özellikle nemli ortamlarda tercih edilir çünkü su geçirmez özelliği vardır."
+        "text": "Laminoks kapı fiyatları 5000₺-8000₺ arasında değişir. Model, boyut ve aksesuarlara göre fiyat farklılık gösterir. Toptan alımlarda üretici firma avantajı ile özel fiyatlar sunulmaktadır."
       }
     }
   ]
@@ -111,7 +103,7 @@ const organizationSchema = {
   "name": "CihanPan Door",
   "url": baseUrl,
   "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`,
-  "description": "Kayseri'den kaliteli iç oda kapısı üreticisi - B2B toptan satış",
+  "description": "Kayseri'den kaliteli Laminoks (melamin) iç oda kapısı üreticisi. 80+ model, CE belgeli ürünler, B2B toptan satış.",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Organize Sanayi Bölgesi 29. Sokak No:28",
@@ -126,28 +118,7 @@ const organizationSchema = {
     "contactType": "Sales",
     "availableLanguage": ["Turkish", "English", "German", "Arabic"],
     "areaServed": ["TR", "EU", "ME"]
-  },
-  "areaServed": [
-    {
-      "@type": "Country",
-      "name": "Turkey"
-    },
-    {
-      "@type": "GeoCircle",
-      "geoMidpoint": {
-        "@type": "GeoCoordinates",
-        "latitude": "38.7312",
-        "longitude": "35.4787"
-      },
-      "geoRadius": "2000000" // 2000km yarıçap (Avrupa + Orta Doğu)
-    }
-  ],
-"sameAs": [
-  "https://www.cihanpandoor.com",
-  "https://www.facebook.com/cihanpandoor",
-  "https://www.instagram.com/cihanpan_door",
-  "https://www.linkedin.com/company/cihanpan-door"
-]
+  }
 };
 
 const breadcrumbSchema = {
@@ -160,7 +131,11 @@ const breadcrumbSchema = {
     "item": item.href ? `${baseUrl}${item.href}` : currentUrl
   }))
 };
+
+const allSchemas = [laminoksSchema, faqSchema, organizationSchema, breadcrumbSchema];
 ---
+
+
 <Layout
   title="Laminoks İç Oda Kapıları - Sayfa 1 | Premium Seri Kayseri CihanPan Door"
   description="Kayseri'nin premium kalite Laminoks kapı koleksiyonu 1. sayfa! 60+ ek model, özelleştirilebilir boyutlar, üretici fiyat avantajı. Toptan satış imkanı."

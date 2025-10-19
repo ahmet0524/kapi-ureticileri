@@ -5,10 +5,220 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 
+// Dynamic URL setup
+const baseUrl = 'https://kapi-ureticileri.vercel.app';
+const currentUrl = `${baseUrl}${Astro.url.pathname}`;
+
 const breadcrumbItems = [
   { name: "Ana Sayfa", href: "/" },
   { name: "Hakkımızda" }
 ];
+
+// Organization Schema - Detaylı Kurumsal Bilgiler
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "CihanPan Door",
+  "alternateName": "CihanPan Kapı",
+  "url": baseUrl,
+  "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`,
+  "image": `${baseUrl}/assets/images/fabrika.webp`,
+  "description": "1995 yılından beri Kayseri'de faaliyet gösteren, Türkiye'nin önde gelen iç oda kapısı üreticisi. MDF yüzeyli laminoks ve PVC kapılar. CE belgeli ürünler, 5 yıl garanti, Avrupa ve Orta Doğu'ya ihracat.",
+  "foundingDate": "1995",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Organize Sanayi Bölgesi 29. Sokak No:28",
+    "addressLocality": "Kayseri",
+    "addressRegion": "Kayseri",
+    "postalCode": "38070",
+    "addressCountry": "TR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "38.7312",
+    "longitude": "35.4787"
+  },
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+90-544-169-0038",
+      "contactType": "Sales",
+      "availableLanguage": ["Turkish", "English", "German", "Arabic"],
+      "areaServed": ["TR", "EU", "ME"]
+    },
+    {
+      "@type": "ContactPoint",
+      "contactType": "Customer Service",
+      "availableLanguage": ["Turkish", "English"],
+      "areaServed": "TR"
+    }
+  ],
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "Turkey"
+    },
+    {
+      "@type": "Place",
+      "name": "Europe"
+    },
+    {
+      "@type": "Place",
+      "name": "Middle East"
+    }
+  ],
+  "serviceType": [
+    "İç Oda Kapısı Üretimi",
+    "MDF Kapı Üretimi",
+    "PVC Kapı Üretimi",
+    "Laminoks Kapı Üretimi",
+    "Elitpan Kapı Üretimi",
+    "Hastane Kapısı Üretimi",
+    "Otel Kapısı Üretimi",
+    "Özel Tasarım Kapı Üretimi",
+    "Toptan Kapı Satışı",
+    "İhracat"
+  ],
+  "knowsAbout": [
+    "İç Oda Kapısı",
+    "MDF Kapı",
+    "PVC Kapı",
+    "Laminoks Kapı",
+    "Melamin Kapı",
+    "Antibakteriyel Kapı",
+    "Su Geçirmez Kapı",
+    "Yangın Kapısı",
+    "Ses Yalıtımlı Kapı"
+  ],
+  "slogan": "Kayseri'den Dünyaya Kaliteli Kapı",
+  "numberOfEmployees": {
+    "@type": "QuantitativeValue",
+    "value": "50-100"
+  },
+  "sameAs": [
+    "https://www.cihanpandoor.com",
+    "https://www.facebook.com/cihanpandoor",
+    "https://www.instagram.com/cihanpan_door",
+    "https://www.linkedin.com/company/cihanpan-door"
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "247",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+};
+
+// AboutPage Schema
+const aboutPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "Hakkımızda - CihanPan Door",
+  "description": "Kayseri'de 1995 yılından beri iç oda kapısı üretimi yapan CihanPan Door'un kurumsal hikayesi, vizyonu ve misyonu. CE belgeli ürünler, ihracat deneyimi.",
+  "url": currentUrl,
+  "inLanguage": "tr-TR",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "CihanPan Door",
+    "url": baseUrl
+  },
+  "about": {
+    "@type": "Organization",
+    "name": "CihanPan Door",
+    "foundingDate": "1995",
+    "location": {
+      "@type": "Place",
+      "name": "Kayseri, Turkey"
+    }
+  }
+};
+
+// FAQ Schema - Kurumsal Bilgiler
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "CihanPan Door ne zaman kuruldu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CihanPan Door 1995 yılında Kayseri'de kurulmuştur. 30 yıla yakın süredir iç oda kapısı üretimi ve ihracatı yapan köklü bir firmadır."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "CihanPan Door nerede üretim yapıyor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Üretim tesisimiz Kayseri Organize Sanayi Bölgesi'nde 15.000 m² kapalı alanda bulunmaktadır. Modern makine parkuru ve deneyimli ekibimizle yıllık 600.000 adet üretim kapasitesine sahibiz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hangi ülkelere ihracat yapıyorsunuz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Türkiye'nin yanı sıra Avrupa başta olmak üzere 25'ten fazla ülkeye ihracat yapmaktayız. Uluslararası kalite standartlarına uygun CE, TSE ve ISO 9001 belgeli ürünler sunuyoruz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "CihanPan Door hangi ürünleri üretiyor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MDF yüzeyli laminoks kapılar (80+ model), PVC kapılar (247 model), Elitpan kapılar (26 model), hastane kapıları, otel kapıları ve özel tasarım kapılar üretmekteyiz. Tüm ürünlerimiz su geçirmez, antibakteriyel ve 5 yıl garantilidir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "CihanPan Door'un kalite belgeleri nelerdir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tüm ürünlerimiz CE belgeli olup, TSE Standart Belgesi ve ISO 9001 Kalite Yönetim Sistemi sertifikalarına sahibiz. Yangın dayanım sertifikaları, antibakteriyel test raporları mevcuttur."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Toptan satış yapıyor musunuz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Evet, B2B toptan satış ve proje bazlı özel fiyatlar sunmaktayız. Müteahhitler, inşaat firmaları, otel zincirleri ve distribütörler için özel indirimler mevcuttur. FOB ve CIF teslim koşulları ile çalışabiliyoruz."
+      }
+    }
+  ]
+};
+
+// Breadcrumb Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    "item": item.href ? `${baseUrl}${item.href}` : currentUrl
+  }))
+};
+
+// WebPage Schema
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Hakkımızda - CihanPan Door",
+  "description": "Kayseri'nin önde gelen iç oda kapısı üreticisi CihanPan Door. 1995'ten beri kaliteli üretim, ihracat ve müşteri memnuniyeti.",
+  "url": currentUrl,
+  "inLanguage": "tr-TR",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "CihanPan Door",
+    "url": baseUrl
+  },
+  "breadcrumb": breadcrumbSchema
+};
+
+const allSchemas = [organizationSchema, aboutPageSchema, faqSchema, breadcrumbSchema, webPageSchema];
 ---
 
 <Layout
@@ -16,6 +226,11 @@ const breadcrumbItems = [
   description="1995'ten bu yana Kayseri'de iç oda kapısı üretimi yapan CihanPan Door. MDF yüzeyli laminoks ve PVC kapılarımızla Avrupa başta olmak üzere tüm dünyaya ihracat."
   keywords="hakkımızda, cihanpan door, kayseri kapı üreticisi, iç oda kapısı fabrika, mdf kapı üretim"
 >
+  <!-- Schema.org JSON-LD -->
+  {allSchemas.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))}
+
   <Header />
   <main>
     <section class="page-header">
@@ -70,7 +285,7 @@ const breadcrumbItems = [
                 çözümler sunarak, global pazarlarda Türk kalitesini temsil etmektedir.
               </p>
               <p>
-                FOB ve CIF teslim koşulları ile çalışma imkanı sunan firmamız, konteynır
+                FOB ve CIF teslim koşulları ile çalışma imkanı sunan firmamız, konteyner
                 yükleme kapasitesi ve lojistik ağı sayesinde dünya genelinde hızlı ve
                 güvenli teslimat hizmeti vermektedir.
               </p>

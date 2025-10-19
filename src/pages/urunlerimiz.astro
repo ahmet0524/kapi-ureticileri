@@ -14,30 +14,254 @@ const breadcrumbItems = [
   { name: "Ürünlerimiz", href: "/urunlerimiz" }
 ];
 
-// SEO Schema
+// CollectionPage Schema - Detaylı
 const productsSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "Ürünlerimiz - Malzemeler ve Aksesuarlar",
-  "description": "Kayseri'den üretilen kaliteli iç oda kapıları için kullanılan malzemeler ve aksesuarlar. PVC, Laminoks, Elitpan yüzey malzemeleri.",
-  "url": currentUrl
+  "name": "Ürünlerimiz - İç Oda Kapıları ve Malzemeler",
+  "description": "Kayseri'den üretilen kaliteli iç oda kapıları ve malzemeleri. PVC, Laminoks, Elitpan yüzey malzemeleri, honeycomb core, kapı aksesuarları. 350+ model, CE belgeli, 5 yıl garanti.",
+  "url": currentUrl,
+  "inLanguage": "tr-TR",
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "Ürün Kategorileri",
+    "numberOfItems": 7,
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@type": "Product",
+          "name": "PVC Kapılar",
+          "description": "Su geçirmez antibakteriyel PVC kapılar. 247 model.",
+          "url": `${baseUrl}/pvc-kapilar`,
+          "category": "İç Oda Kapısı"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "Product",
+          "name": "Laminoks Kapılar",
+          "description": "MDF yüzeyli laminoks kapılar. 80+ model.",
+          "url": `${baseUrl}/laminoks-kapilar`,
+          "category": "İç Oda Kapısı"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@type": "Product",
+          "name": "Elitpan Kapılar",
+          "description": "UV kaplama Elitpan kapılar. 26+ model.",
+          "url": `${baseUrl}/elitpan-kapilar`,
+          "category": "İç Oda Kapısı"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "item": {
+          "@type": "Product",
+          "name": "Hastane Kapıları",
+          "description": "Hijyenik antibakteriyel hastane kapıları.",
+          "url": `${baseUrl}/hastane-kapilar`,
+          "category": "Özel Kapılar"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "item": {
+          "@type": "Product",
+          "name": "Otel Kapıları",
+          "description": "Ses yalıtımlı premium otel kapıları.",
+          "url": `${baseUrl}/otel-kapilar`,
+          "category": "Özel Kapılar"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "item": {
+          "@type": "Product",
+          "name": "Yangına Dayanıklı Kapılar",
+          "description": "30-60 dakika yangın dayanımlı kapılar.",
+          "url": `${baseUrl}/yangina-dayanikli-kapilar`,
+          "category": "Özel Kapılar"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 7,
+        "item": {
+          "@type": "Product",
+          "name": "Kapı Malzemeleri ve Aksesuarlar",
+          "description": "Honeycomb core, PVC yüzeyler, kilit sistemleri.",
+          "url": currentUrl,
+          "category": "Malzemeler"
+        }
+      }
+    ]
+  }
 };
 
-// Organization Schema
+// FAQ Schema - Ürünler Hakkında
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Hangi kapı modellerini üretiyorsunuz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PVC kapılar (247 model), Laminoks/Melamin kapılar (80+ model), Elitpan kapılar (26+ model), hastane kapıları, otel kapıları, yangına dayanıklı kapılar ve özel tasarım kapılar üretmekteyiz. Toplam 350'den fazla model seçeneği sunuyoruz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kapılarda hangi iç materyal kullanılıyor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kapılarımızda honeycomb (bal peteği) core, semi solid wood (yarı masif ahşap) ve tam dolgu iç materyal seçenekleri kullanılmaktadır. Honeycomb core hafif, dayanıklı ve ses yalıtımlı özelliklere sahiptir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "PVC ve Laminoks arasındaki fark nedir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PVC kapılar su geçirmez plastik kaplama ile üretilir ve daha ekonomiktir. Laminoks kapılar ise MDF yüzey üzerine yüksek basınçlı melamin (HPL) kaplama uygulanarak üretilir, çizilmeye karşı daha dayanıklıdır ve premium görünüm sunar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kapı aksesuarları nelerdir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kapı kolları, kilit sistemleri, menteşeler, conta ve fitil sistemleri sunuyoruz. Tüm aksesuarlar paslanmaz çelik veya yüksek kaliteli malzemelerden üretilmiştir. Çeşitli tasarım ve renk seçenekleri mevcuttur."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Özel ölçü kapı üretimi yapıyor musunuz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Evet, standart ölçülerin yanı sıra özel ölçü kapı üretimi de yapmaktayız. Proje bazlı toplu siparişlerde özel tasarım, renk ve ölçü seçenekleri sunuyoruz. Minimum sipariş miktarı için bizimle iletişime geçebilirsiniz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ürünleriniz garanti kapsamında mı?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tüm kapı modellerimiz 5 yıl üretici garantisi ile sunulmaktadır. Garanti kapsamında üretim hatalarından kaynaklanan sorunlar, çarpma, renk solması ve kaplama problemleri karşılanır."
+      }
+    }
+  ]
+};
+
+// Organization Schema - Detaylı
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "CihanPan Door",
+  "alternateName": "CihanPan Kapı",
   "url": baseUrl,
-  "logo": `${baseUrl}/assets/img/logo.webp`,
-  "description": "Kayseri'den kaliteli iç kapı üreticisi - Toptan satış ve ihracat",
+  "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`,
+  "image": `${baseUrl}/assets/images/fabrika.webp`,
+  "description": "Kayseri'den kaliteli iç oda kapısı üreticisi. PVC, Laminoks, Elitpan kapılar. 350+ model, CE belgeli ürünler, B2B toptan satış ve ihracat.",
+  "foundingDate": "1995",
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "Organize Sanayi Bölgesi 29. Sokak No:28",
     "addressLocality": "Kayseri",
+    "addressRegion": "Kayseri",
+    "postalCode": "38070",
     "addressCountry": "TR"
   },
-  "areaServed": ["Turkey", "Europe", "Middle East"],
-  "serviceType": ["İç Kapı Üretimi", "Toptan Satış", "İhracat"]
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "38.7312",
+    "longitude": "35.4787"
+  },
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+90-544-169-0038",
+      "contactType": "Sales",
+      "availableLanguage": ["Turkish", "English", "German", "Arabic"],
+      "areaServed": ["TR", "EU", "ME"]
+    }
+  ],
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "Turkey"
+    },
+    {
+      "@type": "Place",
+      "name": "Europe"
+    },
+    {
+      "@type": "Place",
+      "name": "Middle East"
+    }
+  ],
+  "serviceType": [
+    "İç Oda Kapısı Üretimi",
+    "PVC Kapı Üretimi",
+    "Laminoks Kapı Üretimi",
+    "Elitpan Kapı Üretimi",
+    "Hastane Kapısı Üretimi",
+    "Otel Kapısı Üretimi",
+    "Yangın Kapısı Üretimi",
+    "Özel Tasarım Kapı Üretimi",
+    "Toptan Kapı Satışı",
+    "İhracat"
+  ],
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Product",
+        "name": "PVC Kapılar"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Product",
+        "name": "Laminoks Kapılar"
+      },
+      "availability": "https://schema.org/InStock"
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Product",
+        "name": "Elitpan Kapılar"
+      },
+      "availability": "https://schema.org/InStock"
+    }
+  ],
+  "sameAs": [
+    "https://www.cihanpandoor.com",
+    "https://www.facebook.com/cihanpandoor",
+    "https://www.instagram.com/cihanpan_door",
+    "https://www.linkedin.com/company/cihanpan-door"
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "247",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
 };
 
 // Breadcrumb Schema
@@ -51,8 +275,26 @@ const breadcrumbSchema = {
     "item": item.href ? `${baseUrl}${item.href}` : currentUrl
   }))
 };
----
 
+// WebPage Schema
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Ürünlerimiz - CihanPan Door",
+  "description": "350+ kapı modeli ve malzeme seçeneği. PVC, Laminoks, Elitpan kapılar. Hastane, otel ve yangın kapıları.",
+  "url": currentUrl,
+  "inLanguage": "tr-TR",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "CihanPan Door",
+    "url": baseUrl
+  },
+  "breadcrumb": breadcrumbSchema
+};
+
+// ✅ CRITICAL: allSchemas array
+const allSchemas = [productsSchema, faqSchema, organizationSchema, breadcrumbSchema, webPageSchema];
+---
 <Layout
   title="Ürünlerimiz | CihanPan Door İç Kapı Malzemeleri ve Aksesuarlar"
   description="Kayseri'nin kaliteli iç oda kapıları için kullanılan malzemeler ve aksesuarlar. PVC, Laminoks yüzey malzemeleri, honeycomb core, aksesuarlar."

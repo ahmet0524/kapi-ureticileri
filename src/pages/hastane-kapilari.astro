@@ -1,5 +1,5 @@
 ---
-// src/pages/otel-kapilar.astro
+// src/pages/hastane-kapilari.astro
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -12,53 +12,190 @@ const currentUrl = `${baseUrl}${Astro.url.pathname}`;
 const breadcrumbItems = [
   { name: "Ana Sayfa", href: "/" },
   { name: "Ürünlerimiz", href: "/urunlerimiz" },
-  { name: "Otel Kapıları", href: "/otel-kapilari" }
+  { name: "Hastane Kapıları", href: "/hastane-kapilari" }
 ];
 
-// SEO Schema
-const otelSchema = {
+// SEO Schemas - Hospital Door Optimized
+const hastaneKapisiSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "Otel Kapıları",
-  "description": "Kayseri'den üretilen otel ve konaklama tesisleri için özel tasarlanmış kapı modelleri. Premium kalite, şık tasarım.",
+  "name": "Hastane Kapıları - Hijyenik ve Antibakteriyel",
+  "description": "Kayseri'den üretilen hastane ve sağlık tesisleri için özel tasarlanmış hijyenik kapı modelleri. Antibakteriyel, kolay temizlenebilir, yangın güvenlikli, CE belgeli.",
   "url": currentUrl,
+  "inLanguage": "tr-TR",
   "mainEntity": {
     "@type": "ItemList",
-    "name": "Otel Kapı Modelleri",
+    "name": "Hastane Kapı Modelleri",
     "numberOfItems": 6,
     "itemListElement": [
       {
         "@type": "Product",
-        "name": "Otel Kapısı",
+        "name": "Hastane Kapısı - Hijyenik Seri",
+        "description": "Antibakteriyel yüzey kaplama, kolay temizlenebilir, çarpma yapmayan, yangın güvenlikli hastane kapısı. Hasta odası, ameliyathane, poliklinik için uygun.",
+        "image": `${baseUrl}/assets/images/hastane-kapisi.webp`,
         "manufacturer": {
           "@type": "Organization",
           "name": "CihanPan Door",
           "url": baseUrl,
-          "logo": `${baseUrl}/assets/img/logo.webp`
+          "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`
         },
-        "category": "Otel Kapısı",
-        "material": "Premium Laminat",
-        "brand": "CihanPan Door"
+        "category": "Hastane Kapısı",
+        "material": "Antibakteriyel PVC/HPL Kaplama",
+        "brand": {
+          "@type": "Brand",
+          "name": "CihanPan Door - Sağlık Serisi"
+        },
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": currentUrl,
+          "priceCurrency": "TRY",
+          "lowPrice": "1",
+          "highPrice": "99999",
+          "offerCount": "6",
+          "availability": "https://schema.org/InStock",
+          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
+          "businessFunction": "http://purl.org/goodrelations/v1#Sell",
+          "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business",
+          "seller": {
+            "@type": "Organization",
+            "name": "CihanPan Door",
+            "url": baseUrl
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "63",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "Antibakteriyel",
+            "value": "Evet"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Yangın Dayanımı",
+            "value": "30-60 dakika"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Hijyen Sertifikası",
+            "value": "CE Belgeli"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "Ses Yalıtımı",
+            "value": "32-42 dB"
+          }
+        ]
       }
     ]
   }
 };
 
-// Organization Schema
+// FAQ Schema - Hastane Kapısı Odaklı
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Hastane kapısı neden özel olmalıdır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hastane kapıları antibakteriyel, kolay temizlenebilir ve hijyenik olmalıdır. Sık dezenfektan kullanımına dayanıklı, çarpma yapmayan, ses yalıtımlı ve yangın güvenliği olan malzemelerden üretilmelidir. Hasta konforu ve enfeksiyon kontrolü için kritik öneme sahiptir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hastane kapısı hangi alanlarda kullanılır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hastane kapıları hasta odaları, poliklinikler, ameliyathaneler, laboratuvarlar, röntgen odaları, yoğun bakım, acil servis, sterilizasyon ünitelerinde kullanılır. Her alan için farklı teknik özelliklere sahip modeller mevcuttur."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hastane kapısı fiyatları ne kadardır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hastane kapısı fiyatları kullanım alanına, yangın dayanımına, ses yalıtım değerine ve boyutlara göre değişir. Toptan satış ve proje bazlı özel fiyatlar için bizimle iletişime geçebilirsiniz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hastane kapıları hangi sertifikalara sahip olmalıdır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hastane kapıları CE belgesi, yangın dayanım sertifikası, antibakteriyel test raporu, ses yalıtım sertifikası ve TSE belgelerine sahip olmalıdır. Sağlık Bakanlığı onaylı ürünler tercih edilmelidir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hastane kapıları ne kadar garanti ile sunulur?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tüm hastane kapılarımız 5 yıl üretici garantisi ile sunulmaktadır. Yoğun kullanım koşullarında dahi dayanıklılık garantisi verilmektedir."
+      }
+    }
+  ]
+};
+
+// Organization Schema - Sağlık Tesisleri Odaklı
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "CihanPan Door",
   "url": baseUrl,
-  "logo": `${baseUrl}/assets/img/logo.webp`,
-  "description": "Kayseri'den otel ve konaklama tesisleri için özel kapı üreticisi - Premium kalite, şık tasarım",
+  "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`,
+  "description": "Kayseri'den hastane ve sağlık tesisleri için özel hijyenik kapı üreticisi. Antibakteriyel, yangın güvenlikli, CE belgeli ürünler. B2B toptan satış ve ihracat.",
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "Organize Sanayi Bölgesi 29. Sokak No:28",
     "addressLocality": "Kayseri",
+    "addressRegion": "Kayseri",
+    "postalCode": "38070",
     "addressCountry": "TR"
   },
-  "areaServed": ["Turkey", "Europe", "Middle East"],
-  "serviceType": ["Otel Kapı Üretimi", "Premium Kapı Çözümleri", "Toptan Satış", "İhracat"]
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+90-544-169-0038",
+    "contactType": "Sales",
+    "availableLanguage": ["Turkish", "English", "German", "Arabic"],
+    "areaServed": ["TR", "EU", "ME"]
+  },
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "Turkey"
+    },
+    {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": "38.7312",
+        "longitude": "35.4787"
+      },
+      "geoRadius": "2000000"
+    }
+  ],
+  "serviceType": [
+    "Hastane Kapı Üretimi",
+    "Sağlık Tesisi Kapı Çözümleri",
+    "Antibakteriyel Kapı Üretimi",
+    "Yangın Kapısı Üretimi",
+    "Toptan Satış",
+    "İhracat"
+  ],
+  "sameAs": [
+    "https://www.cihanpandoor.com",
+    "https://www.facebook.com/cihanpandoor",
+    "https://www.instagram.com/cihanpan_door",
+    "https://www.linkedin.com/company/cihanpan-door"
+  ]
 };
 
 // Breadcrumb Schema
@@ -72,23 +209,24 @@ const breadcrumbSchema = {
     "item": item.href ? `${baseUrl}${item.href}` : currentUrl
   }))
 };
----
 
+const allSchemas = [hastaneKapisiSchema, faqSchema, organizationSchema, breadcrumbSchema];
+---
 <Layout
-  title="Otel Kapıları | Premium Seri Kayseri CihanPan Door"
-  description="Kayseri'nin otel ve konaklama tesisleri için özel tasarlanmış kapı koleksiyonu. Premium kalite, şık tasarım, üretici fiyat avantajı."
-  keywords="otel kapısı, konaklama tesisi kapısı, premium kapı, şık kapı tasarımı, kayseri otel kapısı üreticisi, luxury door"
+  title="Hastane Kapıları | Hijyenik ve Antibakteriyel Seri | CihanPan Door"
+  description="Kayseri'den hastane ve sağlık tesisleri için özel tasarlanmış hijyenik kapı modelleri. Antibakteriyel, kolay temizlenebilir, yangın güvenlikli, CE belgeli."
+  keywords="hastane kapısı, sağlık tesisi kapısı, antibakteriyel kapı, hijyenik kapı, ameliyathane kapısı, poliklinik kapısı, kayseri hastane kapısı üreticisi"
   canonical={currentUrl}
-  ogImage="/assets/img/og/otel-kapilari-og.webp"
-  ogTitle="Otel Kapıları - Premium Seri | CihanPan Door"
-  ogDescription="Otel ve konaklama tesisleri için özel tasarlanmış kapı koleksiyonu. Premium kalite, şık tasarım."
+  ogImage="/assets/img/og/hastane-kapilari-og.webp"
+  ogTitle="Hastane Kapıları - Hijyenik ve Antibakteriyel | CihanPan Door"
+  ogDescription="Hastane ve sağlık tesisleri için özel tasarlanmış hijyenik kapı koleksiyonu. Antibakteriyel, yangın güvenlikli, CE belgeli."
   ogType="website"
   ogUrl={currentUrl}
   twitterCard="summary_large_image"
-  twitterTitle="Otel Kapıları | Premium Seri"
-  twitterDescription="Konaklama tesisleri için özel tasarlanmış kapı koleksiyonu. Premium ve şık çözümler."
-  twitterImage="/assets/img/og/otel-kapilari-og.webp"
-  schema={[otelSchema, organizationSchema, breadcrumbSchema]}
+  twitterTitle="Hastane Kapıları | Hijyenik Seri"
+  twitterDescription="Sağlık tesisleri için özel tasarlanmış hijyenik kapı koleksiyonu. Antibakteriyel ve güvenli çözümler."
+  twitterImage="/assets/img/og/hastane-kapilari-og.webp"
+  schema={allSchemas}
 >
 
   <Header />
@@ -99,15 +237,15 @@ const breadcrumbSchema = {
     <section class="hero">
       <div class="container">
         <div class="hero-content">
-          <h1 class="hero-title">Otel Kapıları</h1>
+          <h1 class="hero-title">Hastane Kapıları</h1>
           <p class="hero-subtitle">
-            Konaklama tesisleri için özel tasarlanmış premium kapı koleksiyonumuz
+            Sağlık tesisleri için özel tasarlanmış hijyenik ve antibakteriyel kapı koleksiyonumuz
           </p>
           <div class="hero-badges">
             <span class="badge">6 Model</span>
-            <span class="badge">Premium Kalite</span>
-            <span class="badge">Şık Tasarım</span>
-            <span class="badge">Lüks Görünüm</span>
+            <span class="badge">Antibakteriyel</span>
+            <span class="badge">Hijyenik</span>
+            <span class="badge">CE Belgeli</span>
           </div>
         </div>
       </div>
@@ -117,13 +255,13 @@ const breadcrumbSchema = {
     <section class="products-section">
       <div class="container">
         <header class="section-header">
-          <h2>Otel Kapı Modelleri</h2>
-          <p>Konaklama tesisleri için özel tasarlanmış premium kapı çözümleri</p>
+          <h2>Hastane Kapı Modelleri</h2>
+          <p>Sağlık tesisleri için özel tasarlanmış hijyenik kapı çözümleri</p>
         </header>
 
         <div class="quote-button-section">
-          <a href="/iletisim" class="btn-quote-main" aria-label="Otel kapısı için toptan fiyat teklifi al">
-            Otel Proje Teklifi Al
+          <a href="/iletisim" class="btn-quote-main" aria-label="Hastane kapısı için toptan fiyat teklifi al">
+            Hastane Proje Teklifi Al
           </a>
         </div>
 
@@ -140,14 +278,14 @@ const breadcrumbSchema = {
           <a href="/elitpan-kapilar" class="product-filter-btn">
             <span>Elitpan Kapılar</span>
           </a>
-          <a href="/hastane-kapilari" class="product-filter-btn">
+          <a href="/hastane-kapilari" class="product-filter-btn active">
             <span>Hastane Kapıları</span>
           </a>
-          <a href="/otel-kapilari" class="product-filter-btn active">
+          <a href="/otel-kapilari" class="product-filter-btn">
             <span>Otel Kapıları</span>
           </a>
           <a href="/yangina-dayanikli-kapilar" class="product-filter-btn">
-            <span>Yanmaya Dayanıklı Kapılar</span>
+            <span>Yangına Dayanıklı Kapılar</span>
           </a>
         </div>
 
@@ -157,7 +295,7 @@ const breadcrumbSchema = {
 
         <div class="loading" id="loading">
           <div class="loading-spinner"></div>
-          <p>Otel kapı modelleri yükleniyor...</p>
+          <p>Hastane kapı modelleri yükleniyor...</p>
         </div>
       </div>
     </section>
@@ -168,40 +306,39 @@ const breadcrumbSchema = {
         <div class="content-grid">
           <article class="highlights-content">
             <header>
-              <h2>Otel Kapılarımızın Özel Özellikleri</h2>
+              <h2>Hastane Kapılarımızın Özel Özellikleri</h2>
             </header>
 
             <p>
-              <strong>Otel serisi</strong> kapılarımız, konaklama tesislerinin özel gereksinimlerini
-              karşılamak için tasarlanmış <em>premium kalite ve şık tasarımlı</em> profesyonel
-              çözümlerdir. Her model lüks standartlara uygun olarak üretilir.
+              <strong>Hastane serisi</strong> kapılarımız, sağlık tesislerinin özel gereksinimlerini
+              karşılamak için tasarlanmış <em>hijyenik ve antibakteriyel</em> profesyonel
+              çözümlerdir. Her model hasta güvenliği ve enfeksiyon kontrolü standartlarına uygun olarak üretilir.
             </p>
 
-            <h3>Konaklama Tesisleri İçin Özel Özellikler</h3>
+            <h3>Sağlık Tesisleri İçin Özel Özellikler</h3>
             <ul class="advantages-list">
-              <li><strong>Premium Yüzey:</strong> Lüks görünüm sağlayan özel kaplama</li>
-              <li><strong>Ses Yalıtımı:</strong> Misafir konforu için gelişmiş akustik performans</li>
-              <li><strong>Dayanıklılık:</strong> Yoğun kullanıma uygun özel yapı</li>
-              <li><strong>Şık Tasarım:</strong> Modern ve zarif estetik seçenekler</li>
-              <li><strong>Yangın Güvenliği:</strong> Konaklama tesisleri standartlarına uygun</li>
-              <li><strong>Kolay Bakım:</strong> Pratik temizlik ve uzun ömür</li>
+              <li><strong>Antibakteriyel Yüzey:</strong> Bakteri üremesini engelleyen özel kaplama</li>
+              <li><strong>Kolay Temizlik:</strong> Dezenfektan kullanımına dayanıklı yüzey</li>
+              <li><strong>Çarpma Yapmaz:</strong> Nem ve su dirençli özel yapı</li>
+              <li><strong>Ses Yalıtımı:</strong> Hasta konforu için 32-42 dB ses yalıtımı</li>
+              <li><strong>Yangın Güvenliği:</strong> 30-60 dakika yangın dayanımı</li>
+              <li><strong>CE Belgeli:</strong> Avrupa standartlarına uygun üretim</li>
             </ul>
 
             <h3>Kullanım Alanları</h3>
-            <p>Otel kapılarımız şu alanlarda kullanım için uygundur:</p>
+            <p>Hastane kapılarımız şu alanlarda kullanım için uygundur:</p>
             <ul class="advantages-list">
-              <li><strong>Otel Odaları:</strong> Konforlu ve şık misafir deneyimi</li>
-              <li><strong>Apart Oteller:</strong> Modern ve dayanıklı çözümler</li>
-              <li><strong>Butik Oteller:</strong> Özel tasarım seçenekleri</li>
-              <li><strong>Pansiyonlar:</strong> Ekonomik ve kaliteli alternatifler</li>
-              <li><strong>Tatil Köyleri:</strong> Toplu proje çözümleri</li>
-              <li><strong>Konaklama Tesisleri:</strong> Çok amaçlı kullanım</li>
+              <li><strong>Hasta Odaları:</strong> Hijyenik ve konforlu hasta ortamı</li>
+              <li><strong>Ameliyathaneler:</strong> Steril ortam koruması</li>
+              <li><strong>Poliklinikler:</strong> Yoğun kullanıma dayanıklı</li>
+              <li><strong>Laboratuvarlar:</strong> Kimyasal dirençli özel yüzey</li>
+              <li><strong>Yoğun Bakım:</strong> Ses yalıtımlı ve hijyenik</li>
+              <li><strong>Acil Servis:</strong> Hızlı geçiş ve dayanıklılık</li>
             </ul>
 
             <h3>Kalite Standartları</h3>
-            <p>Tüm otel kapılarımız TSE standartlarına uygun olarak üretilir ve
-            konaklama tesislerinin kalite gereksinimlerini karşılar. İhracat kalitesinde
-            üretim ile uluslararası projelerde de tercih edilir.</p>
+            <p>Tüm hastane kapılarımız CE belgesi, yangın dayanım sertifikası, antibakteriyel test raporu
+            ve ses yalıtım sertifikalarına sahiptir. Sağlık Bakanlığı standartlarına uygun olarak üretilir.</p>
           </article>
 
           <aside class="highlights-sidebar">
@@ -211,34 +348,35 @@ const breadcrumbSchema = {
                 <div class="stat-label">MODEL</div>
               </div>
               <div class="stat-card">
-                <div class="stat-number">TSE</div>
-                <div class="stat-label">STANDART</div>
+                <div class="stat-number">CE</div>
+                <div class="stat-label">BELGELİ</div>
               </div>
               <div class="stat-card">
                 <div class="stat-number">A+</div>
-                <div class="stat-label">KALİTE</div>
+                <div class="stat-label">HİJYEN</div>
               </div>
               <div class="stat-card">
-                <div class="stat-number">24/7</div>
-                <div class="stat-label">DAYANIM</div>
+                <div class="stat-number">60dk</div>
+                <div class="stat-label">YANGIN</div>
               </div>
             </div>
 
             <div class="quick-contact">
-              <h3>Otel Proje Danışmanlığı</h3>
-              <p>Konaklama tesisiniz için özel çözümler:</p>
+              <h3>Hastane Proje Danışmanlığı</h3>
+              <p>Sağlık tesisiniz için özel çözümler:</p>
               <div class="contact-buttons">
-                <a href="tel:+905441690038" class="btn-contact-phone">🏨 Otel Uzmanı</a>
+                <a href="tel:+905441690038" class="btn-contact-phone">🏥 Hastane Uzmanı</a>
                 <a href="https://wa.me/905441690038" class="btn-contact-whatsapp">💬 WhatsApp</a>
               </div>
 
               <div class="special-features">
                 <h4>Özel Hizmetler</h4>
                 <ul>
-                  <li>✓ Kalite sertifikası</li>
+                  <li>✓ CE ve yangın sertifikası</li>
+                  <li>✓ Antibakteriyel test raporu</li>
                   <li>✓ Ses yalıtım raporu</li>
                   <li>✓ Proje bazlı özelleştirme</li>
-                  <li>✓ Teknik destek</li>
+                  <li>✓ 5 yıl garanti</li>
                 </ul>
               </div>
             </div>
@@ -255,10 +393,10 @@ const breadcrumbSchema = {
           <div class="tech-card">
             <h3>Malzeme Özellikleri</h3>
             <ul>
-              <li>Premium laminat yüzey</li>
-              <li>MDF çekirdek yapı</li>
-              <li>Su dirençli kenar bandı</li>
-              <li>Çelik kapı kasası seçeneği</li>
+              <li>Antibakteriyel PVC/HPL kaplama</li>
+              <li>Su ve nem dirençli çekirdek</li>
+              <li>Dezenfektan kullanımına dayanıklı</li>
+              <li>Çelik kapı kasası</li>
             </ul>
           </div>
           <div class="tech-card">
@@ -271,21 +409,21 @@ const breadcrumbSchema = {
             </ul>
           </div>
           <div class="tech-card">
-            <h3>Renk Seçenekleri</h3>
+            <h3>Güvenlik Özellikleri</h3>
             <ul>
-              <li>İtalyan Ceviz</li>
-              <li>Kestane</li>
-              <li>Tik</li>
-              <li>Özel renk seçenekleri</li>
+              <li>Yangın dayanımı: 30-60 dakika</li>
+              <li>Ses yalıtımı: 32-42 dB</li>
+              <li>Antibakteriyel sertifikalı</li>
+              <li>CE belgeli</li>
             </ul>
           </div>
           <div class="tech-card">
             <h3>Aksesuarlar</h3>
             <ul>
-              <li>Premium menteşeler</li>
-              <li>Şık kapı kolları</li>
+              <li>Paslanmaz menteşeler</li>
+              <li>Antibakteriyel kapı kolları</li>
               <li>Otomatik kapanma sistemi</li>
-              <li>Cam panel seçenekleri</li>
+              <li>Pencere seçenekleri</li>
             </ul>
           </div>
         </div>
@@ -295,11 +433,11 @@ const breadcrumbSchema = {
     <!-- CTA Section -->
     <section class="cta-section">
       <div class="container">
-        <h2>Konaklama Tesisiniz İçin Profesyonel Çözümler</h2>
-        <p>Otel, apart ve konaklama tesisleri için özel tasarlanmış kapı koleksiyonumuzla projelerinizi güvenilir çözümlerle tamamlayın</p>
+        <h2>Sağlık Tesisiniz İçin Güvenilir Çözümler</h2>
+        <p>Hastane, klinik ve sağlık tesisleri için özel tasarlanmış hijyenik kapı koleksiyonumuzla projelerinizi güvenle tamamlayın</p>
         <div class="cta-buttons">
-          <a href="tel:+905441690038" class="btn btn-tertiary">🏨 Otel Uzmanı Ara</a>
-          <a href="/iletisim" class="btn btn-primary">Otel Proje Danışmanlığı</a>
+          <a href="tel:+905441690038" class="btn btn-tertiary">🏥 Hastane Uzmanı Ara</a>
+          <a href="/iletisim" class="btn btn-primary">Hastane Proje Danışmanlığı</a>
         </div>
       </div>
     </section>
@@ -312,7 +450,7 @@ const breadcrumbSchema = {
   /* Hero Section */
   .hero {
     padding: 4rem 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
     color: white;
     text-align: center;
   }
@@ -384,20 +522,20 @@ const breadcrumbSchema = {
 
   .btn-quote-main {
     display: inline-block;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #059669, #10b981);
     color: white;
     padding: 1rem 3rem;
     border-radius: 50px;
     font-weight: 600;
     font-size: 1.1rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
     text-decoration: none;
   }
 
   .btn-quote-main:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4);
   }
 
   /* Product Filters */
@@ -427,9 +565,9 @@ const breadcrumbSchema = {
   }
 
   .product-filter-btn.active {
-    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
     transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4);
   }
 
   /* Products Grid */
@@ -490,7 +628,7 @@ const breadcrumbSchema = {
 
   .loading-spinner {
     border: 4px solid #f3f4f6;
-    border-top: 4px solid #667eea;
+    border-top: 4px solid #059669;
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -587,7 +725,7 @@ const breadcrumbSchema = {
   .stat-number {
     font-size: 2rem;
     font-weight: 800;
-    color: #667eea;
+    color: #059669;
   }
 
   .stat-label {
@@ -635,7 +773,7 @@ const breadcrumbSchema = {
   }
 
   .btn-contact-phone {
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #059669, #10b981);
     color: white;
   }
 
@@ -719,7 +857,7 @@ const breadcrumbSchema = {
   /* CTA Section */
   .cta-section {
     padding: 5rem 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
     color: white;
     text-align: center;
   }
@@ -755,7 +893,7 @@ const breadcrumbSchema = {
 
   .btn-primary {
     background: white;
-    color: #667eea;
+    color: #059669;
   }
 
   .btn-secondary {
@@ -809,43 +947,43 @@ const breadcrumbSchema = {
 </style>
 
 <script>
-  const otelModels = [];
+  const hastaneModels = [];
 
   const fileNames = [
-    "CihanpanDoor-Otel-Serisi-401-Italyan-Ceviz.webp",
-    "CihanpanDoor-Otel-Serisi-402-Kestane.webp",
-    "CihanpanDoor-Otel-Serisi-403-Tik.webp",
-    "CihanpanDoor-Otel-Serisi-404-Yildiz-Metal-Antrasit.webp",
-    "CihanpanDoor-Otel-Serisi-405-Vision-Gri.webp",
-    "CihanpanDoor-Otel-Serisi-406-Dark-Santana.webp"
+    "CihanpanDoor-Hastane-Serisi-501-Tik-Antrasit.webp",
+    "CihanpanDoor-Hastane-Serisi-502-Avola-Krem.webp",
+    "CihanpanDoor-Hastane-Serisi-503-ABD-Ceviz-Krom.webp",
+    "CihanpanDoor-Hastane-Serisi-504-Soft-Kapucino-Antrasit.webp",
+    "CihanpanDoor-Hastane-Serisi-505-Saruhan-Krem.webp",
+    "CihanpanDoor-Hastane-Serisi-506-Antrasit-Krom.webp"
   ];
 
   fileNames.forEach((fileName, index) => {
     const parts = fileName.replace('.webp', '').split('-');
     const modelNumber = parts[3];
     const colorInfo = parts.slice(4).join(' ');
-    const displayName = `Otel ${modelNumber}`;
+    const displayName = `Hastane ${modelNumber}`;
     const colorName = colorInfo.replace(/-/g, ' ');
 
-    otelModels.push({
-      id: `otel-${modelNumber}`,
+    hastaneModels.push({
+      id: `hastane-${modelNumber}`,
       name: displayName,
-      category: 'otel',
-      subcategory: index < 3 ? 'premium' : 'luxury',
-      image: `/assets/img/otel-kapilari/${fileName}`,
-      fallbackImage: `https://picsum.photos/300/400?random=${index + 400}`,
-      altText: `CihanPan Door Otel Kapısı Model ${modelNumber} ${colorName} - Premium Kalite Konaklama Tesisi Kapısı`,
-      features: index < 3 ? 'Premium • Şık Tasarım' : 'Luxury • Özel Tasarım',
+      category: 'hastane',
+      subcategory: index < 3 ? 'hijyenik' : 'antibakteriyel',
+      image: `/assets/img/hastane-kapilari/${fileName}`,
+      fallbackImage: `https://picsum.photos/300/400?random=${index + 300}`,
+      altText: `CihanPan Door Hastane Kapısı Model ${modelNumber} ${colorName} - Hijyenik ve Antibakteriyel Sağlık Tesisi Kapısı`,
+      features: index < 3 ? 'Hijyenik • CE Belgeli' : 'Antibakteriyel • Yangın Güvenlikli',
       colorInfo: colorName,
-      description: `Otel kapısı model ${modelNumber} ${colorName}. Konaklama tesisleri için özel tasarlanmış premium kalite ve şık kapı. TSE standartlarına uygun, modern tasarım. Kayseri üretimi, toptan satış avantajı.`,
-      seoKeywords: `otel kapısı model ${modelNumber}, premium kapı, konaklama tesisi kapısı, şık kapı tasarımı, luxury door ${colorName.toLowerCase()}, kayseri otel kapısı üreticisi`,
+      description: `Hastane kapısı model ${modelNumber} ${colorName}. Sağlık tesisleri için özel tasarlanmış hijyenik ve antibakteriyel kapı. CE belgeli, yangın güvenlikli, ses yalıtımlı. Kayseri üretimi, toptan satış avantajı.`,
+      seoKeywords: `hastane kapısı model ${modelNumber}, hijyenik kapı, antibakteriyel kapı, sağlık tesisi kapısı, ameliyathane kapısı ${colorName.toLowerCase()}, kayseri hastane kapısı üreticisi`,
       schemaData: {
         "@type": "Product",
-        "name": `Otel Kapısı Model ${modelNumber} - ${colorName}`,
-        "description": `Konaklama tesisleri için premium kalite otel kapısı`,
+        "name": `Hastane Kapısı Model ${modelNumber} - ${colorName}`,
+        "description": `Sağlık tesisleri için hijyenik ve antibakteriyel hastane kapısı`,
         "brand": "CihanPan Door",
-        "material": "Premium Laminat",
-        "category": "Otel Kapıları",
+        "material": "Antibakteriyel PVC/HPL",
+        "category": "Hastane Kapıları",
         "color": colorName
       }
     });
@@ -859,15 +997,15 @@ const breadcrumbSchema = {
     grid.innerHTML = '';
 
     setTimeout(() => {
-      if (otelModels.length === 0) {
+      if (hastaneModels.length === 0) {
         grid.innerHTML = `
           <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
             <h3 style="color: #6b7280; margin-bottom: 1rem;">Bu kategoride henüz ürün bulunmuyor</h3>
-            <p style="color: #9ca3af;">Yakında yeni otel kapı modelleri eklenecek.</p>
+            <p style="color: #9ca3af;">Yakında yeni hastane kapı modelleri eklenecek.</p>
           </div>
         `;
       } else {
-        otelModels.forEach((product) => {
+        hastaneModels.forEach((product) => {
           const card = createProductCard(product);
           grid.appendChild(card);
         });
@@ -880,17 +1018,17 @@ const breadcrumbSchema = {
   function createProductCard(product) {
     const card = document.createElement('article');
     card.className = 'product-card';
-    card.setAttribute('aria-label', `${product.name} ${product.colorInfo} otel kapısı modeli`);
+    card.setAttribute('aria-label', `${product.name} ${product.colorInfo} hastane kapısı modeli`);
 
     card.innerHTML = `
       <div class="product-image">
         <img src="${product.image}"
              alt="${product.altText}"
-             title="${product.name} ${product.colorInfo} - CihanPan Door Otel Kapısı"
+             title="${product.name} ${product.colorInfo} - CihanPan Door Hastane Kapısı"
              loading="lazy"
              width="300"
              height="300"
-             onerror="this.src='${product.fallbackImage}'; this.alt='${product.name} Otel Kapısı Örneği';">
+             onerror="this.src='${product.fallbackImage}'; this.alt='${product.name} Hastane Kapısı Örneği';">
       </div>
       <div class="product-info">
         <h3 class="product-title">${product.name}</h3>

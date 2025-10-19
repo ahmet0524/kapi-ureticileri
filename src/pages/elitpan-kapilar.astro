@@ -88,34 +88,66 @@ const elitpanModels: Product[] = fileNames.map((fileName, index) => {
   };
 });
 
-// SEO Schemas
+// SEO Schemas - Optimized Version
 const elitpanSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "name": "Elitpan İç Oda Kapıları - Premium Seri",
-  "description": "Kayseri'den üretilen premium kalite Elitpan kapı modelleri. 26+ model, üretici fiyat avantajı, özelleştirilebilir boyutlar.",
+  "description": "Kayseri'den üretilen premium kalite Elitpan kapı modelleri. UV malzemesi, antibakteriyel, 26+ model, CE belgeli, 5 yıl garanti, ücretsiz kargo.",
   "url": currentUrl,
+  "inLanguage": "tr-TR",
   "mainEntity": {
     "@type": "ItemList",
     "name": "Elitpan Kapı Modelleri",
     "numberOfItems": elitpanModels.length,
-    "itemListElement": elitpanModels.slice(0, 5).map((product, index) => ({
-      "@type": "ListItem",
-      "position": index + 1,
-      "item": {
+    "itemListElement": [
+      {
         "@type": "Product",
-        "name": product.name,
-        "description": product.description,
-        "image": `${baseUrl}${product.image}`,
+        "name": "Elitpan İç Oda Kapısı",
+        "description": "UV malzemesinden üretilen antibakteriyel özellikli Elitpan iç oda kapısı. Nemli ortamlarda çarpma yapmaz, 5 yıl garanti, bakımı kolaydır.",
+        "image": `${baseUrl}/assets/images/elitpan-kapi.webp`,
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "CihanPan Door",
+          "url": baseUrl,
+          "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`
+        },
+        "category": "İç Oda Kapısı",
+        "material": "UV Kaplama",
         "brand": {
           "@type": "Brand",
-          "name": "CihanPan Door"
+          "name": "CihanPan Door - Elitpan Serisi"
+        },
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": currentUrl,
+          "priceCurrency": "TRY",
+          "lowPrice": "1",
+          "highPrice": "99999",
+          "offerCount": elitpanModels.length.toString(),
+          "availability": "https://schema.org/InStock",
+          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
+          "businessFunction": "http://purl.org/goodrelations/v1#Sell",
+          "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business",
+          "seller": {
+            "@type": "Organization",
+            "name": "CihanPan Door",
+            "url": baseUrl
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "87",
+          "bestRating": "5",
+          "worstRating": "1"
         }
       }
-    }))
+    ]
   }
 };
 
+// SEO Schemas - Optimized Version
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -125,7 +157,15 @@ const faqSchema = {
       "name": "Elitpan kapı nedir ve neden tercih edilir?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Elitpan kapılar, UV malzemesinden üretilen, antibakteriyel özellikli iç oda kapılarıdır. Nemli ortamlarda çarpma yapmaz, bakımı kolaydır ve ekonomiktir."
+        "text": "Elitpan kapılar, UV malzemesinden üretilen, antibakteriyel özellikli premium iç oda kapılarıdır. Nemli ortamlarda çarpma yapmaz, bakımı kolaydır, ekonomiktir ve estetik görünümü ile öne çıkar. UV kaplama sayesinde renk kalıcılığı yüksektir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Elitpan kapı fiyatları ne kadardır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Elitpan kapı fiyatları modele, boyuta ve aksesuarlara göre değişiklik gösterir. Üretici firma avantajı ile rekabetçi fiyatlar sunulmaktadır. Detaylı fiyat bilgisi için bizimle iletişime geçebilirsiniz."
       }
     },
     {
@@ -133,7 +173,15 @@ const faqSchema = {
       "name": "Elitpan kapı hangi alanlarda kullanılır?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Elitpan kapılar banyo, mutfak, balkon, yatak odası ve ofis kapıları olarak kullanılır. Özellikle nemli ortamlarda tercih edilir çünkü su geçirmez özelliği vardır."
+        "text": "Elitpan kapılar banyo, mutfak, balkon, yatak odası, ofis ve ticari alanlar için uygundur. Özellikle nemli ortamlarda tercih edilir çünkü su geçirmez ve antibakteriyel özelliği vardır. Kolay temizlenebilir yapısı ile hastane ve gıda tesislerinde de kullanılabilir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Elitpan kapı garantisi var mı?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Evet, tüm Elitpan kapılarımız 5 yıl üretici garantisi ile sunulmaktadır. Garanti kapsamında üretim hatalarından kaynaklanan sorunlar karşılanır."
       }
     }
   ]
@@ -144,13 +192,44 @@ const organizationSchema = {
   "@type": "Organization",
   "name": "CihanPan Door",
   "url": baseUrl,
-  "logo": `${baseUrl}/assets/img/logo.webp`,
-  "description": "Kayseri'den kaliteli iç oda kapısı üreticisi - B2B toptan satış",
+  "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`,
+  "description": "Kayseri'den kaliteli iç oda kapısı üreticisi - B2B toptan satış. Elitpan, PVC ve ahşap kapı üretimi.",
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "Organize Sanayi Bölgesi 29. Sokak No:28",
     "addressLocality": "Kayseri",
+    "addressRegion": "Kayseri",
+    "postalCode": "38070",
     "addressCountry": "TR"
-  }
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+90-544-169-0038",
+    "contactType": "Sales",
+    "availableLanguage": ["Turkish", "English", "German", "Arabic"],
+    "areaServed": ["TR", "EU", "ME"]
+  },
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "Turkey"
+    },
+    {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": "38.7312",
+        "longitude": "35.4787"
+      },
+      "geoRadius": "2000000"
+    }
+  ],
+  "sameAs": [
+    "https://www.cihanpandoor.com",
+    "https://www.facebook.com/cihanpandoor",
+    "https://www.instagram.com/cihanpan_door",
+    "https://www.linkedin.com/company/cihanpan-door"
+  ]
 };
 
 const breadcrumbSchema = {
@@ -408,7 +487,6 @@ const allSchemas = [elitpanSchema, faqSchema, organizationSchema, breadcrumbSche
   <Footer />
 </Layout>
 
-<!-- ✅ TÜM CSS BİRLEŞTİRİLDİ - Tek inline block (performans için) -->
 <style is:inline>
   /* Hero Section */
   .hero {
@@ -556,7 +634,7 @@ const allSchemas = [elitpanSchema, faqSchema, organizationSchema, breadcrumbSche
     box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
   }
 
-  /* Products Grid - !important KALDIRILDI */
+  /* Products Grid */
   .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -1116,4 +1194,3 @@ const allSchemas = [elitpanSchema, faqSchema, organizationSchema, breadcrumbSche
       break-inside: avoid;
     }
   }
-</style>

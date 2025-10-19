@@ -14,6 +14,7 @@ const breadcrumbItems = [
   { name: "PVC Kapılar" }
 ];
 
+// SEO Schemas - PVC Kapı
 const pvcDoorSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
@@ -158,8 +159,10 @@ const breadcrumbSchema = {
     "item": item.href ? `${baseUrl}${item.href}` : currentUrl
   }))
 };
----
 
+// ✅ CRITICAL: Bu satır eksikti!
+const allSchemas = [pvcDoorSchema, faqSchema, organizationSchema, breadcrumbSchema];
+---
 <Layout
   title="PVC İç Oda Kapıları - 1 | Kayseri CihanPan Door"
   description="Kayseri'nin en büyük PVC kapı koleksiyonu! 300 farklı model ve renk seçeneği. Su geçirmez, antibakteriyel, CE belgeli PVC kapılar."
