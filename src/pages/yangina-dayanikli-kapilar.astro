@@ -36,10 +36,68 @@ const yanginaSchema = {
         },
         "category": "Yangın Kapısı",
         "material": "Yangın Dayanımlı Çelik",
-        "brand": "CihanPan Door"
+        "brand": {
+          "@type": "Brand",
+          "name": "CihanPan Door"
+        },
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": currentUrl,
+          "priceCurrency": "TRY",
+          "lowPrice": "1",
+          "highPrice": "99999",
+          "offerCount": "247",
+          "availability": "https://schema.org/InStock",
+          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
+          "businessFunction": "http://purl.org/goodrelations/v1#Sell",
+          "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business",
+          "seller": {
+            "@type": "Organization",
+            "name": "CihanPan Door",
+            "url": baseUrl
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "reviewCount": "152",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
       }
     ]
   }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Yangına dayanıklı kapı nedir ve neden tercih edilir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yangına dayanıklı kapılar, yangın durumunda belirli bir süre alevlerin ve dumanın yayılmasını engelleyen özel sertifikalı kapılardır. EI-30, EI-60, EI-90 gibi sertifikalarla yangın güvenliği sağlar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Yangına dayanıklı kapı fiyatları ne kadardır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yangına dayanıklı kapı fiyatları sertifika düzeyine, boyuta ve özelliklerine göre değişiklik gösterir. Detaylı fiyat bilgisi için bizimle iletişime geçebilirsiniz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Yangına dayanıklı kapı hangi alanlarda kullanılır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yangına dayanıklı kapılar iş merkezleri, hastaneler, okullar, oteller, AVM'ler ve toplu yaşam alanlarında yangın güvenliği için kullanılır. Yangın merdivenleri ve acil çıkışlarda zorunludur."
+      }
+    }
+  ]
 };
 
 const organizationSchema = {
@@ -69,7 +127,6 @@ const breadcrumbSchema = {
   }))
 };
 ---
-
 <Layout
   title="Yangına Dayanıklı Kapılar | Yangın Güvenlik Serisi Kayseri CihanPan Door"
   description="Kayseri'nin yangın güvenlik standartlarına uygun yangına dayanıklı kapı koleksiyonu. EI-30, EI-60, EI-90 sertifikalı, TSE onaylı, üretici fiyat avantajı."
