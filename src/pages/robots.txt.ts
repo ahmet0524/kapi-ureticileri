@@ -1,6 +1,10 @@
 export function GET() {
   const body = `User-agent: *
 Allow: /
+
+User-agent: Googlebot
+Crawl-delay: 1
+
 Sitemap: https://kapi-ureticileri.vercel.app/sitemap-index.xml`;
 
   return new Response(body, {
