@@ -1,28 +1,13 @@
 import { defineConfig } from 'astro/config';
-import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 
 export default defineConfig({
-  output: 'static',
-  site: 'https://kapi-ureticileri.vercel.app/',
+  site: 'https://kapi-ureticileri.vercel.app', // 🔴 sondaki / olmasın
+  output: 'static', // Vercel için ideal
   integrations: [
-    mdx(),
-    sitemap({
-      changefreq: 'weekly',
-      priority: 0.7,
-      lastmod: new Date(),
-      // Google için serialize ekle
-      serialize(item) {
-        return {
-          ...item,
-          // Changefreq ve priority ekle
-          changefreq: 'weekly',
-          priority: 0.7,
-        };
-      }
-    })
+    mdx(), // MDX desteği aktif kalıyor
   ],
   build: {
-    assets: 'assets'
-  }
+    assets: 'assets', // Statik dosyaları /assets altına koyar
+  },
 });
