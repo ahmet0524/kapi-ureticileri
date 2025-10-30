@@ -14,7 +14,6 @@ const breadcrumbItems = [
   { name: "Otel Kapıları", href: "/otel-kapilari" }
 ];
 
-// ✅ SEO Schemas - Otel Kapıları
 const otelSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
@@ -25,12 +24,12 @@ const otelSchema = {
   "mainEntity": {
     "@type": "ItemList",
     "name": "Otel Kapı Modelleri",
-    "numberOfItems": 60,
+    "numberOfItems": 6,
     "itemListElement": [
       {
         "@type": "Product",
-        "name": "Otel (Melamin) Kapısı",
-        "description": "Su geçirmez, antibakteriyel, ses yalıtımlı otel iç oda kapısı. CE belgeli, 5 yıl garanti.",
+        "name": "Otel Kapısı - Premium Seri",
+        "description": "Konaklama tesisleri için özel tasarlanmış premium otel kapısı. Ses yalıtımlı, yangına dayanıklı, şık tasarım, TSE belgeli.",
         "image": `${baseUrl}/assets/img/otel-kapilari/CihanpanDoor-Otel-Serisi-401-Italyan-Ceviz.webp`,
         "manufacturer": {
           "@type": "Organization",
@@ -39,7 +38,7 @@ const otelSchema = {
           "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`
         },
         "category": "Otel Kapısı",
-        "material": "Laminoks (Yüksek Basınçlı Melamin) veya PVC",
+        "material": "Premium Laminat",
         "brand": {
           "@type": "Brand",
           "name": "CihanPan Door"
@@ -48,9 +47,9 @@ const otelSchema = {
           "@type": "AggregateOffer",
           "url": currentUrl,
           "priceCurrency": "TRY",
-          "lowPrice": "10000",
-          "highPrice": "12000",
-          "offerCount": "60",
+          "lowPrice": "1",
+          "highPrice": "99999",
+          "offerCount": "6",
           "availability": "https://schema.org/InStock",
           "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
           "businessFunction": "http://purl.org/goodrelations/v1#Sell",
@@ -63,8 +62,8 @@ const otelSchema = {
         },
         "aggregateRating": {
           "@type": "AggregateRating",
-          "ratingValue": "4.8",
-          "reviewCount": "152",
+          "ratingValue": "4.9",
+          "reviewCount": "87",
           "bestRating": "5",
           "worstRating": "1"
         }
@@ -73,56 +72,14 @@ const otelSchema = {
   }
 };
 
-// ✅ FAQ
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Otel kapısı özellikleri nelerdir?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Laminoks kapılar, yüksek basınçlı melamin (HPL) kaplama ile üretilen, su geçirmez ve antibakteriyel özellikli iç oda kapılarıdır. Nemli ortamlarda çarpma yapmaz, çizilmeye dayanıklıdır, bakımı kolaydır ve ekonomiktir."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Otel kapı fiyatları ne kadardır?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Otel kapı fiyatları 10000₺-12000₺ arasında değişir. Model, boyut ve aksesuarlara göre fiyat farklılık gösterir. Toptan alımlarda üretici firma avantajı ile özel fiyatlar sunulmaktadır."
-      }
-    }
-  ]
-};
-
-// ✅ Organization
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "CihanPan Door",
   "url": baseUrl,
-  "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`,
-  "description": "Kayseri'den kaliteli Otel (melamin) iç oda kapısı üreticisi. 80+ model, CE belgeli ürünler, B2B toptan satış.",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Organize Sanayi Bölgesi 29. Sokak No:28",
-    "addressLocality": "Kayseri",
-    "addressRegion": "Kayseri",
-    "postalCode": "38070",
-    "addressCountry": "TR"
-  },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+90-544-169-0038",
-    "contactType": "Sales",
-    "availableLanguage": ["Turkish", "English", "German", "Arabic"],
-    "areaServed": ["TR", "EU", "ME"]
-  }
+  "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`
 };
 
-// ✅ Breadcrumb
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -133,28 +90,917 @@ const breadcrumbSchema = {
     "item": item.href ? `${baseUrl}${item.href}` : currentUrl
   }))
 };
-
-const allSchemas = [otelSchema, faqSchema, organizationSchema, breadcrumbSchema];
 ---
 
 <Layout
-  title="Otel Kapıları - CihanPan Door | Kayseri"
-  description="Kayseri'den üretilen otel ve konaklama tesisleri için özel tasarlanmış premium kapı modelleri. Şık tasarım, dayanıklı yapı, ses yalıtımlı."
+  title="Otel Kapıları | Premium Seri Kayseri CihanPan Door"
+  description="Kayseri'nin otel ve konaklama tesisleri için özel tasarlanmış kapı koleksiyonu. Premium kalite, şık tasarım, üretici fiyat avantajı."
+  keywords="otel kapısı, konaklama tesisi kapısı, premium kapı, şık kapı tasarımı, kayseri otel kapısı üreticisi"
+  canonical={currentUrl}
+  ogImage="/assets/img/og/otel-kapilari-og.webp"
+  ogTitle="Otel Kapıları - Premium Seri | CihanPan Door"
+  ogDescription="Otel ve konaklama tesisleri için özel tasarlanmış kapı koleksiyonu. Premium kalite, şık tasarım."
+  ogType="website"
+  ogUrl={currentUrl}
+  twitterCard="summary_large_image"
+  twitterTitle="Otel Kapıları | Premium Seri"
+  twitterDescription="Konaklama tesisleri için özel tasarlanmış kapı koleksiyonu. Premium ve şık çözümler."
+  twitterImage="/assets/img/og/otel-kapilari-og.webp"
+  schema={[otelSchema, organizationSchema, breadcrumbSchema]}
 >
-  <Fragment slot="head">
-    {allSchemas.map(schema => (
-      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-    ))}
-  </Fragment>
 
   <Header />
   <Breadcrumbs items={breadcrumbItems} />
 
-  <!-- Sayfa içeriğiniz buraya gelecek -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">Otel Kapıları</h1>
+          <p class="hero-subtitle">
+            Konaklama tesisleri için özel tasarlanmış premium kapı koleksiyonumuz
+          </p>
+          <div class="hero-badges">
+            <span class="badge">6 Model</span>
+            <span class="badge">Premium Kalite</span>
+            <span class="badge">Şık Tasarım</span>
+            <span class="badge">Lüks Görünüm</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+      <div class="container">
+        <header class="section-header">
+          <h2>Otel Kapı Modelleri</h2>
+          <p>Konaklama tesisleri için özel tasarlanmış premium kapı çözümleri</p>
+        </header>
+
+        <div class="quote-button-section">
+          <a href="/iletisim" class="btn-quote-main" aria-label="Otel kapısı için toptan fiyat teklifi al">
+            Otel Proje Teklifi Al
+          </a>
+        </div>
+
+        <nav class="product-filter-tabs" aria-label="Ürün kategorileri">
+          <a href="/urunlerimiz" class="product-filter-btn">
+            <span>Tümü</span>
+          </a>
+          <a href="/pvc-kapilar" class="product-filter-btn">
+            <span>PVC Kapılar</span>
+          </a>
+          <a href="/laminoks-kapilar" class="product-filter-btn">
+            <span>Laminoks Kapılar</span>
+          </a>
+          <a href="/elitpan-kapilar" class="product-filter-btn">
+            <span>Elitpan Kapılar</span>
+          </a>
+          <a href="/hastane-kapilari" class="product-filter-btn">
+            <span>Hastane Kapıları</span>
+          </a>
+          <a href="/otel-kapilari" class="product-filter-btn active" aria-current="page">
+            <span>Otel Kapıları</span>
+          </a>
+          <a href="/yangina-dayanikli-kapilar" class="product-filter-btn">
+            <span>Yanmaya Dayanıklı Kapılar</span>
+          </a>
+        </nav>
+
+        <div class="products-grid" id="productsGrid">
+          <!-- Products will be loaded here -->
+        </div>
+
+        <div class="loading" id="loading">
+          <div class="loading-spinner"></div>
+          <p>Otel kapı modelleri yükleniyor...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Highlights -->
+    <section class="highlights-section">
+      <div class="container">
+        <div class="content-grid">
+          <article class="highlights-content">
+            <header>
+              <h2>Otel Kapılarımızın Özel Özellikleri</h2>
+            </header>
+
+            <p>
+              <strong>Otel serisi</strong> kapılarımız, konaklama tesislerinin özel gereksinimlerini
+              karşılamak için tasarlanmış <em>premium kalite ve şık tasarımlı</em> profesyonel
+              çözümlerdir. Her model lüks standartlara uygun olarak üretilir.
+            </p>
+
+            <h3>Konaklama Tesisleri İçin Özel Özellikler</h3>
+            <ul class="advantages-list">
+              <li><strong>Premium Yüzey:</strong> Lüks görünüm sağlayan özel kaplama</li>
+              <li><strong>Ses Yalıtımı:</strong> Misafir konforu için gelişmiş akustik performans</li>
+              <li><strong>Dayanıklılık:</strong> Yoğun kullanıma uygun özel yapı</li>
+              <li><strong>Şık Tasarım:</strong> Modern ve zarif estetik seçenekler</li>
+              <li><strong>Yangın Güvenliği:</strong> Konaklama tesisleri standartlarına uygun</li>
+              <li><strong>Kolay Bakım:</strong> Pratik temizlik ve uzun ömür</li>
+            </ul>
+
+            <h3>Kullanım Alanları</h3>
+            <p>Otel kapılarımız şu alanlarda kullanım için uygundur:</p>
+            <ul class="advantages-list">
+              <li><strong>Otel Odaları:</strong> Konforlu ve şık misafir deneyimi</li>
+              <li><strong>Apart Oteller:</strong> Modern ve dayanıklı çözümler</li>
+              <li><strong>Butik Oteller:</strong> Özel tasarım seçenekleri</li>
+              <li><strong>Pansiyonlar:</strong> Ekonomik ve kaliteli alternatifler</li>
+              <li><strong>Tatil Köyleri:</strong> Toplu proje çözümleri</li>
+              <li><strong>Konaklama Tesisleri:</strong> Çok amaçlı kullanım</li>
+            </ul>
+
+            <h3>Kalite Standartları</h3>
+            <p>Tüm otel kapılarımız TSE standartlarına uygun olarak üretilir ve
+            konaklama tesislerinin kalite gereksinimlerini karşılar. İhracat kalitesinde
+            üretim ile uluslararası projelerde de tercih edilir.</p>
+          </article>
+
+          <aside class="highlights-sidebar">
+            <div class="info-cards">
+              <div class="stat-card">
+                <div class="stat-number">6</div>
+                <div class="stat-label">MODEL</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">TSE</div>
+                <div class="stat-label">STANDART</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">A+</div>
+                <div class="stat-label">KALİTE</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">DAYANIM</div>
+              </div>
+            </div>
+
+            <div class="quick-contact">
+              <h3>Otel Proje Danışmanlığı</h3>
+              <p>Konaklama tesisiniz için özel çözümler</p>
+              <div class="contact-buttons">
+                <a href="tel:+905441690038" class="btn-contact-phone">🏨 Otel Uzmanı</a>
+                <a href="https://wa.me/905441690038" class="btn-contact-whatsapp" target="_blank" rel="noopener">💬 WhatsApp</a>
+              </div>
+
+              <div class="special-features">
+                <h4>Özel Hizmetler</h4>
+                <ul>
+                  <li>✓ Kalite sertifikası</li>
+                  <li>✓ Ses yalıtım raporu</li>
+                  <li>✓ Proje bazlı özelleştirme</li>
+                  <li>✓ Teknik destek</li>
+                </ul>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Specifications -->
+    <section class="technical-section">
+      <div class="container">
+        <h2>Teknik Özellikler</h2>
+        <div class="tech-grid">
+          <div class="tech-card">
+            <h3>Malzeme Özellikleri</h3>
+            <ul>
+              <li>Premium laminat yüzey</li>
+              <li>MDF çekirdek yapı</li>
+              <li>Su dirençli kenar bandı</li>
+              <li>Çelik kapı kasası seçeneği</li>
+            </ul>
+          </div>
+          <div class="tech-card">
+            <h3>Boyut Seçenekleri</h3>
+            <ul>
+              <li>Standart: 70cm x 200cm</li>
+              <li>Geniş: 80cm x 200cm</li>
+              <li>Çift kanat: 140cm x 200cm</li>
+              <li>Özel ölçü üretimi mevcut</li>
+            </ul>
+          </div>
+          <div class="tech-card">
+            <h3>Renk Seçenekleri</h3>
+            <ul>
+              <li>İtalyan Ceviz</li>
+              <li>Kestane</li>
+              <li>Tik</li>
+              <li>Özel renk seçenekleri</li>
+            </ul>
+          </div>
+          <div class="tech-card">
+            <h3>Aksesuarlar</h3>
+            <ul>
+              <li>Premium menteşeler</li>
+              <li>Şık kapı kolları</li>
+              <li>Otomatik kapanma sistemi</li>
+              <li>Cam panel seçenekleri</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>Konaklama Tesisiniz İçin Profesyonel Çözümler</h2>
+        <p>Otel, apart ve konaklama tesisleri için özel tasarlanmış kapı koleksiyonumuzla projelerinizi güvenilir çözümlerle tamamlayın</p>
+        <div class="cta-buttons">
+          <a href="tel:+905441690038" class="btn btn-tertiary">🏨 Otel Uzmanı Ara</a>
+          <a href="/iletisim" class="btn btn-primary">Otel Proje Danışmanlığı</a>
+          <a href="https://wa.me/905441690038" class="btn btn-secondary" target="_blank" rel="noopener">WhatsApp İletişim</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <Footer />
 </Layout>
 
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* Hero Section */
+  .hero {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    opacity: 0.95;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  }
+
+  .hero-badges {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  /* Products Section */
+  .products-section {
+    padding: 4rem 0;
+    background: #ffffff;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  .section-header p {
+    font-size: 1.1rem;
+    color: #6b7280;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .quote-button-section {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .btn-quote-main {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    text-decoration: none;
+  }
+
+  .btn-quote-main:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  }
+
+  /* Product Filters */
+  .product-filter-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .product-filter-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .product-filter-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(55, 65, 81, 0.4);
+  }
+
+  .product-filter-btn.active {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+  }
+
+  /* Products Grid */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .product-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+
+  .product-image {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    background: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-image img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+  }
+
+  .product-info {
+    padding: 1.5rem;
+  }
+
+  .product-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 0.5rem;
+  }
+
+  .product-features {
+    color: #6b7280;
+    font-size: 0.9rem;
+  }
+
+  /* Loading */
+  .loading {
+    text-align: center;
+    padding: 3rem;
+    display: none;
+  }
+
+  .loading-spinner {
+    border: 4px solid #f3f4f6;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Highlights Section */
+  .highlights-section {
+    padding: 5rem 0;
+    background: #f8fafc;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .highlights-content {
+    background: white;
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  }
+
+  .highlights-content h2 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 1.5rem;
+  }
+
+  .highlights-content h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #374151;
+    margin: 2.5rem 0 1rem;
+  }
+
+  .highlights-content p {
+    color: #4a5568;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .advantages-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .advantages-list li {
+    padding: 0.75rem 0;
+    color: #4a5568;
+    line-height: 1.6;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .advantages-list li:last-child {
+    border-bottom: none;
+  }
+
+  .advantages-list strong {
+    color: #1a202c;
+  }
+
+  /* Sidebar */
+  .highlights-sidebar {
+    position: sticky;
+    top: 2rem;
+  }
+
+  .info-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  }
+
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #667eea;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.5rem;
+    font-weight: 600;
+  }
+
+  .quick-contact {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .quick-contact h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  .quick-contact p {
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .btn-contact-phone,
+  .btn-contact-whatsapp {
+    display: block;
+    padding: 0.875rem 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-contact-phone {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+  }
+
+  .btn-contact-whatsapp {
+    background: #25d366;
+    color: white;
+  }
+
+  .btn-contact-phone:hover,
+  .btn-contact-whatsapp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  .special-features h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  .special-features ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .special-features li {
+    padding: 0.5rem 0;
+    color: #4a5568;
+  }
+
+  /* Technical Section */
+  .technical-section {
+    padding: 5rem 0;
+    background: white;
+  }
+
+  .technical-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 3rem;
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .tech-card {
+    background: #f8fafc;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .tech-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  .tech-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .tech-card li {
+    padding: 0.5rem 0;
+    color: #4a5568;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .tech-card li:last-child {
+    border-bottom: none;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  }
+
+  .cta-section p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary {
+    background: white;
+    color: #667eea;
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    backdrop-filter: blur(10px);
+    border: 2px solid white;
+  }
+
+  .btn-tertiary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .highlights-sidebar {
+      position: static;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: 3rem 0;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .hero-badges {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .products-grid {
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .tech-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .info-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+
+    .highlights-content {
+      padding: 2rem;
+    }
+
+    .highlights-content h2 {
+      font-size: 1.75rem;
+    }
+
+    .highlights-content h3 {
+      font-size: 1.5rem;
+    }
+
+    .product-filter-tabs {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+    }
+
+    .product-filter-btn {
+      width: 100%;
+      padding: 0.875rem 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn {
+      width: 100%;
+      max-width: 320px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      padding: 2rem 0;
+    }
+
+    .section-header h2 {
+      font-size: 1.75rem;
+    }
+
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .product-card {
+      max-width: 280px;
+      margin: 0 auto;
+    }
+  }
+</style>
+
+<script>
+  const otelModels = [];
+
+  const fileNames = [
+    "CihanpanDoor-Otel-Serisi-401-Italyan-Ceviz.webp",
+    "CihanpanDoor-Otel-Serisi-402-Kestane.webp",
+    "CihanpanDoor-Otel-Serisi-403-Tik.webp",
+    "CihanpanDoor-Otel-Serisi-404-Yildiz-Metal-Antrasit.webp",
+    "CihanpanDoor-Otel-Serisi-405-Vision-Gri.webp",
+    "CihanpanDoor-Otel-Serisi-406-Dark-Santana.webp"
+  ];
+
+  fileNames.forEach((fileName, index) => {
+    const parts = fileName.replace('.webp', '').split('-');
+    const modelNumber = parts[3];
+    const colorInfo = parts.slice(4).join(' ');
+    const displayName = `Otel ${modelNumber}`;
+
+    otelModels.push({
+      id: `otel-${modelNumber}`,
+      name: displayName,
+      category: 'otel',
+      subcategory: index < 3 ? 'premium' : 'luxury',
+      image: `/assets/img/otel-kapilari/${fileName}`,
+      fallbackImage: `https://picsum.photos/300/400?random=${index + 400}`,
+      altText: `CihanPan Door Otel Kapısı Model ${modelNumber} ${colorInfo} - Premium Kalite Konaklama Tesisi Kapısı`,
+      features: index < 3 ? 'Premium • Şık Tasarım' : 'Luxury • Özel Tasarım',
+      colorInfo: colorInfo
+    });
+  });
+
+  function renderProducts() {
+    const grid = document.getElementById('productsGrid');
+    const loading = document.getElementById('loading');
+
+    if (!grid || !loading) return;
+
+    loading.style.display = 'block';
+    grid.innerHTML = '';
+
+    setTimeout(() => {
+      if (otelModels.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
+            <h3 style="color: #6b7280; margin-bottom: 1rem;">Bu kategoride henüz ürün bulunmuyor</h3>
+            <p style="color: #9ca3af;">Yakında yeni otel kapı modelleri eklenecek.</p>
+          </div>
+        `;
+      } else {
+        otelModels.forEach((product) => {
+          const card = createProductCard(product);
+          grid.appendChild(card);
+        });
+      }
+
+      loading.style.display = 'none';
+    }, 300);
+  }
+
+  function createProductCard(product) {
+    const card = document.createElement('article');
+    card.className = 'product-card';
+    card.setAttribute('aria-label', `${product.name} ${product.colorInfo} otel kapısı modeli`);
+
+    card.innerHTML = `
+      <div class="product-image">
+        <img src="${product.image}"
+             alt="${product.altText}"
+             title="${product.name} ${product.colorInfo} - CihanPan Door Otel Kapısı"
+             loading="lazy"
+             width="300"
+             height="300"
+             onerror="this.src='${product.fallbackImage}'; this.alt='${product.name} Otel Kapısı Örneği';">
+      </div>
+      <div class="product-info">
+        <h3 class="product-title">${product.name}</h3>
+        <div class="product-features">${product.features}</div>
+        <div style="font-size: 0.8rem; color: #6b7280; margin-top: 0.25rem;">${product.colorInfo}</div>
+      </div>
+    `;
+
+    return card;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    renderProducts();
+  });
+</script>
 
 <Layout
   title="Otel Kapıları | Premium Seri Kayseri CihanPan Door"
