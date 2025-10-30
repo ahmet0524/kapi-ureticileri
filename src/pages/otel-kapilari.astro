@@ -14,7 +14,7 @@ const breadcrumbItems = [
   { name: "Otel Kapıları", href: "/otel-kapilari" }
 ];
 
-// ✅ SEO Schemas - Otel Kapıları (Laminoks formatında)
+// ✅ SEO Schemas - Otel Kapıları
 const otelSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
@@ -136,6 +136,24 @@ const breadcrumbSchema = {
 
 const allSchemas = [otelSchema, faqSchema, organizationSchema, breadcrumbSchema];
 ---
+
+<Layout
+  title="Otel Kapıları - CihanPan Door | Kayseri"
+  description="Kayseri'den üretilen otel ve konaklama tesisleri için özel tasarlanmış premium kapı modelleri. Şık tasarım, dayanıklı yapı, ses yalıtımlı."
+>
+  <Fragment slot="head">
+    {allSchemas.map(schema => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+  </Fragment>
+
+  <Header />
+  <Breadcrumbs items={breadcrumbItems} />
+
+  <!-- Sayfa içeriğiniz buraya gelecek -->
+
+  <Footer />
+</Layout>
 
 
 <Layout
