@@ -14,31 +14,71 @@ const breadcrumbItems = [
   { name: "Otel Kapıları", href: "/otel-kapilari" }
 ];
 
+// Ürün listesi
+const products = [
+  {
+    name: "Otel 401",
+    image: `${baseUrl}/assets/img/otel-kapilari/CihanpanDoor-Otel-Serisi-401-Italyan-Ceviz.webp`,
+    description: "Otel 401 model kapı"
+  },
+  {
+    name: "Otel 402",
+    image: `${baseUrl}/assets/img/otel-kapilari/CihanpanDoor-Otel-Serisi-402.webp`,
+    description: "Otel 402 model kapı"
+  },
+  {
+    name: "Otel 403",
+    image: `${baseUrl}/assets/img/otel-kapilari/CihanpanDoor-Otel-Serisi-403.webp`,
+    description: "Otel 403 model kapı"
+  },
+  {
+    name: "Otel 404",
+    image: `${baseUrl}/assets/img/otel-kapilari/CihanpanDoor-Otel-Serisi-404.webp`,
+    description: "Otel 404 model kapı"
+  },
+  {
+    name: "Otel 405",
+    image: `${baseUrl}/assets/img/otel-kapilari/CihanpanDoor-Otel-Serisi-405.webp`,
+    description: "Otel 405 model kapı"
+  },
+  {
+    name: "Otel 406",
+    image: `${baseUrl}/assets/img/otel-kapilari/CihanpanDoor-Otel-Serisi-406.webp`,
+    description: "Otel 406 model kapı"
+  }
+];
+
 const otelSchema = {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
+  "@type": "ItemList",
   "name": "Otel Kapıları - Premium Seri",
   "description": "Kayseri'den üretilen otel ve konaklama tesisleri için özel tasarlanmış premium kapı modelleri. Şık tasarım, dayanıklı yapı, ses yalıtımlı.",
   "url": currentUrl,
-  "inLanguage": "tr-TR"
+  "numberOfItems": products.length,
+  "itemListElement": products.map((product, index) => ({
+    "@type": "Product",
+    "position": index + 1,
+    "name": product.name,
+    "image": product.image,
+    "description": product.description,
+    "brand": {
+      "@type": "Brand",
+      "name": "CihanPan Door"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": currentUrl,
+      "priceCurrency": "TRY",
+      "availability": "https://schema.org/InStock",
+      "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
+      "seller": {
+        "@type": "Organization",
+        "name": "CihanPan Door",
+        "url": baseUrl
+      }
+    }
+  }))
 };
-"offers": {
-          "@type": "AggregateOffer",
-          "url": currentUrl,
-          "priceCurrency": "TRY",
-          "lowPrice": "1",
-          "highPrice": "99999",
-          "offerCount": "247",
-          "availability": "https://schema.org/InStock",
-          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
-          "businessFunction": "http://purl.org/goodrelations/v1#Sell",
-          "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business",
-          "seller": {
-            "@type": "Organization",
-            "name": "CihanPan Door",
-            "url": baseUrl
-          }
-        },
 
 const organizationSchema = {
   "@context": "https://schema.org",
