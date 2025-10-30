@@ -22,6 +22,23 @@ const otelSchema = {
   "url": currentUrl,
   "inLanguage": "tr-TR"
 };
+"offers": {
+          "@type": "AggregateOffer",
+          "url": currentUrl,
+          "priceCurrency": "TRY",
+          "lowPrice": "1",
+          "highPrice": "99999",
+          "offerCount": "247",
+          "availability": "https://schema.org/InStock",
+          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
+          "businessFunction": "http://purl.org/goodrelations/v1#Sell",
+          "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business",
+          "seller": {
+            "@type": "Organization",
+            "name": "CihanPan Door",
+            "url": baseUrl
+          }
+        },
 
 const organizationSchema = {
   "@context": "https://schema.org",
