@@ -16,21 +16,21 @@ const breadcrumbItems = [
 
 const otelSchema = {
   "@context": "https://schema.org",
-  "@type": "ItemList",
+  "@type": "CollectionPage",
   "name": "Otel Kapıları - Premium Seri",
   "description": "Kayseri'den üretilen otel ve konaklama tesisleri için özel tasarlanmış premium kapı modelleri. Şık tasarım, dayanıklı yapı, ses yalıtımlı.",
-"url": currentUrl,
+  "url": currentUrl,
   "inLanguage": "tr-TR",
   "mainEntity": {
     "@type": "ItemList",
-    "name": "Laminoks Kapı Modelleri",
+    "name": "Otel Kapı Modelleri",
     "numberOfItems": 60,
     "itemListElement": [
       {
         "@type": "Product",
-        "name": "Otel Kapısı",
-        "description": "Su geçirmez ve antibakteriyel özellikli Otel kapısı. Nemli ortamlarda çarpma yapmaz, bakımı kolaydır.",
-        "image": `${baseUrl}/assets/images/otel-kapi.webp`,
+        "name": "Otel (Melamin) Kapısı",
+        "description": "Su geçirmez, antibakteriyel, ses yalıtımlı otel iç oda kapısı. CE belgeli, 5 yıl garanti.",
+        "image": `${baseUrl}/assets/img/otel-kapilari/CihanpanDoor-Otel-Serisi-401-Italyan-Ceviz.webp`,
         "manufacturer": {
           "@type": "Organization",
           "name": "CihanPan Door",
@@ -38,7 +38,7 @@ const otelSchema = {
           "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`
         },
         "category": "Otel Kapısı",
-        "material": "Laminoks (Yüksek Basınçlı Melamin) veya PVC",
+        "material": "Laminoks veya PVC",
         "brand": {
           "@type": "Brand",
           "name": "CihanPan Door"
@@ -47,8 +47,8 @@ const otelSchema = {
           "@type": "AggregateOffer",
           "url": currentUrl,
           "priceCurrency": "TRY",
-          "lowPrice": "1",
-          "highPrice": "99999",
+          "lowPrice": "10000",
+          "highPrice": "12000",
           "offerCount": "60",
           "availability": "https://schema.org/InStock",
           "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
