@@ -14,70 +14,85 @@ const breadcrumbItems = [
   { name: "Otel Kapıları", href: "/otel-kapilari" }
 ];
 
-// Ürün listesi
-const products = [
-  {
-    name: "Otel 401",
-    image: `${baseUrl}/assets/img/otel-kapilari/CihanpanDoor-Otel-Serisi-401-Italyan-Ceviz.webp`,
-    description: "Otel 401 model kapı"
-  },
-  {
-    name: "Otel 402",
-    image: `${baseUrl}/assets/img/otel-kapilari/CihanpanDoor-Otel-Serisi-402.webp`,
-    description: "Otel 402 model kapı"
-  },
-  {
-    name: "Otel 403",
-    image: `${baseUrl}/assets/img/otel-kapilari/CihanpanDoor-Otel-Serisi-403.webp`,
-    description: "Otel 403 model kapı"
-  },
-  {
-    name: "Otel 404",
-    image: `${baseUrl}/assets/img/otel-kapilari/CihanpanDoor-Otel-Serisi-404.webp`,
-    description: "Otel 404 model kapı"
-  },
-  {
-    name: "Otel 405",
-    image: `${baseUrl}/assets/img/otel-kapilari/CihanpanDoor-Otel-Serisi-405.webp`,
-    description: "Otel 405 model kapı"
-  },
-  {
-    name: "Otel 406",
-    image: `${baseUrl}/assets/img/otel-kapilari/CihanpanDoor-Otel-Serisi-406.webp`,
-    description: "Otel 406 model kapı"
-  }
-];
-
 const otelSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   "name": "Otel Kapıları - Premium Seri",
   "description": "Kayseri'den üretilen otel ve konaklama tesisleri için özel tasarlanmış premium kapı modelleri. Şık tasarım, dayanıklı yapı, ses yalıtımlı.",
-  "url": currentUrl,
-  "numberOfItems": products.length,
-  "itemListElement": products.map((product, index) => ({
-    "@type": "Product",
-    "position": index + 1,
-    "name": product.name,
-    "image": product.image,
-    "description": product.description,
-    "brand": {
-      "@type": "Brand",
-      "name": "CihanPan Door"
+"url": currentUrl,
+  "inLanguage": "tr-TR",
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "Laminoks Kapı Modelleri",
+    "numberOfItems": 60,
+    "itemListElement": [
+      {
+        "@type": "Product",
+        "name": "Otel Kapısı",
+        "description": "Su geçirmez ve antibakteriyel özellikli Otel kapısı. Nemli ortamlarda çarpma yapmaz, bakımı kolaydır.",
+        "image": `${baseUrl}/assets/images/otel-kapi.webp`,
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "CihanPan Door",
+          "url": baseUrl,
+          "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`
+        },
+        "category": "Otel Kapısı",
+        "material": "Laminoks (Yüksek Basınçlı Melamin) veya PVC",
+        "brand": {
+          "@type": "Brand",
+          "name": "CihanPan Door"
+        },
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": currentUrl,
+          "priceCurrency": "TRY",
+          "lowPrice": "1",
+          "highPrice": "99999",
+          "offerCount": "60",
+          "availability": "https://schema.org/InStock",
+          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
+          "businessFunction": "http://purl.org/goodrelations/v1#Sell",
+          "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business",
+          "seller": {
+            "@type": "Organization",
+            "name": "CihanPan Door",
+            "url": baseUrl
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "reviewCount": "152",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      }
+    ]
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Otel kapısı özellikleri nelerdir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Laminoks kapılar, yüksek basınçlı melamin (HPL) kaplama ile üretilen, su geçirmez ve antibakteriyel özellikli iç oda kapılarıdır. Nemli ortamlarda çarpma yapmaz, çizilmeye dayanıklıdır, bakımı kolaydır ve ekonomiktir."
+      }
     },
-    "offers": {
-      "@type": "Offer",
-      "url": currentUrl,
-      "priceCurrency": "TRY",
-      "availability": "https://schema.org/InStock",
-      "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
-      "seller": {
-        "@type": "Organization",
-        "name": "CihanPan Door",
-        "url": baseUrl
+    {
+      "@type": "Question",
+      "name": "Otel kapı fiyatları ne kadardır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Otel kapı fiyatları 10000₺-12000₺ arasında değişir. Model, boyut ve aksesuarlara göre fiyat farklılık gösterir. Toptan alımlarda üretici firma avantajı ile özel fiyatlar sunulmaktadır."
       }
     }
-  }))
+  ]
 };
 
 const organizationSchema = {
@@ -85,7 +100,23 @@ const organizationSchema = {
   "@type": "Organization",
   "name": "CihanPan Door",
   "url": baseUrl,
-  "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`
+  "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`,
+  "description": "Kayseri'den kaliteli Otel (melamin) iç oda kapısı üreticisi. 80+ model, CE belgeli ürünler, B2B toptan satış.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Organize Sanayi Bölgesi 29. Sokak No:28",
+    "addressLocality": "Kayseri",
+    "addressRegion": "Kayseri",
+    "postalCode": "38070",
+    "addressCountry": "TR"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+90-544-169-0038",
+    "contactType": "Sales",
+    "availableLanguage": ["Turkish", "English", "German", "Arabic"],
+    "areaServed": ["TR", "EU", "ME"]
+  }
 };
 
 const breadcrumbSchema = {
@@ -98,7 +129,10 @@ const breadcrumbSchema = {
     "item": item.href ? `${baseUrl}${item.href}` : currentUrl
   }))
 };
+
+const allSchemas = [otelSchema, faqSchema, organizationSchema, breadcrumbSchema];
 ---
+
 
 <Layout
   title="Otel Kapıları | Premium Seri Kayseri CihanPan Door"
