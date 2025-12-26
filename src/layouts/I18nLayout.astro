@@ -1,0 +1,162 @@
+---
+// ============================================
+// 5. src/layouts/I18nLayout.astro - FIXED
+// ============================================
+
+import { getLangFromUrl, useTranslations, getAlternateLanguages, getLanguageInfo } from '../i18n/utils';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  canonical?: string;
+  schema?: any;
+  ogImage?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+}
+
+// ✅ FIX: Astro.props'u doğru şekilde al
+const props = Astro.props as Props;
+
+// ✅ FIX: Default değerleri düzgün ata
+const pageTitle = props.title || 'CihanPan Door';
+const pageDescription = props.description || '';
+const pageKeywords = props.keywords;
+const pageCanonical = props.canonical;
+const pageSchema = props.schema;
+const pageOgImage = props.ogImage;
+const pageOgTitle = props.ogTitle;
+const pageOgDescription = props.ogDescription;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const langInfo = getLanguageInfo(lang);
+
+const baseUrl = 'https://kapi-ureticileri.vercel.app';
+const currentPath = Astro.url.pathname.replace(/^\/(en|ar)/, '');
+const canonicalURL = pageCanonical || `${baseUrl}${lang === 'tr' ? currentPath : `/${lang}${currentPath}`}`;
+
+// OG için title ve description (eğer özel değerler varsa onları kullan)
+const finalOgTitle = pageOgTitle || pageTitle;
+const finalOgDescription = pageOgDescription || pageDescription;
+
+// Alternate languages
+const alternateLanguages = getAlternateLanguages(currentPath, baseUrl);
+
+// Add x-default
+alternateLanguages.push({
+  lang: 'x-default' as any,
+  url: `${baseUrl}${currentPath}`,
+  name: 'Default'
+});
+
+// OG Image
+const finalOgImage = pageOgImage || '/assets/img/og-default.webp';
+const ogImageUrl = new URL(finalOgImage, baseUrl);
+---
+
+<!DOCTYPE html>
+<html lang={langInfo.code} dir={langInfo.dir}>
+  <head>
+    <!-- Google Tag Manager -->
+    <script is:inline>
+      (function(w,d,s,l,i){
+        w[l]=w[l]||[];
+        w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),
+            dl=l!='dataLayer'?'&l='+l:'';
+        j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+        f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MS3MJ2QR');
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#667eea" />
+
+    <!-- Title -->
+    <title>{pageTitle}</title>
+    
+    <!-- Meta Tags -->
+    {pageDescription && <meta name="description" content={pageDescription} />}
+    {pageKeywords && <meta name="keywords" content={pageKeywords} />}
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Hreflang -->
+    {alternateLanguages.map(({ lang: hrefLang, url }) => (
+      <link rel="alternate" hreflang={hrefLang} href={url} />
+    ))}
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <!-- Open Graph -->
+    <meta property="og:locale" content={langInfo.locale} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={finalOgTitle} />
+    {finalOgDescription && <meta property="og:description" content={finalOgDescription} />}
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content="CihanPan Door" />
+    <meta property="og:image" content={ogImageUrl.toString()} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={finalOgTitle} />
+    {finalOgDescription && <meta name="twitter:description" content={finalOgDescription} />}
+    <meta name="twitter:image" content={ogImageUrl.toString()} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Schema -->
+    {pageSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
+    )}
+  </head>
+
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-MS3MJ2QR"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      ></iframe>
+    </noscript>
+
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: #2d3748;
+  }
+
+  /* RTL Support for Arabic */
+  html[dir="rtl"] {
+    text-align: right;
+  }
+
+  html[dir="rtl"] .container {
+    direction: rtl;
+  }
+</style>

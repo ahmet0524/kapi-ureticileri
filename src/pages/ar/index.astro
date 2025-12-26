@@ -1,39 +1,30 @@
 ---
-// src/pages/index.astro - TÜRKÇE (SEO TAMAMEN DÜZELTİLMİŞ)
-// PART 1/3 - Schema, Head Section ve HTML
+// ============================================
+// ARAPÇA VERSION - src/pages/ar/index.astro
+// COMPLETE - SEO Optimized
+// ============================================
 
-import I18nLayout from '../layouts/I18nLayout.astro';
-import I18nHeader from '../components/I18nHeader.astro';
-import I18nFooter from '../components/I18nFooter.astro';
+import I18nLayout from '../../layouts/I18nLayout.astro';
+import I18nHeader from '../../components/I18nHeader.astro';
+import I18nFooter from '../../components/I18nFooter.astro';
 
 const baseUrl = 'https://kapi-ureticileri.vercel.app';
-const currentUrl = baseUrl;
-
-// ============================================
-// ✅ SEO FIX 1: Zenginleştirilmiş Schema
-// ============================================
+const currentUrl = `${baseUrl}/ar`;
 
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "CihanPan Door - İç Oda Kapısı Üreticileri",
-  "alternateName": "CihanPan Kapı Fabrikası",
-  "url": baseUrl,
-  "description": "Türkiye'nin önde gelen iç oda kapısı üreticileri rehberi. PVC, laminoks, elitpan kapı modelleri. Avrupa ve Orta Doğu'ya ihracat.",
-  "inLanguage": "tr-TR",
+  "name": "CihanPan Door - مصنعو الأبواب الداخلية تركيا",
+  "url": currentUrl,
+  "description": "الشركات المصنعة الرائدة للأبواب الداخلية في تركيا. موديلات أبواب PVC ولامينوكس وإليتبان. التصدير إلى أوروبا والشرق الأوسط.",
+  "inLanguage": "ar-AR",
   "potentialAction": {
     "@type": "SearchAction",
     "target": {
       "@type": "EntryPoint",
-      "urlTemplate": `${baseUrl}/ara?q={search_term_string}`
+      "urlTemplate": `${baseUrl}/ar/search?q={search_term_string}`
     },
     "query-input": "required name=search_term_string"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "CihanPan Door",
-    "url": baseUrl,
-    "logo": `${baseUrl}/assets/img/logo/header-logo1.webp`
   }
 };
 
@@ -41,143 +32,94 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "CihanPan Door",
-  "legalName": "CihanPan Kapı Sanayi ve Ticaret Ltd. Şti.",
   "url": baseUrl,
-  "logo": `${baseUrl}/assets/img/logo/header-logo1.webp`,
-  "image": `${baseUrl}/assets/img/og/homepage-og.webp`,
-  "description": "1995'ten beri Kayseri'de iç oda kapısı üretimi. TSE sertifikalı, CE belgeli PVC, laminoks ve özel proje kapıları.",
-  "foundingDate": "1995",
-  "slogan": "Kaliteli Kapı, Güvenilir Üretici",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Organize Sanayi Bölgesi 29. Sokak No:28",
-    "addressLocality": "Kayseri",
-    "addressRegion": "Kayseri",
-    "postalCode": "38070",
-    "addressCountry": "TR"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "38.7312",
-    "longitude": "35.4787"
-  },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+90-544-169-0038",
-    "contactType": "Sales",
-    "availableLanguage": ["Turkish", "English", "German", "Arabic"],
-    "areaServed": ["TR", "EU", "ME"]
-  },
-  "sameAs": [
-    "https://www.cihanpandoor.com",
-    "https://www.instagram.com/cihanpan_door",
-    "https://www.linkedin.com/company/cihanpan-door"
-  ]
+  "description": "تصنيع الأبواب الداخلية منذ عام 1995 في قيصري، تركيا. معتمد TSE، معلم CE."
 };
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Ana Sayfa",
-      "item": baseUrl
-    }
-  ]
-};
-
-const allSchemas = [websiteSchema, organizationSchema, breadcrumbSchema];
+const allSchemas = [websiteSchema, organizationSchema];
 ---
 
 <I18nLayout
-  title="İç Oda Kapısı Üreticileri | Türkiye'den Toptan Kapı İhracatı - CihanPan Door"
-  description="Türkiye'nin önde gelen iç oda kapısı üreticileri arasında yer alan CihanPan Door'dan toptan kapı tedarik edin. PVC, laminoks ve otel kapıları ile Avrupa ve Orta Doğu'ya ihracat yapıyoruz. 1995'ten beri kaliteli üretim."
-  keywords="iç oda kapısı, kapı üreticileri, pvc kapı, laminoks kapı, otel kapısı, hastane kapısı, kapı ihracatı, türkiye kapı fabrikası, toptan kapı, kayseri kapı"
+  title="مصنعو الأبواب الداخلية تركيا | تصدير الأبواب بالجملة - CihanPan Door"
+  description="احصل على أبواب داخلية بالجملة من CihanPan Door، الشركة المصنعة الرائدة في تركيا. أبواب PVC ولامينوكس وأبواب الفنادق مع التصدير إلى أوروبا والشرق الأوسط. التصنيع منذ عام 1995."
+  keywords="مصنعو الأبواب الداخلية تركيا، تصدير الأبواب بالجملة، مصنع أبواب pvc، أبواب الفنادق، أبواب المستشفيات، تصدير الأبواب من تركيا، مصنع أبواب تركي"
   canonical={currentUrl}
   ogImage="/assets/img/og/homepage-og.webp"
-  ogTitle="İç Oda Kapısı Üreticileri | CihanPan Door Türkiye"
-  ogDescription="1995'ten beri Kayseri'de üretim. PVC, laminoks, elitpan kapılar. 50+ ülkeye ihracat. TSE sertifikalı, 2 yıl garanti."
   schema={allSchemas}
 >
   <I18nHeader />
 
   <main id="main-content">
-    <!-- ✅ SEO FIX 2: Semantic HTML + ARIA -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="container">
         <div class="hero-content">
           <h1 id="hero-title" class="hero-title">
-            Türkiye'nin En Kaliteli İç Oda Kapıları
+            أفضل الأبواب الداخلية في تركيا
           </h1>
           <p class="hero-subtitle">
-            1995'ten beri Kayseri'de üretim yapan CihanPan Door, PVC, laminoks ve elitpan
-            kapılarla projelerinizi tamamlıyor. Avrupa ve Orta Doğu'ya ihracat yapıyoruz.
+            التصنيع منذ عام 1995 في قيصري، تركيا. توفر CihanPan Door أبواب PVC ولامينوكس
+            وإليتبان لمشاريعك. التصدير إلى أوروبا والشرق الأوسط.
           </p>
 
           <div class="hero-stats">
             <div class="stat-item">
-              <strong>1000+</strong>
-              <span>Model Seçeneği</span>
+              <strong>+1000</strong>
+              <span>خيار موديل</span>
             </div>
             <div class="stat-item">
-              <strong>50+</strong>
-              <span>İhracat Ülkesi</span>
+              <strong>+50</strong>
+              <span>دولة التصدير</span>
             </div>
             <div class="stat-item">
               <strong>29</strong>
-              <span>Yıl Tecrübe</span>
+              <span>سنة من الخبرة</span>
             </div>
           </div>
 
           <div class="cta-buttons">
-            <a href="/iletisim" class="btn btn-primary" aria-label="Ücretsiz fiyat teklifi almak için iletişim formuna git">
+            <a href="/ar/iletisim" class="btn btn-primary" aria-label="احصل على عرض أسعار مجاني عبر نموذج الاتصال">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
                 <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-width="2"/>
               </svg>
-              Ücretsiz Teklif Al
+              احصل على عرض أسعار مجاني
             </a>
-            <a href="https://www.cihanpandoor.com/E-Katalog.pdf" class="btn btn-secondary" target="_blank" rel="noopener" aria-label="Ürün kataloğunu PDF olarak indir">
+            <a href="https://www.cihanpandoor.com/E-Katalog.pdf" class="btn btn-secondary" target="_blank" rel="noopener" aria-label="قم بتنزيل كتالوج المنتج بصيغة PDF">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
                 <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4m14-7l-5-5m0 0L7 8m5-5v12" stroke-width="2"/>
               </svg>
-              Katalog İndir
+              تحميل الكتالوج
             </a>
-            <a href="https://wa.me/905441690038" class="btn btn-whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp üzerinden iletişime geç">
+            <a href="https://wa.me/905441690038" class="btn btn-whatsapp" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.89 3.488"/>
               </svg>
-              WhatsApp
+              واتساب
             </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ✅ SEO FIX 3: Internal Linking + Structured Categories -->
     <section class="categories" aria-labelledby="categories-title">
       <div class="container">
         <header class="section-header">
-          <h2 id="categories-title">Kapı Kategorilerimiz</h2>
-          <p>Her proje için en uygun kapı çözümü</p>
+          <h2 id="categories-title">فئات الأبواب لدينا</h2>
+          <p>حل الباب المثالي لكل مشروع</p>
         </header>
 
         <div class="categories-grid">
           <article class="category-card">
             <div class="category-content">
-              <h3>
-                <a href="/pvc-kapilar" class="category-title-link">PVC Kapılar</a>
-              </h3>
-              <p>Su geçirmez ve antibakteriyel özellikli PVC kapılar. Mutfak, banyo ve nemli ortamlar için ideal çözüm.</p>
+              <h3><a href="/ar/pvc-kapilar" class="category-title-link">أبواب PVC</a></h3>
+              <p>أبواب PVC مقاومة للماء ومضادة للبكتيريا. مثالية للمطابخ والحمامات والبيئات الرطبة.</p>
               <ul class="feature-list">
-                <li>✓ Su geçirmez yapı</li>
-                <li>✓ Antibakteriyel yüzey</li>
-                <li>✓ Kolay temizlik</li>
-                <li>✓ 300+ model seçeneği</li>
+                <li>✓ بنية مقاومة للماء</li>
+                <li>✓ سطح مضاد للبكتيريا</li>
+                <li>✓ سهل التنظيف</li>
+                <li>✓ أكثر من 300 خيار موديل</li>
               </ul>
-              <a href="/pvc-kapilar" class="category-link">
-                Tüm Modelleri Gör
+              <a href="/ar/pvc-kapilar" class="category-link">
+                عرض جميع الموديلات
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
                   <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2"/>
                 </svg>
@@ -187,18 +129,16 @@ const allSchemas = [websiteSchema, organizationSchema, breadcrumbSchema];
 
           <article class="category-card">
             <div class="category-content">
-              <h3>
-                <a href="/laminoks-kapilar" class="category-title-link">Laminoks Kapılar</a>
-              </h3>
-              <p>MDF yüzeyli, doğal ahşap görünümlü laminoks kapılar. Modern ve klasik tasarımlar.</p>
+              <h3><a href="/ar/laminoks-kapilar" class="category-title-link">أبواب لامينوكس</a></h3>
+              <p>أبواب بسطح MDF ومظهر خشبي طبيعي. تصاميم حديثة وكلاسيكية.</p>
               <ul class="feature-list">
-                <li>✓ Doğal ahşap görünümü</li>
-                <li>✓ MDF dayanıklılık</li>
-                <li>✓ Çizilmeye dayanıklı</li>
-                <li>✓ 250+ model seçeneği</li>
+                <li>✓ مظهر خشبي طبيعي</li>
+                <li>✓ متانة MDF</li>
+                <li>✓ مقاوم للخدش</li>
+                <li>✓ أكثر من 250 خيار موديل</li>
               </ul>
-              <a href="/laminoks-kapilar" class="category-link">
-                Tüm Modelleri Gör
+              <a href="/ar/laminoks-kapilar" class="category-link">
+                عرض جميع الموديلات
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
                   <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2"/>
                 </svg>
@@ -208,18 +148,16 @@ const allSchemas = [websiteSchema, organizationSchema, breadcrumbSchema];
 
           <article class="category-card">
             <div class="category-content">
-              <h3>
-                <a href="/elitpan-kapilar" class="category-title-link">Elitpan Kapılar</a>
-              </h3>
-              <p>Premium segment, yüksek kaliteli elitpan kapı modelleri. Lüks projeler için.</p>
+              <h3><a href="/ar/elitpan-kapilar" class="category-title-link">أبواب إليتبان</a></h3>
+              <p>موديلات أبواب إليتبان من الفئة المميزة عالية الجودة. للمشاريع الفاخرة.</p>
               <ul class="feature-list">
-                <li>✓ Premium kalite</li>
-                <li>✓ Özel tasarımlar</li>
-                <li>✓ Uzun ömürlü</li>
-                <li>✓ 150+ model seçeneği</li>
+                <li>✓ جودة عالية</li>
+                <li>✓ تصاميم مخصصة</li>
+                <li>✓ طويلة الأمد</li>
+                <li>✓ أكثر من 150 خيار موديل</li>
               </ul>
-              <a href="/elitpan-kapilar" class="category-link">
-                Tüm Modelleri Gör
+              <a href="/ar/elitpan-kapilar" class="category-link">
+                عرض جميع الموديلات
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
                   <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2"/>
                 </svg>
@@ -229,18 +167,16 @@ const allSchemas = [websiteSchema, organizationSchema, breadcrumbSchema];
 
           <article class="category-card">
             <div class="category-content">
-              <h3>
-                <a href="/hastane-kapilari" class="category-title-link">Hastane Kapıları</a>
-              </h3>
-              <p>Hijyenik, dayanıklı ve antibakteriyel hastane kapıları. Sağlık kuruluşları için özel.</p>
+              <h3><a href="/ar/hastane-kapilari" class="category-title-link">أبواب المستشفيات</a></h3>
+              <p>أبواب مستشفيات صحية ومتينة ومضادة للبكتيريا. خاصة للمرافق الصحية.</p>
               <ul class="feature-list">
-                <li>✓ Antibakteriyel özellik</li>
-                <li>✓ Kolay dezenfeksiyon</li>
-                <li>✓ Darbe dayanıklı</li>
-                <li>✓ TSE sertifikalı</li>
+                <li>✓ خاصية مضادة للبكتيريا</li>
+                <li>✓ سهل التعقيم</li>
+                <li>✓ مقاوم للصدمات</li>
+                <li>✓ معتمد TSE</li>
               </ul>
-              <a href="/hastane-kapilari" class="category-link">
-                Tüm Modelleri Gör
+              <a href="/ar/hastane-kapilari" class="category-link">
+                عرض جميع الموديلات
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
                   <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2"/>
                 </svg>
@@ -250,18 +186,16 @@ const allSchemas = [websiteSchema, organizationSchema, breadcrumbSchema];
 
           <article class="category-card">
             <div class="category-content">
-              <h3>
-                <a href="/otel-kapilari" class="category-title-link">Otel Kapıları</a>
-              </h3>
-              <p>Ses yalıtımlı, estetik ve dayanıklı otel kapıları. Konaklama tesisleri için.</p>
+              <h3><a href="/ar/otel-kapilari" class="category-title-link">أبواب الفنادق</a></h3>
+              <p>أبواب فنادق عازلة للصوت وجمالية ومتينة. لمنشآت الإقامة.</p>
               <ul class="feature-list">
-                <li>✓ Ses yalıtımı</li>
-                <li>✓ Otomatik kapanma sistemi</li>
-                <li>✓ Yangına dayanıklı</li>
-                <li>✓ Özel tasarım seçenekleri</li>
+                <li>✓ عزل الصوت</li>
+                <li>✓ نظام إغلاق تلقائي</li>
+                <li>✓ مقاوم للحريق</li>
+                <li>✓ خيارات تصميم مخصصة</li>
               </ul>
-              <a href="/otel-kapilari" class="category-link">
-                Tüm Modelleri Gör
+              <a href="/ar/otel-kapilari" class="category-link">
+                عرض جميع الموديلات
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
                   <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2"/>
                 </svg>
@@ -271,18 +205,16 @@ const allSchemas = [websiteSchema, organizationSchema, breadcrumbSchema];
 
           <article class="category-card">
             <div class="category-content">
-              <h3>
-                <a href="/yangina-dayanikli-kapilar" class="category-title-link">Yangına Dayanıklı Kapılar</a>
-              </h3>
-              <p>CE belgeli, yangına dayanıklı güvenlik kapıları. Bina güvenliği için kritik.</p>
+              <h3><a href="/ar/yangina-dayanikli-kapilar" class="category-title-link">أبواب مقاومة للحريق</a></h3>
+              <p>أبواب أمنية معتمدة CE ومقاومة للحريق. حرجة لسلامة المبنى.</p>
               <ul class="feature-list">
-                <li>✓ CE sertifikalı</li>
-                <li>✓ 30-120 dk yangın dayanımı</li>
-                <li>✓ Duman sızdırmazlık</li>
-                <li>✓ Güvenlik kilidi sistemi</li>
+                <li>✓ معتمد CE</li>
+                <li>✓ مقاومة حريق 30-120 دقيقة</li>
+                <li>✓ إحكام الدخان</li>
+                <li>✓ نظام قفل أمني</li>
               </ul>
-              <a href="/yangina-dayanikli-kapilar" class="category-link">
-                Tüm Modelleri Gör
+              <a href="/ar/yangina-dayanikli-kapilar" class="category-link">
+                عرض جميع الموديلات
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
                   <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2"/>
                 </svg>
@@ -293,12 +225,11 @@ const allSchemas = [websiteSchema, organizationSchema, breadcrumbSchema];
       </div>
     </section>
 
-    <!-- Features Section -->
     <section class="features" aria-labelledby="features-title">
       <div class="container">
         <header class="section-header">
-          <h2 id="features-title">Neden CihanPan Door?</h2>
-          <p>29 yıldır güvenilir üretim</p>
+          <h2 id="features-title">لماذا CihanPan Door؟</h2>
+          <p>29 عامًا من التصنيع الموثوق</p>
         </header>
 
         <div class="features-grid">
@@ -308,8 +239,8 @@ const allSchemas = [websiteSchema, organizationSchema, breadcrumbSchema];
                 <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"/>
               </svg>
             </div>
-            <h3>TSE Sertifikalı Üretim</h3>
-            <p>Tüm ürünlerimiz TSE standartlarına uygun olarak üretilmektedir</p>
+            <h3>إنتاج معتمد من TSE</h3>
+            <p>جميع منتجاتنا مصنعة وفقًا لمعايير TSE</p>
           </div>
 
           <div class="feature-item">
@@ -318,8 +249,8 @@ const allSchemas = [websiteSchema, organizationSchema, breadcrumbSchema];
                 <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-width="2"/>
               </svg>
             </div>
-            <h3>Hızlı Teslimat</h3>
-            <p>Standart ürünlerde 2-3 hafta, özel üretimlerde 4-6 hafta teslimat süresi</p>
+            <h3>توصيل سريع</h3>
+            <p>2-3 أسابيع للمنتجات القياسية، 4-6 أسابيع للطلبات المخصصة</p>
           </div>
 
           <div class="feature-item">
@@ -328,8 +259,8 @@ const allSchemas = [websiteSchema, organizationSchema, breadcrumbSchema];
                 <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-width="2"/>
               </svg>
             </div>
-            <h3>2 Yıl Garanti</h3>
-            <p>Tüm ürünlerimizde 2 yıl üretici garantisi</p>
+            <h3>ضمان لمدة عامين</h3>
+            <p>ضمان الشركة المصنعة لمدة عامين على جميع المنتجات</p>
           </div>
 
           <div class="feature-item">
@@ -338,20 +269,19 @@ const allSchemas = [websiteSchema, organizationSchema, breadcrumbSchema];
                 <path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"/>
               </svg>
             </div>
-            <h3>50+ Ülkeye İhracat</h3>
-            <p>Avrupa, Orta Doğu ve Afrika'ya güvenilir ihracat partneri</p>
+            <h3>التصدير لأكثر من 50 دولة</h3>
+            <p>شريك تصدير موثوق إلى أوروبا والشرق الأوسط وأفريقيا</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CTA Section -->
     <section class="cta-section">
       <div class="container">
-        <h2>Projeniz için en uygun kapı çözümünü bulalım</h2>
-        <p>Uzman ekibimiz size yardımcı olmak için hazır. Ücretsiz danışmanlık ve fiyat teklifi alın.</p>
+        <h2>دعنا نجد حل الباب المثالي لمشروعك</h2>
+        <p>فريقنا الخبير جاهز للمساعدة. احصل على استشارة مجانية وعرض أسعار.</p>
         <div class="cta-buttons">
-          <a href="/iletisim" class="btn btn-light">İletişim Formu</a>
+          <a href="/ar/iletisim" class="btn btn-light">نموذج الاتصال</a>
           <a href="tel:+905441690038" class="btn btn-outline">📞 +90 544 169 00 38</a>
         </div>
       </div>
@@ -361,8 +291,51 @@ const allSchemas = [websiteSchema, organizationSchema, breadcrumbSchema];
   <I18nFooter />
 </I18nLayout>
 
+<!-- Same CSS as Turkish version + RTL adjustments -->
 
 <style>
+  /* RTL-specific adjustments for Arabic */
+  html[dir="rtl"] .category-link {
+    flex-direction: row-reverse;
+  }
+
+  html[dir="rtl"] .category-link svg {
+    transform: rotate(180deg);
+  }
+
+  html[dir="rtl"] .category-link:hover svg {
+    transform: rotate(180deg) translateX(-4px);
+  }
+
+  html[dir="rtl"] .hero-stats {
+    direction: rtl;
+  }
+
+  html[dir="rtl"] .btn svg {
+    margin-right: 0;
+    margin-left: 0.5rem;
+  }
+
+  html[dir="rtl"] .feature-list li {
+    text-align: right;
+  }
+
+  /* Additional RTL typography adjustments */
+  html[dir="rtl"] {
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+  }
+
+  html[dir="rtl"] .hero-title,
+  html[dir="rtl"] .section-header h2,
+  html[dir="rtl"] .cta-section h2 {
+    letter-spacing: 0;
+  }
+
+  /* RTL button alignment */
+  html[dir="rtl"] .cta-buttons {
+    direction: rtl;
+  }
+
 /* Container */
 .container {
   max-width: 1200px;
@@ -881,3 +854,4 @@ const allSchemas = [websiteSchema, organizationSchema, breadcrumbSchema];
   }
 }
 </style>
+

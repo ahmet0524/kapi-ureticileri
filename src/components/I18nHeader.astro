@@ -1,0 +1,438 @@
+---
+import { getLangFromUrl, useTranslations, getLocalizedRoute } from '../i18n/utils';
+import { languages } from '../i18n/languages';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const navItems = [
+  {
+    href: getLocalizedRoute("/", lang),
+    label: t('nav.home')
+  },
+  {
+    href: getLocalizedRoute("/hakkimizda", lang),
+    label: t('nav.about')
+  },
+  {
+    href: getLocalizedRoute("/urunlerimiz", lang),
+    label: t('nav.products'),
+    dropdown: [
+      { href: getLocalizedRoute("/pvc-kapilar", lang), label: t('products.pvc') },
+      { href: getLocalizedRoute("/laminoks-kapilar", lang), label: t('products.laminoks') },
+      { href: getLocalizedRoute("/elitpan-kapilar", lang), label: t('products.elitpan') },
+      { href: getLocalizedRoute("/hastane-kapilari", lang), label: t('products.hospital') },
+      { href: getLocalizedRoute("/otel-kapilari", lang), label: t('products.hotel') },
+      { href: getLocalizedRoute("/yangina-dayanikli-kapilar", lang), label: t('products.fire') }
+    ]
+  },
+  {
+    href: getLocalizedRoute("/iletisim", lang),
+    label: t('nav.contact')
+  }
+];
+---
+
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <!-- Logo -->
+      <div class="logo">
+        <a href={getLocalizedRoute("/", lang)} class="logo-link">
+          <img
+            src="/assets/img/logo/header-logo1.webp"
+            alt="CihanPan Door"
+            width="120"
+            height="40"
+            loading="eager"
+          />
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="nav-desktop">
+        {navItems.map((item) => (
+          item.dropdown ? (
+            <div class="nav-item dropdown-item">
+              <a href={item.href} class="nav-link">
+                {item.label}
+                <span class="dropdown-arrow">▼</span>
+              </a>
+              <div class="dropdown-menu">
+                {item.dropdown.map((dropdownItem) => (
+                  <a href={dropdownItem.href} class="dropdown-link">
+                    {dropdownItem.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a href={item.href} class="nav-link">
+              {item.label}
+            </a>
+          )
+        ))}
+
+        <!-- Language Switcher -->
+        <LanguageSwitcher />
+      </div>
+
+      <!-- CTA Button -->
+      <div class="nav-cta">
+        <a href={getLocalizedRoute("/iletisim", lang)} class="cta-btn">
+          {t('nav.contact')}
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+      </button>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="nav-mobile" id="mobile-menu">
+      {navItems.map((item) => (
+        <div class="mobile-nav-item">
+          <a
+            href={item.href}
+            class="nav-mobile-link"
+            data-has-dropdown={item.dropdown ? 'true' : 'false'}
+          >
+            {item.label}
+            {item.dropdown && <span class="mobile-dropdown-arrow">▼</span>}
+          </a>
+          {item.dropdown && (
+            <div class="mobile-dropdown">
+              {item.dropdown.map((dropdownItem) => (
+                <a href={dropdownItem.href} class="mobile-dropdown-item">
+                  {dropdownItem.label}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+
+      <!-- Mobile Language Switcher -->
+      <div class="mobile-language-switcher">
+        <LanguageSwitcher />
+      </div>
+
+      <a href={getLocalizedRoute("/iletisim", lang)} class="mobile-cta">
+        {t('nav.contact')}
+      </a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    z-index: 1000;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .header.scrolled {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    min-height: 70px;
+  }
+
+  .logo-link {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-desktop {
+    display: none;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: #374151;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0;
+  }
+
+  .nav-link:hover {
+    color: #111827;
+  }
+
+  .dropdown-item {
+    position: relative;
+  }
+
+  .dropdown-arrow {
+    font-size: 0.75rem;
+    transition: transform 0.2s ease;
+  }
+
+  .dropdown-item:hover .dropdown-arrow {
+    transform: rotate(180deg);
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-width: 220px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    z-index: 1001;
+  }
+
+  .dropdown-item:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .dropdown-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: #374151;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  .dropdown-link:last-child {
+    border-bottom: none;
+  }
+
+  .dropdown-link:hover {
+    background: #f9fafb;
+    color: #111827;
+  }
+
+  .nav-cta {
+    display: none;
+  }
+
+  .cta-btn {
+    background: #111827;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+
+  .cta-btn:hover {
+    background: #1f2937;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    gap: 4px;
+  }
+
+  .hamburger {
+    width: 20px;
+    height: 2px;
+    background: #374151;
+    border-radius: 1px;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-menu-btn.active .hamburger:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .mobile-menu-btn.active .hamburger:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-btn.active .hamburger:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  .nav-mobile {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 1rem 0;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+  }
+
+  .nav-mobile.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-nav-item {
+    position: relative;
+  }
+
+  .nav-mobile-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+    color: #374151;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+
+  .nav-mobile-link:hover {
+    background: #f9fafb;
+  }
+
+  .mobile-dropdown-arrow {
+    font-size: 0.75rem;
+    transition: transform 0.2s ease;
+  }
+
+  .mobile-nav-item.active .mobile-dropdown-arrow {
+    transform: rotate(180deg);
+  }
+
+  .mobile-dropdown {
+    background: #f9fafb;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .mobile-nav-item.active .mobile-dropdown {
+    max-height: 300px;
+  }
+
+  .mobile-dropdown-item {
+    display: block;
+    padding: 0.5rem 2.5rem;
+    color: #6b7280;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-dropdown-item:hover {
+    background: #f3f4f6;
+    color: #374151;
+  }
+
+  .mobile-language-switcher {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .mobile-cta {
+    display: block;
+    margin: 0.75rem 1.5rem;
+    background: #111827;
+    color: white;
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.2s ease;
+  }
+
+  .mobile-cta:hover {
+    background: #1f2937;
+  }
+
+  @media (min-width: 768px) {
+    .nav-desktop {
+      display: flex;
+    }
+
+    .nav-cta {
+      display: block;
+    }
+
+    .mobile-menu-btn,
+    .nav-mobile {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const header = document.querySelector('.header');
+
+    mobileMenuBtn?.addEventListener('click', () => {
+      mobileMenuBtn.classList.toggle('active');
+      mobileMenu?.classList.toggle('active');
+    });
+
+    const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+    mobileNavItems.forEach(item => {
+      const link = item.querySelector('.nav-mobile-link');
+      const dropdown = item.querySelector('.mobile-dropdown');
+
+      if (dropdown) {
+        link?.addEventListener('click', (e) => {
+          e.preventDefault();
+          item.classList.toggle('active');
+        });
+      }
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        header?.classList.add('scrolled');
+      } else {
+        header?.classList.remove('scrolled');
+      }
+    });
+  });
+</script>

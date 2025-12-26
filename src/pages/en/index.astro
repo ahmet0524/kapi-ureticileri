@@ -1,0 +1,730 @@
+---
+import I18nLayout from '../../layouts/I18nLayout.astro';
+import I18nHeader from '../../components/I18nHeader.astro';
+import I18nFooter from '../../components/I18nFooter.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('en');
+const baseUrl = 'https://kapi-ureticileri.vercel.app';
+const currentUrl = `${baseUrl}/en`;
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "CihanPan Door - Interior Door Manufacturers Turkey",
+  "url": currentUrl,
+  "description": "Leading interior door manufacturers in Turkey",
+  "inLanguage": "en-US"
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "CihanPan Door",
+  "url": baseUrl,
+  "description": "Interior door manufacturing since 1995 in Kayseri, Turkey"
+};
+
+const allSchemas = [websiteSchema, organizationSchema];
+---
+
+<I18nLayout
+  title="Interior Door Manufacturers Turkey | Wholesale Door Export - CihanPan Door"
+  description="Source wholesale interior doors from CihanPan Door, Turkey's leading manufacturer. PVC, laminoks and hotel doors with export to Europe and Middle East. Manufacturing since 1995."
+  keywords="interior door manufacturers turkey, wholesale door export, pvc door factory, hotel doors, hospital doors, door export turkey"
+  canonical={currentUrl}
+  schema={allSchemas}
+>
+  <I18nHeader />
+  
+  <main id="main-content">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">Turkey's Finest Interior Doors</h1>
+          <p class="hero-subtitle">
+            Manufacturing since 1995 in Kayseri, Turkey. CihanPan Door delivers PVC, laminoks, 
+            and elitpan doors for your projects. Export to Europe and Middle East.
+          </p>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <strong>1000+</strong>
+              <span>Models</span>
+            </div>
+            <div class="stat-item">
+              <strong>50+</strong>
+              <span>Countries</span>
+            </div>
+            <div class="stat-item">
+              <strong>29</strong>
+              <span>Years</span>
+            </div>
+          </div>
+          <div class="cta-buttons">
+            <a href="/en/iletisim" class="btn btn-primary">Get Free Quote</a>
+            <a href="https://www.cihanpandoor.com/E-Katalog.pdf" class="btn btn-secondary" target="_blank">
+              Download Catalog
+            </a>
+            <a href="https://wa.me/905441690038" class="btn btn-whatsapp" target="_blank">WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="categories">
+      <div class="container">
+        <header class="section-header">
+          <h2>Our Door Categories</h2>
+          <p>Perfect door solution for every project</p>
+        </header>
+        
+        <div class="categories-grid">
+          <article class="category-card">
+            <div class="category-content">
+              <h3>PVC Doors</h3>
+              <p>Waterproof and antibacterial PVC doors.</p>
+              <ul class="feature-list">
+                <li>✓ Waterproof</li>
+                <li>✓ Antibacterial</li>
+                <li>✓ 300+ models</li>
+              </ul>
+              <a href="/en/pvc-kapilar" class="category-link">All Models →</a>
+            </div>
+          </article>
+
+          <article class="category-card">
+            <div class="category-content">
+              <h3>Laminoks Doors</h3>
+              <p>MDF surfaced, wood-look doors.</p>
+              <ul class="feature-list">
+                <li>✓ Wood appearance</li>
+                <li>✓ Durable</li>
+                <li>✓ 250+ models</li>
+              </ul>
+              <a href="/en/laminoks-kapilar" class="category-link">All Models →</a>
+            </div>
+          </article>
+
+          <article class="category-card">
+            <div class="category-content">
+              <h3>Elitpan Doors</h3>
+              <p>Premium segment door models.</p>
+              <ul class="feature-list">
+                <li>✓ Premium quality</li>
+                <li>✓ Custom design</li>
+                <li>✓ 150+ models</li>
+              </ul>
+              <a href="/en/elitpan-kapilar" class="category-link">All Models →</a>
+            </div>
+          </article>
+
+          <article class="category-card">
+            <div class="category-content">
+              <h3>Hospital Doors</h3>
+              <p>Hygienic and durable hospital doors.</p>
+              <ul class="feature-list">
+                <li>✓ Antibacterial</li>
+                <li>✓ Easy cleaning</li>
+                <li>✓ TSE certified</li>
+              </ul>
+              <a href="/en/hastane-kapilari" class="category-link">All Models →</a>
+            </div>
+          </article>
+
+          <article class="category-card">
+            <div class="category-content">
+              <h3>Hotel Doors</h3>
+              <p>Sound-insulated hotel doors.</p>
+              <ul class="feature-list">
+                <li>✓ Sound insulation</li>
+                <li>✓ Fire resistant</li>
+                <li>✓ Custom design</li>
+              </ul>
+              <a href="/en/otel-kapilari" class="category-link">All Models →</a>
+            </div>
+          </article>
+
+          <article class="category-card">
+            <div class="category-content">
+              <h3>Fire Doors</h3>
+              <p>CE certified security doors.</p>
+              <ul class="feature-list">
+                <li>✓ CE certified</li>
+                <li>✓ 30-120 min</li>
+                <li>✓ Security</li>
+              </ul>
+              <a href="/en/yangina-dayanikli-kapilar" class="category-link">All Models →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="container">
+        <header class="section-header">
+          <h2>Why CihanPan Door?</h2>
+        </header>
+
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-icon">✓</div>
+            <h3>TSE Certified</h3>
+            <p>All products meet TSE standards</p>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">🚚</div>
+            <h3>Fast Delivery</h3>
+            <p>Delivery in 2-3 weeks</p>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">🛡️</div>
+            <h3>2 Year Warranty</h3>
+            <p>Manufacturer warranty</p>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">🌍</div>
+            <h3>50+ Country Export</h3>
+            <p>Europe and Middle East</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <h2>Let's find the perfect door solution for your project</h2>
+        <p>Our expert team is ready to help</p>
+        <div class="cta-buttons">
+          <a href="/en/iletisim" class="btn btn-light">Contact Form</a>
+          <a href="tel:+905441690038" class="btn btn-outline">📞 +90 544 169 00 38</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <I18nFooter />
+</I18nLayout>
+
+<style>
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ============================================
+   Hero Section
+   ============================================ */
+.hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 8rem 0 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle pattern overlay */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  margin-bottom: 2.5rem;
+  opacity: 0.95;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Hero Stats */
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin: 2.5rem 0;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+  min-width: 120px;
+}
+
+.stat-item strong {
+  display: block;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.stat-item span {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+/* CTA Buttons */
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border: 2px solid transparent;
+}
+
+.btn svg {
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.btn:hover svg {
+  transform: translateX(3px);
+}
+
+.btn-primary {
+  background: white;
+  color: #667eea;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.15);
+  color: white;
+  border-color: rgba(255,255,255,0.3);
+  backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.btn-whatsapp {
+  background: #25D366;
+  color: white;
+}
+
+.btn-whatsapp:hover {
+  background: #128C7E;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(37,211,102,0.4);
+}
+
+/* ============================================
+   Categories Section
+   ============================================ */
+.categories {
+  padding: 5rem 0;
+  background: #f9fafb;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-header h2 {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: #1a202c;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.section-header p {
+  font-size: 1.1rem;
+  color: #6b7280;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.category-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  border: 1px solid #e5e7eb;
+}
+
+.category-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+  border-color: #667eea;
+}
+
+.category-content h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 1rem;
+}
+
+.category-title-link {
+  color: #1a202c;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.category-title-link:hover {
+  color: #667eea;
+}
+
+.category-content p {
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+/* Feature List */
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.feature-list li {
+  color: #4b5563;
+  padding: 0.5rem 0;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.feature-list li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: #10b981;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.category-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.category-link:hover {
+  color: #764ba2;
+  gap: 0.75rem;
+}
+
+.category-link svg {
+  transition: transform 0.3s ease;
+}
+
+.category-link:hover svg {
+  transform: translateX(4px);
+}
+
+/* ============================================
+   Features Section
+   ============================================ */
+.features {
+  padding: 5rem 0;
+  background: white;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+.feature-item {
+  text-align: center;
+  padding: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-5px);
+}
+
+.feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  color: white;
+  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+}
+
+.feature-item:hover .feature-icon {
+  transform: scale(1.1);
+  box-shadow: 0 12px 24px rgba(102, 126, 234, 0.4);
+}
+
+.feature-item h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 0.75rem;
+}
+
+.feature-item p {
+  color: #6b7280;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+/* ============================================
+   CTA Section
+   ============================================ */
+.cta-section {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.2;
+}
+
+.cta-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-section h2 {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.cta-section p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  opacity: 0.95;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.btn-light {
+  background: white;
+  color: #667eea;
+}
+
+.btn-light:hover {
+  background: #f3f4f6;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.btn-outline {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.btn-outline:hover {
+  background: rgba(255,255,255,0.15);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+@media (max-width: 768px) {
+  .hero {
+    padding: 6rem 0 3rem;
+  }
+
+  .hero-stats {
+    gap: 2rem;
+  }
+
+  .stat-item {
+    min-width: 100px;
+  }
+
+  .stat-item strong {
+    font-size: 2rem;
+  }
+
+  .categories-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 5rem 0 2.5rem;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.75rem;
+  }
+
+  .cta-section h2 {
+    font-size: 1.75rem;
+  }
+
+  .category-card {
+    padding: 1.5rem;
+  }
+
+  .feature-item {
+    padding: 1.5rem;
+  }
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+@media print {
+  .hero,
+  .cta-section {
+    background: white !important;
+    color: black !important;
+  }
+
+  .btn {
+    border: 1px solid #ccc !important;
+  }
+}
+
+/* ============================================
+   Accessibility
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus styles for keyboard navigation */
+.btn:focus-visible,
+.category-link:focus-visible,
+.category-title-link:focus-visible {
+  outline: 3px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .hero,
+  .cta-section {
+    background: #000;
+  }
+
+  .btn {
+    border-width: 3px;
+  }
+}
+</style>
