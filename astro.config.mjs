@@ -1,6 +1,5 @@
-
 // ============================================
-// 1. astro.config.mjs - i18n Yapılandırması
+// astro.config.mjs - i18n Yapılandırması
 // ============================================
 
 import { defineConfig } from 'astro/config';
@@ -15,8 +14,7 @@ export default defineConfig({
     defaultLocale: 'tr',
     locales: ['tr', 'en', 'ar'],
     routing: {
-      prefixDefaultLocale: false, // Türkçe için /tr kullanma
-      redirectToDefaultLocale: true
+      prefixDefaultLocale: false // Türkçe için /tr prefix kullanma
     }
   },
   
