@@ -1,5 +1,9 @@
 ---
 // src/components/Hero.astro
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section class="hero">
@@ -8,17 +12,19 @@
       <div class="container">
         <div class="banner-content">
           <h1 class="banner-title">
-            Türkiye'nin En Güvenilir
-            <span class="title-highlight">Oda Kapısı Üreticisi</span>
+            {t('hero.title')}
+            <span class="title-highlight">{t('hero.titleHighlight')}</span>
           </h1>
 
           <p class="banner-subtitle">
-            Yurt İçi & Yurt Dışı Toptan Oda Kapısı Satışı
+            {t('hero.subtitle')}
           </p>
 
           <div class="banner-actions">
-            <a href="#kategoriler" class="btn-primary">Ürün Kataloğu</a>
-            <a href="/iletisim" class="btn-secondary">Toptan Fiyat Al</a>
+            <a href="#kategoriler" class="btn-primary">{t('hero.btnCatalog')}</a>
+            <a href={`/${lang === 'tr' ? '' : lang + '/'}iletisim`} class="btn-secondary">
+              {t('hero.btnQuote')}
+            </a>
           </div>
         </div>
       </div>
@@ -26,98 +32,62 @@
   </div>
 
   <div class="container">
-    <!-- Banner Altı Bilgi Kartları -->
+    <!-- Info Cards -->
     <div class="info-cards">
       <div class="info-card">
-        <h3>15+ Yıl Deneyim</h3>
-        <p>Sektörde kanıtlanmış başarı hikayesi</p>
+        <h3>{t('hero.experience')}</h3>
+        <p>{t('hero.experienceDesc')}</p>
       </div>
       <div class="info-card">
-        <h3>Fabrika Fiyatları</h3>
-        <p>Aracısız direkt üretici avantajı</p>
+        <h3>{t('hero.factoryPrice')}</h3>
+        <p>{t('hero.factoryPriceDesc')}</p>
       </div>
       <div class="info-card">
-        <h3>Türkiye Geneli Teslimat</h3>
-        <p>Hızlı ve güvenli kargo hizmeti</p>
+        <h3>{t('hero.delivery')}</h3>
+        <p>{t('hero.deliveryDesc')}</p>
       </div>
       <div class="info-card">
-        <h3>İhracat Deneyimi</h3>
-        <p>25+ ülkeye başarılı sevkiyat</p>
+        <h3>{t('hero.export')}</h3>
+        <p>{t('hero.exportDesc')}</p>
       </div>
     </div>
 
     <div class="hero-content">
       <div class="content-section">
-        <h2 class="section-title">Profesyonel Oda Kapısı Çözümleri</h2>
+        <h2 class="section-title">{t('hero.solutionsTitle')}</h2>
 
         <div class="feature-grid">
           <div class="feature-card">
             <div class="feature-icon">🏭</div>
-            <h3>Toptan Satış</h3>
-            <p>Yurt içi ve yurt dışı toptan oda kapısı satışında uzman kadromuzla en uygun fiyatları sunuyoruz.</p>
+            <h3>{t('hero.wholesale')}</h3>
+            <p>{t('hero.wholesaleDesc')}</p>
             <ul>
-              <li>Minimum sipariş: 50 adet</li>
-              <li>Özel üretim imkanı</li>
-              <li>Hızlı teslimat süresi</li>
+              <li>{t('hero.wholesaleFeature1')}</li>
+              <li>{t('hero.wholesaleFeature2')}</li>
+              <li>{t('hero.wholesaleFeature3')}</li>
             </ul>
           </div>
 
           <div class="feature-card">
             <div class="feature-icon">🌍</div>
-            <h3>İhracat Hizmeti</h3>
-            <p>Avrupa, Ortadoğu ve Afrika ülkelerine kaliteli oda kapısı ihracatı gerçekleştiriyoruz.</p>
+            <h3>{t('hero.exportService')}</h3>
+            <p>{t('hero.exportServiceDesc')}</p>
             <ul>
-              <li>CE belgeli ürünler</li>
-              <li>Uluslararası standartlar</li>
-              <li>Güvenli kargo çözümleri</li>
+              <li>{t('hero.exportFeature1')}</li>
+              <li>{t('hero.exportFeature2')}</li>
+              <li>{t('hero.exportFeature3')}</li>
             </ul>
           </div>
 
           <div class="feature-card">
             <div class="feature-icon">🏗️</div>
-            <h3>Proje Çözümleri</h3>
-            <p>Otel, hastane, okul ve konut projeleri için özel oda kapısı üretimi ve montaj hizmeti.</p>
+            <h3>{t('hero.projectSolutions')}</h3>
+            <p>{t('hero.projectSolutionsDesc')}</p>
             <ul>
-              <li>Mimari projelere uygun üretim</li>
-              <li>Profesyonel montaj ekibi</li>
-              <li>Garantili işçilik</li>
+              <li>{t('hero.projectFeature1')}</li>
+              <li>{t('hero.projectFeature2')}</li>
+              <li>{t('hero.projectFeature3')}</li>
             </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-showcase">
-        <h2 class="section-title">Oda Kapısı Kategorilerimiz</h2>
-
-        <div class="product-grid">
-          <div class="product-item">
-            <div class="product-image">
-              <img src="/assets/img/products/pvc-kapilar.webp" alt="PVC Oda Kapısı" width="250" height="300" loading="lazy" />
-            </div>
-            <div class="product-info">
-              <h4>PVC Oda Kapıları</h4>
-              <p>Su geçirmez, dayanıklı ve ekonomik PVC oda kapıları. Hastane ve nemli ortamlar için ideal.</p>
-            </div>
-          </div>
-
-          <div class="product-item">
-            <div class="product-image">
-              <img src="/assets/img/products/laminoks-kapilar.webp" alt="Laminoks Oda Kapısı" width="250" height="300" loading="lazy" />
-            </div>
-            <div class="product-info">
-              <h4>Laminoks Kapılar</h4>
-              <p>Yüksek kaliteli laminoks oda kapıları. Otel ve konut projeleriniz için mükemmel seçim.</p>
-            </div>
-          </div>
-
-          <div class="product-item">
-            <div class="product-image">
-              <img src="/assets/img/products/elitpan-kapilar.webp" alt="Ahşap Oda Kapısı" width="250" height="300" loading="lazy" />
-            </div>
-            <div class="product-info">
-              <h4>Elitpan Kapılar</h4>
-              <p>Doğal ahşap oda kapıları. Lüks konut ve butik otel projeleriniz için premium kalite.</p>
-            </div>
           </div>
         </div>
       </div>
@@ -126,19 +96,19 @@
         <div class="trust-stats">
           <div class="stat-item">
             <h3>50.000+</h3>
-            <p>Üretilen Kapı</p>
+            <p>{t('hero.producedDoors')}</p>
           </div>
           <div class="stat-item">
             <h3>500+</h3>
-            <p>Tamamlanan Proje</p>
+            <p>{t('hero.completedProjects')}</p>
           </div>
           <div class="stat-item">
             <h3>25+</h3>
-            <p>İhracat Ülkesi</p>
+            <p>{t('hero.exportCountries')}</p>
           </div>
           <div class="stat-item">
             <h3>15+</h3>
-            <p>Yıl Deneyim</p>
+            <p>{t('hero.yearsExperience')}</p>
           </div>
         </div>
       </div>
@@ -152,7 +122,6 @@
     background: #ffffff;
   }
 
-  /* Banner Section - Full Width */
   .hero-banner {
     width: 100%;
     height: 60vh;
@@ -174,6 +143,12 @@
     display: flex;
     align-items: center;
     background: rgba(0, 0, 0, 0.3);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
 
   .banner-content {
@@ -214,49 +189,6 @@
     flex-wrap: wrap;
   }
 
-  /* Info Cards - Banner Altı */
-  .info-cards {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    margin: -2rem 0 4rem 0;
-    position: relative;
-    z-index: 10;
-    flex-wrap: wrap;
-  }
-
-  .info-card {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    border: 1px solid #f1f5f9;
-    transition: all 0.2s ease;
-    flex: 1;
-    min-width: 200px;
-  }
-
-  .info-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    border-color: #e2e8f0;
-  }
-
-  .info-card h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #1e293b;
-    margin-bottom: 0.5rem;
-  }
-
-  .info-card p {
-    color: #64748b;
-    font-size: 0.85rem;
-    margin: 0;
-    line-height: 1.4;
-  }
-
   .btn-primary, .btn-secondary {
     padding: 1.25rem 2.5rem;
     border-radius: 50px;
@@ -292,7 +224,45 @@
     transform: translateY(-2px);
   }
 
-  /* Content Section */
+  .info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: -2rem 0 4rem 0;
+    position: relative;
+    z-index: 10;
+  }
+
+  .info-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f1f5f9;
+    transition: all 0.2s ease;
+  }
+
+  .info-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: #e2e8f0;
+  }
+
+  .info-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+  }
+
+  .info-card p {
+    color: #64748b;
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.4;
+  }
+
   .hero-content {
     padding: 5rem 0;
   }
@@ -324,7 +294,7 @@
 
   .feature-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2.5rem;
     margin-top: 3rem;
   }
@@ -383,74 +353,6 @@
     margin-right: 0.5rem;
   }
 
-  /* Product Showcase */
-  .product-showcase {
-    margin-bottom: 4rem;
-  }
-
-  .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2.5rem;
-    margin-top: 3rem;
-  }
-
-  .product-item {
-    background: #ffffff;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-  }
-
-  .product-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-  }
-
-  .product-image {
-    height: 250px;
-    overflow: hidden;
-  }
-
-  .product-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-
-  .product-item:hover .product-image img {
-    transform: scale(1.1);
-  }
-
-  .product-info {
-    padding: 2rem;
-  }
-
-  .product-info h4 {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 1rem;
-  }
-
-  .product-info p {
-    color: #6b7280;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-
-  .price-tag {
-    background: #10b981;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 0.9rem;
-  }
-
-  /* Trust Section */
   .trust-section {
     background: #f8fafc;
     border-radius: 20px;
@@ -460,7 +362,7 @@
 
   .trust-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmin(200px, 1fr));
     gap: 2rem;
     text-align: center;
   }
@@ -478,17 +380,6 @@
     font-weight: 600;
   }
 
-  /* Responsive Design */
-  @media (max-width: 1024px) {
-    .banner-title {
-      font-size: 3rem;
-    }
-
-    .feature-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
   @media (max-width: 768px) {
     .hero-banner {
       height: 60vh;
@@ -503,14 +394,9 @@
     }
 
     .info-cards {
-      display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
       margin: -1rem 0 3rem 0;
-    }
-
-    .info-card {
-      padding: 1.25rem 1rem;
     }
 
     .banner-actions {
@@ -532,10 +418,6 @@
       grid-template-columns: 1fr;
     }
 
-    .product-grid {
-      grid-template-columns: 1fr;
-    }
-
     .trust-stats {
       grid-template-columns: repeat(2, 1fr);
     }
@@ -554,36 +436,8 @@
       font-size: 2rem;
     }
 
-    .banner-subtitle {
-      font-size: 1rem;
-    }
-
     .info-cards {
-      display: grid;
       grid-template-columns: 1fr;
-      gap: 0.75rem;
-      margin: -1rem 0 2rem 0;
-    }
-
-    .info-card {
-      padding: 1rem;
-    }
-
-    .info-card h3 {
-      font-size: 1rem;
-    }
-
-    .info-card p {
-      font-size: 0.8rem;
-    }
-
-    .feature-card, .trust-section {
-      padding: 1.5rem;
-    }
-
-    .trust-stats {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
     }
   }
 </style>

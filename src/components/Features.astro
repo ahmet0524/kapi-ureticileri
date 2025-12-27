@@ -1,52 +1,40 @@
 ---
 // src/components/Features.astro
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section class="features section" id="hakkimizda">
   <div class="container">
     <div class="content-section">
       <div class="main-content">
-        <h2>Toptan İç Oda Kapısı Üretimi - Türkiye'nin Kaliteli Üreticisi</h2>
-        <p>
-          CihanPan Door, 1995 yılından bu yana Kayseri'de faaliyet gösteren ve Türkiye'nin önde gelen iç oda kapısı üreticilerinden biridir. Modern üretim tesislerimizde yıllık 600.000 adet kapasiteye sahip olan firmamız, PVC kapı, laminoks kapı, otel kapıları ve hastane kapıları gibi geniş ürün yelpazesiyle toptan satış ve ihracat hizmetleri sunmaktadır. 15.000 m² kapalı alanda kurulu fabrikamızda, son teknoloji makineler ve deneyimli ekibimiz ile kalite standartlarından ödün vermeden üretim yapmaktayız.
-        </p>
-        <p>
-          Toptan iç oda kapısı üretiminde sektörün öncü firmalarından olan CihanPan Door, CE, TSE ve ISO 9001 kalite sertifikalarına sahiptir. Üretim süreçlerimizde sadece A sınıf hammadde kullanarak, her aşamada titizlikle kalite kontrolleri gerçekleştirmekteyiz. Müşteri memnuniyetini ön planda tutan anlayışımızla, sipariş sonrası 15-20 gün içerisinde teslimat garantisi vermekte ve Türkiye'nin her noktasına güvenli kargo ile ürünlerimizi ulaştırmaktayız. Ayrıca, özel projelerde ölçü ve tasarım konusunda esnek çözümler sunarak, müteahhitlerin ve inşaat firmalarının ihtiyaçlarına tam olarak cevap verebilmekteyiz.
-        </p>
+        <h2>{t('features.mainTitle')}</h2>
+        <p>{t('features.paragraph1')}</p>
+        <p>{t('features.paragraph2')}</p>
 
-        <h3>Türkiye'den Dünyaya İç Oda Kapısı İhracatı</h3>
-        <p>
-          CihanPan Door olarak, sadece yerel pazarda değil, uluslararası arenada da güçlü bir konumdayız. 25'den fazla ülkeye ihracat gerçekleştiren firmamız, özellikle Avrupa, Orta Doğu ve Afrika ülkelerinde güvenilir bir iş ortağı olarak tanınmaktadır. İhracat departmanımız, CE belgeli ürünlerimiz ve uluslararası kalite standartlarımız sayesinde global pazarlarda rekabetçi fiyatlarla hizmet vermektedir. Yurt dışı müşterilerimize özel paketleme, nakliye organizasyonu ve teknik destek hizmetleri sunarak, ihracat süreçlerini kolaylaştırmaktayız.
-        </p>
-        <p>
-          İhracatçı firmalar için hazırlanan özel toptan fiyat listelerimiz ve minimum sipariş miktarlarımız ile, yurt dışındaki distribütörlerimize avantajlı koşullar sunmaktayız. Konteynır yükleme kapasitemiz sayesinde büyük siparişleri zamanında karşılayabilir, FOB ve CIF teslim koşulları ile esnek çalışma imkanı sağlayabilmekteyiz. İhracat deneyimimiz ve profesyonel ekibimiz ile, yeni pazarlara açılmak isteyen uluslararası müşterilerimize tam destek vermekteyiz.
-        </p>
+        <h3>{t('features.exportTitle')}</h3>
+        <p>{t('features.exportParagraph1')}</p>
+        <p>{t('features.exportParagraph2')}</p>
 
-        <h3>Kayseri İç Oda Kapısı Üreticisi CihanPan Door</h3>
-        <p>
-          Kayseri Organize Sanayi Bölgesi'nde konumlanan üretim tesisimiz, stratejik konumu sayesinde hem yurt içi hem de yurt dışı pazarlara hızlı erişim imkanı sunmaktadır. Anadolu'nun merkezinde yer alan Kayseri'nin lojistik avantajlarından yararlanarak, İstanbul, Ankara, İzmir gibi büyük şehirlere 1-2 gün içerisinde teslimat yapabilmekteyiz. Fabrikamızda çalışan 150 kişilik deneyimli ekibimiz, üretimden kalite kontrole, sevkiyattan satış sonrası hizmetlere kadar her aşamada müşteri memnuniyetini sağlamak için çalışmaktadır.
-        </p>
-        <p>
-          Kayseri iç oda kapısı üreticileri arasında öncü konumunda olan CihanPan Door, sürdürülebilir üretim anlayışı ile çevre dostu teknolojiler kullanmaktadır. Atık yönetim sistemimiz ve enerji tasarrufu sağlayan üretim metotlarımız ile hem çevreye duyarlı hem de maliyet etkin üretim gerçekleştirmekteyiz. Ar-Ge departmanımız sayesinde sürekli yenilik yapan firmamız, sektördeki gelişmeleri yakından takip ederek, müşterilerimize her zaman güncel ve kaliteli ürünler sunmaya odaklanmaktadır.
-        </p>
+        <h3>{t('features.factoryTitle')}</h3>
+        <p>{t('features.factoryParagraph1')}</p>
+        <p>{t('features.factoryParagraph2')}</p>
 
-        <h3>Ürün Çeşitliliği ve Teknik Özellikler</h3>
-        <p>
-          CihanPan Door olarak, geniş ürün yelpazemizle her türlü projenin ihtiyaçlarına cevap vermekteyiz. PVC kapı modellerimiz, su geçirmezlik ve dayanıklılık özellikleri sayesinde özellikle nemli ortamlar için ideal çözümler sunarken, laminoks kapılarımız modern tasarımları ve çeşitli renk seçenekleri ile estetik mekanlar oluşturmanıza yardımcı olmaktadır. Otel kapıları kategorimizde ses yalıtımı ve yangın dayanıklılığı testlerini geçmiş ürünlerimiz bulunurken, hastane kapılarımız antibakteriyel yüzey kaplaması ve kolay temizlenebilir özellikler taşımaktadır. Tüm ürünlerimiz Türk Standartları Enstitüsü (TSE) normlarına uygun olarak üretilmekte ve 2 yıl garanti kapsamında sunulmaktadır.
-        </p>
+        <h3>{t('features.productsTitle')}</h3>
+        <p>{t('features.productsParagraph')}</p>
 
         <div class="cta-section">
-          <h3>CihanPan Door Katalog ve İletişim</h3>
-          <p>
-            Detaylı teknik bilgiler, ürün görselleri ve güncel fiyat listelerimiz için resmi web sitemizi ziyaret edebilir, dijital katalogumuzunu inceleyebilirsiniz. Toptan satış, özel projeler ve ihracat konularında uzman satış danışmanlarımızdan bilgi almak için bizimle iletişime geçin.
-          </p>
+          <h3>{t('features.ctaTitle')}</h3>
+          <p>{t('features.ctaDescription')}</p>
 
           <div class="cta-buttons">
             <a href="https://www.cihanpandoor.com" target="_blank" rel="noopener" class="btn-primary">
-              CihanPan Door Resmi Website
+              {t('features.websiteBtn')}
             </a>
             <a href="https://www.cihanpandoor.com/E-Katalog.pdf" target="_blank" rel="noopener" class="btn-secondary">
-              E-Katalog İndir (PDF)
+              {t('features.catalogBtn')}
             </a>
           </div>
         </div>
@@ -55,23 +43,23 @@
       <div class="stats-sidebar">
         <div class="stat-card">
           <div class="stat-number">1995</div>
-          <div class="stat-label">Kuruluş Yılı</div>
+          <div class="stat-label">{t('features.founded')}</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">600K</div>
-          <div class="stat-label">Yıllık Kapasite</div>
+          <div class="stat-label">{t('features.capacity')}</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">25+</div>
-          <div class="stat-label">İhracat Ülkesi</div>
+          <div class="stat-label">{t('features.countries')}</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">150</div>
-          <div class="stat-label">Çalışan Sayısı</div>
+          <div class="stat-label">{t('features.employees')}</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">15K m²</div>
-          <div class="stat-label">Üretim Alanı</div>
+          <div class="stat-label">{t('features.productionArea')}</div>
         </div>
       </div>
     </div>
@@ -83,6 +71,12 @@
     background: #f8fafc;
     padding: 5rem 0;
     border-top: 1px solid #e5e7eb;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
 
   .content-section {

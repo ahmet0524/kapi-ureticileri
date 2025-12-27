@@ -1,290 +1,364 @@
 ---
-// src/pages/index.astro - TÜRKÇE (SEO TAMAMEN DÜZELTİLMİŞ)
-// PART 1/3 - Schema, Head Section ve HTML
-
+// src/pages/index.astro - ✅ UZUN VERSİYON - PART 1/3
 import I18nLayout from '../layouts/I18nLayout.astro';
 import I18nHeader from '../components/I18nHeader.astro';
 import I18nFooter from '../components/I18nFooter.astro';
+import { getLangFromUrl, useTranslations, getLocalizedRoute } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const baseUrl = 'https://kapi-ureticileri.vercel.app';
-const currentUrl = baseUrl;
+const canonicalUrl = lang === 'tr' ? baseUrl : `${baseUrl}/${lang}`;
 
-// ============================================
-// ✅ SEO FIX 1: Zenginleştirilmiş Schema
-// ============================================
-
+// Schema
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "CihanPan Door - İç Oda Kapısı Üreticileri",
-  "alternateName": "CihanPan Kapı Fabrikası",
-  "url": baseUrl,
-  "description": "Türkiye'nin önde gelen iç oda kapısı üreticileri rehberi. PVC, laminoks, elitpan kapı modelleri. Avrupa ve Orta Doğu'ya ihracat.",
-  "inLanguage": "tr-TR",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": `${baseUrl}/ara?q={search_term_string}`
-    },
-    "query-input": "required name=search_term_string"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "CihanPan Door",
-    "url": baseUrl,
-    "logo": `${baseUrl}/assets/img/logo/header-logo1.webp`
-  }
+  "name": "CihanPan Door",
+  "url": canonicalUrl,
+  "description": t('meta.desc.home'),
+  "inLanguage": lang === 'tr' ? 'tr-TR' : lang === 'en' ? 'en-US' : 'ar-SA'
 };
 
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "CihanPan Door",
-  "legalName": "CihanPan Kapı Sanayi ve Ticaret Ltd. Şti.",
   "url": baseUrl,
   "logo": `${baseUrl}/assets/img/logo/header-logo1.webp`,
-  "image": `${baseUrl}/assets/img/og/homepage-og.webp`,
-  "description": "1995'ten beri Kayseri'de iç oda kapısı üretimi. TSE sertifikalı, CE belgeli PVC, laminoks ve özel proje kapıları.",
-  "foundingDate": "1995",
-  "slogan": "Kaliteli Kapı, Güvenilir Üretici",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Organize Sanayi Bölgesi 29. Sokak No:28",
-    "addressLocality": "Kayseri",
-    "addressRegion": "Kayseri",
-    "postalCode": "38070",
-    "addressCountry": "TR"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "38.7312",
-    "longitude": "35.4787"
-  },
   "contactPoint": {
     "@type": "ContactPoint",
     "telephone": "+90-544-169-0038",
-    "contactType": "Sales",
-    "availableLanguage": ["Turkish", "English", "German", "Arabic"],
-    "areaServed": ["TR", "EU", "ME"]
-  },
-  "sameAs": [
-    "https://www.cihanpandoor.com",
-    "https://www.instagram.com/cihanpan_door",
-    "https://www.linkedin.com/company/cihanpan-door"
-  ]
+    "contactType": "sales"
+  }
 };
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Ana Sayfa",
-      "item": baseUrl
-    }
-  ]
-};
-
-const allSchemas = [websiteSchema, organizationSchema, breadcrumbSchema];
 ---
 
 <I18nLayout
-  title="İç Oda Kapısı Üreticileri | Türkiye'den Toptan Kapı İhracatı - CihanPan Door"
-  description="Türkiye'nin önde gelen iç oda kapısı üreticileri arasında yer alan CihanPan Door'dan toptan kapı tedarik edin. PVC, laminoks ve otel kapıları ile Avrupa ve Orta Doğu'ya ihracat yapıyoruz. 1995'ten beri kaliteli üretim."
-  keywords="iç oda kapısı, kapı üreticileri, pvc kapı, laminoks kapı, otel kapısı, hastane kapısı, kapı ihracatı, türkiye kapı fabrikası, toptan kapı, kayseri kapı"
-  canonical={currentUrl}
-  ogImage="/assets/img/og/homepage-og.webp"
-  ogTitle="İç Oda Kapısı Üreticileri | CihanPan Door Türkiye"
-  ogDescription="1995'ten beri Kayseri'de üretim. PVC, laminoks, elitpan kapılar. 50+ ülkeye ihracat. TSE sertifikalı, 2 yıl garanti."
-  schema={allSchemas}
+  title={t('meta.title.home')}
+  description={t('meta.desc.home')}
+  canonical={canonicalUrl}
+  schema={[websiteSchema, organizationSchema]}
 >
   <I18nHeader />
 
-  <main id="main-content">
-    <!-- ✅ SEO FIX 2: Semantic HTML + ARIA -->
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="container">
-        <div class="hero-content">
-          <h1 id="hero-title" class="hero-title">
-            Türkiye'nin En Kaliteli İç Oda Kapıları
-          </h1>
-          <p class="hero-subtitle">
-            1995'ten beri Kayseri'de üretim yapan CihanPan Door, PVC, laminoks ve elitpan
-            kapılarla projelerinizi tamamlıyor. Avrupa ve Orta Doğu'ya ihracat yapıyoruz.
-          </p>
+  <main>
+    <!-- ============================================
+         HERO SECTION
+         ============================================ -->
+    <section class="hero">
+      <div class="hero-banner">
+        <div class="banner-overlay">
+          <div class="container">
+            <div class="banner-content">
+              <h1 class="banner-title">
+                {t('hero.title')}
+                <span class="title-highlight">{t('hero.titleHighlight')}</span>
+              </h1>
 
-          <div class="hero-stats">
-            <div class="stat-item">
-              <strong>1000+</strong>
-              <span>Model Seçeneği</span>
-            </div>
-            <div class="stat-item">
-              <strong>50+</strong>
-              <span>İhracat Ülkesi</span>
-            </div>
-            <div class="stat-item">
-              <strong>29</strong>
-              <span>Yıl Tecrübe</span>
+              <p class="banner-subtitle">
+                {t('hero.subtitle')}
+              </p>
+
+              <div class="banner-actions">
+                <a href="#kategoriler" class="btn-primary">{t('hero.btnCatalog')}</a>
+                <a href={getLocalizedRoute("/iletisim", lang)} class="btn-secondary">
+                  {t('hero.btnQuote')}
+                </a>
+              </div>
             </div>
           </div>
+        </div>
+      </div>
 
-          <div class="cta-buttons">
-            <a href="/iletisim" class="btn btn-primary" aria-label="Ücretsiz fiyat teklifi almak için iletişim formuna git">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-width="2"/>
-              </svg>
-              Ücretsiz Teklif Al
-            </a>
-            <a href="https://www.cihanpandoor.com/E-Katalog.pdf" class="btn btn-secondary" target="_blank" rel="noopener" aria-label="Ürün kataloğunu PDF olarak indir">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4m14-7l-5-5m0 0L7 8m5-5v12" stroke-width="2"/>
-              </svg>
-              Katalog İndir
-            </a>
-            <a href="https://wa.me/905441690038" class="btn btn-whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp üzerinden iletişime geç">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.89 3.488"/>
-              </svg>
-              WhatsApp
-            </a>
+      <div class="container">
+        <!-- Info Cards -->
+        <div class="info-cards">
+          <div class="info-card">
+            <div class="card-icon">🏆</div>
+            <h3>{t('hero.experience')}</h3>
+            <p>{t('hero.experienceDesc')}</p>
+          </div>
+          <div class="info-card">
+            <div class="card-icon">💰</div>
+            <h3>{t('hero.factoryPrice')}</h3>
+            <p>{t('hero.factoryPriceDesc')}</p>
+          </div>
+          <div class="info-card">
+            <div class="card-icon">🚚</div>
+            <h3>{t('hero.delivery')}</h3>
+            <p>{t('hero.deliveryDesc')}</p>
+          </div>
+          <div class="info-card">
+            <div class="card-icon">🌍</div>
+            <h3>{t('hero.export')}</h3>
+            <p>{t('hero.exportDesc')}</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ✅ SEO FIX 3: Internal Linking + Structured Categories -->
-    <section class="categories" aria-labelledby="categories-title">
+    <!-- ============================================
+         ÖNE ÇIKAN ÜRÜNLER - 3 KAPI (✅ RESİMLERE LİNK EKLENDİ)
+         ============================================ -->
+    <section class="featured-products">
       <div class="container">
-        <header class="section-header">
-          <h2 id="categories-title">Kapı Kategorilerimiz</h2>
-          <p>Her proje için en uygun kapı çözümü</p>
-        </header>
+        <div class="section-header">
+          <h2 class="section-title">{t('featured.title')}</h2>
+          <p class="section-subtitle">{t('featured.subtitle')}</p>
+        </div>
+
+        <div class="products-grid">
+          <!-- ✅ PVC KAPILAR -->
+          <article class="product-card">
+            <a href={getLocalizedRoute("/pvc-kapilar", lang)} class="product-image-link">
+              <div class="product-image">
+                <img
+                  src="/assets/img/categories/pvc-kapilar.webp"
+                  alt={t('featured.pvc.alt')}
+                  width="400"
+                  height="400"
+                  loading="eager"
+                />
+                <div class="product-badge">{t('featured.badge.popular')}</div>
+              </div>
+            </a>
+            <div class="product-body">
+              <h3 class="product-title">
+                <a href={getLocalizedRoute("/pvc-kapilar", lang)}>
+                  {t('products.pvc')}
+                </a>
+              </h3>
+              <p class="product-description">{t('featured.pvc.description')}</p>
+
+              <ul class="product-features">
+                <li>✓ {t('featured.pvc.feature1')}</li>
+                <li>✓ {t('featured.pvc.feature2')}</li>
+                <li>✓ {t('featured.pvc.feature3')}</li>
+                <li>✓ {t('featured.pvc.feature4')}</li>
+              </ul>
+
+              <div class="product-footer">
+                <div class="product-price">
+                  <span class="price-label">{t('featured.priceLabel')}</span>
+                  <span class="price-value">{t('featured.pvc.price')}</span>
+                </div>
+                <a href={getLocalizedRoute("/pvc-kapilar", lang)} class="btn-product">
+                  {t('featured.viewButton')}
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ✅ LAMİNOKS KAPILAR -->
+          <article class="product-card featured-highlight">
+            <a href={getLocalizedRoute("/laminoks-kapilar", lang)} class="product-image-link">
+              <div class="product-image">
+                <img
+                  src="/assets/img/categories/laminoks-kapilar.webp"
+                  alt={t('featured.laminoks.alt')}
+                  width="400"
+                  height="400"
+                  loading="eager"
+                />
+                <div class="product-badge featured">{t('featured.badge.featured')}</div>
+              </div>
+            </a>
+            <div class="product-body">
+              <h3 class="product-title">
+                <a href={getLocalizedRoute("/laminoks-kapilar", lang)}>
+                  {t('products.laminoks')}
+                </a>
+              </h3>
+              <p class="product-description">{t('featured.laminoks.description')}</p>
+
+              <ul class="product-features">
+                <li>✓ {t('featured.laminoks.feature1')}</li>
+                <li>✓ {t('featured.laminoks.feature2')}</li>
+                <li>✓ {t('featured.laminoks.feature3')}</li>
+                <li>✓ {t('featured.laminoks.feature4')}</li>
+              </ul>
+
+              <div class="product-footer">
+                <div class="product-price">
+                  <span class="price-label">{t('featured.priceLabel')}</span>
+                  <span class="price-value">{t('featured.laminoks.price')}</span>
+                </div>
+                <a href={getLocalizedRoute("/laminoks-kapilar", lang)} class="btn-product primary">
+                  {t('featured.viewButton')}
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ✅ OTEL KAPILARI -->
+          <article class="product-card">
+            <a href={getLocalizedRoute("/otel-kapilari", lang)} class="product-image-link">
+              <div class="product-image">
+                <img
+                  src="/assets/img/categories/otel-kapilari.webp"
+                  alt={t('featured.hotel.alt')}
+                  width="400"
+                  height="400"
+                  loading="eager"
+                />
+                <div class="product-badge">{t('featured.badge.professional')}</div>
+              </div>
+            </a>
+            <div class="product-body">
+              <h3 class="product-title">
+                <a href={getLocalizedRoute("/otel-kapilari", lang)}>
+                  {t('products.hotel')}
+                </a>
+              </h3>
+              <p class="product-description">{t('featured.hotel.description')}</p>
+
+              <ul class="product-features">
+                <li>✓ {t('featured.hotel.feature1')}</li>
+                <li>✓ {t('featured.hotel.feature2')}</li>
+                <li>✓ {t('featured.hotel.feature3')}</li>
+                <li>✓ {t('featured.hotel.feature4')}</li>
+              </ul>
+
+              <div class="product-footer">
+                <div class="product-price">
+                  <span class="price-label">{t('featured.priceLabel')}</span>
+                  <span class="price-value">{t('featured.hotel.price')}</span>
+                </div>
+                <a href={getLocalizedRoute("/otel-kapilari", lang)} class="btn-product">
+                  {t('featured.viewButton')}
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+<!-- ============================================
+     PART 2/3 - KATEGORİLER VE ÖZELLİKLER
+     ============================================ -->
+
+    <!-- ============================================
+         TÜM KATEGORİLER
+         ============================================ -->
+    <section class="categories" id="kategoriler">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">{t('categories.title')}</h2>
+          <p class="section-subtitle">{t('categories.subtitle')}</p>
+        </div>
 
         <div class="categories-grid">
+          <!-- PVC Kapılar -->
           <article class="category-card">
-            <div class="category-content">
-              <h3>
-                <a href="/pvc-kapilar" class="category-title-link">PVC Kapılar</a>
+            <a href={getLocalizedRoute("/pvc-kapilar", lang)} class="card-image-link">
+              <div class="card-image">
+                <img src="/assets/img/categories/pvc-kapilar.webp" alt={t('categories.pvc.alt')} width="200" height="200" loading="lazy" />
+              </div>
+            </a>
+            <div class="card-body">
+              <h3 class="card-title">
+                <a href={getLocalizedRoute("/pvc-kapilar", lang)}>{t('products.pvc')}</a>
               </h3>
-              <p>Su geçirmez ve antibakteriyel özellikli PVC kapılar. Mutfak, banyo ve nemli ortamlar için ideal çözüm.</p>
-              <ul class="feature-list">
-                <li>✓ Su geçirmez yapı</li>
-                <li>✓ Antibakteriyel yüzey</li>
-                <li>✓ Kolay temizlik</li>
-                <li>✓ 300+ model seçeneği</li>
+              <p class="card-description">{t('categories.pvc.description')}</p>
+              <ul class="card-features">
+                <li class="feature-tag">{t('categories.pvc.feature1')}</li>
+                <li class="feature-tag">{t('categories.pvc.feature2')}</li>
+                <li class="feature-tag">{t('categories.pvc.feature3')}</li>
               </ul>
-              <a href="/pvc-kapilar" class="category-link">
-                Tüm Modelleri Gör
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                  <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2"/>
+              <a href={getLocalizedRoute("/pvc-kapilar", lang)} class="card-btn">
+                {t('categories.detailsButton')}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </a>
             </div>
           </article>
 
+          <!-- Laminoks Kapılar -->
           <article class="category-card">
-            <div class="category-content">
-              <h3>
-                <a href="/laminoks-kapilar" class="category-title-link">Laminoks Kapılar</a>
+            <a href={getLocalizedRoute("/laminoks-kapilar", lang)} class="card-image-link">
+              <div class="card-image">
+                <img src="/assets/img/categories/laminoks-kapilar.webp" alt={t('categories.laminoks.alt')} width="200" height="200" loading="lazy" />
+              </div>
+            </a>
+            <div class="card-body">
+              <h3 class="card-title">
+                <a href={getLocalizedRoute("/laminoks-kapilar", lang)}>{t('products.laminoks')}</a>
               </h3>
-              <p>MDF yüzeyli, doğal ahşap görünümlü laminoks kapılar. Modern ve klasik tasarımlar.</p>
-              <ul class="feature-list">
-                <li>✓ Doğal ahşap görünümü</li>
-                <li>✓ MDF dayanıklılık</li>
-                <li>✓ Çizilmeye dayanıklı</li>
-                <li>✓ 250+ model seçeneği</li>
+              <p class="card-description">{t('categories.laminoks.description')}</p>
+              <ul class="card-features">
+                <li class="feature-tag">{t('categories.laminoks.feature1')}</li>
+                <li class="feature-tag">{t('categories.laminoks.feature2')}</li>
+                <li class="feature-tag">{t('categories.laminoks.feature3')}</li>
               </ul>
-              <a href="/laminoks-kapilar" class="category-link">
-                Tüm Modelleri Gör
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                  <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2"/>
+              <a href={getLocalizedRoute("/laminoks-kapilar", lang)} class="card-btn">
+                {t('categories.detailsButton')}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </a>
             </div>
           </article>
 
+          <!-- Otel Kapıları -->
           <article class="category-card">
-            <div class="category-content">
-              <h3>
-                <a href="/elitpan-kapilar" class="category-title-link">Elitpan Kapılar</a>
+            <a href={getLocalizedRoute("/otel-kapilari", lang)} class="card-image-link">
+              <div class="card-image">
+                <img src="/assets/img/categories/otel-kapilari.webp" alt={t('categories.hotel.alt')} width="200" height="200" loading="lazy" />
+              </div>
+            </a>
+            <div class="card-body">
+              <h3 class="card-title">
+                <a href={getLocalizedRoute("/otel-kapilari", lang)}>{t('products.hotel')}</a>
               </h3>
-              <p>Premium segment, yüksek kaliteli elitpan kapı modelleri. Lüks projeler için.</p>
-              <ul class="feature-list">
-                <li>✓ Premium kalite</li>
-                <li>✓ Özel tasarımlar</li>
-                <li>✓ Uzun ömürlü</li>
-                <li>✓ 150+ model seçeneği</li>
+              <p class="card-description">{t('categories.hotel.description')}</p>
+              <ul class="card-features">
+                <li class="feature-tag">{t('categories.hotel.feature1')}</li>
+                <li class="feature-tag">{t('categories.hotel.feature2')}</li>
+                <li class="feature-tag">{t('categories.hotel.feature3')}</li>
               </ul>
-              <a href="/elitpan-kapilar" class="category-link">
-                Tüm Modelleri Gör
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                  <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2"/>
+              <a href={getLocalizedRoute("/otel-kapilari", lang)} class="card-btn">
+                {t('categories.detailsButton')}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </a>
             </div>
           </article>
 
+          <!-- Hastane Kapıları -->
           <article class="category-card">
-            <div class="category-content">
-              <h3>
-                <a href="/hastane-kapilari" class="category-title-link">Hastane Kapıları</a>
+            <a href={getLocalizedRoute("/hastane-kapilari", lang)} class="card-image-link">
+              <div class="card-image">
+                <img src="/assets/img/categories/hastane-kapilari.webp" alt={t('categories.hospital.alt')} width="200" height="200" loading="lazy" />
+              </div>
+            </a>
+            <div class="card-body">
+              <h3 class="card-title">
+                <a href={getLocalizedRoute("/hastane-kapilari", lang)}>{t('products.hospital')}</a>
               </h3>
-              <p>Hijyenik, dayanıklı ve antibakteriyel hastane kapıları. Sağlık kuruluşları için özel.</p>
-              <ul class="feature-list">
-                <li>✓ Antibakteriyel özellik</li>
-                <li>✓ Kolay dezenfeksiyon</li>
-                <li>✓ Darbe dayanıklı</li>
-                <li>✓ TSE sertifikalı</li>
+              <p class="card-description">{t('categories.hospital.description')}</p>
+              <ul class="card-features">
+                <li class="feature-tag">{t('categories.hospital.feature1')}</li>
+                <li class="feature-tag">{t('categories.hospital.feature2')}</li>
+                <li class="feature-tag">{t('categories.hospital.feature3')}</li>
               </ul>
-              <a href="/hastane-kapilari" class="category-link">
-                Tüm Modelleri Gör
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                  <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2"/>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="category-card">
-            <div class="category-content">
-              <h3>
-                <a href="/otel-kapilari" class="category-title-link">Otel Kapıları</a>
-              </h3>
-              <p>Ses yalıtımlı, estetik ve dayanıklı otel kapıları. Konaklama tesisleri için.</p>
-              <ul class="feature-list">
-                <li>✓ Ses yalıtımı</li>
-                <li>✓ Otomatik kapanma sistemi</li>
-                <li>✓ Yangına dayanıklı</li>
-                <li>✓ Özel tasarım seçenekleri</li>
-              </ul>
-              <a href="/otel-kapilari" class="category-link">
-                Tüm Modelleri Gör
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                  <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2"/>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="category-card">
-            <div class="category-content">
-              <h3>
-                <a href="/yangina-dayanikli-kapilar" class="category-title-link">Yangına Dayanıklı Kapılar</a>
-              </h3>
-              <p>CE belgeli, yangına dayanıklı güvenlik kapıları. Bina güvenliği için kritik.</p>
-              <ul class="feature-list">
-                <li>✓ CE sertifikalı</li>
-                <li>✓ 30-120 dk yangın dayanımı</li>
-                <li>✓ Duman sızdırmazlık</li>
-                <li>✓ Güvenlik kilidi sistemi</li>
-              </ul>
-              <a href="/yangina-dayanikli-kapilar" class="category-link">
-                Tüm Modelleri Gör
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                  <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2"/>
+              <a href={getLocalizedRoute("/hastane-kapilari", lang)} class="card-btn">
+                {t('categories.detailsButton')}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </a>
             </div>
@@ -293,591 +367,919 @@ const allSchemas = [websiteSchema, organizationSchema, breadcrumbSchema];
       </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features" aria-labelledby="features-title">
+    <!-- ============================================
+         ÇÖZÜMLERİMİZ
+         ============================================ -->
+    <section class="solutions">
       <div class="container">
-        <header class="section-header">
-          <h2 id="features-title">Neden CihanPan Door?</h2>
-          <p>29 yıldır güvenilir üretim</p>
-        </header>
+        <h2 class="section-title">{t('hero.solutionsTitle')}</h2>
 
-        <div class="features-grid">
-          <div class="feature-item">
-            <div class="feature-icon" aria-hidden="true">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"/>
-              </svg>
-            </div>
-            <h3>TSE Sertifikalı Üretim</h3>
-            <p>Tüm ürünlerimiz TSE standartlarına uygun olarak üretilmektedir</p>
+        <div class="solutions-grid">
+          <!-- Toptan Satış -->
+          <div class="solution-card">
+            <div class="solution-icon">🏭</div>
+            <h3>{t('hero.wholesale')}</h3>
+            <p>{t('hero.wholesaleDesc')}</p>
+            <ul class="solution-list">
+              <li>{t('hero.wholesaleFeature1')}</li>
+              <li>{t('hero.wholesaleFeature2')}</li>
+              <li>{t('hero.wholesaleFeature3')}</li>
+            </ul>
           </div>
 
-          <div class="feature-item">
-            <div class="feature-icon" aria-hidden="true">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-width="2"/>
-              </svg>
-            </div>
-            <h3>Hızlı Teslimat</h3>
-            <p>Standart ürünlerde 2-3 hafta, özel üretimlerde 4-6 hafta teslimat süresi</p>
+          <!-- İhracat -->
+          <div class="solution-card">
+            <div class="solution-icon">🌍</div>
+            <h3>{t('hero.exportService')}</h3>
+            <p>{t('hero.exportServiceDesc')}</p>
+            <ul class="solution-list">
+              <li>{t('hero.exportFeature1')}</li>
+              <li>{t('hero.exportFeature2')}</li>
+              <li>{t('hero.exportFeature3')}</li>
+            </ul>
           </div>
 
-          <div class="feature-item">
-            <div class="feature-icon" aria-hidden="true">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-width="2"/>
-              </svg>
-            </div>
-            <h3>2 Yıl Garanti</h3>
-            <p>Tüm ürünlerimizde 2 yıl üretici garantisi</p>
-          </div>
-
-          <div class="feature-item">
-            <div class="feature-icon" aria-hidden="true">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"/>
-              </svg>
-            </div>
-            <h3>50+ Ülkeye İhracat</h3>
-            <p>Avrupa, Orta Doğu ve Afrika'ya güvenilir ihracat partneri</p>
+          <!-- Proje Çözümleri -->
+          <div class="solution-card">
+            <div class="solution-icon">🏗️</div>
+            <h3>{t('hero.projectSolutions')}</h3>
+            <p>{t('hero.projectSolutionsDesc')}</p>
+            <ul class="solution-list">
+              <li>{t('hero.projectFeature1')}</li>
+              <li>{t('hero.projectFeature2')}</li>
+              <li>{t('hero.projectFeature3')}</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
+    <!-- ============================================
+         HAKKIMIZDA / ÖZELLİKLER
+         ============================================ -->
+    <section class="about-section">
       <div class="container">
-        <h2>Projeniz için en uygun kapı çözümünü bulalım</h2>
-        <p>Uzman ekibimiz size yardımcı olmak için hazır. Ücretsiz danışmanlık ve fiyat teklifi alın.</p>
-        <div class="cta-buttons">
-          <a href="/iletisim" class="btn btn-light">İletişim Formu</a>
-          <a href="tel:+905441690038" class="btn btn-outline">📞 +90 544 169 00 38</a>
+        <div class="about-content">
+          <div class="about-main">
+            <h2>{t('features.mainTitle')}</h2>
+            <p>{t('features.paragraph1')}</p>
+            <p>{t('features.paragraph2')}</p>
+
+            <h3>{t('features.exportTitle')}</h3>
+            <p>{t('features.exportParagraph1')}</p>
+            <p>{t('features.exportParagraph2')}</p>
+
+            <h3>{t('features.factoryTitle')}</h3>
+            <p>{t('features.factoryParagraph1')}</p>
+            <p>{t('features.factoryParagraph2')}</p>
+
+            <h3>{t('features.productsTitle')}</h3>
+            <p>{t('features.productsParagraph')}</p>
+
+            <!-- CTA Section -->
+            <div class="about-cta">
+              <h3>{t('features.ctaTitle')}</h3>
+              <p>{t('features.ctaDescription')}</p>
+              <div class="cta-buttons">
+                <a href="https://www.cihanpandoor.com" target="_blank" rel="noopener" class="btn btn-primary">
+                  {t('features.websiteBtn')}
+                </a>
+                <a href="https://www.cihanpandoor.com/E-Katalog.pdf" target="_blank" rel="noopener" class="btn btn-secondary">
+                  {t('features.catalogBtn')}
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats Sidebar -->
+          <aside class="about-stats">
+            <div class="stat-card">
+              <div class="stat-number">1995</div>
+              <div class="stat-label">{t('features.founded')}</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">600K</div>
+              <div class="stat-label">{t('features.capacity')}</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">25+</div>
+              <div class="stat-label">{t('features.countries')}</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">150</div>
+              <div class="stat-label">{t('features.employees')}</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">15K m²</div>
+              <div class="stat-label">{t('features.productionArea')}</div>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
+
+    <!-- ============================================
+         İSTATİSTİKLER
+         ============================================ -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <h3>50.000+</h3>
+            <p>{t('hero.producedDoors')}</p>
+          </div>
+          <div class="stat-item">
+            <h3>500+</h3>
+            <p>{t('hero.completedProjects')}</p>
+          </div>
+          <div class="stat-item">
+            <h3>25+</h3>
+            <p>{t('hero.exportCountries')}</p>
+          </div>
+          <div class="stat-item">
+            <h3>15+</h3>
+            <p>{t('hero.yearsExperience')}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!-- ============================================
+     PART 3/3 - FOOTER VE STYLES
+     ============================================ -->
+
   </main>
 
   <I18nFooter />
 </I18nLayout>
 
-
 <style>
-/* Container */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
+  /* ============================================
+     GLOBAL & LAYOUT
+     ============================================ */
+  main {
+    margin-top: 70px;
+  }
 
-/* ============================================
-   Hero Section
-   ============================================ */
-.hero {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 8rem 0 4rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
 
-/* Subtle pattern overlay */
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  opacity: 0.3;
-  pointer-events: none;
-}
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
 
-.hero-content {
-  position: relative;
-  z-index: 1;
-}
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 0.75rem;
+    position: relative;
+    display: inline-block;
+  }
 
-.hero-title {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 800;
-  margin-bottom: 1.5rem;
-  line-height: 1.1;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-  letter-spacing: -0.02em;
-}
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: #fbbf24;
+    border-radius: 2px;
+  }
 
-.hero-subtitle {
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  margin-bottom: 2.5rem;
-  opacity: 0.95;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.6;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-}
+  .section-subtitle {
+    color: #6b7280;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
 
-/* Hero Stats */
-.hero-stats {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-  margin: 2.5rem 0;
-  flex-wrap: wrap;
-}
-
-.stat-item {
-  text-align: center;
-  min-width: 120px;
-}
-
-.stat-item strong {
-  display: block;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 800;
-  margin-bottom: 0.5rem;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-}
-
-.stat-item span {
-  font-size: 0.95rem;
-  opacity: 0.9;
-  font-weight: 500;
-}
-
-/* CTA Buttons */
-.cta-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-top: 2rem;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  font-size: 1rem;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  border: 2px solid transparent;
-}
-
-.btn svg {
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
-}
-
-.btn:hover svg {
-  transform: translateX(3px);
-}
-
-.btn-primary {
-  background: white;
-  color: #667eea;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-}
-
-.btn-secondary {
-  background: rgba(255,255,255,0.15);
-  color: white;
-  border-color: rgba(255,255,255,0.3);
-  backdrop-filter: blur(10px);
-}
-
-.btn-secondary:hover {
-  background: rgba(255,255,255,0.25);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-}
-
-.btn-whatsapp {
-  background: #25D366;
-  color: white;
-}
-
-.btn-whatsapp:hover {
-  background: #128C7E;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(37,211,102,0.4);
-}
-
-/* ============================================
-   Categories Section
-   ============================================ */
-.categories {
-  padding: 5rem 0;
-  background: #f9fafb;
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.section-header h2 {
-  font-size: clamp(2rem, 4vw, 2.5rem);
-  font-weight: 800;
-  color: #1a202c;
-  margin-bottom: 0.75rem;
-  letter-spacing: -0.02em;
-}
-
-.section-header p {
-  font-size: 1.1rem;
-  color: #6b7280;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.categories-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.category-card {
-  background: white;
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  transition: all 0.3s ease;
-  border: 1px solid #e5e7eb;
-}
-
-.category-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.1);
-  border-color: #667eea;
-}
-
-.category-content h3 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1a202c;
-  margin-bottom: 1rem;
-}
-
-.category-title-link {
-  color: #1a202c;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.category-title-link:hover {
-  color: #667eea;
-}
-
-.category-content p {
-  color: #6b7280;
-  margin-bottom: 1.5rem;
-  line-height: 1.7;
-  font-size: 0.95rem;
-}
-
-/* Feature List */
-.feature-list {
-  list-style: none;
-  padding: 0;
-  margin: 1.5rem 0;
-}
-
-.feature-list li {
-  color: #4b5563;
-  padding: 0.5rem 0;
-  font-size: 0.95rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.feature-list li::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  background: #10b981;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.category-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #667eea;
-  text-decoration: none;
-  font-weight: 600;
-  margin-top: 1rem;
-  transition: all 0.3s ease;
-  font-size: 0.95rem;
-}
-
-.category-link:hover {
-  color: #764ba2;
-  gap: 0.75rem;
-}
-
-.category-link svg {
-  transition: transform 0.3s ease;
-}
-
-.category-link:hover svg {
-  transform: translateX(4px);
-}
-
-/* ============================================
-   Features Section
-   ============================================ */
-.features {
-  padding: 5rem 0;
-  background: white;
-}
-
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2.5rem;
-  margin-top: 3rem;
-}
-
-.feature-item {
-  text-align: center;
-  padding: 2rem;
-  transition: transform 0.3s ease;
-}
-
-.feature-item:hover {
-  transform: translateY(-5px);
-}
-
-.feature-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 1.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 20px;
-  color: white;
-  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
-  transition: all 0.3s ease;
-}
-
-.feature-item:hover .feature-icon {
-  transform: scale(1.1);
-  box-shadow: 0 12px 24px rgba(102, 126, 234, 0.4);
-}
-
-.feature-item h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #1a202c;
-  margin-bottom: 0.75rem;
-}
-
-.feature-item p {
-  color: #6b7280;
-  line-height: 1.7;
-  font-size: 0.95rem;
-}
-
-/* ============================================
-   CTA Section
-   ============================================ */
-.cta-section {
-  padding: 5rem 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.cta-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  opacity: 0.2;
-}
-
-.cta-section .container {
-  position: relative;
-  z-index: 1;
-}
-
-.cta-section h2 {
-  font-size: clamp(2rem, 4vw, 2.5rem);
-  font-weight: 800;
-  margin-bottom: 1rem;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-}
-
-.cta-section p {
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-  opacity: 0.95;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.6;
-}
-
-.btn-light {
-  background: white;
-  color: #667eea;
-}
-
-.btn-light:hover {
-  background: #f3f4f6;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-}
-
-.btn-outline {
-  background: transparent;
-  color: white;
-  border: 2px solid white;
-}
-
-.btn-outline:hover {
-  background: rgba(255,255,255,0.15);
-  transform: translateY(-2px);
-}
-
-/* ============================================
-   Responsive Design
-   ============================================ */
-@media (max-width: 768px) {
+  /* ============================================
+     HERO SECTION
+     ============================================ */
   .hero {
-    padding: 6rem 0 3rem;
+    min-height: 100vh;
+    background: #ffffff;
   }
 
-  .hero-stats {
-    gap: 2rem;
-  }
-
-  .stat-item {
-    min-width: 100px;
-  }
-
-  .stat-item strong {
-    font-size: 2rem;
-  }
-
-  .categories-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .features-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .cta-buttons {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .btn {
+  .hero-banner {
     width: 100%;
+    height: 60vh;
+    min-height: 500px;
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    background-image:
+      linear-gradient(rgba(30, 58, 138, 0.85), rgba(59, 130, 246, 0.85)),
+      url('/assets/img/hero/door-factory.webp');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .banner-overlay {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .banner-content {
+    text-align: center;
+    color: white;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .banner-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .title-highlight {
+    color: #fbbf24;
+    display: block;
+    margin-top: 0.5rem;
+  }
+
+  .banner-subtitle {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 2.5rem;
+    opacity: 0.95;
+    line-height: 1.6;
+  }
+
+  .banner-actions {
+    display: flex;
+    gap: 1.5rem;
     justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero {
-    padding: 5rem 0 2.5rem;
+    flex-wrap: wrap;
   }
 
-  .hero-title {
-    font-size: 1.75rem;
+  .btn-primary, .btn-secondary {
+    padding: 1.25rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
   }
 
-  .hero-subtitle {
+  .btn-primary {
+    background: #fbbf24;
+    color: #1e3a8a;
+    box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
+  }
+
+  .btn-primary:hover {
+    background: #f59e0b;
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(251, 191, 36, 0.5);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .btn-secondary:hover {
+    background: white;
+    color: #1e3a8a;
+    transform: translateY(-2px);
+  }
+
+  /* Info Cards */
+  .info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin: -3rem 0 4rem 0;
+    position: relative;
+    z-index: 10;
+  }
+
+  .info-card {
+    background: white;
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f1f5f9;
+    transition: all 0.3s ease;
+  }
+
+  .info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .info-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+  }
+
+  .info-card p {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ============================================
+     ÖNE ÇIKAN ÜRÜNLER
+     ============================================ */
+  .featured-products {
+    padding: 5rem 0;
+    background: #f9fafb;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+  }
+
+  .product-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 2px solid #e5e7eb;
+  }
+
+  .product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .product-card.featured-highlight {
+    border-color: #fbbf24;
+    box-shadow: 0 4px 25px rgba(251, 191, 36, 0.2);
+  }
+
+  .product-image-link {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+  }
+
+  .product-image {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+  }
+
+  .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .product-image-link:hover img {
+    transform: scale(1.1);
+  }
+
+  .product-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #1e3a8a;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .product-badge.featured {
+    background: #fbbf24;
+    color: #1e3a8a;
+  }
+
+  .product-body {
+    padding: 2rem;
+  }
+
+  .product-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .product-title a {
+    color: #111827;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .product-title a:hover {
+    color: #3b82f6;
+  }
+
+  .product-description {
+    color: #6b7280;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .product-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .product-features li {
+    color: #374151;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f3f4f6;
     font-size: 0.95rem;
   }
 
-  .section-header h2 {
-    font-size: 1.75rem;
+  .product-features li:last-child {
+    border-bottom: none;
   }
 
-  .cta-section h2 {
-    font-size: 1.75rem;
+  .product-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .product-price {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .price-label {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .price-value {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #1e3a8a;
+  }
+
+  .btn-product {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: #111827;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+
+  .btn-product:hover {
+    background: #1f2937;
+    gap: 0.75rem;
+    transform: translateX(3px);
+  }
+
+  .btn-product.primary {
+    background: #fbbf24;
+    color: #1e3a8a;
+  }
+
+  .btn-product.primary:hover {
+    background: #f59e0b;
+  }
+
+  /* ============================================
+     KATEGORİLER
+     ============================================ */
+  .categories {
+    padding: 5rem 0;
+    background: white;
+  }
+
+  .categories-grid {
+    display: grid;
+    gap: 2rem;
   }
 
   .category-card {
-    padding: 1.5rem;
+    display: flex;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
   }
 
-  .feature-item {
-    padding: 1.5rem;
+  .category-card:hover {
+    border-color: #9ca3af;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   }
-}
 
-/* ============================================
-   Print Styles
-   ============================================ */
-@media print {
-  .hero,
-  .cta-section {
-    background: white !important;
-    color: black !important;
+  .card-image-link {
+    flex: 0 0 200px;
+    display: block;
+    text-decoration: none;
+    overflow: hidden;
+  }
+
+  .card-image {
+    background: #f9fafb;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .card-image-link:hover img {
+    transform: scale(1.08);
+  }
+
+  .card-body {
+    flex: 1;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-title a {
+    color: #111827;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .card-title a:hover {
+    color: #4b5563;
+  }
+
+  .card-description {
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .card-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem 0;
+  }
+
+  .feature-tag {
+    background: #f3f4f6;
+    color: #374151;
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .card-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #111827;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+
+  .card-btn:hover {
+    color: #3b82f6;
+    gap: 0.75rem;
+  }
+
+  /* ============================================
+     ÇÖZÜMLER
+     ============================================ */
+  .solutions {
+    padding: 5rem 0;
+    background: #f9fafb;
+  }
+
+  .solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+  }
+
+  .solution-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+  }
+
+  .solution-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  }
+
+  .solution-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .solution-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1rem;
+  }
+
+  .solution-card p {
+    color: #6b7280;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .solution-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .solution-list li {
+    color: #374151;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f3f4f6;
+    font-weight: 500;
+  }
+
+  .solution-list li:before {
+    content: '✓';
+    color: #10b981;
+    font-weight: bold;
+    margin-right: 0.75rem;
+  }
+
+  /* ============================================
+     HAKKIMIZDA
+     ============================================ */
+  .about-section {
+    padding: 5rem 0;
+    background: white;
+  }
+
+  .about-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .about-main h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-main h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 2.5rem 0 1rem;
+  }
+
+  .about-main p {
+    color: #374151;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+  }
+
+  .about-cta {
+    background: #f9fafb;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    margin-top: 2rem;
+  }
+
+  .about-cta h3 {
+    margin-top: 0;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
   }
 
   .btn {
-    border: 1px solid #ccc !important;
-  }
-}
-
-/* ============================================
-   Accessibility
-   ============================================ */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* Focus styles for keyboard navigation */
-.btn:focus-visible,
-.category-link:focus-visible,
-.category-title-link:focus-visible {
-  outline: 3px solid #667eea;
-  outline-offset: 2px;
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  .hero,
-  .cta-section {
-    background: #000;
+    padding: 0.875rem 1.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: inline-block;
   }
 
-  .btn {
-    border-width: 3px;
+  .btn.btn-primary {
+    background: #111827;
+    color: white;
   }
-}
+
+  .btn.btn-primary:hover {
+    background: #1f2937;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn.btn-secondary {
+    background: white;
+    color: #111827;
+    border: 1px solid #d1d5db;
+  }
+
+  .btn.btn-secondary:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .stat-card {
+    background: white;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #1e3a8a;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    color: #6b7280;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ============================================
+     İSTATİSTİKLER
+     ============================================ */
+  .stats-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .stat-item h3 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: #fbbf24;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-item p {
+    font-size: 1.1rem;
+    color: white;
+    font-weight: 600;
+  }
+
+  /* ============================================
+     RESPONSIVE
+     ============================================ */
+  @media (min-width: 1024px) {
+    .about-content {
+      grid-template-columns: 2fr 1fr;
+      gap: 4rem;
+    }
+
+    .about-stats {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .banner-title {
+      font-size: 2.5rem;
+    }
+
+    .products-grid,
+    .solutions-grid,
+    .categories-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .category-card {
+      flex-direction: column;
+    }
+
+    .card-image-link {
+      flex: none;
+      height: 200px;
+    }
+
+    .product-footer {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .btn-product {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .info-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .banner-title {
+      font-size: 2rem;
+    }
+
+    .stat-item h3 {
+      font-size: 2.5rem;
+    }
+  }
+
+  /* RTL Support */
+  html[dir="rtl"] .category-card {
+    flex-direction: row-reverse;
+  }
+
+  html[dir="rtl"] .card-btn svg,
+  html[dir="rtl"] .btn-product svg {
+    transform: scaleX(-1);
+  }
 </style>

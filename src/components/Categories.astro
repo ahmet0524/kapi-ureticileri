@@ -1,75 +1,96 @@
 ---
-// src/components/Categories.astro
+// src/components/Categories.astro - ✅ ÇOK DİLLİ VERSİYON
+import { getLangFromUrl, useTranslations, getLocalizedRoute } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// ✅ Kategoriler - Resimler ve linkler korundu
 const categories = [
   {
-    title: "PVC Kapılar",
-    description: "Su geçirmez, dayanıklı ve ekonomik PVC iç oda kapıları",
+    title: t('products.pvc'),
+    description: t('categories.pvc.description'),
     image: "pvc-kapilar.webp",
-    alt: "PVC iç oda kapısı modelleri",
-    features: ["Su geçirmez", "Ekonomik", "Kolay bakım"],
-    link: "/pvc-kapilar"
+    alt: t('categories.pvc.alt'),
+    features: [
+      t('categories.pvc.feature1'),
+      t('categories.pvc.feature2'),
+      t('categories.pvc.feature3')
+    ],
+    link: getLocalizedRoute("/pvc-kapilar", lang)
   },
   {
-    title: "Laminoks Kapılar",
-    description: "Modern tasarım ve yüksek kaliteli laminoks kapılar",
+    title: t('products.laminoks'),
+    description: t('categories.laminoks.description'),
     image: "laminoks-kapilar.webp",
-    alt: "Laminoks iç oda kapısı modelleri",
-    features: ["Modern tasarım", "Yüksek kalite", "Çeşitli renk"],
-    link: "/laminoks-kapilar"
+    alt: t('categories.laminoks.alt'),
+    features: [
+      t('categories.laminoks.feature1'),
+      t('categories.laminoks.feature2'),
+      t('categories.laminoks.feature3')
+    ],
+    link: getLocalizedRoute("/laminoks-kapilar", lang)
   },
   {
-    title: "Otel Kapıları",
-    description: "Otel standartlarında profesyonel iç oda kapıları",
+    title: t('products.hotel'),
+    description: t('categories.hotel.description'),
     image: "otel-kapilari.webp",
-    alt: "Otel iç oda kapısı modelleri",
-    features: ["Profesyonel", "Dayanıklı", "Ses yalıtımı"],
-    link: "/otel-kapilari"
+    alt: t('categories.hotel.alt'),
+    features: [
+      t('categories.hotel.feature1'),
+      t('categories.hotel.feature2'),
+      t('categories.hotel.feature3')
+    ],
+    link: getLocalizedRoute("/otel-kapilari", lang)
   },
   {
-    title: "Hastane Kapıları",
-    description: "Hijyenik ve antibakteriyel hastane iç oda kapıları",
+    title: t('products.hospital'),
+    description: t('categories.hospital.description'),
     image: "hastane-kapilari.webp",
-    alt: "Hastane iç oda kapısı modelleri",
-    features: ["Hijyenik", "Antibakteriyel", "Kolay temizlik"],
-    link: "/hastane-kapilari"
-  },
-  /*{
-    title: "Yanmaya Dayanıklı Kapılar",
-    description: "Doğal ahşap dokulu premium iç oda kapıları",
-    image: "yanmaya-kapilar.webp",
-    alt: "Yanmaya dayanıklı iç oda kapısı modelleri",
-    features: ["Doğal görünüm", "Premium kalite", "Çevre dostu"],
-    link: "/yanmaya-dayanikli-kapilar"
-  },*/
-
+    alt: t('categories.hospital.alt'),
+    features: [
+      t('categories.hospital.feature1'),
+      t('categories.hospital.feature2'),
+      t('categories.hospital.feature3')
+    ],
+    link: getLocalizedRoute("/hastane-kapilari", lang)
+  }
 ];
 ---
 
 <section class="categories section" id="kategoriler">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Kapı Kategorileri</h2>
+      <h2 class="section-title">{t('categories.title')}</h2>
       <p class="section-subtitle">
-        Her ihtiyaca uygun kaliteli iç oda kapısı seçenekleri
+        {t('categories.subtitle')}
       </p>
     </div>
 
     <div class="categories-grid">
       {categories.map((category) => (
         <article class="category-card">
-          <div class="card-image">
-            <img
-              src={`/assets/img/categories/${category.image}`}
-              alt={category.alt}
-              width="200"
-              height="200"
-              loading="lazy"
-            />
-          </div>
+          <!-- ✅ RESİM BÖLÜMÜ ARTIK TIKLANABİLİR -->
+          <a href={category.link} class="card-image-link" aria-label={`${category.title} ${t('categories.detailsAriaLabel')}`}>
+            <div class="card-image">
+              <img
+                src={`/assets/img/categories/${category.image}`}
+                alt={category.alt}
+                width="200"
+                height="200"
+                loading="lazy"
+              />
+            </div>
+          </a>
 
           <div class="card-body">
             <div class="card-content">
-              <h3 class="card-title">{category.title}</h3>
+              <!-- ✅ BAŞLIK DA TIKLANABİLİR -->
+              <h3 class="card-title">
+                <a href={category.link} class="title-link">
+                  {category.title}
+                </a>
+              </h3>
               <p class="card-description">{category.description}</p>
 
               <ul class="card-features">
@@ -81,7 +102,10 @@ const categories = [
 
             <div class="card-footer">
               <a href={category.link} class="card-btn">
-                Detayları Gör
+                {t('categories.detailsButton')}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="arrow-icon">
+                  <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
               </a>
             </div>
           </div>
@@ -90,8 +114,8 @@ const categories = [
     </div>
 
     <div class="section-cta">
-      <a href="/kategoriler" class="btn btn-primary">
-        Tüm Kategorileri Görüntüle
+      <a href={getLocalizedRoute("/kategoriler", lang)} class="btn btn-primary">
+        {t('categories.viewAllButton')}
       </a>
     </div>
   </div>
@@ -101,6 +125,12 @@ const categories = [
   .categories {
     background: #ffffff;
     padding: 4rem 0;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
 
   .section-header {
@@ -136,30 +166,58 @@ const categories = [
     border: 1px solid #e5e7eb;
     border-radius: 8px;
     overflow: hidden;
-    transition: border-color 0.2s ease;
+    transition: all 0.3s ease;
   }
 
   .category-card:hover {
-    border-color: #d1d5db;
+    border-color: #9ca3af;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* ✅ RESİM LİNKİ STİLLERİ */
+  .card-image-link {
+    flex: 0 0 200px;
+    display: block;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
   }
 
   .card-image {
-    flex: 0 0 200px;
     background: #f9fafb;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100%;
+    position: relative;
+  }
+
+  /* ✅ HOVER OVERLAY EFEKTİ */
+  .card-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.3s ease;
+    pointer-events: none;
+  }
+
+  .card-image-link:hover .card-image::after {
+    background: rgba(0, 0, 0, 0.1);
   }
 
   .card-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.2s ease;
+    transition: transform 0.3s ease;
   }
 
-  .category-card:hover .card-image img {
-    transform: scale(1.02);
+  .card-image-link:hover img {
+    transform: scale(1.05);
   }
 
   .card-body {
@@ -177,8 +235,18 @@ const categories = [
   .card-title {
     font-size: 1.25rem;
     font-weight: 600;
-    color: #111827;
     margin-bottom: 0.75rem;
+  }
+
+  /* ✅ BAŞLIK LİNKİ STİLLERİ */
+  .title-link {
+    color: #111827;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .title-link:hover {
+    color: #4b5563;
   }
 
   .card-description {
@@ -209,17 +277,30 @@ const categories = [
     margin-top: auto;
   }
 
+  /* ✅ DETAY BUTONU GELİŞTİRİLMİŞ */
   .card-btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     color: #111827;
     text-decoration: none;
     font-weight: 600;
     font-size: 0.875rem;
-    transition: color 0.2s ease;
+    transition: all 0.2s ease;
+    padding: 0.5rem 0;
   }
 
   .card-btn:hover {
-    color: #6b7280;
+    color: #4b5563;
+    gap: 0.75rem;
+  }
+
+  .arrow-icon {
+    transition: transform 0.2s ease;
+  }
+
+  .card-btn:hover .arrow-icon {
+    transform: translateX(3px);
   }
 
   .section-cta {
@@ -243,8 +324,13 @@ const categories = [
   .btn-primary:hover {
     background: #1f2937;
     color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
 
+  /* ============================================
+     RESPONSIVE
+     ============================================ */
   @media (max-width: 768px) {
     .categories {
       padding: 3rem 0;
@@ -254,8 +340,11 @@ const categories = [
       gap: 1.5rem;
     }
 
-    .card-image {
+    .card-image-link {
       flex: 0 0 120px;
+    }
+
+    .card-image {
       height: 120px;
     }
 
@@ -283,8 +372,11 @@ const categories = [
   }
 
   @media (max-width: 480px) {
-    .card-image {
+    .card-image-link {
       flex: 0 0 100px;
+    }
+
+    .card-image {
       height: 100px;
     }
 
@@ -295,5 +387,38 @@ const categories = [
     .card-title {
       font-size: 1rem;
     }
+  }
+
+  /* ============================================
+     ERİŞİLEBİLİRLİK
+     ============================================ */
+  .card-image-link:focus,
+  .title-link:focus,
+  .card-btn:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card-image img,
+    .card-btn,
+    .arrow-icon {
+      transition: none;
+    }
+  }
+
+  /* ============================================
+     RTL SUPPORT (ARAPÇA)
+     ============================================ */
+  html[dir="rtl"] .category-card {
+    flex-direction: row-reverse;
+  }
+
+  html[dir="rtl"] .arrow-icon {
+    transform: scaleX(-1);
+  }
+
+  html[dir="rtl"] .card-btn:hover .arrow-icon {
+    transform: scaleX(-1) translateX(-3px);
   }
 </style>
