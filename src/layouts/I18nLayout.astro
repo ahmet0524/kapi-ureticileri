@@ -31,7 +31,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const langInfo = getLanguageInfo(lang);
 
-const baseUrl = 'https://kapi-ureticileri.vercel.app';
+const baseUrl = 'https://cihanpandoor.netlify.app';
 const currentPath = Astro.url.pathname.replace(/^\/(en|ar)/, '');
 const canonicalURL = pageCanonical || `${baseUrl}${lang === 'tr' ? currentPath : `/${lang}${currentPath}`}`;
 
