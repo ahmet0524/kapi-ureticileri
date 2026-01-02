@@ -1,15 +1,18 @@
 ---
 // src/pages/blog/pvc-kapi-ihracati.astro
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import I18nLayout from '../../layouts/I18nLayout.astro';
+import I18nHeader from '../../components/I18nHeader.astro';
+import I18nFooter from '../../components/I18nFooter.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const baseUrl = 'https://kapi-ureticileri.vercel.app';
 const currentUrl = `${baseUrl}${Astro.url.pathname}`;
 
 const breadcrumbItems = [
-  { name: "Ana Sayfa", href: "/" },
+  { name: t('nav.home') || "Ana Sayfa", href: "/" }, // ✅ Çeviri desteği
   { name: "Blog", href: "/blog" },
   { name: "PVC Kapı Üreticileri" }
 ];
@@ -17,6 +20,7 @@ const breadcrumbItems = [
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
+  "inLanguage": lang === 'tr' ? 'tr-TR' : lang === 'en' ? 'en-US' : 'ar-SA' // ✅ BU SATIRI EKLE
   "headline": "PVC Kapı Üreticileri: Türkiye'den Dünyaya Kaliteli Çözümler",
   "description": "Türkiye'nin önde gelen PVC kapı üreticileri, üretim süreçleri, fiyatlar ve kalite standartları hakkında kapsamlı rehber.",
   "image": `${baseUrl}/assets/img/blog/pvc-kapi-ureticileri-og.webp`,
@@ -100,7 +104,7 @@ const breadcrumbSchema = {
 };
 ---
 
-<Layout
+<I18nLayout
   title="PVC Kapı Üreticileri: Türkiye'den Dünyaya Kaliteli Çözümler | CihanPan Door"
   description="Türkiye'nin önde gelen PVC kapı üreticileri hakkında kapsamlı rehber. Kayseri'den dünyaya kaliteli PVC kapı üretimi, fiyatlar, modeller ve ihracat bilgileri."
   keywords="pvc kapı üreticileri, türkiye pvc kapı, kayseri kapı üretimi, toptan iç kapı, su geçirmez kapılar, antibakteriyel kapı, otel kapısı üretici, hastane kapısı, cihanpan door, modern iç kapı, pvc kapı fabrikası, ihracat pvc kapı"
@@ -117,7 +121,7 @@ const breadcrumbSchema = {
   schema={[articleSchema, faqSchema, breadcrumbSchema]}
 >
 
-<Header />
+<I18nHeader />
 <Breadcrumbs items={breadcrumbItems} />
 
 <main>
