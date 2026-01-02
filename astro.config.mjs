@@ -6,7 +6,7 @@ import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 
 export default defineConfig({
-  site: 'https://kapi-ureticileri.vercel.app',
+  site: 'https://cihanpandoor.netlify.app',
   output: 'static',
 
   // ✅ i18n yapılandırması
