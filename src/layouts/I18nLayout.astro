@@ -1,6 +1,6 @@
 ---
 // ============================================
-// 5. src/layouts/I18nLayout.astro - FIXED
+// src/layouts/I18nLayout.astro - FIXED WITH GOOGLE VERIFICATION
 // ============================================
 
 import { getLangFromUrl, useTranslations, getAlternateLanguages, getLanguageInfo } from '../i18n/utils';
@@ -16,10 +16,8 @@ export interface Props {
   ogDescription?: string;
 }
 
-// ✅ FIX: Astro.props'u doğru şekilde al
 const props = Astro.props as Props;
 
-// ✅ FIX: Default değerleri düzgün ata
 const pageTitle = props.title || 'CihanPan Door';
 const pageDescription = props.description || '';
 const pageKeywords = props.keywords;
@@ -37,21 +35,17 @@ const baseUrl = 'https://kapi-ureticileri.vercel.app';
 const currentPath = Astro.url.pathname.replace(/^\/(en|ar)/, '');
 const canonicalURL = pageCanonical || `${baseUrl}${lang === 'tr' ? currentPath : `/${lang}${currentPath}`}`;
 
-// OG için title ve description (eğer özel değerler varsa onları kullan)
 const finalOgTitle = pageOgTitle || pageTitle;
 const finalOgDescription = pageOgDescription || pageDescription;
 
-// Alternate languages
 const alternateLanguages = getAlternateLanguages(currentPath, baseUrl);
 
-// Add x-default
 alternateLanguages.push({
   lang: 'x-default' as any,
   url: `${baseUrl}${currentPath}`,
   name: 'Default'
 });
 
-// OG Image
 const finalOgImage = pageOgImage || '/assets/img/og-default.webp';
 const ogImageUrl = new URL(finalOgImage, baseUrl);
 ---
@@ -77,6 +71,9 @@ const ogImageUrl = new URL(finalOgImage, baseUrl);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#667eea" />
+
+    <!-- ✅ Google Search Console Verification -->
+    <meta name="google-site-verification" content="T73DKjJ50nby2RIHsaWH5cIMxvfVs3EqxKOq6t8c4Xo" />
 
     <!-- Title -->
     <title>{pageTitle}</title>
