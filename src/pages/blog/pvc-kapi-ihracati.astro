@@ -3,12 +3,13 @@
 import I18nLayout from '../../layouts/I18nLayout.astro';
 import I18nHeader from '../../components/I18nHeader.astro';
 import I18nFooter from '../../components/I18nFooter.astro';
+import I18nBreadcrumbs from '../../components/I18nBreadcrumbs.astro';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const baseUrl = 'https://kapi-ureticileri.vercel.app';
+const baseUrl = 'https://cihanpandoor.netlify.app';
 const currentUrl = `${baseUrl}${Astro.url.pathname}`;
 
 const breadcrumbItems = [
@@ -20,7 +21,7 @@ const breadcrumbItems = [
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "inLanguage": lang === 'tr' ? 'tr-TR' : lang === 'en' ? 'en-US' : 'ar-SA' // ✅ BU SATIRI EKLE
+  "inLanguage": lang === 'tr' ? 'tr-TR' : lang === 'en' ? 'en-US' : 'ar-SA', // ✅ BU SATIRI EKLE
   "headline": "PVC Kapı Üreticileri: Türkiye'den Dünyaya Kaliteli Çözümler",
   "description": "Türkiye'nin önde gelen PVC kapı üreticileri, üretim süreçleri, fiyatlar ve kalite standartları hakkında kapsamlı rehber.",
   "image": `${baseUrl}/assets/img/blog/pvc-kapi-ureticileri-og.webp`,
@@ -122,7 +123,7 @@ const breadcrumbSchema = {
 >
 
 <I18nHeader />
-<Breadcrumbs items={breadcrumbItems} />
+<I18nBreadcrumbs items={breadcrumbItems} />
 
 <main>
 <article class="blog-article">
@@ -593,8 +594,8 @@ const breadcrumbSchema = {
 </div>
 </section>
 </main>
-<Footer />
-</Layout>
+<I18nFooter />
+</I18nLayout>
 <style>
 .container{max-width:1200px;margin:0 auto;padding:0 20px}
 .blog-article{padding:4rem 0;background:#fff}
