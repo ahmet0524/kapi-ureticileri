@@ -1,0 +1,687 @@
+---
+// src/pages/hakkimizda.astro
+// src/pages/about.astro
+import I18nLayout from '../../layouts/I18nLayout.astro';
+import I18nHeader from '../../components/I18nHeader.astro';
+import I18nFooter from '../../components/I18nFooter.astro';
+import { getLangFromUrl, useTranslations, getLocalizedRoute } from '../../i18n/utils';
+
+// Dynamic URL setup
+const baseUrl = 'https://kapi-ureticileri.vercel.app';
+const currentUrl = `${baseUrl}${Astro.url.pathname}`;
+
+const breadcrumbItems = [
+  { name: "Ana Sayfa", href: "/" },
+  { name: "Hakkımızda" }
+];
+
+// Organization Schema - Detaylı Kurumsal Bilgiler
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "CihanPan Door",
+  "alternateName": "CihanPan Kapı",
+  "url": baseUrl,
+  "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`,
+  "image": `${baseUrl}/assets/images/fabrika.webp`,
+  "description": "1995 yılından beri Kayseri'de faaliyet gösteren, Türkiye'nin önde gelen iç oda kapısı üreticisi. MDF yüzeyli laminoks ve PVC kapılar. CE belgeli ürünler, 5 yıl garanti, Avrupa ve Orta Doğu'ya ihracat.",
+  "foundingDate": "1995",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Organize Sanayi Bölgesi 29. Sokak No:28",
+    "addressLocality": "Kayseri",
+    "addressRegion": "Kayseri",
+    "postalCode": "38070",
+    "addressCountry": "TR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "38.7312",
+    "longitude": "35.4787"
+  },
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+90-544-169-0038",
+      "contactType": "Sales",
+      "availableLanguage": ["Turkish", "English", "German", "Arabic"],
+      "areaServed": ["TR", "EU", "ME"]
+    },
+    {
+      "@type": "ContactPoint",
+      "contactType": "Customer Service",
+      "availableLanguage": ["Turkish", "English"],
+      "areaServed": "TR"
+    }
+  ],
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "Turkey"
+    },
+    {
+      "@type": "Place",
+      "name": "Europe"
+    },
+    {
+      "@type": "Place",
+      "name": "Middle East"
+    }
+  ],
+  "serviceType": [
+    "İç Oda Kapısı Üretimi",
+    "MDF Kapı Üretimi",
+    "PVC Kapı Üretimi",
+    "Laminoks Kapı Üretimi",
+    "Elitpan Kapı Üretimi",
+    "Hastane Kapısı Üretimi",
+    "Otel Kapısı Üretimi",
+    "Özel Tasarım Kapı Üretimi",
+    "Toptan Kapı Satışı",
+    "İhracat"
+  ],
+  "knowsAbout": [
+    "İç Oda Kapısı",
+    "MDF Kapı",
+    "PVC Kapı",
+    "Laminoks Kapı",
+    "Melamin Kapı",
+    "Antibakteriyel Kapı",
+    "Su Geçirmez Kapı",
+    "Yangın Kapısı",
+    "Ses Yalıtımlı Kapı"
+  ],
+  "slogan": "Kayseri'den Dünyaya Kaliteli Kapı",
+  "numberOfEmployees": {
+    "@type": "QuantitativeValue",
+    "value": "50-100"
+  },
+  "sameAs": [
+    "https://www.cihanpandoor.com",
+    "https://www.facebook.com/cihanpandoor",
+    "https://www.instagram.com/cihanpan_door",
+    "https://www.linkedin.com/company/cihanpan-door"
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "247",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+};
+
+// AboutPage Schema
+const aboutPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "Hakkımızda - CihanPan Door",
+  "description": "Kayseri'de 1995 yılından beri iç oda kapısı üretimi yapan CihanPan Door'un kurumsal hikayesi, vizyonu ve misyonu. CE belgeli ürünler, ihracat deneyimi.",
+  "url": currentUrl,
+  "inLanguage": "tr-TR",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "CihanPan Door",
+    "url": baseUrl
+  },
+  "about": {
+    "@type": "Organization",
+    "name": "CihanPan Door",
+    "foundingDate": "1995",
+    "location": {
+      "@type": "Place",
+      "name": "Kayseri, Turkey"
+    }
+  }
+};
+
+// FAQ Schema - Kurumsal Bilgiler
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "CihanPan Door ne zaman kuruldu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CihanPan Door 1995 yılında Kayseri'de kurulmuştur. 30 yıla yakın süredir iç oda kapısı üretimi ve ihracatı yapan köklü bir firmadır."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "CihanPan Door nerede üretim yapıyor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Üretim tesisimiz Kayseri Organize Sanayi Bölgesi'nde 15.000 m² kapalı alanda bulunmaktadır. Modern makine parkuru ve deneyimli ekibimizle yıllık 600.000 adet üretim kapasitesine sahibiz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hangi ülkelere ihracat yapıyorsunuz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Türkiye'nin yanı sıra Avrupa başta olmak üzere 25'ten fazla ülkeye ihracat yapmaktayız. Uluslararası kalite standartlarına uygun CE, TSE ve ISO 9001 belgeli ürünler sunuyoruz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "CihanPan Door hangi ürünleri üretiyor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MDF yüzeyli laminoks kapılar (80+ model), PVC kapılar (247 model), Elitpan kapılar (26 model), hastane kapıları, otel kapıları ve özel tasarım kapılar üretmekteyiz. Tüm ürünlerimiz su geçirmez, antibakteriyel ve 5 yıl garantilidir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "CihanPan Door'un kalite belgeleri nelerdir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tüm ürünlerimiz CE belgeli olup, TSE Standart Belgesi ve ISO 9001 Kalite Yönetim Sistemi sertifikalarına sahibiz. Yangın dayanım sertifikaları, antibakteriyel test raporları mevcuttur."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Toptan satış yapıyor musunuz?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Evet, B2B toptan satış ve proje bazlı özel fiyatlar sunmaktayız. Müteahhitler, inşaat firmaları, otel zincirleri ve distribütörler için özel indirimler mevcuttur. FOB ve CIF teslim koşulları ile çalışabiliyoruz."
+      }
+    }
+  ]
+};
+
+// Breadcrumb Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    "item": item.href ? `${baseUrl}${item.href}` : currentUrl
+  }))
+};
+
+// WebPage Schema
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Hakkımızda - CihanPan Door",
+  "description": "Kayseri'nin önde gelen iç oda kapısı üreticisi CihanPan Door. 1995'ten beri kaliteli üretim, ihracat ve müşteri memnuniyeti.",
+  "url": currentUrl,
+  "inLanguage": "tr-TR",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "CihanPan Door",
+    "url": baseUrl
+  },
+  "breadcrumb": breadcrumbSchema
+};
+
+const allSchemas = [organizationSchema, aboutPageSchema, faqSchema, breadcrumbSchema, webPageSchema];
+---
+
+<I18nLayout
+  title="Hakkımızda - CihanPan Door | Kayseri İç Oda Kapısı Üreticisi"
+  description="1995'ten bu yana Kayseri'de iç oda kapısı üretimi yapan CihanPan Door. MDF yüzeyli laminoks ve PVC kapılarımızla Avrupa başta olmak üzere tüm dünyaya ihracat."
+  keywords="hakkımızda, cihanpan door, kayseri kapı üreticisi, iç oda kapısı fabrika, mdf kapı üretim"
+>
+  <!-- Schema.org JSON-LD -->
+  {allSchemas.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))}
+
+  <I18nHeader />
+  <main>
+    <section class="page-header">
+      <div class="container">
+        <h1>Hakkımızda</h1>
+        <p>Kayseri'den dünyaya kaliteli iç oda kapısı üretimi</p>
+      </div>
+    </section>
+
+    <section class="about-content">
+      <div class="container">
+        <div class="content-grid">
+          <div class="main-content">
+            <div class="company-story">
+              <h2>Şirket Tarihçemiz</h2>
+              <p>
+                CihanPan Door, 1995 yılında Kayseri'de kurulan köklü bir iç oda kapısı üreticisidir.
+                Kurulduğu günden bu yana kalite, güvenilirlik ve müşteri memnuniyeti ilkelerinden
+                ödün vermeyerek sektörde öncü konumunu sürdürmektedir. Otuz yıla yakın deneyimimiz
+                ile hem yerel hem de uluslararası pazarlarda güçlü bir marka haline gelmiştik.
+              </p>
+              <p>
+                Kayseri Organize Sanayi Bölgesi'nde 15.000 m² kapalı alanda kurulu modern üretim
+                tesisimizde, MDF yüzeyli laminoks ve PVC kapı üretiminde uzmanlaşmış bulunmaktayız.
+                İleri teknoloji makinelerimiz ve deneyimli işçi kadromuzla yıllık 600.000 adet
+                üretim kapasitesine sahiptir.
+              </p>
+            </div>
+
+            <div class="production-process">
+              <h2>Üretim Sürecimiz</h2>
+              <p>
+                Üretim sürecimizde sadece A kalite MDF levhalar kullanarak, yüzeyleri yüksek
+                kaliteli laminoks ve PVC materyaller ile kaplamakatayız. Her üretim aşamasında
+                titizlikle uygulanan kalite kontrol süreçlerimiz sayesinde, dayanıklı ve estetik
+                ürünler ortaya çıkarıyoruz.
+              </p>
+              <p>
+                Modern boyahane tesisimizde çevre dostu boyalar kullanarak, hem insan sağlığına
+                hem de doğaya duyarlı üretim gerçekleştirmekteyiz. Tüm ürünlerimiz CE, TSE ve
+                ISO 9001 kalite standartlarına uygun olarak üretilmekte ve uluslararası
+                sertifikalarla desteklenmektedir.
+              </p>
+            </div>
+
+            <div class="export-activities">
+              <h2>İhracat Faaliyetlerimiz</h2>
+              <p>
+                CihanPan Door olarak, Türkiye pazarındaki güçlü konumumuzun yanı sıra,
+                Avrupa başta olmak üzere 25'ten fazla ülkeye ihracat gerçekleştirmekteyiz.
+                İhracat departmanımız, uluslararası müşterilerimizin ihtiyaçlarına özel
+                çözümler sunarak, global pazarlarda Türk kalitesini temsil etmektedir.
+              </p>
+              <p>
+                FOB ve CIF teslim koşulları ile çalışma imkanı sunan firmamız, konteyner
+                yükleme kapasitesi ve lojistik ağı sayesinde dünya genelinde hızlı ve
+                güvenli teslimat hizmeti vermektedir.
+              </p>
+            </div>
+          </div>
+
+          <div class="sidebar">
+            <div class="stats-card">
+              <h3>Rakamlarla CihanPan Door</h3>
+              <div class="stats-grid">
+                <div class="stat-item">
+                  <div class="stat-number">1995</div>
+                  <div class="stat-label">Kuruluş Yılı</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-number">15K m²</div>
+                  <div class="stat-label">Üretim Alanı</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-number">600K</div>
+                  <div class="stat-label">Yıllık Kapasite</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-number">25+</div>
+                  <div class="stat-label">İhracat Ülkesi</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="certifications-card">
+              <h3>Sertifikalarımız</h3>
+              <ul>
+                <li>CE Belgesi</li>
+                <li>TSE Standart Belgesi</li>
+                <li>ISO 9001 Kalite Yönetim Sistemi</li>
+                <li>İhracatçılar Birliği Üyeliği</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="mission-vision-section">
+          <div class="mission-vision-grid">
+            <div class="mission-card">
+              <h2>Misyonumuz</h2>
+              <p>
+                Kayseri'den dünyaya kaliteli iç oda kapısı üretimiyle, MDF yüzeyli laminoks ve
+                PVC kapılarımızla müşterilerimizin ihtiyaçlarını en iyi şekilde karşılamak.
+                Sürdürülebilir üretim anlayışı ile çevreye duyarlı teknolojiler kullanarak,
+                sektörde öncü ve güvenilir bir iş ortağı olmak.
+              </p>
+              <p>
+                İnovasyon ve kalite odaklı yaklaşımımızla, hem yerel hem de global pazarlarda
+                müşteri memnuniyetini en üst düzeyde tutarak, Türk kapı sektörünü dünyada
+                en iyi şekilde temsil etmek.
+              </p>
+            </div>
+
+            <div class="vision-card">
+              <h2>Vizyonumuz</h2>
+              <p>
+                Avrupa standartlarında üretim kalitesi ile dünya pazarında lider iç oda kapısı
+                üreticisi konumuna ulaşmak. Ar-Ge yatırımlarımız ve teknolojik gelişmelerle
+                sektöre yön veren, inovatif çözümler sunan bir marka olmak.
+              </p>
+              <p>
+                2030 yılına kadar üretim kapasitemizi 1 milyon adete çıkararak, 50'den fazla
+                ülkeye ihracat yapan, uluslararası arenada Türkiye'yi en iyi şekilde temsil
+                eden global bir oyuncu haline gelmek.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="values-section">
+          <h2>Değerlerimiz</h2>
+          <div class="values-grid">
+            <div class="value-item">
+              <h3>Kalite</h3>
+              <p>Üretimden sevkiyata kadar her aşamada yüksek standartları korumak</p>
+            </div>
+            <div class="value-item">
+              <h3>Güvenilirlik</h3>
+              <p>Müşterilerimize verdiğimiz sözleri tutarak uzun vadeli ortaklıklar kurmak</p>
+            </div>
+            <div class="value-item">
+              <h3>İnovasyon</h3>
+              <p>Sürekli araştırma ve geliştirme ile sektöre yenilik getirmek</p>
+            </div>
+            <div class="value-item">
+              <h3>Çevre Bilinci</h3>
+              <p>Sürdürülebilir üretim ve çevre dostu teknolojilerle geleceği korumak</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cta-section">
+          <h2>Bizimle Çalışmaya Başlayın</h2>
+          <p>
+            Kaliteli iç oda kapısı çözümleri için CihanPan Door'u tercih edin.
+            Detaylı bilgi almak ve teklif talep etmek için bizimle iletişime geçin.
+          </p>
+          <div class="cta-buttons">
+            <a href="/iletisim" class="btn-primary">İletişime Geç</a>
+            <a href="https://www.cihanpandoor.com/E-Katalog.pdf" target="_blank" class="btn-secondary">Katalog İndir</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <I18nFooter />
+</I18nLayout>
+
+<style>
+  main {
+    margin-top: 70px;
+  }
+  .page-header {
+    padding: 2rem 0;
+    background: #f8fafc;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header p {
+    color: #6b7280;
+    font-size: 1.1rem;
+  }
+
+  .about-content {
+    padding: 4rem 0;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+  }
+
+  .main-content h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .main-content h2:first-child {
+    margin-top: 0;
+  }
+
+  .main-content p {
+    color: #374151;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+  }
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .stats-card, .certifications-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+  }
+
+  .stats-card h3, .certifications-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 1.5rem;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 8px;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .certifications-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .certifications-card li {
+    padding: 0.5rem 0;
+    color: #374151;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  .certifications-card li:last-child {
+    border-bottom: none;
+  }
+
+  .mission-vision-section {
+    margin-bottom: 4rem;
+  }
+
+  .mission-vision-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .mission-card, .vision-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+  }
+
+  .mission-card h2, .vision-card h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1.5rem;
+    margin-top: 0;
+  }
+
+  .mission-card p, .vision-card p {
+    color: #374151;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    text-align: justify;
+  }
+
+  .values-section {
+    margin-bottom: 4rem;
+  }
+
+  .values-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .value-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    text-align: center;
+  }
+
+  .value-item h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 1rem;
+  }
+
+  .value-item p {
+    color: #6b7280;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .cta-section {
+    background: #f8fafc;
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+  }
+
+  .cta-section h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    color: #6b7280;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary, .btn-secondary {
+    padding: 0.875rem 2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary {
+    background: #111827;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #1f2937;
+    color: white;
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: #111827;
+    border: 1px solid #d1d5db;
+  }
+
+  .btn-secondary:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
+  }
+
+  @media (min-width: 1024px) {
+    .content-grid {
+      grid-template-columns: 2fr 1fr;
+      gap: 4rem;
+    }
+
+    .mission-vision-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .page-header {
+      padding: 1.5rem 0;
+    }
+
+    .page-header h1 {
+      font-size: 2rem;
+    }
+
+    .about-content {
+      padding: 3rem 0;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn-primary, .btn-secondary {
+      width: 200px;
+      text-align: center;
+    }
+  }
+</style>

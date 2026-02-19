@@ -1,0 +1,191 @@
+---
+// src/pages/about.astro
+import I18nLayout from '../../layouts/I18nLayout.astro';
+import I18nHeader from '../../components/I18nHeader.astro';
+import I18nFooter from '../../components/I18nFooter.astro';
+import { getLangFromUrl, useTranslations, getLocalizedRoute } from '../../i18n/utils';
+---
+
+<I18nLayout
+  title="Hakkımızda - CihanPan Door"
+  description="Türkiye'nin güvenilir iç oda kapısı üreticileri rehberi hakkında bilgi alın"
+>
+  <I18nHeader />
+  <main>
+    <section class="about-hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">Hakkımızda</h1>
+          <p class="hero-subtitle">
+            Türkiye'nin en kapsamlı iç oda kapısı üreticileri rehberiyiz
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-content">
+      <div class="container">
+        <div class="content-grid">
+          <div class="content-text">
+            <h2>Misyonumuz</h2>
+            <p>
+              CihanPan Door olarak, Türkiye'deki en kaliteli iç oda kapısı üreticilerini
+              bir araya getirerek müşterilerimize en iyi seçenekleri sunmayı amaçlıyoruz.
+            </p>
+
+            <h2>Vizyonumuz</h2>
+            <p>
+              İç oda kapısı sektöründe kalite standartlarını yükselterek,
+              sektörün dijital dönüşümüne öncülük etmek.
+            </p>
+
+            <h2>Değerlerimiz</h2>
+            <ul class="values-list">
+              <li>✓ Kalite ve güvenilirlik</li>
+              <li>✓ Müşteri memnuniyeti</li>
+              <li>✓ Sürekli gelişim</li>
+              <li>✓ Şeffaflık</li>
+            </ul>
+          </div>
+
+          <div class="content-visual">
+            <div class="visual-card">
+              <div class="card-icon">🎯</div>
+              <h3>500+ Üretici</h3>
+              <p>Türkiye genelinde güvenilir üreticiler</p>
+            </div>
+            <div class="visual-card">
+              <div class="card-icon">⭐</div>
+              <h3>Kalite Garantisi</h3>
+              <p>Sertifikalı ve test edilmiş ürünler</p>
+            </div>
+            <div class="visual-card">
+              <div class="card-icon">🚀</div>
+              <h3>Hızlı Teslimat</h3>
+              <p>Tüm Türkiye'ye hızlı kargo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <I18nFooter />
+</I18nLayout>
+
+<style>
+  .about-hero {
+    padding: 8rem 0 4rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .about-content {
+    padding: 5rem 0;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .content-text h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin: 2rem 0 1rem;
+  }
+
+  .content-text h2:first-child {
+    margin-top: 0;
+  }
+
+  .content-text p {
+    color: #718096;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .values-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .values-list li {
+    color: #4a5568;
+    padding: 0.5rem 0;
+    font-weight: 500;
+  }
+
+  .content-visual {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .visual-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .visual-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .visual-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 0.5rem;
+  }
+
+  .visual-card p {
+    color: #718096;
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .content-grid {
+      grid-template-columns: 2fr 1fr;
+    }
+
+    .content-visual {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+
+    .about-hero {
+      padding: 6rem 0 3rem;
+    }
+  }
+</style>

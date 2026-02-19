@@ -1,0 +1,275 @@
+---
+// src/pages/kategoriler.astro - Basit Versiyon
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const baseUrl = 'https://kapi-ureticileri.vercel.app';
+const currentUrl = `${baseUrl}/kategoriler`;
+
+const breadcrumbItems = [
+  { name: "Ana Sayfa", href: "/" },
+  { name: "Kategoriler", href: "/kategoriler" }
+];
+
+// Statik kategori listesi
+const categories = [
+  {
+    name: "PVC Kapılar",
+    icon: "🚪",
+    description: "Ekonomik ve dayanıklı PVC kapı modelleri",
+    link: "/pvc-kapilari",
+    count: 12
+  },
+  {
+    name: "Laminoks Kapılar",
+    icon: "🎨",
+    description: "Estetik görünümlü laminoks kaplı kapılar",
+    link: "/laminoks-kapilari",
+    count: 8
+  },
+  {
+    name: "Elitpan Kapılar",
+    icon: "⭐",
+    description: "Premium kalite elitpan serisi kapılar",
+    link: "/elitpan-kapilari",
+    count: 6
+  },
+  {
+    name: "Hastane Kapıları",
+    icon: "🏥",
+    description: "Antibakteriyel medikal seri kapılar",
+    link: "/hastane-kapilari",
+    count: 6
+  },
+  {
+    name: "Otel Kapıları",
+    icon: "🏨",
+    description: "Otel ve konaklama tesisleri için kapılar",
+    link: "/otel-kapilari",
+    count: 8
+  },
+  {
+    name: "Yangına Dayanıklı Kapılar",
+    icon: "🔥",
+    description: "Yangın güvenliği standartlarına uygun kapılar",
+    link: "/yangina-dayanikli-kapilari",
+    count: 4
+  }
+];
+---
+
+<Layout
+  title="Ürün Kategorileri | CihanPan Door"
+  description="CihanPan Door ürün kategorileri. PVC, laminoks, elitpan, hastane ve otel kapıları."
+  canonical={currentUrl}
+>
+  <Header />
+  <Breadcrumbs items={breadcrumbItems} />
+
+  <main class="categories-page">
+    <div class="container">
+      <header class="page-header">
+        <h1>Ürün Kategorileri</h1>
+        <p>İhtiyacınıza uygun kapı kategorisini keşfedin</p>
+      </header>
+
+      <div class="categories-grid">
+        {categories.map((category) => (
+          <article class="category-card">
+            <div class="category-icon">{category.icon}</div>
+            <h2 class="category-name">{category.name}</h2>
+            <p class="category-description">{category.description}</p>
+            <div class="category-meta">
+              <span class="category-count">{category.count}+ Model</span>
+            </div>
+            <a href={category.link} class="category-link">
+              Ürünleri Görüntüle →
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <section class="info-section">
+        <h2>Tüm Kategorilerde</h2>
+        <div class="features">
+          <div class="feature-item">
+            <span class="feature-icon">✓</span>
+            <span>TSE Standartlarına Uygun</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">✓</span>
+            <span>2 Yıl Garanti</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">✓</span>
+            <span>Toptan Satış Avantajı</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">✓</span>
+            <span>Özel Ölçü Üretim</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .categories-page {
+    padding: 4rem 0;
+    background: #f8fafc;
+    min-height: 60vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header p {
+    font-size: 1.1rem;
+    color: #6b7280;
+  }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .category-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(8, 145, 178, 0.15);
+  }
+
+  .category-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  .category-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 0.75rem;
+  }
+
+  .category-description {
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+  }
+
+  .category-meta {
+    margin-bottom: 1.5rem;
+  }
+
+  .category-count {
+    background: #e0f2fe;
+    color: #0891b2;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .category-link {
+    display: inline-block;
+    background: #0891b2;
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .category-link:hover {
+    background: #0e7490;
+    transform: translateX(3px);
+  }
+
+  .info-section {
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+
+  .info-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0891b2;
+    margin-bottom: 2rem;
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    color: #4a5568;
+    font-weight: 500;
+  }
+
+  .feature-icon {
+    color: #10b981;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 768px) {
+    .categories-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .page-header h1 {
+      font-size: 2rem;
+    }
+
+    .features {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

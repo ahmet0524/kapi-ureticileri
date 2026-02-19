@@ -1,5 +1,5 @@
 ---
-// src/pages/index.astro - ✅ UZUN VERSİYON - PART 1/3
+// src/pages/index.astro
 import I18nLayout from '../layouts/I18nLayout.astro';
 import I18nHeader from '../components/I18nHeader.astro';
 import I18nFooter from '../components/I18nFooter.astro';
@@ -8,17 +8,22 @@ import { getLangFromUrl, useTranslations, getLocalizedRoute } from '../i18n/util
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const baseUrl = 'https://cihanpandoor.netlify.app';
-const canonicalUrl = lang === 'tr' ? baseUrl : `${baseUrl}/${lang}`;
+const baseUrl  = 'https://cihanpandoor.netlify.app';
+const pageUrl  = lang === 'tr' ? baseUrl : `${baseUrl}/${lang}`;
+const isEN     = lang === 'en';
 
-// Schema
+// ── SCHEMA ───────────────────────────────────────────────────────────
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "CihanPan Door",
-  "url": canonicalUrl,
-  "description": t('meta.desc.home'),
-  "inLanguage": lang === 'tr' ? 'tr-TR' : lang === 'en' ? 'en-US' : 'ar-SA'
+  "url": baseUrl,
+  "inLanguage": lang === 'tr' ? 'tr-TR' : lang === 'ar' ? 'ar-SA' : 'en-US',
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": { "@type": "EntryPoint", "urlTemplate": `${baseUrl}/search?q={search_term_string}` },
+    "query-input": "required name=search_term_string"
+  }
 };
 
 const organizationSchema = {
@@ -27,477 +32,474 @@ const organizationSchema = {
   "name": "CihanPan Door",
   "url": baseUrl,
   "logo": `${baseUrl}/assets/img/logo/header-logo1.webp`,
+  "foundingDate": "1995",
+  "description": isEN
+    ? "CE & ISO 9001 certified interior door manufacturer in Turkey. Wholesale PVC, MDF & Laminox doors for USA, Europe & Middle East. 600K units/year. MOQ 50 units."
+    : "Kayseri'de 1995'ten bu yana faaliyet gösteren CE ve ISO 9001 sertifikalı kapı üreticisi.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Organize Sanayi Bölgesi 29. Sokak No:28",
+    "addressLocality": "Kayseri",
+    "addressRegion": "Kayseri",
+    "postalCode": "38070",
+    "addressCountry": "TR"
+  },
   "contactPoint": {
     "@type": "ContactPoint",
     "telephone": "+90-544-169-0038",
-    "contactType": "sales"
-  }
+    "contactType": "Sales",
+    "availableLanguage": ["Turkish", "English", "Arabic", "German"],
+    "areaServed": ["TR", "US", "EU", "ME"]
+  },
+  "sameAs": ["https://www.cihanpandoor.com"]
 };
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": isEN ? "Wholesale Interior Door Collection" : "Kapı Koleksiyonu",
+  "url": pageUrl,
+  "numberOfItems": 6,
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": isEN ? "PVC Interior Doors" : "PVC Kapılar",      "url": `${pageUrl}/pvc-doors` },
+    { "@type": "ListItem", "position": 2, "name": isEN ? "Laminox Interior Doors" : "Laminoks Kapılar", "url": `${pageUrl}/laminox-doors` },
+    { "@type": "ListItem", "position": 3, "name": isEN ? "Hotel Room Doors" : "Otel Kapıları",     "url": `${pageUrl}/hotel-doors` },
+    { "@type": "ListItem", "position": 4, "name": isEN ? "Hospital Doors" : "Hastane Kapıları",    "url": `${pageUrl}/hospital-doors` },
+    { "@type": "ListItem", "position": 5, "name": isEN ? "Elitpan MDF Doors" : "Elitpan Kapılar", "url": `${pageUrl}/elitpan-doors` },
+    { "@type": "ListItem", "position": 6, "name": isEN ? "Fire-Resistant Doors" : "Yangına Dayanıklı Kapılar", "url": `${pageUrl}/fire-doors` }
+  ]
+};
+
+const schemas = [websiteSchema, organizationSchema, productSchema];
+
+// ── CATEGORIES DATA ──────────────────────────────────────────────────
+const categories = [
+  {
+    slug: '/pvc-kapilar',
+    img: '/assets/img/categories/pvc-kapilar.webp',
+    badge: isEN ? 'Best Seller' : 'Çok Satan',
+    title: isEN ? 'PVC Interior Doors' : 'PVC Kapılar',
+    desc: isEN
+      ? 'Moisture-resistant, antibacterial PVC doors. Ideal for bathrooms, hospitals and high-humidity environments.'
+      : 'Su geçirmez, antibakteriyel PVC kapılar. Banyo ve nemli alanlar için idealdir.',
+    tags: isEN ? ['Waterproof', 'Antibacterial', 'Easy Clean'] : ['Su Geçirmez', 'Antibakteriyel', 'Kolay Bakım'],
+  },
+  {
+    slug: '/laminoks-kapilar',
+    img: '/assets/img/categories/laminoks-kapilar.webp',
+    badge: isEN ? 'Featured' : 'Öne Çıkan',
+    title: isEN ? 'Laminox Interior Doors' : 'Laminoks Kapılar',
+    desc: isEN
+      ? 'Premium MDF core with durable Laminox surface. Scratch-resistant finish in 50+ color options for wholesale projects.'
+      : 'Dayanıklı laminoks yüzeyli, MDF özlü premium kapılar. 50+ renk seçeneği.',
+    tags: isEN ? ['Scratch-Resistant', '50+ Colors', 'MDF Core'] : ['Çizilmez', '50+ Renk', 'MDF Özlü'],
+    featured: true,
+  },
+  {
+    slug: '/elitpan-kapilar',
+    img: '/assets/img/categories/elitpan-kapilar.webp',
+    badge: isEN ? 'Premium' : 'Premium',
+    title: isEN ? 'Elitpan MDF Doors' : 'Elitpan Kapılar',
+    desc: isEN
+      ? 'UV-coated MDF surface with high gloss finish. Export-grade quality for residential and commercial wholesale.'
+      : 'UV boyalı, parlak MDF yüzeyli premium kapılar. İhracat kalitesi.',
+    tags: isEN ? ['UV Coated', 'High Gloss', 'Export Grade'] : ['UV Boyalı', 'Parlak Yüzey', 'İhracat Kalitesi'],
+  },
+  {
+    slug: '/hastane-kapilari',
+    img: '/assets/img/categories/hastane-kapilari.webp',
+    badge: isEN ? 'Specialist' : 'Uzman',
+    title: isEN ? 'Hospital Grade Doors' : 'Hastane Kapıları',
+    desc: isEN
+      ? 'CE certified hygiene doors for healthcare facilities. Lead-lined, radio-opaque and antimicrobial options available.'
+      : 'Sağlık tesisleri için CE sertifikalı hijyen kapılar.',
+    tags: isEN ? ['CE Certified', 'Lead-Lined Option', 'Antimicrobial'] : ['CE Sertifikalı', 'Kurşun Seçenek', 'Antimikrobiyal'],
+  },
+  {
+    slug: '/otel-kapilari',
+    img: '/assets/img/categories/otel-kapilari.webp',
+    badge: isEN ? 'Hospitality' : 'Otel',
+    title: isEN ? 'Hotel Room Doors' : 'Otel Kapıları',
+    desc: isEN
+      ? 'Sound-insulated, fire-rated hotel doors for 3★ to 5★ properties. Bulk pricing available for 500+ unit orders.'
+      : 'Yangına dayanıklı, ses yalıtımlı otel kapıları. Toplu fiyatlandırma mevcut.',
+    tags: isEN ? ['Sound-Insulated', 'Fire-Rated', 'Bulk Pricing'] : ['Ses Yalıtımı', 'Yangın Dayanımı', 'Toplu Fiyat'],
+  },
+  {
+    slug: '/yangina-dayanikli-kapilar',
+    img: '/assets/img/categories/yangina-dayanikli-kapilar.webp',
+    badge: isEN ? 'Certified' : 'Sertifikalı',
+    title: isEN ? 'Fire-Resistant Doors' : 'Yangına Dayanıklı Kapılar',
+    desc: isEN
+      ? 'EI30–EI90 rated fire doors with CE certification. Compliant with European and international building codes.'
+      : 'CE sertifikalı EI30–EI90 yangın kapıları. Uluslararası standartlara uygun.',
+    tags: isEN ? ['EI30–EI90', 'CE Certified', 'Building Code'] : ['EI30–EI90', 'CE Sertifikalı', 'Yönetmelik Uyumlu'],
+  },
+];
+
+const trustItems = isEN ? [
+  { icon: '🏭', label: 'Direct Factory',    desc: 'No middlemen — buy directly from the manufacturer' },
+  { icon: '📋', label: 'CE + ISO 9001',     desc: 'Certified quality on every wholesale shipment' },
+  { icon: '📦', label: 'MOQ: 50 Units',     desc: 'Low minimums to test before scaling' },
+  { icon: '🌍', label: '25+ Countries',     desc: 'Proven export track record since 2010' },
+  { icon: '🚢', label: 'FOB / CIF Terms',   desc: 'Flexible Incoterms for US importers' },
+  { icon: '⚡', label: '24h Response',      desc: 'Quote turnaround within one business day' },
+] : [
+  { icon: '🏭', label: 'Direkt Fabrika',    desc: 'Aracısız, üreticiden doğrudan satış' },
+  { icon: '📋', label: 'CE + ISO 9001',     desc: 'Her siparişte sertifikalı kalite güvencesi' },
+  { icon: '📦', label: 'Min. 50 Adet',      desc: 'Düşük MOQ ile test imkânı' },
+  { icon: '🌍', label: '25+ Ülke',          desc: '2010\'dan bu yana kanıtlanmış ihracat deneyimi' },
+  { icon: '🚢', label: 'FOB / CIF',         desc: 'Esnek Incoterm seçenekleri' },
+  { icon: '⚡', label: '24s Yanıt',          desc: 'Bir iş günü içinde fiyat teklifi' },
+];
 ---
 
 <I18nLayout
-  title={t('meta.title.home')}
-  description={t('meta.desc.home')}
-  canonical={canonicalUrl}
-  schema={[websiteSchema, organizationSchema]}
+  title={isEN
+    ? "Wholesale Interior Door Manufacturer Turkey | CE & ISO Certified | CihanPan Door"
+    : "İç Kapı Üreticisi Kayseri | Toptan Satış & İhracat | CihanPan Door"}
+  description={isEN
+    ? "CE & ISO 9001 certified wholesale interior door manufacturer in Turkey. PVC, Laminox, MDF & fire-rated doors. Export to USA, Europe & Middle East. MOQ 50 units. Factory-direct pricing."
+    : "Kayseri'de 1995'ten bu yana faaliyet gösteren CE & ISO 9001 sertifikalı kapı üreticisi. PVC, Laminoks, MDF kapılar. Toptan satış ve ihracat."}
+  keywords={isEN
+    ? "interior door manufacturer Turkey, wholesale interior doors Turkey, Turkish door exporter USA, PVC door wholesale Turkey, MDF interior door exporter, CE ISO certified door manufacturer, bulk interior doors Turkey"
+    : "kapı üreticisi kayseri, iç kapı toptan satış, PVC kapı üreticisi, laminoks kapı fabrika, kapı ihracat türkiye"}
+  canonical={pageUrl}
+  schema={schemas}
+  ogTitle={isEN ? "Turkey's Leading Wholesale Interior Door Manufacturer | CihanPan Door" : "CihanPan Door — Türkiye'nin Kapı Üreticisi"}
+  ogDescription={isEN
+    ? "Factory-direct wholesale interior doors from Kayseri, Turkey. CE, TSE & ISO 9001 certified. Exporting to 25+ countries since 1995."
+    : "Kayseri'den dünyaya, 1995'ten bu yana kaliteli kapı üretimi ve ihracatı."}
+  ogImage="/assets/img/og/home-og.webp"
 >
   <I18nHeader />
 
-  <main>
-    <!-- ============================================
-         HERO SECTION
-         ============================================ -->
-    <section class="hero">
-      <div class="hero-banner">
-        <div class="banner-overlay">
-          <div class="container">
-            <div class="banner-content">
-              <h1 class="banner-title">
-                {t('hero.title')}
-                <span class="title-highlight">{t('hero.titleHighlight')}</span>
-              </h1>
+  <main class="hp" id="main-content">
 
-              <p class="banner-subtitle">
-                {t('hero.subtitle')}
-              </p>
+    <!-- ══════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════ -->
+    <section class="hp-hero" aria-labelledby="hero-h1">
+      <div class="hp-hero__bg" aria-hidden="true">
+        <div class="hp-hero__img"></div>
+        <div class="hp-hero__overlay"></div>
+        <div class="hp-hero__grid"></div>
+      </div>
 
-              <div class="banner-actions">
-                <a href="#kategoriler" class="btn-primary">{t('hero.btnCatalog')}</a>
-                <a href={getLocalizedRoute("/iletisim", lang)} class="btn-secondary">
-                  {t('hero.btnQuote')}
-                </a>
-              </div>
-            </div>
+      <div class="hp-wrap hp-hero__inner">
+        <div class="hp-hero__copy">
+          <span class="hp-eyebrow">
+            <span class="hp-eyebrow__line"></span>
+            {isEN ? 'Kayseri, Turkey · Est. 1995' : 'Kayseri · 1995\'ten Bu Yana'}
+          </span>
+
+          <!-- PRIMARY KEYWORD H1 -->
+          <h1 class="hp-hero__h1" id="hero-h1">
+            {isEN ? (
+              <>Turkey's Leading<br /><em>Wholesale Interior Door</em><br />Manufacturer &amp; Exporter</>
+            ) : (
+              <>Türkiye'nin Önde Gelen<br /><em>İç Kapı Üreticisi</em><br />ve İhracatçısı</>
+            )}
+          </h1>
+
+          <p class="hp-hero__lead">
+            {isEN
+              ? 'CE, TSE & ISO 9001 certified. Factory-direct PVC, MDF & Laminox interior doors for wholesale importers in the USA, Europe and Middle East. 600,000 units/year capacity.'
+              : 'CE, TSE ve ISO 9001 sertifikalı. PVC, MDF ve Laminoks iç kapılar. Toptan satış ve ihracat — yılda 600.000 adet üretim kapasitesi.'}
+          </p>
+
+          <div class="hp-hero__tags">
+            <span class="hp-htag">✓ CE Certified</span>
+            <span class="hp-htag">✓ ISO 9001</span>
+            <span class="hp-htag">✓ MOQ 50 Units</span>
+            <span class="hp-htag">✓ USA Export Ready</span>
           </div>
+
+          <div class="hp-hero__actions">
+            <a href={getLocalizedRoute('/iletisim', lang)} class="hp-btn hp-btn--gold">
+              {isEN ? 'Get a Free Quote' : 'Teklif Al'}
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#products" class="hp-btn hp-btn--ghost">
+              {isEN ? 'View All Products' : 'Ürünleri Gör'}
+            </a>
+          </div>
+        </div>
+
+        <!-- Floating cert badges -->
+        <div class="hp-hero__certs" aria-label="Quality certifications">
+          <div class="hp-cert hp-cert--gold">CE</div>
+          <div class="hp-cert">TSE</div>
+          <div class="hp-cert">ISO<br>9001</div>
         </div>
       </div>
 
-      <div class="container">
-        <!-- Info Cards -->
-        <div class="info-cards">
-          <div class="info-card">
-            <div class="card-icon">🏆</div>
-            <h3>{t('hero.experience')}</h3>
-            <p>{t('hero.experienceDesc')}</p>
+      <!-- Stats bar -->
+      <div class="hp-wrap">
+        <div class="hp-statsbar">
+          <div class="hp-sitem">
+            <strong>30<sup>+</sup></strong>
+            <span>{isEN ? 'Years Manufacturing' : 'Yıl Üretim'}</span>
           </div>
-          <div class="info-card">
-            <div class="card-icon">💰</div>
-            <h3>{t('hero.factoryPrice')}</h3>
-            <p>{t('hero.factoryPriceDesc')}</p>
+          <div class="hp-sdiv"></div>
+          <div class="hp-sitem">
+            <strong>600K</strong>
+            <span>{isEN ? 'Units / Year' : 'Adet / Yıl'}</span>
           </div>
-          <div class="info-card">
-            <div class="card-icon">🚚</div>
-            <h3>{t('hero.delivery')}</h3>
-            <p>{t('hero.deliveryDesc')}</p>
+          <div class="hp-sdiv"></div>
+          <div class="hp-sitem">
+            <strong>25<sup>+</sup></strong>
+            <span>{isEN ? 'Export Countries' : 'İhracat Ülkesi'}</span>
           </div>
-          <div class="info-card">
-            <div class="card-icon">🌍</div>
-            <h3>{t('hero.export')}</h3>
-            <p>{t('hero.exportDesc')}</p>
+          <div class="hp-sdiv"></div>
+          <div class="hp-sitem">
+            <strong>15K m²</strong>
+            <span>{isEN ? 'Factory Floor' : 'Fabrika Alanı'}</span>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================
-         ÖNE ÇIKAN ÜRÜNLER - 3 KAPI (✅ RESİMLERE LİNK EKLENDİ)
-         ============================================ -->
-    <section class="featured-products">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">{t('featured.title')}</h2>
-          <p class="section-subtitle">{t('featured.subtitle')}</p>
-        </div>
-
-        <div class="products-grid">
-          <!-- ✅ PVC KAPILAR -->
-          <article class="product-card">
-            <a href={getLocalizedRoute("/pvc-kapilar", lang)} class="product-image-link">
-              <div class="product-image">
-                <img
-                  src="/assets/img/categories/pvc-kapilar.webp"
-                  alt={t('featured.pvc.alt')}
-                  width="400"
-                  height="400"
-                  loading="eager"
-                />
-                <div class="product-badge">{t('featured.badge.popular')}</div>
-              </div>
-            </a>
-            <div class="product-body">
-              <h3 class="product-title">
-                <a href={getLocalizedRoute("/pvc-kapilar", lang)}>
-                  {t('products.pvc')}
-                </a>
-              </h3>
-              <p class="product-description">{t('featured.pvc.description')}</p>
-
-              <ul class="product-features">
-                <li>✓ {t('featured.pvc.feature1')}</li>
-                <li>✓ {t('featured.pvc.feature2')}</li>
-                <li>✓ {t('featured.pvc.feature3')}</li>
-                <li>✓ {t('featured.pvc.feature4')}</li>
-              </ul>
-
-              <div class="product-footer">
-
-                <a href={getLocalizedRoute("/pvc-kapilar", lang)} class="btn-product">
-                  {t('featured.viewButton')}
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- ✅ LAMİNOKS KAPILAR -->
-          <article class="product-card featured-highlight">
-            <a href={getLocalizedRoute("/laminoks-kapilar", lang)} class="product-image-link">
-              <div class="product-image">
-                <img
-                  src="/assets/img/categories/laminoks-kapilar.webp"
-                  alt={t('featured.laminoks.alt')}
-                  width="400"
-                  height="400"
-                  loading="eager"
-                />
-                <div class="product-badge featured">{t('featured.badge.featured')}</div>
-              </div>
-            </a>
-            <div class="product-body">
-              <h3 class="product-title">
-                <a href={getLocalizedRoute("/laminoks-kapilar", lang)}>
-                  {t('products.laminoks')}
-                </a>
-              </h3>
-              <p class="product-description">{t('featured.laminoks.description')}</p>
-
-              <ul class="product-features">
-                <li>✓ {t('featured.laminoks.feature1')}</li>
-                <li>✓ {t('featured.laminoks.feature2')}</li>
-                <li>✓ {t('featured.laminoks.feature3')}</li>
-                <li>✓ {t('featured.laminoks.feature4')}</li>
-              </ul>
-
-              <div class="product-footer">
-
-                <a href={getLocalizedRoute("/laminoks-kapilar", lang)} class="btn-product primary">
-                  {t('featured.viewButton')}
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- ✅ OTEL KAPILARI -->
-          <article class="product-card">
-            <a href={getLocalizedRoute("/otel-kapilari", lang)} class="product-image-link">
-              <div class="product-image">
-                <img
-                  src="/assets/img/categories/otel-kapilari.webp"
-                  alt={t('featured.hotel.alt')}
-                  width="400"
-                  height="400"
-                  loading="eager"
-                />
-                <div class="product-badge">{t('featured.badge.professional')}</div>
-              </div>
-            </a>
-            <div class="product-body">
-              <h3 class="product-title">
-                <a href={getLocalizedRoute("/otel-kapilari", lang)}>
-                  {t('products.hotel')}
-                </a>
-              </h3>
-              <p class="product-description">{t('featured.hotel.description')}</p>
-
-              <ul class="product-features">
-                <li>✓ {t('featured.hotel.feature1')}</li>
-                <li>✓ {t('featured.hotel.feature2')}</li>
-                <li>✓ {t('featured.hotel.feature3')}</li>
-                <li>✓ {t('featured.hotel.feature4')}</li>
-              </ul>
-
-              <div class="product-footer">
-
-                <a href={getLocalizedRoute("/otel-kapilari", lang)} class="btn-product">
-                  {t('featured.viewButton')}
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </article>
         </div>
       </div>
     </section>
 
-<!-- ============================================
-     PART 2/3 - KATEGORİLER VE ÖZELLİKLER
-     ============================================ -->
-
-    <!-- ============================================
-         TÜM KATEGORİLER
-         ============================================ -->
-    <section class="categories" id="kategoriler">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">{t('categories.title')}</h2>
-          <p class="section-subtitle">{t('categories.subtitle')}</p>
-        </div>
-
-        <div class="categories-grid">
-          <!-- PVC Kapılar -->
-          <article class="category-card">
-            <a href={getLocalizedRoute("/pvc-kapilar", lang)} class="card-image-link">
-              <div class="card-image">
-                <img src="/assets/img/categories/pvc-kapilar.webp" alt={t('categories.pvc.alt')} width="200" height="200" loading="lazy" />
+    <!-- ══════════════════════════════════════════
+         TRUST BAR
+    ══════════════════════════════════════════ -->
+    <section class="hp-trust" aria-label={isEN ? 'Why choose us' : 'Neden biz'}>
+      <div class="hp-wrap">
+        <div class="hp-trust__grid">
+          {trustItems.map(item => (
+            <div class="hp-trust__item">
+              <span class="hp-trust__icon" aria-hidden="true">{item.icon}</span>
+              <div>
+                <strong>{item.label}</strong>
+                <p>{item.desc}</p>
               </div>
-            </a>
-            <div class="card-body">
-              <h3 class="card-title">
-                <a href={getLocalizedRoute("/pvc-kapilar", lang)}>{t('products.pvc')}</a>
-              </h3>
-              <p class="card-description">{t('categories.pvc.description')}</p>
-              <ul class="card-features">
-                <li class="feature-tag">{t('categories.pvc.feature1')}</li>
-                <li class="feature-tag">{t('categories.pvc.feature2')}</li>
-                <li class="feature-tag">{t('categories.pvc.feature3')}</li>
-              </ul>
-              <a href={getLocalizedRoute("/pvc-kapilar", lang)} class="card-btn">
-                {t('categories.detailsButton')}
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
             </div>
-          </article>
-
-          <!-- Laminoks Kapılar -->
-          <article class="category-card">
-            <a href={getLocalizedRoute("/laminoks-kapilar", lang)} class="card-image-link">
-              <div class="card-image">
-                <img src="/assets/img/categories/laminoks-kapilar.webp" alt={t('categories.laminoks.alt')} width="200" height="200" loading="lazy" />
-              </div>
-            </a>
-            <div class="card-body">
-              <h3 class="card-title">
-                <a href={getLocalizedRoute("/laminoks-kapilar", lang)}>{t('products.laminoks')}</a>
-              </h3>
-              <p class="card-description">{t('categories.laminoks.description')}</p>
-              <ul class="card-features">
-                <li class="feature-tag">{t('categories.laminoks.feature1')}</li>
-                <li class="feature-tag">{t('categories.laminoks.feature2')}</li>
-                <li class="feature-tag">{t('categories.laminoks.feature3')}</li>
-              </ul>
-              <a href={getLocalizedRoute("/laminoks-kapilar", lang)} class="card-btn">
-                {t('categories.detailsButton')}
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <!-- Otel Kapıları -->
-          <article class="category-card">
-            <a href={getLocalizedRoute("/otel-kapilari", lang)} class="card-image-link">
-              <div class="card-image">
-                <img src="/assets/img/categories/otel-kapilari.webp" alt={t('categories.hotel.alt')} width="200" height="200" loading="lazy" />
-              </div>
-            </a>
-            <div class="card-body">
-              <h3 class="card-title">
-                <a href={getLocalizedRoute("/otel-kapilari", lang)}>{t('products.hotel')}</a>
-              </h3>
-              <p class="card-description">{t('categories.hotel.description')}</p>
-              <ul class="card-features">
-                <li class="feature-tag">{t('categories.hotel.feature1')}</li>
-                <li class="feature-tag">{t('categories.hotel.feature2')}</li>
-                <li class="feature-tag">{t('categories.hotel.feature3')}</li>
-              </ul>
-              <a href={getLocalizedRoute("/otel-kapilari", lang)} class="card-btn">
-                {t('categories.detailsButton')}
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <!-- Hastane Kapıları -->
-          <article class="category-card">
-            <a href={getLocalizedRoute("/hastane-kapilari", lang)} class="card-image-link">
-              <div class="card-image">
-                <img src="/assets/img/categories/hastane-kapilari.webp" alt={t('categories.hospital.alt')} width="200" height="200" loading="lazy" />
-              </div>
-            </a>
-            <div class="card-body">
-              <h3 class="card-title">
-                <a href={getLocalizedRoute("/hastane-kapilari", lang)}>{t('products.hospital')}</a>
-              </h3>
-              <p class="card-description">{t('categories.hospital.description')}</p>
-              <ul class="card-features">
-                <li class="feature-tag">{t('categories.hospital.feature1')}</li>
-                <li class="feature-tag">{t('categories.hospital.feature2')}</li>
-                <li class="feature-tag">{t('categories.hospital.feature3')}</li>
-              </ul>
-              <a href={getLocalizedRoute("/hastane-kapilari", lang)} class="card-btn">
-                {t('categories.detailsButton')}
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
-          </article>
+          ))}
         </div>
       </div>
     </section>
 
-    <!-- ============================================
-         ÇÖZÜMLERİMİZ
-         ============================================ -->
-    <section class="solutions">
-      <div class="container">
-        <h2 class="section-title">{t('hero.solutionsTitle')}</h2>
+    <!-- ══════════════════════════════════════════
+         PRODUCTS — SEO keyword-rich section
+    ══════════════════════════════════════════ -->
+    <section class="hp-sec hp-sec--white" id="products" aria-labelledby="products-h2">
+      <div class="hp-wrap">
+        <div class="hp-head">
+          <span class="hp-tag">{isEN ? 'Our Product Range' : 'Ürün Gamımız'}</span>
+          <!-- SECONDARY KEYWORD H2 -->
+          <h2 id="products-h2">
+            {isEN
+              ? 'Wholesale Interior Door Collection — Factory Direct from Turkey'
+              : 'Kapı Koleksiyonu — Fabrikadan Doğrudan'}
+          </h2>
+          <p>
+            {isEN
+              ? 'All product lines are CE & ISO 9001 certified and available for bulk wholesale export to the USA, Europe and Middle East.'
+              : 'Tüm ürün serileri CE ve ISO 9001 sertifikalı. Toptan satış ve ihracat için hazır.'}
+          </p>
+        </div>
 
-        <div class="solutions-grid">
-          <!-- Toptan Satış -->
-          <div class="solution-card">
-            <div class="solution-icon">🏭</div>
-            <h3>{t('hero.wholesale')}</h3>
-            <p>{t('hero.wholesaleDesc')}</p>
-            <ul class="solution-list">
-              <li>{t('hero.wholesaleFeature1')}</li>
-              <li>{t('hero.wholesaleFeature2')}</li>
-              <li>{t('hero.wholesaleFeature3')}</li>
+        <div class="hp-products">
+          {categories.map((cat, i) => (
+            <article class={`hp-product ${cat.featured ? 'hp-product--featured' : ''}`}>
+              <a href={getLocalizedRoute(cat.slug, lang)} class="hp-product__img-wrap" tabindex="-1" aria-hidden="true">
+                <img
+                  src={cat.img}
+                  alt={cat.title}
+                  width="480"
+                  height="360"
+                  loading={i < 3 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
+                <span class={`hp-product__badge ${cat.featured ? 'hp-product__badge--gold' : ''}`}>{cat.badge}</span>
+              </a>
+              <div class="hp-product__body">
+                <h3>
+                  <a href={getLocalizedRoute(cat.slug, lang)}>{cat.title}</a>
+                </h3>
+                <p>{cat.desc}</p>
+                <ul class="hp-product__tags">
+                  {cat.tags.map(tag => <li>{tag}</li>)}
+                </ul>
+                <a href={getLocalizedRoute(cat.slug, lang)} class="hp-product__cta">
+                  {isEN ? 'View & Request Quote' : 'İncele & Teklif Al'}
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SOLUTIONS — US buyer journey
+    ══════════════════════════════════════════ -->
+    <section class="hp-sec hp-sec--navy" aria-labelledby="solutions-h2">
+      <div class="hp-wrap">
+        <div class="hp-head hp-head--light">
+          <span class="hp-tag">{isEN ? 'How We Work' : 'Nasıl Çalışırız'}</span>
+          <h2 id="solutions-h2">
+            {isEN
+              ? 'Interior Door Wholesale & Export Services'
+              : 'Toptan Satış & İhracat Hizmetleri'}
+          </h2>
+          <p>
+            {isEN
+              ? 'Three flexible sourcing models for US importers, distributors and project developers'
+              : 'Bayiler, inşaatçılar ve ihracatçılar için üç esnek tedarik modeli'}
+          </p>
+        </div>
+
+        <div class="hp-solutions">
+          <div class="hp-sol">
+            <div class="hp-sol__num" aria-hidden="true">01</div>
+            <div class="hp-sol__icon" aria-hidden="true">🏭</div>
+            <h3>{isEN ? 'Wholesale Orders' : 'Toptan Siparişler'}</h3>
+            <p>{isEN
+              ? 'MOQ 50 units. Fixed catalog prices for standard sizes. Volume discounts from 200+ units. Pre-shipment samples included.'
+              : 'Minimum 50 adet. Standart boyutlar için sabit fiyatlar. 200+ adet için hacim indirimleri.'}</p>
+            <ul>
+              <li>{isEN ? 'MOQ 50 units' : 'Min. 50 adet'}</li>
+              <li>{isEN ? 'Volume discounts available' : 'Hacim indirimleri mevcut'}</li>
+              <li>{isEN ? 'CE/ISO docs included' : 'CE/ISO belgeler dahil'}</li>
             </ul>
           </div>
 
-          <!-- İhracat -->
-          <div class="solution-card">
-            <div class="solution-icon">🌍</div>
-            <h3>{t('hero.exportService')}</h3>
-            <p>{t('hero.exportServiceDesc')}</p>
-            <ul class="solution-list">
-              <li>{t('hero.exportFeature1')}</li>
-              <li>{t('hero.exportFeature2')}</li>
-              <li>{t('hero.exportFeature3')}</li>
+          <div class="hp-sol">
+            <div class="hp-sol__num" aria-hidden="true">02</div>
+            <div class="hp-sol__icon" aria-hidden="true">🌍</div>
+            <h3>{isEN ? 'Export & Import Services' : 'İhracat Hizmetleri'}</h3>
+            <p>{isEN
+              ? 'Full export documentation: commercial invoice, packing list, certificate of origin, CE & ISO certificates. FOB / CIF / EXW terms.'
+              : 'Tam ihracat belgelendirmesi. FOB / CIF / EXW Incoterm seçenekleri.'}</p>
+            <ul>
+              <li>{isEN ? 'FOB / CIF / EXW Incoterms' : 'FOB / CIF / EXW seçenekleri'}</li>
+              <li>{isEN ? 'Full export documentation' : 'Tam belgelendirme'}</li>
+              <li>{isEN ? 'Freight forwarder coordination' : 'Nakliye koordinasyonu'}</li>
             </ul>
           </div>
 
-          <!-- Proje Çözümleri -->
-          <div class="solution-card">
-            <div class="solution-icon">🏗️</div>
-            <h3>{t('hero.projectSolutions')}</h3>
-            <p>{t('hero.projectSolutionsDesc')}</p>
-            <ul class="solution-list">
-              <li>{t('hero.projectFeature1')}</li>
-              <li>{t('hero.projectFeature2')}</li>
-              <li>{t('hero.projectFeature3')}</li>
+          <div class="hp-sol">
+            <div class="hp-sol__num" aria-hidden="true">03</div>
+            <div class="hp-sol__icon" aria-hidden="true">🏗️</div>
+            <h3>{isEN ? 'Custom Project Solutions' : 'Proje Çözümleri'}</h3>
+            <p>{isEN
+              ? 'Non-standard dimensions, private label, custom finishes — available for hotels, hospitals, residential complexes and commercial projects.'
+              : 'Standart dışı boyutlar, özel etiket, özel yüzeyler. Otel, hastane ve konut projeleri için.'}</p>
+            <ul>
+              <li>{isEN ? 'Custom sizing & finish' : 'Özel boyut ve yüzey'}</li>
+              <li>{isEN ? 'Private label available' : 'Özel etiket mevcut'}</li>
+              <li>{isEN ? 'On-site measurement support' : 'Ölçü desteği'}</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============================================
-         HAKKIMIZDA / ÖZELLİKLER
-         ============================================ -->
-    <section class="about-section">
-      <div class="container">
-        <div class="about-content">
-          <div class="about-main">
-            <h2>{t('features.mainTitle')}</h2>
-            <p>{t('features.paragraph1')}</p>
-            <p>{t('features.paragraph2')}</p>
+    <!-- ══════════════════════════════════════════
+         ABOUT / CONTENT — SEO long-form text
+    ══════════════════════════════════════════ -->
+    <section class="hp-sec hp-sec--white" aria-labelledby="about-h2">
+      <div class="hp-wrap hp-about">
 
-            <h3>{t('features.exportTitle')}</h3>
-            <p>{t('features.exportParagraph1')}</p>
-            <p>{t('features.exportParagraph2')}</p>
+        <div class="hp-about__text">
+          <span class="hp-tag">{isEN ? 'About CihanPan Door' : 'Hakkımızda'}</span>
+          <!-- LONG-TAIL KEYWORD H2 -->
+          <h2 id="about-h2">
+            {isEN
+              ? 'CE & ISO 9001 Certified Interior Door Factory in Kayseri, Turkey'
+              : 'Kayseri\'de CE ve ISO 9001 Sertifikalı İç Kapı Fabrikası'}
+          </h2>
 
-            <h3>{t('features.factoryTitle')}</h3>
-            <p>{t('features.factoryParagraph1')}</p>
-            <p>{t('features.factoryParagraph2')}</p>
+          {isEN ? (
+            <>
+              <p>Founded in 1995, <strong>CihanPan Door</strong> is one of Turkey's most experienced <strong>wholesale interior door manufacturers</strong>. Operating from a 15,000 m² production facility in Kayseri Organized Industrial Zone, we produce over <strong>600,000 interior door sets per year</strong> for wholesale buyers in the USA, Europe, and the Middle East.</p>
+              <h3>Why Source Interior Doors from Turkey?</h3>
+              <p>Turkey has emerged as the leading alternative to Chinese door manufacturing for US importers — offering <strong>CE & ISO certified quality</strong>, competitive factory pricing, and significantly shorter sea freight times to East Coast ports. CihanPan Door ships to New York, Los Angeles, Miami, Houston, and all major US ports.</p>
+              <h3>Our Interior Door Manufacturing Capabilities</h3>
+              <p>We manufacture <strong>PVC coated doors, Laminox surface doors, UV-painted Elitpan MDF doors, hospital-grade hygiene doors, hotel room doors, and EI30–EI90 fire-rated doors</strong>. All product lines support custom sizing, non-standard dimensions, and private label for wholesale partners.</p>
+            </>
+          ) : (
+            <>
+              <p>1995 yılında kurulan <strong>CihanPan Door</strong>, Kayseri Organize Sanayi Bölgesi'ndeki 15.000 m² üretim tesisinde yılda <strong>600.000 iç kapı seti</strong> üretmektedir. PVC, Laminoks, Elitpan (MDF), hastane, otel ve yangına dayanıklı kapı serileriyle Türkiye'nin önde gelen kapı üreticilerindendir.</p>
+              <h3>Neden CihanPan Door?</h3>
+              <p>CE, TSE ve ISO 9001 sertifikalarıyla desteklenen üretim sürecimiz, her siparişte tutarlı kalite güvencesi sağlar. Minimum 50 adetlik toptan siparişler, özel boyut ve yüzey seçenekleri, tam ihracat belgelendirmesi sunuyoruz.</p>
+            </>
+          )}
 
-            <h3>{t('features.productsTitle')}</h3>
-            <p>{t('features.productsParagraph')}</p>
-
-            <!-- CTA Section -->
-            <div class="about-cta">
-              <h3>{t('features.ctaTitle')}</h3>
-              <p>{t('features.ctaDescription')}</p>
-              <div class="cta-buttons">
-                <a href="https://www.cihanpandoor.com" target="_blank" rel="noopener" class="btn btn-primary">
-                  {t('features.websiteBtn')}
-                </a>
-                <a href="https://www.cihanpandoor.com/E-Katalog.pdf" target="_blank" rel="noopener" class="btn btn-secondary">
-                  {t('features.catalogBtn')}
-                </a>
-              </div>
-            </div>
+          <div class="hp-about__cta">
+            <a href={getLocalizedRoute('/iletisim', lang)} class="hp-btn hp-btn--navy">
+              {isEN ? 'Request Wholesale Pricing' : 'Toptan Fiyat Al'}
+            </a>
+            <a href="https://www.cihanpandoor.com/E-Katalog.pdf" target="_blank" rel="noopener noreferrer" class="hp-btn hp-btn--outline-dark">
+              {isEN ? 'Download Catalogue (PDF)' : 'Kataloğu İndir (PDF)'}
+            </a>
           </div>
-
-          <!-- Stats Sidebar -->
-          <aside class="about-stats">
-            <div class="stat-card">
-              <div class="stat-number">1995</div>
-              <div class="stat-label">{t('features.founded')}</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number">600K</div>
-              <div class="stat-label">{t('features.capacity')}</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number">25+</div>
-              <div class="stat-label">{t('features.countries')}</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number">150</div>
-              <div class="stat-label">{t('features.employees')}</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number">15K m²</div>
-              <div class="stat-label">{t('features.productionArea')}</div>
-            </div>
-          </aside>
         </div>
+
+        <aside class="hp-about__stats" aria-label="Company statistics">
+          <div class="hp-kpi">
+            <strong>1995</strong>
+            <span>{isEN ? 'Founded' : 'Kuruluş Yılı'}</span>
+          </div>
+          <div class="hp-kpi">
+            <strong>600K</strong>
+            <span>{isEN ? 'Units / Year' : 'Adet / Yıl'}</span>
+          </div>
+          <div class="hp-kpi">
+            <strong>25<sup>+</sup></strong>
+            <span>{isEN ? 'Export Countries' : 'İhracat Ülkesi'}</span>
+          </div>
+          <div class="hp-kpi">
+            <strong>150<sup>+</sup></strong>
+            <span>{isEN ? 'Employees' : 'Çalışan'}</span>
+          </div>
+          <div class="hp-kpi">
+            <strong>15K m²</strong>
+            <span>{isEN ? 'Factory Floor' : 'Fabrika Alanı'}</span>
+          </div>
+          <div class="hp-kpi hp-kpi--certs">
+            <strong>CE · TSE · ISO</strong>
+            <span>{isEN ? 'Certifications' : 'Sertifikalar'}</span>
+          </div>
+        </aside>
+
       </div>
     </section>
 
-    <!-- ============================================
-         İSTATİSTİKLER
-         ============================================ -->
-    <section class="stats-section">
-      <div class="container">
-        <div class="stats-grid">
-          <div class="stat-item">
-            <h3>50.000+</h3>
-            <p>{t('hero.producedDoors')}</p>
-          </div>
-          <div class="stat-item">
-            <h3>500+</h3>
-            <p>{t('hero.completedProjects')}</p>
-          </div>
-          <div class="stat-item">
-            <h3>25+</h3>
-            <p>{t('hero.exportCountries')}</p>
-          </div>
-          <div class="stat-item">
-            <h3>15+</h3>
-            <p>{t('hero.yearsExperience')}</p>
-          </div>
+    <!-- ══════════════════════════════════════════
+         CTA BAND
+    ══════════════════════════════════════════ -->
+    <section class="hp-cta" aria-labelledby="cta-h2">
+      <div class="hp-cta__glow" aria-hidden="true"></div>
+      <div class="hp-wrap hp-cta__inner">
+        <div class="hp-cta__text">
+          <span class="hp-tag hp-tag--gold">
+            {isEN ? 'Start Sourcing Today' : 'Hemen Başlayın'}
+          </span>
+          <h2 id="cta-h2">
+            {isEN
+              ? 'Request a Wholesale Interior\nDoor Quote from Turkey'
+              : 'Toptan Kapı Teklifi Alın'}
+          </h2>
+          <p>
+            {isEN
+              ? 'Tell us your door types, quantities and destination. We respond within 24 hours with factory-direct pricing and full CE/ISO documentation.'
+              : 'Kapı türü, adet ve teslimat bilgilerinizi paylaşın. 24 saat içinde fiyat teklifi alın.'}
+          </p>
+        </div>
+        <div class="hp-cta__btns">
+          <a href={getLocalizedRoute('/iletisim', lang)} class="hp-btn hp-btn--gold">
+            {isEN ? 'Get a Free Quote' : 'Ücretsiz Teklif Al'}
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href={getLocalizedRoute('/hakkimizda', lang)} class="hp-btn hp-btn--ghost">
+            {isEN ? 'Learn About Us' : 'Hakkımızda'}
+          </a>
         </div>
       </div>
     </section>
-
-<!-- ============================================
-     PART 3/3 - FOOTER VE STYLES
-     ============================================ -->
 
   </main>
 
@@ -505,772 +507,697 @@ const organizationSchema = {
 </I18nLayout>
 
 <style>
-  /* ============================================
-     GLOBAL & LAYOUT
-     ============================================ */
-  main {
-    margin-top: 70px;
+  /* ── FONTS ── */
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
+
+  /* ── TOKENS ── */
+  .hp {
+    --navy:     #0f2347;
+    --navy-mid: #1a3a6e;
+    --navy-l:   #1e4a8a;
+    --gold:     #c9a84c;
+    --gold-l:   #e2bc6a;
+    --cream:    #faf8f4;
+    --slate:    #607080;
+    --text:     #0f1929;
+    --body:     #3d4f63;
+    --bdr:      #e4eaf4;
+    --white:    #ffffff;
+    --radius:   14px;
+
+    font-family: 'DM Sans', system-ui, sans-serif;
+    color: var(--text);
   }
 
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
-  .section-title {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #111827;
-    margin-bottom: 0.75rem;
-    position: relative;
-    display: inline-block;
-  }
-
-  .section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: #fbbf24;
-    border-radius: 2px;
-  }
-
-  .section-subtitle {
-    color: #6b7280;
-    font-size: 1.1rem;
-    max-width: 700px;
-    margin: 0 auto;
-    line-height: 1.6;
-  }
-
-  /* ============================================
-     HERO SECTION
-     ============================================ */
-  .hero {
-    min-height: 100vh;
-    background: #ffffff;
-  }
-
-  .hero-banner {
+  /* ── LAYOUT ── */
+  .hp-wrap {
+    max-width: 1160px;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 5vw, 2.5rem);
     width: 100%;
-    height: 60vh;
-    min-height: 500px;
-    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-    background-image:
-      linear-gradient(rgba(30, 58, 138, 0.85), rgba(59, 130, 246, 0.85)),
-      url('/assets/img/hero/door-factory.webp');
+  }
+
+  .hp-sec          { padding-block: clamp(4rem, 8vw, 6.5rem); }
+  .hp-sec--white   { background: var(--white); }
+  .hp-sec--navy    { background: var(--navy); }
+  .hp-sec--cream   { background: var(--cream); }
+
+  /* ── SECTION HEAD ── */
+  .hp-head {
+    text-align: center;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+  .hp-head h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 700;
+    color: var(--text);
+    margin: 0.3rem 0 0.7rem;
+    line-height: 1.2;
+  }
+  .hp-head p {
+    color: var(--slate);
+    font-size: 1rem;
+    max-width: 560px;
+    margin-inline: auto;
+    line-height: 1.7;
+  }
+  .hp-head--light h2 { color: var(--white); }
+  .hp-head--light p  { color: rgba(255,255,255,0.5); }
+
+  .hp-tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+  .hp-tag--gold { color: rgba(201,168,76,0.9); }
+
+  /* ── BUTTONS ── */
+  .hp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.9rem 1.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    white-space: nowrap;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .hp-btn--gold {
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 700;
+  }
+  .hp-btn--gold:hover {
+    background: var(--gold-l);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(201,168,76,0.4);
+  }
+  .hp-btn--ghost {
+    background: transparent;
+    color: rgba(255,255,255,0.85);
+    border: 1.5px solid rgba(255,255,255,0.25);
+  }
+  .hp-btn--ghost:hover {
+    border-color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.07);
+    transform: translateY(-2px);
+  }
+  .hp-btn--navy {
+    background: var(--navy);
+    color: var(--white);
+    font-weight: 700;
+  }
+  .hp-btn--navy:hover {
+    background: var(--navy-mid);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(15,35,71,0.3);
+  }
+  .hp-btn--outline-dark {
+    background: transparent;
+    color: var(--navy);
+    border: 1.5px solid var(--bdr);
+  }
+  .hp-btn--outline-dark:hover {
+    border-color: var(--navy);
+    transform: translateY(-2px);
+  }
+
+  /* ── HERO ── */
+  .hp-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 70px; /* header offset */
+    overflow: hidden;
+  }
+
+  .hp-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .hp-hero__img {
+    position: absolute;
+    inset: 0;
+    background-image: url('/assets/img/hero/door-factory.webp');
     background-size: cover;
     background-position: center;
-    display: flex;
-    align-items: center;
+  }
+  .hp-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10,26,58,0.93) 0%, rgba(15,35,71,0.82) 60%, rgba(15,35,71,0.6) 100%);
+  }
+  .hp-hero__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .hp-hero__inner {
     position: relative;
-  }
-
-  .banner-overlay {
-    width: 100%;
-    height: 100%;
+    z-index: 1;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    padding-top: clamp(3rem, 8vw, 5rem);
+    padding-bottom: clamp(4rem, 8vw, 6rem);
   }
+  .hp-hero__copy { max-width: 640px; flex: 1; }
 
-  .banner-content {
-    text-align: center;
-    color: white;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 2rem;
+  .hp-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.4rem;
   }
-
-  .banner-title {
-    font-size: 3.5rem;
-    font-weight: 900;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-  }
-
-  .title-highlight {
-    color: #fbbf24;
+  .hp-eyebrow__line {
     display: block;
-    margin-top: 0.5rem;
+    width: 30px; height: 1px;
+    background: var(--gold);
+    opacity: 0.55;
+    flex-shrink: 0;
   }
 
-  .banner-subtitle {
-    font-size: 1.25rem;
-    font-weight: 500;
-    margin-bottom: 2.5rem;
-    opacity: 0.95;
-    line-height: 1.6;
+  .hp-hero__h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    margin: 0 0 1.25rem;
+  }
+  .hp-hero__h1 em {
+    font-style: normal;
+    color: var(--gold);
   }
 
-  .banner-actions {
+  .hp-hero__lead {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.8;
+    max-width: 560px;
+    margin: 0 0 1.5rem;
+  }
+
+  .hp-hero__tags {
     display: flex;
-    gap: 1.5rem;
-    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2.25rem;
+  }
+  .hp-htag {
+    display: inline-block;
+    padding: 0.3rem 0.85rem;
+    border: 1px solid rgba(201,168,76,0.35);
+    background: rgba(201,168,76,0.08);
+    color: var(--gold-l);
+    font-size: 0.74rem;
+    font-weight: 600;
+    border-radius: 4px;
+    letter-spacing: 0.03em;
+  }
+
+  .hp-hero__actions {
+    display: flex;
+    gap: 1rem;
     flex-wrap: wrap;
   }
 
-  .btn-primary, .btn-secondary {
-    padding: 1.25rem 2.5rem;
-    border-radius: 50px;
-    font-weight: 700;
-    text-decoration: none;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    display: inline-block;
-  }
-
-  .btn-primary {
-    background: #fbbf24;
-    color: #1e3a8a;
-    box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
-  }
-
-  .btn-primary:hover {
-    background: #f59e0b;
-    transform: translateY(-2px);
-    box-shadow: 0 15px 40px rgba(251, 191, 36, 0.5);
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: white;
-    border: 2px solid white;
-  }
-
-  .btn-secondary:hover {
-    background: white;
-    color: #1e3a8a;
-    transform: translateY(-2px);
-  }
-
-  /* Info Cards */
-  .info-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-    margin: -3rem 0 4rem 0;
+  /* Cert badges */
+  .hp-hero__certs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-shrink: 0;
     position: relative;
-    z-index: 10;
+    z-index: 1;
   }
-
-  .info-card {
-    background: white;
-    padding: 2rem 1.5rem;
-    border-radius: 12px;
+  .hp-cert {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.65);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
     text-align: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    border: 1px solid #f1f5f9;
-    transition: all 0.3s ease;
+    line-height: 1.3;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(4px);
+    transition: transform 0.3s;
+  }
+  .hp-cert:hover { transform: scale(1.1); }
+  .hp-cert--gold {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(201,168,76,0.1);
   }
 
-  .info-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  /* Stats bar */
+  .hp-statsbar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 0;
+  }
+  .hp-sitem {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 100px;
+    padding-inline: 1rem;
+    text-align: center;
+  }
+  .hp-sitem:first-child { padding-left: 0; }
+  .hp-sitem:last-child  { padding-right: 0; }
+  .hp-sitem strong {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+  .hp-sitem strong sup { font-size: 0.7em; }
+  .hp-sitem span {
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.42);
+    margin-top: 0.3rem;
+    display: block;
+  }
+  .hp-sdiv {
+    width: 1px; height: 32px;
+    background: rgba(255,255,255,0.12);
+    flex-shrink: 0;
   }
 
-  .card-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+  /* ── TRUST BAR ── */
+  .hp-trust {
+    background: var(--navy);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-block: 2.5rem;
+  }
+  .hp-trust__grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.5rem;
+  }
+  .hp-trust__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.25s;
+  }
+  .hp-trust__item:hover { background: rgba(255,255,255,0.07); }
+  .hp-trust__icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+  .hp-trust__item strong {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.2rem;
+  }
+  .hp-trust__item p {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.5;
+    margin: 0;
   }
 
-  .info-card h3 {
+  /* ── PRODUCTS ── */
+  .hp-products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .hp-product {
+    background: var(--white);
+    border: 1px solid var(--bdr);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  }
+  .hp-product:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 48px rgba(15,35,71,0.1);
+    border-color: rgba(201,168,76,0.3);
+  }
+  .hp-product--featured {
+    border-color: var(--gold);
+    box-shadow: 0 4px 24px rgba(201,168,76,0.15);
+  }
+
+  .hp-product__img-wrap {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    height: 240px;
+    text-decoration: none;
+  }
+  .hp-product__img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
+    display: block;
+  }
+  .hp-product:hover .hp-product__img-wrap img { transform: scale(1.06); }
+
+  .hp-product__badge {
+    position: absolute;
+    top: 14px; right: 14px;
+    background: var(--navy);
+    color: var(--white);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.8rem;
+    border-radius: 20px;
+  }
+  .hp-product__badge--gold {
+    background: var(--gold);
+    color: var(--navy);
+  }
+
+  .hp-product__body { padding: 1.5rem; }
+  .hp-product__body h3 {
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: 1.15rem;
     font-weight: 700;
-    color: #1e293b;
-    margin-bottom: 0.5rem;
+    margin: 0 0 0.5rem;
   }
-
-  .info-card p {
-    color: #64748b;
-    font-size: 0.9rem;
-    margin: 0;
-    line-height: 1.5;
-  }
-
-  /* ============================================
-     ÖNE ÇIKAN ÜRÜNLER
-     ============================================ */
-  .featured-products {
-    padding: 5rem 0;
-    background: #f9fafb;
-  }
-
-  .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2.5rem;
-    margin-top: 3rem;
-  }
-
-  .product-card {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-    border: 2px solid #e5e7eb;
-  }
-
-  .product-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-  }
-
-  .product-card.featured-highlight {
-    border-color: #fbbf24;
-    box-shadow: 0 4px 25px rgba(251, 191, 36, 0.2);
-  }
-
-  .product-image-link {
-    display: block;
-    position: relative;
-    overflow: hidden;
-    text-decoration: none;
-  }
-
-  .product-image {
-    position: relative;
-    height: 300px;
-    overflow: hidden;
-  }
-
-  .product-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-  }
-
-  .product-image-link:hover img {
-    transform: scale(1.1);
-  }
-
-  .product-badge {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: #1e3a8a;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .product-badge.featured {
-    background: #fbbf24;
-    color: #1e3a8a;
-  }
-
-  .product-body {
-    padding: 2rem;
-  }
-
-  .product-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-  }
-
-  .product-title a {
-    color: #111827;
+  .hp-product__body h3 a {
+    color: var(--text);
     text-decoration: none;
     transition: color 0.2s;
   }
-
-  .product-title a:hover {
-    color: #3b82f6;
-  }
-
-  .product-description {
-    color: #6b7280;
+  .hp-product__body h3 a:hover { color: var(--navy-l); }
+  .hp-product__body > p {
+    font-size: 0.875rem;
+    color: var(--body);
     line-height: 1.7;
-    margin-bottom: 1.5rem;
+    margin: 0 0 1rem;
   }
 
-  .product-features {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 1.5rem 0;
-  }
-
-  .product-features li {
-    color: #374151;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #f3f4f6;
-    font-size: 0.95rem;
-  }
-
-  .product-features li:last-child {
-    border-bottom: none;
-  }
-
-  .product-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid #e5e7eb;
-  }
-
-  .product-price {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .price-label {
-    font-size: 0.75rem;
-    color: #9ca3af;
-    text-transform: uppercase;
-    font-weight: 600;
-  }
-
-  .price-value {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: #1e3a8a;
-  }
-
-  .btn-product {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    background: #111827;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-  }
-
-  .btn-product:hover {
-    background: #1f2937;
-    gap: 0.75rem;
-    transform: translateX(3px);
-  }
-
-  .btn-product.primary {
-    background: #fbbf24;
-    color: #1e3a8a;
-  }
-
-  .btn-product.primary:hover {
-    background: #f59e0b;
-  }
-
-  /* ============================================
-     KATEGORİLER
-     ============================================ */
-  .categories {
-    padding: 5rem 0;
-    background: white;
-  }
-
-  .categories-grid {
-    display: grid;
-    gap: 2rem;
-  }
-
-  .category-card {
-    display: flex;
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-  }
-
-  .category-card:hover {
-    border-color: #9ca3af;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  }
-
-  .card-image-link {
-    flex: 0 0 200px;
-    display: block;
-    text-decoration: none;
-    overflow: hidden;
-  }
-
-  .card-image {
-    background: #f9fafb;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-
-  .card-image-link:hover img {
-    transform: scale(1.08);
-  }
-
-  .card-body {
-    flex: 1;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .card-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-  }
-
-  .card-title a {
-    color: #111827;
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .card-title a:hover {
-    color: #4b5563;
-  }
-
-  .card-description {
-    color: #6b7280;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-  }
-
-  .card-features {
+  .hp-product__tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.4rem;
     list-style: none;
     padding: 0;
-    margin: 0 0 1rem 0;
+    margin: 0 0 1.25rem;
   }
-
-  .feature-tag {
-    background: #f3f4f6;
-    color: #374151;
-    padding: 0.35rem 0.85rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
+  .hp-product__tags li {
+    background: var(--cream);
+    color: var(--body);
+    font-size: 0.72rem;
     font-weight: 600;
+    padding: 0.25rem 0.65rem;
+    border-radius: 20px;
+    border: 1px solid var(--bdr);
   }
 
-  .card-btn {
+  .hp-product__cta {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    color: #111827;
+    gap: 0.45rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--navy-l);
     text-decoration: none;
-    font-weight: 700;
-    font-size: 0.9rem;
-    transition: all 0.2s;
+    border-bottom: 1.5px solid var(--bdr);
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s, gap 0.2s;
+  }
+  .hp-product__cta:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+    gap: 0.65rem;
   }
 
-  .card-btn:hover {
-    color: #3b82f6;
-    gap: 0.75rem;
-  }
-
-  /* ============================================
-     ÇÖZÜMLER
-     ============================================ */
-  .solutions {
-    padding: 5rem 0;
-    background: #f9fafb;
-  }
-
-  .solutions-grid {
+  /* ── SOLUTIONS ── */
+  .hp-solutions {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2.5rem;
-    margin-top: 3rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: rgba(255,255,255,0.07);
+    border-radius: var(--radius);
+    overflow: hidden;
   }
-
-  .solution-card {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 12px;
-    border: 1px solid #e5e7eb;
-    transition: all 0.3s ease;
+  .hp-sol {
+    position: relative;
+    background: rgba(255,255,255,0.04);
+    padding: 2.25rem 2rem;
+    transition: background 0.3s;
+    overflow: hidden;
   }
-
-  .solution-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  .hp-sol:hover { background: rgba(255,255,255,0.08); }
+  .hp-sol__num {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 4rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    position: absolute;
+    top: 1rem; right: 1.5rem;
+    transition: color 0.3s;
+    user-select: none;
   }
-
-  .solution-icon {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .solution-card h3 {
-    font-size: 1.5rem;
+  .hp-sol:hover .hp-sol__num { color: rgba(201,168,76,0.1); }
+  .hp-sol__icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+  .hp-sol h3 {
+    font-size: 1.05rem;
     font-weight: 700;
-    color: #111827;
-    margin-bottom: 1rem;
+    color: var(--white);
+    margin: 0 0 0.6rem;
+    position: relative;
   }
-
-  .solution-card p {
-    color: #6b7280;
+  .hp-sol > p {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.5);
     line-height: 1.7;
-    margin-bottom: 1.5rem;
+    margin: 0 0 1rem;
+    position: relative;
   }
-
-  .solution-list {
+  .hp-sol ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
+    padding: 0; margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    position: relative;
+  }
+  .hp-sol ul li {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.45);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .hp-sol ul li::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
   }
 
-  .solution-list li {
-    color: #374151;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #f3f4f6;
-    font-weight: 500;
-  }
-
-  .solution-list li:before {
-    content: '✓';
-    color: #10b981;
-    font-weight: bold;
-    margin-right: 0.75rem;
-  }
-
-  /* ============================================
-     HAKKIMIZDA
-     ============================================ */
-  .about-section {
-    padding: 5rem 0;
-    background: white;
-  }
-
-  .about-content {
+  /* ── ABOUT ── */
+  .hp-about {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
+    grid-template-columns: 1fr 320px;
+    gap: 4rem;
+    align-items: start;
   }
-
-  .about-main h2 {
-    font-size: 2rem;
+  .hp-about__text .hp-tag { margin-bottom: 0.5rem; }
+  .hp-about__text h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
     font-weight: 700;
-    color: #111827;
-    margin-bottom: 1.5rem;
+    color: var(--text);
+    margin: 0.3rem 0 1.25rem;
+    line-height: 1.2;
   }
-
-  .about-main h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #1f2937;
-    margin: 2.5rem 0 1rem;
+  .hp-about__text h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 1.75rem 0 0.6rem;
   }
-
-  .about-main p {
-    color: #374151;
+  .hp-about__text p {
+    font-size: 0.95rem;
+    color: var(--body);
     line-height: 1.8;
-    margin-bottom: 1.5rem;
-    text-align: justify;
+    margin: 0 0 0.75rem;
   }
-
-  .about-cta {
-    background: #f9fafb;
-    padding: 2rem;
-    border-radius: 12px;
-    border: 1px solid #e5e7eb;
+  .hp-about__text p strong { color: var(--navy); }
+  .hp-about__cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
     margin-top: 2rem;
   }
 
-  .about-cta h3 {
-    margin-top: 0;
+  .hp-about__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--bdr);
+    border: 1px solid var(--bdr);
+    border-radius: var(--radius);
+    overflow: hidden;
+    position: sticky;
+    top: 90px;
   }
+  .hp-kpi {
+    background: var(--white);
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+    transition: background 0.2s;
+  }
+  .hp-kpi:hover { background: var(--cream); }
+  .hp-kpi strong {
+    display: block;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+  .hp-kpi strong sup { font-size: 0.65em; }
+  .hp-kpi span {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--slate);
+    display: block;
+  }
+  .hp-kpi--certs {
+    grid-column: 1 / -1;
+    background: var(--navy);
+  }
+  .hp-kpi--certs:hover { background: var(--navy-mid); }
+  .hp-kpi--certs strong { color: var(--gold); font-size: 1.1rem; letter-spacing: 0.1em; }
+  .hp-kpi--certs span   { color: rgba(255,255,255,0.5); }
 
-  .cta-buttons {
+  /* ── CTA ── */
+  .hp-cta {
+    position: relative;
+    background: var(--navy);
+    overflow: hidden;
+    padding: clamp(4rem, 8vw, 6rem) 0;
+  }
+  .hp-cta__glow {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 55% 80% at 105% 50%, rgba(201,168,76,0.14) 0%, transparent 65%),
+      linear-gradient(140deg, #08192e 0%, var(--navy) 100%);
+    pointer-events: none;
+  }
+  .hp-cta__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .hp-cta__text h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.75rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: var(--white);
+    margin: 0.35rem 0 0.7rem;
+    line-height: 1.2;
+    white-space: pre-line;
+  }
+  .hp-cta__text p {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    max-width: 420px;
+    margin: 0;
+  }
+  .hp-cta__btns {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
-    margin-top: 1.5rem;
+    flex-shrink: 0;
   }
 
-  .btn {
-    padding: 0.875rem 1.75rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s;
-    display: inline-block;
-  }
-
-  .btn.btn-primary {
-    background: #111827;
-    color: white;
-  }
-
-  .btn.btn-primary:hover {
-    background: #1f2937;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  }
-
-  .btn.btn-secondary {
-    background: white;
-    color: #111827;
-    border: 1px solid #d1d5db;
-  }
-
-  .btn.btn-secondary:hover {
-    background: #f9fafb;
-    border-color: #9ca3af;
-  }
-
-  .about-stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  .stat-card {
-    background: white;
-    padding: 2rem 1.5rem;
-    text-align: center;
-    border-radius: 10px;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  }
-
-  .stat-number {
-    font-size: 2rem;
-    font-weight: 900;
-    color: #1e3a8a;
-    margin-bottom: 0.5rem;
-  }
-
-  .stat-label {
-    color: #6b7280;
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  /* ============================================
-     İSTATİSTİKLER
-     ============================================ */
-  .stats-section {
-    padding: 4rem 0;
-    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-  }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    text-align: center;
-  }
-
-  .stat-item h3 {
-    font-size: 3.5rem;
-    font-weight: 900;
-    color: #fbbf24;
-    margin-bottom: 0.5rem;
-  }
-
-  .stat-item p {
-    font-size: 1.1rem;
-    color: white;
-    font-weight: 600;
-  }
-
-  /* ============================================
-     RESPONSIVE
-     ============================================ */
-  @media (min-width: 1024px) {
-    .about-content {
-      grid-template-columns: 2fr 1fr;
-      gap: 4rem;
-    }
-
-    .about-stats {
-      grid-template-columns: 1fr;
-    }
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .hp-products        { grid-template-columns: repeat(2, 1fr); }
+    .hp-trust__grid     { grid-template-columns: repeat(3, 1fr); }
+    .hp-about           { grid-template-columns: 1fr; }
+    .hp-about__stats    { position: static; grid-template-columns: repeat(3, 1fr); }
+    .hp-kpi--certs      { grid-column: auto; }
   }
 
   @media (max-width: 768px) {
-    .banner-title {
-      font-size: 2.5rem;
-    }
-
-    .products-grid,
-    .solutions-grid,
-    .categories-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .category-card {
-      flex-direction: column;
-    }
-
-    .card-image-link {
-      flex: none;
-      height: 200px;
-    }
-
-    .product-footer {
-      flex-direction: column;
-      gap: 1rem;
-      align-items: stretch;
-    }
-
-    .btn-product {
-      justify-content: center;
-    }
+    .hp-hero__inner     { flex-direction: column; align-items: flex-start; }
+    .hp-hero__certs     { flex-direction: row; }
+    .hp-solutions       { grid-template-columns: 1fr; }
+    .hp-cta__inner      { flex-direction: column; text-align: center; }
+    .hp-cta__text p     { margin-inline: auto; }
+    .hp-cta__btns       { justify-content: center; }
+    .hp-sdiv            { display: none; }
+    .hp-sitem           { padding-inline: 0.5rem; }
+    .hp-statsbar        { gap: 0.75rem; }
+    .hp-hero__actions   { flex-direction: column; }
+    .hp-btn             { justify-content: center; }
   }
 
-  @media (max-width: 480px) {
-    .section-title {
-      font-size: 2rem;
-    }
-
-    .info-cards {
-      grid-template-columns: 1fr;
-    }
-
-    .banner-title {
-      font-size: 2rem;
-    }
-
-    .stat-item h3 {
-      font-size: 2.5rem;
-    }
+  @media (max-width: 640px) {
+    .hp-products      { grid-template-columns: 1fr; }
+    .hp-trust__grid   { grid-template-columns: repeat(2, 1fr); }
+    .hp-about__stats  { grid-template-columns: repeat(2, 1fr); }
+    .hp-kpi--certs    { grid-column: 1 / -1; }
+    .hp-hero          { min-height: auto; }
   }
 
-  /* RTL Support */
-  html[dir="rtl"] .category-card {
-    flex-direction: row-reverse;
-  }
-
-  html[dir="rtl"] .card-btn svg,
-  html[dir="rtl"] .btn-product svg {
-    transform: scaleX(-1);
-  }
+  /* ── RTL ── */
+  html[dir="rtl"] .hp-eyebrow__line  { order: -1; }
+  html[dir="rtl"] .hp-btn svg        { transform: scaleX(-1); }
+  html[dir="rtl"] .hp-product__cta svg { transform: scaleX(-1); }
 </style>

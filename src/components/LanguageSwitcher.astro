@@ -1,18 +1,11 @@
 ---
-// ============================================
-// src/components/LanguageSwitcher.astro - With Flag Icons
-// ============================================
-
-import { getLangFromUrl } from '../i18n/utils';
+// src/components/LanguageSwitcher.astro
+import { getLangFromUrl, getLanguageSwitchUrl } from '../i18n/utils';
 import { languages, type Language } from '../i18n/languages';
 
 const currentLang = getLangFromUrl(Astro.url);
-const currentPath = Astro.url.pathname.replace(/^\/(en|ar)/, '');
-
-// Languages object'i array'e çevir
 const languageList = Object.entries(languages) as [Language, typeof languages[Language]][];
 
-// Bayrak ikonları için SVG kullan
 const flagIcons = {
   tr: `<svg viewBox="0 0 640 480" class="flag-icon"><rect width="640" height="480" fill="#e30a17"/><circle cx="270" cy="240" r="90" fill="#fff"/><circle cx="285" cy="240" r="72" fill="#e30a17"/><path d="M355 200l-25 77-65-48h80l-65 48z" fill="#fff"/></svg>`,
   en: `<svg viewBox="0 0 640 480" class="flag-icon"><path fill="#012169" d="M0 0h640v480H0z"/><path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0h75z"/><path fill="#C8102E" d="m424 281 216 159v40L369 281h55zm-184 20 6 35L54 480H0l240-179zM640 0v3L391 191l2-44L590 0h50zM0 0l239 176h-60L0 42V0z"/><path fill="#FFF" d="M241 0v480h160V0H241zM0 160v160h640V160H0z"/><path fill="#C8102E" d="M0 193v96h640v-96H0zM273 0v480h96V0h-96z"/></svg>`,
@@ -22,7 +15,8 @@ const flagIcons = {
 
 <div class="language-switcher">
   {languageList.map(([langCode, langData]) => {
-    const href = langCode === 'tr' ? currentPath : `/${langCode}${currentPath}`;
+    // ✅ getLanguageSwitchUrl: mevcut sayfanın slug'ını hedef dile çevirir
+    const href = getLanguageSwitchUrl(Astro.url, langCode);
     const isActive = langCode === currentLang;
 
     return (
@@ -70,9 +64,9 @@ const flagIcons = {
   }
 
   .lang-link.active {
-    background: #667eea;
+    background: #1e3a8a;
     color: white;
-    border-color: #667eea;
+    border-color: #1e3a8a;
   }
 
   .lang-flag {
@@ -96,7 +90,6 @@ const flagIcons = {
     min-width: 20px;
   }
 
-  /* Mobil için */
   @media (max-width: 767px) {
     .language-switcher {
       justify-content: center;
@@ -104,32 +97,18 @@ const flagIcons = {
       padding: 0.5rem 0;
       flex-wrap: wrap;
     }
-
     .lang-link {
       flex: 1;
       min-width: 90px;
       justify-content: center;
       padding: 0.625rem 1rem;
     }
-
-    .lang-flag {
-      width: 28px;
-      height: 21px;
-    }
-
-    .lang-code {
-      font-size: 0.875rem;
-    }
+    .lang-flag { width: 28px; height: 21px; }
+    .lang-code  { font-size: 0.875rem; }
   }
 
-  /* Tablet için */
   @media (max-width: 1024px) and (min-width: 768px) {
-    .language-switcher {
-      gap: 0.375rem;
-    }
-
-    .lang-link {
-      padding: 0.5rem 0.75rem;
-    }
+    .language-switcher { gap: 0.375rem; }
+    .lang-link { padding: 0.5rem 0.75rem; }
   }
 </style>

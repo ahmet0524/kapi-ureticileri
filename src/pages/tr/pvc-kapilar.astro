@@ -1,0 +1,1324 @@
+---
+// src/pages/pvc-kapilar.astro
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const baseUrl = 'https://kapi-ureticileri.vercel.app'; // SABIT KALACAK
+const currentUrl = `${baseUrl}${Astro.url.pathname}`;
+
+const breadcrumbItems = [
+  { name: "Ana Sayfa", href: "/" },
+  { name: "Ürünlerimiz", href: "/urunlerimiz" },
+  { name: "PVC Kapılar" }
+];
+
+// SEO Schemas - PVC Kapı
+const pvcDoorSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "PVC İç Oda Kapıları",
+  "description": "Kayseri'den üretilen su geçirmez, antibakteriyel PVC kapı modelleri. CE belgeli, 5 yıl garanti, ücretsiz kargo. Türkiye'nin en büyük PVC kapı koleksiyonu.",
+  "url": currentUrl,
+  "inLanguage": "tr-TR",
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "PVC Kapı Modelleri",
+    "numberOfItems": 247,
+    "itemListElement": [
+      {
+        "@type": "Product",
+        "name": "PVC İç Oda Kapısı",
+        "description": "Su geçirmez ve antibakteriyel özellikli PVC iç oda kapısı. Nemli ortamlarda çarpma yapmaz, 5 yıl garanti, bakımı kolaydır.",
+        "image": `${baseUrl}/assets/images/pvc-kapi.webp`,
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "CihanPan Door",
+          "url": baseUrl,
+          "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`
+        },
+        "category": "İç Oda Kapısı",
+        "material": "PVC",
+        "brand": {
+          "@type": "Brand",
+          "name": "CihanPan Door"
+        },
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": currentUrl,
+          "priceCurrency": "TRY",
+          "lowPrice": "1",
+          "highPrice": "99999",
+          "offerCount": "247",
+          "availability": "https://schema.org/InStock",
+          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
+          "businessFunction": "http://purl.org/goodrelations/v1#Sell",
+          "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business",
+          "seller": {
+            "@type": "Organization",
+            "name": "CihanPan Door",
+            "url": baseUrl
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "reviewCount": "152",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      }
+    ]
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "PVC kapı nedir ve neden tercih edilir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PVC kapılar, Polivinil Klorür malzemesinden üretilen, su geçirmez ve antibakteriyel özellikli iç oda kapılarıdır. Nemli ortamlarda çarpma yapmaz, bakımı kolaydır ve ekonomiktir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "PVC kapı fiyatları ne kadardır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PVC kapı fiyatları 5000₺-8000₺ arasında değişir. Model, boyut ve aksesuarlara göre fiyat farklılık gösterir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "PVC kapı hangi alanlarda kullanılır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PVC kapılar banyo, mutfak, balkon, yatak odası ve ofis kapıları olarak kullanılır. Özellikle nemli ortamlarda tercih edilir çünkü su geçirmez özelliği vardır."
+      }
+    }
+  ]
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "CihanPan Door",
+  "url": baseUrl,
+  "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`,
+  "description": "Kayseri'den kaliteli iç oda kapısı üreticisi - B2B toptan satış",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Organize Sanayi Bölgesi 29. Sokak No:28",
+    "addressLocality": "Kayseri",
+    "addressRegion": "Kayseri",
+    "postalCode": "38070",
+    "addressCountry": "TR"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+90-544-169-0038",
+    "contactType": "Sales",
+    "availableLanguage": ["Turkish", "English", "German", "Arabic"],
+    "areaServed": ["TR", "EU", "ME"]
+  },
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "Turkey"
+    },
+    {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": "38.7312",
+        "longitude": "35.4787"
+      },
+      "geoRadius": "2000000" // 2000km yarıçap (Avrupa + Orta Doğu)
+    }
+  ],
+  "sameAs": [
+    "https://www.cihanpandoor.com",
+    "https://www.facebook.com/cihanpandoor",
+    "https://www.instagram.com/cihanpan_door",
+    "https://www.linkedin.com/company/cihanpan-door"
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    "item": item.href ? `${baseUrl}${item.href}` : currentUrl
+  }))
+};
+
+// ✅ CRITICAL: Bu satır eksikti!
+const allSchemas = [pvcDoorSchema, faqSchema, organizationSchema, breadcrumbSchema];
+---
+<Layout
+  title="PVC İç Oda Kapıları - 1 | Kayseri CihanPan Door"
+  description="Kayseri'nin en büyük PVC kapı koleksiyonu! 300 farklı model ve renk seçeneği. Su geçirmez, antibakteriyel, CE belgeli PVC kapılar."
+  keywords="pvc kapı, pvc iç oda kapısı, kayseri pvc kapı, su geçirmez kapı, antibakteriyel kapı, ekonomik kapı, pvc kapı fiyatları, iç kapı modelleri, banyo kapısı, mutfak kapısı"
+  canonical={currentUrl}
+  ogImage="/assets/img/og/pvc-kapilar-og.webp"
+  ogTitle="PVC İç Oda Kapıları - 300 Model | Kayseri CihanPan Door"
+  ogDescription="Kayseri'den üretilen su geçirmez, antibakteriyel PVC kapı modelleri. CE belgeli, 5 yıl garanti, ücretsiz kargo ve montaj."
+  ogType="website"
+  ogUrl={currentUrl}
+  twitterCard="summary_large_image"
+  twitterTitle="PVC İç Oda Kapıları - 300 Model | CihanPan Door"
+  twitterDescription="Kayseri'nin en büyük PVC kapı koleksiyonu. Su geçirmez, antibakteriyel, ekonomik fiyatlar."
+  twitterImage="/assets/img/og/pvc-kapilar-og.webp"
+  schema={[pvcDoorSchema, faqSchema, organizationSchema, breadcrumbSchema]}
+>
+
+  <Header />
+  <Breadcrumbs items={breadcrumbItems} />
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">PVC İç Oda Kapıları</h1>
+          <p class="hero-subtitle">
+            Su geçirmez, antibakteriyel ve ekonomik PVC kapı çözümleri.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+      <div class="container">
+        <header class="section-header">
+          <h2>PVC Kapı Modelleri</h2>
+          <p>Model ve renk seçenekleri ile size en uygun PVC kapıyı bulun.</p>
+        </header>
+
+        <div class="quote-button-section">
+          <a href="/iletisim" class="btn-quote-main" aria-label="PVC kapı için ücretsiz teklif al">
+            Ücretsiz Teklif Al
+          </a>
+        </div>
+
+        <!-- Filter Section - Sayfa Yönlendirmeli -->
+        <div class="product-filters">
+          <h3>Kapı Türleri</h3>
+          <div class="product-filter-tabs">
+            <a href="/urunlerimiz" class="product-filter-btn">
+              <span>Tümü</span>
+            </a>
+            <a href="/pvc-kapilar" class="product-filter-btn active">
+              <span>PVC Kapılar</span>
+            </a>
+            <a href="/laminoks-kapilar" class="product-filter-btn">
+              <span>Laminoks Kapılar</span>
+            </a>
+            <a href="/elitpan-kapilar" class="product-filter-btn">
+              <span>Elitpan Kapılar</span>
+            </a>
+            <a href="/hastane-kapilari" class="product-filter-btn">
+              <span>Hastane Kapıları</span>
+            </a>
+            <a href="/otel-kapilari" class="product-filter-btn">
+              <span>Otel Kapıları</span>
+            </a>
+            <a href="/yangina-dayanikli-kapilar" class="product-filter-btn">
+              <span>Yanmaya Dayanıklı Kapılar</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+          <!-- Products will be loaded here -->
+        </div>
+
+        <div class="loading" id="loading">
+          <div class="loading-spinner"></div>
+          <p>PVC kapı modelleri yükleniyor...</p>
+        </div>
+
+        <!-- Page Navigation -->
+        <div class="page-navigation">
+          <div class="nav-info">
+            <span class="current-page">Sayfa 1 / 3</span>
+            <span class="product-count">85 ürün gösteriliyor</span>
+          </div>
+          <div class="nav-buttons">
+            <span class="nav-btn disabled">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Önceki Sayfa
+            </span>
+            <a href="/pvc-kapilar-2" class="nav-btn next">
+              Sayfa 2
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+          <div class="page-dots">
+            <span class="dot active" aria-label="Sayfa 1"></span>
+            <a href="/pvc-kapilar-2" class="dot" aria-label="Sayfa 2'ye git"></a>
+            <a href="/pvc-kapilar-3" class="dot" aria-label="Sayfa 3'e git"></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEO Content Section -->
+    <section class="seo-content-section">
+      <div class="container">
+        <div class="content-grid">
+          <article class="main-content">
+            <header>
+              <h2>PVC Kapı Nedir? Neden PVC Kapı Tercih Edilir?</h2>
+            </header>
+
+            <p>
+              <strong>PVC kapılar</strong>, Polivinil Klorür (PVC) malzemesinden üretilen, modern yaşamın ihtiyaçlarına yönelik
+              tasarlanmış <em>iç oda kapılarıdır</em>. Kayseri CihanPan Door olarak, 25 yılı aşkın tecrübemizle
+              Türkiye'nin en kaliteli PVC kapılarını üretiyoruz.
+            </p>
+
+            <h3>PVC Kapının Avantajları</h3>
+            <ul class="advantages-list">
+              <li><strong>Su Geçirmez Yapı:</strong> Nem ve suya karşı tamamen dirençli</li>
+              <li><strong>Antibakteriyel Yüzey:</strong> Hijyenik yaşam için bakterilerin üremesini engeller</li>
+              <li><strong>Kolay Bakım:</strong> Sadece nemli bez ile temizlenebilir, boya gerektirmez</li>
+              <li><strong>Ses İzolasyonu:</strong> Mükemmel ses yalıtım özelliği</li>
+            </ul>
+
+            <h3>PVC Kapı Kullanım Alanları</h3>
+            <p>PVC kapılar, özellikle nemli ortamlarda üstün performans gösterir:</p>
+            <ul>
+              <li><strong>Banyo Kapıları:</strong> Su buharına karşı tamamen dayanıklı</li>
+              <li><strong>Mutfak Kapıları:</strong> Yemek kokularını absorbe etmez</li>
+              <li><strong>Balkon Kapıları:</strong> Dış hava koşullarına dayanıklı</li>
+              <li><strong>Yatak Odası Kapıları:</strong> Ses yalıtımı sağlar</li>
+              <li><strong>Ofis Kapıları:</strong> Profesyonel görünüm ve dayanıklılık</li>
+            </ul>
+          </article>
+
+          <aside class="sidebar">
+            <div class="info-cards">
+              <div class="stat-card">
+                <div class="stat-number">300</div>
+                <div class="stat-label">FARKLI MODEL</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">YERLİ</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">İhracatta</div>
+                <div class="stat-label">FİYAT AVANTAJI</div>
+              </div>
+            </div>
+
+            <div class="quick-contact">
+              <h3>Hızlı İletişim</h3>
+              <p>PVC kapı modelleri hakkında detaylı bilgi için:</p>
+              <div class="contact-buttons">
+                <a href="tel:+905441690038" class="btn-contact-phone">📞 Hemen Ara</a>
+                <a href="https://wa.me/905441690038" class="btn-contact-whatsapp">💬 WhatsApp</a>
+              </div>
+            </div>
+
+            <div class="features-list">
+              <h3>Öne Çıkan Özellikler</h3>
+              <ul>
+                <li>🚿 Su geçirmez teknoloji</li>
+                <li>🦠 Antibakteriyel yüzey</li>
+                <li>🔇 Ses yalıtımı</li>
+                <li>💰 Ekonomik fiyat</li>
+                <li>🏠 Kolay montaj</li>
+                <li>♻️ Çevre dostu</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <h2>Sık Sorulan Sorular - PVC Kapılar</h2>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>PVC kapı ile ahşap kapı arasındaki fark nedir?</summary>
+            <p>PVC kapılar su geçirmez, ahşap kapılar ise neme karşı hassastır. PVC kapılar daha ekonomik, bakımı kolay ve uzun ömürlüdür. Ahşap kapılar doğal görünüm sunar ancak düzenli bakım gerektirir.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>PVC kapı montajı ne kadar sürer?</summary>
+            <p>Profesyonel montaj ekibimiz ile bir kapının montajı ortalama 30-45 dakika sürer. Ölçü alma, teslimat ve montaj sürecinin tamamı 7-10 gün içinde tamamlanır.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>PVC Kapı Fiyat Teklifi Alın</h2>
+        <p>Size en uygun PVC kapı modelini belirlemek ve ücretsiz fiyat teklifi almak için hemen iletişime geçin</p>
+        <div class="cta-buttons">
+          <a href="/iletisim" class="btn btn-primary">İletişim Formu</a>
+          <a href="https://wa.me/905441690038" class="btn btn-secondary" target="_blank" rel="noopener">WhatsApp İletişim</a>
+          <a href="tel:+905441690038" class="btn btn-tertiary">📞 Hemen Ara</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .hero {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    opacity: 0.95;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  }
+
+  .products-section {
+    padding: 4rem 0;
+    background: #ffffff;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  .section-header p {
+    font-size: 1.1rem;
+    color: #6b7280;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .quote-button-section {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .btn-quote-main {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    text-decoration: none;
+  }
+
+  .btn-quote-main:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  }
+
+  .product-filters {
+    margin-bottom: 3rem;
+  }
+
+  .product-filters h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .product-filter-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .product-filter-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .product-filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    transition: left 0.3s ease;
+    z-index: 1;
+  }
+
+  .product-filter-btn span {
+    position: relative;
+    z-index: 2;
+  }
+
+  .product-filter-btn:hover::before {
+    left: 0;
+  }
+
+  .product-filter-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  }
+
+  .product-filter-btn.active {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-items: center;
+  }
+
+  .product-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .product-card:hover {
+    border-color: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+  }
+
+  .product-image {
+    height: 240px;
+    width: 100%;
+    background: #f9fafb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .product-image img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    border-radius: 8px;
+  }
+
+  .product-card:hover .product-image img {
+    transform: scale(1.05);
+  }
+
+  .product-info {
+    padding: 1rem;
+    text-align: center;
+    background: white;
+  }
+
+  .product-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .loading {
+    text-align: center;
+    padding: 3rem;
+    color: #6b7280;
+  }
+
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f4f6;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .page-navigation {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-top: 3rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .nav-info {
+    text-align: center;
+  }
+
+  .current-page {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .product-count {
+    font-size: 0.95rem;
+    color: #6b7280;
+    font-weight: 500;
+  }
+
+  .nav-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: none;
+    cursor: pointer;
+    min-width: 160px;
+    justify-content: center;
+  }
+
+  .nav-btn:not(.disabled) {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+
+  .nav-btn:not(.disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  }
+
+  .nav-btn.disabled {
+    background: #f3f4f6;
+    color: #9ca3af;
+    cursor: not-allowed;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  .nav-btn.next {
+    flex-direction: row-reverse;
+  }
+
+  .nav-btn svg {
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-btn:not(.disabled):hover svg {
+    transform: translateX(3px);
+  }
+
+  .nav-btn.next:not(.disabled):hover svg {
+    transform: translateX(-3px);
+  }
+
+  .page-dots {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #d1d5db;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    position: relative;
+  }
+
+  .dot:hover {
+    background: #9ca3af;
+    transform: scale(1.2);
+  }
+
+  .dot.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transform: scale(1.3);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+  }
+
+  .dot::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border-radius: 50%;
+  }
+
+  .seo-content-section {
+    padding: 5rem 0;
+    background: #f8fafc;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .main-content {
+    background: white;
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  }
+
+  .main-content h2 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+  }
+
+  .main-content h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin: 2.5rem 0 1rem;
+    line-height: 1.4;
+  }
+
+  .main-content p {
+    color: #4a5568;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+  }
+
+  .advantages-list {
+    margin: 1.5rem 0;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .advantages-list li {
+    margin-bottom: 0.75rem;
+    color: #4a5568;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .advantages-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #10b981;
+    font-weight: bold;
+  }
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .info-cards {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #667eea;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    color: #1a202c;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .quick-contact {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .quick-contact h3 {
+    color: #1a202c;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+
+  .quick-contact p {
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .btn-contact-phone, .btn-contact-whatsapp {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.2s ease;
+  }
+
+  .btn-contact-phone {
+    background: #667eea;
+    color: white;
+  }
+
+  .btn-contact-phone:hover {
+    background: #5a67d8;
+    transform: translateY(-1px);
+  }
+
+  .btn-contact-whatsapp {
+    background: #10b981;
+    color: white;
+  }
+
+  .btn-contact-whatsapp:hover {
+    background: #059669;
+    transform: translateY(-1px);
+  }
+
+  .features-list {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .features-list h3 {
+    color: #1a202c;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+
+  .features-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .features-list li {
+    padding: 0.75rem 0;
+    color: #4a5568;
+    border-bottom: 1px solid #f7fafc;
+    font-size: 0.95rem;
+  }
+
+  .faq-section {
+    padding: 5rem 0;
+    background: white;
+  }
+
+  .faq-section h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a202c;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .faq-item {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .faq-item summary {
+    padding: 1.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: #1a202c;
+    font-size: 1.1rem;
+    border: none;
+    background: none;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary::after {
+    content: "+";
+    font-size: 1.5rem;
+    color: #667eea;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item[open] summary::after {
+    transform: rotate(45deg);
+  }
+
+  .faq-item p {
+    padding: 0 1.5rem 1.5rem;
+    color: #4a5568;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .cta-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 160px;
+  }
+
+  .btn-primary {
+    background: #111827;
+    color: white;
+    border: 2px solid #111827;
+  }
+
+  .btn-primary:hover {
+    background: #1f2937;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(17, 24, 39, 0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .btn-secondary:hover {
+    background: white;
+    color: #667eea;
+    transform: translateY(-2px);
+  }
+
+  .btn-tertiary {
+    background: #10b981;
+    color: white;
+    border: 2px solid #10b981;
+  }
+
+  .btn-tertiary:hover {
+    background: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .main-content {
+      padding: 2rem;
+    }
+
+    .main-content h2 {
+      font-size: 1.75rem;
+    }
+
+    .main-content h3 {
+      font-size: 1.5rem;
+    }
+
+    .products-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .product-card {
+      width: 200px;
+    }
+
+    .product-image {
+      height: 200px;
+    }
+
+    .product-info {
+      padding: 0.75rem;
+    }
+
+    .product-title {
+      font-size: 0.9rem;
+    }
+
+    .product-filter-tabs {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .product-filter-btn {
+      width: 100%;
+      max-width: 300px;
+      padding: 0.875rem 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .nav-buttons {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .nav-btn {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      padding: 2rem 0;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+
+<script>
+  const pvcModels = [];
+
+  const fileNames = [
+    'CihanpanDoor-PVC-Serisi-101-A-ABD-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-101-B-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-101-C-Italyan-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-101-D-Ayder.webp',
+    'CihanpanDoor-PVC-Serisi-101-E-Kum-Gri.webp',
+    'CihanpanDoor-PVC-Serisi-101-F-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-102-A-Kul-Mese.webp',
+    'CihanpanDoor-PVC-Serisi-102-B-Koko.webp',
+    'CihanpanDoor-PVC-Serisi-102-C-Gold-Mese.webp',
+    'CihanpanDoor-PVC-Serisi-102-D-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-102-E-Tik.webp',
+    'CihanpanDoor-PVC-Serisi-102-F-Kum-Gri.webp',
+    'CihanpanDoor-PVC-Serisi-103-A-Koyu-Mese.webp',
+    'CihanpanDoor-PVC-Serisi-103-B-Beyaz-Tik.webp',
+    'CihanpanDoor-PVC-Serisi-103-C-Kestane.webp',
+    'CihanpanDoor-PVC-Serisi-103-D-Gri-Mese.webp',
+    'CihanpanDoor-PVC-Serisi-103-E-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-103-F-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-104-A-Kestane.webp',
+    'CihanpanDoor-PVC-Serisi-104-B-Olimpos.webp',
+    'CihanpanDoor-PVC-Serisi-104-C-Kum-Gri.webp',
+    'CihanpanDoor-PVC-Serisi-104-D-Soft-Kapucino.webp',
+    'CihanpanDoor-PVC-Serisi-104-E-Beyaz-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-104-F-Beyaz-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-105-A-Gold-Mese.webp',
+    'CihanpanDoor-PVC-Serisi-105-B-Avola.webp',
+    'CihanpanDoor-PVC-Serisi-105-C-Dark-Santana.webp',
+    'CihanpanDoor-PVC-Serisi-105-D-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-105-E-Italyan-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-105-F-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-106-A-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-106-B-Koyu-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-106-C-Gri-Mese.webp',
+    'CihanpanDoor-PVC-Serisi-106-D-Barok.webp',
+    'CihanpanDoor-PVC-Serisi-106-E-Tik.webp',
+    'CihanpanDoor-PVC-Serisi-106-F-Kum-Gri.webp',
+    'CihanpanDoor-PVC-Serisi-107-A-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-107-B-Kestane.webp',
+    'CihanpanDoor-PVC-Serisi-107-C-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-107-D-Olimpos.webp',
+    'CihanpanDoor-PVC-Serisi-107-E-Beyaz-Tik.webp',
+    'CihanpanDoor-PVC-Serisi-107-F-Gold-Mese.webp',
+    'CihanpanDoor-PVC-Serisi-108-A-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-108-B-Saruhan.webp',
+    'CihanpanDoor-PVC-Serisi-108-C-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-108-D-Italyan-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-108-E-Avola.webp',
+    'CihanpanDoor-PVC-Serisi-108-F-Koko.webp',
+    'CihanpanDoor-PVC-Serisi-109-A-Gold-Mese.webp',
+    'CihanpanDoor-PVC-Serisi-109-B-Kum-Gri.webp',
+    'CihanpanDoor-PVC-Serisi-109-C-Barok.webp',
+    'CihanpanDoor-PVC-Serisi-109-D-Beyaz-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-109-E-Gri-Mese.webp',
+    'CihanpanDoor-PVC-Serisi-109-F-Italyan-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-110-A-Milano-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-110-B-Tik.webp',
+    'CihanpanDoor-PVC-Serisi-110-C-Tuna-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-110-D-Elma.webp',
+    'CihanpanDoor-PVC-Serisi-110-E-Natural-Mese.webp',
+    'CihanpanDoor-PVC-Serisi-110-F-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-111-A-Soft-Kapucino.webp',
+    'CihanpanDoor-PVC-Serisi-111-B-Pelit.webp',
+    'CihanpanDoor-PVC-Serisi-111-C-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-111-D-Kum-Gri.webp',
+    'CihanpanDoor-PVC-Serisi-111-E-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-111-F-Beyaz-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-112-A-Kestane.webp',
+    'CihanpanDoor-PVC-Serisi-112-B-Gri-Mese.webp',
+    'CihanpanDoor-PVC-Serisi-112-C-Italyan-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-112-D-Tik.webp',
+    'CihanpanDoor-PVC-Serisi-112-E-Dark-Santana.webp',
+    'CihanpanDoor-PVC-Serisi-112-F-Beyaz-Tik.webp',
+    'CihanpanDoor-PVC-Serisi-113-A-Tik.webp',
+    'CihanpanDoor-PVC-Serisi-113-B-Olimpos.webp',
+    'CihanpanDoor-PVC-Serisi-113-C-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-113-D-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-113-E-Kum-Gri.webp',
+    'CihanpanDoor-PVC-Serisi-113-F-Vision-Gri.webp',
+    'CihanpanDoor-PVC-Serisi-114-A-Avola.webp',
+    'CihanpanDoor-PVC-Serisi-114-B-Italya-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-114-C-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-114-D-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-114-E-Pixel-Gold.webp',
+    'CihanpanDoor-PVC-Serisi-114-F-Kum-Gri.webp',
+    'CihanpanDoor-PVC-Serisi-115-A-Beyaz-Italyan-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-115-B-Ayder-Siyah.webp',
+    'CihanpanDoor-PVC-Serisi-115-C-Yildiz-Metal-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-115-D-Vision-Gri-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-115-E-Kum-Gri-Antrasit.webp'
+  ];
+
+  fileNames.forEach((fileName, index) => {
+    const parts = fileName.replace('.webp', '').split('-');
+    const modelNumber = parts[3];
+    const variant = parts[4];
+    const colorName = parts.slice(5).join('-');
+    const displayName = `${modelNumber}-${variant} ${colorName.replace(/-/g, ' ')}`;
+
+    pvcModels.push({
+      id: `PVC-${modelNumber}-${variant}`,
+      name: displayName,
+      category: 'pvc',
+      image: `/assets/img/pvc-kapilar/${fileName}`,
+      fallbackImage: `https://picsum.photos/300/400?random=${index + 1}`,
+      altText: `CihanPan Door PVC Interior Door Model ${modelNumber}-${variant} ${colorName.replace(/-/g, ' ')} - Waterproof Panel Door for Bathroom Kitchen Bedroom, Turkish Manufacturer`,
+      description: `PVC door model ${modelNumber}-${variant} in ${colorName.replace(/-/g, ' ')} color. Modern design PVC interior door suitable for bathroom, kitchen and bedroom. Waterproof, antibacterial surface, 5-year warranty. Standard size 70x200cm, custom sizes available. CE certified Turkish manufacturer CihanPan Door.`,
+      seoKeywords: `pvc door ${colorName.replace(/-/g, ' ').toLowerCase()}, interior doors model ${modelNumber}, waterproof doors, bathroom doors, kitchen doors, turkish manufacturer, CihanPan door, modern interior doors`,
+      price: Math.floor(Math.random() * 500) + 300,
+      schemaData: {
+        "@type": "Product",
+        "name": `PVC Interior Door Model ${modelNumber}-${variant} ${colorName.replace(/-/g, ' ')}`,
+        "description": `PVC door model ${modelNumber}-${variant} for interior use in ${colorName.replace(/-/g, ' ')} finish`,
+        "brand": "CihanPan Door",
+        "material": "PVC",
+        "category": "Interior Doors",
+        "color": colorName.replace(/-/g, ' ')
+      }
+    });
+  });
+
+  function renderProducts() {
+    const grid = document.getElementById('productsGrid');
+    const loading = document.getElementById('loading');
+
+    loading.style.display = 'block';
+    grid.innerHTML = '';
+
+    setTimeout(() => {
+      pvcModels.forEach((product) => {
+        const card = createProductCard(product);
+        grid.appendChild(card);
+      });
+      loading.style.display = 'none';
+    }, 200);
+  }
+
+  function createProductCard(product) {
+    const card = document.createElement('article');
+    card.className = 'product-card';
+    card.setAttribute('aria-label', `${product.name} PVC kapı modeli`);
+
+    card.innerHTML = `
+      <div class="product-image">
+        <img src="${product.image}"
+             alt="${product.altText}"
+             title="${product.name} - CihanPan Door PVC Interior Door Model"
+             loading="lazy"
+             width="300"
+             height="300"
+             onerror="this.src='${product.fallbackImage}'; this.alt='${product.name} PVC Door Sample';">
+      </div>
+      <div class="product-info">
+        <h3 class="product-title">${product.name}</h3>
+      </div>
+    `;
+
+    return card;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    renderProducts();
+  });
+</script>

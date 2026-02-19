@@ -1,0 +1,241 @@
+---
+// src/pages/gizlilik.astro
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const baseUrl = 'https://kapi-ureticileri.vercel.app';
+const currentUrl = `${baseUrl}/gizlilik`;
+
+const breadcrumbItems = [
+  { name: "Ana Sayfa", href: "/" },
+  { name: "Gizlilik Politikası", href: "/gizlilik" }
+];
+---
+
+<Layout
+  title="Gizlilik Politikası | CihanPan Door"
+  description="CihanPan Door gizlilik politikası ve kişisel verilerin korunması hakkında bilgiler."
+  canonical={currentUrl}
+>
+  <Header />
+  <Breadcrumbs items={breadcrumbItems} />
+
+  <main class="legal-page">
+    <div class="container">
+      <article class="legal-content">
+        <header>
+          <h1>Gizlilik Politikası</h1>
+          <p class="update-date">Son Güncelleme: 16 Ekim 2025</p>
+        </header>
+
+        <section>
+          <h2>1. Kişisel Verilerin Korunması</h2>
+          <p>
+            CihanPan Door olarak müşterilerimizin kişisel verilerinin güvenliğine önem veriyoruz.
+            6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında kişisel verileriniz
+            işlenmekte ve korunmaktadır.
+          </p>
+        </section>
+
+        <section>
+          <h2>2. Toplanan Bilgiler</h2>
+          <p>Web sitemizi ziyaret ettiğinizde aşağıdaki bilgiler toplanabilir:</p>
+          <ul>
+            <li>İletişim bilgileri (ad, soyad, telefon, e-posta)</li>
+            <li>IP adresi ve tarayıcı bilgileri</li>
+            <li>Çerez (cookie) verileri</li>
+            <li>Sayfa ziyaret istatistikleri</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>3. Bilgilerin Kullanımı</h2>
+          <p>Toplanan bilgiler şu amaçlarla kullanılır:</p>
+          <ul>
+            <li>Müşteri taleplerine yanıt vermek</li>
+            <li>Ürün ve hizmet kalitesini geliştirmek</li>
+            <li>İletişim ve bilgilendirme yapmak</li>
+            <li>Yasal yükümlülükleri yerine getirmek</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4. Çerezler (Cookies)</h2>
+          <p>
+            Web sitemizde kullanıcı deneyimini iyileştirmek için çerezler kullanılmaktadır.
+            Tarayıcı ayarlarınızdan çerezleri yönetebilirsiniz.
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Veri Güvenliği</h2>
+          <p>
+            Kişisel verileriniz SSL sertifikası ile şifrelenmekte ve güvenli sunucularda
+            saklanmaktadır. Yetkisiz erişime karşı gerekli önlemler alınmıştır.
+          </p>
+        </section>
+
+        <section>
+          <h2>6. Üçüncü Taraflar</h2>
+          <p>
+            Kişisel verileriniz, yasal zorunluluklar dışında üçüncü taraflarla
+            paylaşılmamaktadır.
+          </p>
+        </section>
+
+        <section>
+          <h2>7. Kullanıcı Hakları</h2>
+          <p>KVKK kapsamında aşağıdaki haklara sahipsiniz:</p>
+          <ul>
+            <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+            <li>İşlenmişse bilgi talep etme</li>
+            <li>İşlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme</li>
+            <li>Yurt içi/dışı aktarıldığı üçüncü kişileri bilme</li>
+            <li>Eksik/yanlış işlenmişse düzeltme talep etme</li>
+            <li>Verilerin silinmesini/yok edilmesini talep etme</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>8. İletişim</h2>
+          <p>
+            Gizlilik politikamız hakkında sorularınız için bizimle iletişime geçebilirsiniz:
+          </p>
+          <div class="contact-info">
+            <p><strong>E-posta:</strong> info@cihanpandoor.com</p>
+            <p><strong>Telefon:</strong> +90 544 169 00 38</p>
+            <p><strong>Adres:</strong> Kayseri, Türkiye</p>
+          </div>
+        </section>
+
+        <section>
+          <h2>9. Politika Değişiklikleri</h2>
+          <p>
+            Bu gizlilik politikası zaman zaman güncellenebilir. Değişiklikler
+            bu sayfada yayınlanacaktır.
+          </p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .legal-page {
+    padding: 4rem 0;
+    background: #f8fafc;
+    min-height: 60vh;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .legal-content {
+    background: white;
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .legal-content header {
+    border-bottom: 3px solid #0891b2;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .legal-content h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 0.5rem;
+  }
+
+  .update-date {
+    color: #6b7280;
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+
+  .legal-content section {
+    margin-bottom: 2.5rem;
+  }
+
+  .legal-content h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #0891b2;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+  }
+
+  .legal-content p {
+    color: #4a5568;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+  }
+
+  .legal-content ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 1rem 0;
+  }
+
+  .legal-content li {
+    color: #4a5568;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .legal-content li::before {
+    content: "•";
+    color: #0891b2;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
+  }
+
+  .contact-info {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #0891b2;
+    margin: 1.5rem 0;
+  }
+
+  .contact-info p {
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-info strong {
+    color: #1a202c;
+  }
+
+  @media (max-width: 768px) {
+    .legal-content {
+      padding: 2rem 1.5rem;
+    }
+
+    .legal-content h1 {
+      font-size: 2rem;
+    }
+
+    .legal-content h2 {
+      font-size: 1.5rem;
+    }
+
+    .legal-content p {
+      font-size: 1rem;
+    }
+  }
+</style>

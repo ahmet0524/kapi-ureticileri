@@ -4,7 +4,7 @@ export const languages = {
   ar: 'العربية'
 };
 
-export const defaultLang = 'tr';
+export const defaultLang = 'en';
 
 export const ui = {
   tr: {

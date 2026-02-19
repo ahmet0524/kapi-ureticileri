@@ -1,0 +1,1196 @@
+---
+// src/pages/elitpan-kapilar.astro
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const baseUrl = 'https://kapi-ureticileri.vercel.app';
+const currentUrl = `${baseUrl}${Astro.url.pathname}`;
+
+const breadcrumbItems = [
+  { name: "Ana Sayfa", href: "/" },
+  { name: "Ürünlerimiz", href: "/urunlerimiz" },
+  { name: "Elitpan Kapılar", href: "/elitpan-kapilar" }
+];
+
+// ✅ SERVER-SIDE: Ürünleri sunucu tarafında oluştur (SEO için kritik!)
+interface Product {
+  id: string;
+  name: string;
+  category: string;
+  image: string;
+  fallbackImage: string;
+  altText: string;
+  description: string;
+  seoKeywords: string;
+  schemaData: {
+    "@type": string;
+    name: string;
+    description: string;
+    brand: string;
+    material: string;
+    category: string;
+  };
+}
+
+const fileNames = [
+  "CihanpanDoor-Elitpan-Serisi-301.webp",
+  "CihanpanDoor-Elitpan-Serisi-302.webp",
+  "CihanpanDoor-Elitpan-Serisi-303.webp",
+  "CihanpanDoor-Elitpan-Serisi-304.webp",
+  "CihanpanDoor-Elitpan-Serisi-305.webp",
+  "CihanpanDoor-Elitpan-Serisi-306.webp",
+  "CihanpanDoor-Elitpan-Serisi-307.webp",
+  "CihanpanDoor-Elitpan-Serisi-308.webp",
+  "CihanpanDoor-Elitpan-Serisi-309.webp",
+  "CihanpanDoor-Elitpan-Serisi-310.webp",
+  "CihanpanDoor-Elitpan-Serisi-311.webp",
+  "CihanpanDoor-Elitpan-Serisi-312.webp",
+  "CihanpanDoor-Elitpan-Serisi-313.webp",
+  "CihanpanDoor-Elitpan-Serisi-314.webp",
+  "CihanpanDoor-Elitpan-Serisi-315.webp",
+  "CihanpanDoor-Elitpan-Serisi-316.webp",
+  "CihanpanDoor-Elitpan-Serisi-317.webp",
+  "CihanpanDoor-Elitpan-Serisi-318.webp",
+  "CihanpanDoor-Elitpan-Serisi-319.webp",
+  "CihanpanDoor-Elitpan-Serisi-320.webp",
+  "CihanpanDoor-Elitpan-Serisi-321.webp",
+  "CihanpanDoor-Elitpan-Serisi-322.webp",
+  "CihanpanDoor-Elitpan-Serisi-323.webp",
+  "CihanpanDoor-Elitpan-Serisi-324.webp",
+  "CihanpanDoor-Elitpan-Serisi-325.webp",
+  "CihanpanDoor-Elitpan-Serisi-326.webp"
+];
+
+const elitpanModels: Product[] = fileNames.map((fileName, index) => {
+  const parts = fileName.replace('.webp', '').split('-');
+  const modelNumber = parts[3];
+  const displayName = `Elitpan ${modelNumber}`;
+
+  return {
+    id: `Elitpan-${modelNumber}`,
+    name: displayName,
+    category: 'elitpan',
+    image: `/assets/img/elitpan-kapilar/${fileName}`,
+    fallbackImage: `https://picsum.photos/300/400?random=${index + 300}`,
+    altText: `CihanPan Door Elitpan İç Kapı Model ${modelNumber} - Premium Kalite Laminat Kapı`,
+    description: `Premium Elitpan kapı model ${modelNumber}. Ticari projeler için yüksek kalite laminat iç kapı. Çizilmeye dayanıklı yüzey, özelleştirilebilir boyutlar. Kayseri üretici fiyatları.`,
+    seoKeywords: `premium elitpan kapı model ${modelNumber}, lüks iç kapı, ticari kapı, kayseri üretici toptan`,
+    schemaData: {
+      "@type": "Product",
+      "name": `Premium Elitpan İç Kapı Model ${modelNumber}`,
+      "description": `Premium Elitpan kapı model ${modelNumber} lüks ticari kullanım için`,
+      "brand": "CihanPan Door",
+      "material": "Premium Elitpan",
+      "category": "Lüks İç Kapılar"
+    }
+  };
+});
+
+// SEO Schemas - Optimized Version
+const elitpanSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Elitpan İç Oda Kapıları - Premium Seri",
+  "description": "Kayseri'den üretilen premium kalite Elitpan kapı modelleri. UV malzemesi, antibakteriyel, 26+ model, CE belgeli, 5 yıl garanti, ücretsiz kargo.",
+  "url": currentUrl,
+  "inLanguage": "tr-TR",
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "Elitpan Kapı Modelleri",
+    "numberOfItems": elitpanModels.length,
+    "itemListElement": [
+      {
+        "@type": "Product",
+        "name": "Elitpan İç Oda Kapısı",
+        "description": "UV malzemesinden üretilen antibakteriyel özellikli Elitpan iç oda kapısı. Nemli ortamlarda çarpma yapmaz, 5 yıl garanti, bakımı kolaydır.",
+        "image": `${baseUrl}/assets/images/elitpan-kapi.webp`,
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "CihanPan Door",
+          "url": baseUrl,
+          "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`
+        },
+        "category": "İç Oda Kapısı",
+        "material": "UV Kaplama",
+        "brand": {
+          "@type": "Brand",
+          "name": "CihanPan Door - Elitpan Serisi"
+        },
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": currentUrl,
+          "priceCurrency": "TRY",
+          "lowPrice": "1",
+          "highPrice": "99999",
+          "offerCount": elitpanModels.length.toString(),
+          "availability": "https://schema.org/InStock",
+          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
+          "businessFunction": "http://purl.org/goodrelations/v1#Sell",
+          "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business",
+          "seller": {
+            "@type": "Organization",
+            "name": "CihanPan Door",
+            "url": baseUrl
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "87",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      }
+    ]
+  }
+};
+
+// SEO Schemas - Optimized Version
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Elitpan kapı nedir ve neden tercih edilir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Elitpan kapılar, UV malzemesinden üretilen, antibakteriyel özellikli premium iç oda kapılarıdır. Nemli ortamlarda çarpma yapmaz, bakımı kolaydır, ekonomiktir ve estetik görünümü ile öne çıkar. UV kaplama sayesinde renk kalıcılığı yüksektir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Elitpan kapı fiyatları ne kadardır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Elitpan kapı fiyatları modele, boyuta ve aksesuarlara göre değişiklik gösterir. Üretici firma avantajı ile rekabetçi fiyatlar sunulmaktadır. Detaylı fiyat bilgisi için bizimle iletişime geçebilirsiniz."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Elitpan kapı hangi alanlarda kullanılır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Elitpan kapılar banyo, mutfak, balkon, yatak odası, ofis ve ticari alanlar için uygundur. Özellikle nemli ortamlarda tercih edilir çünkü su geçirmez ve antibakteriyel özelliği vardır. Kolay temizlenebilir yapısı ile hastane ve gıda tesislerinde de kullanılabilir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Elitpan kapı garantisi var mı?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Evet, tüm Elitpan kapılarımız 5 yıl üretici garantisi ile sunulmaktadır. Garanti kapsamında üretim hatalarından kaynaklanan sorunlar karşılanır."
+      }
+    }
+  ]
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "CihanPan Door",
+  "url": baseUrl,
+  "logo": `${baseUrl}/assets/images/logo/header_logo1.webp`,
+  "description": "Kayseri'den kaliteli iç oda kapısı üreticisi - B2B toptan satış. Elitpan, PVC ve ahşap kapı üretimi.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Organize Sanayi Bölgesi 29. Sokak No:28",
+    "addressLocality": "Kayseri",
+    "addressRegion": "Kayseri",
+    "postalCode": "38070",
+    "addressCountry": "TR"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+90-544-169-0038",
+    "contactType": "Sales",
+    "availableLanguage": ["Turkish", "English", "German", "Arabic"],
+    "areaServed": ["TR", "EU", "ME"]
+  },
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "Turkey"
+    },
+    {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": "38.7312",
+        "longitude": "35.4787"
+      },
+      "geoRadius": "2000000"
+    }
+  ],
+  "sameAs": [
+    "https://www.cihanpandoor.com",
+    "https://www.facebook.com/cihanpandoor",
+    "https://www.instagram.com/cihanpan_door",
+    "https://www.linkedin.com/company/cihanpan-door"
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbItems.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    "item": item.href ? `${baseUrl}${item.href}` : currentUrl
+  }))
+};
+
+const allSchemas = [elitpanSchema, faqSchema, organizationSchema, breadcrumbSchema];
+---
+
+<Layout
+  title="Elitpan İç Oda Kapıları | Premium Seri Kayseri CihanPan Door"
+  description="Kayseri'nin premium kalite Elitpan kapı koleksiyonu, özelleştirilebilir boyutlar, üretici fiyat avantajı. 26+ model, toptan satış imkanı."
+  keywords="Elitpan kapı, premium iç kapı modelleri, kayseri elitpan üreticisi, toptan kapı satışı, özel tasarım kapı"
+  canonical={currentUrl}
+  ogImage="/assets/img/og/elitpan-kapilar-og.webp"
+  ogTitle="Elitpan İç Oda Kapıları | Premium Seri CihanPan Door"
+  ogDescription="Premium kalite Elitpan kapı koleksiyonu. 26+ model, üretici fiyat avantajı, özel çözümler."
+  ogType="website"
+  ogUrl={currentUrl}
+  twitterCard="summary_large_image"
+  twitterTitle="Elitpan İç Oda Kapıları | Premium Seri"
+  twitterDescription="Premium Elitpan kapı koleksiyonu. Üretici fiyat avantajı, toptan satış."
+  twitterImage="/assets/img/og/elitpan-kapilar-og.webp"
+  schema={allSchemas}
+>
+
+  <Header />
+  <Breadcrumbs items={breadcrumbItems} />
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">Elitpan Kapılar</h1>
+          <p class="hero-subtitle">
+            Premium kalite Elitpan koleksiyonumuz - 26+ özel model
+          </p>
+          <div class="hero-badges">
+            <span class="badge">26+ Model</span>
+            <span class="badge">Premium Kalite</span>
+            <span class="badge">Toptan Fiyat</span>
+            <span class="badge">Özel Tasarım</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+      <div class="container">
+        <header class="section-header">
+          <h2>Elitpan Kapı Modelleri</h2>
+          <p>Premium kalite Elitpan iç kapı model seçenekleri - Kayseri üretimi</p>
+        </header>
+
+        <div class="quote-button-section">
+          <a href="/iletisim" class="btn-quote-main" aria-label="Elitpan kapı için toptan fiyat teklifi al">
+            Toptan Fiyat Teklifi Al
+          </a>
+        </div>
+
+        <nav class="product-filter-tabs" aria-label="Ürün kategorileri">
+          <a href="/urunlerimiz" class="product-filter-btn">
+            <span>Tümü</span>
+          </a>
+          <a href="/pvc-kapilar" class="product-filter-btn">
+            <span>PVC Kapılar</span>
+          </a>
+          <a href="/laminoks-kapilar" class="product-filter-btn">
+            <span>Laminoks Kapılar</span>
+          </a>
+          <a href="/elitpan-kapilar" class="product-filter-btn active" aria-current="page">
+            <span>Elitpan Kapılar</span>
+          </a>
+          <a href="/hastane-kapilari" class="product-filter-btn">
+            <span>Hastane Kapıları</span>
+          </a>
+          <a href="/otel-kapilari" class="product-filter-btn">
+            <span>Otel Kapıları</span>
+          </a>
+          <a href="/yangina-dayanikli-kapilar" class="product-filter-btn">
+            <span>Yanmaya Dayanıklı Kapılar</span>
+          </a>
+        </nav>
+
+        <!-- ✅ SSR: Ürünler sunucu tarafında render ediliyor -->
+        <div class="products-grid">
+          {elitpanModels.map((product, index) => (
+            <article class="product-card" itemscope itemtype="https://schema.org/Product">
+              <div class="product-image">
+                <img
+                  src={product.image}
+                  alt={product.altText}
+                  title={`${product.name} - CihanPan Door Premium Elitpan İç Kapı`}
+                  loading={index < 6 ? 'eager' : 'lazy'}
+                  width="300"
+                  height="300"
+                  itemprop="image"
+                />
+              </div>
+              <div class="product-info">
+                <h3 class="product-title" itemprop="name">{product.name}</h3>
+                <meta itemprop="description" content={product.description} />
+                <meta itemprop="brand" content="CihanPan Door" />
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Highlights -->
+    <section class="highlights-section">
+      <div class="container">
+        <div class="content-grid">
+          <article class="highlights-content">
+            <header>
+              <h2>Elitpan Premium Serinin Avantajları</h2>
+            </header>
+
+            <p>
+              <strong>Koleksiyonumuzda</strong> yer alan premium Elitpan kapılar,
+              özel projeler için tasarlanmış <em>yüksek kalite modellerdir</em>. Her biri
+              özel çözümler sunar ve toptan satış avantajı ile sunulur.
+            </p>
+
+            <h3>Öne Çıkan Özellikler</h3>
+            <ul class="advantages-list">
+              <li><strong>Premium Tasarımlar:</strong> Özel projeler için geliştirilmiş estetik</li>
+              <li><strong>İhracat Kalitesi:</strong> Avrupa standartlarında üretim</li>
+              <li><strong>Toplu Sipariş:</strong> Büyük projeler için özel indirimler</li>
+              <li><strong>Teknik Destek:</strong> Proje danışmanlığı hizmeti</li>
+              <li><strong>Su Geçirmez:</strong> Nemli ortamlarda çarpma yapmaz</li>
+              <li><strong>Antibakteriyel:</strong> Hijyenik yüzey özelliği</li>
+            </ul>
+
+            <h3>Kullanım Alanları</h3>
+            <p>Elitpan kapılarımız şu alanlarda ideal çözüm sunar:</p>
+            <ul class="advantages-list">
+              <li><strong>Hastane Projeleri:</strong> Antibakteriyel özellik ile sağlık tesisleri</li>
+              <li><strong>Otel Zincirleri:</strong> Toplu projeler için ekonomik çözüm</li>
+              <li><strong>Ofis Binaları:</strong> Modern ve dayanıklı tasarım</li>
+              <li><strong>Konut Projeleri:</strong> Nemli ortamlar için özel üretim</li>
+            </ul>
+
+            <h3>Kalite Standartları</h3>
+            <p>Tüm Elitpan kapılarımız TSE standartlarına uygun olarak üretilir.
+            UV kaplama teknolojisi ile çizilmeye ve darbelere karşı yüksek direnç sağlar.
+            5 yıl üretici garantisi ile gönül rahatlığı sunuyoruz.</p>
+          </article>
+
+          <aside class="highlights-sidebar">
+            <div class="info-cards">
+              <div class="stat-card">
+                <div class="stat-number">{elitpanModels.length}</div>
+                <div class="stat-label">MODEL</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">TSE</div>
+                <div class="stat-label">STANDART</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number">5 YIL</div>
+                <div class="stat-label">GARANTİ</div>
+              </div>
+            </div>
+
+            <div class="quick-contact">
+              <h3>Proje Danışmanlığı</h3>
+              <p>Büyük projeniz için özel çözümler ve toptan fiyat avantajları</p>
+              <div class="contact-buttons">
+                <a href="tel:+905441690038" class="btn-contact-phone">📞 Proje Danışmanı</a>
+                <a href="https://wa.me/905441690038" class="btn-contact-whatsapp" target="_blank" rel="noopener">💬 WhatsApp</a>
+              </div>
+
+              <div class="contact-info">
+                <p><strong>Çalışma Saatleri:</strong></p>
+                <p>Pazartesi - Cumartesi: 08:00 - 18:00</p>
+                <p><strong>Adres:</strong></p>
+                <p>Organize Sanayi Bölgesi, Kayseri</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Specifications -->
+    <section class="technical-section">
+      <div class="container">
+        <h2>Teknik Özellikler ve Boyutlar</h2>
+        <div class="tech-grid">
+          <div class="tech-card">
+            <h3>Malzeme Özellikleri</h3>
+            <ul>
+              <li>UV kaplama premium elitpan yüzey</li>
+              <li>MDF çekirdek yapı</li>
+              <li>Su dirençli kenar bantı</li>
+              <li>Antibakteriyel özellik</li>
+            </ul>
+          </div>
+          <div class="tech-card">
+            <h3>Standart Boyutlar</h3>
+            <ul>
+              <li>Standart: 70cm x 200cm</li>
+              <li>Geniş: 80cm x 200cm</li>
+              <li>Çift kanat: 140cm x 200cm</li>
+              <li>Özel ölçü üretimi mevcut</li>
+            </ul>
+          </div>
+          <div class="tech-card">
+            <h3>Renk Seçenekleri</h3>
+            <ul>
+              <li>26+ farklı model ve renk</li>
+              <li>Modern desenler</li>
+              <li>Klasik desenler</li>
+              <li>Özel RAL renk seçeneği</li>
+            </ul>
+          </div>
+          <div class="tech-card">
+            <h3>Aksesuar Paketleri</h3>
+            <ul>
+              <li>Premium menteşe seti</li>
+              <li>Şık kapı kolu seçenekleri</li>
+              <li>Sessiz kapanma sistemi</li>
+              <li>Cam panel opsiyonu</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>Premium Elitpan Kapı Koleksiyonu</h2>
+        <p>26+ model ile geniş seçenek yelpazesi. Projeniz için ideal çözümü bulun, üretici fiyatlarından faydalanın</p>
+        <div class="cta-buttons">
+          <a href="/iletisim" class="btn btn-primary">Proje Danışmanlığı</a>
+          <a href="https://wa.me/905441690038" class="btn btn-secondary" target="_blank" rel="noopener">WhatsApp İletişim</a>
+          <a href="tel:+905441690038" class="btn btn-tertiary">📞 Hemen Ara</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style is:inline>
+  /* Hero Section */
+  .hero {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    opacity: 0.95;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  }
+
+  .hero-badges {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  /* Products Section */
+  .products-section {
+    padding: 4rem 0;
+    background: #ffffff;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  .section-header p {
+    font-size: 1.1rem;
+    color: #6b7280;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Quote Button */
+  .quote-button-section {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .btn-quote-main {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    text-decoration: none;
+  }
+
+  .btn-quote-main:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  }
+
+  /* Product Filters */
+  .product-filter-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .product-filter-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    transition: left 0.3s ease;
+    z-index: 1;
+  }
+
+  .product-filter-btn span {
+    position: relative;
+    z-index: 2;
+  }
+
+  .product-filter-btn:hover::before {
+    left: 0;
+  }
+
+  .product-filter-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(55, 65, 81, 0.4);
+  }
+
+  .product-filter-btn.active {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+  }
+
+  /* Products Grid */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .product-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .product-card:hover {
+    border-color: #667eea;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+  }
+
+  .product-image {
+    height: 300px;
+    width: 100%;
+    background: #f9fafb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .product-image img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+
+  .product-card:hover .product-image img {
+    transform: scale(1.08);
+  }
+
+  .product-info {
+    padding: 1.5rem;
+    text-align: center;
+    background: white;
+  }
+
+  .product-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #111827;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  /* Highlights Section */
+  .highlights-section {
+    padding: 5rem 0;
+    background: #f8fafc;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .highlights-content {
+    background: white;
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  }
+
+  .highlights-content h2 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+  }
+
+  .highlights-content h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #374151;
+    margin: 2.5rem 0 1rem;
+    line-height: 1.4;
+  }
+
+  .highlights-content p {
+    color: #4a5568;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+  }
+
+  .advantages-list {
+    margin: 1.5rem 0;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .advantages-list li {
+    margin-bottom: 0.75rem;
+    color: #4a5568;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .advantages-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #10b981;
+    font-weight: bold;
+  }
+
+  /* Sidebar */
+  .highlights-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: sticky;
+    top: 2rem;
+  }
+
+  .info-cards {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  }
+
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #667eea;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    color: #6b7280;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .quick-contact {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .quick-contact h3 {
+    color: #1a202c;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .quick-contact p {
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .contact-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-contact-phone,
+  .btn-contact-whatsapp {
+    padding: 0.875rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: block;
+  }
+
+  .btn-contact-phone {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+  }
+
+  .btn-contact-phone:hover {
+    background: linear-gradient(135deg, #5568d3, #653a8b);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  }
+
+  .btn-contact-whatsapp {
+    background: #25d366;
+    color: white;
+  }
+
+  .btn-contact-whatsapp:hover {
+    background: #20ba5a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+  }
+
+  .contact-info {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .contact-info p {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #6b7280;
+  }
+
+  .contact-info strong {
+    color: #374151;
+  }
+
+  /* Technical Section */
+  .technical-section {
+    padding: 5rem 0;
+    background: white;
+  }
+
+  .technical-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 3rem;
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .tech-card {
+    background: #f8fafc;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+  }
+
+  .tech-card:hover {
+    border-color: #667eea;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+  }
+
+  .tech-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  .tech-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .tech-card li {
+    padding: 0.5rem 0;
+    color: #4a5568;
+    border-bottom: 1px solid #e2e8f0;
+    position: relative;
+    padding-left: 1.25rem;
+  }
+
+  .tech-card li:last-child {
+    border-bottom: none;
+  }
+
+  .tech-card li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #667eea;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  }
+
+  .cta-section p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.05rem;
+  }
+
+  .btn-primary {
+    background: white;
+    color: #667eea;
+  }
+
+  .btn-primary:hover {
+    background: #f8fafc;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .btn-secondary:hover {
+    background: white;
+    color: #667eea;
+    transform: translateY(-2px);
+  }
+
+  .btn-tertiary {
+    background: #10b981;
+    color: white;
+    border: none;
+  }
+
+  .btn-tertiary:hover {
+    background: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .highlights-sidebar {
+      position: static;
+    }
+
+    .products-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: 2.5rem 0;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .hero-badges {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .badge {
+      width: fit-content;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+
+    .highlights-content {
+      padding: 2rem;
+    }
+
+    .highlights-content h2 {
+      font-size: 1.75rem;
+    }
+
+    .highlights-content h3 {
+      font-size: 1.5rem;
+    }
+
+    .products-grid {
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+
+    .product-image {
+      height: 200px;
+    }
+
+    .product-info {
+      padding: 1rem;
+    }
+
+    .product-title {
+      font-size: 0.95rem;
+    }
+
+    .product-filter-tabs {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+    }
+
+    .product-filter-btn {
+      width: 100%;
+      padding: 0.875rem 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .tech-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-section h2 {
+      font-size: 2rem;
+    }
+
+    .cta-section p {
+      font-size: 1.1rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn {
+      width: 100%;
+      max-width: 320px;
+      padding: 0.875rem 2rem;
+    }
+
+    .info-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      padding: 2rem 0;
+    }
+
+    .section-header h2 {
+      font-size: 1.75rem;
+    }
+
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .product-card {
+      max-width: 280px;
+      margin: 0 auto;
+    }
+
+    .quote-button-section {
+      padding: 0 1rem;
+    }
+
+    .btn-quote-main {
+      width: 100%;
+      max-width: 320px;
+      padding: 0.875rem 2rem;
+      font-size: 1rem;
+    }
+  }
+
+  /* Performance: GPU Acceleration */
+  .product-card,
+  .btn,
+  .stat-card,
+  .tech-card {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  /* Print Styles */
+  @media print {
+    .hero,
+    .product-filter-tabs,
+    .cta-section,
+    .quick-contact,
+    .contact-buttons {
+      display: none;
+    }
+
+    .products-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .product-card {
+      break-inside: avoid;
+    }
+  }

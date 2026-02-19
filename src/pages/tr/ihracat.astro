@@ -1,0 +1,542 @@
+---
+// src/pages/ihracat.astro
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const baseUrl = 'https://kapi-ureticileri.vercel.app';
+const currentUrl = `${baseUrl}/ihracat`;
+
+const breadcrumbItems = [
+  { name: "Ana Sayfa", href: "/" },
+  { name: "İhracat", href: "/ihracat" }
+];
+---
+
+<Layout
+  title="Uluslararası İhracat | CihanPan Door"
+  description="CihanPan Door uluslararası ihracat hizmetleri. Avrupa, Orta Doğu ve Afrika'ya kaliteli kapı ihracatı."
+  canonical={currentUrl}
+>
+  <Header />
+  <Breadcrumbs items={breadcrumbItems} />
+
+  <main class="export-page">
+    <div class="container">
+      <header class="page-header">
+        <h1>🌍 Uluslararası İhracat</h1>
+        <p>Kayseri'den dünyaya kaliteli kapı çözümleri</p>
+      </header>
+
+      <section class="export-intro">
+        <h2>Global Erişim</h2>
+        <p>
+          CihanPan Door olarak Türkiye'nin yanı sıra <strong>Avrupa, Orta Doğu ve Afrika</strong>
+          pazarlarına ihracat yapıyoruz. Uluslararası kalite standartlarına uygun
+          üretimimizle global projelerde yer alıyoruz. ISO 9001 ve CE sertifikalarımızla
+          dünya çapında güvenilir bir iş ortağıyız.
+        </p>
+      </section>
+
+      <div class="export-features">
+        <div class="feature-card">
+          <div class="card-icon">📦</div>
+          <h3>İhracat Hizmetlerimiz</h3>
+          <ul>
+            <li>Konteyner ve parsiyel gönderim</li>
+            <li>Özel paketleme ve koruma</li>
+            <li>Gümrük evrakları desteği</li>
+            <li>Uluslararası lojistik çözümleri</li>
+            <li>Teknik dokümantasyon hazırlığı</li>
+            <li>Çok dilli müşteri desteği</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-icon">🌐</div>
+          <h3>İhracat Yaptığımız Bölgeler</h3>
+          <ul>
+            <li>Avrupa Birliği ülkeleri</li>
+            <li>Orta Doğu pazarları</li>
+            <li>Kuzey Afrika</li>
+            <li>Balkan ülkeleri</li>
+            <li>Körfez ülkeleri</li>
+            <li>Orta Asya cumhuriyetleri</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-icon">✅</div>
+          <h3>İhracat Avantajlarımız</h3>
+          <ul>
+            <li>Rekabetçi fabrika fiyatları</li>
+            <li>Zamanında teslimat garantisi</li>
+            <li>CE sertifikalı ürünler</li>
+            <li>İngilizce, Arapça, Rusça destek</li>
+            <li>Büyük hacimli siparişler</li>
+            <li>Özel proje çözümleri</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="card-icon">🤝</div>
+          <h3>İhracat Süreci</h3>
+          <ul>
+            <li>1. Teklif ve numune gönderimi</li>
+            <li>2. Sözleşme ve ödeme planı</li>
+            <li>3. Üretim ve kalite kontrol</li>
+            <li>4. Paketleme ve evrak hazırlığı</li>
+            <li>5. Sevkiyat ve teslimat takibi</li>
+            <li>6. Satış sonrası destek</li>
+          </ul>
+        </div>
+      </div>
+
+      <section class="export-stats">
+        <h2>İhracat Rakamlarımız</h2>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">15+</div>
+            <div class="stat-label">Ülkeye İhracat</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">50K+</div>
+            <div class="stat-label">Yıllık Kapı İhracatı</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">%30</div>
+            <div class="stat-label">İhracat Oranı</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Müşteri Memnuniyeti</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="export-certificates">
+        <h2>Uluslararası Sertifikalarımız</h2>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <div class="cert-icon">🏆</div>
+            <h3>ISO 9001</h3>
+            <p>Kalite Yönetim Sistemi</p>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon">✓</div>
+            <h3>CE Sertifikası</h3>
+            <p>Avrupa Uygunluk Belgesi</p>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon">🔥</div>
+            <h3>Yangın Testleri</h3>
+            <p>Uluslararası Standartlar</p>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon">🌱</div>
+            <h3>Çevre Belgesi</h3>
+            <p>Sürdürülebilir Üretim</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="export-faq">
+        <h2>Sıkça Sorulan Sorular</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Minimum ihracat miktarı nedir?</summary>
+            <p>Konteyner bazlı siparişler için minimum 1 konteyner (yaklaşık 300-400 kapı). Parsiyel gönderimler için özel fiyatlandırma yapılır.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Teslimat süresi ne kadar?</summary>
+            <p>Sipariş onayından sonra üretim 3-4 hafta, sevkiyat süreleri varış ülkesine göre 1-3 hafta arasında değişmektedir.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Hangi ödeme şekilleri kabul edilir?</summary>
+            <p>L/C (Akreditif), T/T (Banka Havalesi), %30 peşin + %70 sevkiyat öncesi ödeme seçenekleri mevcuttur.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Numune gönderiyor musunuz?</summary>
+            <p>Evet, potansiyel ihracat müşterilerimize kargo karşılığı numune gönderimi yapıyoruz.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Özel tasarım üretim yapıyor musunuz?</summary>
+            <p>Evet, proje bazlı özel tasarım ve ölçü üretimlerimiz mevcuttur. Minimum sipariş miktarları için iletişime geçiniz.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="export-cta">
+        <h2>İhracat İçin Bize Ulaşın</h2>
+        <p>Uluslararası proje ve siparişleriniz için özel fiyat teklifleri alın</p>
+        <div class="cta-buttons">
+          <a href="/iletisim" class="btn btn-primary">Teklif Formu</a>
+          <a href="mailto:export@cihanpandoor.com" class="btn btn-secondary">export@cihanpandoor.com</a>
+          <a href="https://wa.me/905441690038" class="btn btn-whatsapp" target="_blank">WhatsApp İletişim</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .export-page {
+    padding: 4rem 0;
+    background: #f8fafc;
+    min-height: 60vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header p {
+    font-size: 1.1rem;
+    color: #6b7280;
+  }
+
+  .export-intro {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .export-intro h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0891b2;
+    margin-bottom: 1rem;
+  }
+
+  .export-intro p {
+    color: #4a5568;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .export-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(8, 145, 178, 0.15);
+  }
+
+  .card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 1rem;
+  }
+
+  .feature-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .feature-card li {
+    color: #4a5568;
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .feature-card li::before {
+    content: "→";
+    color: #0891b2;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+  }
+
+  .export-stats {
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+  }
+
+  .export-stats h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0891b2;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #0891b2;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    color: #6b7280;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .export-certificates {
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+  }
+
+  .export-certificates h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0891b2;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+
+  .cert-card {
+    text-align: center;
+    padding: 1.5rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 2px solid #e5e7eb;
+    transition: all 0.3s ease;
+  }
+
+  .cert-card:hover {
+    border-color: #0891b2;
+    background: white;
+  }
+
+  .cert-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .cert-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 0.5rem;
+  }
+
+  .cert-card p {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .export-faq {
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+  }
+
+  .export-faq h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0891b2;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    background: #f8fafc;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+  }
+
+  .faq-item summary {
+    padding: 1.25rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: #1a202c;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+  }
+
+  .faq-item summary:hover {
+    background: #e0f2fe;
+    color: #0891b2;
+  }
+
+  .faq-item[open] summary {
+    background: #e0f2fe;
+    color: #0891b2;
+  }
+
+  .faq-item p {
+    padding: 0 1.25rem 1.25rem;
+    color: #4a5568;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .export-cta {
+    background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+  }
+
+  .export-cta h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .export-cta p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: white;
+    color: #0891b2;
+  }
+
+  .btn-primary:hover {
+    background: #f8fafc;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .btn-secondary:hover {
+    background: white;
+    color: #0891b2;
+    transform: translateY(-2px);
+  }
+
+  .btn-whatsapp {
+    background: #10b981;
+    color: white;
+    border: 2px solid #10b981;
+  }
+
+  .btn-whatsapp:hover {
+    background: #059669;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .page-header h1 {
+      font-size: 2rem;
+    }
+
+    .export-features {
+      grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cert-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+</style>

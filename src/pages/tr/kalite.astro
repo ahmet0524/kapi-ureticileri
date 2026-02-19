@@ -1,0 +1,111 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbItems = [
+  { name: "Ana Sayfa", href: "/" },
+  { name: "Kalite Politikası", href: "/kalite" }
+];
+---
+
+<Layout title="Kalite Politikası | CihanPan Door" description="CihanPan Door kalite standartları ve politikaları.">
+  <Header />
+  <Breadcrumbs items={breadcrumbItems} />
+  <main class="quality-page">
+    <div class="container">
+      <header class="page-header">
+        <h1>Kalite Politikamız</h1>
+        <p>Mükemmellik standartlarımız</p>
+      </header>
+
+      <div class="quality-grid">
+        <section class="quality-section">
+          <h2>🏆 Kalite Anlayışımız</h2>
+          <p>
+            CihanPan Door olarak kalite, sadece bir hedef değil, üretim sürecimizin
+            her aşamasına işlemiş bir felsefefidir. TSE standartlarına uygun üretim
+            yaparak, müşterilerimize güvenilir ve dayanıklı ürünler sunuyoruz.
+          </p>
+        </section>
+
+        <section class="quality-section">
+          <h2>🔍 Kalite Kontrol Süreçleri</h2>
+          <ul>
+            <li>Hammadde kalite kontrolü</li>
+            <li>Üretim aşaması denetimleri</li>
+            <li>Son ürün kalite testleri</li>
+            <li>Sevkiyat öncesi kontroller</li>
+            <li>Müşteri memnuniyeti takibi</li>
+          </ul>
+        </section>
+
+        <section class="quality-section">
+          <h2>📋 Sertifikalarımız</h2>
+          <ul>
+            <li>TSE Uygunluk Belgesi</li>
+            <li>ISO 9001 Kalite Yönetim Sistemi</li>
+            <li>CE Sertifikası</li>
+            <li>Yangın Dayanım Testleri</li>
+            <li>Çevre Dostu Üretim Belgesi</li>
+          </ul>
+        </section>
+
+        <section class="quality-section">
+          <h2>🎯 Kalite Hedeflerimiz</h2>
+          <ul>
+            <li>%100 müşteri memnuniyeti</li>
+            <li>Sıfır hata hedefi</li>
+            <li>Sürekli iyileştirme</li>
+            <li>Zamanında teslimat</li>
+            <li>Yenilikçi çözümler</li>
+          </ul>
+        </section>
+
+        <section class="quality-section full-width">
+          <h2>💪 Kalite Taahhütlerimiz</h2>
+          <div class="commitment-grid">
+            <div class="commitment-card">
+              <h3>Üretim Kalitesi</h3>
+              <p>Modern makineler ve deneyimli ekibimizle kusursuz üretim</p>
+            </div>
+            <div class="commitment-card">
+              <h3>Malzeme Kalitesi</h3>
+              <p>Sadece birinci sınıf hammadde kullanımı</p>
+            </div>
+            <div class="commitment-card">
+              <h3>Hizmet Kalitesi</h3>
+              <p>Satış öncesi ve sonrası profesyonel destek</p>
+            </div>
+            <div class="commitment-card">
+              <h3>Garanti</h3>
+              <p>2 yıl kapsamlı üretici garantisi</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .quality-page { padding: 4rem 0; background: #f8fafc; min-height: 60vh; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+  .page-header { text-align: center; margin-bottom: 3rem; }
+  .page-header h1 { font-size: 2.5rem; font-weight: 800; color: #1a202c; margin-bottom: 0.5rem; }
+  .page-header p { font-size: 1.1rem; color: #6b7280; }
+  .quality-grid { display: grid; gap: 2rem; }
+  .quality-section { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .quality-section.full-width { grid-column: 1 / -1; }
+  .quality-section h2 { font-size: 1.5rem; font-weight: 700; color: #0891b2; margin-bottom: 1rem; }
+  .quality-section p { color: #4a5568; line-height: 1.7; margin-bottom: 1rem; }
+  .quality-section ul { list-style: none; padding: 0; }
+  .quality-section li { color: #4a5568; padding: 0.75rem 0; padding-left: 2rem; position: relative; }
+  .quality-section li::before { content: "✓"; color: #10b981; font-weight: bold; position: absolute; left: 0; font-size: 1.2rem; }
+  .commitment-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+  .commitment-card { background: #f8fafc; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #0891b2; }
+  .commitment-card h3 { font-size: 1.1rem; font-weight: 700; color: #1a202c; margin-bottom: 0.5rem; }
+  .commitment-card p { color: #6b7280; font-size: 0.95rem; margin: 0; }
+</style>

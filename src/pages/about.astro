@@ -1,190 +1,1142 @@
 ---
 // src/pages/about.astro
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import I18nLayout from '../layouts/I18nLayout.astro';
+import I18nHeader from '../components/I18nHeader.astro';
+import I18nFooter from '../components/I18nFooter.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// ── SEO DATA ──────────────────────────────────────────────────────────
+const baseUrl = 'https://cihanpandoor.netlify.app';
+const pageUrl = `${baseUrl}/en/about`;
+
+/*
+  TARGET KEYWORDS (US Market):
+  PRIMARY  → "interior door manufacturer Turkey"
+  PRIMARY  → "Turkish interior door wholesale exporter"
+  SECONDARY→ "wholesale interior doors from Turkey"
+  SECONDARY→ "interior door supplier Turkey USA"
+  LONG-TAIL→ "ISO certified interior door manufacturer Turkey"
+  LONG-TAIL→ "bulk interior door exporter Turkey USA"
+  LONG-TAIL→ "PVC MDF interior door wholesale Turkey"
+  INTENT   → Buyers replacing Chinese suppliers (tariff shift trend)
+*/
+
+// ── SCHEMA: AboutPage + Organization ─────────────────────────────────
+const aboutPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About CihanPan Door — Interior Door Manufacturer & Exporter Turkey",
+  "description": "CihanPan Door is a CE, TSE & ISO 9001 certified interior door manufacturer in Kayseri, Turkey. Wholesale & export to USA, Europe, Middle East since 1995. 600,000 units/year capacity.",
+  "url": pageUrl,
+  "inLanguage": "en",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "CihanPan Door",
+    "url": baseUrl
+  },
+  "about": {
+    "@type": "Organization",
+    "name": "CihanPan Door",
+    "alternateName": "Cihanpan Kapı",
+    "url": baseUrl,
+    "logo": `${baseUrl}/assets/img/logo/header-logo1.webp`,
+    "foundingDate": "1995",
+    "description": "Turkey's leading interior door manufacturer and wholesale exporter. CE, TSE, ISO 9001 certified. PVC, MDF, Laminox doors for hotels, hospitals, residential & commercial projects.",
+    "numberOfEmployees": { "@type": "QuantitativeValue", "value": 150 },
+    "areaServed": ["US", "EU", "ME", "AF"],
+    "hasCredential": [
+      { "@type": "EducationalOccupationalCredential", "name": "CE Certificate" },
+      { "@type": "EducationalOccupationalCredential", "name": "TSE Certificate" },
+      { "@type": "EducationalOccupationalCredential", "name": "ISO 9001" }
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Organize Sanayi Bölgesi 29. Sokak No:28",
+      "addressLocality": "Kayseri",
+      "addressRegion": "Kayseri",
+      "postalCode": "38070",
+      "addressCountry": "TR"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+90-544-169-0038",
+      "contactType": "Sales",
+      "availableLanguage": ["English", "Turkish", "Arabic", "German"],
+      "areaServed": ["US", "EU", "ME"]
+    },
+    "sameAs": [
+      "https://www.cihanpandoor.com",
+      "https://www.linkedin.com/company/cihanpan-door"
+    ]
+  }
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": `${baseUrl}/en` },
+    { "@type": "ListItem", "position": 2, "name": "About Us", "item": pageUrl }
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is CihanPan Door a certified interior door manufacturer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. CihanPan Door holds CE, TSE, and ISO 9001 certifications, ensuring full compliance with European and international quality standards for all interior door products."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the minimum order quantity for wholesale interior doors?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The minimum wholesale order is 50 units. For large-scale projects including hotels, hospitals, and residential complexes, we offer fully customized bulk pricing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does CihanPan Door export interior doors to the USA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. CihanPan Door exports wholesale interior doors to more than 25 countries including the United States. We provide full export documentation, competitive FOB/CIF pricing, and flexible shipping terms."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What types of interior doors does CihanPan Door manufacture?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We manufacture PVC coated, Laminox, Elitpan (UV-painted MDF), hospital-grade, hotel-grade, and fire-resistant interior doors. All products are available for wholesale export worldwide."
+      }
+    }
+  ]
+};
+
+const schemas = [aboutPageSchema, breadcrumbSchema, faqSchema];
+
+// ── PAGE DATA ─────────────────────────────────────────────────────────
+const values = [
+  { num: '01', title: 'Grade-A Quality',     text: 'Only premium raw materials enter our production line. Every door undergoes multi-stage quality inspection before shipment.' },
+  { num: '02', title: 'Proven Reliability',  text: '30+ years of consistent manufacturing and on-time export delivery — our track record speaks for itself.' },
+  { num: '03', title: 'Client-First',        text: 'Dedicated account managers, pre-shipment samples, and after-sale support for every wholesale partner.' },
+  { num: '04', title: 'R&D Innovation',      text: 'Continuous investment in CNC technology and new surface finishes keeps our catalog ahead of market trends.' },
+];
+
+const timeline = [
+  { year: '1995', title: 'Founded in Kayseri',          text: 'Started as a specialized interior door workshop in Kayseri, Turkey\'s manufacturing heartland.' },
+  { year: '2003', title: 'Modern Factory Opened',       text: 'Moved to Kayseri Organized Industrial Zone with full-scale automated production lines.' },
+  { year: '2010', title: 'International Export Launch', text: 'Began exporting to Middle East and African markets — now serving 25+ countries.' },
+  { year: '2018', title: 'ISO 9001 Certified',          text: 'Achieved ISO 9001 certification alongside existing CE and TSE approvals.' },
+  { year: '2024', title: '600,000 Units / Year',        text: 'Reached annual production capacity of 600,000 door sets — ready for any volume wholesale order.' },
+];
+
+const certs = [
+  { badge: 'CE',  title: 'CE Certificate',  text: 'Confirms compliance with European market safety & quality standards' },
+  { badge: 'TSE', title: 'TSE Certificate', text: 'Turkish Standards Institute — mandatory quality mark for Turkish manufacturers' },
+  { badge: 'ISO', title: 'ISO 9001:2015',   text: 'International quality management system — consistent production at every batch' },
+];
+
+const whyUs = [
+  { icon: '🏭', title: 'Direct Factory Price',   text: 'No agents, no middlemen. You buy directly from the manufacturer — maximum margin for your business.' },
+  { icon: '🇺🇸', title: 'USA Export Ready',       text: 'Full documentation: commercial invoice, packing list, certificate of origin, and CE/ISO certificates included.' },
+  { icon: '📦', title: '50-Unit MOQ',             text: 'Low minimum order lets you test product quality before committing to large volumes.' },
+  { icon: '⚙️', title: 'Custom Sizing & Finish',  text: 'Non-standard dimensions, custom colors, private label — all available for wholesale orders.' },
+  { icon: '🚢', title: 'Flexible Incoterms',      text: 'EXW, FOB, CIF — we work with your freight forwarder or handle end-to-end logistics on request.' },
+  { icon: '🏅', title: 'CE + ISO Certified',      text: 'Every shipment backed by CE, TSE and ISO 9001 documentation for hassle-free customs clearance.' },
+];
 ---
 
-<Layout
-  title="Hakkımızda - CihanPan Door"
-  description="Türkiye'nin güvenilir iç oda kapısı üreticileri rehberi hakkında bilgi alın"
+<I18nLayout
+  title="Interior Door Manufacturer & Exporter Turkey | CihanPan Door – Since 1995"
+  description="CE & ISO 9001 certified interior door manufacturer in Turkey. Wholesale PVC, MDF & Laminox doors for USA, Europe & Middle East. 600K units/year. MOQ 50 units. Request a quote."
+  keywords="interior door manufacturer Turkey, Turkish interior door wholesale, interior door exporter Turkey USA, wholesale interior doors Turkey, PVC door manufacturer Turkey, MDF door wholesale exporter, ISO certified door manufacturer Turkey, bulk interior doors Turkey"
+  canonical={pageUrl}
+  schema={schemas}
+  ogTitle="Turkey's #1 Wholesale Interior Door Manufacturer | CihanPan Door"
+  ogDescription="Factory-direct interior doors from Kayseri, Turkey. CE, TSE & ISO 9001 certified. Exporting to USA, Europe & Middle East since 1995. MOQ 50 units."
+  ogImage="/assets/img/og/about-og.webp"
 >
-  <Header />
-  <main>
-    <section class="about-hero">
-      <div class="container">
-        <div class="hero-content">
-          <h1 class="hero-title">Hakkımızda</h1>
-          <p class="hero-subtitle">
-            Türkiye'nin en kapsamlı iç oda kapısı üreticileri rehberiyiz
+  <I18nHeader />
+
+  <main class="ab" id="main-content">
+
+    <!-- ══════════════════════════════════════════
+         HERO — H1 contains primary keyword
+    ══════════════════════════════════════════ -->
+    <section class="ab-hero" aria-labelledby="hero-heading">
+      <div class="ab-hero__grid" aria-hidden="true"></div>
+      <div class="ab-wrap ab-hero__inner">
+
+        <div class="ab-hero__copy">
+          <span class="ab-eyebrow">
+            <span class="ab-eyebrow__line"></span>
+            Kayseri, Turkey · Est. 1995
+          </span>
+
+          <!-- PRIMARY KEYWORD in H1 -->
+          <h1 class="ab-hero__h1" id="hero-heading">
+            Turkey's Leading<br>
+            <em>Interior Door Manufacturer</em><br>
+            &amp; Wholesale Exporter
+          </h1>
+
+          <p class="ab-hero__sub">
+            CE, TSE &amp; ISO 9001 certified wholesale interior door manufacturer in Kayseri, Turkey.
+            Exporting PVC, MDF and Laminox interior doors to the <strong>USA, Europe and Middle East</strong>
+            since 1995 — with a production capacity of <strong>600,000 units per year</strong>.
           </p>
+
+          <div class="ab-hero__tags">
+            <span class="ab-htag">✓ CE Certified</span>
+            <span class="ab-htag">✓ ISO 9001</span>
+            <span class="ab-htag">✓ MOQ: 50 Units</span>
+            <span class="ab-htag">✓ USA Export Ready</span>
+          </div>
+
+          <div class="ab-stats">
+            <div class="ab-stat">
+              <strong>30<sup>+</sup></strong>
+              <span>Years Manufacturing</span>
+            </div>
+            <div class="ab-stat-div"></div>
+            <div class="ab-stat">
+              <strong>600K</strong>
+              <span>Units / Year</span>
+            </div>
+            <div class="ab-stat-div"></div>
+            <div class="ab-stat">
+              <strong>25<sup>+</sup></strong>
+              <span>Export Countries</span>
+            </div>
+            <div class="ab-stat-div"></div>
+            <div class="ab-stat">
+              <strong>150<sup>+</sup></strong>
+              <span>Employees</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ab-hero__badges" aria-label="Quality certifications">
+          <div class="ab-hb ab-hb--gold" title="CE Certified">CE</div>
+          <div class="ab-hb" title="TSE Certified">TSE</div>
+          <div class="ab-hb" title="ISO 9001 Certified">ISO<br>9001</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         WHY US — US buyer decision factors
+    ══════════════════════════════════════════ -->
+    <section class="ab-sec ab-sec--cream" aria-labelledby="whyus-heading">
+      <div class="ab-wrap">
+        <div class="ab-head">
+          <span class="ab-tag">Why CihanPan Door</span>
+          <!-- SECONDARY KEYWORD in H2 -->
+          <h2 id="whyus-heading">Why US Importers Choose Our<br>Turkish Interior Door Factory</h2>
+          <p>Direct manufacturer advantages that protect your margins and simplify your supply chain</p>
+        </div>
+        <div class="ab-why">
+          {whyUs.map(w => (
+            <div class="ab-why__card">
+              <div class="ab-why__icon" aria-hidden="true">{w.icon}</div>
+              <h3>{w.title}</h3>
+              <p>{w.text}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
 
-    <section class="about-content">
-      <div class="container">
-        <div class="content-grid">
-          <div class="content-text">
-            <h2>Misyonumuz</h2>
-            <p>
-              CihanPan Door olarak, Türkiye'deki en kaliteli iç oda kapısı üreticilerini
-              bir araya getirerek müşterilerimize en iyi seçenekleri sunmayı amaçlıyoruz.
-            </p>
-
-            <h2>Vizyonumuz</h2>
-            <p>
-              İç oda kapısı sektöründe kalite standartlarını yükselterek,
-              sektörün dijital dönüşümüne öncülük etmek.
-            </p>
-
-            <h2>Değerlerimiz</h2>
-            <ul class="values-list">
-              <li>✓ Kalite ve güvenilirlik</li>
-              <li>✓ Müşteri memnuniyeti</li>
-              <li>✓ Sürekli gelişim</li>
-              <li>✓ Şeffaflık</li>
+    <!-- ══════════════════════════════════════════
+         MISSION / VISION
+    ══════════════════════════════════════════ -->
+    <section class="ab-sec ab-sec--white" aria-labelledby="mv-heading">
+      <div class="ab-wrap">
+        <div class="ab-head">
+          <span class="ab-tag">Our Direction</span>
+          <h2 id="mv-heading">Mission &amp; Vision</h2>
+          <p>The values and long-term goals that shape how we manufacture and export</p>
+        </div>
+        <div class="ab-mv">
+          <div class="ab-mv__card ab-mv__card--blue">
+            <div class="ab-mv__bar"></div>
+            <div class="ab-mv__icon ab-mv__icon--blue" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <h3>Our Mission</h3>
+            <p>To be the most trusted <strong>wholesale interior door exporter from Turkey</strong> — delivering factory-direct quality, full CE/ISO documentation, and reliable logistics for every international order.</p>
+            <ul class="ab-checks">
+              <li>Factory-direct pricing — no agents or middlemen</li>
+              <li>Wholesale from 50 units, bulk pricing available</li>
+              <li>Custom dimensions, finishes &amp; private label</li>
             </ul>
           </div>
-
-          <div class="content-visual">
-            <div class="visual-card">
-              <div class="card-icon">🎯</div>
-              <h3>500+ Üretici</h3>
-              <p>Türkiye genelinde güvenilir üreticiler</p>
+          <div class="ab-mv__card ab-mv__card--gold">
+            <div class="ab-mv__bar"></div>
+            <div class="ab-mv__icon ab-mv__icon--gold" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
             </div>
-            <div class="visual-card">
-              <div class="card-icon">⭐</div>
-              <h3>Kalite Garantisi</h3>
-              <p>Sertifikalı ve test edilmiş ürünler</p>
-            </div>
-            <div class="visual-card">
-              <div class="card-icon">🚀</div>
-              <h3>Hızlı Teslimat</h3>
-              <p>Tüm Türkiye'ye hızlı kargo</p>
-            </div>
+            <h3>Our Vision</h3>
+            <p>To become the top-of-mind <strong>Turkish interior door manufacturer for wholesale buyers in the USA and Europe</strong> — recognized for certified quality, on-time delivery, and transparent business practices.</p>
+            <ul class="ab-checks">
+              <li>CE, TSE &amp; ISO 9001 on every shipment</li>
+              <li>Sustainable, eco-conscious production</li>
+              <li>Expanding to 40+ export countries by 2027</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- ══════════════════════════════════════════
+         VALUES
+    ══════════════════════════════════════════ -->
+    <section class="ab-sec ab-sec--navy" aria-labelledby="values-heading">
+      <div class="ab-wrap">
+        <div class="ab-head ab-head--light">
+          <span class="ab-tag">Core Principles</span>
+          <h2 id="values-heading">Our Manufacturing Values</h2>
+          <p>What we stand for — from raw material selection to export delivery</p>
+        </div>
+        <div class="ab-vals">
+          {values.map(v => (
+            <div class="ab-val">
+              <span class="ab-val__n" aria-hidden="true">{v.num}</span>
+              <div class="ab-val__bar" aria-hidden="true"></div>
+              <h3>{v.title}</h3>
+              <p>{v.text}</p>
+              <div class="ab-val__sweep" aria-hidden="true"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         TIMELINE — rich keyword content
+    ══════════════════════════════════════════ -->
+    <section class="ab-sec ab-sec--white" aria-labelledby="history-heading">
+      <div class="ab-wrap">
+        <div class="ab-head">
+          <span class="ab-tag">30 Years of Manufacturing</span>
+          <!-- LONG-TAIL KEYWORD in H2 -->
+          <h2 id="history-heading">Our History as a Turkish<br>Interior Door Manufacturer</h2>
+          <p>Key milestones that shaped CihanPan Door into a globally trusted wholesale supplier</p>
+        </div>
+        <div class="ab-tl-wrap">
+          {timeline.map((item) => (
+            <div class="ab-tl">
+              <div class="ab-tl__yr">{item.year}</div>
+              <div class="ab-tl__spine" aria-hidden="true">
+                <div class="ab-tl__line"></div>
+                <div class="ab-tl__dot"></div>
+                <div class="ab-tl__line"></div>
+              </div>
+              <div class="ab-tl__body">
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CERTIFICATES
+    ══════════════════════════════════════════ -->
+    <section class="ab-sec ab-sec--cream" aria-labelledby="certs-heading">
+      <div class="ab-wrap">
+        <div class="ab-head">
+          <span class="ab-tag">International Standards</span>
+          <!-- LONG-TAIL KEYWORD in H2 -->
+          <h2 id="certs-heading">CE, TSE &amp; ISO 9001 Certified<br>Interior Door Production</h2>
+          <p>Every wholesale shipment is backed by internationally recognized quality documentation</p>
+        </div>
+        <div class="ab-certs">
+          {certs.map(c => (
+            <div class="ab-cert">
+              <div class="ab-cert__badge" aria-label={c.title}>{c.badge}</div>
+              <div class="ab-cert__body">
+                <h3>{c.title}</h3>
+                <p>{c.text}</p>
+              </div>
+              <div class="ab-cert__arrow" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <p class="ab-certs__note">
+          All certificates are available upon request and included in every shipment's export documentation package.
+          <a href="/en/contact" class="ab-link">Request a copy →</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         FAQ — Schema + keyword-rich content
+    ══════════════════════════════════════════ -->
+    <section class="ab-sec ab-sec--white" aria-labelledby="faq-heading">
+      <div class="ab-wrap">
+        <div class="ab-head">
+          <span class="ab-tag">Common Questions</span>
+          <h2 id="faq-heading">FAQs for US Wholesale Buyers</h2>
+          <p>Everything you need to know before placing your first interior door import order from Turkey</p>
+        </div>
+        <div class="ab-faq">
+          <details class="ab-faq__item">
+            <summary><h3>Is CihanPan Door a certified interior door manufacturer?</h3></summary>
+            <p>Yes. CihanPan Door holds <strong>CE, TSE, and ISO 9001 certifications</strong>, ensuring full compliance with European and international quality standards for all interior door products. Certificates are provided with every wholesale shipment.</p>
+          </details>
+          <details class="ab-faq__item">
+            <summary><h3>What is the minimum order quantity for wholesale interior doors?</h3></summary>
+            <p>The minimum wholesale order is <strong>50 units</strong>. For large-scale projects — hotels, hospitals, residential complexes — we offer fully customized bulk pricing with dedicated project support.</p>
+          </details>
+          <details class="ab-faq__item">
+            <summary><h3>Does CihanPan Door export interior doors to the USA?</h3></summary>
+            <p>Yes. We export wholesale interior doors to <strong>25+ countries including the United States</strong>. We provide full export documentation, competitive FOB/CIF pricing, and work with your freight forwarder or our own logistics partners.</p>
+          </details>
+          <details class="ab-faq__item">
+            <summary><h3>What types of interior doors do you manufacture?</h3></summary>
+            <p>We manufacture <strong>PVC coated, Laminox, Elitpan (UV-painted MDF), hospital-grade, hotel-grade, and fire-resistant interior doors</strong>. Custom dimensions, colors, and finishes are available for all wholesale orders. <a href="/en/products" class="ab-link">See all products →</a></p>
+          </details>
+          <details class="ab-faq__item">
+            <summary><h3>Can I source interior doors from Turkey instead of China?</h3></summary>
+            <p>Absolutely. With rising US tariffs on Chinese imports, many American wholesalers and importers are switching to <strong>Turkish interior door manufacturers</strong> for better pricing stability, CE/ISO compliance, and shorter lead times to Europe-facing markets. <a href="/en/contact" class="ab-link">Talk to our export team →</a></p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CTA
+    ══════════════════════════════════════════ -->
+    <section class="ab-cta" aria-labelledby="cta-heading">
+      <div class="ab-cta__glow" aria-hidden="true"></div>
+      <div class="ab-wrap ab-cta__inner">
+        <div class="ab-cta__text">
+          <span class="ab-tag ab-tag--gold">Start Sourcing from Turkey</span>
+          <h2 id="cta-heading">Request a Wholesale<br>Interior Door Quote</h2>
+          <p>Tell us your quantities, door types, and destination — we'll reply within 24 hours with factory-direct pricing and full CE/ISO documentation.</p>
+        </div>
+        <div class="ab-cta__btns">
+          <a href="/en/contact" class="ab-btn ab-btn--gold">
+            Get a Free Quote
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="https://www.cihanpandoor.com/E-Katalog.pdf" target="_blank" rel="noopener noreferrer" class="ab-btn ab-btn--outline">
+            Download Product Catalogue
+          </a>
+        </div>
+      </div>
+    </section>
+
   </main>
-  <Footer />
-</Layout>
+
+  <I18nFooter />
+</I18nLayout>
 
 <style>
-  .about-hero {
-    padding: 8rem 0 4rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+  /* ── FONTS ── */
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap');
+
+  /* ── TOKENS ── */
+  .ab {
+    --navy:     #0f2347;
+    --navy-mid: #1a3a6e;
+    --navy-l:   #1e4a8a;
+    --gold:     #c9a84c;
+    --gold-l:   #e2bc6a;
+    --cream:    #faf8f4;
+    --slate:    #607080;
+    --text:     #0f1929;
+    --body:     #3d4f63;
+    --bdr:      #e4eaf4;
+    --white:    #ffffff;
+
+    font-family: 'DM Sans', system-ui, sans-serif;
+    color: var(--text);
+  }
+
+  /* ── LAYOUT ── */
+  .ab-wrap {
+    max-width: 1140px;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+    width: 100%;
+  }
+
+  .ab-sec          { padding-block: clamp(4rem, 8vw, 6.5rem); }
+  .ab-sec--white   { background: var(--white); }
+  .ab-sec--navy    { background: var(--navy); }
+  .ab-sec--cream   { background: var(--cream); }
+
+  /* ── SECTION HEAD ── */
+  .ab-head {
     text-align: center;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
   }
-
-  .hero-title {
-    font-size: 3.5rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1.25rem;
-    opacity: 0.9;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .about-content {
-    padding: 5rem 0;
-  }
-
-  .content-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-
-  .content-text h2 {
-    font-size: 2rem;
+  .ab-head h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
     font-weight: 700;
-    color: #1a202c;
-    margin: 2rem 0 1rem;
+    color: var(--text);
+    margin: 0.3rem 0 0.6rem;
+    line-height: 1.2;
   }
-
-  .content-text h2:first-child {
-    margin-top: 0;
-  }
-
-  .content-text p {
-    color: #718096;
+  .ab-head p {
+    color: var(--slate);
+    font-size: 1rem;
+    max-width: 500px;
+    margin-inline: auto;
     line-height: 1.7;
-    margin-bottom: 1.5rem;
+  }
+  .ab-head--light h2 { color: var(--white); }
+  .ab-head--light p  { color: rgba(255,255,255,0.5); }
+
+  .ab-tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+  .ab-tag--gold { color: rgba(201,168,76,0.9); }
+
+  .ab-link {
+    color: var(--navy-l);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    transition: color 0.2s;
+  }
+  .ab-link:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .ab-hero {
+    position: relative;
+    background: var(--navy);
+    padding: calc(70px + clamp(3.5rem, 7vw, 5rem)) 0 clamp(4rem, 8vw, 6rem);
+    overflow: hidden;
+  }
+  .ab-hero__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+    background-size: 56px 56px;
+    pointer-events: none;
+  }
+  .ab-hero__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+  .ab-hero__copy { max-width: 620px; flex: 1; }
+
+  .ab-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.4rem;
+  }
+  .ab-eyebrow__line {
+    display: block;
+    width: 30px; height: 1px;
+    background: var(--gold);
+    opacity: 0.55;
+    flex-shrink: 0;
   }
 
-  .values-list {
-    list-style: none;
-    padding: 0;
-    margin: 1rem 0;
+  .ab-hero__h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    margin: 0 0 1.25rem;
+  }
+  .ab-hero__h1 em {
+    font-style: normal;
+    color: var(--gold);
   }
 
-  .values-list li {
-    color: #4a5568;
-    padding: 0.5rem 0;
-    font-weight: 500;
+  .ab-hero__sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.8;
+    max-width: 560px;
+    margin: 0 0 1.5rem;
+  }
+  .ab-hero__sub strong { color: rgba(255,255,255,0.9); }
+
+  /* Trust tags */
+  .ab-hero__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .ab-htag {
+    display: inline-block;
+    padding: 0.3rem 0.85rem;
+    border: 1px solid rgba(201,168,76,0.35);
+    background: rgba(201,168,76,0.08);
+    color: var(--gold-l);
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 4px;
+    letter-spacing: 0.03em;
   }
 
-  .content-visual {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  /* Stats */
+  .ab-stats {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 2rem;
+  }
+  .ab-stat {
+    display: flex;
+    flex-direction: column;
+    padding-inline: 1.25rem;
+  }
+  .ab-stat:first-child { padding-left: 0; }
+  .ab-stat strong {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.9rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+  .ab-stat strong sup { font-size: 0.7em; }
+  .ab-stat span {
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.38);
+    margin-top: 0.3rem;
+    display: block;
+  }
+  .ab-stat-div {
+    width: 1px; height: 30px;
+    background: rgba(255,255,255,0.1);
+    flex-shrink: 0;
   }
 
-  .visual-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  /* Cert badges */
+  .ab-hero__badges {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+  .ab-hb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 68px; height: 68px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.6);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
     text-align: center;
-    transition: transform 0.3s ease;
+    line-height: 1.3;
+    background: rgba(255,255,255,0.04);
+    transition: transform 0.3s;
+  }
+  .ab-hb:hover { transform: scale(1.1); }
+  .ab-hb--gold {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(201,168,76,0.08);
   }
 
-  .visual-card:hover {
-    transform: translateY(-5px);
+  /* ── WHY US ── */
+  .ab-why {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
   }
-
-  .card-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+  .ab-why__card {
+    background: var(--white);
+    border: 1px solid var(--bdr);
+    border-radius: 14px;
+    padding: 1.75rem 1.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
   }
-
-  .visual-card h3 {
-    font-size: 1.25rem;
+  .ab-why__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(15,35,71,0.09);
+  }
+  .ab-why__icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.85rem;
+    display: block;
+  }
+  .ab-why__card h3 {
+    font-size: 0.95rem;
     font-weight: 700;
-    color: #1a202c;
-    margin-bottom: 0.5rem;
+    color: var(--text);
+    margin: 0 0 0.5rem;
   }
-
-  .visual-card p {
-    color: #718096;
+  .ab-why__card p {
+    font-size: 0.875rem;
+    color: var(--body);
+    line-height: 1.7;
     margin: 0;
   }
 
-  @media (min-width: 768px) {
-    .content-grid {
-      grid-template-columns: 2fr 1fr;
-    }
+  /* ── MISSION / VISION ── */
+  .ab-mv {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .ab-mv__card {
+    position: relative;
+    background: var(--white);
+    border: 1px solid var(--bdr);
+    border-radius: 16px;
+    padding: 2.5rem 2rem 2rem;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .ab-mv__card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(15,35,71,0.1);
+  }
+  .ab-mv__bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    border-radius: 16px 16px 0 0;
+  }
+  .ab-mv__card--blue .ab-mv__bar { background: linear-gradient(90deg, var(--navy-l), var(--navy-mid)); }
+  .ab-mv__card--gold .ab-mv__bar { background: linear-gradient(90deg, var(--gold), var(--gold-l)); }
+  .ab-mv__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    margin-bottom: 1.2rem;
+  }
+  .ab-mv__icon--blue { background: rgba(30,74,138,0.08); color: var(--navy-l); }
+  .ab-mv__icon--gold { background: rgba(201,168,76,0.1);  color: #9a7422; }
+  .ab-mv__card h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 0.7rem;
+  }
+  .ab-mv__card > p {
+    font-size: 0.93rem;
+    color: var(--body);
+    line-height: 1.75;
+    margin: 0 0 1.4rem;
+  }
+  .ab-mv__card > p strong { color: var(--navy); }
 
-    .content-visual {
-      grid-template-columns: 1fr;
-    }
+  .ab-checks {
+    list-style: none;
+    padding: 0; margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .ab-checks li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.875rem;
+    color: var(--body);
+    line-height: 1.5;
+  }
+  .ab-checks li::before {
+    content: '';
+    flex-shrink: 0;
+    display: block;
+    width: 17px; height: 17px;
+    border-radius: 50%;
+    background-color: var(--navy);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 9px;
+    margin-top: 2px;
+  }
+
+  /* ── VALUES ── */
+  .ab-vals {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .ab-val {
+    position: relative;
+    background: rgba(255,255,255,0.04);
+    padding: 2.25rem 1.75rem;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .ab-val:hover { background: rgba(255,255,255,0.08); }
+  .ab-val__sweep {
+    position: absolute;
+    bottom: 0; left: 0;
+    right: 100%;
+    height: 3px;
+    background: var(--gold);
+    transition: right 0.45s cubic-bezier(0.22,1,0.36,1);
+  }
+  .ab-val:hover .ab-val__sweep { right: 0; }
+  .ab-val__n {
+    display: block;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.055);
+    line-height: 1;
+    margin-bottom: 0.85rem;
+    transition: color 0.3s;
+  }
+  .ab-val:hover .ab-val__n { color: rgba(201,168,76,0.13); }
+  .ab-val__bar {
+    width: 26px; height: 2px;
+    background: var(--gold);
+    margin-bottom: 0.9rem;
+    transition: width 0.3s;
+  }
+  .ab-val:hover .ab-val__bar { width: 42px; }
+  .ab-val h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--white);
+    margin: 0 0 0.5rem;
+  }
+  .ab-val p {
+    font-size: 0.83rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  /* ── TIMELINE ── */
+  .ab-tl-wrap { max-width: 700px; margin-inline: auto; }
+  .ab-tl {
+    display: grid;
+    grid-template-columns: 68px 32px 1fr;
+    align-items: stretch;
+  }
+  .ab-tl__yr {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-align: right;
+    padding-right: 1rem;
+    padding-top: 0.15rem;
+  }
+  .ab-tl__spine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .ab-tl__line {
+    width: 1px; flex: 1;
+    background: var(--bdr);
+    min-height: 12px;
+  }
+  .ab-tl:first-child .ab-tl__line:first-child,
+  .ab-tl:last-child  .ab-tl__line:last-child  { background: transparent; }
+  .ab-tl__dot {
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    border: 2.5px solid var(--gold);
+    background: var(--white);
+    flex-shrink: 0;
+    box-shadow: 0 0 0 4px rgba(201,168,76,0.1);
+    transition: transform 0.2s, background 0.2s;
+  }
+  .ab-tl:hover .ab-tl__dot { transform: scale(1.4); background: var(--gold); }
+  .ab-tl__body { padding: 0 0 2.25rem 1.25rem; }
+  .ab-tl:last-child .ab-tl__body { padding-bottom: 0; }
+  .ab-tl__body h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 0.25rem;
+  }
+  .ab-tl__body p {
+    font-size: 0.875rem;
+    color: var(--slate);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ── CERTIFICATES ── */
+  .ab-certs {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--bdr);
+    border: 1px solid var(--bdr);
+    border-radius: 16px;
+    overflow: hidden;
+    max-width: 660px;
+    margin-inline: auto;
+  }
+  .ab-cert {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.4rem 1.75rem;
+    background: var(--white);
+    transition: background 0.22s;
+  }
+  .ab-cert:hover { background: #f3f7fc; }
+  .ab-cert__badge {
+    flex-shrink: 0;
+    width: 54px; height: 54px;
+    border-radius: 12px;
+    background: var(--navy);
+    color: var(--white);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ab-cert__body { flex: 1; }
+  .ab-cert__body h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 0.15rem;
+  }
+  .ab-cert__body p {
+    font-size: 0.85rem;
+    color: var(--slate);
+    margin: 0;
+  }
+  .ab-cert__arrow {
+    flex-shrink: 0;
+    color: var(--bdr);
+    transition: color 0.22s, transform 0.22s;
+  }
+  .ab-cert:hover .ab-cert__arrow { color: var(--navy); transform: translateX(4px); }
+
+  .ab-certs__note {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    color: var(--slate);
+  }
+
+  /* ── FAQ ── */
+  .ab-faq {
+    max-width: 720px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--bdr);
+    border: 1px solid var(--bdr);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .ab-faq__item {
+    background: var(--white);
+    padding: 0;
+  }
+  .ab-faq__item summary {
+    padding: 1.25rem 1.75rem;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    transition: background 0.2s;
+  }
+  .ab-faq__item summary:hover { background: #f8fafc; }
+  .ab-faq__item summary::-webkit-details-marker { display: none; }
+  .ab-faq__item summary h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.4;
+  }
+  .ab-faq__item summary::after {
+    content: '+';
+    font-size: 1.25rem;
+    color: var(--gold);
+    font-weight: 300;
+    flex-shrink: 0;
+    transition: transform 0.25s;
+  }
+  .ab-faq__item[open] summary::after { transform: rotate(45deg); }
+  .ab-faq__item[open] summary { background: #f8fafc; }
+  .ab-faq__item > p {
+    padding: 0 1.75rem 1.5rem;
+    font-size: 0.9rem;
+    color: var(--body);
+    line-height: 1.75;
+    margin: 0;
+    border-top: 1px solid var(--bdr);
+  }
+  .ab-faq__item > p strong { color: var(--navy); }
+
+  /* ── CTA ── */
+  .ab-cta {
+    position: relative;
+    background: var(--navy);
+    overflow: hidden;
+    padding: clamp(4rem, 8vw, 6rem) 0;
+  }
+  .ab-cta__glow {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 55% 80% at 105% 50%, rgba(201,168,76,0.14) 0%, transparent 65%),
+      linear-gradient(140deg, #08192e 0%, var(--navy) 100%);
+    pointer-events: none;
+  }
+  .ab-cta__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .ab-cta__text h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.75rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: var(--white);
+    margin: 0.35rem 0 0.7rem;
+    line-height: 1.2;
+  }
+  .ab-cta__text p {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    max-width: 420px;
+    margin: 0;
+  }
+  .ab-cta__btns {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+
+  .ab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 0.9rem 1.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    white-space: nowrap;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
+  }
+  .ab-btn--gold {
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 700;
+  }
+  .ab-btn--gold:hover {
+    background: var(--gold-l);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(201,168,76,0.35);
+  }
+  .ab-btn--outline {
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    border: 1.5px solid rgba(255,255,255,0.22);
+  }
+  .ab-btn--outline:hover {
+    border-color: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.06);
+    transform: translateY(-2px);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .ab-vals { grid-template-columns: repeat(2, 1fr); }
+    .ab-why  { grid-template-columns: repeat(2, 1fr); }
   }
 
   @media (max-width: 768px) {
-    .hero-title {
-      font-size: 2.5rem;
-    }
+    .ab-hero__inner { flex-direction: column; align-items: flex-start; }
+    .ab-hero__badges { flex-direction: row; }
+    .ab-mv { grid-template-columns: 1fr; }
+    .ab-cta__inner { flex-direction: column; text-align: center; }
+    .ab-cta__text p { margin-inline: auto; }
+    .ab-cta__btns  { justify-content: center; }
+    .ab-stat-div   { display: none; }
+    .ab-stat       { padding-inline: 0.75rem; }
+    .ab-stat:first-child { padding-left: 0; }
+  }
 
-    .about-hero {
-      padding: 6rem 0 3rem;
+  @media (max-width: 560px) {
+    .ab-vals {
+      grid-template-columns: 1fr;
+      background: transparent;
+      gap: 0.75rem;
     }
+    .ab-val {
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .ab-why        { grid-template-columns: 1fr; }
+    .ab-cert       { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .ab-cert__arrow { display: none; }
+    .ab-cta__btns  { flex-direction: column; width: 100%; }
+    .ab-btn        { justify-content: center; }
+    .ab-hero__tags { gap: 0.4rem; }
+    .ab-htag       { font-size: 0.7rem; }
   }
 </style>

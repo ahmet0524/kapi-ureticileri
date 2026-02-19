@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbItems = [
+  { name: "Ana Sayfa", href: "/" },
+  { name: "Kullanım Koşulları", href: "/kosullar" }
+];
+---
+
+<Layout title="Kullanım Koşulları | CihanPan Door" description="CihanPan Door web sitesi kullanım koşulları ve şartları.">
+  <Header />
+  <Breadcrumbs items={breadcrumbItems} />
+  <main class="legal-page">
+    <div class="container">
+      <article class="legal-content">
+        <h1>Kullanım Koşulları</h1>
+        <p class="update-date">Son Güncelleme: 16 Ekim 2025</p>
+
+        <section>
+          <h2>1. Genel Şartlar</h2>
+          <p>Bu web sitesini kullanarak aşağıdaki kullanım koşullarını kabul etmiş sayılırsınız.</p>
+        </section>
+
+        <section>
+          <h2>2. Fikri Mülkiyet Hakları</h2>
+          <p>Site içeriği, görseller ve tasarımlar CihanPan Door'a aittir ve telif hakkı koruması altındadır.</p>
+        </section>
+
+        <section>
+          <h2>3. Kullanım Sınırlamaları</h2>
+          <ul>
+            <li>İçerikleri izinsiz çoğaltmak yasaktır</li>
+            <li>Ticari amaçlı kullanım için izin gereklidir</li>
+            <li>Zararlı içerik paylaşımı yasaktır</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4. Ürün Bilgileri</h2>
+          <p>Site üzerindeki ürün bilgileri bilgilendirme amaçlıdır. Fiyat ve özellikler değişebilir.</p>
+        </section>
+
+        <section>
+          <h2>5. Sorumluluk Reddi</h2>
+          <p>Site içeriği "olduğu gibi" sunulmaktadır. Bilgilerin doğruluğu garanti edilemez.</p>
+        </section>
+
+        <section>
+          <h2>6. İletişim</h2>
+          <p>Sorularınız için: info@cihanpandoor.com</p>
+        </section>
+      </article>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .legal-page { padding: 4rem 0; background: #f8fafc; }
+  .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+  .legal-content { background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .legal-content h1 { font-size: 2.5rem; font-weight: 800; color: #1a202c; margin-bottom: 0.5rem; }
+  .update-date { color: #6b7280; font-size: 0.9rem; font-style: italic; margin-bottom: 2rem; }
+  .legal-content h2 { font-size: 1.75rem; font-weight: 700; color: #0891b2; margin: 2rem 0 1rem; }
+  .legal-content p { color: #4a5568; line-height: 1.8; margin-bottom: 1rem; }
+  .legal-content ul { list-style: none; padding-left: 0; }
+  .legal-content li { color: #4a5568; padding-left: 1.5rem; margin-bottom: 0.75rem; position: relative; }
+  .legal-content li::before { content: "•"; color: #0891b2; font-weight: bold; position: absolute; left: 0; }
+</style>

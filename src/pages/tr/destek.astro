@@ -1,0 +1,113 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbItems = [
+  { name: "Ana Sayfa", href: "/" },
+  { name: "Müşteri Desteği", href: "/destek" }
+];
+---
+
+<Layout title="Müşteri Desteği | CihanPan Door" description="CihanPan Door müşteri destek hizmetleri ve iletişim bilgileri.">
+  <Header />
+  <Breadcrumbs items={breadcrumbItems} />
+  <main class="support-page">
+    <div class="container">
+      <header class="page-header">
+        <h1>Müşteri Desteği</h1>
+        <p>Size yardımcı olmak için buradayız</p>
+      </header>
+
+      <div class="support-grid">
+        <section class="support-card">
+          <div class="support-icon">📞</div>
+          <h2>Telefon Desteği</h2>
+          <p>Hafta içi 09:00 - 18:00 arası</p>
+          <a href="tel:+905441690038" class="btn-support">+90 544 169 00 38</a>
+        </section>
+
+        <section class="support-card">
+          <div class="support-icon">💬</div>
+          <h2>WhatsApp Desteği</h2>
+          <p>Hızlı iletişim için</p>
+          <a href="https://wa.me/905441690038" class="btn-support" target="_blank">WhatsApp'ta Yazın</a>
+        </section>
+
+        <section class="support-card">
+          <div class="support-icon">✉️</div>
+          <h2>E-posta Desteği</h2>
+          <p>24 saat içinde yanıt</p>
+          <a href="mailto:info@cihanpandoor.com" class="btn-support">E-posta Gönder</a>
+        </section>
+
+        <section class="support-card">
+          <div class="support-icon">📍</div>
+          <h2>Adres Bilgileri</h2>
+          <p>Fabrika ziyareti için</p>
+          <a href="/iletisim" class="btn-support">Adres & Harita</a>
+        </section>
+      </div>
+
+      <section class="faq-quick">
+        <h2>Hızlı Yardım</h2>
+        <div class="quick-links">
+          <a href="/sss" class="quick-link">❓ Sıkça Sorulan Sorular</a>
+          <a href="/urunlerimiz" class="quick-link">📦 Ürün Kataloğu</a>
+          <a href="/iletisim" class="quick-link">📝 Teklif Formu</a>
+          <a href="/hakkimizda" class="quick-link">ℹ️ Hakkımızda</a>
+        </div>
+      </section>
+
+      <section class="support-info">
+        <h2>Destek Hizmetlerimiz</h2>
+        <div class="info-grid">
+          <div class="info-item">
+            <h3>Teknik Destek</h3>
+            <p>Ürün montajı, kullanım ve bakım konularında profesyonel danışmanlık</p>
+          </div>
+          <div class="info-item">
+            <h3>Satış Sonrası Hizmet</h3>
+            <p>Garanti kapsamında bakım ve onarım hizmetleri</p>
+          </div>
+          <div class="info-item">
+            <h3>Sipariş Takibi</h3>
+            <p>Siparişinizin üretim ve teslimat sürecini takip edin</p>
+          </div>
+          <div class="info-item">
+            <h3>Özel Proje Danışmanlığı</h3>
+            <p>Büyük projeler için özel çözümler ve fiyatlandırma</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .support-page { padding: 4rem 0; background: #f8fafc; min-height: 60vh; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+  .page-header { text-align: center; margin-bottom: 3rem; }
+  .page-header h1 { font-size: 2.5rem; font-weight: 800; color: #1a202c; margin-bottom: 0.5rem; }
+  .page-header p { font-size: 1.1rem; color: #6b7280; }
+  .support-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+  .support-card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center; transition: all 0.3s ease; }
+  .support-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(8, 145, 178, 0.15); }
+  .support-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .support-card h2 { font-size: 1.5rem; font-weight: 700; color: #1a202c; margin-bottom: 0.5rem; }
+  .support-card p { color: #6b7280; margin-bottom: 1.5rem; }
+  .btn-support { display: inline-block; background: #0891b2; color: white; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
+  .btn-support:hover { background: #0e7490; transform: translateY(-2px); }
+  .faq-quick { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 3rem; }
+  .faq-quick h2 { font-size: 1.75rem; font-weight: 700; color: #0891b2; margin-bottom: 1.5rem; text-align: center; }
+  .quick-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+  .quick-link { background: #f8fafc; color: #4a5568; padding: 1rem; border-radius: 8px; text-decoration: none; font-weight: 500; transition: all 0.3s ease; text-align: center; border: 1px solid #e5e7eb; }
+  .quick-link:hover { background: #0891b2; color: white; transform: translateY(-2px); }
+  .support-info { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .support-info h2 { font-size: 1.75rem; font-weight: 700; color: #0891b2; margin-bottom: 1.5rem; text-align: center; }
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+  .info-item h3 { font-size: 1.1rem; font-weight: 700; color: #1a202c; margin-bottom: 0.5rem; }
+  .info-item p { color: #6b7280; font-size: 0.95rem; line-height: 1.6; }
+</style>

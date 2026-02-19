@@ -23,5 +23,5 @@ export const languages = {
   }
 } as const;
 
-export const defaultLang = 'tr';
+export const defaultLang = 'en';
 export type Language = keyof typeof languages;
