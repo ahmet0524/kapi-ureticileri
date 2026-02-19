@@ -1,9 +1,10 @@
 ---
 // src/pages/urunlerimiz.astro
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import Breadcrumbs from '../components/Breadcrumbs.astro';
+import I18nLayout from '../../layouts/I18nLayout.astro';
+import I18nHeader from '../../components/I18nHeader.astro';
+import I18nFooter from '../../components/I18nFooter.astro';
+import { getLangFromUrl, useTranslations, getLocalizedRoute } from '../../i18n/utils';
+import Breadcrumbs from '../../components/I18nBreadcrumbs.astro';
 
 // Dynamic URL'ler için base setup
 const baseUrl = 'https://kapi-ureticileri.vercel.app';
@@ -295,7 +296,7 @@ const webPageSchema = {
 // ✅ CRITICAL: allSchemas array
 const allSchemas = [productsSchema, faqSchema, organizationSchema, breadcrumbSchema, webPageSchema];
 ---
-<Layout
+<I18nLayout
   title="Ürünlerimiz | CihanPan Door İç Kapı Malzemeleri ve Aksesuarlar"
   description="Kayseri'nin kaliteli iç oda kapıları için kullanılan malzemeler ve aksesuarlar. PVC, Laminoks yüzey malzemeleri, honeycomb core, aksesuarlar."
   keywords="kapı malzemeleri, pvc yüzey, laminoks kaplama, honeycomb core, kapı aksesuarları, kayseri kapı üreticisi"
@@ -312,7 +313,7 @@ const allSchemas = [productsSchema, faqSchema, organizationSchema, breadcrumbSch
   schema={[productsSchema, organizationSchema, breadcrumbSchema]}
 >
 
-  <Header />
+  <I18nHeader />
   <Breadcrumbs items={breadcrumbItems} />
 
   <main>
@@ -584,8 +585,8 @@ const allSchemas = [productsSchema, faqSchema, organizationSchema, breadcrumbSch
     </section>
   </main>
 
-  <Footer />
-</Layout>
+  <I18nFooter />
+</I18nLayout>
 
 <style>
   /* Base styles */

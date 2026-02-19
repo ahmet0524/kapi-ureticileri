@@ -1,9 +1,10 @@
 ---
 // src/pages/pvc-kapilar.astro
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import Breadcrumbs from '../components/Breadcrumbs.astro';
+import I18nLayout from '../../layouts/I18nLayout.astro';
+import I18nHeader from '../../components/I18nHeader.astro';
+import I18nFooter from '../../components/I18nFooter.astro';
+import { getLangFromUrl, useTranslations, getLocalizedRoute } from '../../i18n/utils';
+import Breadcrumbs from '../../components/I18nBreadcrumbs.astro';
 
 const baseUrl = 'https://kapi-ureticileri.vercel.app'; // SABIT KALACAK
 const currentUrl = `${baseUrl}${Astro.url.pathname}`;
@@ -163,7 +164,7 @@ const breadcrumbSchema = {
 // ✅ CRITICAL: Bu satır eksikti!
 const allSchemas = [pvcDoorSchema, faqSchema, organizationSchema, breadcrumbSchema];
 ---
-<Layout
+<I18nLayout
   title="PVC İç Oda Kapıları - 1 | Kayseri CihanPan Door"
   description="Kayseri'nin en büyük PVC kapı koleksiyonu! 300 farklı model ve renk seçeneği. Su geçirmez, antibakteriyel, CE belgeli PVC kapılar."
   keywords="pvc kapı, pvc iç oda kapısı, kayseri pvc kapı, su geçirmez kapı, antibakteriyel kapı, ekonomik kapı, pvc kapı fiyatları, iç kapı modelleri, banyo kapısı, mutfak kapısı"
@@ -180,8 +181,8 @@ const allSchemas = [pvcDoorSchema, faqSchema, organizationSchema, breadcrumbSche
   schema={[pvcDoorSchema, faqSchema, organizationSchema, breadcrumbSchema]}
 >
 
-  <Header />
-  <Breadcrumbs items={breadcrumbItems} />
+  <I18nHeader />
+  <I18nBreadcrumbs items={breadcrumbItems} />
 
   <main>
     <!-- Hero Section -->
@@ -384,8 +385,8 @@ const allSchemas = [pvcDoorSchema, faqSchema, organizationSchema, breadcrumbSche
     </section>
   </main>
 
-  <Footer />
-</Layout>
+  <I18nFooter />
+</I18nLayout>
 
 <style>
   .container {

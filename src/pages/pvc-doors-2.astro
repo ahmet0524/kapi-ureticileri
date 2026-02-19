@@ -1,0 +1,507 @@
+---
+// src/pages/pvc-kapilar-2.astro
+import I18nLayout from '../layouts/I18nLayout.astro';
+import I18nHeader from '../components/I18nHeader.astro';
+import I18nFooter from '../components/I18nFooter.astro';
+import { getLangFromUrl, useTranslations, getLocalizedRoute } from '../i18n/utils';
+
+const lang  = getLangFromUrl(Astro.url);
+const t     = useTranslations(lang);
+const isEN  = lang === 'en';
+
+const baseUrl    = 'https://cihanpandoor.netlify.app';
+const pageUrl    = lang === 'tr' ? baseUrl : `${baseUrl}/${lang}`;
+const currentUrl = `${pageUrl}/pvc-kapilar-2`;
+
+// ── SCHEMA ────────────────────────────────────────────────────────────
+const pvcSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": isEN
+    ? "PVC Interior Doors — Page 2 (Models 116–128) | CihanPan Door"
+    : "PVC Kapılar — Sayfa 2 (116–128 Model) | CihanPan Door",
+  "description": isEN
+    ? "PVC interior door models 116–128. Waterproof antibacterial wholesale doors from Kayseri, Turkey. CE certified, factory-direct pricing."
+    : "PVC kapı modelleri 116–128. Su geçirmez, antibakteriyel, toptan kapılar.",
+  "url": currentUrl,
+  "inLanguage": lang === 'tr' ? 'tr-TR' : lang === 'ar' ? 'ar-SA' : 'en-US',
+  "isPartOf": { "@type": "CollectionPage", "name": isEN ? "PVC Interior Doors" : "PVC Kapılar", "url": `${pageUrl}/pvc-kapilar` }
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": isEN ? "Home"     : "Ana Sayfa",  "item": pageUrl },
+    { "@type": "ListItem", "position": 2, "name": isEN ? "Products" : "Ürünler",    "item": `${pageUrl}/urunlerimiz` },
+    { "@type": "ListItem", "position": 3, "name": isEN ? "PVC Doors": "PVC Kapılar","item": `${pageUrl}/pvc-kapilar` },
+    { "@type": "ListItem", "position": 4, "name": isEN ? "Page 2"   : "Sayfa 2",    "item": currentUrl },
+  ]
+};
+
+const allSchemas = [pvcSchema, breadcrumbSchema];
+
+// ── CATEGORY NAV ──────────────────────────────────────────────────────
+const catNav = [
+  { slug: '/urunlerimiz',               label: isEN ? 'All Products'   : 'Tümü',             active: false },
+  { slug: '/pvc-kapilar',               label: isEN ? 'PVC Doors'      : 'PVC Kapılar',       active: true  },
+  { slug: '/laminoks-kapilar',          label: isEN ? 'Laminox Doors'  : 'Laminoks Kapılar',  active: false },
+  { slug: '/elitpan-kapilar',           label: isEN ? 'Elitpan Doors'  : 'Elitpan Kapılar',   active: false },
+  { slug: '/hastane-kapilari',          label: isEN ? 'Hospital Doors' : 'Hastane Kapıları',  active: false },
+  { slug: '/otel-kapilari',             label: isEN ? 'Hotel Doors'    : 'Otel Kapıları',      active: false },
+  { slug: '/yangina-dayanikli-kapilar', label: isEN ? 'Fire-Rated'     : 'Yangın Kapıları',   active: false },
+];
+---
+
+<I18nLayout
+  title={isEN
+    ? "PVC Interior Doors — Page 2, Models 116–128 | CihanPan Door Turkey"
+    : "PVC Kapılar — Sayfa 2, 116–128 Modeller | CihanPan Door"}
+  description={isEN
+    ? "Wholesale PVC interior door models 116–128 from Kayseri, Turkey. Waterproof, antibacterial, CE & ISO 9001 certified. Factory-direct pricing for importers. MOQ 50 units."
+    : "Kayseri'den toptan PVC kapı modelleri 116–128. Su geçirmez, antibakteriyel, CE sertifikalı."}
+  keywords={isEN
+    ? "PVC interior doors page 2 wholesale Turkey, waterproof door models 116 117 118 119 120, CE certified PVC door manufacturer"
+    : "pvc kapı sayfa 2, pvc iç oda kapısı 116 117 118 model, toptan kapı türkiye"}
+  canonical={currentUrl}
+  schema={allSchemas}
+  ogTitle={isEN ? "PVC Interior Doors Page 2 | CihanPan Door" : "PVC Kapılar Sayfa 2 | CihanPan Door"}
+  ogDescription={isEN ? "Models 116–128. Wholesale waterproof PVC interior doors from Turkey." : "116–128 arası PVC kapı modelleri. Toptan."}
+  ogImage="/assets/img/og/pvc-kapilar-og.webp"
+>
+  <I18nHeader />
+
+  <main class="pvc" id="main-content">
+
+    <!-- ══════════════════════════════════════════
+         PAGE HERO — compact (pagination page)
+    ══════════════════════════════════════════ -->
+    <section class="pvc-hero pvc-hero--compact" aria-labelledby="pvc-h1">
+      <div class="pvc-hero__bg" aria-hidden="true">
+        <div class="pvc-hero__overlay"></div>
+        <div class="pvc-hero__glow"></div>
+      </div>
+      <div class="pvc-wrap pvc-hero__inner">
+        <div>
+          <nav class="pvc-breadcrumb" aria-label="Breadcrumb">
+            <a href={pageUrl}>{isEN ? 'Home' : 'Ana Sayfa'}</a>
+            <span aria-hidden="true">›</span>
+            <a href={getLocalizedRoute('/urunlerimiz', lang)}>{isEN ? 'Products' : 'Ürünler'}</a>
+            <span aria-hidden="true">›</span>
+            <a href={getLocalizedRoute('/pvc-kapilar', lang)}>{isEN ? 'PVC Doors' : 'PVC Kapılar'}</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">{isEN ? 'Page 2' : 'Sayfa 2'}</span>
+          </nav>
+
+          <span class="pvc-eyebrow">
+            <span class="pvc-eyebrow__line"></span>
+            {isEN ? 'Models 116–128 · Page 2 of 3' : 'Modeller 116–128 · Sayfa 2 / 3'}
+          </span>
+          <h1 class="pvc-hero__h1" id="pvc-h1">
+            {isEN
+              ? <><em>PVC Interior Doors</em> — Page 2</>
+              : <><em>PVC İç Oda Kapıları</em> — Sayfa 2</>}
+          </h1>
+          <p class="pvc-hero__lead">
+            {isEN
+              ? 'Continued collection of waterproof antibacterial PVC interior door models. All models CE & ISO 9001 certified. Factory-direct wholesale from Kayseri, Turkey.'
+              : 'Su geçirmez antibakteriyel PVC kapı koleksiyonunun devamı. Tüm modeller CE ve ISO 9001 sertifikalı.'}
+          </p>
+          <div class="pvc-hero__actions">
+            <a href={getLocalizedRoute('/iletisim', lang)} class="pvc-btn pvc-btn--gold">
+              {isEN ? 'Get a Free Quote' : 'Ücretsiz Teklif Al'}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href={getLocalizedRoute('/pvc-kapilar', lang)} class="pvc-btn pvc-btn--ghost">
+              {isEN ? '← Page 1' : '← Sayfa 1'}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CATEGORY NAV + PRODUCT GRID
+    ══════════════════════════════════════════ -->
+    <section class="pvc-sec pvc-sec--white" id="catalogue" aria-labelledby="catalogue-h2">
+      <div class="pvc-wrap">
+
+        <!-- Category filter tabs -->
+        <nav class="pvc-catnav" aria-label={isEN ? 'Door categories' : 'Kapı kategorileri'}>
+          {catNav.map(cat => (
+            <a
+              href={getLocalizedRoute(cat.slug, lang)}
+              class={`pvc-catbtn${cat.active ? ' pvc-catbtn--active' : ''}`}
+              aria-current={cat.active ? 'page' : undefined}
+            >
+              {cat.label}
+            </a>
+          ))}
+        </nav>
+
+        <div class="pvc-head">
+          <span class="pvc-tag">{isEN ? 'PVC Door Collection · Page 2' : 'PVC Kapı Koleksiyonu · Sayfa 2'}</span>
+          <h2 id="catalogue-h2">
+            {isEN ? 'PVC Interior Door Models 116–128' : 'PVC Kapı Modelleri 116–128'}
+          </h2>
+          <p>
+            {isEN
+              ? 'Models 116–128 of the PVC collection. Available in multiple colour variants. Request a wholesale quote for any model.'
+              : '116–128 arası PVC kapı modelleri. Birden fazla renk varyantında mevcut.'}
+          </p>
+        </div>
+
+        <!-- Quote CTA -->
+        <div class="pvc-quote-row">
+          <a href={getLocalizedRoute('/iletisim', lang)} class="pvc-btn pvc-btn--navy">
+            {isEN ? 'Request Wholesale Quote' : 'Toptan Teklif Al'}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <span class="pvc-quote-note">{isEN ? 'Response within 24 hours · MOQ 50 units' : '24 saat içinde yanıt · Min. 50 adet'}</span>
+        </div>
+
+        <!-- Products Grid (JS-rendered) -->
+        <div class="pvc-grid" id="productsGrid" aria-live="polite" aria-label={isEN ? 'PVC door models page 2' : 'PVC kapı modelleri sayfa 2'}></div>
+
+        <!-- Loading state -->
+        <div class="pvc-loading" id="loading" aria-label={isEN ? 'Loading models' : 'Modeller yükleniyor'}>
+          <div class="pvc-spinner" aria-hidden="true"></div>
+          <p>{isEN ? 'Loading PVC door models…' : 'PVC kapı modelleri yükleniyor…'}</p>
+        </div>
+
+        <!-- Pagination -->
+        <nav class="pvc-pagination" aria-label={isEN ? 'Page navigation' : 'Sayfa navigasyonu'}>
+          <div class="pvc-page-info">
+            <span class="pvc-page-current">{isEN ? 'Page 2 of 3' : 'Sayfa 2 / 3'}</span>
+            <span class="pvc-page-count">{isEN ? '78 models shown' : '78 model gösteriliyor'}</span>
+          </div>
+          <div class="pvc-page-btns">
+            <a href={getLocalizedRoute('/pvc-kapilar', lang)} class="pvc-page-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18L9 12L15 6"/></svg>
+              {isEN ? 'Page 1' : 'Sayfa 1'}
+            </a>
+            <a href={getLocalizedRoute('/pvc-kapilar-3', lang)} class="pvc-page-btn">
+              {isEN ? 'Page 3' : 'Sayfa 3'}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18L15 12L9 6"/></svg>
+            </a>
+          </div>
+          <div class="pvc-page-dots" aria-hidden="true">
+            <a href={getLocalizedRoute('/pvc-kapilar', lang)}   class="pvc-dot"></a>
+            <span class="pvc-dot pvc-dot--active"></span>
+            <a href={getLocalizedRoute('/pvc-kapilar-3', lang)} class="pvc-dot"></a>
+          </div>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CTA BAND
+    ══════════════════════════════════════════ -->
+    <section class="pvc-cta" aria-labelledby="cta-h2">
+      <div class="pvc-cta__glow" aria-hidden="true"></div>
+      <div class="pvc-wrap pvc-cta__inner">
+        <div class="pvc-cta__text">
+          <span class="pvc-tag pvc-tag--gold">{isEN ? 'Start Sourcing Today' : 'Hemen Başlayın'}</span>
+          <h2 id="cta-h2">
+            {isEN
+              ? 'Request a PVC Door\nWholesale Quote'
+              : 'PVC Kapı Toptan\nFiyat Teklifi Alın'}
+          </h2>
+          <p>
+            {isEN
+              ? 'Share your door models, quantities and destination port. Factory-direct pricing with CE & ISO documentation within 24 hours.'
+              : 'Kapı modellerini, adeti ve teslimat noktasını paylaşın. 24 saat içinde CE & ISO belgeli fiyat teklifi.'}
+          </p>
+        </div>
+        <div class="pvc-cta__btns">
+          <a href={getLocalizedRoute('/iletisim', lang)} class="pvc-btn pvc-btn--gold">
+            {isEN ? 'Get a Free Quote' : 'Ücretsiz Teklif Al'}
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href={getLocalizedRoute('/pvc-kapilar', lang)} class="pvc-btn pvc-btn--ghost">
+            {isEN ? '← Back to Page 1' : '← Sayfa 1\'e Dön'}
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <I18nFooter />
+</I18nLayout>
+
+<style>
+  /* ── TOKENS — index.astro ile özdeş ── */
+  .pvc {
+    --navy:     #0f2347;
+    --navy-mid: #1a3a6e;
+    --navy-l:   #1e4a8a;
+    --gold:     #c9a84c;
+    --gold-l:   #e2bc6a;
+    --cream:    #faf8f4;
+    --slate:    #607080;
+    --text:     #0f1929;
+    --body:     #3d4f63;
+    --bdr:      #e4eaf4;
+    --white:    #ffffff;
+    --radius:   14px;
+
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text);
+  }
+
+  .pvc-wrap { max-width: 1160px; margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 2.5rem); width: 100%; }
+  .pvc-sec         { padding-block: clamp(4rem, 8vw, 6.5rem); }
+  .pvc-sec--white  { background: var(--white); }
+
+  /* ── SECTION HEAD ── */
+  .pvc-head { text-align: center; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+  .pvc-head h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700;
+    color: var(--text); margin: 0.3rem 0 0.7rem; line-height: 1.2;
+  }
+  .pvc-head p { color: var(--slate); font-size: 1rem; max-width: 560px; margin-inline: auto; line-height: 1.7; }
+
+  .pvc-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .pvc-tag--gold { color: rgba(201,168,76,0.9); }
+
+  /* ── BUTTONS ── */
+  .pvc-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.9rem; font-weight: 600; padding: 0.9rem 1.75rem;
+    border-radius: 8px; text-decoration: none; white-space: nowrap;
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
+  }
+  .pvc-btn--gold    { background: var(--gold);  color: var(--navy);  font-weight: 700; }
+  .pvc-btn--gold:hover { background: var(--gold-l); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(201,168,76,0.4); }
+  .pvc-btn--navy    { background: var(--navy);  color: var(--white); font-weight: 700; }
+  .pvc-btn--navy:hover { background: var(--navy-mid); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(15,35,71,0.3); }
+  .pvc-btn--ghost   { background: transparent; color: rgba(255,255,255,0.85); border: 1.5px solid rgba(255,255,255,0.25); }
+  .pvc-btn--ghost:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+
+  /* ── HERO — compact variant ── */
+  .pvc-hero {
+    position: relative; display: flex; flex-direction: column;
+    justify-content: center; padding-top: 70px; overflow: hidden;
+  }
+  .pvc-hero--compact { min-height: 55vh; }
+
+  .pvc-hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .pvc-hero__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(10,26,58,0.96) 0%, rgba(15,35,71,0.88) 60%, rgba(26,58,110,0.82) 100%);
+  }
+  .pvc-hero__glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 80% 30%, rgba(201,168,76,0.09) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 80% at 10% 70%, rgba(30,74,138,0.3) 0%, transparent 60%);
+  }
+  .pvc-hero__inner {
+    position: relative; z-index: 1;
+    padding-top: clamp(2rem, 5vw, 3.5rem);
+    padding-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .pvc-breadcrumb {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 1.5rem;
+  }
+  .pvc-breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+  .pvc-breadcrumb a:hover { color: var(--gold-l); }
+  .pvc-breadcrumb span[aria-current] { color: var(--gold); }
+
+  .pvc-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
+  }
+  .pvc-eyebrow__line { display: block; width: 28px; height: 1px; background: var(--gold); opacity: 0.5; flex-shrink: 0; }
+
+  .pvc-hero__h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900;
+    color: var(--white); line-height: 1.1; margin: 0 0 1rem;
+  }
+  .pvc-hero__h1 em { font-style: normal; color: var(--gold); }
+  .pvc-hero__lead { font-size: 1rem; color: rgba(255,255,255,0.62); line-height: 1.8; max-width: 560px; margin: 0 0 1.5rem; }
+  .pvc-hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  /* ── CATEGORY NAV ── */
+  .pvc-catnav {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-bottom: 2.5rem; padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--bdr);
+  }
+  .pvc-catbtn {
+    background: var(--white); color: var(--body);
+    border: 1.5px solid var(--bdr);
+    padding: 0.5rem 1.1rem; border-radius: 30px;
+    font-size: 0.875rem; font-weight: 600; font-family: 'Inter', system-ui, sans-serif;
+    text-decoration: none; transition: all 0.2s; white-space: nowrap;
+  }
+  .pvc-catbtn:hover { border-color: var(--navy); color: var(--navy); }
+  .pvc-catbtn--active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+
+  /* Quote row */
+  .pvc-quote-row { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+  .pvc-quote-note { font-size: 0.875rem; color: var(--slate); }
+
+  /* ── PRODUCTS GRID ── */
+  .pvc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.25rem;
+    min-height: 200px;
+  }
+  .pvc-grid :global(.pvc-card) {
+    background: var(--white); border: 1px solid var(--bdr);
+    border-radius: var(--radius); overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  }
+  .pvc-grid :global(.pvc-card:hover) {
+    transform: translateY(-4px); box-shadow: 0 16px 36px rgba(15,35,71,0.1);
+    border-color: rgba(201,168,76,0.35);
+  }
+  .pvc-grid :global(.pvc-card__img) {
+    aspect-ratio: 3/4; background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; padding: 0.5rem;
+  }
+  .pvc-grid :global(.pvc-card__img img) { width: 100%; height: 100%; object-fit: contain; transition: transform 0.35s; }
+  .pvc-grid :global(.pvc-card:hover .pvc-card__img img) { transform: scale(1.04); }
+  .pvc-grid :global(.pvc-card__name) {
+    padding: 0.75rem 1rem; font-size: 0.82rem; font-weight: 600;
+    color: var(--text); text-align: center; line-height: 1.4;
+  }
+
+  /* Loading */
+  .pvc-loading { text-align: center; padding: 4rem 2rem; color: var(--slate); display: none; }
+  .pvc-spinner {
+    width: 36px; height: 36px; border: 3px solid var(--bdr); border-top-color: var(--gold);
+    border-radius: 50%; animation: spin 0.9s linear infinite; margin: 0 auto 1rem;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── PAGINATION ── */
+  .pvc-pagination {
+    display: flex; flex-direction: column; align-items: center; gap: 1.25rem;
+    background: var(--white); border: 1px solid var(--bdr);
+    border-radius: var(--radius); padding: 2rem; margin-top: 3rem;
+    box-shadow: 0 4px 16px rgba(15,35,71,0.06);
+  }
+  .pvc-page-info { text-align: center; }
+  .pvc-page-current { display: block; font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
+  .pvc-page-count   { font-size: 0.875rem; color: var(--slate); }
+  .pvc-page-btns    { display: flex; gap: 1rem; align-items: center; }
+  .pvc-page-btn {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.75rem 1.75rem; border-radius: 10px;
+    background: var(--navy); color: var(--white);
+    font-size: 0.9rem; font-weight: 600; font-family: 'Inter', system-ui, sans-serif;
+    text-decoration: none; transition: all 0.2s;
+    min-width: 130px; justify-content: center;
+  }
+  .pvc-page-btn:hover { background: var(--navy-mid); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(15,35,71,0.25); }
+  .pvc-page-dots { display: flex; gap: 0.75rem; align-items: center; }
+  .pvc-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--bdr); display: block; text-decoration: none; transition: all 0.2s; }
+  .pvc-dot:hover { background: var(--slate); transform: scale(1.2); }
+  .pvc-dot--active { background: var(--gold); transform: scale(1.3); box-shadow: 0 2px 8px rgba(201,168,76,0.4); }
+
+  /* ── CTA BAND ── */
+  .pvc-cta { position: relative; background: var(--navy); overflow: hidden; padding: clamp(4rem, 8vw, 6rem) 0; }
+  .pvc-cta__glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 55% 80% at 105% 50%, rgba(201,168,76,0.14) 0%, transparent 65%),
+      linear-gradient(140deg, #08192e 0%, var(--navy) 100%);
+    pointer-events: none;
+  }
+  .pvc-cta__inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap; }
+  .pvc-cta__text h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.75rem, 3vw, 2.4rem); font-weight: 700;
+    color: var(--white); margin: 0.35rem 0 0.7rem;
+    line-height: 1.2; white-space: pre-line;
+  }
+  .pvc-cta__text p { color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.7; max-width: 420px; margin: 0; }
+  .pvc-cta__btns { display: flex; gap: 1rem; flex-wrap: wrap; flex-shrink: 0; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .pvc-hero--compact { min-height: auto; }
+    .pvc-hero__actions { flex-direction: column; }
+    .pvc-catnav { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 1rem; scrollbar-width: thin; }
+    .pvc-catnav::-webkit-scrollbar { height: 4px; }
+    .pvc-catnav::-webkit-scrollbar-thumb { background: var(--bdr); border-radius: 4px; }
+    .pvc-quote-row { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .pvc-cta__inner { flex-direction: column; text-align: center; }
+    .pvc-cta__btns  { justify-content: center; }
+    .pvc-page-btns  { flex-direction: column; width: 100%; }
+    .pvc-page-btn   { width: 100%; }
+  }
+  @media (max-width: 480px) {
+    .pvc-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+  }
+
+  /* ── RTL ── */
+  html[dir="rtl"] .pvc-eyebrow__line { order: -1; }
+  html[dir="rtl"] .pvc-btn svg       { transform: scaleX(-1); }
+</style>
+
+<script is:inline>
+  const fileNames = [
+    'CihanpanDoor-PVC-Serisi-116-A-Beyaz-Antrasit.webp','CihanpanDoor-PVC-Serisi-116-B-Beyaz.webp','CihanpanDoor-PVC-Serisi-116-C-Italyan-Ceviz.webp','CihanpanDoor-PVC-Serisi-116-D-Antrasit.webp','CihanpanDoor-PVC-Serisi-116-E-Gri-Mese.webp','CihanpanDoor-PVC-Serisi-116-F-ABD-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-117-A-Dark-Santana.webp','CihanpanDoor-PVC-Serisi-117-B-Beyaz-Antrasit.webp','CihanpanDoor-PVC-Serisi-117-C-Beyaz.webp','CihanpanDoor-PVC-Serisi-117-D-Ayder.webp','CihanpanDoor-PVC-Serisi-117-E-Tik.webp','CihanpanDoor-PVC-Serisi-117-F-Vision-Gri.webp',
+    'CihanpanDoor-PVC-Serisi-118-A-Antrasit.webp','CihanpanDoor-PVC-Serisi-118-B-Natural-Mese.webp','CihanpanDoor-PVC-Serisi-118-C-Beyaz.webp','CihanpanDoor-PVC-Serisi-118-D-Vision-Gri.webp','CihanpanDoor-PVC-Serisi-118-E-Kum-Gri.webp','CihanpanDoor-PVC-Serisi-118-F-Beyaz-Tik.webp',
+    'CihanpanDoor-PVC-Serisi-119-A-Saruhan.webp','CihanpanDoor-PVC-Serisi-119-B-Kum-Gri.webp','CihanpanDoor-PVC-Serisi-119-C-Beyaz.webp','CihanpanDoor-PVC-Serisi-119-D-Antrasit.webp','CihanpanDoor-PVC-Serisi-119-E-Gold-Mese.webp','CihanpanDoor-PVC-Serisi-119-F-Gri-Mese.webp',
+    'CihanpanDoor-PVC-Serisi-120-A-Yildiz-Metal-Antrasit.webp','CihanpanDoor-PVC-Serisi-120-B-Kestane.webp','CihanpanDoor-PVC-Serisi-120-C-Soft-Kapucino.webp','CihanpanDoor-PVC-Serisi-120-D-Beyaz.webp','CihanpanDoor-PVC-Serisi-120-E-Antrasit.webp','CihanpanDoor-PVC-Serisi-120-F-Avola.webp',
+    'CihanpanDoor-PVC-Serisi-121-A-Beyaz-Tik.webp','CihanpanDoor-PVC-Serisi-121-B-Tik.webp','CihanpanDoor-PVC-Serisi-121-C-Antrasit.webp','CihanpanDoor-PVC-Serisi-121-D-Avola.webp','CihanpanDoor-PVC-Serisi-121-E-Olimpos.webp','CihanpanDoor-PVC-Serisi-121-F-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-122-A-Ayder.webp','CihanpanDoor-PVC-Serisi-122-B-Antrasit.webp','CihanpanDoor-PVC-Serisi-122-C-Italyan-Ceviz.webp','CihanpanDoor-PVC-Serisi-122-D-Yildiz-Metal-Tuna-Ceviz.webp','CihanpanDoor-PVC-Serisi-122-E-Beyaz-Tik.webp','CihanpanDoor-PVC-Serisi-122-F-Kum-Gri-Antrasit.webp',
+    'CihanpanDoor-PVC-Serisi-123-A-Soft-Kapucino.webp','CihanpanDoor-PVC-Serisi-123-B-Gri-Mese.webp','CihanpanDoor-PVC-Serisi-123-C-Beyaz.webp','CihanpanDoor-PVC-Serisi-123-D-Gri-Kum.webp','CihanpanDoor-PVC-Serisi-123-E-Italyan-Ceviz.webp','CihanpanDoor-PVC-Serisi-123-F-ABD-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-124-A-Beyaz.webp','CihanpanDoor-PVC-Serisi-124-B-Kul-Mese.webp','CihanpanDoor-PVC-Serisi-124-C-Koko.webp','CihanpanDoor-PVC-Serisi-124-D-ABD-Ceviz.webp','CihanpanDoor-PVC-Serisi-124-E-Krem.webp','CihanpanDoor-PVC-Serisi-124-F-Beyaz-Venge.webp',
+    'CihanpanDoor-PVC-Serisi-125-A-Tik.webp','CihanpanDoor-PVC-Serisi-125-B-Dark-Santana.webp','CihanpanDoor-PVC-Serisi-125-C-Beyaz.webp','CihanpanDoor-PVC-Serisi-125-D-Kum-Gri.webp','CihanpanDoor-PVC-Serisi-125-E-Avola.webp','CihanpanDoor-PVC-Serisi-125-F-Elma.webp',
+    'CihanpanDoor-PVC-Serisi-126-A-Gri-Mese.webp','CihanpanDoor-PVC-Serisi-126-B-Antrasit.webp','CihanpanDoor-PVC-Serisi-126-C-Italyan-Ceviz.webp','CihanpanDoor-PVC-Serisi-126-D-Koko.webp','CihanpanDoor-PVC-Serisi-126-E-Beyaz.webp','CihanpanDoor-PVC-Serisi-126-F-ABD-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-127-A-Gold-Mese.webp','CihanpanDoor-PVC-Serisi-127-B-Beyaz.webp','CihanpanDoor-PVC-Serisi-127-C-Gri-Mese.webp','CihanpanDoor-PVC-Serisi-127-D-Saruhan.webp','CihanpanDoor-PVC-Serisi-127-E-Gold-Ceviz.webp','CihanpanDoor-PVC-Serisi-127-F-Beyaz-Tik.webp',
+    'CihanpanDoor-PVC-Serisi-128-A-Vision-Gri.webp','CihanpanDoor-PVC-Serisi-128-B-Dark-Santa.webp','CihanpanDoor-PVC-Serisi-128-C-Gold-Ceviz.webp','CihanpanDoor-PVC-Serisi-128-D-Beyaz.webp','CihanpanDoor-PVC-Serisi-128-E-Antrasit.webp','CihanpanDoor-PVC-Serisi-128-F-Ayder.webp',
+  ];
+
+  function parseFileName(fn) {
+    const parts = fn.replace('.webp','').split('-');
+    const model   = parts[3];
+    const variant = parts[4];
+    const color   = parts.slice(5).join(' ');
+    return { model, variant, color, label: `${model}-${variant} · ${color}` };
+  }
+
+  function buildCard(fn) {
+    const { model, variant, color, label } = parseFileName(fn);
+    const img = `/assets/img/pvc-kapilar/${fn}`;
+    const alt = `CihanPan Door PVC Series ${model}-${variant} ${color} — Waterproof Interior Door`;
+    const article = document.createElement('article');
+    article.className = 'pvc-card';
+    article.setAttribute('aria-label', label);
+    article.innerHTML = `
+      <div class="pvc-card__img">
+        <img src="${img}" alt="${alt}" width="240" height="320" loading="lazy" decoding="async" />
+      </div>
+      <p class="pvc-card__name">${label}</p>
+    `;
+    return article;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const grid    = document.getElementById('productsGrid');
+    const loading = document.getElementById('loading');
+    if (!grid) return;
+    loading.style.display = 'block';
+    setTimeout(() => {
+      const frag = document.createDocumentFragment();
+      fileNames.forEach(fn => frag.appendChild(buildCard(fn)));
+      grid.appendChild(frag);
+      loading.style.display = 'none';
+    }, 60);
+  });
+</script>
