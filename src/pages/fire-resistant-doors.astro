@@ -1,0 +1,747 @@
+---
+// src/pages/fire-resistant-doors.astro
+import I18nLayout from '../layouts/I18nLayout.astro';
+import I18nHeader from '../components/I18nHeader.astro';
+import I18nFooter from '../components/I18nFooter.astro';
+import { getLangFromUrl, useTranslations, getLocalizedRoute } from '../i18n/utils';
+
+const lang  = getLangFromUrl(Astro.url);
+const t     = useTranslations(lang);
+const isEN  = lang === 'en';
+
+const baseUrl    = 'https://cihanpandoor.netlify.app';
+const pageUrl    = lang === 'tr' ? baseUrl : `${baseUrl}/${lang}`;
+const currentUrl = `${pageUrl}/fire-resistant-doors`;
+
+// ── FILE LIST ─────────────────────────────────────────────────────────
+const fileNames = [
+  "CihanpanDoor-Yangin-Serisi-601-EI30-White.webp",
+  "CihanpanDoor-Yangin-Serisi-602-EI60-Anthracite.webp",
+  "CihanpanDoor-Yangin-Serisi-603-EI90-Grey.webp",
+  "CihanpanDoor-Yangin-Serisi-604-EI30-Walnut.webp",
+  "CihanpanDoor-Yangin-Serisi-605-EI60-Oak.webp",
+  "CihanpanDoor-Yangin-Serisi-606-EI90-Wenge.webp",
+  "CihanpanDoor-Yangin-Serisi-607-EI30-Cappuccino.webp",
+  "CihanpanDoor-Yangin-Serisi-608-EI60-Black.webp",
+];
+
+const modelCount = fileNames.length;
+
+// ── SCHEMA ────────────────────────────────────────────────────────────
+const hotelSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": isEN
+    ? "Fire-Resistant Doors — EI Certified Series | CihanPan Door"
+    : "Yangina Dayanikli Kapilar — EI Sertifikali Seri | CihanPan Door",
+  "description": isEN
+    ? "Fire-resistant doors from Kayseri, Turkey. EI-30, EI-60, EI-90 certified, TSE approved, smoke-sealed. Factory-direct for commercial, hospitality and public building projects."
+    : "Kayseri uretimi yangina dayanikli kapi modelleri. EI-30, EI-60, EI-90 sertifikali, TSE onayli.",
+  "url": currentUrl,
+  "inLanguage": lang === 'tr' ? 'tr-TR' : 'en-US',
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": isEN ? "Fire-Resistant Door Models" : "Yangina Dayanikli Kapi Modelleri",
+    "numberOfItems": modelCount,
+    "itemListElement": [
+      {
+        "@type": "Product",
+        "name": isEN ? "Fire-Resistant Door — EI Certified Series" : "Yangina Dayanikli Kapi — EI Sertifikali",
+        "description": isEN
+          ? "EI-30 to EI-90 certified fire-resistant door. TSE approved, smoke-sealed gasket system, automatic closing. For commercial buildings, hospitals, hotels and public projects."
+          : "EI-30, EI-60, EI-90 sertifikali yangina dayanikli kapi. TSE onayli, duman sizdirmaz conta, otomatik kapanma.",
+        "brand": { "@type": "Brand", "name": "CihanPan Door" },
+        "manufacturer": { "@type": "Organization", "name": "CihanPan Door", "url": baseUrl },
+        "material": isEN ? "Fire-Resistant Steel" : "Yangin Dayanikli Celik",
+        "category": isEN ? "Fire-Resistant Door" : "Yangina Dayanikli Kapi",
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": currentUrl,
+          "priceCurrency": "TRY",
+          "availability": "https://schema.org/InStock",
+          "offerCount": modelCount.toString(),
+          "businessFunction": "http://purl.org/goodrelations/v1#Sell",
+          "businessFunction": "http://purl.org/goodrelations/v1#Sell"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "87",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      }
+    ]
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": isEN ? [
+    { "@type": "Question", "name": "What is a fire-resistant door?",                        "acceptedAnswer": { "@type": "Answer", "text": "A fire-resistant door is a certified door assembly that prevents the spread of fire and smoke for a defined period. EI-30, EI-60 and EI-90 ratings indicate 30, 60 or 90 minutes of resistance." }},
+    { "@type": "Question", "name": "What is the difference between EI-30, EI-60 and EI-90?","acceptedAnswer": { "@type": "Answer", "text": "These ratings indicate how long the door resists fire and smoke passage. EI-30 provides 30 minutes, EI-60 provides 60 minutes and EI-90 provides 90 minutes of protection according to TS EN 1634-1." }},
+    { "@type": "Question", "name": "Where are fire-resistant doors required?",               "acceptedAnswer": { "@type": "Answer", "text": "Fire-resistant doors are mandatory in commercial buildings, hospitals, hotels, schools, shopping centres and apartment complexes. Fire escape routes and stairwells are required to have fire-rated doors by regulation." }},
+    { "@type": "Question", "name": "What is the MOQ for fire door orders?",                 "acceptedAnswer": { "@type": "Answer", "text": "Minimum order quantity is 10 units. Volume discounts apply from 50 units. Custom dimensions, panic hardware, electric lock preparation and project documentation are available for full building fit-outs." }},
+  ] : []
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": isEN ? "Home"     : "Ana Sayfa",          "item": pageUrl },
+    { "@type": "ListItem", "position": 2, "name": isEN ? "Products" : "Ürünler",            "item": `${pageUrl}/urunlerimiz` },
+    { "@type": "ListItem", "position": 3, "name": isEN ? "Fire-Resistant Doors" : "Yangina Dayanikli Kapilar",   "item": currentUrl },
+  ]
+};
+
+const allSchemas = [hotelSchema, faqSchema, breadcrumbSchema];
+
+// ── CATEGORY NAV ──────────────────────────────────────────────────────
+const catNav = [
+  { slug: '/urunlerimiz',               label: isEN ? 'All Products'   : 'Tümü',             active: false },
+  { slug: '/pvc-kapilar',               label: isEN ? 'PVC Doors'      : 'PVC Kapılar',       active: false },
+  { slug: '/laminoks-kapilar',          label: isEN ? 'Laminox Doors'  : 'Laminoks Kapılar',  active: false },
+  { slug: '/elitpan-doors',             label: isEN ? 'Elitpan Doors'  : 'Elitpan Kapılar',   active: false },
+  { slug: '/hospital-doors',            label: isEN ? 'Hospital Doors' : 'Hastane Kapıları',  active: false },
+  { slug: '/hotel-doors',               label: isEN ? 'Hotel Doors'    : 'Otel Kapilari',      active: false },
+  { slug: '/yangina-dayanikli-kapilar', label: isEN ? 'Fire-Resistant' : 'Yangin Kapilari',   active: true  },
+];
+
+// ── SSR PRODUCT LIST ──────────────────────────────────────────────────
+interface FireProduct {
+  id: string;
+  model: string;
+  color: string;
+  label: string;
+  badge: string;
+  image: string;
+  alt: string;
+}
+
+const fireProducts: FireProduct[] = fileNames.map((fn, i) => {
+  const parts     = fn.replace('.webp', '').split('-');
+  const model     = parts[3];
+  const fireRaw   = parts[4];
+  const color     = parts.slice(5).join(' ');
+  const fireRating = fireRaw.replace('EI', 'EI-');
+  return {
+    id:    `fire-${model}`,
+    model,
+    color,
+    label: isEN ? `Fire ${model} - ${color}` : `Yangin ${model} - ${color}`,
+    badge: isEN ? `${fireRating} - TSE Certified` : `${fireRating} - TSE Onayli`,
+    image: `/assets/img/yangina-dayanikli-kapilar/${fn}`,
+    alt:   isEN
+      ? `CihanPan Door Fire Series ${model} ${color} ${fireRating} Certified Fire Door`
+      : `CihanPan Door Yangin Serisi ${model} ${color} ${fireRating} Sertifikali Yangin Kapisi`,
+  };
+});
+---
+
+<I18nLayout
+  title={isEN
+    ? "Fire-Resistant Doors — EI Certified Series | CihanPan Door Turkey"
+    : "Yangina Dayanikli Kapilar — EI Sertifikali Seri | CihanPan Door"}
+  description={isEN
+    ? "Fire-resistant doors from Kayseri, Turkey. EI-30, EI-60, EI-90 certified, TSE approved, smoke-sealed gasket. Factory-direct for commercial, hospitality and public building projects."
+    : "Kayseri uretimi yangina dayanikli kapi modelleri. EI-30, EI-60, EI-90 sertifikali, TSE onayli."}
+  keywords={isEN
+    ? "fire resistant doors Turkey, fire door EI-30 EI-60 EI-90, fire door manufacturer Kayseri, TSE certified fire door, smoke-sealed fire door wholesale"
+    : "yangina dayanikli kapi, yangin kapisi, EI-30 kapi, EI-60 kapi, kayseri yangin kapisi, TSE onayli yangin kapisi"}
+  canonical={currentUrl}
+  schema={allSchemas}
+  ogTitle={isEN ? "Fire-Resistant Doors — EI Certified Series | CihanPan Door" : "Yangina Dayanikli Kapilar — EI Sertifikali | CihanPan Door"}
+  ogDescription={isEN
+    ? "EI-30 to EI-90 certified fire-resistant doors. TSE approved, smoke-sealed. Factory direct from Kayseri."
+    : "EI-30, EI-60, EI-90 sertifikali yangina dayanikli kapilar. TSE onayli. Fabrikadan dogrudan."}
+  ogImage="/assets/img/og/fire-resistant-doors-og.webp"
+>
+  <I18nHeader />
+
+  <main class="lam" id="main-content">
+
+    <!-- ══════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════ -->
+    <section class="lam-hero" aria-labelledby="lam-h1">
+      <div class="lam-hero__bg" aria-hidden="true">
+        <div class="lam-hero__overlay"></div>
+        <div class="lam-hero__glow"></div>
+      </div>
+      <div class="lam-wrap lam-hero__inner">
+        <div>
+          <nav class="lam-breadcrumb" aria-label="Breadcrumb">
+            <a href={pageUrl}>{isEN ? 'Home' : 'Ana Sayfa'}</a>
+            <span aria-hidden="true">›</span>
+            <a href={getLocalizedRoute('/urunlerimiz', lang)}>{isEN ? 'Products' : 'Ürünler'}</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">{isEN ? 'Hotel Doors' : 'Otel Kapıları'}</span>
+          </nav>
+
+          <span class="lam-eyebrow">
+            <span class="lam-eyebrow__line"></span>
+            {isEN ? 'Fire Safety Collection · EI Certified Series' : 'Yangin Guvenlik Koleksiyonu · EI Sertifikali'}
+          </span>
+          <h1 class="lam-hero__h1" id="lam-h1">
+            {isEN
+              ? <><em>Fire-Resistant Doors</em><br/>EI-30 / EI-60 / EI-90 Certified · TSE Approved · Smoke-Sealed</>
+              : <><em>Yangina Dayanikli Kapilar</em><br/>EI Sertifikali · TSE Onayli · Duman Sizdirmaz</>}
+          </h1>
+          <p class="lam-hero__lead">
+            {isEN
+              ? 'Fire-resistant doors factory-direct from Kayseri, Turkey. EI-30, EI-60 and EI-90 certified, TSE approved — engineered for commercial buildings, hospitals, hotels and public projects.'
+              : 'Kayseri fabrikasindan toptan yangin kapilari. EI-30, EI-60, EI-90 yangin dayanim sertifikali, TSE onayli modeller.'}
+          </p>
+          <div class="lam-hero__tags">
+            <span class="lam-htag">✓ EI-30 / EI-60 / EI-90</span>
+            <span class="lam-htag">✓ {isEN ? 'TSE Approved' : 'TSE Onayli'}</span>
+            <span class="lam-htag">✓ {isEN ? 'Smoke-Sealed Gasket' : 'Duman Sizdirmaz Conta'}</span>
+            <span class="lam-htag">✓ {isEN ? 'Auto-Close System' : 'Otomatik Kapanma'}</span>
+            <span class="lam-htag">✓ TS EN 1634-1</span>
+          </div>
+          <div class="lam-hero__actions">
+            <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--fire">
+              {isEN ? 'Get a Fire Door Quote' : 'Yangin Kapisi Teklifi Al'}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#catalogue" class="lam-btn lam-btn--ghost">
+              {isEN ? 'Browse Models' : 'Modelleri Gor'}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="lam-wrap">
+        <div class="lam-statsbar">
+          <div class="lam-sitem"><strong>{modelCount}</strong><span>{isEN ? 'Models' : 'Model'}</span></div>
+          <div class="lam-sdiv"></div>
+          <div class="lam-sitem"><strong>TSE</strong><span>{isEN ? 'Approved' : 'Onay'}</span></div>
+          <div class="lam-sdiv"></div>
+          <div class="lam-sitem"><strong>EI-90</strong><span>{isEN ? 'Certified' : 'Sertifika'}</span></div>
+          <div class="lam-sdiv"></div>
+          <div class="lam-sitem"><strong>A+</strong><span>{isEN ? 'Safety' : 'Guvenlik'}</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CATEGORY NAV + PRODUCT GRID
+    ══════════════════════════════════════════ -->
+    <section class="lam-sec lam-sec--white" id="catalogue" aria-labelledby="catalogue-h2">
+      <div class="lam-wrap">
+
+        <nav class="lam-catnav" aria-label={isEN ? 'Door categories' : 'Kapi kategorileri'}>
+          {catNav.map(cat => (
+            <a
+              href={getLocalizedRoute(cat.slug, lang)}
+              class={`lam-catbtn${cat.active ? ' lam-catbtn--active' : ''}`}
+              aria-current={cat.active ? 'page' : undefined}
+            >
+              {cat.label}
+            </a>
+          ))}
+        </nav>
+
+        <div class="lam-head">
+          <span class="lam-tag">{isEN ? 'Fire Door Collection' : 'Yangin Kapi Koleksiyonu'}</span>
+          <h2 id="catalogue-h2">
+            {isEN ? 'Fire-Resistant Door Models' : 'Yangina Dayanikli Kapi Modelleri'}
+          </h2>
+          <p>
+            {isEN
+              ? `${modelCount} fire-resistant door models — series 601–608. EI-30, EI-60 and EI-90 certified, TSE approved. Contact us for a wholesale project quote.`
+              : `${modelCount} yangin guvenlik kapisi modeli — 601–608 serisi. EI-30, EI-60 ve EI-90 sertifikali, TSE onayli.`}
+          </p>
+        </div>
+
+        <!-- Quote CTA -->
+        <div class="lam-quote-row">
+          <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--navy">
+            {isEN ? 'Request Fire Door Project Quote' : 'Yangin Kapisi Proje Teklifi Al'}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <span class="lam-quote-note">{isEN ? 'Response within 24 hours · Project-based pricing' : '24 saat icinde yanit · Proje bazli fiyatlandirma'}</span>
+        </div>
+
+        <!-- Products Grid — SSR rendered for SEO -->
+        <div class="lam-grid lam-grid--wide" id="productsGrid" aria-label={isEN ? 'Fire door models' : 'Yangin kapi modelleri'}>
+          {fireProducts.map((product, i) => (
+            <article class="lam-card" aria-label={product.label}>
+              <div class="lam-card__img">
+                <img
+                  src={product.image}
+                  alt={product.alt}
+                  width="240"
+                  height="320"
+                  loading={i < 4 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
+              </div>
+              <div class="lam-card__body">
+                <p class="lam-card__name">{product.label}</p>
+                <span class="lam-card__badge">{product.badge}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SEO CONTENT + SIDEBAR
+    ══════════════════════════════════════════ -->
+    <section class="lam-sec lam-sec--cream" aria-labelledby="content-h2">
+      <div class="lam-wrap lam-content-wrap">
+
+        <article class="lam-article">
+          <h2 id="content-h2">
+            {isEN
+              ? 'What Makes a Certified Fire-Resistant Door? The CihanPan Approach'
+              : 'Sertifikali Bir Yangina Dayanikli Kapi Nedir? CihanPan Yaklasimi'}
+          </h2>
+
+          <p>
+            {isEN
+              ? (<><strong>CihanPan Door fire series</strong> combines strict fire safety engineering with Kayseri factory precision. Each model is built with a <em>fire-resistant steel frame</em> and mineral wool core — certified to TS EN 1634-1 standards for EI-30, EI-60 and EI-90 ratings.</>)
+              : (<><strong>CihanPan Door yangin serisi</strong>, siki yangin guvenligi muhendisligi ile Kayseri fabrikamizin uretim hassasiyetini birlestirmektedir. Her model TS EN 1634-1 standartlarina uygun EI-30, EI-60 ve EI-90 sertifikalari icin tasarlanmistir.</>)}
+          </p>
+
+          <h3>{isEN ? 'Key Fire Safety Features' : 'Temel Yangin Guvenligi Ozellikleri'}</h3>
+          <ul class="lam-checklist">
+            <li><strong>{isEN ? 'EI-30 / EI-60 / EI-90 Certification:' : 'EI-30 / EI-60 / EI-90 Sertifikasi:'}</strong> {isEN ? 'Three fire resistance levels — 30, 60 and 90 minutes — to meet different building class requirements under Turkish and EU fire regulations.' : 'Turk ve AB yangin yonetmeliklerinde farkli bina sinifi gereksinimlerini karsilamak icin uc yangin direnci seviyesi.'}</li>
+            <li><strong>{isEN ? 'TSE Approved:' : 'TSE Onayli:'}</strong> {isEN ? 'Turkish Standards Institute certification confirms compliance with TS EN 1634-1 fire resistance and smoke control tests.' : 'Turk Standartlari Enstitusu sertifikasi, TS EN 1634-1 yangin direnci ve duman kontrol testlerine uygunlugu onaylar.'}</li>
+            <li><strong>{isEN ? 'Smoke-Sealed Gasket System:' : 'Duman Sizdirmaz Conta Sistemi:'}</strong> {isEN ? 'Intumescent and smoke-seal gaskets prevent toxic gas and smoke passage at all temperatures, protecting escape routes.' : 'Intumesans ve duman conta sistemleri tum sicakliklarinda zehirli gaz ve duman gecisini engelleyerek kacis yollarini korur.'}</li>
+            <li><strong>{isEN ? 'Automatic Closing Mechanism:' : 'Otomatik Kapanma Mekanizmasi:'}</strong> {isEN ? 'Spring-loaded or hydraulic door closer ensures the door is always closed — preventing fire spread through open doors.' : 'Yay yuklu veya hidrolik kapi kapatici, kapinin her zaman kapali olmasini saglar ve acik kapi uzerinden yangin yayilmasini onler.'}</li>
+            <li><strong>{isEN ? 'Steel Frame Construction:' : 'Celik Cerceve Konstruksiyonu:'}</strong> {isEN ? 'Galvanised steel frame and door leaf resist structural deformation under extreme heat, maintaining door integrity.' : 'Galvanizli celik cerceve ve kapi kanadi, asiri isi altinda yapisal bozulmaya karsi direnir.'}</li>
+            <li><strong>{isEN ? 'Panic Hardware Ready:' : 'Panik Donanimina Hazir:'}</strong> {isEN ? 'Compatible with panic bar and electromagnetic hold-open systems for emergency exit compliance.' : 'Acil cikis uyumu icin panik bar ve elektromanyetik acik tutma sistemleriyle uyumludur.'}</li>
+          </ul>
+
+          <h3>{isEN ? 'Applications' : 'Kullanim Alanlari'}</h3>
+          <p>{isEN ? 'CihanPan Door fire series is specified for:' : 'CihanPan Door yangin serisi su alanlarda tercih edilir:'}</p>
+          <ul class="lam-checklist">
+            <li><strong>{isEN ? 'Shopping Centres & Commercial Buildings:' : 'AVM ve Is Merkezleri:'}</strong> {isEN ? 'Fire compartment doors, escape routes and stairwell enclosures requiring EI-60 or EI-90 certification.' : 'EI-60 veya EI-90 sertifikasi gerektiren yangin bolmesi kapilari, kacis yollari ve merdiven alanlari.'}</li>
+            <li><strong>{isEN ? 'Hospitals & Healthcare:' : 'Hastaneler:'}</strong> {isEN ? 'Patient corridors, operating theatre entrances and critical care zones where fire containment is essential.' : 'Yangin kontrolunun kritik oldugu hasta koridorlari, ameliyathane girisleri ve yogun bakim bolgeleri.'}</li>
+            <li><strong>{isEN ? 'Hotels & Hospitality:' : 'Oteller:'}</strong> {isEN ? 'Floor corridor fire doors, stairwell access and service area compartmentalisation.' : 'Kat koridor yangin kapilari, merdiven girisleri ve servis alani bolmelendirmesi.'}</li>
+            <li><strong>{isEN ? 'Industrial Facilities:' : 'Endustriyel Tesisler:'}</strong> {isEN ? 'Heavy-duty fire compartment doors for manufacturing plants, warehouses and process facilities.' : 'Uretim tesisleri, depolar ve proses tesisleri icin agir hizmet yangin bolmesi kapilari.'}</li>
+            <li><strong>{isEN ? 'Apartment Buildings:' : 'Apartmanlar:'}</strong> {isEN ? 'Common area fire doors, basement access and service shaft enclosures required by residential building codes.' : 'Konut bina kodlari tarafindan zorunlu olan ortak alan yangin kapilari, bodrum girisleri ve tesisat sahtalari.'}</li>
+            <li><strong>{isEN ? 'Public Buildings:' : 'Kamu Binalari:'}</strong> {isEN ? 'Schools, universities and government buildings requiring certified fire doors on escape routes and stairwells.' : 'Kacis yollarinda ve merdiven kovalarinda sertifikali yangin kapilari gerektiren okullar, universiteler ve resmi binalar.'}</li>
+          </ul>
+
+          <h3>{isEN ? 'Technical Specifications' : 'Teknik Ozellikler'}</h3>
+          <ul class="lam-checklist">
+            <li>{isEN ? 'Frame: Galvanised fire-resistant steel, 1.5 mm thickness' : 'Cerceve: Galvanizli yangin dayanikli celik, 1.5 mm et kalinligi'}</li>
+            <li>{isEN ? 'Core: Fire-resistant mineral wool (density: 100 kg/m3)' : 'Dolgu: Yangin dayanikli mineral yun (yogunluk: 100 kg/m3)'}</li>
+            <li>{isEN ? 'Standard sizes: 80x200 cm, 90x200 cm — custom sizes available' : 'Standart boyutlar: 80x200 cm, 90x200 cm — ozel olcu mevcut'}</li>
+            <li>{isEN ? 'Fire rating: EI-30, EI-60, EI-90 (TS EN 1634-1)' : 'Yangin dayanimi: EI-30, EI-60, EI-90 (TS EN 1634-1)'}</li>
+            <li>{isEN ? 'Hardware: Fire hinges, automatic door closer, smoke-sealed threshold, panic bar' : 'Aksesuarlar: Yangin mentesesi, otomatik kapama, duman sizdirmaz esik, panik bar'}</li>
+            <li>TSE {isEN ? 'approved · TS EN 1634-1 certified · 2-year manufacturer warranty' : 'onayli · TS EN 1634-1 sertifikali · 2 yil uretici garantisi'}</li>
+          </ul>
+        </article>
+
+        <!-- Sidebar -->
+        <aside class="lam-sidebar">
+          <div class="lam-kpis">
+            <div class="lam-kpi"><strong>{modelCount}</strong><span>{isEN ? 'Models' : 'Model'}</span></div>
+            <div class="lam-kpi"><strong>TSE</strong><span>{isEN ? 'Approved' : 'Onay'}</span></div>
+            <div class="lam-kpi"><strong>EI-90</strong><span>{isEN ? 'Certified' : 'Sertifika'}</span></div>
+            <div class="lam-kpi"><strong>A+</strong><span>{isEN ? 'Safety' : 'Guvenlik'}</span></div>
+          </div>
+
+          <div class="lam-contact-card">
+            <span class="lam-tag">{isEN ? 'Fire Safety Specialist' : 'Yangin Guvenligi Uzmani'}</span>
+            <h3>{isEN ? 'Request a Fire Door Quote' : 'Yangin Kapisi Teklifi Al'}</h3>
+            <p>{isEN ? 'Share your building type, fire rating requirement and door count — our fire safety specialist responds within 24 hours.' : 'Bina turunuzu, sertifika duzeyini ve kapi sayisini paylasin — 24 saat icinde yanit veririz.'}</p>
+            <div class="lam-contact-btns">
+              <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--fire lam-btn--sm">
+                {isEN ? 'Contact Form' : 'Iletisim Formu'}
+              </a>
+              <a href="https://wa.me/905441690038" target="_blank" rel="noopener" class="lam-btn lam-btn--wa lam-btn--sm">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.89 3.488"/></svg>
+                WhatsApp
+              </a>
+              <a href="tel:+905441690038" class="lam-btn lam-btn--outline lam-btn--sm" style="color: white;">
+                📞 +90 544 169 00 38
+              </a>
+            </div>
+          </div>
+
+          <div class="lam-features-card">
+            <h3>{isEN ? 'Key Features' : 'One Cikan Ozellikler'}</h3>
+            <ul class="lam-feat-list">
+              <li>🔥 {isEN ? 'EI-30 / EI-60 / EI-90 certified'  : 'EI-30 / EI-60 / EI-90 sertifikali'}</li>
+              <li>✅ {isEN ? 'TSE approved, TS EN 1634-1'         : 'TSE onayli, TS EN 1634-1 uyumlu'}</li>
+              <li>💨 {isEN ? 'Smoke-sealed gasket system'         : 'Duman sizdirmaz conta sistemi'}</li>
+              <li>⚙️ {isEN ? 'Auto-close mechanism'               : 'Otomatik kapanma mekanizmasi'}</li>
+              <li>📐 {isEN ? 'Custom sizes & double leaf'         : 'Ozel olcu ve cift kanat secenegi'}</li>
+              <li>🏗️ {isEN ? 'Bulk project supply'                : 'Proje bazli toplu tedarik'}</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         FAQ
+    ══════════════════════════════════════════ -->
+    <section class="lam-sec lam-sec--white" aria-labelledby="faq-h2">
+      <div class="lam-wrap lam-faq-wrap">
+        <div class="lam-head">
+          <span class="lam-tag">FAQ</span>
+          <h2 id="faq-h2">{isEN ? 'Frequently Asked Questions' : 'Sik Sorulan Sorular'}</h2>
+        </div>
+        <div class="lam-faqs">
+          {(isEN ? [
+            { q: 'What is a fire-resistant door?',                        a: 'A fire-resistant door is a certified door assembly that prevents the spread of fire and smoke for a defined period. EI-30, EI-60 and EI-90 ratings indicate 30, 60 or 90 minutes of fire and smoke resistance.' },
+            { q: 'What is the difference between EI-30, EI-60 and EI-90?', a: 'These ratings indicate how long the door resists fire and smoke. EI-30 provides 30 minutes, EI-60 provides 60 minutes and EI-90 provides 90 minutes of protection according to TS EN 1634-1 test standards.' },
+            { q: 'Where are fire-resistant doors required?',              a: 'Fire-resistant doors are mandatory in commercial buildings, hospitals, hotels, schools, shopping centres and apartment complexes. Fire escape routes and stairwells are required to have fire-rated doors by Turkish building regulations.' },
+            { q: 'What is the MOQ for fire door orders?',                 a: 'Minimum order quantity is 10 units. Volume discounts apply from 50 units. Custom dimensions, panic hardware, electric lock preparation and project certification documents are available for full building fit-outs.' },
+          ] : [
+            { q: 'Yangina dayanikli kapi nedir?',                         a: 'Yangina dayanikli kapi, yangin ve dumani belirli bir sure boyunca engelleyen sertifikali bir kapi sistemidir. EI-30, EI-60 ve EI-90 degerleri 30, 60 veya 90 dakikalik yangin ve duman direncini gosterir.' },
+            { q: 'EI-30, EI-60 ve EI-90 arasindaki fark nedir?',         a: 'Bu degerler kapinin yangin ve dumana kac dakika dayandigini gosterir. EI-30: 30 dakika, EI-60: 60 dakika, EI-90: 90 dakika. Bina sinifina gore dogru sertifika secimi yonetmelik geregi zorunludur.' },
+            { q: 'Hangi binalarda yangin kapisi zorunludur?',             a: 'Is merkezleri, hastaneler, oteller, okullar, AVM ve apartmanlarda yangin yonetmeligi geregi zorunludur. Yangin kacis yollari ve merdiven kovelari sertifikali yangin kapisi gerektirmektedir.' },
+            { q: 'Yangin kapisi siparislerinde MOQ nedir?',               a: 'Minimum siparis miktari 10 adettir. 50+ adet icin hacim indirimleri gecerlidir. Tam bina donanim projeleri icin ozel olcu, panik donanimlari, elektrikli kilit hazirligi ve proje belgelendirme mevcut.' },
+          ]).map(item => (
+            <details class="lam-faq">
+              <summary class="lam-faq__q">
+                {item.q}
+                <span class="lam-faq__arrow" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                </span>
+              </summary>
+              <p class="lam-faq__a">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CTA BAND
+    ══════════════════════════════════════════ -->
+    <section class="lam-cta" aria-labelledby="cta-h2">
+      <div class="lam-cta__glow" aria-hidden="true"></div>
+      <div class="lam-wrap lam-cta__inner">
+        <div class="lam-cta__text">
+          <span class="lam-tag lam-tag--fire">{isEN ? 'Fire Safety Sourcing' : 'Yangin Guvenligi Tedariki'}</span>
+          <h2 id="cta-h2">
+            {isEN
+              ? 'Request Fire-Resistant Door\nProject Quote'
+              : 'Yangina Dayanikli Kapi\nProje Teklifi Alin'}
+          </h2>
+          <p>
+            {isEN
+              ? 'Share your building type, fire rating level and door count. Factory-direct pricing with TSE and EN 1634-1 documentation within 24 hours.'
+              : 'Bina turunuzu, sertifika duzeyini ve kapi sayisini paylasin. 24 saat icinde TSE ve EN 1634-1 belgeli fiyat teklifi.'}
+          </p>
+        </div>
+        <div class="lam-cta__btns">
+          <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--fire">
+            {isEN ? 'Get a Free Quote' : 'Ucretsiz Teklif Al'}
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href={getLocalizedRoute('/urunlerimiz', lang)} class="lam-btn lam-btn--ghost">
+            {isEN ? 'All Products' : 'Tum Urunler'}
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <I18nFooter />
+</I18nLayout>
+
+<style>
+  /* ── TOKENS — laminoks-doors.astro ile özdeş ── */
+  .lam {
+    --navy:     #0f2347;
+    --navy-mid: #1a3a6e;
+    --navy-l:   #1e4a8a;
+    --gold:     #c9a84c;
+    --gold-l:   #e2bc6a;
+    --fire:     #c0392b;
+    --fire-l:   #e74c3c;
+    --cream:    #faf8f4;
+    --slate:    #607080;
+    --text:     #0f1929;
+    --body:     #3d4f63;
+    --bdr:      #e4eaf4;
+    --white:    #ffffff;
+    --radius:   14px;
+    --green:    #16a34a;
+
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text);
+  }
+
+  /* ── LAYOUT ── */
+  .lam-wrap { max-width: 1160px; margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 2.5rem); width: 100%; }
+  .lam-sec         { padding-block: clamp(4rem, 8vw, 6.5rem); }
+  .lam-sec--white  { background: var(--white); }
+  .lam-sec--cream  { background: var(--cream); }
+
+  /* ── SECTION HEAD ── */
+  .lam-head { text-align: center; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+  .lam-head h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700;
+    color: var(--text); margin: 0.3rem 0 0.7rem; line-height: 1.2;
+  }
+  .lam-head p { color: var(--slate); font-size: 1rem; max-width: 560px; margin-inline: auto; line-height: 1.7; }
+
+  .lam-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--fire); margin-bottom: 0.4rem; }
+  .lam-tag--gold { color: rgba(201,168,76,0.9); }
+  .lam-tag--fire { color: rgba(224,90,76,0.9); }
+
+  /* ── BUTTONS ── */
+  .lam-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.9rem; font-weight: 600; padding: 0.9rem 1.75rem;
+    border-radius: 8px; text-decoration: none; white-space: nowrap;
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
+    cursor: pointer; border: none;
+  }
+  .lam-btn--gold    { background: var(--gold);  color: var(--navy);  font-weight: 700; }
+  .lam-btn--fire    { background: var(--fire);  color: var(--white); font-weight: 700; }
+  .lam-btn--gold:hover  { background: var(--gold-l); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(201,168,76,0.4); }
+  .lam-btn--fire:hover  { background: var(--fire-l); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(192,57,43,0.4); }
+  .lam-btn--navy    { background: var(--navy);  color: var(--white); font-weight: 700; }
+  .lam-btn--navy:hover  { background: var(--navy-mid); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(15,35,71,0.3); }
+  .lam-btn--ghost   { background: transparent; color: rgba(255,255,255,0.85); border: 1.5px solid rgba(255,255,255,0.25); }
+  .lam-btn--ghost:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+  .lam-btn--wa      { background: #16a34a; color: var(--white); }
+  .lam-btn--wa:hover { background: #15803d; transform: translateY(-2px); }
+  .lam-btn--outline { background: transparent; color: var(--navy); border: 1.5px solid var(--bdr); }
+  .lam-btn--outline:hover { border-color: var(--navy); transform: translateY(-2px); }
+  .lam-btn--sm      { font-size: 0.85rem; padding: 0.65rem 1.25rem; }
+
+  /* ── HERO ── */
+  .lam-hero {
+    position: relative; min-height: 75vh; display: flex;
+    flex-direction: column; justify-content: center;
+    padding-top: 70px; overflow: hidden;
+  }
+  .lam-hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .lam-hero__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(10,26,58,0.96) 0%, rgba(15,35,71,0.88) 60%, rgba(26,58,110,0.82) 100%);
+  }
+  .lam-hero__glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 80% 30%, rgba(192,57,43,0.09) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 80% at 10% 70%, rgba(30,74,138,0.3) 0%, transparent 60%);
+  }
+  .lam-hero__inner {
+    position: relative; z-index: 1;
+    padding-top: clamp(2.5rem, 6vw, 4rem);
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+  }
+  .lam-breadcrumb {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 1.5rem; flex-wrap: wrap;
+  }
+  .lam-breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+  .lam-breadcrumb a:hover { color: var(--fire-l); }
+  .lam-breadcrumb span[aria-current] { color: var(--fire-l); }
+  .lam-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--fire-l); margin-bottom: 1.2rem;
+  }
+  .lam-eyebrow__line { display: block; width: 28px; height: 1px; background: var(--fire); opacity: 0.6; flex-shrink: 0; }
+  .lam-hero__h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem); font-weight: 900;
+    color: var(--white); line-height: 1.1; margin: 0 0 1.2rem;
+  }
+  .lam-hero__h1 em { font-style: normal; color: var(--fire-l); }
+  .lam-hero__lead { font-size: 1.05rem; color: rgba(255,255,255,0.65); line-height: 1.8; max-width: 560px; margin: 0 0 1.5rem; }
+  .lam-hero__tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+  .lam-htag {
+    display: inline-block; padding: 0.3rem 0.85rem;
+    border: 1px solid rgba(192,57,43,0.4); background: rgba(192,57,43,0.10);
+    color: rgba(231,76,60,0.95); font-size: 0.82rem; font-weight: 600; border-radius: 4px;
+  }
+  .lam-hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  /* Stats bar */
+  .lam-statsbar {
+    position: relative; z-index: 1;
+    display: flex; align-items: center; flex-wrap: wrap; gap: 0;
+    background: rgba(255,255,255,0.06); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
+    padding: 1.5rem 2rem; margin-top: 2rem;
+  }
+  .lam-sitem { display: flex; flex-direction: column; flex: 1; min-width: 80px; padding-inline: 1rem; text-align: center; }
+  .lam-sitem:first-child { padding-left: 0; }
+  .lam-sitem:last-child  { padding-right: 0; }
+  .lam-sitem strong {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.6rem; font-weight: 900; color: var(--fire-l); line-height: 1; display: block;
+  }
+  .lam-sitem strong sup { font-size: 0.7em; }
+  .lam-sitem span { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 0.3rem; display: block; }
+  .lam-sdiv { width: 1px; height: 32px; background: rgba(255,255,255,0.12); flex-shrink: 0; }
+
+  /* ── CATEGORY NAV ── */
+  .lam-catnav {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-bottom: 2.5rem; padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--bdr);
+  }
+  .lam-catbtn {
+    background: var(--white); color: var(--body); border: 1.5px solid var(--bdr);
+    padding: 0.5rem 1.1rem; border-radius: 30px;
+    font-size: 0.875rem; font-weight: 600; font-family: 'Inter', system-ui, sans-serif;
+    text-decoration: none; transition: all 0.2s; white-space: nowrap;
+  }
+  .lam-catbtn:hover { border-color: var(--navy); color: var(--navy); }
+  .lam-catbtn--active { background: var(--fire); color: var(--white); border-color: var(--fire); }
+
+  .lam-quote-row { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+  .lam-quote-note { font-size: 0.875rem; color: var(--slate); }
+
+  /* ── PRODUCTS GRID ── */
+  .lam-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.25rem; min-height: 300px;
+  }
+  .lam-grid--wide {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+  .lam-card {
+    background: var(--white); border: 1px solid var(--bdr);
+    border-radius: var(--radius); overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  }
+  .lam-card:hover {
+    transform: translateY(-4px); box-shadow: 0 16px 36px rgba(15,35,71,0.1);
+    border-color: rgba(192,57,43,0.35);
+  }
+  .lam-card__img {
+    aspect-ratio: 3/4; background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; padding: 0.5rem;
+  }
+  .lam-card__img img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.35s; }
+  .lam-card:hover .lam-card__img img { transform: scale(1.04); }
+  .lam-card__body { padding: 0.75rem 1rem 1rem; }
+  .lam-card__name {
+    font-size: 0.82rem; font-weight: 600;
+    color: var(--text); text-align: center; line-height: 1.4; margin: 0 0 0.5rem;
+  }
+  .lam-card__badge {
+    display: block; text-align: center;
+    font-size: 0.72rem; font-weight: 600; color: var(--fire);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── SEO CONTENT ── */
+  .lam-content-wrap { display: grid; grid-template-columns: 1fr 320px; gap: 4rem; align-items: start; }
+  .lam-article { background: var(--white); padding: 2.5rem; border-radius: var(--radius); border: 1px solid var(--bdr); }
+  .lam-article h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.6rem, 2.5vw, 2.1rem); font-weight: 700;
+    color: var(--text); margin: 0 0 1.25rem; line-height: 1.2;
+  }
+  .lam-article h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; font-weight: 700; color: var(--fire); margin: 2rem 0 0.75rem; }
+  .lam-article p  { font-size: 0.95rem; color: var(--body); line-height: 1.8; margin: 0 0 1rem; }
+  .lam-article strong { color: var(--navy); }
+
+  .lam-checklist { list-style: none; padding: 0; margin: 0 0 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .lam-checklist li { font-size: 0.925rem; color: var(--body); line-height: 1.6; padding-left: 1.5rem; position: relative; }
+  .lam-checklist li::before { content: '✓'; position: absolute; left: 0; color: var(--fire); font-weight: 700; }
+
+  /* Sidebar */
+  .lam-sidebar { display: flex; flex-direction: column; gap: 1.5rem; position: sticky; top: 90px; }
+  .lam-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--bdr); border: 1px solid var(--bdr); border-radius: var(--radius); overflow: hidden; }
+  .lam-kpi { background: var(--white); padding: 1.25rem; text-align: center; transition: background 0.2s; }
+  .lam-kpi:hover { background: var(--cream); }
+  .lam-kpi strong { display: block; font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; font-weight: 900; color: var(--fire); line-height: 1; margin-bottom: 0.3rem; }
+  .lam-kpi strong sup { font-size: 0.65em; }
+  .lam-kpi span { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); }
+
+  .lam-contact-card { background: var(--navy); border-radius: var(--radius); padding: 1.75rem; }
+  .lam-contact-card .lam-tag { color: rgba(231,76,60,0.85); }
+  .lam-contact-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; font-weight: 700; color: var(--white); margin: 0.3rem 0 0.6rem; }
+  .lam-contact-card p  { font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.6; margin: 0 0 1.25rem; }
+  .lam-contact-btns { display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .lam-features-card { background: var(--white); border: 1px solid var(--bdr); border-radius: var(--radius); padding: 1.5rem; }
+  .lam-features-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 1rem; }
+  .lam-feat-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+  .lam-feat-list li { font-size: 0.9rem; color: var(--body); }
+
+  /* ── FAQ ── */
+  .lam-faq-wrap { max-width: 780px; }
+  .lam-faqs { display: flex; flex-direction: column; gap: 0.75rem; }
+  .lam-faq { background: var(--white); border: 1px solid var(--bdr); border-radius: 10px; overflow: hidden; transition: border-color 0.2s; }
+  .lam-faq[open] { border-color: rgba(192,57,43,0.35); }
+  .lam-faq__q {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 1.1rem 1.5rem; cursor: pointer;
+    font-weight: 600; font-size: 0.95rem; color: var(--text);
+    list-style: none; user-select: none; transition: background 0.15s;
+  }
+  .lam-faq__q:hover { background: var(--cream); }
+  .lam-faq__q::-webkit-details-marker { display: none; }
+  .lam-faq__arrow { flex-shrink: 0; color: var(--slate); transition: transform 0.25s; }
+  .lam-faq[open] .lam-faq__arrow { transform: rotate(180deg); color: var(--fire); }
+  .lam-faq__a { padding: 1rem 1.5rem 1.25rem; font-size: 0.925rem; color: var(--body); line-height: 1.75; margin: 0; border-top: 1px solid var(--bdr); }
+
+  /* ── CTA BAND ── */
+  .lam-cta { position: relative; background: var(--navy); overflow: hidden; padding: clamp(4rem, 8vw, 6rem) 0; }
+  .lam-cta__glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 55% 80% at 105% 50%, rgba(192,57,43,0.18) 0%, transparent 65%),
+      linear-gradient(140deg, #08192e 0%, var(--navy) 100%);
+    pointer-events: none;
+  }
+  .lam-cta__inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap; }
+  .lam-cta__text h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.75rem, 3vw, 2.4rem); font-weight: 700;
+    color: var(--white); margin: 0.35rem 0 0.7rem; line-height: 1.2; white-space: pre-line;
+  }
+  .lam-cta__text p { color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.7; max-width: 420px; margin: 0; }
+  .lam-cta__btns { display: flex; gap: 1rem; flex-wrap: wrap; flex-shrink: 0; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .lam-content-wrap { grid-template-columns: 1fr; }
+    .lam-sidebar { position: static; }
+    .lam-kpis { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .lam-hero { min-height: auto; }
+    .lam-hero__actions { flex-direction: column; }
+    .lam-catnav { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 1rem; scrollbar-width: thin; }
+    .lam-catnav::-webkit-scrollbar { height: 4px; }
+    .lam-catnav::-webkit-scrollbar-thumb { background: var(--bdr); border-radius: 4px; }
+    .lam-quote-row { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .lam-cta__inner { flex-direction: column; text-align: center; }
+    .lam-cta__btns  { justify-content: center; }
+    .lam-grid--wide { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+  }
+  @media (max-width: 480px) {
+    .lam-grid, .lam-grid--wide { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    .lam-kpis { grid-template-columns: repeat(2, 1fr); }
+    .lam-statsbar { padding: 1rem 1.25rem; }
+    .lam-sdiv { display: none; }
+    .lam-sitem { padding-inline: 0.5rem; }
+  }
+
+  /* ── RTL ── */
+  html[dir="rtl"] .lam-eyebrow__line { order: -1; }
+  html[dir="rtl"] .lam-btn svg       { transform: scaleX(-1); }
+  html[dir="rtl"] .lam-checklist li  { padding-left: 0; padding-right: 1.5rem; }
+  html[dir="rtl"] .lam-checklist li::before { left: auto; right: 0; }
+</style>

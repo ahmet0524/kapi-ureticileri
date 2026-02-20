@@ -1,5 +1,5 @@
 ---
-// src/pages/pvc-kapilar-2.astro
+// src/pages/pvc-doors-3.astro
 import I18nLayout from '../layouts/I18nLayout.astro';
 import I18nHeader from '../components/I18nHeader.astro';
 import I18nFooter from '../components/I18nFooter.astro';
@@ -11,18 +11,18 @@ const isEN  = lang === 'en';
 
 const baseUrl    = 'https://cihanpandoor.netlify.app';
 const pageUrl    = lang === 'tr' ? baseUrl : `${baseUrl}/${lang}`;
-const currentUrl = `${pageUrl}/pvc-kapilar-2`;
+const currentUrl = `${pageUrl}/pvc-doors-3`;
 
 // ── SCHEMA ────────────────────────────────────────────────────────────
 const pvcSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "name": isEN
-    ? "PVC Interior Doors — Page 2 (Models 116–128) | CihanPan Door"
-    : "PVC Kapılar — Sayfa 2 (116–128 Model) | CihanPan Door",
+    ? "PVC Interior Doors — Page 3 (Models 129–140) | CihanPan Door"
+    : "PVC Kapılar — Sayfa 3 (129–140 Model) | CihanPan Door",
   "description": isEN
-    ? "PVC interior door models 116–128. Waterproof antibacterial wholesale doors from Kayseri, Turkey. CE certified, factory-direct pricing."
-    : "PVC kapı modelleri 116–128. Su geçirmez, antibakteriyel, toptan kapılar.",
+    ? "PVC interior door models 129–140. Waterproof antibacterial wholesale doors from Kayseri, Turkey. CE certified, factory-direct pricing."
+    : "PVC kapı modelleri 129–140. Su geçirmez, antibakteriyel, toptan kapılar.",
   "url": currentUrl,
   "inLanguage": lang === 'tr' ? 'tr-TR' : lang === 'ar' ? 'ar-SA' : 'en-US',
   "isPartOf": { "@type": "CollectionPage", "name": isEN ? "PVC Interior Doors" : "PVC Kapılar", "url": `${pageUrl}/pvc-kapilar` }
@@ -35,7 +35,7 @@ const breadcrumbSchema = {
     { "@type": "ListItem", "position": 1, "name": isEN ? "Home"     : "Ana Sayfa",  "item": pageUrl },
     { "@type": "ListItem", "position": 2, "name": isEN ? "Products" : "Ürünler",    "item": `${pageUrl}/urunlerimiz` },
     { "@type": "ListItem", "position": 3, "name": isEN ? "PVC Doors": "PVC Kapılar","item": `${pageUrl}/pvc-kapilar` },
-    { "@type": "ListItem", "position": 4, "name": isEN ? "Page 2"   : "Sayfa 2",    "item": currentUrl },
+    { "@type": "ListItem", "position": 4, "name": isEN ? "Page 3"   : "Sayfa 3",    "item": currentUrl },
   ]
 };
 
@@ -55,18 +55,18 @@ const catNav = [
 
 <I18nLayout
   title={isEN
-    ? "PVC Interior Doors — Page 2, Models 116–128 | CihanPan Door Turkey"
-    : "PVC Kapılar — Sayfa 2, 116–128 Modeller | CihanPan Door"}
+    ? "PVC Interior Doors — Page 3, Models 129–140 | CihanPan Door Turkey"
+    : "PVC Kapılar — Sayfa 3, 129–140 Modeller | CihanPan Door"}
   description={isEN
-    ? "Wholesale PVC interior door models 116–128 from Kayseri, Turkey. Waterproof, antibacterial, CE & ISO 9001 certified. Factory-direct pricing for importers. MOQ 50 units."
-    : "Kayseri'den toptan PVC kapı modelleri 116–128. Su geçirmez, antibakteriyel, CE sertifikalı."}
+    ? "Wholesale PVC interior door models 129–140 from Kayseri, Turkey. Waterproof, antibacterial, CE & ISO 9001 certified. Factory-direct pricing for importers. MOQ 50 units."
+    : "Kayseri'den toptan PVC kapı modelleri 129–140. Su geçirmez, antibakteriyel, CE sertifikalı."}
   keywords={isEN
-    ? "PVC interior doors page 2 wholesale Turkey, waterproof door models 116 117 118 119 120, CE certified PVC door manufacturer"
-    : "pvc kapı sayfa 2, pvc iç oda kapısı 116 117 118 model, toptan kapı türkiye"}
+    ? "PVC interior doors page 3 wholesale Turkey, waterproof door models 129 130 131 140, CE certified PVC door manufacturer Kayseri"
+    : "pvc kapı sayfa 3, pvc iç oda kapısı 129 130 131 model, toptan kapı türkiye"}
   canonical={currentUrl}
   schema={allSchemas}
-  ogTitle={isEN ? "PVC Interior Doors Page 2 | CihanPan Door" : "PVC Kapılar Sayfa 2 | CihanPan Door"}
-  ogDescription={isEN ? "Models 116–128. Wholesale waterproof PVC interior doors from Turkey." : "116–128 arası PVC kapı modelleri. Toptan."}
+  ogTitle={isEN ? "PVC Interior Doors Page 3 | CihanPan Door" : "PVC Kapılar Sayfa 3 | CihanPan Door"}
+  ogDescription={isEN ? "Models 129–140. Final page of wholesale waterproof PVC interior doors from Turkey." : "129–140 arası PVC kapı modelleri. Son sayfa."}
   ogImage="/assets/img/og/pvc-kapilar-og.webp"
 >
   <I18nHeader />
@@ -74,7 +74,7 @@ const catNav = [
   <main class="pvc" id="main-content">
 
     <!-- ══════════════════════════════════════════
-         PAGE HERO — compact (pagination page)
+         PAGE HERO — compact (last pagination page)
     ══════════════════════════════════════════ -->
     <section class="pvc-hero pvc-hero--compact" aria-labelledby="pvc-h1">
       <div class="pvc-hero__bg" aria-hidden="true">
@@ -90,22 +90,22 @@ const catNav = [
             <span aria-hidden="true">›</span>
             <a href={getLocalizedRoute('/pvc-kapilar', lang)}>{isEN ? 'PVC Doors' : 'PVC Kapılar'}</a>
             <span aria-hidden="true">›</span>
-            <span aria-current="page">{isEN ? 'Page 2' : 'Sayfa 2'}</span>
+            <span aria-current="page">{isEN ? 'Page 3' : 'Sayfa 3'}</span>
           </nav>
 
           <span class="pvc-eyebrow">
             <span class="pvc-eyebrow__line"></span>
-            {isEN ? 'Models 116–128 · Page 2 of 3' : 'Modeller 116–128 · Sayfa 2 / 3'}
+            {isEN ? 'Models 129–140 · Final Page (3 of 3)' : 'Modeller 129–140 · Son Sayfa (3 / 3)'}
           </span>
           <h1 class="pvc-hero__h1" id="pvc-h1">
             {isEN
-              ? <><em>PVC Interior Doors</em> — Page 2</>
-              : <><em>PVC İç Oda Kapıları</em> — Sayfa 2</>}
+              ? <><em>PVC Interior Doors</em> — Page 3</>
+              : <><em>PVC İç Oda Kapıları</em> — Sayfa 3</>}
           </h1>
           <p class="pvc-hero__lead">
             {isEN
-              ? 'Continued collection of waterproof antibacterial PVC interior door models. All models CE & ISO 9001 certified. Factory-direct wholesale from Kayseri, Turkey.'
-              : 'Su geçirmez antibakteriyel PVC kapı koleksiyonunun devamı. Tüm modeller CE ve ISO 9001 sertifikalı.'}
+              ? 'Final page of our waterproof antibacterial PVC interior door collection. All models CE & ISO 9001 certified. Factory-direct wholesale from Kayseri, Turkey.'
+              : 'Su geçirmez antibakteriyel PVC kapı koleksiyonumuzun son sayfası. Tüm modeller CE ve ISO 9001 sertifikalı.'}
           </p>
           <div class="pvc-hero__actions">
             <a href={getLocalizedRoute('/iletisim', lang)} class="pvc-btn pvc-btn--gold">
@@ -113,7 +113,7 @@ const catNav = [
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
             <a href={getLocalizedRoute('/pvc-kapilar', lang)} class="pvc-btn pvc-btn--ghost">
-              {isEN ? '← Page 1' : '← Sayfa 1'}
+              {isEN ? '← Back to Page 1' : '← Sayfa 1\'e Dön'}
             </a>
           </div>
         </div>
@@ -140,14 +140,14 @@ const catNav = [
         </nav>
 
         <div class="pvc-head">
-          <span class="pvc-tag">{isEN ? 'PVC Door Collection · Page 2' : 'PVC Kapı Koleksiyonu · Sayfa 2'}</span>
+          <span class="pvc-tag">{isEN ? 'PVC Door Collection · Page 3 of 3' : 'PVC Kapı Koleksiyonu · Sayfa 3 / 3'}</span>
           <h2 id="catalogue-h2">
-            {isEN ? 'PVC Interior Door Models 116–128' : 'PVC Kapı Modelleri 116–128'}
+            {isEN ? 'PVC Interior Door Models 129–140' : 'PVC Kapı Modelleri 129–140'}
           </h2>
           <p>
             {isEN
-              ? 'Models 116–128 of the PVC collection. Available in multiple colour variants. Request a wholesale quote for any model.'
-              : '116–128 arası PVC kapı modelleri. Birden fazla renk varyantında mevcut.'}
+              ? 'Final 72 models of the PVC collection. Available in multiple colour variants. Request a wholesale quote for any model.'
+              : 'PVC koleksiyonunun son 72 modeli. Birden fazla renk varyantında mevcut.'}
           </p>
         </div>
 
@@ -161,7 +161,7 @@ const catNav = [
         </div>
 
         <!-- Products Grid (JS-rendered) -->
-        <div class="pvc-grid" id="productsGrid" aria-live="polite" aria-label={isEN ? 'PVC door models page 2' : 'PVC kapı modelleri sayfa 2'}></div>
+        <div class="pvc-grid" id="productsGrid" aria-live="polite" aria-label={isEN ? 'PVC door models page 3' : 'PVC kapı modelleri sayfa 3'}></div>
 
         <!-- Loading state -->
         <div class="pvc-loading" id="loading" aria-label={isEN ? 'Loading models' : 'Modeller yükleniyor'}>
@@ -169,28 +169,46 @@ const catNav = [
           <p>{isEN ? 'Loading PVC door models…' : 'PVC kapı modelleri yükleniyor…'}</p>
         </div>
 
-        <!-- Pagination -->
+        <!-- Pagination — last page: only ← prev, no next -->
         <nav class="pvc-pagination" aria-label={isEN ? 'Page navigation' : 'Sayfa navigasyonu'}>
           <div class="pvc-page-info">
-            <span class="pvc-page-current">{isEN ? 'Page 2 of 3' : 'Sayfa 2 / 3'}</span>
-            <span class="pvc-page-count">{isEN ? '78 models shown' : '78 model gösteriliyor'}</span>
+            <span class="pvc-page-current">{isEN ? 'Page 3 of 3 — Final Page' : 'Sayfa 3 / 3 — Son Sayfa'}</span>
+            <span class="pvc-page-count">{isEN ? '72 models shown · 247 total in collection' : '72 model gösteriliyor · Koleksiyonda 247 toplam'}</span>
           </div>
           <div class="pvc-page-btns">
-            <a href={getLocalizedRoute('/pvc-kapilar', lang)} class="pvc-page-btn">
+            <a href={getLocalizedRoute('/pvc-doors-2', lang)} class="pvc-page-btn">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18L9 12L15 6"/></svg>
-              {isEN ? 'Page 1' : 'Sayfa 1'}
+              {isEN ? 'Page 2' : 'Sayfa 2'}
             </a>
-            <a href={getLocalizedRoute('/pvc-doors-3', lang)} class="pvc-page-btn">
-              {isEN ? 'Page 3' : 'Sayfa 3'}
+            <span class="pvc-page-btn pvc-page-btn--disabled" aria-disabled="true">
+              {isEN ? 'Page 3 (Last)' : 'Sayfa 3 (Son)'}
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18L15 12L9 6"/></svg>
-            </a>
+            </span>
           </div>
           <div class="pvc-page-dots" aria-hidden="true">
-            <a href={getLocalizedRoute('/pvc-kapilar', lang)}   class="pvc-dot"></a>
+            <a href={getLocalizedRoute('/pvc-doors',   lang)} class="pvc-dot"></a>
+            <a href={getLocalizedRoute('/pvc-doors-2', lang)} class="pvc-dot"></a>
             <span class="pvc-dot pvc-dot--active"></span>
-            <a href={getLocalizedRoute('/pvc-doors-3', lang)} class="pvc-dot"></a>
           </div>
         </nav>
+
+        <!-- End-of-collection message -->
+        <div class="pvc-collection-end">
+          <p>
+            {isEN
+              ? '✓ You\'ve browsed the complete PVC door collection — 247 models across 3 pages.'
+              : '✓ Tüm PVC kapı koleksiyonunu incelediniz — 3 sayfada 247 model.'}
+          </p>
+          <div class="pvc-collection-end__links">
+            <a href={getLocalizedRoute('/laminoks-kapilar', lang)}>
+              {isEN ? 'Browse Laminox Doors →' : 'Laminoks Kapıları İncele →'}
+            </a>
+            <a href={getLocalizedRoute('/elitpan-kapilar', lang)}>
+              {isEN ? 'Browse Elitpan Doors →' : 'Elitpan Kapıları İncele →'}
+            </a>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -218,8 +236,8 @@ const catNav = [
             {isEN ? 'Get a Free Quote' : 'Ücretsiz Teklif Al'}
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href={getLocalizedRoute('/pvc-kapilar', lang)} class="pvc-btn pvc-btn--ghost">
-            {isEN ? '← Back to Page 1' : '← Sayfa 1\'e Dön'}
+          <a href={getLocalizedRoute('/urunlerimiz', lang)} class="pvc-btn pvc-btn--ghost">
+            {isEN ? 'All Products' : 'Tüm Ürünler'}
           </a>
         </div>
       </div>
@@ -254,7 +272,6 @@ const catNav = [
   .pvc-sec         { padding-block: clamp(4rem, 8vw, 6.5rem); }
   .pvc-sec--white  { background: var(--white); }
 
-  /* ── SECTION HEAD ── */
   .pvc-head { text-align: center; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
   .pvc-head h2 {
     font-family: 'Playfair Display', Georgia, serif;
@@ -281,13 +298,12 @@ const catNav = [
   .pvc-btn--ghost   { background: transparent; color: rgba(255,255,255,0.85); border: 1.5px solid rgba(255,255,255,0.25); }
   .pvc-btn--ghost:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.07); transform: translateY(-2px); }
 
-  /* ── HERO — compact variant ── */
+  /* ── HERO — compact ── */
   .pvc-hero {
     position: relative; display: flex; flex-direction: column;
     justify-content: center; padding-top: 70px; overflow: hidden;
   }
   .pvc-hero--compact { min-height: 55vh; }
-
   .pvc-hero__bg { position: absolute; inset: 0; z-index: 0; }
   .pvc-hero__overlay {
     position: absolute; inset: 0;
@@ -304,7 +320,6 @@ const catNav = [
     padding-top: clamp(2rem, 5vw, 3.5rem);
     padding-bottom: clamp(2.5rem, 5vw, 4rem);
   }
-
   .pvc-breadcrumb {
     display: flex; align-items: center; gap: 0.5rem;
     font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 1.5rem;
@@ -312,14 +327,12 @@ const catNav = [
   .pvc-breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
   .pvc-breadcrumb a:hover { color: var(--gold-l); }
   .pvc-breadcrumb span[aria-current] { color: var(--gold); }
-
   .pvc-eyebrow {
     display: inline-flex; align-items: center; gap: 0.75rem;
     font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--gold); margin-bottom: 1rem;
   }
   .pvc-eyebrow__line { display: block; width: 28px; height: 1px; background: var(--gold); opacity: 0.5; flex-shrink: 0; }
-
   .pvc-hero__h1 {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900;
@@ -405,10 +418,37 @@ const catNav = [
     min-width: 130px; justify-content: center;
   }
   .pvc-page-btn:hover { background: var(--navy-mid); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(15,35,71,0.25); }
+  .pvc-page-btn--disabled { background: var(--cream); color: var(--slate); border: 1px solid var(--bdr); cursor: not-allowed; }
+  .pvc-page-btn--disabled:hover { transform: none; box-shadow: none; background: var(--cream); }
   .pvc-page-dots { display: flex; gap: 0.75rem; align-items: center; }
   .pvc-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--bdr); display: block; text-decoration: none; transition: all 0.2s; }
   .pvc-dot:hover { background: var(--slate); transform: scale(1.2); }
   .pvc-dot--active { background: var(--gold); transform: scale(1.3); box-shadow: 0 2px 8px rgba(201,168,76,0.4); }
+
+  /* End-of-collection message */
+  .pvc-collection-end {
+    margin-top: 2rem;
+    background: var(--cream);
+    border: 1px solid var(--bdr);
+    border-radius: var(--radius);
+    padding: 1.5rem 2rem;
+    text-align: center;
+  }
+  .pvc-collection-end p {
+    font-size: 0.925rem; color: var(--body);
+    margin: 0 0 1rem; font-weight: 500;
+  }
+  .pvc-collection-end__links {
+    display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+  }
+  .pvc-collection-end__links a {
+    font-size: 0.875rem; font-weight: 700;
+    color: var(--navy-l); text-decoration: none;
+    border-bottom: 1.5px solid var(--bdr);
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .pvc-collection-end__links a:hover { color: var(--gold); border-color: var(--gold); }
 
   /* ── CTA BAND ── */
   .pvc-cta { position: relative; background: var(--navy); overflow: hidden; padding: clamp(4rem, 8vw, 6rem) 0; }
@@ -441,6 +481,7 @@ const catNav = [
     .pvc-cta__btns  { justify-content: center; }
     .pvc-page-btns  { flex-direction: column; width: 100%; }
     .pvc-page-btn   { width: 100%; }
+    .pvc-collection-end__links { flex-direction: column; align-items: center; }
   }
   @media (max-width: 480px) {
     .pvc-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
@@ -453,19 +494,18 @@ const catNav = [
 
 <script is:inline>
   const fileNames = [
-    'CihanpanDoor-PVC-Serisi-116-A-Beyaz-Antrasit.webp','CihanpanDoor-PVC-Serisi-116-B-Beyaz.webp','CihanpanDoor-PVC-Serisi-116-C-Italyan-Ceviz.webp','CihanpanDoor-PVC-Serisi-116-D-Antrasit.webp','CihanpanDoor-PVC-Serisi-116-E-Gri-Mese.webp','CihanpanDoor-PVC-Serisi-116-F-ABD-Ceviz.webp',
-    'CihanpanDoor-PVC-Serisi-117-A-Dark-Santana.webp','CihanpanDoor-PVC-Serisi-117-B-Beyaz-Antrasit.webp','CihanpanDoor-PVC-Serisi-117-C-Beyaz.webp','CihanpanDoor-PVC-Serisi-117-D-Ayder.webp','CihanpanDoor-PVC-Serisi-117-E-Tik.webp','CihanpanDoor-PVC-Serisi-117-F-Vision-Gri.webp',
-    'CihanpanDoor-PVC-Serisi-118-A-Antrasit.webp','CihanpanDoor-PVC-Serisi-118-B-Natural-Mese.webp','CihanpanDoor-PVC-Serisi-118-C-Beyaz.webp','CihanpanDoor-PVC-Serisi-118-D-Vision-Gri.webp','CihanpanDoor-PVC-Serisi-118-E-Kum-Gri.webp','CihanpanDoor-PVC-Serisi-118-F-Beyaz-Tik.webp',
-    'CihanpanDoor-PVC-Serisi-119-A-Saruhan.webp','CihanpanDoor-PVC-Serisi-119-B-Kum-Gri.webp','CihanpanDoor-PVC-Serisi-119-C-Beyaz.webp','CihanpanDoor-PVC-Serisi-119-D-Antrasit.webp','CihanpanDoor-PVC-Serisi-119-E-Gold-Mese.webp','CihanpanDoor-PVC-Serisi-119-F-Gri-Mese.webp',
-    'CihanpanDoor-PVC-Serisi-120-A-Yildiz-Metal-Antrasit.webp','CihanpanDoor-PVC-Serisi-120-B-Kestane.webp','CihanpanDoor-PVC-Serisi-120-C-Soft-Kapucino.webp','CihanpanDoor-PVC-Serisi-120-D-Beyaz.webp','CihanpanDoor-PVC-Serisi-120-E-Antrasit.webp','CihanpanDoor-PVC-Serisi-120-F-Avola.webp',
-    'CihanpanDoor-PVC-Serisi-121-A-Beyaz-Tik.webp','CihanpanDoor-PVC-Serisi-121-B-Tik.webp','CihanpanDoor-PVC-Serisi-121-C-Antrasit.webp','CihanpanDoor-PVC-Serisi-121-D-Avola.webp','CihanpanDoor-PVC-Serisi-121-E-Olimpos.webp','CihanpanDoor-PVC-Serisi-121-F-Beyaz.webp',
-    'CihanpanDoor-PVC-Serisi-122-A-Ayder.webp','CihanpanDoor-PVC-Serisi-122-B-Antrasit.webp','CihanpanDoor-PVC-Serisi-122-C-Italyan-Ceviz.webp','CihanpanDoor-PVC-Serisi-122-D-Yildiz-Metal-Tuna-Ceviz.webp','CihanpanDoor-PVC-Serisi-122-E-Beyaz-Tik.webp','CihanpanDoor-PVC-Serisi-122-F-Kum-Gri-Antrasit.webp',
-    'CihanpanDoor-PVC-Serisi-123-A-Soft-Kapucino.webp','CihanpanDoor-PVC-Serisi-123-B-Gri-Mese.webp','CihanpanDoor-PVC-Serisi-123-C-Beyaz.webp','CihanpanDoor-PVC-Serisi-123-D-Gri-Kum.webp','CihanpanDoor-PVC-Serisi-123-E-Italyan-Ceviz.webp','CihanpanDoor-PVC-Serisi-123-F-ABD-Ceviz.webp',
-    'CihanpanDoor-PVC-Serisi-124-A-Beyaz.webp','CihanpanDoor-PVC-Serisi-124-B-Kul-Mese.webp','CihanpanDoor-PVC-Serisi-124-C-Koko.webp','CihanpanDoor-PVC-Serisi-124-D-ABD-Ceviz.webp','CihanpanDoor-PVC-Serisi-124-E-Krem.webp','CihanpanDoor-PVC-Serisi-124-F-Beyaz-Venge.webp',
-    'CihanpanDoor-PVC-Serisi-125-A-Tik.webp','CihanpanDoor-PVC-Serisi-125-B-Dark-Santana.webp','CihanpanDoor-PVC-Serisi-125-C-Beyaz.webp','CihanpanDoor-PVC-Serisi-125-D-Kum-Gri.webp','CihanpanDoor-PVC-Serisi-125-E-Avola.webp','CihanpanDoor-PVC-Serisi-125-F-Elma.webp',
-    'CihanpanDoor-PVC-Serisi-126-A-Gri-Mese.webp','CihanpanDoor-PVC-Serisi-126-B-Antrasit.webp','CihanpanDoor-PVC-Serisi-126-C-Italyan-Ceviz.webp','CihanpanDoor-PVC-Serisi-126-D-Koko.webp','CihanpanDoor-PVC-Serisi-126-E-Beyaz.webp','CihanpanDoor-PVC-Serisi-126-F-ABD-Ceviz.webp',
-    'CihanpanDoor-PVC-Serisi-127-A-Gold-Mese.webp','CihanpanDoor-PVC-Serisi-127-B-Beyaz.webp','CihanpanDoor-PVC-Serisi-127-C-Gri-Mese.webp','CihanpanDoor-PVC-Serisi-127-D-Saruhan.webp','CihanpanDoor-PVC-Serisi-127-E-Gold-Ceviz.webp','CihanpanDoor-PVC-Serisi-127-F-Beyaz-Tik.webp',
-    'CihanpanDoor-PVC-Serisi-128-A-Vision-Gri.webp','CihanpanDoor-PVC-Serisi-128-B-Dark-Santa.webp','CihanpanDoor-PVC-Serisi-128-C-Gold-Ceviz.webp','CihanpanDoor-PVC-Serisi-128-D-Beyaz.webp','CihanpanDoor-PVC-Serisi-128-E-Antrasit.webp','CihanpanDoor-PVC-Serisi-128-F-Ayder.webp',
+    'CihanpanDoor-PVC-Serisi-129-A-Avola-Antrasit.webp','CihanpanDoor-PVC-Serisi-129-B-Italyan-Ceviz.webp','CihanpanDoor-PVC-Serisi-129-C-Antrasit.webp','CihanpanDoor-PVC-Serisi-129-D-Kum-Gri.webp','CihanpanDoor-PVC-Serisi-129-E-Beyaz.webp','CihanpanDoor-PVC-Serisi-129-F-Tik.webp',
+    'CihanpanDoor-PVC-Serisi-130-A-Gri-Mese.webp','CihanpanDoor-PVC-Serisi-130-B-Avola.webp','CihanpanDoor-PVC-Serisi-130-C-Kestane.webp','CihanpanDoor-PVC-Serisi-130-D-Beyaz.webp','CihanpanDoor-PVC-Serisi-130-E-Kum-Gri.webp','CihanpanDoor-PVC-Serisi-130-F-Gold-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-131-A-Ayder.webp','CihanpanDoor-PVC-Serisi-131-B-Pixel-Gold.webp','CihanpanDoor-PVC-Serisi-131-C-Tik.webp','CihanpanDoor-PVC-Serisi-131-D-Beyaz.webp','CihanpanDoor-PVC-Serisi-131-E-Vision-Gri-Antrasit.webp','CihanpanDoor-PVC-Serisi-131-F-Kum-Gri.webp',
+    'CihanpanDoor-PVC-Serisi-132-A-Pelit-Antrasit.webp','CihanpanDoor-PVC-Serisi-132-B-Italyan-Ceviz.webp','CihanpanDoor-PVC-Serisi-132-C-Gold-Mese.webp','CihanpanDoor-PVC-Serisi-132-D-Antrasit.webp','CihanpanDoor-PVC-Serisi-132-E-Beyaz.webp','CihanpanDoor-PVC-Serisi-132-F-Gri-Mese.webp',
+    'CihanpanDoor-PVC-Serisi-133-A-Dark-Santana.webp','CihanpanDoor-PVC-Serisi-133-B-Yildiz-Metal-Antrasit.webp','CihanpanDoor-PVC-Serisi-133-C-Vision-Gri.webp','CihanpanDoor-PVC-Serisi-133-D-Beyaz-Tik.webp','CihanpanDoor-PVC-Serisi-133-E-Koko.webp','CihanpanDoor-PVC-Serisi-133-F-Olimpos.webp',
+    'CihanpanDoor-PVC-Serisi-134-A-Gri-Mese-Antrasit.webp','CihanpanDoor-PVC-Serisi-134-B-Antrasit.webp','CihanpanDoor-PVC-Serisi-134-C-Beyaz.webp','CihanpanDoor-PVC-Serisi-134-D-Kestane.webp','CihanpanDoor-PVC-Serisi-134-E-Vision-Gri.webp','CihanpanDoor-PVC-Serisi-134-F-Gold-Mese.webp',
+    'CihanpanDoor-PVC-Serisi-135-A-Gri-Mese.webp','CihanpanDoor-PVC-Serisi-135-B-Kestane.webp','CihanpanDoor-PVC-Serisi-135-C-Italyan-Ceviz.webp','CihanpanDoor-PVC-Serisi-135-D-Beyaz-Tik.webp','CihanpanDoor-PVC-Serisi-135-E-Tik.webp','CihanpanDoor-PVC-Serisi-135-F-Dark-Santana.webp',
+    'CihanpanDoor-PVC-Serisi-136-A-Beyaz.webp','CihanpanDoor-PVC-Serisi-136-B-Kum-Gri.webp','CihanpanDoor-PVC-Serisi-136-C-Kul-Mese.webp','CihanpanDoor-PVC-Serisi-136-D-Gold-Mese.webp','CihanpanDoor-PVC-Serisi-136-E-Tik.webp','CihanpanDoor-PVC-Serisi-136-F-Koko.webp',
+    'CihanpanDoor-PVC-Serisi-137-A-Tuna-Ceviz.webp','CihanpanDoor-PVC-Serisi-137-B-Tik.webp','CihanpanDoor-PVC-Serisi-137-C-Milano-Ceviz.webp','CihanpanDoor-PVC-Serisi-137-D-Elma.webp','CihanpanDoor-PVC-Serisi-137-E-Avola.webp','CihanpanDoor-PVC-Serisi-137-F-Beyaz.webp',
+    'CihanpanDoor-PVC-Serisi-138-A-Gold-Mese.webp','CihanpanDoor-PVC-Serisi-138-B-Gri-Mese.webp','CihanpanDoor-PVC-Serisi-138-C-Antrasit.webp','CihanpanDoor-PVC-Serisi-138-D-Beyaz.webp','CihanpanDoor-PVC-Serisi-138-E-Pelit-Antrasit.webp','CihanpanDoor-PVC-Serisi-138-F-Italyan-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-139-A-Antrasit.webp','CihanpanDoor-PVC-Serisi-139-B-Beyaz.webp','CihanpanDoor-PVC-Serisi-139-C-Italyan-Ceviz.webp','CihanpanDoor-PVC-Serisi-139-D-Gri-Mese.webp','CihanpanDoor-PVC-Serisi-139-E-Koko.webp','CihanpanDoor-PVC-Serisi-139-F-ABD-Ceviz.webp',
+    'CihanpanDoor-PVC-Serisi-140-A-Beyaz.webp','CihanpanDoor-PVC-Serisi-140-B-Pelit-Antrasit.webp','CihanpanDoor-PVC-Serisi-140-C-Antrasit.webp','CihanpanDoor-PVC-Serisi-140-D-Italyan-Ceviz.webp','CihanpanDoor-PVC-Serisi-140-E-Gri-Mese.webp','CihanpanDoor-PVC-Serisi-140-F-Gold-Mese.webp',
   ];
 
   function parseFileName(fn) {

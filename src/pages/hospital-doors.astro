@@ -1,0 +1,748 @@
+---
+// src/pages/hospital-doors.astro
+import I18nLayout from '../layouts/I18nLayout.astro';
+import I18nHeader from '../components/I18nHeader.astro';
+import I18nFooter from '../components/I18nFooter.astro';
+import { getLangFromUrl, useTranslations, getLocalizedRoute } from '../i18n/utils';
+
+const lang  = getLangFromUrl(Astro.url);
+const t     = useTranslations(lang);
+const isEN  = lang === 'en';
+
+const baseUrl    = 'https://cihanpandoor.netlify.app';
+const pageUrl    = lang === 'tr' ? baseUrl : `${baseUrl}/${lang}`;
+const currentUrl = `${pageUrl}/hospital-doors`;
+
+// ── FILE LIST ─────────────────────────────────────────────────────────
+const fileNames = [
+  "CihanpanDoor-Hastane-Serisi-501-Tik-Antrasit.webp",
+  "CihanpanDoor-Hastane-Serisi-502-Avola-Krem.webp",
+  "CihanpanDoor-Hastane-Serisi-503-ABD-Ceviz-Krom.webp",
+  "CihanpanDoor-Hastane-Serisi-504-Soft-Kapucino-Antrasit.webp",
+  "CihanpanDoor-Hastane-Serisi-505-Saruhan-Krem.webp",
+  "CihanpanDoor-Hastane-Serisi-506-Antrasit-Krom.webp",
+];
+
+const modelCount = fileNames.length;
+
+// ── SCHEMA ────────────────────────────────────────────────────────────
+const hospitalSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": isEN
+    ? "Hospital & Healthcare Doors — Hygienic Series | CihanPan Door"
+    : "Hastane ve Sağlık Tesisi Kapıları — Hijyenik Seri | CihanPan Door",
+  "description": isEN
+    ? "Wholesale hygienic hospital doors from Kayseri, Turkey. Antibacterial PVC/HPL surface, 30–60 min fire rating, 32–42 dB sound insulation, CE certified. Factory-direct pricing for hospitals, clinics and healthcare projects."
+    : "Kayseri'den toptan hijyenik hastane kapıları. Antibakteriyel PVC/HPL yüzey, 30–60 dk yangın dayanımı, CE belgeli.",
+  "url": currentUrl,
+  "inLanguage": lang === 'tr' ? 'tr-TR' : lang === 'ar' ? 'ar-SA' : 'en-US',
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": isEN ? "Hospital Door Models" : "Hastane Kapı Modelleri",
+    "numberOfItems": modelCount,
+    "itemListElement": [
+      {
+        "@type": "Product",
+        "name": isEN ? "Hospital Door — Hygienic Series" : "Hastane Kapısı — Hijyenik Seri",
+        "description": isEN
+          ? "Antibacterial PVC/HPL coated hospital door. Moisture-proof, easy-to-clean, 30–60 min fire rating, 32–42 dB sound insulation. CE certified, 5-year warranty. Wholesale from Kayseri, Turkey."
+          : "Antibakteriyel PVC/HPL kaplı hastane kapısı. Çarpma yapmaz, kolay temizlenebilir, 30–60 dk yangın dayanımı, CE belgeli.",
+        "brand": { "@type": "Brand", "name": "CihanPan Door" },
+        "manufacturer": { "@type": "Organization", "name": "CihanPan Door", "url": baseUrl },
+        "material": isEN ? "Antibacterial PVC/HPL Coating over MDF" : "Antibakteriyel PVC/HPL Kaplama / MDF",
+        "category": isEN ? "Hospital Door" : "Hastane Kapısı",
+        "additionalProperty": [
+          { "@type": "PropertyValue", "name": isEN ? "Antibacterial" : "Antibakteriyel", "value": isEN ? "Yes" : "Evet" },
+          { "@type": "PropertyValue", "name": isEN ? "Fire Rating"   : "Yangın Dayanımı", "value": "30–60 min" },
+          { "@type": "PropertyValue", "name": isEN ? "Hygiene Cert"  : "Hijyen Sertifikası", "value": "CE" },
+          { "@type": "PropertyValue", "name": isEN ? "Sound Insulation" : "Ses Yalıtımı", "value": "32–42 dB" },
+        ],
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": currentUrl,
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "offerCount": modelCount.toString(),
+          "businessFunction": "http://purl.org/goodrelations/v1#Sell",
+          "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "63",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      }
+    ]
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": isEN ? [
+    { "@type": "Question", "name": "Why do hospitals need specialised doors?",         "acceptedAnswer": { "@type": "Answer", "text": "Hospital doors must meet strict hygiene standards: antibacterial surfaces, resistance to frequent disinfectant cleaning, moisture-proof construction, sound insulation for patient comfort and fire resistance for safety. Standard interior doors do not provide these properties." }},
+    { "@type": "Question", "name": "Where are hospital doors used?",                   "acceptedAnswer": { "@type": "Answer", "text": "Hospital doors are used in patient rooms, polyclinics, operating theatres, laboratories, X-ray rooms, intensive care units, emergency departments and sterilisation units. Different areas require different technical specifications." }},
+    { "@type": "Question", "name": "What certifications should hospital doors carry?", "acceptedAnswer": { "@type": "Answer", "text": "Hospital doors should carry CE certification, a fire resistance certificate (EN 1634), an antibacterial test report, a sound insulation certificate and comply with relevant health ministry standards. All CihanPan Door hospital models are CE certified." }},
+    { "@type": "Question", "name": "What is the MOQ for wholesale hospital door orders?", "acceptedAnswer": { "@type": "Answer", "text": "Minimum order quantity is 50 units. Volume discounts apply from 100 units. Custom dimensions, glazing options, automatic closer systems and private-label solutions are available for larger healthcare projects." }},
+  ] : []
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": isEN ? "Home"     : "Ana Sayfa",            "item": pageUrl },
+    { "@type": "ListItem", "position": 2, "name": isEN ? "Products" : "Ürünler",              "item": `${pageUrl}/urunlerimiz` },
+    { "@type": "ListItem", "position": 3, "name": isEN ? "Hospital Doors" : "Hastane Kapıları", "item": currentUrl },
+  ]
+};
+
+const allSchemas = [hospitalSchema, faqSchema, breadcrumbSchema];
+
+// ── CATEGORY NAV ──────────────────────────────────────────────────────
+const catNav = [
+  { slug: '/urunlerimiz',               label: isEN ? 'All Products'   : 'Tümü',             active: false },
+  { slug: '/pvc-kapilar',               label: isEN ? 'PVC Doors'      : 'PVC Kapılar',       active: false },
+  { slug: '/laminoks-kapilar',          label: isEN ? 'Laminox Doors'  : 'Laminoks Kapılar',  active: false },
+  { slug: '/elitpan-doors',             label: isEN ? 'Elitpan Doors'  : 'Elitpan Kapılar',   active: false },
+  { slug: '/hospital-doors',            label: isEN ? 'Hospital Doors' : 'Hastane Kapıları',  active: true  },
+  { slug: '/otel-kapilari',             label: isEN ? 'Hotel Doors'    : 'Otel Kapıları',      active: false },
+  { slug: '/yangina-dayanikli-kapilar', label: isEN ? 'Fire-Rated'     : 'Yangın Kapıları',   active: false },
+];
+
+// ── SSR PRODUCT LIST ──────────────────────────────────────────────────
+interface HospitalProduct {
+  id: string;
+  model: string;
+  color: string;
+  label: string;
+  features: string;
+  image: string;
+  alt: string;
+}
+
+const hospitalProducts: HospitalProduct[] = fileNames.map((fn, i) => {
+  const parts = fn.replace('.webp', '').split('-');
+  const model = parts[3];
+  const color = parts.slice(4).join(' ');
+  return {
+    id:       `hospital-${model}`,
+    model,
+    color,
+    label:    `Hospital ${model} · ${color}`,
+    features: i < 3
+      ? (isEN ? 'Hygienic · CE Certified'         : 'Hijyenik · CE Belgeli')
+      : (isEN ? 'Antibacterial · Fire-Rated'       : 'Antibakteriyel · Yangın Güvenlikli'),
+    image:    `/assets/img/hospital-doors/${fn}`,
+    alt:      isEN
+      ? `CihanPan Door Hospital Series ${model} ${color} — Hygienic Healthcare Door`
+      : `CihanPan Door Hastane Serisi ${model} ${color} — Hijyenik Sağlık Tesisi Kapısı`,
+  };
+});
+---
+
+<I18nLayout
+  title={isEN
+    ? "Hospital & Healthcare Doors — Hygienic Series | Wholesale Turkey | CihanPan Door"
+    : "Hastane ve Sağlık Tesisi Kapıları — Hijyenik Seri | Toptan | CihanPan Door"}
+  description={isEN
+    ? "Wholesale hygienic hospital doors from Kayseri, Turkey. Antibacterial PVC/HPL surface, 30–60 min fire rating, 32–42 dB sound insulation, CE & ISO 9001 certified. Factory-direct pricing. MOQ 50 units."
+    : "Kayseri'den toptan hijyenik hastane kapıları. Antibakteriyel yüzey, yangın güvenlikli, CE sertifikalı."}
+  keywords={isEN
+    ? "hospital doors wholesale Turkey, hygienic healthcare door manufacturer, antibacterial door CE certified, fire-rated hospital door Kayseri, healthcare facility door bulk order"
+    : "hastane kapısı, hijyenik kapı, antibakteriyel kapı, yangın dayanımlı kapı, sağlık tesisi kapısı toptan kayseri"}
+  canonical={currentUrl}
+  schema={allSchemas}
+  ogTitle={isEN ? "Hospital & Healthcare Doors — Hygienic Series | CihanPan Door" : "Hastane Kapıları — Hijyenik Seri | CihanPan Door"}
+  ogDescription={isEN
+    ? "Antibacterial, fire-rated hygienic hospital doors. Factory direct from Kayseri. MOQ 50 units."
+    : "Antibakteriyel, yangın güvenlikli hijyenik hastane kapıları. Fabrikadan doğrudan."}
+  ogImage="/assets/img/og/hospital-doors-og.webp"
+>
+  <I18nHeader />
+
+  <main class="lam" id="main-content">
+
+    <!-- ══════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════ -->
+    <section class="lam-hero" aria-labelledby="lam-h1">
+      <div class="lam-hero__bg" aria-hidden="true">
+        <div class="lam-hero__overlay"></div>
+        <div class="lam-hero__glow"></div>
+      </div>
+      <div class="lam-wrap lam-hero__inner">
+        <div>
+          <nav class="lam-breadcrumb" aria-label="Breadcrumb">
+            <a href={pageUrl}>{isEN ? 'Home' : 'Ana Sayfa'}</a>
+            <span aria-hidden="true">›</span>
+            <a href={getLocalizedRoute('/urunlerimiz', lang)}>{isEN ? 'Products' : 'Ürünler'}</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">{isEN ? 'Hospital Doors' : 'Hastane Kapıları'}</span>
+          </nav>
+
+          <span class="lam-eyebrow">
+            <span class="lam-eyebrow__line"></span>
+            {isEN ? 'Healthcare Collection · Hygienic Series' : 'Sağlık Koleksiyonu · Hijyenik Seri'}
+          </span>
+          <h1 class="lam-hero__h1" id="lam-h1">
+            {isEN
+              ? <><em>Hospital &amp; Healthcare Doors</em><br/>Antibacterial · Fire-Rated · CE Certified</>
+              : <><em>Hastane ve Sağlık Tesisi Kapıları</em><br/>Antibakteriyel · Yangın Güvenlikli · CE Belgeli</>}
+          </h1>
+          <p class="lam-hero__lead">
+            {isEN
+              ? 'Factory-direct wholesale hospital doors from Kayseri, Turkey. Antibacterial PVC/HPL coating over moisture-resistant MDF core. 30–60 min fire rating, 32–42 dB sound insulation. CE & ISO 9001 certified. MOQ 50 units.'
+              : 'Kayseri fabrikasından toptan hastane kapıları. Nem dayanımlı MDF özlü antibakteriyel PVC/HPL kaplama. 30–60 dk yangın dayanımı, 32–42 dB ses yalıtımı. CE ve ISO 9001 sertifikalı.'}
+          </p>
+          <div class="lam-hero__tags">
+            <span class="lam-htag">✓ {isEN ? 'Antibacterial Surface' : 'Antibakteriyel Yüzey'}</span>
+            <span class="lam-htag">✓ {isEN ? '30–60 min Fire Rating' : '30–60 dk Yangın'}</span>
+            <span class="lam-htag">✓ {isEN ? '32–42 dB Sound' : '32–42 dB Ses'}</span>
+            <span class="lam-htag">✓ CE & ISO 9001</span>
+            <span class="lam-htag">✓ MOQ 50</span>
+          </div>
+          <div class="lam-hero__actions">
+            <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--gold">
+              {isEN ? 'Get a Free Quote' : 'Ücretsiz Teklif Al'}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#catalogue" class="lam-btn lam-btn--ghost">
+              {isEN ? 'Browse Models' : 'Modelleri Gör'}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="lam-wrap">
+        <div class="lam-statsbar">
+          <div class="lam-sitem"><strong>{modelCount}</strong><span>{isEN ? 'Models' : 'Model'}</span></div>
+          <div class="lam-sdiv"></div>
+          <div class="lam-sitem"><strong>A+</strong><span>{isEN ? 'Hygiene' : 'Hijyen'}</span></div>
+          <div class="lam-sdiv"></div>
+          <div class="lam-sitem"><strong>60<sup>min</sup></strong><span>{isEN ? 'Fire Rating' : 'Yangın'}</span></div>
+          <div class="lam-sdiv"></div>
+          <div class="lam-sitem"><strong>CE</strong><span>{isEN ? 'Certified' : 'Sertifikalı'}</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CATEGORY NAV + PRODUCT GRID
+    ══════════════════════════════════════════ -->
+    <section class="lam-sec lam-sec--white" id="catalogue" aria-labelledby="catalogue-h2">
+      <div class="lam-wrap">
+
+        <nav class="lam-catnav" aria-label={isEN ? 'Door categories' : 'Kapı kategorileri'}>
+          {catNav.map(cat => (
+            <a
+              href={getLocalizedRoute(cat.slug, lang)}
+              class={`lam-catbtn${cat.active ? ' lam-catbtn--active' : ''}`}
+              aria-current={cat.active ? 'page' : undefined}
+            >
+              {cat.label}
+            </a>
+          ))}
+        </nav>
+
+        <div class="lam-head">
+          <span class="lam-tag">{isEN ? 'Hospital Door Collection' : 'Hastane Kapı Koleksiyonu'}</span>
+          <h2 id="catalogue-h2">
+            {isEN ? 'Hospital & Healthcare Door Models' : 'Hastane ve Sağlık Tesisi Kapı Modelleri'}
+          </h2>
+          <p>
+            {isEN
+              ? `${modelCount} hygienic hospital door models — series 501–506. Antibacterial, fire-rated and sound-insulated. Click any model to request a wholesale quote.`
+              : `${modelCount} hijyenik hastane kapısı modeli — 501–506 serisi. Antibakteriyel, yangın güvenlikli ve ses yalıtımlı.`}
+          </p>
+        </div>
+
+        <!-- Quote CTA -->
+        <div class="lam-quote-row">
+          <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--navy">
+            {isEN ? 'Request Healthcare Project Quote' : 'Hastane Proje Teklifi Al'}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <span class="lam-quote-note">{isEN ? 'Response within 24 hours · MOQ 50 units' : '24 saat içinde yanıt · Min. 50 adet'}</span>
+        </div>
+
+        <!-- Products Grid — SSR rendered for SEO -->
+        <div class="lam-grid lam-grid--wide" id="productsGrid" aria-label={isEN ? 'Hospital door models' : 'Hastane kapı modelleri'}>
+          {hospitalProducts.map((product, i) => (
+            <article class="lam-card" aria-label={product.label}>
+              <div class="lam-card__img">
+                <img
+                  src={product.image}
+                  alt={product.alt}
+                  width="240"
+                  height="320"
+                  loading={i < 4 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
+              </div>
+              <div class="lam-card__body">
+                <p class="lam-card__name">{product.label}</p>
+                <span class="lam-card__badge">{product.features}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SEO CONTENT + SIDEBAR
+    ══════════════════════════════════════════ -->
+    <section class="lam-sec lam-sec--cream" aria-labelledby="content-h2">
+      <div class="lam-wrap lam-content-wrap">
+
+        <article class="lam-article">
+          <h2 id="content-h2">
+            {isEN
+              ? 'Why Hospital Doors Require Specialised Solutions'
+              : 'Hastane Kapıları Neden Özel Çözüm Gerektirir'}
+          </h2>
+
+          <p>
+            {isEN
+              ? (<><strong>CihanPan Door's hospital series</strong> is engineered specifically for healthcare environments, where standard interior doors are simply not sufficient. Each model combines an <em>antibacterial PVC/HPL coating</em> with a moisture-resistant MDF core to deliver a hygienic, durable and safe door solution for wholesale buyers worldwide.</>)
+              : (<><strong>CihanPan Door'un hastane serisi</strong>, standart iç kapıların yetersiz kaldığı sağlık ortamları için özel olarak tasarlanmıştır. Her model, dünya genelinde toptan alıcılar için hijyenik, dayanıklı ve güvenli bir kapı çözümü sunan <em>antibakteriyel PVC/HPL kaplama</em> ile nem dayanımlı MDF özü bir arada sunar.</>)}
+          </p>
+
+          <h3>{isEN ? 'Key Features for Healthcare Environments' : 'Sağlık Ortamları İçin Temel Özellikler'}</h3>
+          <ul class="lam-checklist">
+            <li><strong>{isEN ? 'Antibacterial Surface:' : 'Antibakteriyel Yüzey:'}</strong> {isEN ? 'Specialist coating inhibits bacterial growth — critical for infection control in clinical settings.' : 'Özel kaplama bakteri üremesini engeller — klinik ortamlarda enfeksiyon kontrolü için kritiktir.'}</li>
+            <li><strong>{isEN ? 'Disinfectant-Resistant:' : 'Dezenfektan Dayanımı:'}</strong> {isEN ? 'Surface withstands repeated cleaning with hospital-grade disinfectants without degrading.' : 'Yüzey, hastane sınıfı dezenfektanlarla tekrarlanan temizliğe bozulmadan dayanır.'}</li>
+            <li><strong>{isEN ? 'Moisture-Proof Construction:' : 'Su Dayanımlı Yapı:'}</strong> {isEN ? 'Moisture-resistant MDF core prevents warping in high-humidity clinical environments.' : 'Nem dayanımlı MDF öz, yüksek nemli klinik ortamlarda çarpma yapmaz.'}</li>
+            <li><strong>{isEN ? 'Sound Insulation 32–42 dB:' : 'Ses Yalıtımı 32–42 dB:'}</strong> {isEN ? 'Protects patient privacy and reduces noise transmission between wards and consultation rooms.' : 'Hasta mahremiyetini korur ve koğuşlar ile muayene odaları arasındaki gürültü iletimini azaltır.'}</li>
+            <li><strong>{isEN ? 'Fire Rating 30–60 min:' : 'Yangın Dayanımı 30–60 dk:'}</strong> {isEN ? 'Complies with EN 1634 fire resistance standards for safe evacuation routes in healthcare facilities.' : 'Sağlık tesislerinde güvenli tahliye yolları için EN 1634 yangın dayanım standartlarına uygundur.'}</li>
+            <li><strong>{isEN ? 'CE Certified:' : 'CE Belgeli:'}</strong> {isEN ? 'All models are CE certified and comply with EU healthcare facility requirements.' : 'Tüm modeller CE belgeli ve AB sağlık tesisi gereksinimlerine uygundur.'}</li>
+          </ul>
+
+          <h3>{isEN ? 'Healthcare Applications' : 'Sağlık Tesisi Kullanım Alanları'}</h3>
+          <p>{isEN ? 'CihanPan Door hospital series is specified for:' : 'CihanPan Door hastane serisi şu alanlarda belirlenmektedir:'}</p>
+          <ul class="lam-checklist">
+            <li><strong>{isEN ? 'Patient Rooms:' : 'Hasta Odaları:'}</strong> {isEN ? 'Hygienic surface and 32+ dB sound insulation for patient comfort and privacy.' : 'Hasta konforu ve mahremiyeti için hijyenik yüzey ve 32+ dB ses yalıtımı.'}</li>
+            <li><strong>{isEN ? 'Operating Theatres:' : 'Ameliyathaneler:'}</strong> {isEN ? 'Sterile-environment compatible surface, hermetic sealing options available.' : 'Steril ortamla uyumlu yüzey, hermetik sızdırmazlık seçeneği mevcuttur.'}</li>
+            <li><strong>{isEN ? 'Polyclinics & Outpatient:' : 'Poliklinikler:'}</strong> {isEN ? 'High-traffic durability with antibacterial protection for busy outpatient areas.' : 'Yoğun poliklinik alanları için antibakteriyel koruma ile yüksek trafik dayanıklılığı.'}</li>
+            <li><strong>{isEN ? 'Laboratories:' : 'Laboratuvarlar:'}</strong> {isEN ? 'Chemical-resistant surface suitable for labs with frequent solvent or reagent use.' : 'Sık solvent veya reaktif kullanılan laboratuvarlara uygun kimyasal dirençli yüzey.'}</li>
+            <li><strong>{isEN ? 'Intensive Care Units:' : 'Yoğun Bakım:'}</strong> {isEN ? 'Maximum hygiene with low-maintenance surface for around-the-clock clinical use.' : 'Kesintisiz klinik kullanım için düşük bakımlı yüzeyle maksimum hijyen.'}</li>
+            <li><strong>{isEN ? 'Emergency Departments:' : 'Acil Servis:'}</strong> {isEN ? 'Impact-resistant construction for high-footfall, high-impact emergency environments.' : 'Yoğun geçişli, darbe yoğun acil ortamlar için darbeye dayanıklı yapı.'}</li>
+          </ul>
+
+          <h3>{isEN ? 'Technical Specifications' : 'Teknik Özellikler'}</h3>
+          <ul class="lam-checklist">
+            <li>{isEN ? 'Surface: Antibacterial PVC/HPL coating' : 'Yüzey: Antibakteriyel PVC/HPL kaplama'}</li>
+            <li>{isEN ? 'Core: Moisture-resistant MDF' : 'Öz: Nem dayanımlı MDF'}</li>
+            <li>{isEN ? 'Standard sizes: 70×200 cm · 80×200 cm · 140×200 cm (double leaf) — custom sizes available' : 'Standart boyutlar: 70×200 cm · 80×200 cm · 140×200 cm (çift kanat) — özel boyut mevcut'}</li>
+            <li>{isEN ? 'Fire resistance: 30–60 minutes (EN 1634)' : 'Yangın dayanımı: 30–60 dakika (EN 1634)'}</li>
+            <li>{isEN ? 'Sound insulation: 32–42 dB' : 'Ses yalıtımı: 32–42 dB'}</li>
+            <li>{isEN ? 'Hardware: Stainless steel hinges, antibacterial handles, auto-closer' : 'Aksesuar: Paslanmaz menteşe, antibakteriyel kol, otomatik kapanma'}</li>
+            <li>CE & ISO 9001 {isEN ? 'certified' : 'sertifikalı'}</li>
+            <li>{isEN ? '5-year manufacturer warranty' : '5 yıl üretici garantisi'}</li>
+          </ul>
+        </article>
+
+        <!-- Sidebar -->
+        <aside class="lam-sidebar">
+          <div class="lam-kpis">
+            <div class="lam-kpi"><strong>{modelCount}</strong><span>{isEN ? 'Models' : 'Model'}</span></div>
+            <div class="lam-kpi"><strong>A+</strong><span>{isEN ? 'Hygiene' : 'Hijyen'}</span></div>
+            <div class="lam-kpi"><strong>CE</strong><span>{isEN ? 'Certified' : 'Sertifikalı'}</span></div>
+            <div class="lam-kpi"><strong>5yr</strong><span>{isEN ? 'Warranty' : 'Garanti'}</span></div>
+          </div>
+
+          <div class="lam-contact-card">
+            <span class="lam-tag">{isEN ? 'Healthcare Specialist' : 'Sağlık Uzmanı'}</span>
+            <h3>{isEN ? 'Request a Project Quote' : 'Proje Teklifi Al'}</h3>
+            <p>{isEN ? 'Share your facility type, quantity and requirements — our healthcare specialist responds within 24 hours.' : 'Tesis türünüzü, adeti ve gereksinimlerinizi paylaşın — 24 saat içinde yanıt veririz.'}</p>
+            <div class="lam-contact-btns">
+              <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--gold lam-btn--sm">
+                {isEN ? 'Contact Form' : 'İletişim Formu'}
+              </a>
+              <a href="https://wa.me/905441690038" target="_blank" rel="noopener" class="lam-btn lam-btn--wa lam-btn--sm">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.89 3.488"/></svg>
+                WhatsApp
+              </a>
+              <a href="tel:+905441690038" class="lam-btn lam-btn--outline lam-btn--sm">
+                📞 +90 544 169 00 38
+              </a>
+            </div>
+          </div>
+
+          <div class="lam-features-card">
+            <h3>{isEN ? 'Certifications & Services' : 'Sertifikalar ve Hizmetler'}</h3>
+            <ul class="lam-feat-list">
+              <li>🏅 {isEN ? 'CE & ISO 9001 certified'         : 'CE & ISO 9001 belgeli'}</li>
+              <li>🔥 {isEN ? 'Fire resistance certificate'      : 'Yangın dayanım sertifikası'}</li>
+              <li>🧪 {isEN ? 'Antibacterial test report'        : 'Antibakteriyel test raporu'}</li>
+              <li>🔇 {isEN ? 'Sound insulation certificate'     : 'Ses yalıtım sertifikası'}</li>
+              <li>📐 {isEN ? 'Custom sizes & configurations'    : 'Özel ölçü ve konfigürasyon'}</li>
+              <li>🤝 {isEN ? 'Project consulting available'     : 'Proje danışmanlığı mevcut'}</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         FAQ
+    ══════════════════════════════════════════ -->
+    <section class="lam-sec lam-sec--white" aria-labelledby="faq-h2">
+      <div class="lam-wrap lam-faq-wrap">
+        <div class="lam-head">
+          <span class="lam-tag">FAQ</span>
+          <h2 id="faq-h2">{isEN ? 'Frequently Asked Questions' : 'Sık Sorulan Sorular'}</h2>
+        </div>
+        <div class="lam-faqs">
+          {(isEN ? [
+            { q: 'Why do hospitals need specialised doors?',          a: 'Hospital doors must meet strict hygiene standards: antibacterial surfaces, resistance to frequent disinfectant cleaning, moisture-proof construction, sound insulation for patient comfort and fire resistance for safety. Standard interior doors do not provide these properties.' },
+            { q: 'Where are hospital doors used?',                    a: 'Hospital doors are used in patient rooms, polyclinics, operating theatres, laboratories, X-ray rooms, intensive care units, emergency departments and sterilisation units. Different areas require different technical specifications — CihanPan Door offers project consultation to match the right model to each area.' },
+            { q: 'What certifications should hospital doors carry?',  a: 'Hospital doors should carry CE certification, a fire resistance certificate (EN 1634), an antibacterial test report, a sound insulation certificate and comply with relevant health ministry standards. All CihanPan Door hospital models are CE certified and come with full documentation.' },
+            { q: 'What is the MOQ for wholesale hospital door orders?', a: 'Minimum order quantity is 50 units. Volume discounts apply from 100 units. Custom dimensions, glazing options, automatic closer systems and private-label solutions are available for larger healthcare projects.' },
+          ] : [
+            { q: 'Hastane kapıları neden özel olmalıdır?',             a: 'Hastane kapıları antibakteriyel, kolay temizlenebilir ve hijyenik olmalıdır. Sık dezenfektan kullanımına dayanıklı, nem geçirmez, ses yalıtımlı ve yangın güvenlikli malzemelerden üretilmelidir.' },
+            { q: 'Hastane kapıları hangi alanlarda kullanılır?',       a: 'Hasta odaları, poliklinikler, ameliyathaneler, laboratuvarlar, röntgen odaları, yoğun bakım, acil servis ve sterilizasyon ünitelerinde kullanılır. Her alan için farklı teknik özelliklere sahip modeller mevcuttur.' },
+            { q: 'Hastane kapıları hangi sertifikalara sahip olmalıdır?', a: 'CE belgesi, yangın dayanım sertifikası (EN 1634), antibakteriyel test raporu, ses yalıtım sertifikası ve ilgili Sağlık Bakanlığı standartlarına uygunluk gereklidir. Tüm CihanPan Door hastane modelleri CE belgeli ve tam belgelidir.' },
+            { q: 'Toptan siparişlerde MOQ nedir?',                     a: 'Minimum sipariş miktarı 50 adettir. 100+ adet için hacim indirimleri geçerlidir. Büyük sağlık tesisi projeleri için özel ölçü, cam açıklık, otomatik kapanma ve özel etiket çözümleri mevcuttur.' },
+          ]).map(item => (
+            <details class="lam-faq">
+              <summary class="lam-faq__q">
+                {item.q}
+                <span class="lam-faq__arrow" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                </span>
+              </summary>
+              <p class="lam-faq__a">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CTA BAND
+    ══════════════════════════════════════════ -->
+    <section class="lam-cta" aria-labelledby="cta-h2">
+      <div class="lam-cta__glow" aria-hidden="true"></div>
+      <div class="lam-wrap lam-cta__inner">
+        <div class="lam-cta__text">
+          <span class="lam-tag lam-tag--gold">{isEN ? 'Healthcare Sourcing' : 'Sağlık Tesisi Tedariki'}</span>
+          <h2 id="cta-h2">
+            {isEN
+              ? 'Request a Hospital Door\nWholesale Quote'
+              : 'Hastane Kapısı Toptan\nFiyat Teklifi Alın'}
+          </h2>
+          <p>
+            {isEN
+              ? 'Share your facility type, door models and quantities. Factory-direct pricing with full CE, fire rating and antibacterial documentation within 24 hours.'
+              : 'Tesis türünüzü, kapı modellerini ve adeti paylaşın. 24 saat içinde CE, yangın ve antibakteriyel belgeli fiyat teklifi.'}
+          </p>
+        </div>
+        <div class="lam-cta__btns">
+          <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--gold">
+            {isEN ? 'Get a Free Quote' : 'Ücretsiz Teklif Al'}
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href={getLocalizedRoute('/urunlerimiz', lang)} class="lam-btn lam-btn--ghost">
+            {isEN ? 'All Products' : 'Tüm Ürünler'}
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <I18nFooter />
+</I18nLayout>
+
+<style>
+  /* ── TOKENS — laminoks-doors.astro ile özdeş ── */
+  .lam {
+    --navy:     #0f2347;
+    --navy-mid: #1a3a6e;
+    --navy-l:   #1e4a8a;
+    --gold:     #c9a84c;
+    --gold-l:   #e2bc6a;
+    --cream:    #faf8f4;
+    --slate:    #607080;
+    --text:     #0f1929;
+    --body:     #3d4f63;
+    --bdr:      #e4eaf4;
+    --white:    #ffffff;
+    --radius:   14px;
+    --green:    #16a34a;
+
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text);
+  }
+
+  /* ── LAYOUT ── */
+  .lam-wrap { max-width: 1160px; margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 2.5rem); width: 100%; }
+  .lam-sec         { padding-block: clamp(4rem, 8vw, 6.5rem); }
+  .lam-sec--white  { background: var(--white); }
+  .lam-sec--cream  { background: var(--cream); }
+
+  /* ── SECTION HEAD ── */
+  .lam-head { text-align: center; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+  .lam-head h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700;
+    color: var(--text); margin: 0.3rem 0 0.7rem; line-height: 1.2;
+  }
+  .lam-head p { color: var(--slate); font-size: 1rem; max-width: 560px; margin-inline: auto; line-height: 1.7; }
+
+  .lam-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .lam-tag--gold { color: rgba(201,168,76,0.9); }
+
+  /* ── BUTTONS ── */
+  .lam-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.9rem; font-weight: 600; padding: 0.9rem 1.75rem;
+    border-radius: 8px; text-decoration: none; white-space: nowrap;
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
+    cursor: pointer; border: none;
+  }
+  .lam-btn--gold    { background: var(--gold);  color: var(--navy);  font-weight: 700; }
+  .lam-btn--gold:hover  { background: var(--gold-l); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(201,168,76,0.4); }
+  .lam-btn--navy    { background: var(--navy);  color: var(--white); font-weight: 700; }
+  .lam-btn--navy:hover  { background: var(--navy-mid); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(15,35,71,0.3); }
+  .lam-btn--ghost   { background: transparent; color: rgba(255,255,255,0.85); border: 1.5px solid rgba(255,255,255,0.25); }
+  .lam-btn--ghost:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+  .lam-btn--wa      { background: #16a34a; color: var(--white); }
+  .lam-btn--wa:hover { background: #15803d; transform: translateY(-2px); }
+  .lam-btn--outline { background: transparent; color: var(--navy); border: 1.5px solid var(--bdr); }
+  .lam-btn--outline:hover { border-color: var(--navy); transform: translateY(-2px); }
+  .lam-btn--sm      { font-size: 0.85rem; padding: 0.65rem 1.25rem; }
+
+  /* ── HERO ── */
+  .lam-hero {
+    position: relative; min-height: 75vh; display: flex;
+    flex-direction: column; justify-content: center;
+    padding-top: 70px; overflow: hidden;
+  }
+  .lam-hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .lam-hero__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(10,26,58,0.96) 0%, rgba(15,35,71,0.88) 60%, rgba(26,58,110,0.82) 100%);
+  }
+  .lam-hero__glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 80% 30%, rgba(201,168,76,0.09) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 80% at 10% 70%, rgba(30,74,138,0.3) 0%, transparent 60%);
+  }
+  .lam-hero__inner {
+    position: relative; z-index: 1;
+    padding-top: clamp(2.5rem, 6vw, 4rem);
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+  }
+  .lam-breadcrumb {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 1.5rem; flex-wrap: wrap;
+  }
+  .lam-breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+  .lam-breadcrumb a:hover { color: var(--gold-l); }
+  .lam-breadcrumb span[aria-current] { color: var(--gold); }
+  .lam-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
+  }
+  .lam-eyebrow__line { display: block; width: 28px; height: 1px; background: var(--gold); opacity: 0.5; flex-shrink: 0; }
+  .lam-hero__h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem); font-weight: 900;
+    color: var(--white); line-height: 1.1; margin: 0 0 1.2rem;
+  }
+  .lam-hero__h1 em { font-style: normal; color: var(--gold); }
+  .lam-hero__lead { font-size: 1.05rem; color: rgba(255,255,255,0.65); line-height: 1.8; max-width: 560px; margin: 0 0 1.5rem; }
+  .lam-hero__tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+  .lam-htag {
+    display: inline-block; padding: 0.3rem 0.85rem;
+    border: 1px solid rgba(201,168,76,0.35); background: rgba(201,168,76,0.08);
+    color: var(--gold-l); font-size: 0.82rem; font-weight: 600; border-radius: 4px;
+  }
+  .lam-hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  /* Stats bar */
+  .lam-statsbar {
+    position: relative; z-index: 1;
+    display: flex; align-items: center; flex-wrap: wrap; gap: 0;
+    background: rgba(255,255,255,0.06); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
+    padding: 1.5rem 2rem; margin-top: 2rem;
+  }
+  .lam-sitem { display: flex; flex-direction: column; flex: 1; min-width: 80px; padding-inline: 1rem; text-align: center; }
+  .lam-sitem:first-child { padding-left: 0; }
+  .lam-sitem:last-child  { padding-right: 0; }
+  .lam-sitem strong {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.6rem; font-weight: 900; color: var(--gold); line-height: 1; display: block;
+  }
+  .lam-sitem strong sup { font-size: 0.7em; }
+  .lam-sitem span { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 0.3rem; display: block; }
+  .lam-sdiv { width: 1px; height: 32px; background: rgba(255,255,255,0.12); flex-shrink: 0; }
+
+  /* ── CATEGORY NAV ── */
+  .lam-catnav {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-bottom: 2.5rem; padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--bdr);
+  }
+  .lam-catbtn {
+    background: var(--white); color: var(--body); border: 1.5px solid var(--bdr);
+    padding: 0.5rem 1.1rem; border-radius: 30px;
+    font-size: 0.875rem; font-weight: 600; font-family: 'Inter', system-ui, sans-serif;
+    text-decoration: none; transition: all 0.2s; white-space: nowrap;
+  }
+  .lam-catbtn:hover { border-color: var(--navy); color: var(--navy); }
+  .lam-catbtn--active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+
+  .lam-quote-row { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+  .lam-quote-note { font-size: 0.875rem; color: var(--slate); }
+
+  /* ── PRODUCTS GRID ── */
+  .lam-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.25rem; min-height: 300px;
+  }
+  .lam-grid--wide {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+  .lam-card {
+    background: var(--white); border: 1px solid var(--bdr);
+    border-radius: var(--radius); overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  }
+  .lam-card:hover {
+    transform: translateY(-4px); box-shadow: 0 16px 36px rgba(15,35,71,0.1);
+    border-color: rgba(201,168,76,0.35);
+  }
+  .lam-card__img {
+    aspect-ratio: 3/4; background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; padding: 0.5rem;
+  }
+  .lam-card__img img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.35s; }
+  .lam-card:hover .lam-card__img img { transform: scale(1.04); }
+  .lam-card__body { padding: 0.75rem 1rem 1rem; }
+  .lam-card__name {
+    font-size: 0.82rem; font-weight: 600;
+    color: var(--text); text-align: center; line-height: 1.4; margin: 0 0 0.5rem;
+  }
+  .lam-card__badge {
+    display: block; text-align: center;
+    font-size: 0.72rem; font-weight: 600; color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── SEO CONTENT ── */
+  .lam-content-wrap { display: grid; grid-template-columns: 1fr 320px; gap: 4rem; align-items: start; }
+  .lam-article { background: var(--white); padding: 2.5rem; border-radius: var(--radius); border: 1px solid var(--bdr); }
+  .lam-article h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.6rem, 2.5vw, 2.1rem); font-weight: 700;
+    color: var(--text); margin: 0 0 1.25rem; line-height: 1.2;
+  }
+  .lam-article h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; font-weight: 700; color: var(--text); margin: 2rem 0 0.75rem; }
+  .lam-article p  { font-size: 0.95rem; color: var(--body); line-height: 1.8; margin: 0 0 1rem; }
+  .lam-article strong { color: var(--navy); }
+
+  .lam-checklist { list-style: none; padding: 0; margin: 0 0 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .lam-checklist li { font-size: 0.925rem; color: var(--body); line-height: 1.6; padding-left: 1.5rem; position: relative; }
+  .lam-checklist li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+
+  /* Sidebar */
+  .lam-sidebar { display: flex; flex-direction: column; gap: 1.5rem; position: sticky; top: 90px; }
+  .lam-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--bdr); border: 1px solid var(--bdr); border-radius: var(--radius); overflow: hidden; }
+  .lam-kpi { background: var(--white); padding: 1.25rem; text-align: center; transition: background 0.2s; }
+  .lam-kpi:hover { background: var(--cream); }
+  .lam-kpi strong { display: block; font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; font-weight: 900; color: var(--navy); line-height: 1; margin-bottom: 0.3rem; }
+  .lam-kpi strong sup { font-size: 0.65em; }
+  .lam-kpi span { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); }
+
+  .lam-contact-card { background: var(--navy); border-radius: var(--radius); padding: 1.75rem; }
+  .lam-contact-card .lam-tag { color: rgba(201,168,76,0.85); }
+  .lam-contact-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; font-weight: 700; color: var(--white); margin: 0.3rem 0 0.6rem; }
+  .lam-contact-card p  { font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.6; margin: 0 0 1.25rem; }
+  .lam-contact-btns { display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .lam-features-card { background: var(--white); border: 1px solid var(--bdr); border-radius: var(--radius); padding: 1.5rem; }
+  .lam-features-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 1rem; }
+  .lam-feat-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+  .lam-feat-list li { font-size: 0.9rem; color: var(--body); }
+
+  /* ── FAQ ── */
+  .lam-faq-wrap { max-width: 780px; }
+  .lam-faqs { display: flex; flex-direction: column; gap: 0.75rem; }
+  .lam-faq { background: var(--white); border: 1px solid var(--bdr); border-radius: 10px; overflow: hidden; transition: border-color 0.2s; }
+  .lam-faq[open] { border-color: rgba(201,168,76,0.35); }
+  .lam-faq__q {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 1.1rem 1.5rem; cursor: pointer;
+    font-weight: 600; font-size: 0.95rem; color: var(--text);
+    list-style: none; user-select: none; transition: background 0.15s;
+  }
+  .lam-faq__q:hover { background: var(--cream); }
+  .lam-faq__q::-webkit-details-marker { display: none; }
+  .lam-faq__arrow { flex-shrink: 0; color: var(--slate); transition: transform 0.25s; }
+  .lam-faq[open] .lam-faq__arrow { transform: rotate(180deg); color: var(--gold); }
+  .lam-faq__a { padding: 1rem 1.5rem 1.25rem; font-size: 0.925rem; color: var(--body); line-height: 1.75; margin: 0; border-top: 1px solid var(--bdr); }
+
+  /* ── CTA BAND ── */
+  .lam-cta { position: relative; background: var(--navy); overflow: hidden; padding: clamp(4rem, 8vw, 6rem) 0; }
+  .lam-cta__glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 55% 80% at 105% 50%, rgba(201,168,76,0.14) 0%, transparent 65%),
+      linear-gradient(140deg, #08192e 0%, var(--navy) 100%);
+    pointer-events: none;
+  }
+  .lam-cta__inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap; }
+  .lam-cta__text h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.75rem, 3vw, 2.4rem); font-weight: 700;
+    color: var(--white); margin: 0.35rem 0 0.7rem; line-height: 1.2; white-space: pre-line;
+  }
+  .lam-cta__text p { color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.7; max-width: 420px; margin: 0; }
+  .lam-cta__btns { display: flex; gap: 1rem; flex-wrap: wrap; flex-shrink: 0; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .lam-content-wrap { grid-template-columns: 1fr; }
+    .lam-sidebar { position: static; }
+    .lam-kpis { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .lam-hero { min-height: auto; }
+    .lam-hero__actions { flex-direction: column; }
+    .lam-catnav { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 1rem; scrollbar-width: thin; }
+    .lam-catnav::-webkit-scrollbar { height: 4px; }
+    .lam-catnav::-webkit-scrollbar-thumb { background: var(--bdr); border-radius: 4px; }
+    .lam-quote-row { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .lam-cta__inner { flex-direction: column; text-align: center; }
+    .lam-cta__btns  { justify-content: center; }
+    .lam-grid--wide { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+  }
+  @media (max-width: 480px) {
+    .lam-grid, .lam-grid--wide { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    .lam-kpis { grid-template-columns: repeat(2, 1fr); }
+    .lam-statsbar { padding: 1rem 1.25rem; }
+    .lam-sdiv { display: none; }
+    .lam-sitem { padding-inline: 0.5rem; }
+  }
+
+  /* ── RTL ── */
+  html[dir="rtl"] .lam-eyebrow__line { order: -1; }
+  html[dir="rtl"] .lam-btn svg       { transform: scaleX(-1); }
+  html[dir="rtl"] .lam-checklist li  { padding-left: 0; padding-right: 1.5rem; }
+  html[dir="rtl"] .lam-checklist li::before { left: auto; right: 0; }
+</style>

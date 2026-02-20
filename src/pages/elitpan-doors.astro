@@ -1,0 +1,740 @@
+---
+// src/pages/elitpan-doors.astro
+import I18nLayout from '../layouts/I18nLayout.astro';
+import I18nHeader from '../components/I18nHeader.astro';
+import I18nFooter from '../components/I18nFooter.astro';
+import { getLangFromUrl, useTranslations, getLocalizedRoute } from '../i18n/utils';
+
+const lang  = getLangFromUrl(Astro.url);
+const t     = useTranslations(lang);
+const isEN  = lang === 'en';
+
+const baseUrl    = 'https://cihanpandoor.netlify.app';
+const pageUrl    = lang === 'tr' ? baseUrl : `${baseUrl}/${lang}`;
+const currentUrl = `${pageUrl}/elitpan-doors`;
+
+// ── FILE LIST ─────────────────────────────────────────────────────────
+const fileNames = [
+  "CihanpanDoor-Elitpan-Serisi-301.webp",
+  "CihanpanDoor-Elitpan-Serisi-302.webp",
+  "CihanpanDoor-Elitpan-Serisi-303.webp",
+  "CihanpanDoor-Elitpan-Serisi-304.webp",
+  "CihanpanDoor-Elitpan-Serisi-305.webp",
+  "CihanpanDoor-Elitpan-Serisi-306.webp",
+  "CihanpanDoor-Elitpan-Serisi-307.webp",
+  "CihanpanDoor-Elitpan-Serisi-308.webp",
+  "CihanpanDoor-Elitpan-Serisi-309.webp",
+  "CihanpanDoor-Elitpan-Serisi-310.webp",
+  "CihanpanDoor-Elitpan-Serisi-311.webp",
+  "CihanpanDoor-Elitpan-Serisi-312.webp",
+  "CihanpanDoor-Elitpan-Serisi-313.webp",
+  "CihanpanDoor-Elitpan-Serisi-314.webp",
+  "CihanpanDoor-Elitpan-Serisi-315.webp",
+  "CihanpanDoor-Elitpan-Serisi-316.webp",
+  "CihanpanDoor-Elitpan-Serisi-317.webp",
+  "CihanpanDoor-Elitpan-Serisi-318.webp",
+  "CihanpanDoor-Elitpan-Serisi-319.webp",
+  "CihanpanDoor-Elitpan-Serisi-320.webp",
+  "CihanpanDoor-Elitpan-Serisi-321.webp",
+  "CihanpanDoor-Elitpan-Serisi-322.webp",
+  "CihanpanDoor-Elitpan-Serisi-323.webp",
+  "CihanpanDoor-Elitpan-Serisi-324.webp",
+  "CihanpanDoor-Elitpan-Serisi-325.webp",
+  "CihanpanDoor-Elitpan-Serisi-326.webp",
+];
+
+const modelCount = fileNames.length;
+
+// ── SCHEMA ────────────────────────────────────────────────────────────
+const elitpanSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": isEN
+    ? `Elitpan UV Interior Doors — ${modelCount}+ Models | CihanPan Door`
+    : `Elitpan UV İç Oda Kapıları — ${modelCount}+ Model | CihanPan Door`,
+  "description": isEN
+    ? `Wholesale UV-coated Elitpan interior doors from Kayseri, Turkey. Antibacterial, scratch-resistant, ${modelCount}+ models, CE certified, factory-direct pricing for hotels, hospitals and commercial projects.`
+    : `Kayseri'den toptan UV kaplı Elitpan iç oda kapıları. Antibakteriyel, çizilmez, ${modelCount}+ model, CE belgeli.`,
+  "url": currentUrl,
+  "inLanguage": lang === 'tr' ? 'tr-TR' : lang === 'ar' ? 'ar-SA' : 'en-US',
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": isEN ? "Elitpan Door Models" : "Elitpan Kapı Modelleri",
+    "numberOfItems": modelCount,
+    "itemListElement": [
+      {
+        "@type": "Product",
+        "name": isEN ? "Elitpan UV Interior Door" : "Elitpan UV İç Oda Kapısı",
+        "description": isEN
+          ? "UV-coated MDF core interior door. Antibacterial, scratch-resistant, moisture-proof. CE certified, 5-year warranty. Wholesale manufacturer from Kayseri, Turkey."
+          : "UV kaplı MDF özlü iç kapı. Antibakteriyel, çizilmez, su dayanımlı. CE belgeli, 5 yıl garanti.",
+        "brand": { "@type": "Brand", "name": "CihanPan Door" },
+        "manufacturer": { "@type": "Organization", "name": "CihanPan Door", "url": baseUrl },
+        "material": isEN ? "UV Coating over MDF" : "UV Kaplama / MDF",
+        "category": isEN ? "Interior Door" : "İç Oda Kapısı",
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": currentUrl,
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "offerCount": modelCount.toString(),
+          "businessFunction": "http://purl.org/goodrelations/v1#Sell",
+          "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "87",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      }
+    ]
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": isEN ? [
+    { "@type": "Question", "name": "What is an Elitpan door?", "acceptedAnswer": { "@type": "Answer", "text": "Elitpan doors are premium interior doors with a UV-coated MDF core. The UV finish provides an antibacterial, highly scratch-resistant and moisture-proof surface — ideal for hospitals, hotels, commercial buildings and upscale residential projects." }},
+    { "@type": "Question", "name": "What is the difference between Elitpan and Laminox doors?", "acceptedAnswer": { "@type": "Answer", "text": "Both series use an MDF core. Elitpan doors feature a UV-cured coating that delivers exceptional gloss, colour fastness and antibacterial properties. Laminox (HPL) doors use a high-pressure melamine laminate with superior scratch and impact resistance. Elitpan is preferred when premium gloss finish and hygiene are priorities." }},
+    { "@type": "Question", "name": "Are Elitpan doors suitable for humid environments?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The UV coating and moisture-resistant MDF core make Elitpan doors well-suited for bathrooms, kitchens and other moderately humid interior spaces. For extremely wet environments, additional sealing is recommended." }},
+    { "@type": "Question", "name": "What is the MOQ for wholesale Elitpan door orders?", "acceptedAnswer": { "@type": "Answer", "text": "Minimum order quantity is 50 units. Volume discounts apply from 200 units. Custom dimensions, glass apertures and private-label options are available for larger bulk orders." }},
+  ] : []
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": isEN ? "Home"     : "Ana Sayfa",        "item": pageUrl },
+    { "@type": "ListItem", "position": 2, "name": isEN ? "Products" : "Ürünler",          "item": `${pageUrl}/urunlerimiz` },
+    { "@type": "ListItem", "position": 3, "name": isEN ? "Elitpan Interior Doors" : "Elitpan Kapılar", "item": currentUrl },
+  ]
+};
+
+const allSchemas = [elitpanSchema, faqSchema, breadcrumbSchema];
+
+// ── CATEGORY NAV ──────────────────────────────────────────────────────
+const catNav = [
+  { slug: '/urunlerimiz',               label: isEN ? 'All Products'   : 'Tümü',             active: false },
+  { slug: '/pvc-kapilar',               label: isEN ? 'PVC Doors'      : 'PVC Kapılar',       active: false },
+  { slug: '/laminoks-kapilar',          label: isEN ? 'Laminox Doors'  : 'Laminoks Kapılar',  active: false },
+  { slug: '/elitpan-doors',           label: isEN ? 'Elitpan Doors'  : 'Elitpan Kapılar',   active: true  },
+  { slug: '/hastane-kapilari',          label: isEN ? 'Hospital Doors' : 'Hastane Kapıları',  active: false },
+  { slug: '/otel-kapilari',             label: isEN ? 'Hotel Doors'    : 'Otel Kapıları',      active: false },
+  { slug: '/yangina-dayanikli-kapilar', label: isEN ? 'Fire-Rated'     : 'Yangın Kapıları',   active: false },
+];
+
+// ── SSR PRODUCT LIST (for SEO) ────────────────────────────────────────
+interface ElitpanProduct {
+  id: string;
+  model: string;
+  label: string;
+  image: string;
+  alt: string;
+}
+
+const elitpanProducts: ElitpanProduct[] = fileNames.map((fn) => {
+  const model = fn.replace('.webp', '').split('-').pop()!;
+  return {
+    id:    `elitpan-${model}`,
+    model,
+    label: `Elitpan ${model}`,
+    image: `/assets/img/elitpan-doors/${fn}`,
+    alt:   isEN
+      ? `CihanPan Door Elitpan Series ${model} — UV Interior Door`
+      : `CihanPan Door Elitpan Serisi ${model} — UV İç Kapı`,
+  };
+});
+---
+
+<I18nLayout
+  title={isEN
+    ? `Elitpan UV Interior Doors — ${modelCount}+ Models | Wholesale Turkey | CihanPan Door`
+    : `Elitpan UV İç Oda Kapıları — ${modelCount}+ Model | Toptan | CihanPan Door`}
+  description={isEN
+    ? `Wholesale UV-coated Elitpan interior doors from Kayseri, Turkey. Antibacterial MDF core, ${modelCount}+ models, CE & ISO 9001 certified. Factory-direct pricing for hotels, hospitals and commercial projects. MOQ 50 units.`
+    : `Kayseri'den toptan UV kaplı Elitpan kapılar. Antibakteriyel MDF özlü, ${modelCount}+ model, CE sertifikalı.`}
+  keywords={isEN
+    ? "Elitpan interior doors wholesale Turkey, UV coated door manufacturer, antibacterial door Kayseri, scratch resistant interior door CE certified, premium door bulk order"
+    : "elitpan kapı, UV kaplı iç kapı, antibakteriyel kapı, toptan elitpan kayseri, CE belgeli kapı"}
+  canonical={currentUrl}
+  schema={allSchemas}
+  ogTitle={isEN ? `Elitpan UV Interior Doors — ${modelCount}+ Models | CihanPan Door` : `Elitpan Kapılar — ${modelCount}+ Model | CihanPan Door`}
+  ogDescription={isEN
+    ? `Antibacterial UV-coated Elitpan interior doors. Factory direct from Kayseri. MOQ 50 units.`
+    : `Antibakteriyel UV kaplı Elitpan kapılar. Fabrikadan doğrudan.`}
+  ogImage="/assets/img/og/elitpan-doors-og.webp"
+>
+  <I18nHeader />
+
+  <main class="lam" id="main-content">
+
+    <!-- ══════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════ -->
+    <section class="lam-hero" aria-labelledby="lam-h1">
+      <div class="lam-hero__bg" aria-hidden="true">
+        <div class="lam-hero__overlay"></div>
+        <div class="lam-hero__glow"></div>
+      </div>
+      <div class="lam-wrap lam-hero__inner">
+        <div>
+          <nav class="lam-breadcrumb" aria-label="Breadcrumb">
+            <a href={pageUrl}>{isEN ? 'Home' : 'Ana Sayfa'}</a>
+            <span aria-hidden="true">›</span>
+            <a href={getLocalizedRoute('/urunlerimiz', lang)}>{isEN ? 'Products' : 'Ürünler'}</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">{isEN ? 'Elitpan Doors' : 'Elitpan Kapılar'}</span>
+          </nav>
+
+          <span class="lam-eyebrow">
+            <span class="lam-eyebrow__line"></span>
+            {isEN ? `Premium UV Collection · ${modelCount}+ Models` : `Premium UV Koleksiyonu · ${modelCount}+ Model`}
+          </span>
+          <h1 class="lam-hero__h1" id="lam-h1">
+            {isEN
+              ? <><em>Elitpan Interior Doors</em><br/>UV-Coated · Antibacterial · Premium Finish</>
+              : <><em>Elitpan İç Oda Kapıları</em><br/>UV Kaplı · Antibakteriyel · Premium Görünüm</>}
+          </h1>
+          <p class="lam-hero__lead">
+            {isEN
+              ? `Factory-direct wholesale Elitpan interior doors from Kayseri, Turkey. UV-cured coating over solid MDF core delivers antibacterial, moisture-proof and scratch-resistant performance. CE & ISO 9001 certified. ${modelCount}+ models. MOQ 50 units.`
+              : `Kayseri fabrikasından toptan Elitpan kapılar. Masif MDF özlü UV kaplama — antibakteriyel, su dayanımlı ve çizilmez performans. CE ve ISO 9001 sertifikalı.`}
+          </p>
+          <div class="lam-hero__tags">
+            <span class="lam-htag">✓ {isEN ? 'UV-Coated MDF Core' : 'UV Kaplı MDF Öz'}</span>
+            <span class="lam-htag">✓ {modelCount}+ {isEN ? 'Models' : 'Model'}</span>
+            <span class="lam-htag">✓ CE & ISO 9001</span>
+            <span class="lam-htag">✓ {isEN ? 'Antibacterial' : 'Antibakteriyel'}</span>
+            <span class="lam-htag">✓ MOQ 50</span>
+          </div>
+          <div class="lam-hero__actions">
+            <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--gold">
+              {isEN ? 'Get a Free Quote' : 'Ücretsiz Teklif Al'}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#catalogue" class="lam-btn lam-btn--ghost">
+              {isEN ? 'Browse Models' : 'Modelleri Gör'}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="lam-wrap">
+        <div class="lam-statsbar">
+          <div class="lam-sitem"><strong>{modelCount}<sup>+</sup></strong><span>{isEN ? 'Models' : 'Model'}</span></div>
+          <div class="lam-sdiv"></div>
+          <div class="lam-sitem"><strong>UV</strong><span>{isEN ? 'Coating' : 'Kaplama'}</span></div>
+          <div class="lam-sdiv"></div>
+          <div class="lam-sitem"><strong>CE</strong><span>{isEN ? 'Certified' : 'Sertifikalı'}</span></div>
+          <div class="lam-sdiv"></div>
+          <div class="lam-sitem"><strong>MOQ 50</strong><span>{isEN ? 'Units' : 'Adet'}</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CATEGORY NAV + PRODUCT GRID
+    ══════════════════════════════════════════ -->
+    <section class="lam-sec lam-sec--white" id="catalogue" aria-labelledby="catalogue-h2">
+      <div class="lam-wrap">
+
+        <nav class="lam-catnav" aria-label={isEN ? 'Door categories' : 'Kapı kategorileri'}>
+          {catNav.map(cat => (
+            <a
+              href={getLocalizedRoute(cat.slug, lang)}
+              class={`lam-catbtn${cat.active ? ' lam-catbtn--active' : ''}`}
+              aria-current={cat.active ? 'page' : undefined}
+            >
+              {cat.label}
+            </a>
+          ))}
+        </nav>
+
+        <div class="lam-head">
+          <span class="lam-tag">{isEN ? 'Elitpan Door Collection' : 'Elitpan Kapı Koleksiyonu'}</span>
+          <h2 id="catalogue-h2">
+            {isEN ? 'Elitpan Interior Door Models' : 'Elitpan Kapı Modelleri'}
+          </h2>
+          <p>
+            {isEN
+              ? `Browse the full Elitpan UV door collection — ${modelCount} models, series 301–326. Each model is available in multiple finish variants. Click any model to request a wholesale quote.`
+              : `Tüm Elitpan UV kapı koleksiyonunu inceleyin — ${modelCount} model, 301–326 serisi. Her model birden fazla yüzey varyantında mevcuttur.`}
+          </p>
+        </div>
+
+        <!-- Quote CTA -->
+        <div class="lam-quote-row">
+          <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--navy">
+            {isEN ? 'Request Wholesale Quote' : 'Toptan Teklif Al'}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <span class="lam-quote-note">{isEN ? 'Response within 24 hours · MOQ 50 units' : '24 saat içinde yanıt · Min. 50 adet'}</span>
+        </div>
+
+        <!-- Products Grid — SSR rendered for SEO -->
+        <div class="lam-grid" id="productsGrid" aria-label={isEN ? 'Elitpan door models' : 'Elitpan kapı modelleri'}>
+          {elitpanProducts.map((product, i) => (
+            <article class="lam-card" aria-label={product.label}>
+              <div class="lam-card__img">
+                <img
+                  src={product.image}
+                  alt={product.alt}
+                  width="240"
+                  height="320"
+                  loading={i < 8 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
+              </div>
+              <p class="lam-card__name">{product.label}</p>
+            </article>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SEO CONTENT + SIDEBAR
+    ══════════════════════════════════════════ -->
+    <section class="lam-sec lam-sec--cream" aria-labelledby="content-h2">
+      <div class="lam-wrap lam-content-wrap">
+
+        <article class="lam-article">
+          <h2 id="content-h2">
+            {isEN
+              ? 'What Is an Elitpan Door? Why Choose UV-Coated MDF?'
+              : 'Elitpan Kapı Nedir? Neden UV Kaplı MDF Tercih Edilir?'}
+          </h2>
+
+          <p>
+            {isEN
+              ? (<><strong>Elitpan interior doors</strong> are manufactured with a solid MDF core finished with a <em>UV-cured coating</em> that bonds directly to the surface under ultraviolet light. At <strong>CihanPan Door</strong>, our Kayseri factory produces the complete {modelCount}-model Elitpan collection for wholesale buyers in the USA, Europe and the Middle East.</>)
+              : (<><strong>Elitpan kapılar</strong>, masif MDF özlü, yüzeye ultraviyole ışık altında direkt bağlanan <em>UV kür kaplama</em> ile üretilen iç kapılardır. <strong>CihanPan Door</strong> olarak Kayseri fabrikamızda {modelCount} modellik tam Elitpan koleksiyonunu toptan satış için üretiyoruz.</>)}
+          </p>
+
+          <h3>{isEN ? 'Advantages of Elitpan Doors' : 'Elitpan Kapının Avantajları'}</h3>
+          <ul class="lam-checklist">
+            <li><strong>{isEN ? 'Antibacterial Surface:' : 'Antibakteriyel Yüzey:'}</strong> {isEN ? 'UV curing creates a non-porous, antibacterial finish — essential for hospitals, clinics and food-processing environments.' : 'UV kür, gözeneksiz, antibakteriyel bir yüzey oluşturur — hastane, klinik ve gıda tesisleri için zorunludur.'}</li>
+            <li><strong>{isEN ? 'Exceptional Colour Fastness:' : 'Üstün Renk Dayanımı:'}</strong> {isEN ? 'UV-bonded pigments resist fading from sunlight and cleaning agents far better than standard laminates.' : 'UV bağlı pigmentler, standart laminatlara kıyasla güneş ışığına ve temizlik maddelerine karşı solmaz.'}</li>
+            <li><strong>{isEN ? 'Scratch & Impact Resistant:' : 'Çizilmez ve Darbeye Dayanıklı:'}</strong> {isEN ? 'The hardened UV surface withstands daily wear, trolleys and sharp objects common in commercial settings.' : 'Sertleştirilmiş UV yüzey, ticari ortamlarda günlük kullanıma, troleylere ve keskin nesnelere dayanır.'}</li>
+            <li><strong>{isEN ? 'Moisture-Proof:' : 'Su Dayanımlı:'}</strong> {isEN ? 'Moisture-resistant MDF core and sealed UV coating prevent warping in bathrooms and kitchens.' : 'Nem dayanımlı MDF öz ve kapalı UV kaplama, banyo ve mutfaklarda çarpma yapmaz.'}</li>
+            <li><strong>{isEN ? 'Easy Maintenance:' : 'Kolay Bakım:'}</strong> {isEN ? 'Non-porous surface wipes clean — no painting or sealing required throughout the product life.' : 'Gözeneksiz yüzey temizlenir — ürün ömrü boyunca boya veya vernikleme gerekmez.'}</li>
+            <li><strong>{isEN ? 'High-Gloss Aesthetic:' : 'Yüksek Parlaklık Estetiği:'}</strong> {isEN ? 'UV coating delivers a deep, consistent gloss that elevates interiors in luxury hotels and premium residences.' : 'UV kaplama, lüks otel ve premium konutlarda iç mekanları yükselten derin, tutarlı parlaklık sağlar.'}</li>
+          </ul>
+
+          <h3>{isEN ? 'Ideal Applications' : 'İdeal Kullanım Alanları'}</h3>
+          <p>{isEN ? 'Elitpan doors excel wherever hygiene, aesthetics and durability converge:' : 'Elitpan kapılar hijyen, estetik ve dayanıklılığın buluştuğu her yerde üstündür:'}</p>
+          <ul class="lam-checklist">
+            <li><strong>{isEN ? 'Hospitals & Healthcare:' : 'Hastane ve Sağlık:'}</strong> {isEN ? 'Antibacterial surface meets the strictest hygiene standards in clinical environments.' : 'Antibakteriyel yüzey, klinik ortamların en katı hijyen standartlarını karşılar.'}</li>
+            <li><strong>{isEN ? 'Hotels & Hospitality:' : 'Otel ve Konaklama:'}</strong> {isEN ? 'Premium gloss finish and durable surface handle heavy guest traffic with minimal upkeep.' : 'Premium parlak yüzey ve dayanıklı yüzey, minimum bakımla yoğun misafir trafiğini kaldırır.'}</li>
+            <li><strong>{isEN ? 'Commercial Buildings:' : 'Ticari Binalar:'}</strong> {isEN ? 'Modern gloss aesthetics for offices, retail spaces and public buildings.' : 'Ofis, perakende alanları ve kamu binaları için modern parlak estetik.'}</li>
+            <li><strong>{isEN ? 'Residential Wet Rooms:' : 'Konut Islak Alanları:'}</strong> {isEN ? 'Moisture-proof and antibacterial properties make Elitpan the ideal bathroom and kitchen door.' : 'Su dayanımlı ve antibakteriyel özellikler Elitpan\'ı ideal banyo ve mutfak kapısı yapar.'}</li>
+          </ul>
+
+          <h3>{isEN ? 'Technical Specifications' : 'Teknik Özellikler'}</h3>
+          <ul class="lam-checklist">
+            <li>{isEN ? 'Surface: UV-cured coating — high-gloss, antibacterial' : 'Yüzey: UV kür kaplama — yüksek parlaklık, antibakteriyel'}</li>
+            <li>{isEN ? 'Core: Solid moisture-resistant MDF' : 'Öz: Masif nem dayanımlı MDF'}</li>
+            <li>{isEN ? 'Standard size: 70×200 cm · 80×200 cm — custom sizes available' : 'Standart boyut: 70×200 cm · 80×200 cm — özel boyut mevcut'}</li>
+            <li>{isEN ? 'Finish options: High-gloss, Satin, Textured' : 'Finish seçenekleri: Yüksek parlak, Saten, Dokulu'}</li>
+            <li>{isEN ? 'Glass aperture options available' : 'Cam açıklık seçeneği mevcut'}</li>
+            <li>CE & ISO 9001 {isEN ? 'certified' : 'sertifikalı'}</li>
+            <li>{isEN ? '5-year manufacturer warranty' : '5 yıl üretici garantisi'}</li>
+          </ul>
+        </article>
+
+        <!-- Sidebar -->
+        <aside class="lam-sidebar">
+          <div class="lam-kpis">
+            <div class="lam-kpi"><strong>{modelCount}<sup>+</sup></strong><span>{isEN ? 'Models' : 'Model'}</span></div>
+            <div class="lam-kpi"><strong>UV</strong><span>{isEN ? 'Coating' : 'Kaplama'}</span></div>
+            <div class="lam-kpi"><strong>CE</strong><span>{isEN ? 'Certified' : 'Sertifikalı'}</span></div>
+            <div class="lam-kpi"><strong>5yr</strong><span>{isEN ? 'Warranty' : 'Garanti'}</span></div>
+          </div>
+
+          <div class="lam-contact-card">
+            <span class="lam-tag">{isEN ? 'Get in Touch' : 'İletişim'}</span>
+            <h3>{isEN ? 'Request a Quote' : 'Teklif Al'}</h3>
+            <p>{isEN ? 'Share your quantity and requirements — we respond within 24 hours.' : 'Miktar ve gereksinimlerinizi paylaşın — 24 saat içinde yanıt veririz.'}</p>
+            <div class="lam-contact-btns">
+              <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--gold lam-btn--sm">
+                {isEN ? 'Contact Form' : 'İletişim Formu'}
+              </a>
+              <a href="https://wa.me/905441690038" target="_blank" rel="noopener" class="lam-btn lam-btn--wa lam-btn--sm">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.89 3.488"/></svg>
+                WhatsApp
+              </a>
+              <a href="tel:+905441690038" class="lam-btn lam-btn--outline lam-btn--sm">
+                📞 +90 544 169 00 38
+              </a>
+            </div>
+          </div>
+
+          <div class="lam-features-card">
+            <h3>{isEN ? 'Key Features' : 'Öne Çıkan Özellikler'}</h3>
+            <ul class="lam-feat-list">
+              <li>🔬 {isEN ? 'Antibacterial UV surface' : 'Antibakteriyel UV yüzey'}</li>
+              <li>💧 {isEN ? 'Moisture-proof MDF core' : 'Su dayanımlı MDF öz'}</li>
+              <li>✨ {isEN ? 'High-gloss & satin finishes' : 'Parlak ve saten yüzey'}</li>
+              <li>📐 {isEN ? 'Custom sizes available' : 'Özel ölçü mevcut'}</li>
+              <li>🏨 {isEN ? 'Hotel & hospital grade' : 'Otel ve hastane sınıfı'}</li>
+              <li>♻️ {isEN ? 'Eco-friendly materials' : 'Çevre dostu malzeme'}</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         FAQ
+    ══════════════════════════════════════════ -->
+    <section class="lam-sec lam-sec--white" aria-labelledby="faq-h2">
+      <div class="lam-wrap lam-faq-wrap">
+        <div class="lam-head">
+          <span class="lam-tag">FAQ</span>
+          <h2 id="faq-h2">{isEN ? 'Frequently Asked Questions' : 'Sık Sorulan Sorular'}</h2>
+        </div>
+        <div class="lam-faqs">
+          {(isEN ? [
+            { q: 'What is an Elitpan door?',                                            a: 'Elitpan doors are premium interior doors with a UV-cured coating over a solid MDF core. The UV finish provides an antibacterial, highly scratch-resistant and moisture-proof surface — ideal for hospitals, hotels, commercial buildings and upscale residential projects.' },
+            { q: 'What is the difference between Elitpan and Laminox doors?',           a: 'Both series use a solid MDF core. Elitpan doors feature a UV-cured coating delivering exceptional gloss, colour fastness and antibacterial properties. Laminox (HPL) doors use high-pressure melamine laminate with superior scratch and impact resistance. Elitpan is preferred when premium gloss finish and hygiene are the priorities.' },
+            { q: 'Are Elitpan doors suitable for humid environments?',                  a: 'Yes. The UV coating and moisture-resistant MDF core make Elitpan doors well-suited for bathrooms, kitchens and moderately humid interior spaces. For extremely wet environments, additional sealing of the door frame is recommended.' },
+            { q: 'What is the MOQ for wholesale Elitpan door orders?',                  a: 'Minimum order quantity is 50 units. Volume discounts apply from 200 units. Custom dimensions, glass apertures and private-label options are available for larger bulk orders.' },
+          ] : [
+            { q: 'Elitpan kapı nedir?',                                                  a: 'Elitpan kapılar, masif MDF özlü UV kür kaplama ile üretilen premium iç kapılardır. UV finish, antibakteriyel, yüksek çizilmez ve su dayanımlı yüzey sağlar — hastane, otel, ticari bina ve üst segment konutlar için idealdir.' },
+            { q: 'Elitpan ile Laminoks arasındaki fark nedir?',                          a: 'Her iki seri de masif MDF öz kullanır. Elitpan kapılar olağanüstü parlaklık, renk dayanımı ve antibakteriyel özellik sunan UV kür kaplama kullanır. Laminoks kapılar üstün çizilme ve darbe direnci olan HPL laminat kullanır. Elitpan, premium parlaklık ve hijyen öncelikli olduğunda tercih edilir.' },
+            { q: 'Elitpan kapılar nemli ortamlara uygun mu?',                            a: 'Evet. UV kaplama ve nem dayanımlı MDF öz, Elitpan kapıları banyo, mutfak ve orta nemli iç mekanlara uygun hale getirir. Çok nemli ortamlar için kapı kasasına ek sızdırmazlık önerilir.' },
+            { q: 'Toptan siparişlerde MOQ nedir?',                                       a: 'Minimum sipariş miktarı 50 adettir. 200+ adet için hacim indirimleri geçerlidir. Büyük toplu siparişler için özel ölçü, cam açıklık ve özel etiket seçenekleri mevcuttur.' },
+          ]).map(item => (
+            <details class="lam-faq">
+              <summary class="lam-faq__q">
+                {item.q}
+                <span class="lam-faq__arrow" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                </span>
+              </summary>
+              <p class="lam-faq__a">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CTA BAND
+    ══════════════════════════════════════════ -->
+    <section class="lam-cta" aria-labelledby="cta-h2">
+      <div class="lam-cta__glow" aria-hidden="true"></div>
+      <div class="lam-wrap lam-cta__inner">
+        <div class="lam-cta__text">
+          <span class="lam-tag lam-tag--gold">{isEN ? 'Start Sourcing Today' : 'Hemen Başlayın'}</span>
+          <h2 id="cta-h2">
+            {isEN
+              ? 'Request an Elitpan Door\nWholesale Quote'
+              : 'Elitpan Kapı Toptan\nFiyat Teklifi Alın'}
+          </h2>
+          <p>
+            {isEN
+              ? 'Share your door models, quantities and destination port. Factory-direct pricing with CE & ISO documentation within 24 hours.'
+              : 'Kapı modellerini, adeti ve teslimat noktasını paylaşın. 24 saat içinde CE & ISO belgeli fiyat teklifi.'}
+          </p>
+        </div>
+        <div class="lam-cta__btns">
+          <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--gold">
+            {isEN ? 'Get a Free Quote' : 'Ücretsiz Teklif Al'}
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href={getLocalizedRoute('/urunlerimiz', lang)} class="lam-btn lam-btn--ghost">
+            {isEN ? 'All Products' : 'Tüm Ürünler'}
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <I18nFooter />
+</I18nLayout>
+
+<style>
+  /* ── TOKENS — laminoks-doors.astro ile özdeş ── */
+  .lam {
+    --navy:     #0f2347;
+    --navy-mid: #1a3a6e;
+    --navy-l:   #1e4a8a;
+    --gold:     #c9a84c;
+    --gold-l:   #e2bc6a;
+    --cream:    #faf8f4;
+    --slate:    #607080;
+    --text:     #0f1929;
+    --body:     #3d4f63;
+    --bdr:      #e4eaf4;
+    --white:    #ffffff;
+    --radius:   14px;
+    --green:    #16a34a;
+
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text);
+  }
+
+  /* ── LAYOUT ── */
+  .lam-wrap { max-width: 1160px; margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 2.5rem); width: 100%; }
+  .lam-sec         { padding-block: clamp(4rem, 8vw, 6.5rem); }
+  .lam-sec--white  { background: var(--white); }
+  .lam-sec--cream  { background: var(--cream); }
+
+  /* ── SECTION HEAD ── */
+  .lam-head { text-align: center; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+  .lam-head h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700;
+    color: var(--text); margin: 0.3rem 0 0.7rem; line-height: 1.2;
+  }
+  .lam-head p { color: var(--slate); font-size: 1rem; max-width: 560px; margin-inline: auto; line-height: 1.7; }
+
+  .lam-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .lam-tag--gold { color: rgba(201,168,76,0.9); }
+
+  /* ── BUTTONS ── */
+  .lam-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.9rem; font-weight: 600; padding: 0.9rem 1.75rem;
+    border-radius: 8px; text-decoration: none; white-space: nowrap;
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
+    cursor: pointer; border: none;
+  }
+  .lam-btn--gold    { background: var(--gold);  color: var(--navy);  font-weight: 700; }
+  .lam-btn--gold:hover  { background: var(--gold-l); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(201,168,76,0.4); }
+  .lam-btn--navy    { background: var(--navy);  color: var(--white); font-weight: 700; }
+  .lam-btn--navy:hover  { background: var(--navy-mid); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(15,35,71,0.3); }
+  .lam-btn--ghost   { background: transparent; color: rgba(255,255,255,0.85); border: 1.5px solid rgba(255,255,255,0.25); }
+  .lam-btn--ghost:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+  .lam-btn--wa      { background: #16a34a; color: var(--white); }
+  .lam-btn--wa:hover { background: #15803d; transform: translateY(-2px); }
+  .lam-btn--outline { background: transparent; color: var(--navy); border: 1.5px solid var(--bdr); }
+  .lam-btn--outline:hover { border-color: var(--navy); transform: translateY(-2px); }
+  .lam-btn--sm      { font-size: 0.85rem; padding: 0.65rem 1.25rem; }
+
+  /* ── HERO ── */
+  .lam-hero {
+    position: relative; min-height: 75vh; display: flex;
+    flex-direction: column; justify-content: center;
+    padding-top: 70px; overflow: hidden;
+  }
+  .lam-hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .lam-hero__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(10,26,58,0.96) 0%, rgba(15,35,71,0.88) 60%, rgba(26,58,110,0.82) 100%);
+  }
+  .lam-hero__glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 80% 30%, rgba(201,168,76,0.09) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 80% at 10% 70%, rgba(30,74,138,0.3) 0%, transparent 60%);
+  }
+  .lam-hero__inner {
+    position: relative; z-index: 1;
+    padding-top: clamp(2.5rem, 6vw, 4rem);
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+  }
+  .lam-breadcrumb {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 1.5rem; flex-wrap: wrap;
+  }
+  .lam-breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+  .lam-breadcrumb a:hover { color: var(--gold-l); }
+  .lam-breadcrumb span[aria-current] { color: var(--gold); }
+  .lam-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
+  }
+  .lam-eyebrow__line { display: block; width: 28px; height: 1px; background: var(--gold); opacity: 0.5; flex-shrink: 0; }
+  .lam-hero__h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem); font-weight: 900;
+    color: var(--white); line-height: 1.1; margin: 0 0 1.2rem;
+  }
+  .lam-hero__h1 em { font-style: normal; color: var(--gold); }
+  .lam-hero__lead { font-size: 1.05rem; color: rgba(255,255,255,0.65); line-height: 1.8; max-width: 560px; margin: 0 0 1.5rem; }
+  .lam-hero__tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+  .lam-htag {
+    display: inline-block; padding: 0.3rem 0.85rem;
+    border: 1px solid rgba(201,168,76,0.35); background: rgba(201,168,76,0.08);
+    color: var(--gold-l); font-size: 0.82rem; font-weight: 600; border-radius: 4px;
+  }
+  .lam-hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  /* Stats bar */
+  .lam-statsbar {
+    position: relative; z-index: 1;
+    display: flex; align-items: center; flex-wrap: wrap; gap: 0;
+    background: rgba(255,255,255,0.06); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
+    padding: 1.5rem 2rem; margin-top: 2rem;
+  }
+  .lam-sitem { display: flex; flex-direction: column; flex: 1; min-width: 80px; padding-inline: 1rem; text-align: center; }
+  .lam-sitem:first-child { padding-left: 0; }
+  .lam-sitem:last-child  { padding-right: 0; }
+  .lam-sitem strong {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.6rem; font-weight: 900; color: var(--gold); line-height: 1; display: block;
+  }
+  .lam-sitem strong sup { font-size: 0.7em; }
+  .lam-sitem span { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 0.3rem; display: block; }
+  .lam-sdiv { width: 1px; height: 32px; background: rgba(255,255,255,0.12); flex-shrink: 0; }
+
+  /* ── CATEGORY NAV ── */
+  .lam-catnav {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-bottom: 2.5rem; padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--bdr);
+  }
+  .lam-catbtn {
+    background: var(--white); color: var(--body); border: 1.5px solid var(--bdr);
+    padding: 0.5rem 1.1rem; border-radius: 30px;
+    font-size: 0.875rem; font-weight: 600; font-family: 'Inter', system-ui, sans-serif;
+    text-decoration: none; transition: all 0.2s; white-space: nowrap;
+  }
+  .lam-catbtn:hover { border-color: var(--navy); color: var(--navy); }
+  .lam-catbtn--active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+
+  .lam-quote-row { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+  .lam-quote-note { font-size: 0.875rem; color: var(--slate); }
+
+  /* ── PRODUCTS GRID ── */
+  .lam-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.25rem; min-height: 300px;
+  }
+  .lam-grid :global(.lam-card),
+  .lam-card {
+    background: var(--white); border: 1px solid var(--bdr);
+    border-radius: var(--radius); overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  }
+  .lam-grid :global(.lam-card:hover),
+  .lam-card:hover {
+    transform: translateY(-4px); box-shadow: 0 16px 36px rgba(15,35,71,0.1);
+    border-color: rgba(201,168,76,0.35);
+  }
+  .lam-card__img {
+    aspect-ratio: 3/4; background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; padding: 0.5rem;
+  }
+  .lam-card__img img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.35s; }
+  .lam-card:hover .lam-card__img img { transform: scale(1.04); }
+  .lam-card__name {
+    padding: 0.75rem 1rem; font-size: 0.82rem; font-weight: 600;
+    color: var(--text); text-align: center; line-height: 1.4; margin: 0;
+  }
+
+  /* ── SEO CONTENT ── */
+  .lam-content-wrap { display: grid; grid-template-columns: 1fr 320px; gap: 4rem; align-items: start; }
+  .lam-article { background: var(--white); padding: 2.5rem; border-radius: var(--radius); border: 1px solid var(--bdr); }
+  .lam-article h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.6rem, 2.5vw, 2.1rem); font-weight: 700;
+    color: var(--text); margin: 0 0 1.25rem; line-height: 1.2;
+  }
+  .lam-article h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; font-weight: 700; color: var(--text); margin: 2rem 0 0.75rem; }
+  .lam-article p  { font-size: 0.95rem; color: var(--body); line-height: 1.8; margin: 0 0 1rem; }
+  .lam-article strong { color: var(--navy); }
+
+  .lam-checklist { list-style: none; padding: 0; margin: 0 0 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .lam-checklist li { font-size: 0.925rem; color: var(--body); line-height: 1.6; padding-left: 1.5rem; position: relative; }
+  .lam-checklist li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+
+  /* Sidebar */
+  .lam-sidebar { display: flex; flex-direction: column; gap: 1.5rem; position: sticky; top: 90px; }
+  .lam-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--bdr); border: 1px solid var(--bdr); border-radius: var(--radius); overflow: hidden; }
+  .lam-kpi { background: var(--white); padding: 1.25rem; text-align: center; transition: background 0.2s; }
+  .lam-kpi:hover { background: var(--cream); }
+  .lam-kpi strong { display: block; font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; font-weight: 900; color: var(--navy); line-height: 1; margin-bottom: 0.3rem; }
+  .lam-kpi strong sup { font-size: 0.65em; }
+  .lam-kpi span { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); }
+
+  .lam-contact-card { background: var(--navy); border-radius: var(--radius); padding: 1.75rem; }
+  .lam-contact-card .lam-tag { color: rgba(201,168,76,0.85); }
+  .lam-contact-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; font-weight: 700; color: var(--white); margin: 0.3rem 0 0.6rem; }
+  .lam-contact-card p  { font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.6; margin: 0 0 1.25rem; }
+  .lam-contact-btns { display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .lam-features-card { background: var(--white); border: 1px solid var(--bdr); border-radius: var(--radius); padding: 1.5rem; }
+  .lam-features-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 1rem; }
+  .lam-feat-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+  .lam-feat-list li { font-size: 0.9rem; color: var(--body); }
+
+  /* ── FAQ ── */
+  .lam-faq-wrap { max-width: 780px; }
+  .lam-faqs { display: flex; flex-direction: column; gap: 0.75rem; }
+  .lam-faq { background: var(--white); border: 1px solid var(--bdr); border-radius: 10px; overflow: hidden; transition: border-color 0.2s; }
+  .lam-faq[open] { border-color: rgba(201,168,76,0.35); }
+  .lam-faq__q {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 1.1rem 1.5rem; cursor: pointer;
+    font-weight: 600; font-size: 0.95rem; color: var(--text);
+    list-style: none; user-select: none; transition: background 0.15s;
+  }
+  .lam-faq__q:hover { background: var(--cream); }
+  .lam-faq__q::-webkit-details-marker { display: none; }
+  .lam-faq__arrow { flex-shrink: 0; color: var(--slate); transition: transform 0.25s; }
+  .lam-faq[open] .lam-faq__arrow { transform: rotate(180deg); color: var(--gold); }
+  .lam-faq__a { padding: 1rem 1.5rem 1.25rem; font-size: 0.925rem; color: var(--body); line-height: 1.75; margin: 0; border-top: 1px solid var(--bdr); }
+
+  /* ── CTA BAND ── */
+  .lam-cta { position: relative; background: var(--navy); overflow: hidden; padding: clamp(4rem, 8vw, 6rem) 0; }
+  .lam-cta__glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 55% 80% at 105% 50%, rgba(201,168,76,0.14) 0%, transparent 65%),
+      linear-gradient(140deg, #08192e 0%, var(--navy) 100%);
+    pointer-events: none;
+  }
+  .lam-cta__inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap; }
+  .lam-cta__text h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.75rem, 3vw, 2.4rem); font-weight: 700;
+    color: var(--white); margin: 0.35rem 0 0.7rem; line-height: 1.2; white-space: pre-line;
+  }
+  .lam-cta__text p { color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.7; max-width: 420px; margin: 0; }
+  .lam-cta__btns { display: flex; gap: 1rem; flex-wrap: wrap; flex-shrink: 0; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .lam-content-wrap { grid-template-columns: 1fr; }
+    .lam-sidebar { position: static; }
+    .lam-kpis { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .lam-hero { min-height: auto; }
+    .lam-hero__actions { flex-direction: column; }
+    .lam-catnav { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 1rem; scrollbar-width: thin; }
+    .lam-catnav::-webkit-scrollbar { height: 4px; }
+    .lam-catnav::-webkit-scrollbar-thumb { background: var(--bdr); border-radius: 4px; }
+    .lam-quote-row { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .lam-cta__inner { flex-direction: column; text-align: center; }
+    .lam-cta__btns  { justify-content: center; }
+  }
+  @media (max-width: 480px) {
+    .lam-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    .lam-kpis { grid-template-columns: repeat(2, 1fr); }
+    .lam-statsbar { padding: 1rem 1.25rem; }
+    .lam-sdiv { display: none; }
+    .lam-sitem { padding-inline: 0.5rem; }
+  }
+
+  /* ── RTL ── */
+  html[dir="rtl"] .lam-eyebrow__line { order: -1; }
+  html[dir="rtl"] .lam-btn svg       { transform: scaleX(-1); }
+  html[dir="rtl"] .lam-checklist li  { padding-left: 0; padding-right: 1.5rem; }
+  html[dir="rtl"] .lam-checklist li::before { left: auto; right: 0; }
+</style>
