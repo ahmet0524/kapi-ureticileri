@@ -1,9 +1,13 @@
 ---
-// src/pages/iletisim.astro
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import Breadcrumbs from '../components/Breadcrumbs.astro';
+// src/pages/tr/iletisim.astro
+import I18nLayout from '../../layouts/I18nLayout.astro';
+import I18nHeader from '../../components/I18nHeader.astro';
+import I18nFooter from '../../components/I18nFooter.astro';
+import I18nBreadcrumbs from '../../components/I18nBreadcrumbs.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url); // 'tr' döner
+const t    = useTranslations(lang);
 
 const baseUrl = 'https://kapi-ureticileri.vercel.app';
 const currentUrl = `${baseUrl}${Astro.url.pathname}`;
@@ -91,7 +95,7 @@ const faqs = [
 ];
 
 const breadcrumbItems = [
-  { name: "Ana Sayfa", href: "/" },
+  { name: "Ana Sayfa", href: "/tr" },
   { name: "İletişim" }
 ];
 
@@ -197,7 +201,7 @@ const breadcrumbSchema = {
 const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c8-428f-9abb-f510ef10e1ff';
 ---
 
-<Layout
+<I18nLayout
   title="İletişim - CihanPan Door | Kapı Fiyat Teklifi ☎️ +90 544 169 00 38"
   description="CihanPan Door Kayseri. PVC, Laminoks, Elitpan kapı modelleri için ücretsiz fiyat teklifi alın. Türkiye geneline teslimat ve montaj hizmeti."
   keywords="cihanpan door iletişim, kayseri kapı üreticisi, pvc kapı fiyat teklifi, toptan kapı satışı"
@@ -206,8 +210,8 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
   ogType="website"
   schema={[contactPageSchema, localBusinessSchema, faqSchema, breadcrumbSchema]}
 >
-  <Header />
-  <Breadcrumbs items={breadcrumbItems} />
+  <I18nHeader />
+  <I18nBreadcrumbs items={breadcrumbItems} />
 
   <main>
     <!-- Hero Section -->
@@ -401,8 +405,8 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
 
   </main>
 
-  <Footer />
-</Layout>
+  <I18nFooter />
+</I18nLayout>
 
 <style>
   .container {
@@ -540,9 +544,10 @@ const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c
   .form-group select,
   .form-group textarea {
     padding: 1rem;
-    border: 1px solid #e2e8f0;
+    border: 2px solid #e2e8f0;
     border-radius: 8px;
     font-size: 1rem;
+    font-family: inherit;
     transition: border-color 0.3s ease;
   }
 

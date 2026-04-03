@@ -1,9 +1,10 @@
 ---
 // src/pages/laminoks-kapilar-1.astro
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import Breadcrumbs from '../components/Breadcrumbs.astro';
+import I18nLayout from '../../layouts/I18nLayout.astro';
+import I18nHeader from '../../components/I18nHeader.astro';
+import I18nFooter from '../../components/I18nFooter.astro';
+import { getLangFromUrl, useTranslations, getLocalizedRoute } from '../../i18n/utils';
+import I18nBreadcrumbs from '../../components/I18nBreadcrumbs.astro';
 
 // Dynamic URL'ler için base setup
 const baseUrl = 'https://kapi-ureticileri.vercel.app';
@@ -136,7 +137,7 @@ const allSchemas = [laminoksSchema, faqSchema, organizationSchema, breadcrumbSch
 ---
 
 
-<Layout
+<I18nLayout
   title="Laminoks İç Oda Kapıları - Sayfa 1 | Premium Seri Kayseri CihanPan Door"
   description="Kayseri'nin premium kalite Laminoks kapı koleksiyonu 1. sayfa! 60+ ek model, özelleştirilebilir boyutlar, üretici fiyat avantajı. Toptan satış imkanı."
   keywords="laminoks kapı sayfa 2, premium iç kapı modelleri, kayseri laminoks üreticisi, toptan kapı satışı, özel tasarım kapı, ticari kapı projeleri"
@@ -153,8 +154,8 @@ const allSchemas = [laminoksSchema, faqSchema, organizationSchema, breadcrumbSch
   schema={[laminoksSchema, faqSchema, organizationSchema, breadcrumbSchema]}
 >
 
-  <Header />
-  <Breadcrumbs items={breadcrumbItems} />
+  <I18nHeader />
+ <I18nBreadcrumbs items={breadcrumbItems} />
 
   <main>
     <!-- Hero Section -->
@@ -322,8 +323,8 @@ const allSchemas = [laminoksSchema, faqSchema, organizationSchema, breadcrumbSch
     </section>
   </main>
 
-  <Footer />
-</Layout>
+  <I18nFooter />
+</I18nLayout>
 
 <style>
   /* Base styles */

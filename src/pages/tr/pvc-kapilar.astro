@@ -4,7 +4,7 @@ import I18nLayout from '../../layouts/I18nLayout.astro';
 import I18nHeader from '../../components/I18nHeader.astro';
 import I18nFooter from '../../components/I18nFooter.astro';
 import { getLangFromUrl, useTranslations, getLocalizedRoute } from '../../i18n/utils';
-import Breadcrumbs from '../../components/I18nBreadcrumbs.astro';
+import I18nBreadcrumbs from '../../components/I18nBreadcrumbs.astro';
 
 const baseUrl = 'https://kapi-ureticileri.vercel.app'; // SABIT KALACAK
 const currentUrl = `${baseUrl}${Astro.url.pathname}`;

@@ -1,0 +1,839 @@
+---
+// src/pages/contact.astro
+import I18nLayout from '../layouts/I18nLayout.astro';
+import I18nHeader from '../components/I18nHeader.astro';
+import I18nFooter from '../components/I18nFooter.astro';
+import { getLangFromUrl, useTranslations, getLocalizedRoute } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t    = useTranslations(lang);
+const isEN = lang === 'en';
+
+const baseUrl    = 'https://cihanpandoor.netlify.app';
+const pageUrl    = lang === 'tr' ? baseUrl : `${baseUrl}/${lang}`;
+const currentUrl = `${pageUrl}/contact`;
+
+// ── CONTACT DATA ──────────────────────────────────────────────────────
+const contact = {
+  phone:    { display: '+90 544 169 00 38', schema: '+90-544-169-0038', href: 'tel:+905441690038', wa: '905441690038' },
+  email:    { primary: 'export@cihanpandoor.com' },
+  website:  'https://www.cihanpandoor.com',
+  address:  { street: 'Organize Sanayi Bölgesi 29. Sokak No:28', city: 'Kayseri', postalCode: '38070' },
+  coords:   { lat: 38.713006945276334, lng: 35.32028880684966 },
+  maps:     {
+    url:      'https://maps.app.goo.gl/XFKFB7tBeBGJ435N9',
+    embedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d49811.34634400007!2d35.32028880684966!3d38.713006945276334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x152b05342e965841%3A0xfa7a02f50cdebeee!2zQ2loYW5wYW5kb29yIMSww6cgT2RhIEthcMSxc8SxIMSwbWFsYXTEsSB2ZSDEsGhyYWNhdMSx!5e0!3m2!1sen!2str!4v1760624358805!5m2!1sen!2str'
+  }
+};
+
+const waMessage = isEN
+  ? 'Hello, I would like to get information about CihanPan Door products.'
+  : 'Merhaba, CihanPan Door kapı modelleri hakkında bilgi almak istiyorum.';
+
+// ── FAQ ───────────────────────────────────────────────────────────────
+const faqs = isEN ? [
+  { q: 'Which countries do you export to?',        a: 'We export to the USA, EU, UK, Middle East and North Africa. All shipments come with full CE, ISO 9001 and fire-rating documentation. We also provide DDP/DAP Incoterms pricing for container orders.' },
+  { q: 'What is the minimum order quantity?',       a: 'MOQ is 50 units for standard models. Custom sizes or finishes require a minimum of 100 units. Volume discounts apply from 200 units. Mixed-model orders (e.g. Laminox + Elitpan) count toward a single MOQ.' },
+  { q: 'What is the lead time for production?',     a: 'Standard models: 15–25 business days after order confirmation. Custom sizes or finishes: 25–35 business days. Express production may be available — contact us to discuss your timeline.' },
+  { q: 'Do you provide installation services?',     a: 'Installation is available across Turkey. For export orders, we provide technical installation manuals and can arrange on-site technical support for large-scale projects.' },
+  { q: 'What warranty do you offer?',               a: 'All door models carry a 5-year manufacturer warranty covering material defects, surface degradation and colour fading. The warranty applies to products used under normal operating conditions.' },
+  { q: 'Can you produce custom sizes?',             a: 'Yes. Maximum width 120 cm, maximum height 250 cm. Custom production requires a minimum of 100 units and takes 25–35 business days. Glazing apertures and electronic lock preparation can also be specified.' },
+] : [
+  { q: 'Hangi ülkelere ihracat yapıyorsunuz?',       a: 'ABD, AB, İngiltere, Orta Doğu ve Kuzey Afrika\'ya ihracat yapıyoruz. Tüm sevkiyatlar CE, ISO 9001 ve yangın sertifikaları ile birlikte gelmektedir. Konteyner siparişleri için DDP/DAP Incoterms fiyatlandırması da sunuyoruz.' },
+  { q: 'Minimum sipariş miktarı (MOQ) nedir?',       a: 'Standart modeller için MOQ 50 adettir. Özel boyut veya yüzeyler için minimum 100 adet gerekmektedir. 200+ adet için hacim indirimleri geçerlidir. Karma model siparişleri (örn. Laminoks + Elitpan) tek bir MOQ sayılır.' },
+  { q: 'Üretim süresi ne kadar?',                    a: 'Standart modeller: sipariş onayından itibaren 15–25 iş günü. Özel boyut veya yüzeyler: 25–35 iş günü. Acil üretim için bizimle iletişime geçin.' },
+  { q: 'Montaj hizmeti veriyor musunuz?',            a: 'Türkiye genelinde montaj hizmeti sunuyoruz. İhracat siparişleri için teknik montaj kılavuzları hazırlar, büyük ölçekli projeler için yerinde teknik destek sağlayabiliriz.' },
+  { q: 'Garanti süreniz ne kadar?',                  a: 'Tüm kapı modellerimiz malzeme hatası, yüzey bozulması ve renk solmasını kapsayan 5 yıl üretici garantisi ile sunulmaktadır. Garanti normal kullanım koşullarındaki ürünler için geçerlidir.' },
+  { q: 'Özel ölçülerde kapı üretimi yapıyor musunuz?', a: 'Evet. Maksimum genişlik 120 cm, maksimum yükseklik 250 cm. Özel üretim minimum 100 adet gerektirir ve 25–35 iş günü sürer. Cam açıklık ve elektronik kilit hazırlığı da belirtilebilir.' },
+];
+
+// ── SCHEMA ────────────────────────────────────────────────────────────
+const contactSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": isEN ? "Contact — CihanPan Door" : "İletişim — CihanPan Door",
+  "description": isEN
+    ? "Get in touch with CihanPan Door for wholesale door pricing, export inquiries and project consultations."
+    : "CihanPan Door ile iletişime geçin. Toptan fiyat teklifi ve ihracat sorguları için.",
+  "url": currentUrl,
+  "inLanguage": lang === 'tr' ? 'tr-TR' : lang === 'ar' ? 'ar-SA' : 'en-US',
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "CihanPan Door",
+    "url": baseUrl,
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "telephone": contact.phone.schema,
+      "contactType": "Sales",
+      "email": contact.email.primary,
+      "areaServed": ["TR", "EU", "ME", "US"],
+      "availableLanguage": ["Turkish", "English", "German", "Arabic"]
+    }],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": contact.address.street,
+      "addressLocality": contact.address.city,
+      "postalCode": contact.address.postalCode,
+      "addressCountry": "TR"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": contact.coords.lat, "longitude": contact.coords.lng },
+    "hasMap": contact.maps.url
+  }
+};
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "CihanPan Door",
+  "url": baseUrl,
+  "telephone": contact.phone.schema,
+  "email": contact.email.primary,
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": contact.address.street,
+    "addressLocality": contact.address.city,
+    "postalCode": contact.address.postalCode,
+    "addressCountry": "TR"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": contact.coords.lat, "longitude": contact.coords.lng },
+  "hasMap": contact.maps.url,
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+    "opens": "08:00",
+    "closes": "18:00"
+  }],
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "152" }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": isEN ? "Home"    : "Ana Sayfa", "item": pageUrl },
+    { "@type": "ListItem", "position": 2, "name": isEN ? "Contact" : "İletişim",  "item": currentUrl },
+  ]
+};
+
+const publicWeb3formsKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || 'd890c520-d1c8-428f-9abb-f510ef10e1ff';
+---
+
+<I18nLayout
+  title={isEN
+    ? "Contact — CihanPan Door | Wholesale Door Quote ☎ +90 544 169 00 38"
+    : "İletişim — CihanPan Door | Toptan Kapı Teklifi ☎ +90 544 169 00 38"}
+  description={isEN
+    ? "Contact CihanPan Door Kayseri for wholesale pricing on PVC, Laminox, Elitpan, hospital and hotel doors. Export inquiries welcome. MOQ 50 units."
+    : "CihanPan Door Kayseri ile iletişime geçin. PVC, Laminoks, Elitpan, hastane ve otel kapıları için toptan fiyat teklifi alın."}
+  keywords={isEN
+    ? "CihanPan Door contact, wholesale interior door Turkey, door manufacturer Kayseri export, Laminox door price quote"
+    : "cihanpan door iletişim, kayseri kapı üreticisi, toptan kapı fiyat teklifi, pvc laminoks elitpan"}
+  canonical={currentUrl}
+  schema={[contactSchema, localBusinessSchema, faqSchema, breadcrumbSchema]}
+  ogTitle={isEN ? "Contact CihanPan Door — Wholesale Quote" : "CihanPan Door İletişim — Toptan Teklif"}
+  ogDescription={isEN
+    ? "Get a free wholesale quote for Laminox, Elitpan, PVC, hospital and hotel doors from Kayseri, Turkey."
+    : "Kayseri'den Laminoks, Elitpan, PVC, hastane ve otel kapıları için ücretsiz toptan teklif alın."}
+  ogImage="/assets/img/og/contact-og.webp"
+>
+  <I18nHeader />
+
+  <main class="lam" id="main-content">
+
+    <!-- ══════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════ -->
+    <section class="lam-hero" aria-labelledby="lam-h1">
+      <div class="lam-hero__bg" aria-hidden="true">
+        <div class="lam-hero__overlay"></div>
+        <div class="lam-hero__glow"></div>
+      </div>
+      <div class="lam-wrap lam-hero__inner">
+        <div>
+          <nav class="lam-breadcrumb" aria-label="Breadcrumb">
+            <a href={pageUrl}>{isEN ? 'Home' : 'Ana Sayfa'}</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">{isEN ? 'Contact' : 'İletişim'}</span>
+          </nav>
+          <span class="lam-eyebrow">
+            <span class="lam-eyebrow__line"></span>
+            {isEN ? 'Get in Touch' : 'Bize Ulaşın'}
+          </span>
+          <h1 class="lam-hero__h1" id="lam-h1">
+            {isEN
+              ? <><em>Contact CihanPan Door</em><br/>Wholesale Quotes &amp; Export Inquiries</>
+              : <><em>CihanPan Door İletişim</em><br/>Toptan Teklif &amp; İhracat Sorguları</>}
+          </h1>
+          <p class="lam-hero__lead">
+            {isEN
+              ? 'Factory-direct wholesale pricing for PVC, Laminox, Elitpan, hospital and hotel doors from Kayseri, Turkey. Response within 24 hours.'
+              : 'Kayseri fabrikasından PVC, Laminoks, Elitpan, hastane ve otel kapıları için doğrudan toptan fiyat teklifi. 24 saat içinde yanıt.'}
+          </p>
+          <div class="lam-hero__actions">
+            <a href={`#form`} class="lam-btn lam-btn--gold">
+              {isEN ? 'Request a Free Quote' : 'Ücretsiz Teklif Al'}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href={`https://wa.me/${contact.phone.wa}?text=${encodeURIComponent(waMessage)}`} target="_blank" rel="noopener" class="lam-btn lam-btn--ghost">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.89 3.488"/></svg>
+              WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="lam-wrap">
+        <div class="lam-statsbar">
+          <div class="lam-sitem"><strong>24h</strong><span>{isEN ? 'Response' : 'Yanıt'}</span></div>
+          <div class="lam-sdiv"></div>
+          <div class="lam-sitem"><strong>MOQ 50</strong><span>{isEN ? 'Units' : 'Adet'}</span></div>
+          <div class="lam-sdiv"></div>
+          <div class="lam-sitem"><strong>5<sup>yr</sup></strong><span>{isEN ? 'Warranty' : 'Garanti'}</span></div>
+          <div class="lam-sdiv"></div>
+          <div class="lam-sitem"><strong>CE</strong><span>{isEN ? 'Certified' : 'Sertifikalı'}</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CONTACT CARDS
+    ══════════════════════════════════════════ -->
+    <section class="lam-sec lam-sec--cream" aria-label={isEN ? 'Contact information' : 'İletişim bilgileri'}>
+      <div class="lam-wrap">
+        <div class="lam-head">
+          <span class="lam-tag">{isEN ? 'Get in Touch' : 'İletişim'}</span>
+          <h2>{isEN ? 'Reach Us Directly' : 'Bize Doğrudan Ulaşın'}</h2>
+          <p>{isEN ? 'Multiple ways to reach our sales and export team — we respond in Turkish, English, German and Arabic.' : 'Satış ve ihracat ekibimize ulaşmanın birçok yolu — Türkçe, İngilizce, Almanca ve Arapça yanıt veriyoruz.'}</p>
+        </div>
+
+        <div class="lam-cinfo-grid">
+
+          <!-- Phone -->
+          <div class="lam-cinfo-card">
+            <div class="lam-cinfo-icon">📞</div>
+            <h3>{isEN ? 'Phone' : 'Telefon'}</h3>
+            <a href={contact.phone.href} class="lam-cinfo-link">{contact.phone.display}</a>
+            <p>{isEN ? 'Mon–Sat · 08:00–18:00 (Turkey)' : 'Pzt–Cmt · 08:00–18:00'}</p>
+          </div>
+
+          <!-- WhatsApp -->
+          <div class="lam-cinfo-card">
+            <div class="lam-cinfo-icon">💬</div>
+            <h3>WhatsApp</h3>
+            <a href={`https://wa.me/${contact.phone.wa}?text=${encodeURIComponent(waMessage)}`} target="_blank" rel="noopener" class="lam-cinfo-link">
+              {isEN ? 'Send a Message' : 'Mesaj Gönder'}
+            </a>
+            <p>{isEN ? '7/24 — fastest response channel' : '7/24 — en hızlı yanıt kanalı'}</p>
+          </div>
+
+          <!-- Email -->
+          <div class="lam-cinfo-card">
+            <div class="lam-cinfo-icon">✉️</div>
+            <h3>Email</h3>
+            <a href={`mailto:${contact.email.primary}`} class="lam-cinfo-link">{contact.email.primary}</a>
+            <p>{isEN ? 'Response within 24 hours' : '24 saat içinde yanıt'}</p>
+          </div>
+
+          <!-- Address -->
+          <div class="lam-cinfo-card">
+            <div class="lam-cinfo-icon">📍</div>
+            <h3>{isEN ? 'Factory Address' : 'Fabrika Adresi'}</h3>
+            <address style="font-style:normal;">
+              {contact.address.street}<br/>
+              {contact.address.city} {contact.address.postalCode}<br/>
+              {isEN ? 'Turkey' : 'Türkiye'}
+            </address>
+            <a href={contact.maps.url} target="_blank" rel="noopener" class="lam-cinfo-link" style="margin-top:0.5rem;">
+              {isEN ? 'View on Maps →' : 'Haritada Gör →'}
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CONTACT FORM
+    ══════════════════════════════════════════ -->
+    <section class="lam-sec lam-sec--white" id="form" aria-labelledby="form-h2">
+      <div class="lam-wrap">
+        <div class="lam-form-wrap">
+          <div class="lam-head" style="margin-bottom:2rem;">
+            <span class="lam-tag">{isEN ? 'Free Quote' : 'Ücretsiz Teklif'}</span>
+            <h2 id="form-h2">{isEN ? 'Request a Wholesale Quote' : 'Toptan Fiyat Teklifi İsteyin'}</h2>
+            <p>{isEN ? 'Fill in the form — we respond within 24 hours with factory-direct pricing.' : 'Formu doldurun — 24 saat içinde fabrika doğrudan fiyatlarıyla yanıt verelim.'}</p>
+          </div>
+
+          <form id="contactForm" class="lam-form" novalidate>
+            <input type="text" name="honeypot" style="display:none" tabindex="-1" autocomplete="off" />
+
+            <div class="lam-form-row">
+              <div class="lam-form-group">
+                <label for="name">{isEN ? 'Full Name *' : 'Ad Soyad *'}</label>
+                <input type="text" id="name" name="name" required placeholder={isEN ? 'Your full name' : 'Adınız Soyadınız'} minlength="2" />
+                <span id="name-error" class="lam-form-err"></span>
+              </div>
+              <div class="lam-form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required placeholder="you@company.com" />
+                <span id="email-error" class="lam-form-err"></span>
+              </div>
+            </div>
+
+            <div class="lam-form-row">
+              <div class="lam-form-group">
+                <label for="phone">{isEN ? 'Phone *' : 'Telefon *'}</label>
+                <input type="tel" id="phone" name="phone" required placeholder="+1 / +44 / +90 ..." />
+                <span id="phone-error" class="lam-form-err"></span>
+              </div>
+              <div class="lam-form-group">
+                <label for="company">{isEN ? 'Company' : 'Firma Adı'}</label>
+                <input type="text" id="company" name="company" placeholder={isEN ? 'Company name (optional)' : 'Firma Adınız (Opsiyonel)'} />
+              </div>
+            </div>
+
+            <div class="lam-form-group">
+              <label for="product">{isEN ? 'Product of Interest' : 'Ürün İlgi Alanı'}</label>
+              <select id="product" name="product">
+                <option value="">{isEN ? 'Select…' : 'Seçiniz'}</option>
+                <option value="pvc">{isEN ? 'PVC Doors'      : 'PVC Kapılar'}</option>
+                <option value="laminoks">{isEN ? 'Laminox Doors' : 'Laminoks Kapılar'}</option>
+                <option value="elitpan">{isEN ? 'Elitpan Doors' : 'Elitpan Kapılar'}</option>
+                <option value="hastane">{isEN ? 'Hospital Doors' : 'Hastane Kapıları'}</option>
+                <option value="otel">{isEN ? 'Hotel Doors'    : 'Otel Kapıları'}</option>
+                <option value="yangin">{isEN ? 'Fire-Rated Doors' : 'Yangına Dayanıklı Kapılar'}</option>
+                <option value="diger">{isEN ? 'Other'          : 'Diğer'}</option>
+              </select>
+            </div>
+
+            <div class="lam-form-group">
+              <label for="message">{isEN ? 'Message *' : 'Mesajınız *'}</label>
+              <textarea id="message" name="message" required rows="5"
+                placeholder={isEN
+                  ? 'Please include: product type, quantity, destination country/port, any custom requirements…'
+                  : 'Lütfen belirtin: kapı modeli, adet, teslimat yeri, özel gereksinimler…'}
+                minlength="10"></textarea>
+              <span id="message-error" class="lam-form-err"></span>
+            </div>
+
+            <button type="submit" class="lam-btn lam-btn--gold lam-btn--submit" id="submitBtn">
+              <span class="btn-text">{isEN ? 'Send Quote Request' : 'Teklif İsteyin'}</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         GOOGLE MAPS
+    ══════════════════════════════════════════ -->
+    <section class="lam-sec lam-sec--cream" aria-labelledby="map-h2">
+      <div class="lam-wrap">
+        <div class="lam-head">
+          <span class="lam-tag">{isEN ? 'Factory Location' : 'Fabrika Konumu'}</span>
+          <h2 id="map-h2">{isEN ? 'Visit Us in Kayseri' : 'Kayseri\'de Bizi Ziyaret Edin'}</h2>
+        </div>
+        <div class="lam-map-wrap">
+          <iframe
+            src={contact.maps.embedUrl}
+            width="100%"
+            height="420"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="CihanPan Door Kayseri Organized Industrial Zone"
+          ></iframe>
+        </div>
+        <div class="lam-map-actions">
+          <a href={contact.maps.url} target="_blank" rel="noopener noreferrer" class="lam-btn lam-btn--navy">
+            📍 {isEN ? 'Open in Google Maps' : 'Google Maps\'te Aç'}
+          </a>
+          <a href={`https://www.google.com/maps/dir//${contact.coords.lat},${contact.coords.lng}`}
+             target="_blank" rel="noopener noreferrer" class="lam-btn lam-btn--outline">
+            🧭 {isEN ? 'Get Directions' : 'Yol Tarifi Al'}
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         FAQ
+    ══════════════════════════════════════════ -->
+    <section class="lam-sec lam-sec--white" aria-labelledby="faq-h2">
+      <div class="lam-wrap lam-faq-wrap">
+        <div class="lam-head">
+          <span class="lam-tag">FAQ</span>
+          <h2 id="faq-h2">{isEN ? 'Frequently Asked Questions' : 'Sık Sorulan Sorular'}</h2>
+        </div>
+        <div class="lam-faqs">
+          {faqs.map(item => (
+            <details class="lam-faq">
+              <summary class="lam-faq__q">
+                {item.q}
+                <span class="lam-faq__arrow" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                </span>
+              </summary>
+              <p class="lam-faq__a">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SOCIAL / CTA BAND
+    ══════════════════════════════════════════ -->
+    <section class="lam-cta" aria-labelledby="cta-h2">
+      <div class="lam-cta__glow" aria-hidden="true"></div>
+      <div class="lam-wrap lam-cta__inner">
+        <div class="lam-cta__text">
+          <span class="lam-tag lam-tag--gold">{isEN ? 'Follow Us' : 'Bizi Takip Edin'}</span>
+          <h2 id="cta-h2">
+            {isEN ? 'Stay Connected\nWith CihanPan Door' : 'CihanPan Door ile\nBağlantıda Kalın'}
+          </h2>
+          <p>
+            {isEN
+              ? 'Follow our latest door models, project showcases and industry updates on social media.'
+              : 'En yeni kapı modellerini, proje vitrinlerini ve sektör güncellemelerini sosyal medyada takip edin.'}
+          </p>
+        </div>
+        <div class="lam-social-grid">
+          <a href={`https://wa.me/${contact.phone.wa}?text=${encodeURIComponent(waMessage)}`} target="_blank" rel="noopener" class="lam-social-btn lam-social-btn--wa">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.89 3.488"/></svg>
+            WhatsApp
+          </a>
+          <a href="https://www.instagram.com/cihanpandoor" target="_blank" rel="noopener" class="lam-social-btn lam-social-btn--ig">
+            📷 Instagram
+          </a>
+          <a href="https://www.linkedin.com/company/cihanpandoor" target="_blank" rel="noopener" class="lam-social-btn lam-social-btn--li">
+            💼 LinkedIn
+          </a>
+          <a href={contact.maps.url} target="_blank" rel="noopener" class="lam-social-btn lam-social-btn--maps">
+            📍 Google Maps
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <I18nFooter />
+</I18nLayout>
+
+<script define:vars={{ publicWeb3formsKey, isEN }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const accessKey = publicWeb3formsKey;
+
+    // ── FIELD VALIDATION ──────────────────────────────────────
+    function validateField(field) {
+      const errEl = document.getElementById(`${field.name}-error`);
+      let msg = '';
+
+      if (field.required && !field.value.trim()) {
+        msg = isEN ? 'This field is required.' : 'Bu alan zorunludur.';
+      } else if (field.type === 'email' && field.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value)) {
+        msg = isEN ? 'Please enter a valid email address.' : 'Geçerli bir e-posta girin.';
+      } else if (field.type === 'tel' && field.value && !/^[\+]?[\d\s\-\(\)]{7,}$/.test(field.value)) {
+        msg = isEN ? 'Please enter a valid phone number.' : 'Geçerli bir telefon numarası girin.';
+      } else if (field.minLength > 0 && field.value && field.value.length < field.minLength) {
+        msg = isEN
+          ? `Minimum ${field.minLength} characters required.`
+          : `En az ${field.minLength} karakter gereklidir.`;
+      }
+
+      if (errEl) errEl.textContent = msg;
+      field.classList.toggle('lam-input-err', !!msg);
+      return !msg;
+    }
+
+    function setLoading(btn, on) {
+      btn.disabled = on;
+      btn.querySelector('.btn-text').textContent = on
+        ? (isEN ? 'Sending…' : 'Gönderiliyor…')
+        : (isEN ? 'Send Quote Request' : 'Teklif İsteyin');
+    }
+
+    // ── TOAST NOTIFICATION ────────────────────────────────────
+    function toast(type, title, body) {
+      document.getElementById('lamToast')?.remove();
+
+      const colour = type === 'success' ? '#16a34a' : type === 'error' ? '#dc2626' : '#3b82f6';
+      const icon   = type === 'success' ? '✓'       : type === 'error' ? '✕'       : 'ℹ';
+
+      const el = document.createElement('div');
+      el.id = 'lamToast';
+      el.setAttribute('role', 'alert');
+      el.setAttribute('aria-live', 'polite');
+      el.style.cssText = `
+        position:fixed; top:20px; right:20px; min-width:320px; max-width:420px;
+        background:#fff; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,0.2);
+        z-index:999999; overflow:hidden; animation:lamSlideIn .35s cubic-bezier(.68,-.55,.265,1.55);
+        font-family:'Inter',system-ui,sans-serif;
+      `;
+      el.innerHTML = `
+        <style>
+          @keyframes lamSlideIn { from{transform:translateX(120%);opacity:0} to{transform:translateX(0);opacity:1} }
+          @keyframes lamSlideOut { from{transform:translateX(0);opacity:1} to{transform:translateX(120%);opacity:0} }
+          @keyframes lamBar { from{width:100%} to{width:0%} }
+          @media(max-width:640px){ #lamToast{top:10px!important;right:10px!important;left:10px!important;min-width:auto!important;max-width:none!important} }
+        </style>
+        <div style="display:flex;align-items:flex-start;padding:18px;gap:14px;">
+          <div style="width:44px;height:44px;border-radius:50%;background:${colour};display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:bold;color:#fff;flex-shrink:0;">${icon}</div>
+          <div style="flex:1;padding-top:2px;">
+            <div style="font-size:16px;font-weight:700;color:#0f1929;margin-bottom:4px;">${title}</div>
+            <div style="font-size:13px;color:#607080;line-height:1.5;">${body}</div>
+          </div>
+          <button onclick="this.closest('#lamToast').remove()" style="background:none;border:none;color:#9ca3af;font-size:26px;cursor:pointer;padding:0;width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:6px;line-height:1;margin-top:-2px;" aria-label="Close">&times;</button>
+        </div>
+        <div style="height:4px;background:#e4eaf4;position:relative;overflow:hidden;">
+          <div style="height:100%;background:${colour};animation:lamBar 5s linear forwards;"></div>
+        </div>
+      `;
+      document.body.appendChild(el);
+      setTimeout(() => {
+        if (el.parentNode) {
+          el.style.animation = 'lamSlideOut .3s ease forwards';
+          setTimeout(() => el.remove(), 300);
+        }
+      }, 5000);
+    }
+
+    // ── FORM SUBMISSION ───────────────────────────────────────
+    const form = document.getElementById('contactForm');
+    if (!form) return;
+
+    let submitting = false;
+    let lastTime = 0;
+
+    form.addEventListener('blur', e => {
+      if (e.target.matches('input,textarea,select')) validateField(e.target);
+    }, true);
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+
+      if (Date.now() - lastTime < 3000) {
+        toast('error',
+          isEN ? 'Too fast!' : 'Çok Hızlı!',
+          isEN ? 'Please wait a moment and try again.' : 'Lütfen birkaç saniye bekleyin.');
+        return;
+      }
+      if (submitting) return;
+
+      let valid = true;
+      form.querySelectorAll('input,textarea,select').forEach(f => {
+        if (f.name !== 'honeypot' && !validateField(f)) valid = false;
+      });
+      if (!valid) {
+        toast('error',
+          isEN ? 'Form Error' : 'Form Hatası',
+          isEN ? 'Please fill in all required fields correctly.' : 'Lütfen tüm zorunlu alanları doldurun.');
+        return;
+      }
+      if (form.querySelector('[name="honeypot"]')?.value) return;
+
+      const btn = form.querySelector('#submitBtn');
+      submitting = true;
+      lastTime = Date.now();
+      setLoading(btn, true);
+
+      try {
+        const fd = new FormData(form);
+        const payload = {
+          access_key: accessKey,
+          name:       fd.get('name'),
+          email:      fd.get('email'),
+          phone:      fd.get('phone')   || '—',
+          company:    fd.get('company') || '—',
+          product:    fd.get('product') || '—',
+          message:    fd.get('message'),
+          from_name:  'CihanPan Door Website',
+          subject:    isEN ? 'New Contact Form — CihanPan Door' : 'Yeni İletişim Formu — CihanPan Door',
+          replyto:    fd.get('email'),
+        };
+
+        const ctrl = new AbortController();
+        const tid  = setTimeout(() => ctrl.abort(), 15000);
+        const res  = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload),
+          signal: ctrl.signal,
+        });
+        clearTimeout(tid);
+        const result = await res.json();
+
+        if (result.success) {
+          toast('success',
+            isEN ? 'Sent Successfully!' : 'Başarıyla Gönderildi!',
+            isEN ? 'We will get back to you within 24 hours.' : 'En kısa sürede size dönüş yapacağız.');
+          form.reset();
+        } else {
+          throw new Error(result.message || 'failed');
+        }
+      } catch (err) {
+        let msg = isEN ? 'An error occurred. Please try again.' : 'Bir hata oluştu. Lütfen tekrar deneyin.';
+        if (err.name === 'AbortError') msg = isEN ? 'Request timed out. Please check your connection.' : 'Zaman aşımı. İnternet bağlantınızı kontrol edin.';
+        toast('error', isEN ? 'Send Failed' : 'Gönderim Başarısız', msg);
+      } finally {
+        submitting = false;
+        setLoading(btn, false);
+      }
+    });
+  });
+</script>
+
+<style>
+  /* ── TOKENS — laminoks-doors.astro ile özdeş ── */
+  .lam {
+    --navy:     #0f2347;
+    --navy-mid: #1a3a6e;
+    --gold:     #c9a84c;
+    --gold-l:   #e2bc6a;
+    --cream:    #faf8f4;
+    --slate:    #607080;
+    --text:     #0f1929;
+    --body:     #3d4f63;
+    --bdr:      #e4eaf4;
+    --white:    #ffffff;
+    --radius:   14px;
+    --green:    #16a34a;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text);
+  }
+
+  /* ── LAYOUT ── */
+  .lam-wrap { max-width: 1160px; margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 2.5rem); width: 100%; }
+  .lam-sec        { padding-block: clamp(4rem, 8vw, 6.5rem); }
+  .lam-sec--white { background: var(--white); }
+  .lam-sec--cream { background: var(--cream); }
+
+  /* ── SECTION HEAD ── */
+  .lam-head { text-align: center; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+  .lam-head h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700;
+    color: var(--text); margin: 0.3rem 0 0.7rem; line-height: 1.2;
+  }
+  .lam-head p { color: var(--slate); font-size: 1rem; max-width: 560px; margin-inline: auto; line-height: 1.7; }
+  .lam-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .lam-tag--gold { color: rgba(201,168,76,0.9); }
+
+  /* ── BUTTONS ── */
+  .lam-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.9rem; font-weight: 600; padding: 0.9rem 1.75rem;
+    border-radius: 8px; text-decoration: none; white-space: nowrap;
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: transform .2s, box-shadow .2s, background .2s, border-color .2s;
+    cursor: pointer; border: none;
+  }
+  .lam-btn--gold    { background: var(--gold);  color: var(--navy);  font-weight: 700; }
+  .lam-btn--gold:hover  { background: var(--gold-l); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(201,168,76,.4); }
+  .lam-btn--navy    { background: var(--navy);  color: var(--white); }
+  .lam-btn--navy:hover  { background: var(--navy-mid); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(15,35,71,.3); }
+  .lam-btn--ghost   { background: transparent; color: rgba(255,255,255,.85); border: 1.5px solid rgba(255,255,255,.25); }
+  .lam-btn--ghost:hover { border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.07); transform: translateY(-2px); }
+  .lam-btn--outline { background: transparent; color: var(--navy); border: 1.5px solid var(--bdr); }
+  .lam-btn--outline:hover { border-color: var(--navy); transform: translateY(-2px); }
+  .lam-btn--submit  { width: 100%; justify-content: center; padding: 1rem 2rem; font-size: 1rem; }
+
+  /* ── HERO ── */
+  .lam-hero {
+    position: relative; min-height: 65vh; display: flex;
+    flex-direction: column; justify-content: center;
+    padding-top: 70px; overflow: hidden;
+  }
+  .lam-hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .lam-hero__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(10,26,58,.96) 0%, rgba(15,35,71,.88) 60%, rgba(26,58,110,.82) 100%);
+  }
+  .lam-hero__glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 80% 30%, rgba(201,168,76,.09) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 80% at 10% 70%, rgba(30,74,138,.3) 0%, transparent 60%);
+  }
+  .lam-hero__inner {
+    position: relative; z-index: 1;
+    padding-top: clamp(2.5rem,6vw,4rem);
+    padding-bottom: clamp(3rem,6vw,5rem);
+  }
+  .lam-breadcrumb {
+    display: flex; align-items: center; gap: .5rem;
+    font-size: .78rem; color: rgba(255,255,255,.4); margin-bottom: 1.5rem; flex-wrap: wrap;
+  }
+  .lam-breadcrumb a { color: rgba(255,255,255,.4); text-decoration: none; transition: color .2s; }
+  .lam-breadcrumb a:hover { color: var(--gold-l); }
+  .lam-breadcrumb span[aria-current] { color: var(--gold); }
+  .lam-eyebrow {
+    display: inline-flex; align-items: center; gap: .75rem;
+    font-size: .78rem; font-weight: 600; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
+  }
+  .lam-eyebrow__line { display: block; width: 28px; height: 1px; background: var(--gold); opacity: .5; flex-shrink: 0; }
+  .lam-hero__h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.2rem,4.5vw,3.6rem); font-weight: 900;
+    color: var(--white); line-height: 1.1; margin: 0 0 1.2rem;
+  }
+  .lam-hero__h1 em { font-style: normal; color: var(--gold); }
+  .lam-hero__lead { font-size: 1.05rem; color: rgba(255,255,255,.65); line-height: 1.8; max-width: 560px; margin: 0 0 2rem; }
+  .lam-hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .lam-statsbar {
+    position: relative; z-index: 1;
+    display: flex; align-items: center; flex-wrap: wrap;
+    background: rgba(255,255,255,.06); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.1); border-radius: 12px;
+    padding: 1.5rem 2rem; margin-top: 2rem;
+  }
+  .lam-sitem { display: flex; flex-direction: column; flex: 1; min-width: 80px; padding-inline: 1rem; text-align: center; }
+  .lam-sitem:first-child { padding-left: 0; }
+  .lam-sitem:last-child  { padding-right: 0; }
+  .lam-sitem strong {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.6rem; font-weight: 900; color: var(--gold); line-height: 1; display: block;
+  }
+  .lam-sitem strong sup { font-size: .7em; }
+  .lam-sitem span { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-top: .3rem; display: block; }
+  .lam-sdiv { width: 1px; height: 32px; background: rgba(255,255,255,.12); flex-shrink: 0; }
+
+  /* ── CONTACT INFO GRID ── */
+  .lam-cinfo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.5rem;
+  }
+  .lam-cinfo-card {
+    background: var(--white); border: 1px solid var(--bdr);
+    border-radius: var(--radius); padding: 2rem 1.5rem;
+    text-align: center; transition: transform .25s, box-shadow .25s, border-color .25s;
+  }
+  .lam-cinfo-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(15,35,71,.08); border-color: rgba(201,168,76,.3); }
+  .lam-cinfo-icon { font-size: 2.5rem; margin-bottom: .75rem; }
+  .lam-cinfo-card h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.1rem; font-weight: 700; color: var(--text); margin: 0 0 .6rem;
+  }
+  .lam-cinfo-link {
+    display: block; color: var(--navy); font-weight: 600; font-size: 1rem;
+    text-decoration: none; transition: color .2s; margin-bottom: .4rem;
+  }
+  .lam-cinfo-link:hover { color: var(--gold); }
+  .lam-cinfo-card address { font-size: .9rem; color: var(--body); line-height: 1.6; }
+  .lam-cinfo-card p { font-size: .85rem; color: var(--slate); margin: 0; }
+
+  /* ── CONTACT FORM ── */
+  .lam-form-wrap { max-width: 760px; margin-inline: auto; }
+  .lam-form { display: flex; flex-direction: column; gap: 1.25rem; }
+  .lam-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .lam-form-group { display: flex; flex-direction: column; gap: .4rem; }
+  .lam-form-group label { font-size: .875rem; font-weight: 600; color: var(--text); }
+  .lam-form-group input,
+  .lam-form-group select,
+  .lam-form-group textarea {
+    padding: .85rem 1rem; border: 1.5px solid var(--bdr); border-radius: 8px;
+    font-size: .95rem; font-family: inherit; color: var(--text);
+    background: var(--white); transition: border-color .2s, box-shadow .2s;
+  }
+  .lam-form-group input:focus,
+  .lam-form-group select:focus,
+  .lam-form-group textarea:focus {
+    outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(15,35,71,.07);
+  }
+  .lam-input-err { border-color: #dc2626 !important; }
+  .lam-form-err  { font-size: .78rem; color: #dc2626; min-height: 1em; }
+  .lam-form-group textarea { resize: vertical; min-height: 130px; }
+
+  /* ── MAP ── */
+  .lam-map-wrap { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--bdr); }
+  .lam-map-wrap iframe { display: block; }
+  .lam-map-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; justify-content: center; }
+
+  /* ── FAQ ── */
+  .lam-faq-wrap { max-width: 780px; }
+  .lam-faqs  { display: flex; flex-direction: column; gap: .75rem; }
+  .lam-faq   { background: var(--white); border: 1px solid var(--bdr); border-radius: 10px; overflow: hidden; transition: border-color .2s; }
+  .lam-faq[open] { border-color: rgba(201,168,76,.35); }
+  .lam-faq__q {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 1.1rem 1.5rem; cursor: pointer;
+    font-weight: 600; font-size: .95rem; color: var(--text);
+    list-style: none; user-select: none; transition: background .15s;
+  }
+  .lam-faq__q:hover { background: var(--cream); }
+  .lam-faq__q::-webkit-details-marker { display: none; }
+  .lam-faq__arrow { flex-shrink: 0; color: var(--slate); transition: transform .25s; }
+  .lam-faq[open] .lam-faq__arrow { transform: rotate(180deg); color: var(--gold); }
+  .lam-faq__a { padding: 1rem 1.5rem 1.25rem; font-size: .925rem; color: var(--body); line-height: 1.75; margin: 0; border-top: 1px solid var(--bdr); }
+
+  /* ── CTA / SOCIAL ── */
+  .lam-cta { position: relative; background: var(--navy); overflow: hidden; padding: clamp(4rem,8vw,6rem) 0; }
+  .lam-cta__glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 55% 80% at 105% 50%, rgba(201,168,76,.14) 0%, transparent 65%),
+      linear-gradient(140deg, #08192e 0%, var(--navy) 100%);
+    pointer-events: none;
+  }
+  .lam-cta__inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap; }
+  .lam-cta__text h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.75rem,3vw,2.4rem); font-weight: 700;
+    color: var(--white); margin: .35rem 0 .7rem; line-height: 1.2; white-space: pre-line;
+  }
+  .lam-cta__text p { color: rgba(255,255,255,.55); font-size: .95rem; line-height: 1.7; max-width: 380px; margin: 0; }
+  .lam-social-grid { display: flex; flex-direction: column; gap: .75rem; min-width: 200px; }
+  .lam-social-btn {
+    display: flex; align-items: center; gap: .75rem;
+    padding: .8rem 1.4rem; border-radius: 8px;
+    font-size: .9rem; font-weight: 600; text-decoration: none;
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: transform .2s, opacity .2s;
+  }
+  .lam-social-btn:hover { transform: translateY(-2px); opacity: .9; }
+  .lam-social-btn--wa    { background: #16a34a; color: #fff; }
+  .lam-social-btn--ig    { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: #fff; }
+  .lam-social-btn--li    { background: #0077b5; color: #fff; }
+  .lam-social-btn--maps  { background: #ea4335; color: #fff; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .lam-cta__inner { flex-direction: column; }
+    .lam-social-grid { flex-direction: row; flex-wrap: wrap; }
+  }
+  @media (max-width: 768px) {
+    .lam-hero { min-height: auto; }
+    .lam-hero__actions { flex-direction: column; }
+    .lam-form-row { grid-template-columns: 1fr; }
+    .lam-cinfo-grid { grid-template-columns: 1fr 1fr; }
+    .lam-map-actions { flex-direction: column; }
+    .lam-cta__inner { text-align: center; }
+    .lam-social-grid { justify-content: center; }
+  }
+  @media (max-width: 480px) {
+    .lam-cinfo-grid { grid-template-columns: 1fr; }
+    .lam-statsbar { padding: 1rem 1.25rem; }
+    .lam-sdiv { display: none; }
+    .lam-sitem { padding-inline: .5rem; }
+  }
+
+  /* ── RTL ── */
+  html[dir="rtl"] .lam-eyebrow__line { order: -1; }
+  html[dir="rtl"] .lam-btn svg { transform: scaleX(-1); }
+</style>

@@ -1,0 +1,576 @@
+---
+// src/pages/quality.astro
+import I18nLayout from '../layouts/I18nLayout.astro';
+import I18nHeader from '../components/I18nHeader.astro';
+import I18nFooter from '../components/I18nFooter.astro';
+import { getLangFromUrl, useTranslations, getLocalizedRoute } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t    = useTranslations(lang);
+const isEN = lang === 'en';
+
+const baseUrl    = 'https://cihanpandoor.netlify.app';
+const pageUrl    = lang === 'tr' ? baseUrl : `${baseUrl}/${lang}`;
+const currentUrl = `${pageUrl}/quality`;
+
+// ── SCHEMA ────────────────────────────────────────────────────────────
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": isEN ? "Quality Policy — CihanPan Door" : "Kalite Politikası — CihanPan Door",
+  "description": isEN
+    ? "CihanPan Door quality standards, certifications and commitments. CE, ISO 9001, fire resistance and antibacterial testing. 5-year manufacturer warranty."
+    : "CihanPan Door kalite standartları, sertifikaları ve taahhütleri. CE, ISO 9001, yangın dayanımı ve antibakteriyel testler. 5 yıl garanti.",
+  "url": currentUrl,
+  "inLanguage": lang === 'tr' ? 'tr-TR' : lang === 'ar' ? 'ar-SA' : 'en-US',
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": isEN ? "Home"    : "Ana Sayfa",         "item": pageUrl },
+    { "@type": "ListItem", "position": 2, "name": isEN ? "Quality" : "Kalite Politikası", "item": currentUrl },
+  ]
+};
+
+// ── CONTENT ───────────────────────────────────────────────────────────
+const controlSteps = isEN ? [
+  'Raw material inspection before production',
+  'In-process quality audits at every production stage',
+  'Finished product dimensional and surface testing',
+  'Fire resistance and sound insulation certification tests',
+  'Pre-shipment inspection & packing verification',
+  'Post-delivery customer satisfaction follow-up',
+] : [
+  'Üretime başlamadan hammadde kalite kontrolü',
+  'Her üretim aşamasında süreç içi denetimler',
+  'Bitmiş ürün boyut ve yüzey testleri',
+  'Yangın dayanımı ve ses yalıtımı sertifikasyon testleri',
+  'Sevkiyat öncesi muayene ve ambalaj doğrulaması',
+  'Teslimat sonrası müşteri memnuniyeti takibi',
+];
+
+const certs = isEN ? [
+  { label: 'CE Certification',                   desc: 'All products comply with EU construction product regulations (CPR 305/2011).' },
+  { label: 'ISO 9001 Quality Management',        desc: 'Factory processes are audited annually under the ISO 9001:2015 quality management standard.' },
+  { label: 'Fire Resistance — EN 1634',          desc: 'Hospital and hotel door series are tested to EN 1634 for 30 and 60-minute fire ratings.' },
+  { label: 'Antibacterial Test Report',          desc: 'Elitpan (UV) and hospital series surfaces are tested for bacterial inhibition per ISO 22196.' },
+  { label: 'Sound Insulation Certificate',       desc: 'Hotel and hospital doors are certified for 32–42 dB acoustic performance per EN ISO 10140.' },
+  { label: 'Eco-Friendly Production Certificate', desc: 'MDF cores are sourced from FSC-certified suppliers; production waste is fully recycled.' },
+] : [
+  { label: 'CE Sertifikası',                      desc: 'Tüm ürünler AB yapı ürünleri yönetmeliğine (CPR 305/2011) uygundur.' },
+  { label: 'ISO 9001 Kalite Yönetimi',            desc: 'Fabrika süreçleri ISO 9001:2015 standardı kapsamında yıllık olarak denetlenmektedir.' },
+  { label: 'Yangın Dayanımı — EN 1634',           desc: 'Hastane ve otel kapı serileri 30 ve 60 dakikalık yangın dayanımı için EN 1634\'e göre test edilmiştir.' },
+  { label: 'Antibakteriyel Test Raporu',          desc: 'Elitpan (UV) ve hastane serisi yüzeyleri ISO 22196\'ya göre bakteri inhibisyonu açısından test edilmiştir.' },
+  { label: 'Ses Yalıtımı Sertifikası',            desc: 'Otel ve hastane kapıları EN ISO 10140\'a göre 32–42 dB akustik performans için sertifikalandırılmıştır.' },
+  { label: 'Çevre Dostu Üretim Belgesi',          desc: 'MDF özler FSC sertifikalı tedarikçilerden temin edilmektedir; üretim atıkları tamamen geri dönüştürülür.' },
+];
+
+const commitments = isEN ? [
+  { icon: '🏭', title: 'Production Quality',   body: 'CNC-precision machinery and an experienced team deliver zero-defect production across all door series.' },
+  { icon: '🪵', title: 'Material Quality',      body: 'First-grade MDF cores, certified HPL and UV laminates — no compromises on raw material sourcing.' },
+  { icon: '🤝', title: 'Service Quality',       body: 'Pre-sale technical consultation, export documentation support and after-sale warranty service.' },
+  { icon: '🛡️', title: '5-Year Warranty',       body: 'All door models carry a 5-year manufacturer warranty covering defects, surface degradation and colour fading.' },
+  { icon: '📦', title: 'On-Time Delivery',      body: '15–25 business day standard lead time; all shipments tracked and documented with CE/ISO paperwork.' },
+  { icon: '♻️', title: 'Sustainability',         body: 'FSC-certified raw materials, water-based adhesives and zero-waste production practices throughout the factory.' },
+] : [
+  { icon: '🏭', title: 'Üretim Kalitesi',        body: 'CNC hassasiyetinde makineler ve deneyimli ekibimizle tüm kapı serilerinde sıfır hatalı üretim.' },
+  { icon: '🪵', title: 'Malzeme Kalitesi',       body: 'Birinci sınıf MDF özler, sertifikalı HPL ve UV laminatlar — hammadde seçiminde taviz yok.' },
+  { icon: '🤝', title: 'Hizmet Kalitesi',        body: 'Satış öncesi teknik danışmanlık, ihracat evrak desteği ve satış sonrası garanti hizmeti.' },
+  { icon: '🛡️', title: '5 Yıl Garanti',         body: 'Tüm kapı modelleri hata, yüzey bozulması ve renk solmasını kapsayan 5 yıl üretici garantisi ile sunulur.' },
+  { icon: '📦', title: 'Zamanında Teslimat',     body: '15–25 iş günü standart üretim süresi; tüm sevkiyatlar CE/ISO belgeleriyle takip edilir ve belgelenir.' },
+  { icon: '♻️', title: 'Sürdürülebilirlik',      body: 'FSC sertifikalı hammaddeler, su bazlı yapıştırıcılar ve fabrika genelinde sıfır atık üretim uygulamaları.' },
+];
+
+const goals = isEN ? [
+  '100% customer satisfaction on every order',
+  'Zero-defect production target across all lines',
+  'Continuous improvement via annual ISO audits',
+  'On-time delivery for every project worldwide',
+  'Ongoing R&D for innovative door solutions',
+  'Expanding CE & international certification scope',
+] : [
+  'Her siparişte %100 müşteri memnuniyeti',
+  'Tüm hatlarda sıfır hata üretim hedefi',
+  'Yıllık ISO denetimleriyle sürekli iyileştirme',
+  'Dünya genelindeki her proje için zamanında teslimat',
+  'Yenilikçi kapı çözümleri için süregelen Ar-Ge',
+  'CE ve uluslararası sertifikasyon kapsamını genişletme',
+];
+---
+
+<I18nLayout
+  title={isEN
+    ? "Quality Policy — CE & ISO 9001 Certified | CihanPan Door"
+    : "Kalite Politikası — CE & ISO 9001 Sertifikalı | CihanPan Door"}
+  description={isEN
+    ? "CihanPan Door quality standards, certifications and commitments. CE, ISO 9001, EN 1634 fire resistance and antibacterial testing. 5-year manufacturer warranty on all door models."
+    : "CihanPan Door kalite standartları, sertifikaları ve taahhütleri. CE, ISO 9001, yangın dayanımı testleri. Tüm kapı modellerinde 5 yıl üretici garantisi."}
+  keywords={isEN
+    ? "CihanPan Door quality policy, CE certified door manufacturer Turkey, ISO 9001 door factory Kayseri, fire rated door certificate EN 1634"
+    : "CihanPan Door kalite politikası, CE belgeli kapı üreticisi, ISO 9001 kapı fabrikası Kayseri"}
+  canonical={currentUrl}
+  schema={[pageSchema, breadcrumbSchema]}
+  ogTitle={isEN ? "Quality Policy — CihanPan Door" : "Kalite Politikası — CihanPan Door"}
+  ogDescription={isEN
+    ? "CE, ISO 9001 and fire-rated certified door manufacturer from Kayseri, Turkey. 5-year warranty."
+    : "Kayseri'den CE, ISO 9001 sertifikalı kapı üreticisi. 5 yıl garanti."}
+  ogImage="/assets/img/og/quality-og.webp"
+>
+  <I18nHeader />
+
+  <main class="lam" id="main-content">
+
+    <!-- ══════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════ -->
+    <section class="lam-hero" aria-labelledby="lam-h1">
+      <div class="lam-hero__bg" aria-hidden="true">
+        <div class="lam-hero__overlay"></div>
+        <div class="lam-hero__glow"></div>
+      </div>
+      <div class="lam-wrap lam-hero__inner">
+        <div>
+          <nav class="lam-breadcrumb" aria-label="Breadcrumb">
+            <a href={pageUrl}>{isEN ? 'Home' : 'Ana Sayfa'}</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">{isEN ? 'Quality Policy' : 'Kalite Politikası'}</span>
+          </nav>
+          <span class="lam-eyebrow">
+            <span class="lam-eyebrow__line"></span>
+            {isEN ? 'CE · ISO 9001 · EN 1634' : 'CE · ISO 9001 · EN 1634'}
+          </span>
+          <h1 class="lam-hero__h1" id="lam-h1">
+            {isEN
+              ? <><em>Quality Policy</em><br/>Our Standards &amp; Commitments</>
+              : <><em>Kalite Politikamız</em><br/>Standartlarımız &amp; Taahhütlerimiz</>}
+          </h1>
+          <p class="lam-hero__lead">
+            {isEN
+              ? 'At CihanPan Door, quality is not a checkpoint — it is embedded in every stage of production. CE and ISO 9001 certified, factory-audited annually, with a 5-year warranty on all door models.'
+              : 'CihanPan Door\'da kalite bir kontrol noktası değil, üretimin her aşamasına işlenmiş bir felsefedir. CE ve ISO 9001 sertifikalı, yıllık fabrika denetimli, tüm kapı modellerinde 5 yıl garantili.'}
+          </p>
+          <div class="lam-hero__actions">
+            <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--gold">
+              {isEN ? 'Request Certificates' : 'Sertifika İste'}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href={getLocalizedRoute('/urunlerimiz', lang)} class="lam-btn lam-btn--ghost">
+              {isEN ? 'View Products' : 'Ürünleri Gör'}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="lam-wrap">
+        <div class="lam-statsbar">
+          <div class="lam-sitem"><strong>CE</strong><span>{isEN ? 'Certified' : 'Sertifikalı'}</span></div>
+          <div class="lam-sdiv"></div>
+          <div class="lam-sitem"><strong>ISO</strong><span>9001</span></div>
+          <div class="lam-sdiv"></div>
+          <div class="lam-sitem"><strong>5<sup>yr</sup></strong><span>{isEN ? 'Warranty' : 'Garanti'}</span></div>
+          <div class="lam-sdiv"></div>
+          <div class="lam-sitem"><strong>0</strong><span>{isEN ? 'Defect Goal' : 'Hata Hedefi'}</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         QUALITY CONTROL PROCESS
+    ══════════════════════════════════════════ -->
+    <section class="lam-sec lam-sec--cream" aria-labelledby="ctrl-h2">
+      <div class="lam-wrap lam-two-col">
+
+        <div>
+          <span class="lam-tag">{isEN ? 'Our Process' : 'Sürecimiz'}</span>
+          <h2 id="ctrl-h2">
+            {isEN ? 'Quality Control at Every Stage' : 'Her Aşamada Kalite Kontrolü'}
+          </h2>
+          <p>
+            {isEN
+              ? 'From raw material selection to final shipment, every door passes through a rigorous multi-stage inspection process. Our quality team and third-party auditors ensure that no product leaves the factory without meeting full specification.'
+              : 'Hammadde seçiminden son sevkiyata kadar her kapı, titiz çok aşamalı bir muayene sürecinden geçmektedir. Kalite ekibimiz ve üçüncü taraf denetçiler, hiçbir ürünün tam spesifikasyonu karşılamadan fabrikayı terk etmemesini sağlar.'}
+          </p>
+          <ul class="lam-checklist lam-checklist--lg">
+            {controlSteps.map(step => <li>{step}</li>)}
+          </ul>
+        </div>
+
+        <div class="lam-qual-aside">
+          <div class="lam-qual-card lam-qual-card--navy">
+            <div class="lam-qual-icon">🏆</div>
+            <h3>{isEN ? 'Our Quality Philosophy' : 'Kalite Anlayışımız'}</h3>
+            <p>
+              {isEN
+                ? 'Quality is not added at the end — it is built in from the first cut of raw material to the final packaging check. Every team member is responsible for the standard that ships to our customers.'
+                : 'Kalite sona eklenmez — hammaddenin ilk kesiminden son ambalaj kontrolüne kadar içine işlenir. Her ekip üyesi, müşterilerimize gönderilen standartten sorumludur.'}
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CERTIFICATIONS
+    ══════════════════════════════════════════ -->
+    <section class="lam-sec lam-sec--white" aria-labelledby="cert-h2">
+      <div class="lam-wrap">
+        <div class="lam-head">
+          <span class="lam-tag">{isEN ? 'Certifications' : 'Sertifikalarımız'}</span>
+          <h2 id="cert-h2">{isEN ? 'Our Certifications & Standards' : 'Sertifikalarımız ve Standartlarımız'}</h2>
+          <p>
+            {isEN
+              ? 'All CihanPan Door products are manufactured and tested to the following international standards. Full documentation is available upon request for export orders.'
+              : 'Tüm CihanPan Door ürünleri aşağıdaki uluslararası standartlara göre üretilmekte ve test edilmektedir. İhracat siparişleri için talep üzerine tam belgeler mevcuttur.'}
+          </p>
+        </div>
+
+        <div class="lam-cert-grid">
+          {certs.map(cert => (
+            <div class="lam-cert-card">
+              <span class="lam-cert-badge">✓</span>
+              <div>
+                <strong>{cert.label}</strong>
+                <p>{cert.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="lam-cert-cta">
+          <p>{isEN ? 'Need a copy of our certificates for your procurement process?' : 'Tedarik süreciniz için sertifika kopyasına ihtiyacınız var mı?'}</p>
+          <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--navy">
+            {isEN ? 'Request Documentation' : 'Belge İste'}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         COMMITMENTS
+    ══════════════════════════════════════════ -->
+    <section class="lam-sec lam-sec--cream" aria-labelledby="commit-h2">
+      <div class="lam-wrap">
+        <div class="lam-head">
+          <span class="lam-tag">{isEN ? 'Our Commitments' : 'Taahhütlerimiz'}</span>
+          <h2 id="commit-h2">{isEN ? 'What We Promise Every Customer' : 'Her Müşterimize Verdiğimiz Söz'}</h2>
+        </div>
+
+        <div class="lam-commit-grid">
+          {commitments.map(c => (
+            <div class="lam-commit-card">
+              <div class="lam-commit-icon">{c.icon}</div>
+              <h3>{c.title}</h3>
+              <p>{c.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         QUALITY GOALS
+    ══════════════════════════════════════════ -->
+    <section class="lam-sec lam-sec--white" aria-labelledby="goals-h2">
+      <div class="lam-wrap lam-two-col">
+
+        <div class="lam-qual-aside lam-qual-aside--left">
+          <div class="lam-qual-card lam-qual-card--gold">
+            <div class="lam-qual-icon">🎯</div>
+            <h3>{isEN ? 'Our Quality Goals' : 'Kalite Hedeflerimiz'}</h3>
+            <p>
+              {isEN
+                ? 'We measure, audit and improve — every year, every order. Our goal is not to satisfy minimum standards but to consistently exceed customer expectations.'
+                : 'Ölçer, denetler ve iyileştiririz — her yıl, her sipariş. Hedefimiz minimum standartları karşılamak değil, müşteri beklentilerini sürekli olarak aşmaktır.'}
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <span class="lam-tag">{isEN ? 'Goals' : 'Hedefler'}</span>
+          <h2 id="goals-h2">
+            {isEN ? 'Continuous Improvement' : 'Sürekli İyileştirme'}
+          </h2>
+          <p>
+            {isEN
+              ? 'Quality at CihanPan Door is not static. Our annual ISO 9001 audits, customer feedback loops and R&D investment drive a continuous cycle of improvement across production, materials and service.'
+              : 'CihanPan Door\'da kalite durağan değildir. Yıllık ISO 9001 denetimlerimiz, müşteri geri bildirim döngüleri ve Ar-Ge yatırımımız, üretim, malzeme ve hizmet genelinde sürekli bir iyileştirme döngüsü oluşturur.'}
+          </p>
+          <ul class="lam-checklist lam-checklist--lg">
+            {goals.map(g => <li>{g}</li>)}
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CTA BAND
+    ══════════════════════════════════════════ -->
+    <section class="lam-cta" aria-labelledby="cta-h2">
+      <div class="lam-cta__glow" aria-hidden="true"></div>
+      <div class="lam-wrap lam-cta__inner">
+        <div class="lam-cta__text">
+          <span class="lam-tag lam-tag--gold">{isEN ? 'Work With Us' : 'Bizimle Çalışın'}</span>
+          <h2 id="cta-h2">
+            {isEN
+              ? 'Ready to Source\nCE-Certified Doors?'
+              : 'CE Sertifikalı Kapı\nTedarik Etmeye Hazır mısınız?'}
+          </h2>
+          <p>
+            {isEN
+              ? 'Request a free wholesale quote with full CE, ISO 9001 and fire-rating documentation. Factory-direct pricing within 24 hours.'
+              : 'Tam CE, ISO 9001 ve yangın dayanımı belgeleriyle birlikte ücretsiz toptan teklif isteyin. 24 saat içinde fabrika doğrudan fiyatlandırması.'}
+          </p>
+        </div>
+        <div class="lam-cta__btns">
+          <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--gold">
+            {isEN ? 'Get a Free Quote' : 'Ücretsiz Teklif Al'}
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href={getLocalizedRoute('/urunlerimiz', lang)} class="lam-btn lam-btn--ghost">
+            {isEN ? 'All Products' : 'Tüm Ürünler'}
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <I18nFooter />
+</I18nLayout>
+
+<style>
+  /* ── TOKENS — laminoks-doors.astro ile özdeş ── */
+  .lam {
+    --navy:     #0f2347;
+    --navy-mid: #1a3a6e;
+    --gold:     #c9a84c;
+    --gold-l:   #e2bc6a;
+    --cream:    #faf8f4;
+    --slate:    #607080;
+    --text:     #0f1929;
+    --body:     #3d4f63;
+    --bdr:      #e4eaf4;
+    --white:    #ffffff;
+    --radius:   14px;
+    --green:    #16a34a;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text);
+  }
+
+  /* ── LAYOUT ── */
+  .lam-wrap { max-width: 1160px; margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 2.5rem); width: 100%; }
+  .lam-sec        { padding-block: clamp(4rem, 8vw, 6.5rem); }
+  .lam-sec--white { background: var(--white); }
+  .lam-sec--cream { background: var(--cream); }
+
+  .lam-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2.5rem, 5vw, 5rem);
+    align-items: start;
+  }
+
+  /* ── SECTION HEAD ── */
+  .lam-head { text-align: center; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+  .lam-head h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700;
+    color: var(--text); margin: 0.3rem 0 0.7rem; line-height: 1.2;
+  }
+  .lam-head p { color: var(--slate); font-size: 1rem; max-width: 600px; margin-inline: auto; line-height: 1.7; }
+
+  .lam-two-col h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.6rem, 2.8vw, 2.2rem); font-weight: 700;
+    color: var(--text); margin: 0.3rem 0 1rem; line-height: 1.2;
+  }
+  .lam-two-col > div > p { font-size: 0.95rem; color: var(--body); line-height: 1.8; margin-bottom: 1.25rem; }
+
+  .lam-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .lam-tag--gold { color: rgba(201,168,76,0.9); }
+
+  /* ── BUTTONS ── */
+  .lam-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.9rem; font-weight: 600; padding: 0.9rem 1.75rem;
+    border-radius: 8px; text-decoration: none; white-space: nowrap;
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: transform .2s, box-shadow .2s, background .2s, border-color .2s;
+    cursor: pointer; border: none;
+  }
+  .lam-btn--gold  { background: var(--gold);  color: var(--navy);  font-weight: 700; }
+  .lam-btn--gold:hover  { background: var(--gold-l); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(201,168,76,.4); }
+  .lam-btn--navy  { background: var(--navy);  color: var(--white); }
+  .lam-btn--navy:hover  { background: var(--navy-mid); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(15,35,71,.3); }
+  .lam-btn--ghost { background: transparent; color: rgba(255,255,255,.85); border: 1.5px solid rgba(255,255,255,.25); }
+  .lam-btn--ghost:hover { border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.07); transform: translateY(-2px); }
+
+  /* ── HERO ── */
+  .lam-hero {
+    position: relative; min-height: 65vh; display: flex;
+    flex-direction: column; justify-content: center;
+    padding-top: 70px; overflow: hidden;
+  }
+  .lam-hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .lam-hero__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(10,26,58,.96) 0%, rgba(15,35,71,.88) 60%, rgba(26,58,110,.82) 100%);
+  }
+  .lam-hero__glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 80% 30%, rgba(201,168,76,.09) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 80% at 10% 70%, rgba(30,74,138,.3) 0%, transparent 60%);
+  }
+  .lam-hero__inner {
+    position: relative; z-index: 1;
+    padding-top: clamp(2.5rem,6vw,4rem);
+    padding-bottom: clamp(3rem,6vw,5rem);
+  }
+  .lam-breadcrumb {
+    display: flex; align-items: center; gap: .5rem;
+    font-size: .78rem; color: rgba(255,255,255,.4); margin-bottom: 1.5rem; flex-wrap: wrap;
+  }
+  .lam-breadcrumb a { color: rgba(255,255,255,.4); text-decoration: none; transition: color .2s; }
+  .lam-breadcrumb a:hover { color: var(--gold-l); }
+  .lam-breadcrumb span[aria-current] { color: var(--gold); }
+  .lam-eyebrow {
+    display: inline-flex; align-items: center; gap: .75rem;
+    font-size: .78rem; font-weight: 600; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
+  }
+  .lam-eyebrow__line { display: block; width: 28px; height: 1px; background: var(--gold); opacity: .5; flex-shrink: 0; }
+  .lam-hero__h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.2rem,4.5vw,3.6rem); font-weight: 900;
+    color: var(--white); line-height: 1.1; margin: 0 0 1.2rem;
+  }
+  .lam-hero__h1 em { font-style: normal; color: var(--gold); }
+  .lam-hero__lead { font-size: 1.05rem; color: rgba(255,255,255,.65); line-height: 1.8; max-width: 560px; margin: 0 0 2rem; }
+  .lam-hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .lam-statsbar {
+    position: relative; z-index: 1;
+    display: flex; align-items: center; flex-wrap: wrap;
+    background: rgba(255,255,255,.06); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.1); border-radius: 12px;
+    padding: 1.5rem 2rem; margin-top: 2rem;
+  }
+  .lam-sitem { display: flex; flex-direction: column; flex: 1; min-width: 80px; padding-inline: 1rem; text-align: center; }
+  .lam-sitem:first-child { padding-left: 0; }
+  .lam-sitem:last-child  { padding-right: 0; }
+  .lam-sitem strong { font-family: 'Playfair Display', Georgia, serif; font-size: 1.6rem; font-weight: 900; color: var(--gold); line-height: 1; display: block; }
+  .lam-sitem strong sup { font-size: .7em; }
+  .lam-sitem span { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-top: .3rem; display: block; }
+  .lam-sdiv { width: 1px; height: 32px; background: rgba(255,255,255,.12); flex-shrink: 0; }
+
+  /* ── CHECKLIST ── */
+  .lam-checklist { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .6rem; }
+  .lam-checklist--lg li { font-size: 0.95rem; }
+  .lam-checklist li { font-size: .9rem; color: var(--body); line-height: 1.6; padding-left: 1.75rem; position: relative; }
+  .lam-checklist li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; font-size: 1rem; }
+
+  /* ── QUALITY ASIDE ── */
+  .lam-qual-aside { display: flex; flex-direction: column; gap: 1.5rem; }
+  .lam-qual-aside--left { order: -1; }
+  .lam-qual-card {
+    border-radius: var(--radius); padding: 2rem;
+  }
+  .lam-qual-card--navy { background: var(--navy); }
+  .lam-qual-card--navy h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; font-weight: 700; color: var(--white); margin: .5rem 0 .75rem; }
+  .lam-qual-card--navy p  { font-size: .9rem; color: rgba(255,255,255,.6); line-height: 1.75; margin: 0; }
+  .lam-qual-card--gold { background: var(--gold); }
+  .lam-qual-card--gold h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; font-weight: 700; color: var(--navy); margin: .5rem 0 .75rem; }
+  .lam-qual-card--gold p  { font-size: .9rem; color: rgba(15,35,71,.75); line-height: 1.75; margin: 0; }
+  .lam-qual-icon { font-size: 2rem; margin-bottom: .5rem; }
+
+  /* ── CERTIFICATIONS ── */
+  .lam-cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem; margin-bottom: 2.5rem;
+  }
+  .lam-cert-card {
+    display: flex; align-items: flex-start; gap: 1rem;
+    background: var(--cream); border: 1px solid var(--bdr);
+    border-radius: 10px; padding: 1.4rem 1.5rem;
+    transition: border-color .2s, transform .2s;
+  }
+  .lam-cert-card:hover { border-color: rgba(201,168,76,.4); transform: translateY(-2px); }
+  .lam-cert-badge {
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    width: 36px; height: 36px; background: var(--navy); color: var(--gold);
+    border-radius: 50%; font-size: 1rem; font-weight: 700;
+  }
+  .lam-cert-card strong { display: block; font-size: .9rem; font-weight: 700; color: var(--text); margin-bottom: .35rem; }
+  .lam-cert-card p      { font-size: .85rem; color: var(--body); line-height: 1.6; margin: 0; }
+  .lam-cert-cta { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; padding: 1.75rem 2rem; background: var(--cream); border: 1px solid var(--bdr); border-radius: var(--radius); }
+  .lam-cert-cta p { font-size: .95rem; color: var(--body); margin: 0; flex: 1; }
+
+  /* ── COMMITMENTS ── */
+  .lam-commit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .lam-commit-card {
+    background: var(--white); border: 1px solid var(--bdr);
+    border-radius: var(--radius); padding: 1.75rem;
+    border-left: 4px solid var(--gold);
+    transition: transform .25s, box-shadow .25s;
+  }
+  .lam-commit-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(15,35,71,.08); }
+  .lam-commit-icon { font-size: 1.75rem; margin-bottom: .6rem; }
+  .lam-commit-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.05rem; font-weight: 700; color: var(--text); margin: 0 0 .5rem; }
+  .lam-commit-card p  { font-size: .875rem; color: var(--body); line-height: 1.7; margin: 0; }
+
+  /* ── CTA BAND ── */
+  .lam-cta { position: relative; background: var(--navy); overflow: hidden; padding: clamp(4rem,8vw,6rem) 0; }
+  .lam-cta__glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 55% 80% at 105% 50%, rgba(201,168,76,.14) 0%, transparent 65%),
+      linear-gradient(140deg, #08192e 0%, var(--navy) 100%);
+    pointer-events: none;
+  }
+  .lam-cta__inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap; }
+  .lam-cta__text h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.75rem,3vw,2.4rem); font-weight: 700;
+    color: var(--white); margin: .35rem 0 .7rem; line-height: 1.2; white-space: pre-line;
+  }
+  .lam-cta__text p { color: rgba(255,255,255,.55); font-size: .95rem; line-height: 1.7; max-width: 420px; margin: 0; }
+  .lam-cta__btns  { display: flex; gap: 1rem; flex-wrap: wrap; flex-shrink: 0; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .lam-two-col { grid-template-columns: 1fr; }
+    .lam-qual-aside--left { order: 0; }
+  }
+  @media (max-width: 768px) {
+    .lam-hero { min-height: auto; }
+    .lam-hero__actions { flex-direction: column; }
+    .lam-cta__inner { flex-direction: column; text-align: center; }
+    .lam-cta__btns  { justify-content: center; }
+    .lam-cert-cta { flex-direction: column; text-align: center; }
+  }
+  @media (max-width: 480px) {
+    .lam-statsbar { padding: 1rem 1.25rem; }
+    .lam-sdiv { display: none; }
+    .lam-sitem { padding-inline: .5rem; }
+    .lam-commit-grid { grid-template-columns: 1fr; }
+    .lam-cert-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── RTL ── */
+  html[dir="rtl"] .lam-eyebrow__line { order: -1; }
+  html[dir="rtl"] .lam-btn svg { transform: scaleX(-1); }
+  html[dir="rtl"] .lam-checklist li { padding-left: 0; padding-right: 1.75rem; }
+  html[dir="rtl"] .lam-checklist li::before { left: auto; right: 0; }
+  html[dir="rtl"] .lam-commit-card { border-left: none; border-right: 4px solid var(--gold); }
+</style>
