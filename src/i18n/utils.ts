@@ -24,6 +24,7 @@ const routeSlugs: Record<string, Partial<Record<Language, string>>> = {
   '/sss':                     { en: '/faq',                 ar: '/sss' },
   '/destek':                  { en: '/support',             ar: '/destek' },
   '/kategoriler':             { en: '/categories',          ar: '/kategoriler' },
+  '/kapi-malzemeleri':        { en: '/door-materials',      ar: '/kapi-malzemeleri' },
 };
 
 // Ters map: her dilin kendi slug'ından TR slug'ına dönmek için

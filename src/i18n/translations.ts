@@ -10,6 +10,7 @@ export const translations = {
     'nav.products': 'Ürünlerimiz',
     'nav.contact': 'İletişim',
     'nav.categories': 'Kategoriler',
+    'nav.materials': 'Malzemeler',
 
     // Products
     'products.pvc': 'PVC Kapılar',
@@ -219,6 +220,7 @@ export const translations = {
     'nav.products': 'Products',
     'nav.contact': 'Contact',
     'nav.categories': 'Categories',
+    'nav.materials': 'Materials',
 
     // Products
     'products.pvc': 'PVC Doors',
@@ -428,9 +430,7 @@ export const translations = {
     'nav.products': 'منتجاتنا',
     'nav.contact': 'اتصل بنا',
     'nav.categories': 'الفئات',
-
-    // Products
-    'products.pvc': 'أبواب PVC',
+    'nav.materials': 'المواد',
     'products.laminoks': 'أبواب لامينوكس',
     'products.elitpan': 'أبواب إليتبان',
     'products.hospital': 'أبواب المستشفيات',
