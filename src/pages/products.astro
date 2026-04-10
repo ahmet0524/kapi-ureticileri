@@ -26,7 +26,7 @@ const productsSchema = {
   "mainEntity": {
     "@type": "ItemList",
     "name": isEN ? "Product Categories" : "Ürün Kategorileri",
-    "numberOfItems": 7,
+    "numberOfItems": 6,
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "item": { "@type": "Product", "name": isEN ? "PVC Interior Doors" : "PVC Kapılar", "url": `${pageUrl}/pvc-kapilar` }},
       { "@type": "ListItem", "position": 2, "item": { "@type": "Product", "name": isEN ? "Laminox Interior Doors" : "Laminoks Kapılar", "url": `${pageUrl}/laminoks-kapilar` }},
@@ -34,7 +34,6 @@ const productsSchema = {
       { "@type": "ListItem", "position": 4, "item": { "@type": "Product", "name": isEN ? "Hospital Doors" : "Hastane Kapıları", "url": `${pageUrl}/hastane-kapilari` }},
       { "@type": "ListItem", "position": 5, "item": { "@type": "Product", "name": isEN ? "Hotel Room Doors" : "Otel Kapıları", "url": `${pageUrl}/otel-kapilari` }},
       { "@type": "ListItem", "position": 6, "item": { "@type": "Product", "name": isEN ? "Fire-Resistant Doors" : "Yangın Kapıları", "url": `${pageUrl}/yangina-dayanikli-kapilar` }},
-      { "@type": "ListItem", "position": 7, "item": { "@type": "Product", "name": isEN ? "Door Materials & Accessories" : "Kapı Malzemeleri", "url": currentUrl }},
     ]
   }
 };
@@ -72,69 +71,6 @@ const doorCategories = [
   { slug: '/yangina-dayanikli-kapilar', badge: isEN ? 'Certified'   : 'Sertifikalı',  badgeGold: false, title: isEN ? 'Fire-Resistant Doors'  : 'Yangına Dayanıklı Kapılar', desc: isEN ? 'EI30–EI90 rated fire doors with CE certification. European & international building code compliant.' : 'CE sertifikalı EI30–EI90 yangın kapıları.', tags: isEN ? ['EI30–EI90','CE Certified','Building Code'] : ['EI30–EI90','CE Sertifikalı','Yönetmelik Uyumlu'], img: '/assets/img/categories/yangina-dayanikli-kapilar.webp' },
 ];
 
-// ── MATERIALS DATA ─────────────────────────────────────────────────
-const materials = [
-  {
-    category: 'core',
-    img: '/assets/img/materials/honeycomb-1-core.webp',
-    title: isEN ? 'Honeycomb Core 1' : 'Honeycomb Core 1',
-    desc: isEN ? 'High-strength, lightweight honeycomb inner structure. Enhances door durability and provides lasting performance.' : 'Yüksek mukavemet ve hafif honeycomb iç yapı malzemesi.',
-    tags: isEN ? ['Lightweight','High Strength','Sound Insulation','Moisture Resistant'] : ['Hafif Yapı','Yüksek Mukavemet','Ses Yalıtımı','Nem Direnci'],
-  },
-  {
-    category: 'core',
-    img: '/assets/img/materials/honeycomb-2-core.webp',
-    title: isEN ? 'Honeycomb Core 2' : 'Honeycomb Core 2',
-    desc: isEN ? 'Dense-cell honeycomb with advanced technology. Superior performance and durability for premium door lines.' : 'Yoğun hücre yapılı gelişmiş honeycomb. Üstün dayanıklılık.',
-    tags: isEN ? ['Dense Cell','Superior Durability','Good Acoustics','Eco-Friendly'] : ['Yoğun Hücre','Üstün Dayanıklılık','Akustik','Çevre Dostu'],
-  },
-  {
-    category: 'core',
-    img: '/assets/img/materials/semi-solid-core.webp',
-    title: isEN ? 'Semi Solid Wood' : 'Semi Solid Wood',
-    desc: isEN ? 'Natural wood solidity combined with modern manufacturing. Used in our premium door collections.' : 'Doğal ahşap sağlamlığı, modern üretim tekniğiyle birleşir.',
-    tags: isEN ? ['Natural Wood','High Solidity','Premium Quality','Long-Lasting'] : ['Doğal Ahşap','Yüksek Sağlamlık','Premium','Uzun Ömürlü'],
-  },
-  {
-    category: 'surface',
-    img: '/assets/img/materials/PVCFOLYOLAR.webp',
-    title: isEN ? 'PVC Surface Materials' : 'PVC Yüzey Malzemeleri',
-    desc: isEN ? 'Waterproof PVC laminate coatings. Ideal for humid environments — easy to clean, available in many colors.' : 'Su geçirmez PVC kaplama. Nemli ortamlar için ideal.',
-    tags: isEN ? ['Waterproof','Easy Clean','Multi-Color','Cost-Effective'] : ['Su Geçirmez','Kolay Temizlik','Çok Renk','Ekonomik'],
-    link: getLocalizedRoute('/pvc-kapilar', lang),
-    linkLabel: isEN ? 'View PVC Doors' : 'PVC Kapıları Gör',
-  },
-  {
-    category: 'surface',
-    img: '/assets/img/materials/PVCFOLYOLAR.webp',
-    title: isEN ? 'Laminox Surface Materials' : 'Laminoks Yüzey Malzemeleri',
-    desc: isEN ? 'High-pressure melamine (HPL) laminate over MDF. Scratch and impact resistant with a premium aesthetic.' : 'MDF üzerine yüksek basınçlı laminat. Çizilme direnci yüksek.',
-    tags: isEN ? ['Scratch-Resistant','Impact-Resistant','Rich Patterns','Matt/Gloss'] : ['Çizilmez','Darbe Dayanımı','Zengin Desen','Mat/Parlak'],
-    link: getLocalizedRoute('/laminoks-kapilar', lang),
-    linkLabel: isEN ? 'View Laminox Doors' : 'Laminoks Kapıları Gör',
-  },
-  {
-    category: 'accessories',
-    img: '/assets/img/materials/door-handles.webp',
-    title: isEN ? 'Door Handles & Lock Systems' : 'Kapı Kolları ve Kilit Sistemleri',
-    desc: isEN ? 'Stainless steel and brass door handles. Ergonomic designs and security lock options in various finishes.' : 'Paslanmaz çelik ve pirinç kapı kolları. Güvenlik kilitleri.',
-    tags: isEN ? ['Stainless Steel','Ergonomic','Multi-Finish','Security Locks'] : ['Paslanmaz','Ergonomik','Çeşitli Renkler','Güvenlik'],
-  },
-  {
-    category: 'accessories',
-    img: '/assets/img/materials/hinges.webp',
-    title: isEN ? 'Hinges & Fixings' : 'Menteşeler ve Bağlantı Elemanları',
-    desc: isEN ? 'Silent, durable hinge systems made from high-quality materials. Easy installation and adjustable setting.' : 'Sessiz ve dayanıklı menteşe sistemleri. Kolay montaj.',
-    tags: isEN ? ['Silent Operation','High Durability','Easy Install','Adjustable'] : ['Sessiz Çalışma','Dayanıklı','Kolay Montaj','Ayarlanabilir'],
-  },
-  {
-    category: 'accessories',
-    img: '/assets/img/materials/seals.webp',
-    title: isEN ? 'Seals & Weatherstrip Systems' : 'Conta ve Fitil Sistemleri',
-    desc: isEN ? 'High-quality seals that prevent air and sound infiltration. Key for energy efficiency and acoustic comfort.' : 'Hava ve ses geçişini engelleyen conta sistemleri.',
-    tags: isEN ? ['Airtight','Acoustic Seal','Energy Saving','UV Resistant'] : ['Hava Sızdırmaz','Ses Yalıtımı','Enerji Tasarrufu','UV Dayanımı'],
-  },
-];
 ---
 
 <I18nLayout
@@ -233,76 +169,6 @@ const materials = [
                   {isEN ? 'View & Request Quote' : 'İncele & Teklif Al'}
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════════════════════════════════════════
-         MATERIALS & ACCESSORIES
-    ══════════════════════════════════════════ -->
-    <section class="pp-sec pp-sec--cream" id="materials" aria-labelledby="mat-h2">
-      <div class="pp-wrap">
-        <div class="pp-head">
-          <span class="pp-tag">{isEN ? 'What Goes Inside' : 'İç Bileşenler'}</span>
-          <h2 id="mat-h2">
-            {isEN ? 'Door Materials & Accessories' : 'Kapı Malzemeleri ve Aksesuarlar'}
-          </h2>
-          <p>
-            {isEN
-              ? 'Every component — from inner core to surface laminate and hardware — sourced and quality-controlled at our facility.'
-              : 'İç çekirdekten yüzey kaplamasına, her bileşen fabrikamızda kalite kontrolünden geçer.'}
-          </p>
-        </div>
-
-        <!-- Filter Tabs -->
-        <div class="pp-filters" role="tablist" aria-label={isEN ? 'Filter by material type' : 'Malzeme türüne göre filtrele'}>
-          <button class="pp-filter pp-filter--active" data-filter="all" role="tab" aria-selected="true">
-            {isEN ? 'All' : 'Hepsi'}
-          </button>
-          <button class="pp-filter" data-filter="core" role="tab" aria-selected="false">
-            {isEN ? 'Core Materials' : 'İç Materyal'}
-          </button>
-          <button class="pp-filter" data-filter="surface" role="tab" aria-selected="false">
-            {isEN ? 'Surface Materials' : 'Yüzey Malzemeleri'}
-          </button>
-          <button class="pp-filter" data-filter="accessories" role="tab" aria-selected="false">
-            {isEN ? 'Accessories' : 'Aksesuarlar'}
-          </button>
-        </div>
-
-        <div class="pp-grid pp-grid--4" id="materials-grid">
-          {materials.map(mat => (
-            <article class="pp-mat-card" data-category={mat.category}>
-              <div class="pp-mat-card__img">
-                <img
-                  src={mat.img}
-                  alt={mat.title}
-                  width="300"
-                  height="220"
-                  loading="lazy"
-                  decoding="async"
-                  onerror="this.style.display='none';this.parentElement.querySelector('.pp-mat-card__placeholder').style.display='flex'"
-                />
-                <div class="pp-mat-card__placeholder" aria-hidden="true">
-                  <span>📦</span>
-                </div>
-              </div>
-              <div class="pp-mat-card__body">
-                <span class="pp-mat-card__cat">{mat.category === 'core' ? (isEN ? 'Core' : 'İç Yapı') : mat.category === 'surface' ? (isEN ? 'Surface' : 'Yüzey') : (isEN ? 'Accessory' : 'Aksesuar')}</span>
-                <h3>{mat.title}</h3>
-                <p>{mat.desc}</p>
-                <ul class="pp-mat-card__tags">
-                  {mat.tags.map(tag => <li>{tag}</li>)}
-                </ul>
-                {mat.link && (
-                  <a href={mat.link} class="pp-card__cta">
-                    {mat.linkLabel}
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                  </a>
-                )}
               </div>
             </article>
           ))}
@@ -566,11 +432,6 @@ const materials = [
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
   }
-  .pp-grid--4 {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
-  }
 
   /* ── DOOR CARDS (identical to index.astro hp-product) ── */
   .pp-card {
@@ -661,91 +522,6 @@ const materials = [
   }
   .pp-card__cta:hover { color: var(--gold); border-color: var(--gold); gap: 0.65rem; }
 
-  /* ── FILTER TABS ── */
-  .pp-filters {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 2.5rem;
-  }
-  .pp-filter {
-    background: var(--white);
-    color: var(--body);
-    border: 1.5px solid var(--bdr);
-    padding: 0.55rem 1.25rem;
-    border-radius: 30px;
-    cursor: pointer;
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.875rem;
-    font-weight: 600;
-    transition: all 0.2s;
-  }
-  .pp-filter:hover {
-    border-color: var(--navy);
-    color: var(--navy);
-  }
-  .pp-filter--active {
-    background: var(--navy);
-    color: var(--white);
-    border-color: var(--navy);
-  }
-
-  /* ── MATERIAL CARDS ── */
-  .pp-mat-card {
-    background: var(--white);
-    border: 1px solid var(--bdr);
-    border-radius: var(--radius);
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-  }
-  .pp-mat-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 36px rgba(15,35,71,0.09);
-    border-color: rgba(201,168,76,0.25);
-  }
-  .pp-mat-card.pp-hidden { display: none; }
-  .pp-mat-card__img {
-    position: relative;
-    background: var(--cream);
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem;
-  }
-  .pp-mat-card__img img {
-    width: 100%; height: 100%;
-    object-fit: contain;
-    transition: transform 0.4s ease;
-  }
-  .pp-mat-card:hover .pp-mat-card__img img { transform: scale(1.04); }
-  .pp-mat-card__placeholder {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: 100%; height: 100%;
-    font-size: 2.5rem;
-    color: var(--bdr);
-  }
-  .pp-mat-card__body { padding: 1.25rem; }
-  .pp-mat-card__cat {
-    display: inline-block;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.4rem;
-  }
-  .pp-mat-card__body h3 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--text);
-    margin: 0 0 0.4rem;
-  }
 
   /* ── FAQ ── */
   .pp-faq-wrap { max-width: 780px; }
@@ -835,14 +611,13 @@ const materials = [
 
   /* ── RESPONSIVE ── */
   @media (max-width: 1100px) {
-    .pp-grid--4 { grid-template-columns: repeat(3, 1fr); }
+    .pp-grid--3 { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 900px) {
     .pp-grid--3 { grid-template-columns: repeat(2, 1fr); }
-    .pp-grid--4 { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 640px) {
-    .pp-grid--3, .pp-grid--4 { grid-template-columns: 1fr; }
+    .pp-grid--3 { grid-template-columns: 1fr; }
     .pp-cta__inner { flex-direction: column; text-align: center; }
     .pp-cta__btns  { justify-content: center; }
     .pp-hero { min-height: auto; }
@@ -853,30 +628,3 @@ const materials = [
   html[dir="rtl"] .pp-btn svg       { transform: scaleX(-1); }
   html[dir="rtl"] .pp-card__cta svg { transform: scaleX(-1); }
 </style>
-
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', function () {
-    const filterBtns = document.querySelectorAll('.pp-filter');
-    const matCards   = document.querySelectorAll('.pp-mat-card');
-
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', function () {
-        filterBtns.forEach(b => {
-          b.classList.remove('pp-filter--active');
-          b.setAttribute('aria-selected', 'false');
-        });
-        this.classList.add('pp-filter--active');
-        this.setAttribute('aria-selected', 'true');
-
-        const filter = this.getAttribute('data-filter');
-        matCards.forEach(card => {
-          if (filter === 'all' || card.getAttribute('data-category') === filter) {
-            card.classList.remove('pp-hidden');
-          } else {
-            card.classList.add('pp-hidden');
-          }
-        });
-      });
-    });
-  });
-</script>

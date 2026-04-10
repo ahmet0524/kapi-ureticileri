@@ -1,36 +1,36 @@
 ---
-// src/pages/tr/pvc-kapilar.astro
+// src/pages/ar/pvc-kapilar.astro
 import I18nLayout from '../../layouts/I18nLayout.astro';
 import I18nHeader from '../../components/I18nHeader.astro';
 import I18nFooter from '../../components/I18nFooter.astro';
 import { getLocalizedRoute } from '../../i18n/utils';
 
-const lang    = 'tr';
+const lang    = 'ar';
 const baseUrl = 'https://cihanpandoor.netlify.app';
-const pageUrl = `${baseUrl}/tr`;
+const pageUrl = `${baseUrl}/ar`;
 const currentUrl = `${pageUrl}/pvc-kapilar`;
 
 // ── SCHEMA ────────────────────────────────────────────────────────────
 const pvcSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "PVC İç Oda Kapıları — 247 Model | CihanPan Door",
-  "description": "Kayseri'den toptan su geçirmez, antibakteriyel PVC iç oda kapıları. 247 model, CE belgeli. ABD, Avrupa ve Orta Doğu'ya ihracat.",
+  "name": "أبواب PVC الداخلية — 247 موديل | CihanPan Door",
+  "description": "أبواب PVC داخلية مقاومة للماء ومضادة للبكتيريا بالجملة من كايسيري، تركيا. 247 موديل، معتمد CE وISO 9001. تصدير إلى الولايات المتحدة وأوروبا والشرق الأوسط.",
   "url": currentUrl,
-  "inLanguage": "tr-TR",
+  "inLanguage": "ar-SA",
   "mainEntity": {
     "@type": "ItemList",
-    "name": "PVC Kapı Modelleri",
+    "name": "موديلات أبواب PVC",
     "numberOfItems": 247,
     "itemListElement": [
       {
         "@type": "Product",
-        "name": "PVC İç Oda Kapısı",
-        "description": "Su geçirmez antibakteriyel PVC iç oda kapısı. Nemli ortamlarda çarpma yapmaz, 5 yıl garanti. CE belgeli Türk üreticisi.",
+        "name": "باب PVC داخلي",
+        "description": "باب PVC داخلي مقاوم للماء ومضاد للبكتيريا. لا يتشوه في البيئات الرطبة. ضمان 5 سنوات. مصنّع تركي معتمد CE.",
         "brand": { "@type": "Brand", "name": "CihanPan Door" },
         "manufacturer": { "@type": "Organization", "name": "CihanPan Door", "url": baseUrl },
         "material": "PVC",
-        "category": "İç Oda Kapısı",
+        "category": "باب داخلي",
         "offers": {
           "@type": "AggregateOffer",
           "url": currentUrl,
@@ -56,10 +56,10 @@ const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "PVC kapı nedir ve neden tercih edilir?", "acceptedAnswer": { "@type": "Answer", "text": "PVC kapılar, Polivinil Klorür malzemesinden üretilen, su geçirmez ve antibakteriyel özellikli kapılardır. Nemli ortamlarda çarpma yapmaz, bakımı kolaydır ve toptan satış projeleri için maliyet etkindir." }},
-    { "@type": "Question", "name": "PVC ile ahşap kapı arasındaki fark nedir?", "acceptedAnswer": { "@type": "Answer", "text": "PVC kapılar tamamen su geçirmez ve neme dayanıklıyken, ahşap kapılar neme karşı hassastır ve düzenli bakım gerektirir. PVC daha ekonomik ve bakımı daha kolaydır." }},
-    { "@type": "Question", "name": "PVC kapı hangi alanlarda kullanılır?", "acceptedAnswer": { "@type": "Answer", "text": "Banyo, mutfak, balkon, yatak odası, hastane, otel odaları ve yüksek nem gerektiren her ortam. Su geçirmez antibakteriyel yüzeyi sağlık ve konaklama projelerine özellikle uygundur." }},
-    { "@type": "Question", "name": "Toptan siparişlerde minimum sipariş miktarı nedir?", "acceptedAnswer": { "@type": "Answer", "text": "Minimum sipariş miktarı 50 adettir. 200+ adet için hacim indirimleri geçerlidir. Büyük toplu siparişler için özel ölçü, yüzey ve özel etiket seçenekleri mevcuttur." }},
+    { "@type": "Question", "name": "ما هو باب PVC ولماذا يُفضَّل؟", "acceptedAnswer": { "@type": "Answer", "text": "أبواب PVC مصنوعة من البولي فينيل كلوريد، مقاومة تمامًا للماء ومضادة للبكتيريا. لا تتشوه في البيئات الرطبة، سهلة الصيانة، وفعّالة من حيث التكلفة لمشاريع البيع بالجملة." }},
+    { "@type": "Question", "name": "ما الفرق بين أبواب PVC والأبواب الخشبية؟", "acceptedAnswer": { "@type": "Answer", "text": "أبواب PVC مقاومة تمامًا للرطوبة، بينما الأبواب الخشبية حساسة للرطوبة وتحتاج إلى صيانة دورية. PVC أكثر اقتصادًا وأسهل في الصيانة مع مظهر جذاب." }},
+    { "@type": "Question", "name": "أين تُستخدم أبواب PVC عادةً؟", "acceptedAnswer": { "@type": "Answer", "text": "الحمامات، المطابخ، الشرفات، غرف النوم، المستشفيات، غرف الفنادق وأي بيئة عالية الرطوبة. السطح المضاد للبكتيريا يجعلها مناسبة بشكل خاص للمشاريع الصحية والضيافة." }},
+    { "@type": "Question", "name": "ما هو الحد الأدنى للطلب بالجملة؟", "acceptedAnswer": { "@type": "Answer", "text": "الحد الأدنى للطلب 50 وحدة. خصومات الكميات تسري من 200+ وحدة. تتوفر مقاسات مخصصة وتشطيبات وعلامة تجارية خاصة للطلبات الكبيرة." }},
   ]
 };
 
@@ -67,9 +67,9 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": pageUrl },
-    { "@type": "ListItem", "position": 2, "name": "Ürünler",   "item": `${pageUrl}/urunlerimiz` },
-    { "@type": "ListItem", "position": 3, "name": "PVC Kapılar", "item": currentUrl },
+    { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": pageUrl },
+    { "@type": "ListItem", "position": 2, "name": "المنتجات",  "item": `${pageUrl}/urunlerimiz` },
+    { "@type": "ListItem", "position": 3, "name": "أبواب PVC", "item": currentUrl },
   ]
 };
 
@@ -77,29 +77,31 @@ const allSchemas = [pvcSchema, faqSchema, breadcrumbSchema];
 
 // ── CATEGORY NAV ──────────────────────────────────────────────────────
 const catNav = [
-  { slug: '/urunlerimiz',               label: 'Tümü',             active: false },
-  { slug: '/pvc-kapilar',               label: 'PVC Kapılar',      active: true  },
-  { slug: '/laminoks-kapilar',          label: 'Laminoks Kapılar', active: false },
-  { slug: '/elitpan-kapilar',           label: 'Elitpan Kapılar',  active: false },
-  { slug: '/hastane-kapilari',          label: 'Hastane Kapıları', active: false },
-  { slug: '/otel-kapilari',             label: 'Otel Kapıları',    active: false },
-  { slug: '/yangina-dayanikli-kapilar', label: 'Yangın Kapıları',  active: false },
+  { slug: '/urunlerimiz',               label: 'جميع المنتجات',   active: false },
+  { slug: '/pvc-kapilar',               label: 'أبواب PVC',       active: true  },
+  { slug: '/laminoks-kapilar',          label: 'أبواب لامينوكس',  active: false },
+  { slug: '/elitpan-kapilar',           label: 'أبواب إليتبان',   active: false },
+  { slug: '/hastane-kapilari',          label: 'أبواب المستشفيات',active: false },
+  { slug: '/otel-kapilari',             label: 'أبواب الفنادق',   active: false },
+  { slug: '/yangina-dayanikli-kapilar', label: 'أبواب مقاومة للحريق', active: false },
 ];
 ---
 
 <I18nLayout
-  title="PVC İç Oda Kapıları — 247 Model | Toptan | CihanPan Door"
-  description="Kayseri'den toptan su geçirmez, antibakteriyel PVC kapılar. 247 model, CE ve ISO 9001 sertifikalı. ABD, Avrupa ve Orta Doğu'ya fabrikadan direkt. Min. 50 adet."
-  keywords="pvc kapı, pvc iç oda kapısı, su geçirmez kapı, antibakteriyel kapı, toptan pvc kapı, pvc kapı üreticisi türkiye, toptan kapı ihracatçı"
+  title="أبواب PVC الداخلية — 247 موديل | بالجملة من تركيا | CihanPan Door"
+  description="أبواب PVC داخلية مقاومة للماء ومضادة للبكتيريا بالجملة من كايسيري، تركيا. 247 موديل، معتمد CE وISO 9001. أسعار مباشرة من المصنع للمستوردين. الحد الأدنى 50 وحدة."
+  keywords="أبواب PVC بالجملة تركيا, باب مقاوم للماء, باب مضاد للبكتيريا, مصدر أبواب تركي, باب PVC معتمد CE, أبواب داخلية بالجملة"
   canonical={currentUrl}
   schema={allSchemas}
-  ogTitle="PVC Kapılar — 247 Model | CihanPan Door"
-  ogDescription="Su geçirmez, antibakteriyel PVC kapılar. Fabrikadan doğrudan. Min. 50 adet. CE & ISO 9001 belgeli."
+  ogTitle="أبواب PVC الداخلية — 247 موديل | CihanPan Door تركيا"
+  ogDescription="أبواب PVC مقاومة للماء ومضادة للبكتيريا. مباشرة من المصنع في كايسيري. الحد الأدنى 50 وحدة. معتمد CE وISO 9001."
   ogImage="/assets/img/og/pvc-kapilar-og.webp"
+  dir="rtl"
+  lang="ar"
 >
   <I18nHeader />
 
-  <main class="pvc" id="main-content">
+  <main class="pvc" id="main-content" dir="rtl" lang="ar">
 
     <!-- ══════════════════════════════════════════
          HERO
@@ -111,38 +113,39 @@ const catNav = [
       </div>
       <div class="pvc-wrap pvc-hero__inner">
         <div>
-          <nav class="pvc-breadcrumb" aria-label="Breadcrumb">
-            <a href={pageUrl}>Ana Sayfa</a>
-            <span aria-hidden="true">›</span>
-            <a href={getLocalizedRoute('/urunlerimiz', lang)}>Ürünler</a>
-            <span aria-hidden="true">›</span>
-            <span aria-current="page">PVC Kapılar</span>
+          <nav class="pvc-breadcrumb" aria-label="مسار التنقل">
+            <a href={pageUrl}>الرئيسية</a>
+            <span aria-hidden="true">‹</span>
+            <a href={getLocalizedRoute('/urunlerimiz', lang)}>المنتجات</a>
+            <span aria-hidden="true">‹</span>
+            <span aria-current="page">أبواب PVC</span>
           </nav>
 
           <span class="pvc-eyebrow">
             <span class="pvc-eyebrow__line"></span>
-            Çok Satan · 247 Model
+            الأكثر مبيعًا · 247 موديل
           </span>
           <h1 class="pvc-hero__h1" id="pvc-h1">
-            <em>PVC İç Oda Kapıları</em><br/>Su Geçirmez · Antibakteriyel
+            <em>أبواب PVC الداخلية</em><br/>مقاومة للماء · مضادة للبكتيريا
           </h1>
           <p class="pvc-hero__lead">
-            Kayseri fabrikasından toptan PVC kapılar. CE ve ISO 9001 sertifikalı.
-            Banyo, hastane ve nemli ortamlar için ideal. Min. 50 adet.
+            أبواب PVC بالجملة مباشرة من مصنعنا في كايسيري، تركيا.
+            معتمدة CE وISO 9001. مثالية للحمامات والمستشفيات والبيئات الرطبة.
+            الحد الأدنى للطلب 50 وحدة.
           </p>
           <div class="pvc-hero__tags">
-            <span class="pvc-htag">✓ Su Geçirmez</span>
-            <span class="pvc-htag">✓ Antibakteriyel</span>
-            <span class="pvc-htag">✓ 247 Model</span>
+            <span class="pvc-htag">✓ مقاوم للماء</span>
+            <span class="pvc-htag">✓ مضاد للبكتيريا</span>
+            <span class="pvc-htag">✓ 247 موديل</span>
             <span class="pvc-htag">✓ CE & ISO 9001</span>
           </div>
           <div class="pvc-hero__actions">
             <a href={getLocalizedRoute('/iletisim', lang)} class="pvc-btn pvc-btn--gold">
-              Ücretsiz Teklif Al
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              احصل على عرض سعر مجاني
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transform:scaleX(-1)"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
             <a href="#catalogue" class="pvc-btn pvc-btn--ghost">
-              Modelleri Gör
+              استعرض الموديلات
             </a>
           </div>
         </div>
@@ -151,13 +154,13 @@ const catNav = [
       <!-- Stats bar -->
       <div class="pvc-wrap">
         <div class="pvc-statsbar">
-          <div class="pvc-sitem"><strong>247</strong><span>Model</span></div>
+          <div class="pvc-sitem"><strong>247</strong><span>موديل</span></div>
           <div class="pvc-sdiv"></div>
-          <div class="pvc-sitem"><strong>CE</strong><span>Sertifikalı</span></div>
+          <div class="pvc-sitem"><strong>CE</strong><span>معتمد</span></div>
           <div class="pvc-sdiv"></div>
-          <div class="pvc-sitem"><strong>50<sup>+</sup></strong><span>Renk Seçeneği</span></div>
+          <div class="pvc-sitem"><strong>50<sup>+</sup></strong><span>خيار لوني</span></div>
           <div class="pvc-sdiv"></div>
-          <div class="pvc-sitem"><strong>MOQ 50</strong><span>Adet</span></div>
+          <div class="pvc-sitem"><strong>MOQ 50</strong><span>وحدة</span></div>
         </div>
       </div>
     </section>
@@ -169,7 +172,7 @@ const catNav = [
       <div class="pvc-wrap">
 
         <!-- Category filter tabs -->
-        <nav class="pvc-catnav" aria-label="Kapı kategorileri">
+        <nav class="pvc-catnav" aria-label="فئات الأبواب">
           {catNav.map(cat => (
             <a
               href={getLocalizedRoute(cat.slug, lang)}
@@ -182,43 +185,43 @@ const catNav = [
         </nav>
 
         <div class="pvc-head" style="margin-top:0">
-          <span class="pvc-tag">PVC Kapı Koleksiyonu</span>
-          <h2 id="catalogue-h2">PVC Kapı Modelleri</h2>
-          <p>Tüm PVC kapı koleksiyonumuzu inceleyin. Her model birden fazla renk varyantında mevcuttur.</p>
+          <span class="pvc-tag">مجموعة أبواب PVC</span>
+          <h2 id="catalogue-h2">موديلات أبواب PVC الداخلية</h2>
+          <p>تصفّح مجموعتنا الكاملة من أبواب PVC. كل موديل متوفر بألوان متعددة. اطلب عرض سعر بالجملة لأي موديل.</p>
         </div>
 
         <!-- Quote CTA -->
         <div class="pvc-quote-row">
           <a href={getLocalizedRoute('/iletisim', lang)} class="pvc-btn pvc-btn--navy">
-            Toptan Teklif Al
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            اطلب عرض سعر بالجملة
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transform:scaleX(-1)"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <span class="pvc-quote-note">24 saat içinde yanıt · Min. 50 adet</span>
+          <span class="pvc-quote-note">رد خلال 24 ساعة · الحد الأدنى 50 وحدة</span>
         </div>
 
         <!-- Products Grid (JS-rendered) -->
-        <div class="pvc-grid" id="productsGrid" aria-live="polite" aria-label="PVC kapı modelleri"></div>
+        <div class="pvc-grid" id="productsGrid" aria-live="polite" aria-label="موديلات أبواب PVC"></div>
 
         <!-- Loading state -->
-        <div class="pvc-loading" id="loading" aria-label="Modeller yükleniyor">
+        <div class="pvc-loading" id="loading" aria-label="جارٍ تحميل الموديلات">
           <div class="pvc-spinner" aria-hidden="true"></div>
-          <p>PVC kapı modelleri yükleniyor…</p>
+          <p>جارٍ تحميل موديلات أبواب PVC…</p>
         </div>
 
         <!-- Pagination -->
-        <nav class="pvc-pagination" aria-label="Sayfa navigasyonu">
+        <nav class="pvc-pagination" aria-label="التنقل بين الصفحات">
           <div class="pvc-page-info">
-            <span class="pvc-page-current">Sayfa 1 / 3</span>
-            <span class="pvc-page-count">95 model gösteriliyor</span>
+            <span class="pvc-page-current">الصفحة 1 من 3</span>
+            <span class="pvc-page-count">يُعرض 95 موديل</span>
           </div>
           <div class="pvc-page-btns">
             <span class="pvc-page-btn pvc-page-btn--disabled" aria-disabled="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18L9 12L15 6"/></svg>
-              Önceki
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18L15 12L9 6"/></svg>
+              السابق
             </span>
             <a href={getLocalizedRoute('/pvc-kapilar-2', lang)} class="pvc-page-btn">
-              Sayfa 2
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18L15 12L9 6"/></svg>
+              الصفحة 2
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18L9 12L15 6"/></svg>
             </a>
           </div>
           <div class="pvc-page-dots" aria-hidden="true">
@@ -238,64 +241,64 @@ const catNav = [
 
         <!-- Main editorial text -->
         <article class="pvc-article">
-          <h2 id="content-h2">PVC Kapı Nedir? Neden PVC Kapı Tercih Edilir?</h2>
+          <h2 id="content-h2">ما هو باب PVC؟ لماذا تختار أبواب PVC؟</h2>
 
           <p>
-            <strong>PVC kapılar</strong>, Polivinil Klorür malzemesinden üretilen iç oda kapılarıdır.
-            <strong>CihanPan Door</strong> olarak, 1995'ten bu yana Kayseri fabrikamızda toptan satış ve ihracat
-            için üretim yapıyoruz; ABD, Avrupa ve Orta Doğu'daki alıcılara hizmet veriyoruz.
+            <strong>أبواب PVC الداخلية</strong> مصنوعة من البولي فينيل كلوريد وتلبّي متطلبات المباني السكنية والتجارية الحديثة.
+            في <strong>CihanPan Door</strong>، ينتج مصنعنا في كايسيري أبوابًا عالية الجودة منذ عام 1995،
+            ونصدّر بالجملة إلى المستوردين في الولايات المتحدة وأوروبا والشرق الأوسط.
           </p>
 
-          <h3>PVC Kapının Avantajları</h3>
+          <h3>مزايا أبواب PVC</h3>
           <ul class="pvc-checklist">
-            <li><strong>Su Geçirmez:</strong> Nem ve suya karşı tamamen dirençli — çarpma, şişme veya çürüme yapmaz.</li>
-            <li><strong>Antibakteriyel Yüzey:</strong> Bakteri üremesini engeller — hijyen gerektiren ortamlar için ideal.</li>
-            <li><strong>Kolay Bakım:</strong> Sadece nemli bezle temizlenir — boya veya vernikleme gerekmez.</li>
-            <li><strong>Ses İzolasyonu:</strong> Odalar arasında etkili ses azaltma.</li>
-            <li><strong>Ekonomik:</strong> Yüksek dayanıklılıkta rekabetçi toptan fiyatlandırma.</li>
+            <li><strong>مقاومة للماء:</strong> مقاومة كاملة للرطوبة والماء — لا تتشوه ولا تنتفخ ولا تتعفن.</li>
+            <li><strong>سطح مضاد للبكتيريا:</strong> يمنع نمو البكتيريا — مثالي للبيئات التي تستلزم النظافة.</li>
+            <li><strong>سهولة الصيانة:</strong> يُنظَّف بقطعة قماش مبللة فقط — لا يحتاج إلى طلاء أو ورنيش.</li>
+            <li><strong>عزل صوتي:</strong> تقليل فعّال للضوضاء بين الغرف.</li>
+            <li><strong>اقتصادي:</strong> تسعير تنافسي بالجملة مع متانة عالية.</li>
           </ul>
 
-          <h3>Kullanım Alanları</h3>
-          <p>PVC kapılar nemli ortamlarda üstün performans gösterir:</p>
+          <h3>مجالات الاستخدام</h3>
+          <p>تُقدّم أبواب PVC أداءً متفوقًا في البيئات الرطبة:</p>
           <ul class="pvc-checklist">
-            <li><strong>Banyo Kapıları:</strong> Buhar ve su sıçramalarına karşı tamamen dayanıklı.</li>
-            <li><strong>Mutfak Kapıları:</strong> Yemek kokuları veya yağ absorbe etmez.</li>
-            <li><strong>Hastane ve Sağlık:</strong> Antibakteriyel yüzey hijyen standartlarını karşılar.</li>
-            <li><strong>Otel Odaları:</strong> Misafir değişimleri arasında kolay bakım.</li>
-            <li><strong>Konut Projeleri:</strong> Büyük ölçekli projeler için maliyet etkin çözüm.</li>
+            <li><strong>أبواب الحمامات:</strong> مقاومة كاملة للبخار ورذاذ الماء.</li>
+            <li><strong>أبواب المطابخ:</strong> لا تمتص روائح الطعام أو الزيوت.</li>
+            <li><strong>المستشفيات والرعاية الصحية:</strong> السطح المضاد للبكتيريا يلبّي معايير النظافة.</li>
+            <li><strong>غرف الفنادق:</strong> سهولة الصيانة بين الإقامات.</li>
+            <li><strong>المجمعات السكنية:</strong> حل فعّال من حيث التكلفة للمشاريع الكبيرة.</li>
           </ul>
 
-          <h3>Teknik Özellikler</h3>
+          <h3>المواصفات الفنية</h3>
           <ul class="pvc-checklist">
-            <li>Standart boyut: 70×200 cm — özel boyut mevcut</li>
-            <li>İç yapı: Honeycomb veya yarı masif ahşap</li>
-            <li>Yüzey: PVC laminat film</li>
-            <li>50+ renk ve desen seçeneği</li>
-            <li>CE & ISO 9001 sertifikalı</li>
-            <li>5 yıl üretici garantisi</li>
+            <li>المقاس القياسي: 70×200 سم — مقاسات مخصصة متاحة</li>
+            <li>القلب الداخلي: قرص الشهد أو خشب شبه صلب</li>
+            <li>السطح: فيلم لمينات PVC</li>
+            <li>أكثر من 50 خيار لون وتشطيب</li>
+            <li>معتمد CE وISO 9001</li>
+            <li>ضمان 5 سنوات من الشركة المصنّعة</li>
           </ul>
         </article>
 
         <!-- Sticky sidebar -->
         <aside class="pvc-sidebar">
           <div class="pvc-kpis">
-            <div class="pvc-kpi"><strong>247</strong><span>Model</span></div>
-            <div class="pvc-kpi"><strong>50<sup>+</sup></strong><span>Renk</span></div>
-            <div class="pvc-kpi"><strong>CE</strong><span>Sertifikalı</span></div>
-            <div class="pvc-kpi"><strong>5yr</strong><span>Garanti</span></div>
+            <div class="pvc-kpi"><strong>247</strong><span>موديل</span></div>
+            <div class="pvc-kpi"><strong>50<sup>+</sup></strong><span>لون</span></div>
+            <div class="pvc-kpi"><strong>CE</strong><span>معتمد</span></div>
+            <div class="pvc-kpi"><strong>5yr</strong><span>ضمان</span></div>
           </div>
 
           <div class="pvc-contact-card">
-            <span class="pvc-tag">İletişim</span>
-            <h3>Teklif Al</h3>
-            <p>Miktar ve gereksinimlerinizi paylaşın — 24 saat içinde yanıt veririz.</p>
+            <span class="pvc-tag">تواصل معنا</span>
+            <h3>اطلب عرض سعر</h3>
+            <p>أرسل لنا الكميات ومتطلباتك — سنردّ خلال 24 ساعة.</p>
             <div class="pvc-contact-btns">
               <a href={getLocalizedRoute('/iletisim', lang)} class="pvc-btn pvc-btn--gold pvc-btn--sm">
-                İletişim Formu
+                نموذج التواصل
               </a>
               <a href="https://wa.me/905441690038" target="_blank" rel="noopener" class="pvc-btn pvc-btn--wa pvc-btn--sm">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.89 3.488"/></svg>
-                WhatsApp
+                واتساب
               </a>
               <a href="tel:+905441690038" class="pvc-btn pvc-btn--outline pvc-btn--sm">
                 📞 +90 544 169 00 38
@@ -304,14 +307,14 @@ const catNav = [
           </div>
 
           <div class="pvc-features-card">
-            <h3>Öne Çıkan Özellikler</h3>
+            <h3>المميزات الرئيسية</h3>
             <ul class="pvc-feat-list">
-              <li>🚿 Su geçirmez teknoloji</li>
-              <li>🦠 Antibakteriyel yüzey</li>
-              <li>🔇 Ses yalıtımı</li>
-              <li>💰 Rekabetçi toptan fiyat</li>
-              <li>📐 Özel ölçü mevcut</li>
-              <li>♻️ Çevre dostu malzeme</li>
+              <li>🚿 تقنية مقاومة الماء</li>
+              <li>🦠 سطح مضاد للبكتيريا</li>
+              <li>🔇 عزل صوتي</li>
+              <li>💰 سعر تنافسي بالجملة</li>
+              <li>📐 مقاسات مخصصة متاحة</li>
+              <li>♻️ مواد صديقة للبيئة</li>
             </ul>
           </div>
         </aside>
@@ -324,15 +327,15 @@ const catNav = [
     <section class="pvc-sec pvc-sec--white" aria-labelledby="faq-h2">
       <div class="pvc-wrap pvc-faq-wrap">
         <div class="pvc-head">
-          <span class="pvc-tag">SSS</span>
-          <h2 id="faq-h2">Sık Sorulan Sorular</h2>
+          <span class="pvc-tag">الأسئلة الشائعة</span>
+          <h2 id="faq-h2">أسئلة المشترين بالجملة الشائعة</h2>
         </div>
         <div class="pvc-faqs">
           {[
-            { q: 'PVC kapı nedir ve neden tercih edilir?',     a: 'PVC kapılar, Polivinil Klorür malzemesinden üretilen, su geçirmez ve antibakteriyel özellikli kapılardır. Nemli ortamlarda çarpma yapmaz, bakımı kolaydır ve toptan satış projeleri için maliyet etkindir.' },
-            { q: 'PVC ile ahşap kapı arasındaki fark nedir?',  a: 'PVC kapılar tamamen su geçirmez ve neme dayanıklıyken, ahşap kapılar neme karşı hassastır ve düzenli bakım gerektirir. PVC daha ekonomik ve bakımı daha kolaydır.' },
-            { q: 'PVC kapı hangi alanlarda kullanılır?',        a: 'Banyo, mutfak, balkon, yatak odası, hastane, otel odaları ve yüksek nem gerektiren her ortam. Su geçirmez antibakteriyel yüzeyi sağlık ve konaklama projelerine özellikle uygundur.' },
-            { q: 'Toptan siparişlerde MOQ nedir?',              a: 'Minimum sipariş miktarı 50 adettir. 200+ adet için hacim indirimleri geçerlidir. Büyük toplu siparişler için özel ölçü, yüzey ve özel etiket seçenekleri mevcuttur.' },
+            { q: 'ما هو باب PVC ولماذا يُفضَّل؟',              a: 'أبواب PVC مصنوعة من البولي فينيل كلوريد، مقاومة تمامًا للماء ومضادة للبكتيريا. لا تتشوه في البيئات الرطبة، سهلة الصيانة، وفعّالة من حيث التكلفة لمشاريع البيع بالجملة.' },
+            { q: 'ما الفرق بين أبواب PVC والأبواب الخشبية؟',  a: 'أبواب PVC مقاومة تمامًا للرطوبة، بينما الأبواب الخشبية حساسة للرطوبة وتحتاج إلى صيانة دورية. PVC أكثر اقتصادًا وأسهل في الصيانة مع مظهر جذاب.' },
+            { q: 'أين تُستخدم أبواب PVC عادةً؟',              a: 'الحمامات، المطابخ، الشرفات، غرف النوم، المستشفيات، غرف الفنادق وأي بيئة عالية الرطوبة. السطح المضاد للبكتيريا يجعلها مناسبة بشكل خاص للمشاريع الصحية والضيافة.' },
+            { q: 'ما هو الحد الأدنى للطلب بالجملة؟',          a: 'الحد الأدنى للطلب 50 وحدة. خصومات الكميات تسري من 200+ وحدة. تتوفر مقاسات مخصصة وتشطيبات وعلامة تجارية خاصة للطلبات الكبيرة.' },
           ].map(item => (
             <details class="pvc-faq">
               <summary class="pvc-faq__q">
@@ -355,17 +358,17 @@ const catNav = [
       <div class="pvc-cta__glow" aria-hidden="true"></div>
       <div class="pvc-wrap pvc-cta__inner">
         <div class="pvc-cta__text">
-          <span class="pvc-tag pvc-tag--gold">Hemen Başlayın</span>
-          <h2 id="cta-h2">PVC Kapı Toptan<br/>Fiyat Teklifi Alın</h2>
-          <p>Kapı modellerini, adeti ve teslimat noktasını paylaşın. 24 saat içinde CE & ISO belgeli fiyat teklifi.</p>
+          <span class="pvc-tag pvc-tag--gold">ابدأ التوريد اليوم</span>
+          <h2 id="cta-h2">اطلب عرض سعر بالجملة<br/>لأبواب PVC</h2>
+          <p>أرسل لنا الموديلات والكميات وميناء الوصول. سعر مباشر من المصنع مع وثائق CE وISO خلال 24 ساعة.</p>
         </div>
         <div class="pvc-cta__btns">
           <a href={getLocalizedRoute('/iletisim', lang)} class="pvc-btn pvc-btn--gold">
-            Ücretsiz Teklif Al
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            احصل على عرض سعر مجاني
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transform:scaleX(-1)"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <a href={getLocalizedRoute('/urunlerimiz', lang)} class="pvc-btn pvc-btn--ghost">
-            Tüm Ürünler
+            جميع المنتجات
           </a>
         </div>
       </div>
@@ -377,7 +380,7 @@ const catNav = [
 </I18nLayout>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap');
 
   /* ── TOKENS ── */
   .pvc {
@@ -395,8 +398,9 @@ const catNav = [
     --radius:   14px;
     --green:    #16a34a;
 
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Noto Sans Arabic', system-ui, sans-serif;
     color: var(--text);
+    direction: rtl;
   }
 
   /* ── LAYOUT ── */
@@ -408,13 +412,13 @@ const catNav = [
   /* ── SECTION HEAD ── */
   .pvc-head { text-align: center; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
   .pvc-head h2 {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Noto Sans Arabic', system-ui, sans-serif;
     font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700;
-    color: var(--text); margin: 0.3rem 0 0.7rem; line-height: 1.2;
+    color: var(--text); margin: 0.3rem 0 0.7rem; line-height: 1.4;
   }
-  .pvc-head p { color: var(--slate); font-size: 1rem; max-width: 560px; margin-inline: auto; line-height: 1.7; }
+  .pvc-head p { color: var(--slate); font-size: 1rem; max-width: 560px; margin-inline: auto; line-height: 1.9; }
 
-  .pvc-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .pvc-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
   .pvc-tag--gold { color: rgba(201,168,76,0.9); }
 
   /* ── BUTTONS ── */
@@ -422,7 +426,7 @@ const catNav = [
     display: inline-flex; align-items: center; gap: 0.5rem;
     font-size: 0.9rem; font-weight: 600; padding: 0.9rem 1.75rem;
     border-radius: 8px; text-decoration: none; white-space: nowrap;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Noto Sans Arabic', system-ui, sans-serif;
     transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
     cursor: pointer; border: none;
   }
@@ -445,17 +449,22 @@ const catNav = [
   .pvc-hero__glow { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 70% at 80% 30%, rgba(201,168,76,0.09) 0%, transparent 65%), radial-gradient(ellipse 50% 80% at 10% 70%, rgba(30,74,138,0.3) 0%, transparent 60%); }
   .pvc-hero__inner { position: relative; z-index: 1; padding-top: clamp(2.5rem, 6vw, 4rem); padding-bottom: clamp(3rem, 6vw, 5rem); }
 
-  .pvc-breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 1.5rem; }
+  /* Breadcrumb */
+  .pvc-breadcrumb { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 1.5rem; flex-direction: row-reverse; justify-content: flex-end; }
   .pvc-breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
   .pvc-breadcrumb a:hover { color: var(--gold-l); }
   .pvc-breadcrumb span[aria-current] { color: var(--gold); }
 
-  .pvc-eyebrow { display: inline-flex; align-items: center; gap: 0.75rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+  .pvc-eyebrow { display: inline-flex; align-items: center; gap: 0.75rem; font-size: 0.85rem; font-weight: 600; color: var(--gold); margin-bottom: 1.2rem; }
   .pvc-eyebrow__line { display: block; width: 28px; height: 1px; background: var(--gold); opacity: 0.5; flex-shrink: 0; }
 
-  .pvc-hero__h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2.2rem, 4.5vw, 3.6rem); font-weight: 900; color: var(--white); line-height: 1.1; margin: 0 0 1.2rem; }
+  .pvc-hero__h1 {
+    font-family: 'Noto Sans Arabic', system-ui, sans-serif;
+    font-size: clamp(2rem, 4.5vw, 3.4rem); font-weight: 900;
+    color: var(--white); line-height: 1.3; margin: 0 0 1.2rem;
+  }
   .pvc-hero__h1 em { font-style: normal; color: var(--gold); }
-  .pvc-hero__lead { font-size: 1.05rem; color: rgba(255,255,255,0.65); line-height: 1.8; max-width: 560px; margin: 0 0 1.5rem; }
+  .pvc-hero__lead { font-size: 1.05rem; color: rgba(255,255,255,0.65); line-height: 1.9; max-width: 560px; margin: 0 0 1.5rem; }
   .pvc-hero__tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
   .pvc-htag { display: inline-block; padding: 0.3rem 0.85rem; border: 1px solid rgba(201,168,76,0.35); background: rgba(201,168,76,0.08); color: var(--gold-l); font-size: 0.82rem; font-weight: 600; border-radius: 4px; }
   .pvc-hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -463,22 +472,22 @@ const catNav = [
   /* Stats bar */
   .pvc-statsbar { position: relative; z-index: 1; display: flex; align-items: center; flex-wrap: wrap; gap: 0; background: rgba(255,255,255,0.06); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.5rem 2rem; margin-top: 2rem; }
   .pvc-sitem { display: flex; flex-direction: column; flex: 1; min-width: 80px; padding-inline: 1rem; text-align: center; }
-  .pvc-sitem:first-child { padding-left: 0; }
-  .pvc-sitem:last-child  { padding-right: 0; }
+  .pvc-sitem:first-child { padding-right: 0; }
+  .pvc-sitem:last-child  { padding-left: 0; }
   .pvc-sitem strong { font-family: 'Playfair Display', Georgia, serif; font-size: 1.6rem; font-weight: 900; color: var(--gold); line-height: 1; display: block; }
   .pvc-sitem strong sup { font-size: 0.7em; }
-  .pvc-sitem span { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 0.3rem; display: block; }
+  .pvc-sitem span { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 0.3rem; display: block; }
   .pvc-sdiv { width: 1px; height: 32px; background: rgba(255,255,255,0.12); flex-shrink: 0; }
 
   /* ── CATEGORY NAV ── */
   .pvc-catnav { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--bdr); }
-  .pvc-catbtn { background: var(--white); color: var(--body); border: 1.5px solid var(--bdr); padding: 0.5rem 1.1rem; border-radius: 30px; font-size: 0.875rem; font-weight: 600; font-family: 'Inter', system-ui, sans-serif; text-decoration: none; transition: all 0.2s; white-space: nowrap; }
+  .pvc-catbtn { background: var(--white); color: var(--body); border: 1.5px solid var(--bdr); padding: 0.5rem 1.1rem; border-radius: 30px; font-size: 0.9rem; font-weight: 600; font-family: 'Noto Sans Arabic', system-ui, sans-serif; text-decoration: none; transition: all 0.2s; white-space: nowrap; }
   .pvc-catbtn:hover { border-color: var(--navy); color: var(--navy); }
   .pvc-catbtn--active { background: var(--navy); color: var(--white); border-color: var(--navy); }
 
   /* Quote row */
   .pvc-quote-row { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
-  .pvc-quote-note { font-size: 0.875rem; color: var(--slate); }
+  .pvc-quote-note { font-size: 0.9rem; color: var(--slate); }
 
   /* ── PRODUCTS GRID ── */
   .pvc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.25rem; min-height: 300px; }
@@ -488,7 +497,7 @@ const catNav = [
   .pvc-grid :global(.pvc-card__img) { aspect-ratio: 3/4; background: var(--cream); display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 0.5rem; }
   .pvc-grid :global(.pvc-card__img img) { width: 100%; height: 100%; object-fit: contain; transition: transform 0.35s ease; }
   .pvc-grid :global(.pvc-card:hover .pvc-card__img img) { transform: scale(1.04); }
-  .pvc-grid :global(.pvc-card__name) { padding: 0.75rem 1rem; font-size: 0.82rem; font-weight: 600; color: var(--text); text-align: center; line-height: 1.4; }
+  .pvc-grid :global(.pvc-card__name) { padding: 0.75rem 1rem; font-size: 0.82rem; font-weight: 600; color: var(--text); text-align: center; line-height: 1.4; direction: ltr; }
 
   /* Loading */
   .pvc-loading { text-align: center; padding: 4rem 2rem; color: var(--slate); display: none; }
@@ -498,9 +507,9 @@ const catNav = [
   /* ── PAGINATION ── */
   .pvc-pagination { display: flex; flex-direction: column; align-items: center; gap: 1.25rem; background: var(--white); border: 1px solid var(--bdr); border-radius: var(--radius); padding: 2rem; margin-top: 3rem; box-shadow: 0 4px 16px rgba(15,35,71,0.06); }
   .pvc-page-info { text-align: center; }
-  .pvc-page-current { display: block; font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
+  .pvc-page-current { display: block; font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
   .pvc-page-count  { font-size: 0.875rem; color: var(--slate); }
-  .pvc-page-btns   { display: flex; gap: 1rem; align-items: center; }
+  .pvc-page-btns   { display: flex; gap: 1rem; align-items: center; flex-direction: row-reverse; }
   .pvc-page-btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.75rem 1.75rem; border-radius: 10px; background: var(--navy); color: var(--white); font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: all 0.2s; min-width: 140px; justify-content: center; }
   .pvc-page-btn:hover { background: var(--navy-mid); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(15,35,71,0.25); }
   .pvc-page-btn--disabled { background: var(--cream); color: var(--slate); border: 1px solid var(--bdr); cursor: not-allowed; }
@@ -513,14 +522,14 @@ const catNav = [
   /* ── SEO CONTENT SECTION ── */
   .pvc-content-wrap { display: grid; grid-template-columns: 1fr 320px; gap: 4rem; align-items: start; }
   .pvc-article { background: var(--white); padding: 2.5rem; border-radius: var(--radius); border: 1px solid var(--bdr); }
-  .pvc-article h2 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.6rem, 2.5vw, 2.1rem); font-weight: 700; color: var(--text); margin: 0 0 1.25rem; line-height: 1.2; }
-  .pvc-article h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; font-weight: 700; color: var(--text); margin: 2rem 0 0.75rem; }
-  .pvc-article p  { font-size: 0.95rem; color: var(--body); line-height: 1.8; margin: 0 0 1rem; }
+  .pvc-article h2 { font-family: 'Noto Sans Arabic', system-ui, sans-serif; font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; color: var(--text); margin: 0 0 1.25rem; line-height: 1.4; }
+  .pvc-article h3 { font-family: 'Noto Sans Arabic', system-ui, sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--text); margin: 2rem 0 0.75rem; }
+  .pvc-article p  { font-size: 0.95rem; color: var(--body); line-height: 1.9; margin: 0 0 1rem; }
   .pvc-article strong { color: var(--navy); }
 
   .pvc-checklist { list-style: none; padding: 0; margin: 0 0 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; }
-  .pvc-checklist li { font-size: 0.925rem; color: var(--body); line-height: 1.6; padding-left: 1.5rem; position: relative; }
-  .pvc-checklist li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+  .pvc-checklist li { font-size: 0.925rem; color: var(--body); line-height: 1.7; padding-right: 1.5rem; position: relative; }
+  .pvc-checklist li::before { content: '✓'; position: absolute; right: 0; color: var(--green); font-weight: 700; }
 
   /* Sidebar */
   .pvc-sidebar { display: flex; flex-direction: column; gap: 1.5rem; position: sticky; top: 90px; }
@@ -530,16 +539,16 @@ const catNav = [
   .pvc-kpi:hover { background: var(--cream); }
   .pvc-kpi strong { display: block; font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; font-weight: 900; color: var(--navy); line-height: 1; margin-bottom: 0.3rem; }
   .pvc-kpi strong sup { font-size: 0.65em; }
-  .pvc-kpi span { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); }
+  .pvc-kpi span { font-size: 0.75rem; color: var(--slate); }
 
   .pvc-contact-card { background: var(--navy); border-radius: var(--radius); padding: 1.75rem; }
   .pvc-contact-card .pvc-tag { color: rgba(201,168,76,0.85); }
-  .pvc-contact-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; font-weight: 700; color: var(--white); margin: 0.3rem 0 0.6rem; }
-  .pvc-contact-card p  { font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.6; margin: 0 0 1.25rem; }
+  .pvc-contact-card h3 { font-size: 1.2rem; font-weight: 700; color: var(--white); margin: 0.3rem 0 0.6rem; }
+  .pvc-contact-card p  { font-size: 0.9rem; color: rgba(255,255,255,0.55); line-height: 1.7; margin: 0 0 1.25rem; }
   .pvc-contact-btns { display: flex; flex-direction: column; gap: 0.6rem; }
 
   .pvc-features-card { background: var(--white); border: 1px solid var(--bdr); border-radius: var(--radius); padding: 1.5rem; }
-  .pvc-features-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 1rem; }
+  .pvc-features-card h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 1rem; }
   .pvc-feat-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; }
   .pvc-feat-list li { font-size: 0.9rem; color: var(--body); display: flex; align-items: center; gap: 0.5rem; }
 
@@ -553,14 +562,14 @@ const catNav = [
   .pvc-faq__q::-webkit-details-marker { display: none; }
   .pvc-faq__arrow { flex-shrink: 0; color: var(--slate); transition: transform 0.25s; }
   .pvc-faq[open] .pvc-faq__arrow { transform: rotate(180deg); color: var(--gold); }
-  .pvc-faq__a { padding: 1rem 1.5rem 1.25rem; font-size: 0.925rem; color: var(--body); line-height: 1.75; margin: 0; border-top: 1px solid var(--bdr); }
+  .pvc-faq__a { padding: 1rem 1.5rem 1.25rem; font-size: 0.925rem; color: var(--body); line-height: 1.85; margin: 0; border-top: 1px solid var(--bdr); }
 
   /* ── CTA BAND ── */
   .pvc-cta { position: relative; background: var(--navy); overflow: hidden; padding: clamp(4rem, 8vw, 6rem) 0; }
   .pvc-cta__glow { position: absolute; inset: 0; background: radial-gradient(ellipse 55% 80% at 105% 50%, rgba(201,168,76,0.14) 0%, transparent 65%), linear-gradient(140deg, #08192e 0%, var(--navy) 100%); pointer-events: none; }
   .pvc-cta__inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap; }
-  .pvc-cta__text h2 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.75rem, 3vw, 2.4rem); font-weight: 700; color: var(--white); margin: 0.35rem 0 0.7rem; line-height: 1.2; }
-  .pvc-cta__text p  { color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.7; max-width: 420px; margin: 0; }
+  .pvc-cta__text h2 { font-size: clamp(1.75rem, 3vw, 2.4rem); font-weight: 700; color: var(--white); margin: 0.35rem 0 0.7rem; line-height: 1.4; }
+  .pvc-cta__text p  { color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.8; max-width: 420px; margin: 0; }
   .pvc-cta__btns { display: flex; gap: 1rem; flex-wrap: wrap; flex-shrink: 0; }
 
   /* ── RESPONSIVE ── */
@@ -621,7 +630,7 @@ const catNav = [
   function buildCard(fileName) {
     const { model, variant, color, label } = parseFileName(fileName);
     const img = `/assets/img/pvc-kapilar/${fileName}`;
-    const alt = `CihanPan Door PVC Serisi ${model}-${variant} ${color} — Su Geçirmez İç Kapı`;
+    const alt = `CihanPan Door PVC Series ${model}-${variant} ${color} — باب داخلي مقاوم للماء`;
 
     const article = document.createElement('article');
     article.className = 'pvc-card';

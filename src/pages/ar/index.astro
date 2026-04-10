@@ -1,29 +1,24 @@
 ---
-// ============================================
-// ARAPÇA VERSION - src/pages/ar/index.astro
-// COMPLETE - SEO Optimized
-// ============================================
-
+// src/pages/ar/index.astro
 import I18nLayout from '../../layouts/I18nLayout.astro';
 import I18nHeader from '../../components/I18nHeader.astro';
 import I18nFooter from '../../components/I18nFooter.astro';
+import { getLocalizedRoute } from '../../i18n/utils';
 
-const baseUrl = 'https://kapi-ureticileri.vercel.app';
-const currentUrl = `${baseUrl}/ar`;
+const lang = 'ar';
+const baseUrl = 'https://cihanpandoor.netlify.app';
+const pageUrl = `${baseUrl}/ar`;
 
+// ── SCHEMA ───────────────────────────────────────────────────────────
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "CihanPan Door - مصنعو الأبواب الداخلية تركيا",
-  "url": currentUrl,
-  "description": "الشركات المصنعة الرائدة للأبواب الداخلية في تركيا. موديلات أبواب PVC ولامينوكس وإليتبان. التصدير إلى أوروبا والشرق الأوسط.",
-  "inLanguage": "ar-AR",
+  "name": "CihanPan Door",
+  "url": baseUrl,
+  "inLanguage": "ar-SA",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": `${baseUrl}/ar/search?q={search_term_string}`
-    },
+    "target": { "@type": "EntryPoint", "urlTemplate": `${baseUrl}/search?q={search_term_string}` },
     "query-input": "required name=search_term_string"
   }
 };
@@ -33,825 +28,751 @@ const organizationSchema = {
   "@type": "Organization",
   "name": "CihanPan Door",
   "url": baseUrl,
-  "description": "تصنيع الأبواب الداخلية منذ عام 1995 في قيصري، تركيا. معتمد TSE، معلم CE."
+  "logo": `${baseUrl}/assets/img/logo/header-logo1.webp`,
+  "foundingDate": "1995",
+  "description": "شركة تصنيع أبواب داخلية معتمدة بـ CE وISO 9001 في قيصري، تركيا منذ عام 1995.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Organize Sanayi Bölgesi 29. Sokak No:28",
+    "addressLocality": "Kayseri",
+    "addressRegion": "Kayseri",
+    "postalCode": "38070",
+    "addressCountry": "TR"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+90-544-169-0038",
+    "contactType": "Sales",
+    "availableLanguage": ["Turkish", "English", "Arabic", "German"],
+    "areaServed": ["TR", "US", "EU", "ME"]
+  },
+  "sameAs": ["https://www.cihanpandoor.com"]
 };
 
-const allSchemas = [websiteSchema, organizationSchema];
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "مجموعة الأبواب الداخلية",
+  "url": pageUrl,
+  "numberOfItems": 6,
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "أبواب PVC",               "url": `${pageUrl}/pvc-kapilar` },
+    { "@type": "ListItem", "position": 2, "name": "أبواب لامينوكس",          "url": `${pageUrl}/laminoks-kapilar` },
+    { "@type": "ListItem", "position": 3, "name": "أبواب الفنادق",           "url": `${pageUrl}/otel-kapilari` },
+    { "@type": "ListItem", "position": 4, "name": "أبواب المستشفيات",        "url": `${pageUrl}/hastane-kapilari` },
+    { "@type": "ListItem", "position": 5, "name": "أبواب إليتبان MDF",       "url": `${pageUrl}/elitpan-kapilar` },
+    { "@type": "ListItem", "position": 6, "name": "أبواب مقاومة للحريق",    "url": `${pageUrl}/yangina-dayanikli-kapilar` }
+  ]
+};
+
+const schemas = [websiteSchema, organizationSchema, productSchema];
+
+// ── CATEGORIES DATA ──────────────────────────────────────────────────
+const categories = [
+  {
+    slug: '/pvc-kapilar',
+    img: '/assets/img/categories/pvc-kapilar.webp',
+    badge: 'الأكثر مبيعاً',
+    badgeGold: true,
+    title: 'أبواب PVC الداخلية',
+    desc: 'أبواب PVC مقاومة للرطوبة ومضادة للبكتيريا. مثالية للحمامات والمستشفيات والبيئات عالية الرطوبة.',
+    tags: ['مقاوم للماء', 'مضاد للبكتيريا', 'سهل التنظيف'],
+  },
+  {
+    slug: '/laminoks-kapilar',
+    img: '/assets/img/categories/laminoks-kapilar.webp',
+    badge: 'مميز',
+    badgeGold: false,
+    title: 'أبواب لامينوكس الداخلية',
+    desc: 'لب MDF ممتاز مع سطح لامينوكس متين. مقاوم للخدوش بأكثر من 50 خياراً للألوان لمشاريع الجملة.',
+    tags: ['مقاوم للخدش', '+50 لوناً', 'لب MDF'],
+    featured: true,
+  },
+  {
+    slug: '/elitpan-kapilar',
+    img: '/assets/img/categories/CihanpanDoor-Elitpan-Serisi-317.jpg',
+    badge: 'بريميوم',
+    badgeGold: false,
+    title: 'أبواب إليتبان MDF',
+    desc: 'سطح MDF مطلي بالأشعة فوق البنفسجية بلمسة نهائية لامعة. جودة تصدير للجملة السكنية والتجارية.',
+    tags: ['طلاء UV', 'لمعان عالٍ', 'جودة تصدير'],
+  },
+  {
+    slug: '/hastane-kapilari',
+    img: '/assets/img/categories/hastane-kapilari.webp',
+    badge: 'متخصص',
+    badgeGold: false,
+    title: 'أبواب درجة المستشفيات',
+    desc: 'أبواب نظافة معتمدة CE لمرافق الرعاية الصحية. خيارات مبطنة بالرصاص ومضادة للإشعاع ومضادة للميكروبات.',
+    tags: ['معتمدة CE', 'خيار رصاص', 'مضاد للميكروبات'],
+  },
+  {
+    slug: '/otel-kapilari',
+    img: '/assets/img/categories/otel-kapilari.webp',
+    badge: 'ضيافة',
+    badgeGold: false,
+    title: 'أبواب غرف الفنادق',
+    desc: 'أبواب فندقية معزولة صوتياً ومقاومة للحريق للفنادق من 3 إلى 5 نجوم. أسعار خاصة للطلبيات فوق 500 وحدة.',
+    tags: ['عزل صوتي', 'مقاوم للحريق', 'سعر جملة'],
+  },
+  {
+    slug: '/yangina-dayanikli-kapilar',
+    img: '/assets/img/categories/yangina-dayanikli-kapilar.webp',
+    badge: 'معتمدة',
+    badgeGold: false,
+    title: 'أبواب مقاومة للحريق',
+    desc: 'أبواب حريق EI30–EI90 معتمدة CE. متوافقة مع معايير البناء الأوروبية والدولية.',
+    tags: ['EI30–EI90', 'معتمدة CE', 'مطابق للمواصفات'],
+  },
+];
+
+const trustItems = [
+  { icon: '🏭', label: 'مباشر من المصنع',    desc: 'بدون وسطاء — شراء مباشر من الشركة المصنّعة' },
+  { icon: '📋', label: 'CE + ISO 9001',       desc: 'جودة معتمدة في كل شحنة جملة' },
+  { icon: '📦', label: 'الحد الأدنى 50 وحدة', desc: 'حد أدنى منخفض للاختبار قبل التوسع' },
+  { icon: '🌍', label: '+25 دولة',            desc: 'سجل تصدير مثبت منذ عام 2010' },
+  { icon: '🚢', label: 'شروط FOB / CIF',      desc: 'شروط Incoterms مرنة للمستوردين' },
+  { icon: '⚡', label: 'رد خلال 24 ساعة',    desc: 'عرض سعر خلال يوم عمل واحد' },
+];
 ---
 
 <I18nLayout
-  title="مصنعو الأبواب الداخلية تركيا | تصدير الأبواب بالجملة - CihanPan Door"
-  description="احصل على أبواب داخلية بالجملة من CihanPan Door، الشركة المصنعة الرائدة في تركيا. أبواب PVC ولامينوكس وأبواب الفنادق مع التصدير إلى أوروبا والشرق الأوسط. التصنيع منذ عام 1995."
-  keywords="مصنعو الأبواب الداخلية تركيا، تصدير الأبواب بالجملة، مصنع أبواب pvc، أبواب الفنادق، أبواب المستشفيات، تصدير الأبواب من تركيا، مصنع أبواب تركي"
-  canonical={currentUrl}
-  ogImage="/assets/img/og/homepage-og.webp"
-  schema={allSchemas}
+  title="مصنع أبواب داخلية بالجملة من تركيا | معتمد CE وISO | CihanPan Door"
+  description="شركة تصنيع أبواب داخلية بالجملة معتمدة بـ CE وISO 9001 في تركيا. أبواب PVC ولامينوكس وMDF ومقاومة للحريق. تصدير إلى الولايات المتحدة وأوروبا والشرق الأوسط. الحد الأدنى 50 وحدة."
+  keywords="مصنع أبواب داخلية تركيا, أبواب داخلية بالجملة تركيا, تصدير أبواب تركي, أبواب PVC بالجملة, مصدر أبواب MDF, مصنع أبواب معتمد CE ISO"
+  canonical={pageUrl}
+  schema={schemas}
+  ogTitle="مصنع الأبواب الداخلية الأول بالجملة في تركيا | CihanPan Door"
+  ogDescription="أبواب داخلية بالجملة مباشرة من المصنع في قيصري، تركيا. معتمدة CE وTSE وISO 9001. تصدير إلى أكثر من 25 دولة منذ عام 1995."
+  ogImage="/assets/img/og/home-og.webp"
 >
   <I18nHeader />
 
-  <main id="main-content">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="container">
-        <div class="hero-content">
-          <h1 id="hero-title" class="hero-title">
-            أفضل الأبواب الداخلية في تركيا
+  <main class="hp" id="main-content" dir="rtl">
+
+    <!-- ══════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════ -->
+    <section class="hp-hero" aria-labelledby="hero-h1">
+      <div class="hp-hero__bg" aria-hidden="true">
+        <div class="hp-hero__img"></div>
+        <div class="hp-hero__overlay"></div>
+        <div class="hp-hero__glow"></div>
+      </div>
+
+      <div class="hp-wrap hp-hero__inner">
+        <div class="hp-hero__copy">
+          <span class="hp-eyebrow">
+            <span class="hp-eyebrow__line"></span>
+            قيصري، تركيا · منذ عام 1995
+          </span>
+
+          <h1 class="hp-hero__h1" id="hero-h1">
+            الشركة الرائدة في تصنيع<br /><em>الأبواب الداخلية بالجملة</em><br />وتصديرها من تركيا
           </h1>
-          <p class="hero-subtitle">
-            التصنيع منذ عام 1995 في قيصري، تركيا. توفر CihanPan Door أبواب PVC ولامينوكس
-            وإليتبان لمشاريعك. التصدير إلى أوروبا والشرق الأوسط.
+
+          <p class="hp-hero__lead">
+            معتمدة بـ CE وTSE وISO 9001. أبواب داخلية PVC وMDF ولامينوكس للمستوردين بالجملة في الولايات المتحدة وأوروبا والشرق الأوسط. طاقة إنتاجية 600,000 وحدة سنوياً.
           </p>
 
-          <div class="hero-stats">
-            <div class="stat-item">
-              <strong>+1000</strong>
-              <span>خيار موديل</span>
-            </div>
-            <div class="stat-item">
-              <strong>+50</strong>
-              <span>دولة التصدير</span>
-            </div>
-            <div class="stat-item">
-              <strong>29</strong>
-              <span>سنة من الخبرة</span>
-            </div>
+          <div class="hp-hero__tags">
+            <span class="hp-htag">✓ معتمدة CE</span>
+            <span class="hp-htag">✓ ISO 9001</span>
+            <span class="hp-htag">✓ الحد الأدنى 50 وحدة</span>
+            <span class="hp-htag">✓ جاهز للتصدير</span>
           </div>
 
-          <div class="cta-buttons">
-            <a href="/ar/iletisim" class="btn btn-primary" aria-label="احصل على عرض أسعار مجاني عبر نموذج الاتصال">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-width="2"/>
-              </svg>
-              احصل على عرض أسعار مجاني
+          <div class="hp-hero__actions">
+            <a href={getLocalizedRoute('/iletisim', lang)} class="hp-btn hp-btn--gold">
+              احصل على عرض سعر
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="https://www.cihanpandoor.com/E-Katalog.pdf" class="btn btn-secondary" target="_blank" rel="noopener" aria-label="قم بتنزيل كتالوج المنتج بصيغة PDF">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4m14-7l-5-5m0 0L7 8m5-5v12" stroke-width="2"/>
-              </svg>
-              تحميل الكتالوج
-            </a>
-            <a href="https://wa.me/905441690038" class="btn btn-whatsapp" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.89 3.488"/>
-              </svg>
-              واتساب
+            <a href="#products" class="hp-btn hp-btn--ghost">
+              عرض جميع المنتجات
             </a>
           </div>
         </div>
       </div>
-    </section>
 
-    <section class="categories" aria-labelledby="categories-title">
-      <div class="container">
-        <header class="section-header">
-          <h2 id="categories-title">فئات الأبواب لدينا</h2>
-          <p>حل الباب المثالي لكل مشروع</p>
-        </header>
-
-        <div class="categories-grid">
-          <article class="category-card">
-            <div class="category-content">
-              <h3><a href="/ar/pvc-kapilar" class="category-title-link">أبواب PVC</a></h3>
-              <p>أبواب PVC مقاومة للماء ومضادة للبكتيريا. مثالية للمطابخ والحمامات والبيئات الرطبة.</p>
-              <ul class="feature-list">
-                <li>✓ بنية مقاومة للماء</li>
-                <li>✓ سطح مضاد للبكتيريا</li>
-                <li>✓ سهل التنظيف</li>
-                <li>✓ أكثر من 300 خيار موديل</li>
-              </ul>
-              <a href="/ar/pvc-kapilar" class="category-link">
-                عرض جميع الموديلات
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                  <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2"/>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="category-card">
-            <div class="category-content">
-              <h3><a href="/ar/laminoks-kapilar" class="category-title-link">أبواب لامينوكس</a></h3>
-              <p>أبواب بسطح MDF ومظهر خشبي طبيعي. تصاميم حديثة وكلاسيكية.</p>
-              <ul class="feature-list">
-                <li>✓ مظهر خشبي طبيعي</li>
-                <li>✓ متانة MDF</li>
-                <li>✓ مقاوم للخدش</li>
-                <li>✓ أكثر من 250 خيار موديل</li>
-              </ul>
-              <a href="/ar/laminoks-kapilar" class="category-link">
-                عرض جميع الموديلات
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                  <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2"/>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="category-card">
-            <div class="category-content">
-              <h3><a href="/ar/elitpan-kapilar" class="category-title-link">أبواب إليتبان</a></h3>
-              <p>موديلات أبواب إليتبان من الفئة المميزة عالية الجودة. للمشاريع الفاخرة.</p>
-              <ul class="feature-list">
-                <li>✓ جودة عالية</li>
-                <li>✓ تصاميم مخصصة</li>
-                <li>✓ طويلة الأمد</li>
-                <li>✓ أكثر من 150 خيار موديل</li>
-              </ul>
-              <a href="/ar/elitpan-kapilar" class="category-link">
-                عرض جميع الموديلات
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                  <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2"/>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="category-card">
-            <div class="category-content">
-              <h3><a href="/ar/hastane-kapilari" class="category-title-link">أبواب المستشفيات</a></h3>
-              <p>أبواب مستشفيات صحية ومتينة ومضادة للبكتيريا. خاصة للمرافق الصحية.</p>
-              <ul class="feature-list">
-                <li>✓ خاصية مضادة للبكتيريا</li>
-                <li>✓ سهل التعقيم</li>
-                <li>✓ مقاوم للصدمات</li>
-                <li>✓ معتمد TSE</li>
-              </ul>
-              <a href="/ar/hastane-kapilari" class="category-link">
-                عرض جميع الموديلات
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                  <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2"/>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="category-card">
-            <div class="category-content">
-              <h3><a href="/ar/otel-kapilari" class="category-title-link">أبواب الفنادق</a></h3>
-              <p>أبواب فنادق عازلة للصوت وجمالية ومتينة. لمنشآت الإقامة.</p>
-              <ul class="feature-list">
-                <li>✓ عزل الصوت</li>
-                <li>✓ نظام إغلاق تلقائي</li>
-                <li>✓ مقاوم للحريق</li>
-                <li>✓ خيارات تصميم مخصصة</li>
-              </ul>
-              <a href="/ar/otel-kapilari" class="category-link">
-                عرض جميع الموديلات
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                  <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2"/>
-                </svg>
-              </a>
-            </div>
-          </article>
-
-          <article class="category-card">
-            <div class="category-content">
-              <h3><a href="/ar/yangina-dayanikli-kapilar" class="category-title-link">أبواب مقاومة للحريق</a></h3>
-              <p>أبواب أمنية معتمدة CE ومقاومة للحريق. حرجة لسلامة المبنى.</p>
-              <ul class="feature-list">
-                <li>✓ معتمد CE</li>
-                <li>✓ مقاومة حريق 30-120 دقيقة</li>
-                <li>✓ إحكام الدخان</li>
-                <li>✓ نظام قفل أمني</li>
-              </ul>
-              <a href="/ar/yangina-dayanikli-kapilar" class="category-link">
-                عرض جميع الموديلات
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                  <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2"/>
-                </svg>
-              </a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="features" aria-labelledby="features-title">
-      <div class="container">
-        <header class="section-header">
-          <h2 id="features-title">لماذا CihanPan Door؟</h2>
-          <p>29 عامًا من التصنيع الموثوق</p>
-        </header>
-
-        <div class="features-grid">
-          <div class="feature-item">
-            <div class="feature-icon" aria-hidden="true">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"/>
-              </svg>
-            </div>
-            <h3>إنتاج معتمد من TSE</h3>
-            <p>جميع منتجاتنا مصنعة وفقًا لمعايير TSE</p>
+      <!-- Stats bar -->
+      <div class="hp-wrap">
+        <div class="hp-statsbar">
+          <div class="hp-sitem">
+            <strong>30<sup>+</sup></strong>
+            <span>سنة خبرة</span>
           </div>
-
-          <div class="feature-item">
-            <div class="feature-icon" aria-hidden="true">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-width="2"/>
-              </svg>
-            </div>
-            <h3>توصيل سريع</h3>
-            <p>2-3 أسابيع للمنتجات القياسية، 4-6 أسابيع للطلبات المخصصة</p>
+          <div class="hp-sdiv"></div>
+          <div class="hp-sitem">
+            <strong>600K</strong>
+            <span>وحدة / سنة</span>
           </div>
-
-          <div class="feature-item">
-            <div class="feature-icon" aria-hidden="true">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-width="2"/>
-              </svg>
-            </div>
-            <h3>ضمان لمدة عامين</h3>
-            <p>ضمان الشركة المصنعة لمدة عامين على جميع المنتجات</p>
+          <div class="hp-sdiv"></div>
+          <div class="hp-sitem">
+            <strong>25<sup>+</sup></strong>
+            <span>دولة تصدير</span>
           </div>
-
-          <div class="feature-item">
-            <div class="feature-icon" aria-hidden="true">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"/>
-              </svg>
-            </div>
-            <h3>التصدير لأكثر من 50 دولة</h3>
-            <p>شريك تصدير موثوق إلى أوروبا والشرق الأوسط وأفريقيا</p>
+          <div class="hp-sdiv"></div>
+          <div class="hp-sitem">
+            <strong>15K m²</strong>
+            <span>مساحة المصنع</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="cta-section">
-      <div class="container">
-        <h2>دعنا نجد حل الباب المثالي لمشروعك</h2>
-        <p>فريقنا الخبير جاهز للمساعدة. احصل على استشارة مجانية وعرض أسعار.</p>
-        <div class="cta-buttons">
-          <a href="/ar/iletisim" class="btn btn-light">نموذج الاتصال</a>
-          <a href="tel:+905441690038" class="btn btn-outline">📞 +90 544 169 00 38</a>
+    <!-- ══════════════════════════════════════════
+         TRUST BAR
+    ══════════════════════════════════════════ -->
+    <section class="hp-trust" aria-label="لماذا تختارنا">
+      <div class="hp-wrap">
+        <div class="hp-trust__grid">
+          {trustItems.map(item => (
+            <div class="hp-trust__item">
+              <span class="hp-trust__icon" aria-hidden="true">{item.icon}</span>
+              <div>
+                <strong>{item.label}</strong>
+                <p>{item.desc}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
+
+    <!-- ══════════════════════════════════════════
+         PRODUCTS
+    ══════════════════════════════════════════ -->
+    <section class="hp-sec hp-sec--white" id="products" aria-labelledby="products-h2">
+      <div class="hp-wrap">
+        <div class="hp-head">
+          <span class="hp-tag">نطاق منتجاتنا</span>
+          <h2 id="products-h2">مجموعة الأبواب الداخلية بالجملة — مباشر من المصنع في تركيا</h2>
+          <p>جميع خطوط الإنتاج معتمدة بـ CE وISO 9001 ومتاحة للتصدير بالجملة إلى الولايات المتحدة وأوروبا والشرق الأوسط.</p>
+        </div>
+
+        <div class="hp-products">
+          {categories.map((cat, i) => (
+            <article class={`hp-product ${cat.featured ? 'hp-product--featured' : ''}`}>
+              <a href={getLocalizedRoute(cat.slug, lang)} class="hp-product__img-wrap" tabindex="-1" aria-hidden="true">
+                <img
+                  src={cat.img}
+                  alt={cat.title}
+                  width="480"
+                  height="360"
+                  loading={i < 3 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
+                <span class={`hp-product__badge ${cat.badgeGold ? 'hp-product__badge--gold' : ''}`}>{cat.badge}</span>
+              </a>
+              <div class="hp-product__body">
+                <h3><a href={getLocalizedRoute(cat.slug, lang)}>{cat.title}</a></h3>
+                <p>{cat.desc}</p>
+                <ul class="hp-product__tags">
+                  {cat.tags.map(tag => <li>{tag}</li>)}
+                </ul>
+                <a href={getLocalizedRoute(cat.slug, lang)} class="hp-product__cta">
+                  عرض وطلب السعر
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SOLUTIONS
+    ══════════════════════════════════════════ -->
+    <section class="hp-sec hp-sec--navy" aria-labelledby="solutions-h2">
+      <div class="hp-wrap">
+        <div class="hp-head hp-head--light">
+          <span class="hp-tag">كيف نعمل</span>
+          <h2 id="solutions-h2">خدمات البيع بالجملة والتصدير</h2>
+          <p>ثلاثة نماذج توريد مرنة للمستوردين والموزعين ومطوري المشاريع</p>
+        </div>
+
+        <div class="hp-solutions">
+          <div class="hp-sol">
+            <div class="hp-sol__num" aria-hidden="true">01</div>
+            <div class="hp-sol__icon" aria-hidden="true">🏭</div>
+            <h3>طلبات الجملة</h3>
+            <p>الحد الأدنى 50 وحدة. أسعار ثابتة للمقاسات القياسية. خصومات على الكميات من 200 وحدة فأكثر.</p>
+            <ul>
+              <li>الحد الأدنى 50 وحدة</li>
+              <li>خصومات الكميات متاحة</li>
+              <li>وثائق CE/ISO مشمولة</li>
+            </ul>
+          </div>
+
+          <div class="hp-sol">
+            <div class="hp-sol__num" aria-hidden="true">02</div>
+            <div class="hp-sol__icon" aria-hidden="true">🌍</div>
+            <h3>خدمات التصدير والاستيراد</h3>
+            <p>توثيق تصدير كامل: فاتورة تجارية، قائمة تعبئة، شهادة منشأ، شهادات CE وISO. شروط FOB / CIF / EXW.</p>
+            <ul>
+              <li>شروط FOB / CIF / EXW</li>
+              <li>توثيق تصدير كامل</li>
+              <li>تنسيق الشحن</li>
+            </ul>
+          </div>
+
+          <div class="hp-sol">
+            <div class="hp-sol__num" aria-hidden="true">03</div>
+            <div class="hp-sol__icon" aria-hidden="true">🏗️</div>
+            <h3>حلول المشاريع المخصصة</h3>
+            <p>مقاسات غير قياسية، علامة تجارية خاصة، تشطيبات مخصصة — متاحة للفنادق والمستشفيات والمجمعات السكنية.</p>
+            <ul>
+              <li>مقاسات وتشطيبات مخصصة</li>
+              <li>علامة تجارية خاصة متاحة</li>
+              <li>دعم قياس الموقع</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         ABOUT
+    ══════════════════════════════════════════ -->
+    <section class="hp-sec hp-sec--white" aria-labelledby="about-h2">
+      <div class="hp-wrap hp-about">
+
+        <div class="hp-about__text">
+          <span class="hp-tag">عن CihanPan Door</span>
+          <h2 id="about-h2">مصنع أبواب داخلية معتمد CE وISO 9001 في قيصري، تركيا</h2>
+
+          <p>تأسست <strong>CihanPan Door</strong> عام 1995، وتُعدّ من أكثر شركات تصنيع الأبواب الداخلية بالجملة خبرةً في تركيا. تعمل من منشأة إنتاج تبلغ مساحتها 15,000 م² في المنطقة الصناعية المنظمة بقيصري، وتنتج أكثر من <strong>600,000 طقم باب داخلي سنوياً</strong> للمشترين بالجملة في الولايات المتحدة وأوروبا والشرق الأوسط.</p>
+          <h3>لماذا استيراد الأبواب الداخلية من تركيا؟</h3>
+          <p>تُعدّ تركيا البديل الرائد لتصنيع الأبواب الصينية للمستوردين الأمريكيين — إذ تقدم <strong>جودة معتمدة CE وISO</strong> بأسعار تنافسية مع أوقات شحن بحري أقصر بكثير. تشحن CihanPan Door إلى جميع الموانئ الرئيسية.</p>
+          <h3>قدراتنا في تصنيع الأبواب الداخلية</h3>
+          <p>نصنّع <strong>أبواب PVC، ولامينوكس، وإليتبان MDF، وأبواب صحية للمستشفيات، وأبواب غرف الفنادق، وأبواب مقاومة للحريق EI30–EI90</strong>. جميع خطوط الإنتاج تدعم المقاسات المخصصة والأبعاد غير القياسية والعلامة التجارية الخاصة.</p>
+
+          <div class="hp-about__cta">
+            <a href={getLocalizedRoute('/iletisim', lang)} class="hp-btn hp-btn--navy">
+              طلب أسعار الجملة
+            </a>
+            <a href="https://www.cihanpandoor.com/E-Katalog.pdf" target="_blank" rel="noopener noreferrer" class="hp-btn hp-btn--outline-dark">
+              تحميل الكتالوج (PDF)
+            </a>
+          </div>
+        </div>
+
+        <aside class="hp-about__stats" aria-label="إحصائيات الشركة">
+          <div class="hp-kpi">
+            <strong>1995</strong>
+            <span>سنة التأسيس</span>
+          </div>
+          <div class="hp-kpi">
+            <strong>600K</strong>
+            <span>وحدة / سنة</span>
+          </div>
+          <div class="hp-kpi">
+            <strong>25<sup>+</sup></strong>
+            <span>دولة تصدير</span>
+          </div>
+          <div class="hp-kpi">
+            <strong>150<sup>+</sup></strong>
+            <span>موظف</span>
+          </div>
+          <div class="hp-kpi">
+            <strong>15K m²</strong>
+            <span>مساحة المصنع</span>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CTA BAND
+    ══════════════════════════════════════════ -->
+    <section class="hp-cta" aria-labelledby="cta-h2">
+      <div class="hp-cta__glow" aria-hidden="true"></div>
+      <div class="hp-wrap hp-cta__inner">
+        <div class="hp-cta__text">
+          <span class="hp-tag hp-tag--gold">ابدأ التوريد اليوم</span>
+          <h2 id="cta-h2">اطلب عرض سعر للأبواب الداخلية بالجملة من تركيا</h2>
+          <p>أخبرنا بأنواع الأبواب والكميات والوجهة. نرد خلال 24 ساعة بأسعار مباشرة من المصنع ووثائق CE/ISO كاملة.</p>
+        </div>
+        <div class="hp-cta__btns">
+          <a href={getLocalizedRoute('/iletisim', lang)} class="hp-btn hp-btn--gold">
+            احصل على عرض مجاني
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href={getLocalizedRoute('/hakkimizda', lang)} class="hp-btn hp-btn--ghost">
+            تعرف علينا
+          </a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <I18nFooter />
 </I18nLayout>
 
-<!-- Same CSS as Turkish version + RTL adjustments -->
-
 <style>
-  /* RTL-specific adjustments for Arabic */
-  html[dir="rtl"] .category-link {
-    flex-direction: row-reverse;
-  }
-
-  html[dir="rtl"] .category-link svg {
-    transform: rotate(180deg);
-  }
-
-  html[dir="rtl"] .category-link:hover svg {
-    transform: rotate(180deg) translateX(-4px);
-  }
-
-  html[dir="rtl"] .hero-stats {
+  .hp {
+    --navy:     #0f2347;
+    --navy-mid: #1a3a6e;
+    --navy-l:   #1e4a8a;
+    --gold:     #c9a84c;
+    --gold-l:   #e2bc6a;
+    --cream:    #faf8f4;
+    --slate:    #607080;
+    --text:     #0f1929;
+    --body:     #3d4f63;
+    --bdr:      #e4eaf4;
+    --white:    #ffffff;
+    --radius:   14px;
+    font-family: 'Cairo', 'Tajawal', system-ui, sans-serif;
+    color: var(--text);
     direction: rtl;
   }
 
-  html[dir="rtl"] .btn svg {
-    margin-right: 0;
-    margin-left: 0.5rem;
+  .hp-wrap {
+    max-width: 1160px;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+    width: 100%;
   }
 
-  html[dir="rtl"] .feature-list li {
-    text-align: right;
+  .hp-sec          { padding-block: clamp(4rem, 8vw, 6.5rem); }
+  .hp-sec--white   { background: var(--white); }
+  .hp-sec--navy    { background: var(--navy); }
+  .hp-sec--cream   { background: var(--cream); }
+
+  .hp-head {
+    text-align: center;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+  .hp-head h2 {
+    font-family: 'Cairo', 'Tajawal', system-ui, sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 700;
+    color: var(--text);
+    margin: 0.3rem 0 0.7rem;
+    line-height: 1.4;
+  }
+  .hp-head p {
+    color: var(--slate);
+    font-size: 1rem;
+    max-width: 560px;
+    margin-inline: auto;
+    line-height: 1.9;
+  }
+  .hp-head--light h2 { color: var(--white); }
+  .hp-head--light p  { color: rgba(255,255,255,0.5); }
+
+  .hp-tag {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+  .hp-tag--gold { color: rgba(201,168,76,0.9); }
+
+  .hp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 0.9rem 1.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    white-space: nowrap;
+    font-family: 'Cairo', 'Tajawal', system-ui, sans-serif;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .hp-btn--gold { background: var(--gold); color: var(--navy); }
+  .hp-btn--gold:hover { background: var(--gold-l); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(201,168,76,0.4); }
+  .hp-btn--ghost { background: transparent; color: rgba(255,255,255,0.85); border: 1.5px solid rgba(255,255,255,0.25); }
+  .hp-btn--ghost:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+  .hp-btn--navy { background: var(--navy); color: var(--white); }
+  .hp-btn--navy:hover { background: var(--navy-mid); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(15,35,71,0.3); }
+  .hp-btn--outline-dark { background: transparent; color: var(--navy); border: 1.5px solid var(--bdr); }
+  .hp-btn--outline-dark:hover { border-color: var(--navy); transform: translateY(-2px); }
+
+  /* ── RTL: flip arrow icons ── */
+  .hp-btn svg,
+  .hp-product__cta svg { transform: scaleX(-1); }
+
+  .hp-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 70px;
+    overflow: hidden;
+  }
+  .hp-hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .hp-hero__img {
+    position: absolute; inset: 0;
+    background-image: url('/assets/img/hero/door-factory.webp');
+    background-size: cover;
+    background-position: center;
+  }
+  .hp-hero__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(225deg, rgba(10,26,58,0.93) 0%, rgba(15,35,71,0.82) 60%, rgba(15,35,71,0.6) 100%);
+  }
+  .hp-hero__glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 20% 40%, rgba(201,168,76,0.08) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 80% at 85% 70%, rgba(30,74,138,0.35) 0%, transparent 60%);
+  }
+  .hp-hero__inner {
+    position: relative; z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    padding-top: clamp(3rem, 8vw, 5rem);
+    padding-bottom: clamp(4rem, 8vw, 6rem);
+  }
+  .hp-hero__copy { max-width: 640px; flex: 1; }
+
+  .hp-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--gold);
+    margin-bottom: 1.4rem;
+  }
+  .hp-eyebrow__line {
+    display: block;
+    width: 30px; height: 1px;
+    background: var(--gold);
+    opacity: 0.55;
+    flex-shrink: 0;
+    order: -1;
   }
 
-  /* Additional RTL typography adjustments */
-  html[dir="rtl"] {
-    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+  .hp-hero__h1 {
+    font-family: 'Cairo', 'Tajawal', system-ui, sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.3;
+    margin: 0 0 1.25rem;
+  }
+  .hp-hero__h1 em { font-style: normal; color: var(--gold); }
+
+  .hp-hero__lead {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 2;
+    max-width: 560px;
+    margin: 0 0 1.5rem;
   }
 
-  html[dir="rtl"] .hero-title,
-  html[dir="rtl"] .section-header h2,
-  html[dir="rtl"] .cta-section h2 {
-    letter-spacing: 0;
+  .hp-hero__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2.25rem;
   }
-
-  /* RTL button alignment */
-  html[dir="rtl"] .cta-buttons {
-    direction: rtl;
+  .hp-htag {
+    display: inline-block;
+    padding: 0.3rem 0.85rem;
+    border: 1px solid rgba(201,168,76,0.35);
+    background: rgba(201,168,76,0.08);
+    color: var(--gold-l);
+    font-size: 0.82rem;
+    font-weight: 700;
+    border-radius: 4px;
   }
+  .hp-hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-/* Container */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* ============================================
-   Hero Section
-   ============================================ */
-.hero {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 8rem 0 4rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Subtle pattern overlay */
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  opacity: 0.3;
-  pointer-events: none;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-}
-
-.hero-title {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 800;
-  margin-bottom: 1.5rem;
-  line-height: 1.1;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-  letter-spacing: -0.02em;
-}
-
-.hero-subtitle {
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  margin-bottom: 2.5rem;
-  opacity: 0.95;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.6;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-}
-
-/* Hero Stats */
-.hero-stats {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-  margin: 2.5rem 0;
-  flex-wrap: wrap;
-}
-
-.stat-item {
-  text-align: center;
-  min-width: 120px;
-}
-
-.stat-item strong {
-  display: block;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 800;
-  margin-bottom: 0.5rem;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-}
-
-.stat-item span {
-  font-size: 0.95rem;
-  opacity: 0.9;
-  font-weight: 500;
-}
-
-/* CTA Buttons */
-.cta-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-top: 2rem;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  font-size: 1rem;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  border: 2px solid transparent;
-}
-
-.btn svg {
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
-}
-
-.btn:hover svg {
-  transform: translateX(3px);
-}
-
-.btn-primary {
-  background: white;
-  color: #667eea;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-}
-
-.btn-secondary {
-  background: rgba(255,255,255,0.15);
-  color: white;
-  border-color: rgba(255,255,255,0.3);
-  backdrop-filter: blur(10px);
-}
-
-.btn-secondary:hover {
-  background: rgba(255,255,255,0.25);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-}
-
-.btn-whatsapp {
-  background: #25D366;
-  color: white;
-}
-
-.btn-whatsapp:hover {
-  background: #128C7E;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(37,211,102,0.4);
-}
-
-/* ============================================
-   Categories Section
-   ============================================ */
-.categories {
-  padding: 5rem 0;
-  background: #f9fafb;
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.section-header h2 {
-  font-size: clamp(2rem, 4vw, 2.5rem);
-  font-weight: 800;
-  color: #1a202c;
-  margin-bottom: 0.75rem;
-  letter-spacing: -0.02em;
-}
-
-.section-header p {
-  font-size: 1.1rem;
-  color: #6b7280;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.categories-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.category-card {
-  background: white;
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  transition: all 0.3s ease;
-  border: 1px solid #e5e7eb;
-}
-
-.category-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.1);
-  border-color: #667eea;
-}
-
-.category-content h3 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1a202c;
-  margin-bottom: 1rem;
-}
-
-.category-title-link {
-  color: #1a202c;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.category-title-link:hover {
-  color: #667eea;
-}
-
-.category-content p {
-  color: #6b7280;
-  margin-bottom: 1.5rem;
-  line-height: 1.7;
-  font-size: 0.95rem;
-}
-
-/* Feature List */
-.feature-list {
-  list-style: none;
-  padding: 0;
-  margin: 1.5rem 0;
-}
-
-.feature-list li {
-  color: #4b5563;
-  padding: 0.5rem 0;
-  font-size: 0.95rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.feature-list li::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  background: #10b981;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.category-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #667eea;
-  text-decoration: none;
-  font-weight: 600;
-  margin-top: 1rem;
-  transition: all 0.3s ease;
-  font-size: 0.95rem;
-}
-
-.category-link:hover {
-  color: #764ba2;
-  gap: 0.75rem;
-}
-
-.category-link svg {
-  transition: transform 0.3s ease;
-}
-
-.category-link:hover svg {
-  transform: translateX(4px);
-}
-
-/* ============================================
-   Features Section
-   ============================================ */
-.features {
-  padding: 5rem 0;
-  background: white;
-}
-
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2.5rem;
-  margin-top: 3rem;
-}
-
-.feature-item {
-  text-align: center;
-  padding: 2rem;
-  transition: transform 0.3s ease;
-}
-
-.feature-item:hover {
-  transform: translateY(-5px);
-}
-
-.feature-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 1.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 20px;
-  color: white;
-  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
-  transition: all 0.3s ease;
-}
-
-.feature-item:hover .feature-icon {
-  transform: scale(1.1);
-  box-shadow: 0 12px 24px rgba(102, 126, 234, 0.4);
-}
-
-.feature-item h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #1a202c;
-  margin-bottom: 0.75rem;
-}
-
-.feature-item p {
-  color: #6b7280;
-  line-height: 1.7;
-  font-size: 0.95rem;
-}
-
-/* ============================================
-   CTA Section
-   ============================================ */
-.cta-section {
-  padding: 5rem 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.cta-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  opacity: 0.2;
-}
-
-.cta-section .container {
-  position: relative;
-  z-index: 1;
-}
-
-.cta-section h2 {
-  font-size: clamp(2rem, 4vw, 2.5rem);
-  font-weight: 800;
-  margin-bottom: 1rem;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-}
-
-.cta-section p {
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-  opacity: 0.95;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.6;
-}
-
-.btn-light {
-  background: white;
-  color: #667eea;
-}
-
-.btn-light:hover {
-  background: #f3f4f6;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-}
-
-.btn-outline {
-  background: transparent;
-  color: white;
-  border: 2px solid white;
-}
-
-.btn-outline:hover {
-  background: rgba(255,255,255,0.15);
-  transform: translateY(-2px);
-}
-
-/* ============================================
-   Responsive Design
-   ============================================ */
-@media (max-width: 768px) {
-  .hero {
-    padding: 6rem 0 3rem;
+  .hp-statsbar {
+    position: relative; z-index: 1;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 0;
   }
-
-  .hero-stats {
-    gap: 2rem;
+  .hp-sitem {
+    display: flex; flex-direction: column;
+    flex: 1; min-width: 100px;
+    padding-inline: 1rem;
+    text-align: center;
   }
-
-  .stat-item {
-    min-width: 100px;
+  .hp-sitem:first-child { padding-right: 0; }
+  .hp-sitem:last-child  { padding-left: 0; }
+  .hp-sitem strong {
+    font-family: 'Cairo', 'Tajawal', system-ui, sans-serif;
+    font-size: 1.75rem; font-weight: 900;
+    color: var(--gold); line-height: 1; display: block;
   }
-
-  .stat-item strong {
-    font-size: 2rem;
+  .hp-sitem strong sup { font-size: 0.7em; }
+  .hp-sitem span {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.55);
+    margin-top: 0.3rem; display: block;
   }
+  .hp-sdiv { width: 1px; height: 32px; background: rgba(255,255,255,0.12); flex-shrink: 0; }
 
-  .categories-grid {
-    grid-template-columns: 1fr;
+  .hp-trust {
+    background: var(--navy);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-block: 2.5rem;
+  }
+  .hp-trust__grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
     gap: 1.5rem;
   }
-
-  .features-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .hp-trust__item {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    padding: 1rem; border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.25s;
   }
+  .hp-trust__item:hover { background: rgba(255,255,255,0.07); }
+  .hp-trust__icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+  .hp-trust__item strong { display: block; font-size: 0.875rem; font-weight: 700; color: var(--white); margin-bottom: 0.25rem; }
+  .hp-trust__item p { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.7; margin: 0; }
 
-  .cta-buttons {
-    flex-direction: column;
-    align-items: stretch;
+  .hp-products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
   }
-
-  .btn {
-    width: 100%;
-    justify-content: center;
+  .hp-product {
+    background: var(--white); border: 1px solid var(--bdr);
+    border-radius: var(--radius); overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
   }
-}
-
-@media (max-width: 480px) {
-  .hero {
-    padding: 5rem 0 2.5rem;
+  .hp-product:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(15,35,71,0.1); border-color: rgba(201,168,76,0.3); }
+  .hp-product--featured { border-color: var(--gold); box-shadow: 0 4px 24px rgba(201,168,76,0.15); }
+  .hp-product__img-wrap {
+    display: block; position: relative;
+    overflow: hidden; aspect-ratio: 3 / 4;
+    height: auto; text-decoration: none;
   }
-
-  .hero-title {
-    font-size: 1.75rem;
+  .hp-product__img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.45s cubic-bezier(0.22,1,0.36,1); display: block; }
+  .hp-product:hover .hp-product__img-wrap img { transform: scale(1.06); }
+  .hp-product__badge {
+    position: absolute; top: 14px; left: 14px;
+    background: var(--navy); color: var(--white);
+    font-size: 0.78rem; font-weight: 700;
+    padding: 0.35rem 0.85rem; border-radius: 20px;
   }
-
-  .hero-subtitle {
-    font-size: 0.95rem;
+  .hp-product__badge--gold { background: var(--gold); color: var(--navy); }
+  .hp-product__body { padding: 1.5rem; }
+  .hp-product__body h3 { font-family: 'Cairo', 'Tajawal', system-ui, sans-serif; font-size: 1.15rem; font-weight: 700; margin: 0 0 0.5rem; }
+  .hp-product__body h3 a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+  .hp-product__body h3 a:hover { color: var(--navy-l); }
+  .hp-product__body > p { font-size: 0.925rem; color: var(--body); line-height: 1.9; margin: 0 0 1rem; }
+  .hp-product__tags { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; padding: 0; margin: 0 0 1.25rem; }
+  .hp-product__tags li { background: var(--cream); color: var(--body); font-size: 0.8rem; font-weight: 600; padding: 0.3rem 0.75rem; border-radius: 20px; border: 1px solid var(--bdr); }
+  .hp-product__cta {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    font-size: 0.85rem; font-weight: 700; color: var(--navy-l);
+    text-decoration: none; border-bottom: 1.5px solid var(--bdr);
+    padding-bottom: 1px; transition: color 0.2s, border-color 0.2s, gap 0.2s;
   }
+  .hp-product__cta:hover { color: var(--gold); border-color: var(--gold); gap: 0.65rem; }
 
-  .section-header h2 {
-    font-size: 1.75rem;
+  .hp-solutions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: rgba(255,255,255,0.07);
+    border-radius: var(--radius);
+    overflow: hidden;
   }
-
-  .cta-section h2 {
-    font-size: 1.75rem;
+  .hp-sol {
+    position: relative; background: rgba(255,255,255,0.04);
+    padding: 2.25rem 2rem; transition: background 0.3s; overflow: hidden;
   }
-
-  .category-card {
-    padding: 1.5rem;
+  .hp-sol:hover { background: rgba(255,255,255,0.08); }
+  .hp-sol__num {
+    font-family: 'Cairo', system-ui, sans-serif;
+    font-size: 4rem; font-weight: 900;
+    color: rgba(255,255,255,0.04); line-height: 1;
+    position: absolute; top: 1rem; left: 1.5rem;
+    transition: color 0.3s; user-select: none;
   }
+  .hp-sol:hover .hp-sol__num { color: rgba(201,168,76,0.1); }
+  .hp-sol__icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+  .hp-sol h3 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin: 0 0 0.6rem; position: relative; }
+  .hp-sol > p { font-size: 0.875rem; color: rgba(255,255,255,0.5); line-height: 1.9; margin: 0 0 1rem; position: relative; }
+  .hp-sol ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.4rem; position: relative; }
+  .hp-sol ul li { font-size: 0.875rem; color: rgba(255,255,255,0.55); display: flex; align-items: center; gap: 0.5rem; }
+  .hp-sol ul li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; order: -1; }
 
-  .feature-item {
-    padding: 1.5rem;
+  .hp-about { display: grid; grid-template-columns: 1fr 320px; gap: 4rem; align-items: start; }
+  .hp-about__text .hp-tag { margin-bottom: 0.5rem; }
+  .hp-about__text h2 { font-family: 'Cairo', 'Tajawal', system-ui, sans-serif; font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 700; color: var(--text); margin: 0.3rem 0 1.25rem; line-height: 1.4; }
+  .hp-about__text h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); margin: 1.75rem 0 0.6rem; }
+  .hp-about__text p { font-size: 0.95rem; color: var(--body); line-height: 2; margin: 0 0 0.75rem; }
+  .hp-about__text p strong { color: var(--navy); }
+  .hp-about__cta { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+  .hp-about__stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px; background: var(--bdr);
+    border: 1px solid var(--bdr); border-radius: var(--radius);
+    overflow: hidden; position: sticky; top: 90px;
   }
-}
+  .hp-kpi { background: var(--white); padding: 1.5rem 1.25rem; text-align: center; transition: background 0.2s; }
+  .hp-kpi:hover { background: var(--cream); }
+  .hp-kpi strong { display: block; font-family: 'Cairo', system-ui, sans-serif; font-size: 1.6rem; font-weight: 900; color: var(--navy); line-height: 1; margin-bottom: 0.35rem; }
+  .hp-kpi strong sup { font-size: 0.65em; }
+  .hp-kpi span { font-size: 0.75rem; color: var(--slate); display: block; }
 
-/* ============================================
-   Print Styles
-   ============================================ */
-@media print {
-  .hero,
-  .cta-section {
-    background: white !important;
-    color: black !important;
+  .hp-cta { position: relative; background: var(--navy); overflow: hidden; padding: clamp(4rem, 8vw, 6rem) 0; }
+  .hp-cta__glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 55% 80% at -5% 50%, rgba(201,168,76,0.14) 0%, transparent 65%),
+      linear-gradient(140deg, #08192e 0%, var(--navy) 100%);
+    pointer-events: none;
   }
+  .hp-cta__inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap; }
+  .hp-cta__text h2 { font-family: 'Cairo', 'Tajawal', system-ui, sans-serif; font-size: clamp(1.75rem, 3vw, 2.4rem); font-weight: 700; color: var(--white); margin: 0.35rem 0 0.7rem; line-height: 1.4; }
+  .hp-cta__text p { color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.9; max-width: 420px; margin: 0; }
+  .hp-cta__btns { display: flex; gap: 1rem; flex-wrap: wrap; flex-shrink: 0; }
 
-  .btn {
-    border: 1px solid #ccc !important;
+  @media (max-width: 1024px) {
+    .hp-products        { grid-template-columns: repeat(2, 1fr); }
+    .hp-trust__grid     { grid-template-columns: repeat(3, 1fr); }
+    .hp-about           { grid-template-columns: 1fr; }
+    .hp-about__stats    { position: static; grid-template-columns: repeat(3, 1fr); }
   }
-}
-
-/* ============================================
-   Accessibility
-   ============================================ */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  @media (max-width: 768px) {
+    .hp-hero__inner     { flex-direction: column; align-items: flex-start; }
+    .hp-solutions       { grid-template-columns: 1fr; }
+    .hp-cta__inner      { flex-direction: column; text-align: center; }
+    .hp-cta__text p     { margin-inline: auto; }
+    .hp-cta__btns       { justify-content: center; }
+    .hp-sdiv            { display: none; }
+    .hp-sitem           { padding-inline: 0.5rem; }
+    .hp-statsbar        { gap: 0.75rem; }
+    .hp-hero__actions   { flex-direction: column; }
+    .hp-btn             { justify-content: center; }
   }
-}
-
-/* Focus styles for keyboard navigation */
-.btn:focus-visible,
-.category-link:focus-visible,
-.category-title-link:focus-visible {
-  outline: 3px solid #667eea;
-  outline-offset: 2px;
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  .hero,
-  .cta-section {
-    background: #000;
+  @media (max-width: 640px) {
+    .hp-products      { grid-template-columns: 1fr; }
+    .hp-trust__grid   { grid-template-columns: repeat(2, 1fr); }
+    .hp-about__stats  { grid-template-columns: repeat(2, 1fr); }
+    .hp-hero          { min-height: auto; }
   }
-
-  .btn {
-    border-width: 3px;
-  }
-}
 </style>
-

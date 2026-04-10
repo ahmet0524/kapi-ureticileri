@@ -1,5 +1,5 @@
 ---
-// src/pages/tr/hakkimizda.astro
+// src/pages/ar/hakkimizda.astro
 import I18nLayout from '../../layouts/I18nLayout.astro';
 import I18nHeader from '../../components/I18nHeader.astro';
 import I18nFooter from '../../components/I18nFooter.astro';
@@ -10,34 +10,34 @@ const t = useTranslations(lang);
 
 // ── SEO DATA ──────────────────────────────────────────────────────────
 const baseUrl = 'https://cihanpandoor.netlify.app';
-const pageUrl = `${baseUrl}/tr/hakkimizda`;
+const pageUrl = `${baseUrl}/ar/hakkimizda`;
 
 // ── SCHEMA: AboutPage + Organization ─────────────────────────────────
 const aboutPageSchema = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
-  "name": "Hakkımızda — CihanPan Kapı | Türkiye İç Kapı Üreticisi ve İhracatçısı",
-  "description": "CihanPan Kapı, Kayseri'de CE, TSE ve ISO 9001 belgeli bir iç kapı üreticisidir. 1995'ten bu yana yıllık 600.000 adet üretim kapasitesiyle ABD, Avrupa ve Orta Doğu'ya toptan ihracat yapmaktadır.",
+  "name": "من نحن — CihanPan Door | مصنع ومصدّر أبواب داخلية من تركيا",
+  "description": "CihanPan Door مصنع أبواب داخلية معتمد بشهادات CE وTSE وISO 9001 في قيصري، تركيا. نصدّر بالجملة إلى الولايات المتحدة وأوروبا والشرق الأوسط منذ عام 1995 بطاقة إنتاجية 600,000 وحدة سنوياً.",
   "url": pageUrl,
-  "inLanguage": "tr",
+  "inLanguage": "ar",
   "isPartOf": {
     "@type": "WebSite",
-    "name": "CihanPan Kapı",
+    "name": "CihanPan Door",
     "url": baseUrl
   },
   "about": {
     "@type": "Organization",
-    "name": "CihanPan Kapı",
-    "alternateName": "CihanPan Door",
+    "name": "CihanPan Door",
+    "alternateName": "Cihanpan Kapı",
     "url": baseUrl,
     "logo": `${baseUrl}/assets/img/logo/header-logo1.webp`,
     "foundingDate": "1995",
-    "description": "Türkiye'nin önde gelen iç kapı üreticisi ve toptan ihracatçısı. CE, TSE, ISO 9001 belgeli. Oteller, hastaneler, konut ve ticari projeler için PVC, MDF, Laminox kapılar.",
+    "description": "الشركة الرائدة في تركيا لتصنيع وتصدير الأبواب الداخلية بالجملة. معتمدة CE وTSE وISO 9001. أبواب PVC وMDF ولامينوكس للفنادق والمستشفيات والمشاريع السكنية والتجارية.",
     "numberOfEmployees": { "@type": "QuantitativeValue", "value": 150 },
     "areaServed": ["US", "EU", "ME", "AF"],
     "hasCredential": [
-      { "@type": "EducationalOccupationalCredential", "name": "CE Belgesi" },
-      { "@type": "EducationalOccupationalCredential", "name": "TSE Belgesi" },
+      { "@type": "EducationalOccupationalCredential", "name": "شهادة CE" },
+      { "@type": "EducationalOccupationalCredential", "name": "شهادة TSE" },
       { "@type": "EducationalOccupationalCredential", "name": "ISO 9001" }
     ],
     "address": {
@@ -51,9 +51,9 @@ const aboutPageSchema = {
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+90-544-169-0038",
-      "contactType": "Satış",
-      "availableLanguage": ["Türkçe", "İngilizce", "Arapça", "Almanca"],
-      "areaServed": ["TR", "EU", "ME"]
+      "contactType": "المبيعات",
+      "availableLanguage": ["العربية", "الإنجليزية", "التركية", "الألمانية"],
+      "areaServed": ["ME", "AF", "EU"]
     },
     "sameAs": [
       "https://www.cihanpandoor.com",
@@ -66,8 +66,8 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": `${baseUrl}/tr` },
-    { "@type": "ListItem", "position": 2, "name": "Hakkımızda", "item": pageUrl }
+    { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": `${baseUrl}/ar` },
+    { "@type": "ListItem", "position": 2, "name": "من نحن", "item": pageUrl }
   ]
 };
 
@@ -77,34 +77,34 @@ const faqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "CihanPan Kapı belgeli bir iç kapı üreticisi midir?",
+      "name": "هل CihanPan Door مصنع أبواب داخلية معتمد؟",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Evet. CihanPan Kapı, CE, TSE ve ISO 9001 belgelerine sahiptir; tüm iç kapı ürünleri için Avrupa ve uluslararası kalite standartlarına tam uyumu garanti eder."
+        "text": "نعم. تحمل CihanPan Door شهادات CE وTSE وISO 9001، مما يضمن الامتثال الكامل للمعايير الأوروبية والدولية لجميع منتجات الأبواب الداخلية."
       }
     },
     {
       "@type": "Question",
-      "name": "Toptan iç kapı siparişinde minimum sipariş miktarı nedir?",
+      "name": "ما هو الحد الأدنى لكمية الطلب للأبواب بالجملة؟",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Minimum toptan sipariş miktarı 50 adettir. Oteller, hastaneler ve konut kompleksleri gibi büyük ölçekli projeler için özel toplu fiyatlandırma sunulmaktadır."
+        "text": "الحد الأدنى لطلب الجملة هو 50 وحدة. وللمشاريع الكبرى كالفنادق والمستشفيات والمجمعات السكنية، نقدم تسعيراً خاصاً للكميات الكبيرة."
       }
     },
     {
       "@type": "Question",
-      "name": "CihanPan Kapı yurt dışına ihracat yapıyor mu?",
+      "name": "هل تصدّر CihanPan Door الأبواب إلى دول الشرق الأوسط؟",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Evet. CihanPan Kapı, ABD dahil 25'ten fazla ülkeye toptan iç kapı ihraç etmektedir. Tam ihracat belgesi, rekabetçi FOB/CIF fiyatlandırması ve esnek nakliye koşulları sunulmaktadır."
+        "text": "نعم. نصدّر الأبواب الداخلية بالجملة إلى أكثر من 25 دولة تشمل دول الخليج وشمال أفريقيا والشرق الأوسط. نوفر وثائق تصدير كاملة وأسعاراً تنافسية FOB/CIF."
       }
     },
     {
       "@type": "Question",
-      "name": "CihanPan Kapı hangi tür iç kapılar üretiyor?",
+      "name": "ما أنواع الأبواب الداخلية التي تصنعونها؟",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "PVC kaplı, Laminoks, Elitpan (UV boyalı MDF), hastane tipi, otel tipi ve yangına dayanıklı iç kapılar üretilmektedir. Tüm toptan siparişler için özel ölçü ve renk seçenekleri mevcuttur."
+        "text": "نصنع أبواباً مغلفة بـ PVC، ولامينوكس، وإيليتبان (MDF مطلي بالأشعة فوق البنفسجية)، وأبواباً للمستشفيات والفنادق ومقاومة للحريق. تتوفر مقاسات وألوان مخصصة لجميع طلبات الجملة."
       }
     }
   ]
@@ -114,49 +114,49 @@ const schemas = [aboutPageSchema, breadcrumbSchema, faqSchema];
 
 // ── PAGE DATA ─────────────────────────────────────────────────────────
 const values = [
-  { num: '01', title: 'A Sınıfı Kalite',       text: 'Üretim hattımıza yalnızca birinci sınıf hammaddeler girer. Her kapı sevkiyattan önce çok aşamalı kalite kontrolünden geçer.' },
-  { num: '02', title: 'Kanıtlanmış Güvenilirlik', text: '30+ yıllık tutarlı üretim ve zamanında ihracat teslimatı — geçmiş performansımız her şeyi anlatır.' },
-  { num: '03', title: 'Müşteri Odaklılık',      text: 'Her toptan iş ortağına özel hesap yöneticisi, sevkiyat öncesi numune ve satış sonrası destek.' },
-  { num: '04', title: 'Ar-Ge İnovasyonu',       text: 'CNC teknolojisine ve yeni yüzey kaplamalarına sürekli yatırım, ürün kataloğumuzu pazar trendlerinin önünde tutar.' },
+  { num: '01', title: 'جودة من الدرجة الأولى',    text: 'نستخدم فقط المواد الخام المتميزة في خط الإنتاج. تخضع كل باب لفحص جودة متعدد المراحل قبل الشحن.' },
+  { num: '02', title: 'موثوقية مُثبتة',           text: 'أكثر من 30 عاماً من التصنيع المتواصل والتسليم في الوقت المحدد — سجلنا يتحدث عن نفسه.' },
+  { num: '03', title: 'العميل أولاً',              text: 'مدير حساب مخصص وعينات قبل الشحن ودعم ما بعد البيع لكل شريك جملة.' },
+  { num: '04', title: 'الابتكار والبحث والتطوير', text: 'استثمار مستمر في تقنية CNC وأسطح تشطيب جديدة يبقي كتالوجنا في طليعة اتجاهات السوق.' },
 ];
 
 const timeline = [
-  { year: '1995', title: 'Kayseri\'de Kuruluş',          text: 'Türkiye\'nin üretim merkezi Kayseri\'de uzmanlaşmış bir iç kapı atölyesi olarak başladık.' },
-  { year: '2003', title: 'Modern Fabrikanın Açılışı',    text: 'Kayseri Organize Sanayi Bölgesi\'ne taşınarak tam otomatik üretim hatları kuruldu.' },
-  { year: '2010', title: 'Uluslararası İhracat Başlangıcı', text: 'Orta Doğu ve Afrika pazarlarına ihracat başladı — artık 25\'ten fazla ülkeye hizmet veriyoruz.' },
-  { year: '2018', title: 'ISO 9001 Belgesi',              text: 'Mevcut CE ve TSE onaylarının yanı sıra ISO 9001 sertifikası da alındı.' },
-  { year: '2024', title: 'Yılda 600.000 Adet',           text: 'Yıllık 600.000 kapı seti üretim kapasitesine ulaşıldı — her hacimde toptan sipariş için hazırız.' },
+  { year: '1995', title: 'التأسيس في قيصري',              text: 'انطلقنا كورشة متخصصة في الأبواب الداخلية في قيصري، عاصمة الصناعة التركية.' },
+  { year: '2003', title: 'افتتاح المصنع الحديث',          text: 'انتقلنا إلى المنطقة الصناعية المنظمة بقيصري بخطوط إنتاج آلية متكاملة.' },
+  { year: '2010', title: 'انطلاق التصدير الدولي',         text: 'بدأنا التصدير إلى أسواق الشرق الأوسط وأفريقيا — نخدم الآن أكثر من 25 دولة.' },
+  { year: '2018', title: 'الحصول على شهادة ISO 9001',     text: 'حصلنا على شهادة ISO 9001 إضافةً إلى اعتمادات CE وTSE القائمة.' },
+  { year: '2024', title: '600,000 وحدة سنوياً',           text: 'بلغنا طاقة إنتاجية سنوية تبلغ 600,000 مجموعة باب — جاهزون لأي حجم من طلبات الجملة.' },
 ];
 
 const certs = [
-  { badge: 'CE',  title: 'CE Belgesi',   text: 'Avrupa pazarı güvenlik ve kalite standartlarına uygunluğu onaylar' },
-  { badge: 'TSE', title: 'TSE Belgesi',  text: 'Türk Standartları Enstitüsü — Türk üreticiler için zorunlu kalite belgesi' },
-  { badge: 'ISO', title: 'ISO 9001:2015', text: 'Uluslararası kalite yönetim sistemi — her partide tutarlı üretim' },
+  { badge: 'CE',  title: 'شهادة CE',   text: 'تؤكد الامتثال لمعايير السلامة والجودة في السوق الأوروبية' },
+  { badge: 'TSE', title: 'شهادة TSE',  text: 'معهد المعايير التركي — علامة الجودة الإلزامية للمصنّعين الأتراك' },
+  { badge: 'ISO', title: 'ISO 9001:2015', text: 'نظام إدارة الجودة الدولي — إنتاج متسق في كل دفعة' },
 ];
 
 const whyUs = [
-  { icon: '🏭', title: 'Doğrudan Fabrika Fiyatı',   text: 'Acente yok, aracı yok. Doğrudan üreticiden satın alırsınız — işletmeniz için maksimum kar marjı.' },
-  { icon: '🌍', title: 'İhracat Hazır Üretim',       text: 'Tam belgelendirme: ticari fatura, ambalaj listesi, menşe şahadetnamesi ve CE/ISO sertifikaları dahil.' },
-  { icon: '📦', title: '50 Adet Minimum Sipariş',    text: 'Düşük minimum sipariş miktarı, büyük hacme geçmeden önce ürün kalitesini test etmenizi sağlar.' },
-  { icon: '⚙️', title: 'Özel Ölçü ve Yüzey',        text: 'Standart dışı ölçüler, özel renkler, özel etiket — tüm toptan siparişler için mevcuttur.' },
-  { icon: '🚢', title: 'Esnek Teslim Koşulları',     text: 'EXW, FOB, CIF — nakliye firmanızla çalışır ya da talep üzerine uçtan uca lojistik yönetiriz.' },
-  { icon: '🏅', title: 'CE + ISO Belgeli',            text: 'Her sevkiyat, gümrük işlemlerini kolaylaştırmak için CE, TSE ve ISO 9001 belgeleriyle desteklenir.' },
+  { icon: '🏭', title: 'سعر مباشر من المصنع',    text: 'لا وكلاء، لا وسطاء. تشتري مباشرة من المصنّع — هامش ربح أقصى لعملك.' },
+  { icon: '🌍', title: 'جاهز للتصدير',            text: 'توثيق كامل: فاتورة تجارية، قائمة تعبئة، شهادة منشأ، وشهادات CE/ISO مضمنة.' },
+  { icon: '📦', title: 'الحد الأدنى 50 وحدة',    text: 'حد أدنى منخفض يتيح لك اختبار جودة المنتج قبل الالتزام بكميات كبيرة.' },
+  { icon: '⚙️', title: 'مقاسات وتشطيبات مخصصة', text: 'مقاسات غير معيارية، ألوان مخصصة، علامة تجارية خاصة — متاحة لجميع طلبات الجملة.' },
+  { icon: '🚢', title: 'شروط تسليم مرنة',        text: 'EXW أو FOB أو CIF — نتعاون مع شركة الشحن الخاصة بك أو ندير اللوجستيات من الألف إلى الياء.' },
+  { icon: '🏅', title: 'معتمد CE + ISO',          text: 'كل شحنة مدعومة بوثائق CE وTSE وISO 9001 لتسهيل إجراءات الجمارك.' },
 ];
 ---
 
 <I18nLayout
-  title="İç Kapı Üreticisi ve İhracatçısı Türkiye | CihanPan Kapı – 1995'ten Beri"
-  description="Türkiye'nin CE ve ISO 9001 belgeli iç kapı üreticisi. ABD, Avrupa ve Orta Doğu için toptan PVC, MDF ve Laminoks kapılar. Yılda 600K adet. Minimum 50 adet. Fiyat teklifi alın."
-  keywords="iç kapı üreticisi Türkiye, Türk iç kapı toptan, iç kapı ihracatçısı Türkiye, toptan iç kapı Türkiye, PVC kapı üreticisi Türkiye, MDF kapı toptan ihracatçı, ISO belgeli kapı üreticisi Türkiye"
+  title="مصنع ومصدّر أبواب داخلية من تركيا | CihanPan Door – منذ 1995"
+  description="مصنع أبواب داخلية معتمد CE وISO 9001 في تركيا. أبواب PVC وMDF ولامينوكس بالجملة للولايات المتحدة وأوروبا والشرق الأوسط. 600 ألف وحدة سنوياً. الحد الأدنى 50 وحدة. اطلب عرض سعر."
+  keywords="مصنع أبواب داخلية تركيا، أبواب داخلية بالجملة، مصدّر أبواب تركيا، أبواب PVC بالجملة، أبواب MDF تركيا، مصنع أبواب معتمد ISO، استيراد أبواب من تركيا"
   canonical={pageUrl}
   schema={schemas}
-  ogTitle="Türkiye'nin #1 Toptan İç Kapı Üreticisi | CihanPan Kapı"
-  ogDescription="Kayseri, Türkiye'den fabrikadan direkt iç kapılar. CE, TSE ve ISO 9001 belgeli. 1995'ten bu yana ABD, Avrupa ve Orta Doğu'ya ihracat. Min. 50 adet."
+  ogTitle="الشركة الرائدة لتصدير الأبواب الداخلية بالجملة من تركيا | CihanPan Door"
+  ogDescription="أبواب داخلية مباشرة من المصنع في قيصري، تركيا. معتمدة CE وTSE وISO 9001. نصدّر إلى الولايات المتحدة وأوروبا والشرق الأوسط منذ 1995. الحد الأدنى 50 وحدة."
   ogImage="/assets/img/og/about-og.webp"
 >
   <I18nHeader />
 
-  <main class="ab" id="main-content">
+  <main class="ab" id="main-content" dir="rtl" lang="ar">
 
     <!-- ══════════════════════════════════════════
          HERO
@@ -168,69 +168,69 @@ const whyUs = [
         <div class="ab-hero__copy">
           <span class="ab-eyebrow">
             <span class="ab-eyebrow__line"></span>
-            Kayseri, Türkiye · Kuruluş 1995
+            قيصري، تركيا · تأسست عام 1995
           </span>
 
           <h1 class="ab-hero__h1" id="hero-heading">
-            Türkiye'nin Lider<br>
-            <em>İç Kapı Üreticisi</em><br>
-            &amp; Toptan İhracatçısı
+            الشركة الرائدة في تركيا<br>
+            <em>لتصنيع الأبواب الداخلية</em><br>
+            وتصديرها بالجملة
           </h1>
 
           <p class="ab-hero__sub">
-            Kayseri, Türkiye'de CE, TSE &amp; ISO 9001 belgeli toptan iç kapı üreticisi.
-            1995'ten bu yana <strong>ABD, Avrupa ve Orta Doğu'ya</strong> PVC, MDF ve Laminoks iç kapı ihraç ediyoruz —
-            yıllık <strong>600.000 adet</strong> üretim kapasitesiyle.
+            مصنع أبواب داخلية بالجملة معتمد بشهادات CE وTSE وISO 9001 في قيصري، تركيا.
+            نصدّر أبواب PVC وMDF ولامينوكس إلى <strong>الولايات المتحدة وأوروبا والشرق الأوسط</strong>
+            منذ عام 1995 — بطاقة إنتاجية <strong>600,000 وحدة سنوياً</strong>.
           </p>
 
           <div class="ab-hero__tags">
-            <span class="ab-htag">✓ CE Belgeli</span>
+            <span class="ab-htag">✓ معتمد CE</span>
             <span class="ab-htag">✓ ISO 9001</span>
-            <span class="ab-htag">✓ Min. Sipariş: 50 Adet</span>
-            <span class="ab-htag">✓ İhracat Hazır</span>
+            <span class="ab-htag">✓ الحد الأدنى: 50 وحدة</span>
+            <span class="ab-htag">✓ جاهز للتصدير</span>
           </div>
 
           <div class="ab-stats">
             <div class="ab-stat">
               <strong>30<sup>+</sup></strong>
-              <span>Yıllık Deneyim</span>
+              <span>سنة خبرة</span>
             </div>
             <div class="ab-stat-div"></div>
             <div class="ab-stat">
               <strong>600K</strong>
-              <span>Adet / Yıl</span>
+              <span>وحدة / سنة</span>
             </div>
             <div class="ab-stat-div"></div>
             <div class="ab-stat">
               <strong>25<sup>+</sup></strong>
-              <span>İhracat Ülkesi</span>
+              <span>دولة تصدير</span>
             </div>
             <div class="ab-stat-div"></div>
             <div class="ab-stat">
               <strong>150<sup>+</sup></strong>
-              <span>Çalışan</span>
+              <span>موظف</span>
             </div>
           </div>
         </div>
 
-        <div class="ab-hero__badges" aria-label="Kalite belgeleri">
-          <div class="ab-hb ab-hb--gold" title="CE Belgeli">CE</div>
-          <div class="ab-hb" title="TSE Belgeli">TSE</div>
-          <div class="ab-hb" title="ISO 9001 Belgeli">ISO<br>9001</div>
+        <div class="ab-hero__badges" aria-label="شهادات الجودة">
+          <div class="ab-hb ab-hb--gold" title="معتمد CE">CE</div>
+          <div class="ab-hb" title="معتمد TSE">TSE</div>
+          <div class="ab-hb" title="معتمد ISO 9001">ISO<br>9001</div>
         </div>
 
       </div>
     </section>
 
     <!-- ══════════════════════════════════════════
-         NEDEN BİZ
+         لماذا نحن
     ══════════════════════════════════════════ -->
     <section class="ab-sec ab-sec--cream" aria-labelledby="whyus-heading">
       <div class="ab-wrap">
         <div class="ab-head">
-          <span class="ab-tag">Neden CihanPan Kapı</span>
-          <h2 id="whyus-heading">Alıcılar Neden Türkiye'deki<br>İç Kapı Fabrikamızı Tercih Ediyor</h2>
-          <p>Kar marjınızı koruyan ve tedarik zincirinizi basitleştiren doğrudan üretici avantajları</p>
+          <span class="ab-tag">لماذا CihanPan Door</span>
+          <h2 id="whyus-heading">لماذا يختار المستوردون<br>مصنعنا للأبواب الداخلية في تركيا</h2>
+          <p>مزايا المصنّع المباشر التي تحمي هوامش أرباحك وتبسّط سلسلة توريدك</p>
         </div>
         <div class="ab-why">
           {whyUs.map(w => (
@@ -245,14 +245,14 @@ const whyUs = [
     </section>
 
     <!-- ══════════════════════════════════════════
-         MİSYON / VİZYON
+         الرسالة / الرؤية
     ══════════════════════════════════════════ -->
     <section class="ab-sec ab-sec--white" aria-labelledby="mv-heading">
       <div class="ab-wrap">
         <div class="ab-head">
-          <span class="ab-tag">Yönümüz</span>
-          <h2 id="mv-heading">Misyon &amp; Vizyon</h2>
-          <p>Üretim ve ihracatımızı şekillendiren değerler ve uzun vadeli hedefler</p>
+          <span class="ab-tag">توجهنا</span>
+          <h2 id="mv-heading">رسالتنا ورؤيتنا</h2>
+          <p>القيم والأهداف بعيدة المدى التي تشكّل طريقة تصنيعنا وتصديرنا</p>
         </div>
         <div class="ab-mv">
           <div class="ab-mv__card ab-mv__card--blue">
@@ -260,12 +260,12 @@ const whyUs = [
             <div class="ab-mv__icon ab-mv__icon--blue" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
             </div>
-            <h3>Misyonumuz</h3>
-            <p>Türkiye'nin en güvenilir <strong>toptan iç kapı ihracatçısı</strong> olmak — her uluslararası sipariş için fabrikadan direkt kalite, tam CE/ISO belgelendirme ve güvenilir lojistik sunmak.</p>
+            <h3>رسالتنا</h3>
+            <p>أن نكون <strong>أكثر مصدّري الأبواب الداخلية بالجملة موثوقيةً من تركيا</strong> — بتقديم جودة مباشرة من المصنع، وتوثيق CE/ISO كامل، ولوجستيات موثوقة لكل طلب دولي.</p>
             <ul class="ab-checks">
-              <li>Fabrikadan direkt fiyatlandırma — aracı yok</li>
-              <li>50 adetten toptan, toplu fiyatlandırma mevcut</li>
-              <li>Özel ölçü, yüzey &amp; özel etiket imkânı</li>
+              <li>تسعير مباشر من المصنع — لا وسطاء</li>
+              <li>جملة من 50 وحدة مع أسعار خاصة للكميات الكبيرة</li>
+              <li>مقاسات وتشطيبات وعلامة تجارية خاصة</li>
             </ul>
           </div>
           <div class="ab-mv__card ab-mv__card--gold">
@@ -273,12 +273,12 @@ const whyUs = [
             <div class="ab-mv__icon ab-mv__icon--gold" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
             </div>
-            <h3>Vizyonumuz</h3>
-            <p>ABD ve Avrupa'daki toptan alıcılar için <strong>akla gelen ilk Türk iç kapı üreticisi</strong> olmak — belgeli kalite, zamanında teslimat ve şeffaf iş anlayışıyla tanınmak.</p>
+            <h3>رؤيتنا</h3>
+            <p>أن نكون <strong>الاسم الأول في أذهان مشتري الجملة في الولايات المتحدة وأوروبا والشرق الأوسط</strong> عند البحث عن مصنّع أبواب داخلية تركي — بالجودة المعتمدة، والتسليم في الوقت المحدد، وممارسات الأعمال الشفافة.</p>
             <ul class="ab-checks">
-              <li>Her sevkiyatta CE, TSE &amp; ISO 9001</li>
-              <li>Sürdürülebilir, çevre dostu üretim</li>
-              <li>2027'ye kadar 40'tan fazla ihracat ülkesi</li>
+              <li>شهادات CE وTSE وISO 9001 مع كل شحنة</li>
+              <li>إنتاج مستدام صديق للبيئة</li>
+              <li>التوسع إلى 40+ دولة تصدير بحلول 2027</li>
             </ul>
           </div>
         </div>
@@ -286,14 +286,14 @@ const whyUs = [
     </section>
 
     <!-- ══════════════════════════════════════════
-         DEĞERLERİMİZ
+         قيمنا
     ══════════════════════════════════════════ -->
     <section class="ab-sec ab-sec--navy" aria-labelledby="values-heading">
       <div class="ab-wrap">
         <div class="ab-head ab-head--light">
-          <span class="ab-tag">Temel İlkeler</span>
-          <h2 id="values-heading">Üretim Değerlerimiz</h2>
-          <p>Hammadde seçiminden ihracat teslimatına kadar bizi biz yapan değerler</p>
+          <span class="ab-tag">مبادئنا الأساسية</span>
+          <h2 id="values-heading">قيمنا في التصنيع</h2>
+          <p>ما نؤمن به من اختيار المواد الخام حتى تسليم الشحنة</p>
         </div>
         <div class="ab-vals">
           {values.map(v => (
@@ -310,14 +310,14 @@ const whyUs = [
     </section>
 
     <!-- ══════════════════════════════════════════
-         TARİHÇE
+         تاريخنا
     ══════════════════════════════════════════ -->
     <section class="ab-sec ab-sec--white" aria-labelledby="history-heading">
       <div class="ab-wrap">
         <div class="ab-head">
-          <span class="ab-tag">30 Yıllık Üretim</span>
-          <h2 id="history-heading">Türkiye İç Kapı Üreticisi<br>Olarak Tarihimiz</h2>
-          <p>CihanPan Kapı'yı küresel çapta güvenilen bir toptan tedarikçiye dönüştüren kilometre taşları</p>
+          <span class="ab-tag">30 عاماً من التصنيع</span>
+          <h2 id="history-heading">تاريخنا بوصفنا<br>مصنع أبواب داخلية تركياً</h2>
+          <p>المحطات الرئيسية التي حوّلت CihanPan Door إلى مورد جملة موثوق به عالمياً</p>
         </div>
         <div class="ab-tl-wrap">
           {timeline.map((item) => (
@@ -339,14 +339,14 @@ const whyUs = [
     </section>
 
     <!-- ══════════════════════════════════════════
-         SERTİFİKALAR
+         الشهادات
     ══════════════════════════════════════════ -->
     <section class="ab-sec ab-sec--cream" aria-labelledby="certs-heading">
       <div class="ab-wrap">
         <div class="ab-head">
-          <span class="ab-tag">Uluslararası Standartlar</span>
-          <h2 id="certs-heading">CE, TSE &amp; ISO 9001 Belgeli<br>İç Kapı Üretimi</h2>
-          <p>Her toptan sevkiyat, uluslararası alanda tanınan kalite belgeleriyle desteklenir</p>
+          <span class="ab-tag">المعايير الدولية</span>
+          <h2 id="certs-heading">إنتاج الأبواب الداخلية<br>المعتمد CE وTSE وISO 9001</h2>
+          <p>كل شحنة جملة مدعومة بوثائق الجودة المعترف بها دولياً</p>
         </div>
         <div class="ab-certs">
           {certs.map(c => (
@@ -364,42 +364,42 @@ const whyUs = [
         </div>
 
         <p class="ab-certs__note">
-          Tüm sertifikalar talep üzerine sunulmakta ve her sevkiyatın ihracat belgesi paketine dahil edilmektedir.
-          <a href="/tr/iletisim" class="ab-link">Kopya talep edin →</a>
+          جميع الشهادات متاحة عند الطلب وتُدرج في حزمة وثائق التصدير مع كل شحنة.
+          <a href="/ar/iletisim" class="ab-link">اطلب نسخة →</a>
         </p>
       </div>
     </section>
 
     <!-- ══════════════════════════════════════════
-         SSS
+         الأسئلة الشائعة
     ══════════════════════════════════════════ -->
     <section class="ab-sec ab-sec--white" aria-labelledby="faq-heading">
       <div class="ab-wrap">
         <div class="ab-head">
-          <span class="ab-tag">Sık Sorulan Sorular</span>
-          <h2 id="faq-heading">Toptan Alıcılar İçin SSS</h2>
-          <p>Türkiye'den ilk iç kapı ithalat siparişinizi vermeden önce bilmeniz gereken her şey</p>
+          <span class="ab-tag">الأسئلة الشائعة</span>
+          <h2 id="faq-heading">أسئلة شائعة لمشتري الجملة</h2>
+          <p>كل ما تحتاج معرفته قبل تقديم أول طلب استيراد أبواب داخلية من تركيا</p>
         </div>
         <div class="ab-faq">
           <details class="ab-faq__item">
-            <summary><h3>CihanPan Kapı belgeli bir iç kapı üreticisi midir?</h3></summary>
-            <p>Evet. CihanPan Kapı <strong>CE, TSE ve ISO 9001 belgelerine</strong> sahiptir; tüm iç kapı ürünleri için Avrupa ve uluslararası kalite standartlarına tam uyumu garanti eder. Belgeler her toptan sevkiyata eşlik eder.</p>
+            <summary><h3>هل CihanPan Door مصنع أبواب داخلية معتمد؟</h3></summary>
+            <p>نعم. تحمل CihanPan Door <strong>شهادات CE وTSE وISO 9001</strong>، مما يضمن الامتثال الكامل للمعايير الأوروبية والدولية لجميع منتجات الأبواب الداخلية. تُرفق الشهادات مع كل شحنة جملة.</p>
           </details>
           <details class="ab-faq__item">
-            <summary><h3>Toptan iç kapı siparişinde minimum miktar nedir?</h3></summary>
-            <p>Minimum toptan sipariş <strong>50 adettir</strong>. Oteller, hastaneler ve konut kompleksleri gibi büyük ölçekli projeler için özel proje desteğiyle tam kapsamlı toplu fiyatlandırma sunulmaktadır.</p>
+            <summary><h3>ما هو الحد الأدنى لكمية الطلب للأبواب بالجملة؟</h3></summary>
+            <p>الحد الأدنى لطلب الجملة هو <strong>50 وحدة</strong>. وللمشاريع الكبرى — كالفنادق والمستشفيات والمجمعات السكنية — نقدم تسعيراً خاصاً شاملاً مع دعم مخصص للمشروع.</p>
           </details>
           <details class="ab-faq__item">
-            <summary><h3>CihanPan Kapı yurt dışına ihracat yapıyor mu?</h3></summary>
-            <p>Evet. <strong>ABD dahil 25'ten fazla ülkeye</strong> toptan iç kapı ihraç ediyoruz. Tam ihracat belgesi, rekabetçi FOB/CIF fiyatlandırması sunuluyor; nakliye firmanızla çalışır ya da kendi lojistik ortaklarımızla yönetiriz.</p>
+            <summary><h3>هل تصدّر CihanPan Door الأبواب إلى دول الشرق الأوسط؟</h3></summary>
+            <p>نعم. نصدّر الأبواب الداخلية بالجملة إلى <strong>أكثر من 25 دولة</strong> تشمل دول الخليج ومنطقة الشرق الأوسط وشمال أفريقيا. نوفر وثائق تصدير كاملة وأسعاراً تنافسية FOB/CIF.</p>
           </details>
           <details class="ab-faq__item">
-            <summary><h3>Hangi tür iç kapılar üretiyorsunuz?</h3></summary>
-            <p><strong>PVC kaplı, Laminoks, Elitpan (UV boyalı MDF), hastane tipi, otel tipi ve yangına dayanıklı iç kapılar</strong> üretiyoruz. Tüm toptan siparişler için özel ölçü, renk ve yüzey seçenekleri mevcuttur. <a href="/tr/urunler" class="ab-link">Tüm ürünleri görün →</a></p>
+            <summary><h3>ما أنواع الأبواب الداخلية التي تصنعونها؟</h3></summary>
+            <p>نصنع <strong>أبواباً مغلفة بـ PVC، ولامينوكس، وإيليتبان (MDF مطلي UV)، وأبواباً للمستشفيات والفنادق ومقاومة للحريق</strong>. مقاسات وألوان وتشطيبات مخصصة متاحة لجميع طلبات الجملة. <a href="/ar/products" class="ab-link">اطّلع على جميع المنتجات →</a></p>
           </details>
           <details class="ab-faq__item">
-            <summary><h3>Özel ölçülü kapı üretilebiliyor mu?</h3></summary>
-            <p>Evet. Standart dışı ölçüler, özel renkler ve özel etiket üretimi tüm toptan siparişler için mevcuttur. Proje detaylarınızı paylaşmanız yeterli — size özel teklif hazırlayalım. <a href="/tr/iletisim" class="ab-link">Teklif alın →</a></p>
+            <summary><h3>هل يمكن تصنيع أبواب بمقاسات مخصصة؟</h3></summary>
+            <p>نعم. المقاسات غير المعيارية والألوان المخصصة والعلامة التجارية الخاصة متاحة لجميع طلبات الجملة. شارك بنا تفاصيل مشروعك وسنعدّ لك عرض سعر مخصص. <a href="/ar/iletisim" class="ab-link">اطلب عرض سعر →</a></p>
           </details>
         </div>
       </div>
@@ -412,17 +412,17 @@ const whyUs = [
       <div class="ab-cta__glow" aria-hidden="true"></div>
       <div class="ab-wrap ab-cta__inner">
         <div class="ab-cta__text">
-          <span class="ab-tag ab-tag--gold">Türkiye'den Tedarike Başlayın</span>
-          <h2 id="cta-heading">Toptan İç Kapı<br>Fiyat Teklifi Alın</h2>
-          <p>Miktar, kapı tipi ve varış noktasını belirtin — 24 saat içinde fabrikadan direkt fiyatlandırma ve tam CE/ISO belgesiyle dönelim.</p>
+          <span class="ab-tag ab-tag--gold">ابدأ الاستيراد من تركيا</span>
+          <h2 id="cta-heading">اطلب عرض سعر<br>أبواب داخلية بالجملة</h2>
+          <p>أخبرنا بالكميات وأنواع الأبواب ووجهة الشحن — وسنردّ خلال 24 ساعة بتسعير مباشر من المصنع ووثائق CE/ISO كاملة.</p>
         </div>
         <div class="ab-cta__btns">
-          <a href="/tr/iletisim" class="ab-btn ab-btn--gold">
-            Ücretsiz Teklif Al
+          <a href="/ar/iletisim" class="ab-btn ab-btn--gold">
+            احصل على عرض سعر مجاني
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <a href="https://www.cihanpandoor.com/E-Katalog.pdf" target="_blank" rel="noopener noreferrer" class="ab-btn ab-btn--outline">
-            Ürün Kataloğunu İndir
+            تحميل كتالوج المنتجات
           </a>
         </div>
       </div>
@@ -449,8 +449,9 @@ const whyUs = [
     --bdr:      #e4eaf4;
     --white:    #ffffff;
 
-    font-family: 'DM Sans', system-ui, sans-serif;
+    font-family: 'Cairo', 'DM Sans', system-ui, sans-serif;
     color: var(--text);
+    direction: rtl;
   }
 
   /* ── LAYOUT ── */
@@ -472,28 +473,28 @@ const whyUs = [
     margin-bottom: clamp(2.5rem, 5vw, 4rem);
   }
   .ab-head h2 {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Cairo', Georgia, serif;
     font-size: clamp(1.8rem, 3.5vw, 2.6rem);
     font-weight: 700;
     color: var(--text);
     margin: 0.3rem 0 0.6rem;
-    line-height: 1.2;
+    line-height: 1.4;
   }
   .ab-head p {
     color: var(--slate);
     font-size: 1rem;
     max-width: 500px;
     margin-inline: auto;
-    line-height: 1.7;
+    line-height: 1.9;
   }
   .ab-head--light h2 { color: var(--white); }
   .ab-head--light p  { color: rgba(255,255,255,0.5); }
 
   .ab-tag {
     display: inline-block;
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 0.4rem;
@@ -539,10 +540,9 @@ const whyUs = [
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
     color: var(--gold);
     margin-bottom: 1.4rem;
   }
@@ -555,11 +555,11 @@ const whyUs = [
   }
 
   .ab-hero__h1 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+    font-family: 'Cairo', Georgia, serif;
+    font-size: clamp(2rem, 4.5vw, 3.4rem);
     font-weight: 900;
     color: var(--white);
-    line-height: 1.1;
+    line-height: 1.3;
     margin: 0 0 1.25rem;
   }
   .ab-hero__h1 em {
@@ -570,7 +570,7 @@ const whyUs = [
   .ab-hero__sub {
     font-size: 1rem;
     color: rgba(255,255,255,0.65);
-    line-height: 1.8;
+    line-height: 2;
     max-width: 560px;
     margin: 0 0 1.5rem;
   }
@@ -588,10 +588,9 @@ const whyUs = [
     border: 1px solid rgba(201,168,76,0.35);
     background: rgba(201,168,76,0.08);
     color: var(--gold-l);
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     font-weight: 600;
     border-radius: 4px;
-    letter-spacing: 0.03em;
   }
 
   .ab-stats {
@@ -607,9 +606,9 @@ const whyUs = [
     flex-direction: column;
     padding-inline: 1.25rem;
   }
-  .ab-stat:first-child { padding-left: 0; }
+  .ab-stat:first-child { padding-right: 0; }
   .ab-stat strong {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Cairo', Georgia, serif;
     font-size: 1.9rem;
     font-weight: 900;
     color: var(--gold);
@@ -618,9 +617,8 @@ const whyUs = [
   }
   .ab-stat strong sup { font-size: 0.7em; }
   .ab-stat span {
-    font-size: 0.62rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
     color: rgba(255,255,255,0.38);
     margin-top: 0.3rem;
     display: block;
@@ -683,7 +681,7 @@ const whyUs = [
     display: block;
   }
   .ab-why__card h3 {
-    font-size: 0.95rem;
+    font-size: 0.98rem;
     font-weight: 700;
     color: var(--text);
     margin: 0 0 0.5rem;
@@ -691,7 +689,7 @@ const whyUs = [
   .ab-why__card p {
     font-size: 0.875rem;
     color: var(--body);
-    line-height: 1.7;
+    line-height: 1.85;
     margin: 0;
   }
 
@@ -733,7 +731,7 @@ const whyUs = [
   .ab-mv__icon--blue { background: rgba(30,74,138,0.08); color: var(--navy-l); }
   .ab-mv__icon--gold { background: rgba(201,168,76,0.1);  color: #9a7422; }
   .ab-mv__card h3 {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Cairo', Georgia, serif;
     font-size: 1.3rem;
     font-weight: 700;
     color: var(--text);
@@ -742,7 +740,7 @@ const whyUs = [
   .ab-mv__card > p {
     font-size: 0.93rem;
     color: var(--body);
-    line-height: 1.75;
+    line-height: 1.9;
     margin: 0 0 1.4rem;
   }
   .ab-mv__card > p strong { color: var(--navy); }
@@ -760,7 +758,7 @@ const whyUs = [
     gap: 0.6rem;
     font-size: 0.875rem;
     color: var(--body);
-    line-height: 1.5;
+    line-height: 1.6;
   }
   .ab-checks li::before {
     content: '';
@@ -795,16 +793,16 @@ const whyUs = [
   .ab-val:hover { background: rgba(255,255,255,0.08); }
   .ab-val__sweep {
     position: absolute;
-    bottom: 0; left: 0;
-    right: 100%;
+    bottom: 0; right: 0;
+    left: 100%;
     height: 3px;
     background: var(--gold);
-    transition: right 0.45s cubic-bezier(0.22,1,0.36,1);
+    transition: left 0.45s cubic-bezier(0.22,1,0.36,1);
   }
-  .ab-val:hover .ab-val__sweep { right: 0; }
+  .ab-val:hover .ab-val__sweep { left: 0; }
   .ab-val__n {
     display: block;
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Cairo', Georgia, serif;
     font-size: 3rem;
     font-weight: 900;
     color: rgba(255,255,255,0.055);
@@ -829,7 +827,7 @@ const whyUs = [
   .ab-val p {
     font-size: 0.83rem;
     color: rgba(255,255,255,0.45);
-    line-height: 1.75;
+    line-height: 1.85;
     margin: 0;
   }
 
@@ -841,12 +839,12 @@ const whyUs = [
     align-items: stretch;
   }
   .ab-tl__yr {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Cairo', Georgia, serif;
     font-size: 0.9rem;
     font-weight: 700;
     color: var(--gold);
-    text-align: right;
-    padding-right: 1rem;
+    text-align: left;
+    padding-left: 1rem;
     padding-top: 0.15rem;
   }
   .ab-tl__spine {
@@ -871,7 +869,7 @@ const whyUs = [
     transition: transform 0.2s, background 0.2s;
   }
   .ab-tl:hover .ab-tl__dot { transform: scale(1.4); background: var(--gold); }
-  .ab-tl__body { padding: 0 0 2.25rem 1.25rem; }
+  .ab-tl__body { padding: 0 1.25rem 2.25rem 0; }
   .ab-tl:last-child .ab-tl__body { padding-bottom: 0; }
   .ab-tl__body h3 {
     font-size: 0.95rem;
@@ -882,7 +880,7 @@ const whyUs = [
   .ab-tl__body p {
     font-size: 0.875rem;
     color: var(--slate);
-    line-height: 1.65;
+    line-height: 1.8;
     margin: 0;
   }
 
@@ -936,8 +934,9 @@ const whyUs = [
     flex-shrink: 0;
     color: var(--bdr);
     transition: color 0.22s, transform 0.22s;
+    transform: scaleX(-1);
   }
-  .ab-cert:hover .ab-cert__arrow { color: var(--navy); transform: translateX(4px); }
+  .ab-cert:hover .ab-cert__arrow { color: var(--navy); transform: scaleX(-1) translateX(-4px); }
 
   .ab-certs__note {
     text-align: center;
@@ -979,7 +978,7 @@ const whyUs = [
     font-weight: 600;
     color: var(--text);
     margin: 0;
-    line-height: 1.4;
+    line-height: 1.5;
   }
   .ab-faq__item summary::after {
     content: '+';
@@ -995,7 +994,7 @@ const whyUs = [
     padding: 0 1.75rem 1.5rem;
     font-size: 0.9rem;
     color: var(--body);
-    line-height: 1.75;
+    line-height: 1.9;
     margin: 0;
     border-top: 1px solid var(--bdr);
   }
@@ -1012,7 +1011,7 @@ const whyUs = [
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 55% 80% at 105% 50%, rgba(201,168,76,0.14) 0%, transparent 65%),
+      radial-gradient(ellipse 55% 80% at 5% 50%, rgba(201,168,76,0.14) 0%, transparent 65%),
       linear-gradient(140deg, #08192e 0%, var(--navy) 100%);
     pointer-events: none;
   }
@@ -1026,17 +1025,17 @@ const whyUs = [
     flex-wrap: wrap;
   }
   .ab-cta__text h2 {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Cairo', Georgia, serif;
     font-size: clamp(1.75rem, 3vw, 2.4rem);
     font-weight: 700;
     color: var(--white);
     margin: 0.35rem 0 0.7rem;
-    line-height: 1.2;
+    line-height: 1.4;
   }
   .ab-cta__text p {
     color: rgba(255,255,255,0.55);
     font-size: 0.95rem;
-    line-height: 1.7;
+    line-height: 1.9;
     max-width: 420px;
     margin: 0;
   }
@@ -1051,19 +1050,20 @@ const whyUs = [
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.88rem;
-    font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 700;
     padding: 0.9rem 1.75rem;
     border-radius: 8px;
     text-decoration: none;
     white-space: nowrap;
-    font-family: 'DM Sans', system-ui, sans-serif;
+    font-family: 'Cairo', system-ui, sans-serif;
     transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
   }
+  .ab-btn svg { transform: scaleX(-1); }
   .ab-btn--gold {
     background: var(--gold);
     color: var(--navy);
-    font-weight: 700;
+    font-weight: 800;
   }
   .ab-btn--gold:hover {
     background: var(--gold-l);
@@ -1096,7 +1096,7 @@ const whyUs = [
     .ab-cta__btns  { justify-content: center; }
     .ab-stat-div   { display: none; }
     .ab-stat       { padding-inline: 0.75rem; }
-    .ab-stat:first-child { padding-left: 0; }
+    .ab-stat:first-child { padding-right: 0; }
   }
 
   @media (max-width: 560px) {
@@ -1116,6 +1116,6 @@ const whyUs = [
     .ab-cta__btns  { flex-direction: column; width: 100%; }
     .ab-btn        { justify-content: center; }
     .ab-hero__tags { gap: 0.4rem; }
-    .ab-htag       { font-size: 0.7rem; }
+    .ab-htag       { font-size: 0.72rem; }
   }
 </style>
