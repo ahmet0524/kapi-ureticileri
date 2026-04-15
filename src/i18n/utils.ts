@@ -8,7 +8,7 @@ import { languages, defaultLang } from './languages';
 const routeSlugs: Record<string, Partial<Record<Language, string>>> = {
   '/hakkimizda':              { en: '/about',               ar: '/hakkimizda' },
   '/urunlerimiz':             { en: '/products',            ar: '/urunlerimiz' },
-  '/iletisim':                { en: '/contact',             ar: '/iletisim' },
+  '/iletisim':                { en: '/contact',             ar: '/contact' },
   '/pvc-kapilar':             { en: '/pvc-doors',           ar: '/pvc-kapilar' },
   '/laminoks-kapilar':        { en: '/laminoks-doors',      ar: '/laminoks-kapilar' },
   '/laminoks-kapilar-2':      { en: '/laminoks-doors-2',    ar: '/laminoks-kapilar-2' },

@@ -1,5 +1,5 @@
 ---
-// src/pages/ar/laminoks-kapilar.astro
+// src/pages/ar/laminoks-kapilar-2.astro
 import I18nLayout from '../../layouts/I18nLayout.astro';
 import I18nHeader from '../../components/I18nHeader.astro';
 import I18nFooter from '../../components/I18nFooter.astro';
@@ -12,36 +12,40 @@ const isAR  = lang === 'ar';
 
 const baseUrl    = 'https://cihanpandoor.netlify.app';
 const pageUrl    = lang === 'tr' ? baseUrl : `${baseUrl}/${lang}`;
-const currentUrl = `${pageUrl}/laminoks-kapilar`;
+const currentUrl = `${pageUrl}/laminoks-kapilar-2`;
 
 // ── SCHEMA ────────────────────────────────────────────────────────────
 const laminoksSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "name": isEN
-    ? "Laminox Interior Doors — 80+ Models | CihanPan Door"
+    ? "Laminox Interior Doors — Page 2 · 60+ Models | CihanPan Door"
     : isAR
-    ? "أبواب لامينوكس الداخلية — أكثر من 80 طراز | CihanPan Door"
-    : "Laminoks İç Oda Kapıları — 80+ Model | CihanPan Door",
+    ? "أبواب لامينوكس الداخلية — الصفحة 2 · أكثر من 60 طراز | CihanPan Door"
+    : "Laminoks İç Oda Kapıları — Sayfa 2 · 60+ Model | CihanPan Door",
   "description": isEN
-    ? "Wholesale HPL Laminox interior doors from Kayseri, Turkey. Scratch-resistant, 80+ models, CE certified, factory-direct pricing for residential, hotel and commercial projects."
+    ? "Page 2 of the wholesale HPL Laminox interior door collection from Kayseri, Turkey. 60 additional models, scratch-resistant, CE certified, factory-direct pricing."
     : isAR
-    ? "أبواب لامينوكس الداخلية HPL بالجملة من قيصري، تركيا. مقاومة للخدش، أكثر من 80 طراز، معتمدة CE، أسعار مباشرة من المصنع."
-    : "Kayseri'den toptan HPL Laminoks iç oda kapıları. Çizilmez, 80+ model, CE belgeli.",
+    ? "الصفحة 2 من مجموعة أبواب لامينوكس HPL الداخلية بالجملة من قيصري، تركيا. 60 طرازاً إضافياً، مقاومة للخدش، معتمدة CE، أسعار مباشرة من المصنع."
+    : "Kayseri'den toptan HPL Laminoks kapı koleksiyonunun 2. sayfası. 60 ek model, çizilmez, CE belgeli.",
   "url": currentUrl,
   "inLanguage": lang === 'tr' ? 'tr-TR' : lang === 'ar' ? 'ar-SA' : 'en-US',
   "mainEntity": {
     "@type": "ItemList",
-    "name": isEN ? "Laminox Door Models" : isAR ? "طرازات أبواب لامينوكس" : "Laminoks Kapı Modelleri",
-    "numberOfItems": 80,
+    "name": isEN
+      ? "Laminox Door Models — Page 2"
+      : isAR
+      ? "طرازات أبواب لامينوكس — الصفحة 2"
+      : "Laminoks Kapı Modelleri — Sayfa 2",
+    "numberOfItems": 60,
     "itemListElement": [
       {
         "@type": "Product",
         "name": isEN
-          ? "Laminox (HPL Melamine) Interior Door"
+          ? "Laminox (HPL Melamine) Interior Door — Premium Series"
           : isAR
-          ? "باب لامينوكس (HPL ميلامين) داخلي"
-          : "Laminoks (HPL Melamin) İç Oda Kapısı",
+          ? "باب لامينوكس (HPL ميلامين) داخلي — السلسلة الفاخرة"
+          : "Laminoks (HPL Melamin) İç Oda Kapısı — Premium Seri",
         "description": isEN
           ? "High-pressure melamine (HPL) laminate over MDF core. Scratch and impact resistant, CE certified, 5-year warranty. Wholesale manufacturer from Kayseri, Turkey."
           : isAR
@@ -56,14 +60,14 @@ const laminoksSchema = {
           "url": currentUrl,
           "priceCurrency": "USD",
           "availability": "https://schema.org/InStock",
-          "offerCount": "80",
+          "offerCount": "60",
           "businessFunction": "http://purl.org/goodrelations/v1#Sell",
           "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business"
         },
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": "4.8",
-          "reviewCount": "134",
+          "reviewCount": "152",
           "bestRating": "5",
           "worstRating": "1"
         }
@@ -76,15 +80,14 @@ const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": isAR ? [
-    { "@type": "Question", "name": "ما هي أبواب لامينوكس؟", "acceptedAnswer": { "@type": "Answer", "text": "أبواب لامينوكس مصنوعة من سطح الميلامين عالي الضغط (HPL) على قلب MDF صلب. توفر مقاومة فائقة للخدش واستقراراً بالأبعاد ومظهراً فاخراً — مثالية للفنادق والمستشفيات والمباني التجارية." }},
-    { "@type": "Question", "name": "ما الفرق بين أبواب لامينوكس وأبواب PVC؟", "acceptedAnswer": { "@type": "Answer", "text": "أبواب PVC تستخدم طبقة بلاستيكية مرنة وأكثر اقتصادية. أبواب لامينوكس تملك سطح HPL صلب على MDF — أكثر مقاومة للخدش والصدم، بأنسجة أغنى ومناسبة للمشاريع الراقية." }},
-    { "@type": "Question", "name": "هل أبواب لامينوكس مناسبة للبيئات الرطبة؟", "acceptedAnswer": { "@type": "Answer", "text": "أبواب لامينوكس تتمتع بمقاومة جيدة للرطوبة بفضل سطح HPL، لكنها مناسبة للمساحات الداخلية ذات الرطوبة المعتدلة. للمناطق شديدة الرطوبة كالحمامات، يُنصح بأبواب PVC." }},
-    { "@type": "Question", "name": "ما هو الحد الأدنى للطلب في مشتريات الجملة؟", "acceptedAnswer": { "@type": "Answer", "text": "الحد الأدنى للطلب 50 وحدة. تسري خصومات الحجم من 200 وحدة. الأبعاد المخصصة وخيارات التشطيب والعلامة التجارية الخاصة متاحة للطلبات الكبيرة." }},
+    { "@type": "Question", "name": "هل يمكنني طلب أحجام مخصصة لأبواب لامينوكس؟", "acceptedAnswer": { "@type": "Answer", "text": "نعم. تنتج CihanPan Door أبواب لامينوكس بأبعاد مخصصة لتلائم متطلبات المشاريع السكنية والفندقية والتجارية. المقاس القياسي 70×200 سم؛ الأعراض والارتفاعات المخصصة متاحة عند الطلب بحد أدنى 50 وحدة." }},
+    { "@type": "Question", "name": "ما خيارات الألوان والمظاهر في الصفحة 2؟", "acceptedAnswer": { "@type": "Answer", "text": "الصفحة 2 من مجموعة لامينوكس تضم 60 طرازاً إضافياً (السلسلة 211-221)، كل منها يُقدَّم بما يصل إلى ستة ألوان تشمل Antrasit وBeyaz وSaruhan وKapucino وVenge وABD Ceviz وGri Meşe وغيرها — بمظهر مطفأ ونسيج خشبي." }},
+    { "@type": "Question", "name": "ما هو الحد الأدنى للطلب وأوقات التسليم للطلبات الكبيرة؟", "acceptedAnswer": { "@type": "Answer", "text": "الحد الأدنى للطلب 50 وحدة. مدة التسليم القياسية 15-25 يوم عمل بعد تأكيد الطلب. تسري خصومات الحجم من 200 وحدة. خيارات العلامة التجارية الخاصة والتشطيبات المخصصة متاحة للطلبات الكبيرة." }},
+    { "@type": "Question", "name": "كيف تختلف الصفحة 2 عن الصفحة 1 من مجموعة لامينوكس؟", "acceptedAnswer": { "@type": "Answer", "text": "الصفحة 1 تغطي السلسلة 201-210 (60 طراز) والصفحة 2 تغطي السلسلة 211-221 (60 طراز). معاً تشكلان مجموعة لامينوكس الكاملة بالجملة التي تضم 120 طرازاً. جودة HPL والمواصفات والأسعار متطابقة في الصفحتين." }},
   ] : isEN ? [
-    { "@type": "Question", "name": "What is a Laminox door?", "acceptedAnswer": { "@type": "Answer", "text": "Laminox doors feature a high-pressure melamine (HPL) laminate surface applied over a solid MDF core. This combination delivers superior scratch resistance, dimensional stability and an attractive premium finish — ideal for hotels, commercial buildings and upscale residential projects." }},
-    { "@type": "Question", "name": "What is the difference between Laminox and PVC doors?", "acceptedAnswer": { "@type": "Answer", "text": "PVC doors use a flexible plastic laminate and are more economical. Laminox doors have a rigid HPL surface over MDF — significantly more scratch and impact resistant, available in richer textures and suited for premium projects where aesthetics matter." }},
-    { "@type": "Question", "name": "Are Laminox doors suitable for humid environments?", "acceptedAnswer": { "@type": "Answer", "text": "Laminox doors have good moisture resistance thanks to the HPL surface, but are best suited for interior spaces with normal to moderate humidity. For very wet environments such as shower rooms, PVC doors are recommended." }},
-    { "@type": "Question", "name": "What is the MOQ for wholesale Laminox door orders?", "acceptedAnswer": { "@type": "Answer", "text": "Minimum order quantity is 50 units. Volume discounts apply from 200 units. Custom dimensions, finishes, veneer wraps and private-label options are available for larger orders." }},
+    { "@type": "Question", "name": "Can I order custom sizes for Laminox doors?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. CihanPan Door produces Laminox doors in custom dimensions to suit residential, hotel and commercial project requirements. Standard size is 70×200 cm; custom widths and heights are available on request with a minimum order of 50 units." }},
+    { "@type": "Question", "name": "What colour and finish options are available on Page 2?", "acceptedAnswer": { "@type": "Answer", "text": "Page 2 of the Laminox collection features 60 additional models (series 211–221), each offered in up to six colour variants including Antrasit, Beyaz, Saruhan, Kapucino, Venge, ABD Ceviz, Gri Meşe and more. Both matte and textured wood-grain finishes are available." }},
+    { "@type": "Question", "name": "What are the MOQ and lead times for bulk Laminox orders?", "acceptedAnswer": { "@type": "Answer", "text": "Minimum order quantity is 50 units. Standard lead time is 15–25 business days after order confirmation. Volume discounts apply from 200 units. Private-label and veneer-wrap options are available for larger projects." }},
   ] : []
 };
 
@@ -94,7 +97,8 @@ const breadcrumbSchema = {
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": isEN ? "Home" : isAR ? "الرئيسية" : "Ana Sayfa", "item": pageUrl },
     { "@type": "ListItem", "position": 2, "name": isEN ? "Products" : isAR ? "المنتجات" : "Ürünler", "item": `${pageUrl}/urunlerimiz` },
-    { "@type": "ListItem", "position": 3, "name": isEN ? "Laminox Interior Doors" : isAR ? "أبواب لامينوكس الداخلية" : "Laminoks Kapılar", "item": currentUrl },
+    { "@type": "ListItem", "position": 3, "name": isEN ? "Laminox Interior Doors" : isAR ? "أبواب لامينوكس الداخلية" : "Laminoks Kapılar", "item": `${pageUrl}/laminoks-kapilar` },
+    { "@type": "ListItem", "position": 4, "name": isEN ? "Page 2" : isAR ? "الصفحة 2" : "Sayfa 2", "item": currentUrl },
   ]
 };
 
@@ -114,28 +118,28 @@ const catNav = [
 
 <I18nLayout
   title={isEN
-    ? "Laminox HPL Interior Doors — 80+ Models | Wholesale from Turkey | CihanPan Door"
+    ? "Laminox HPL Interior Doors — Page 2 · 60+ Models | Wholesale Turkey | CihanPan Door"
     : isAR
-    ? "أبواب لامينوكس HPL الداخلية — أكثر من 80 طراز | بالجملة من تركيا | CihanPan Door"
-    : "Laminoks HPL İç Oda Kapıları — 80+ Model | Toptan | CihanPan Door"}
+    ? "أبواب لامينوكس HPL الداخلية — الصفحة 2 · أكثر من 60 طراز | بالجملة من تركيا | CihanPan Door"
+    : "Laminoks HPL İç Oda Kapıları — Sayfa 2 · 60+ Model | Toptan | CihanPan Door"}
   description={isEN
-    ? "Wholesale HPL Laminox interior doors from Kayseri, Turkey. Scratch-resistant MDF core, 80+ models, CE & ISO 9001 certified. Factory-direct pricing for hotels, hospitals and commercial projects. MOQ 50 units."
+    ? "Page 2 of the wholesale HPL Laminox interior door collection. 60 additional models (series 211–221), scratch-resistant MDF core, CE & ISO 9001 certified. Factory-direct pricing for hotels, hospitals and commercial projects. MOQ 50 units."
     : isAR
-    ? "أبواب لامينوكس HPL الداخلية بالجملة من قيصري، تركيا. قلب MDF مقاوم للخدش، أكثر من 80 طراز، معتمدة CE وISO 9001. أسعار مباشرة من المصنع للفنادق والمستشفيات والمشاريع التجارية. الحد الأدنى للطلب 50 وحدة."
-    : "Kayseri'den toptan HPL Laminoks kapılar. Çizilmez MDF özlü, 80+ model, CE sertifikalı."}
+    ? "الصفحة 2 من مجموعة أبواب لامينوكس HPL الداخلية بالجملة. 60 طرازاً إضافياً (السلسلة 211-221)، قلب MDF مقاوم للخدش، معتمدة CE وISO 9001. أسعار مباشرة من المصنع للفنادق والمستشفيات والمشاريع التجارية. الحد الأدنى 50 وحدة."
+    : "Laminoks kapı koleksiyonunun 2. sayfası. 60 ek model (211–221 serisi), çizilmez MDF özlü, CE sertifikalı."}
   keywords={isEN
-    ? "Laminox interior doors wholesale Turkey, HPL melamine door manufacturer, scratch resistant door, premium interior door Turkey, CE certified laminate door Kayseri"
+    ? "Laminox interior doors page 2, HPL melamine door wholesale Turkey, scratch resistant door series 211-221, premium interior door Kayseri, CE certified laminate door bulk"
     : isAR
-    ? "أبواب لامينوكس بالجملة تركيا، مصنع أبواب HPL ميلامين، باب مقاوم للخدش، باب داخلي فاخر تركيا، باب لمينات معتمد CE قيصري"
-    : "laminoks kapı, HPL melamin kapı, çizilmez iç kapı, premium kapı türkiye, toptan laminoks kapı"}
+    ? "أبواب لامينوكس الصفحة 2، أبواب HPL ميلامين بالجملة تركيا، باب مقاوم للخدش السلسلة 211-221، باب داخلي فاخر قيصري، باب لمينات معتمد CE بالجملة"
+    : "laminoks kapı sayfa 2, HPL melamin kapı, 211-221 seri, toptan laminoks kapı, Kayseri"}
   canonical={currentUrl}
   schema={allSchemas}
-  ogTitle={isEN ? "Laminox HPL Interior Doors — 80+ Models | CihanPan Door" : isAR ? "أبواب لامينوكس HPL الداخلية — أكثر من 80 طراز | CihanPan Door" : "Laminoks Kapılar — 80+ Model | CihanPan Door"}
+  ogTitle={isEN ? "Laminox HPL Interior Doors — Page 2 | CihanPan Door" : isAR ? "أبواب لامينوكس HPL الداخلية — الصفحة 2 | CihanPan Door" : "Laminoks Kapılar Sayfa 2 | CihanPan Door"}
   ogDescription={isEN
-    ? "Scratch-resistant HPL Laminox interior doors. Factory direct from Kayseri. MOQ 50 units."
+    ? "60 additional scratch-resistant HPL Laminox door models. Factory direct from Kayseri. MOQ 50 units."
     : isAR
-    ? "أبواب لامينوكس HPL الداخلية مقاومة للخدش. مباشرة من مصنع قيصري. الحد الأدنى 50 وحدة."
-    : "Çizilmez HPL Laminoks kapılar. Fabrikadan doğrudan."}
+    ? "60 طرازاً إضافياً من أبواب لامينوكس HPL المقاومة للخدش. مباشرة من مصنع قيصري. الحد الأدنى 50 وحدة."
+    : "60 ek HPL Laminoks kapı modeli. Fabrikadan doğrudan."}
   ogImage="/assets/img/og/laminoks-kapilar-og.webp"
 >
   <I18nHeader />
@@ -157,30 +161,32 @@ const catNav = [
             <span aria-hidden="true">›</span>
             <a href={getLocalizedRoute('/urunlerimiz', lang)}>{isEN ? 'Products' : isAR ? 'المنتجات' : 'Ürünler'}</a>
             <span aria-hidden="true">›</span>
-            <span aria-current="page">{isEN ? 'Laminox Doors' : isAR ? 'أبواب لامينوكس' : 'Laminoks Kapılar'}</span>
+            <a href={getLocalizedRoute('/laminoks-kapilar', lang)}>{isEN ? 'Laminox Doors' : isAR ? 'أبواب لامينوكس' : 'Laminoks Kapılar'}</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">{isEN ? 'Page 2' : isAR ? 'الصفحة 2' : 'Sayfa 2'}</span>
           </nav>
 
           <span class="lam-eyebrow">
             <span class="lam-eyebrow__line"></span>
-            {isEN ? 'Featured Collection · 80+ Models' : isAR ? 'المجموعة المميزة · أكثر من 80 طراز' : 'Öne Çıkan Koleksiyon · 80+ Model'}
+            {isEN ? 'Extended Collection · 60+ Models' : isAR ? 'المجموعة الموسعة · أكثر من 60 طراز' : 'Geniş Koleksiyon · 60+ Model'}
           </span>
           <h1 class="lam-hero__h1" id="lam-h1">
             {isEN
-              ? <><em>Laminox Interior Doors</em><br/>HPL Scratch-Resistant · Premium Finish</>
+              ? <><em>Laminox Interior Doors</em><br/>Page 2 · Series 211–221</>
               : isAR
-              ? <><em>أبواب لامينوكس الداخلية</em><br/>HPL مقاوم للخدش · مظهر فاخر</>
-              : <><em>Laminoks İç Oda Kapıları</em><br/>HPL Çizilmez · Premium Görünüm</>}
+              ? <><em>أبواب لامينوكس الداخلية</em><br/>الصفحة 2 · السلسلة 211–221</>
+              : <><em>Laminoks İç Oda Kapıları</em><br/>Sayfa 2 · 211–221 Serisi</>}
           </h1>
           <p class="lam-hero__lead">
             {isEN
-              ? 'Factory-direct wholesale Laminox interior doors from Kayseri, Turkey. High-pressure HPL melamine over MDF core. CE & ISO 9001 certified. Ideal for hotels, hospitals and commercial buildings. MOQ 50 units.'
+              ? 'Continue browsing the full Laminox collection. 60 additional HPL melamine door models — series 211 through 221 — available for wholesale from our Kayseri factory. CE & ISO 9001 certified. MOQ 50 units.'
               : isAR
-              ? 'أبواب لامينوكس الداخلية بالجملة مباشرة من مصنعنا في قيصري، تركيا. طبقة HPL عالية الضغط على قلب MDF. معتمدة CE وISO 9001. مثالية للفنادق والمستشفيات والمباني التجارية. الحد الأدنى للطلب 50 وحدة.'
-              : 'Kayseri fabrikasından toptan Laminoks kapılar. MDF özlü yüksek basınçlı HPL melamin kaplama. CE ve ISO 9001 sertifikalı. Otel, hastane ve ticari projeler için ideal.'}
+              ? 'واصل استعراض مجموعة لامينوكس الكاملة. 60 طرازاً إضافياً من أبواب HPL الميلامين — السلسلة من 211 إلى 221 — متاحة بالجملة من مصنعنا في قيصري. معتمدة CE وISO 9001. الحد الأدنى 50 وحدة.'
+              : 'Tam Laminoks koleksiyonunu incelemeye devam edin. 60 ek HPL melamin kapı modeli — 211 ila 221 serisi. Kayseri fabrikamızdan toptan satış. CE & ISO 9001 sertifikalı.'}
           </p>
           <div class="lam-hero__tags">
             <span class="lam-htag">✓ {isEN ? 'Scratch-Resistant HPL' : isAR ? 'HPL مقاوم للخدش' : 'Çizilmez HPL'}</span>
-            <span class="lam-htag">✓ 80+ {isEN ? 'Models' : isAR ? 'طراز' : 'Model'}</span>
+            <span class="lam-htag">✓ 60+ {isEN ? 'Models' : isAR ? 'طراز' : 'Model'}</span>
             <span class="lam-htag">✓ CE & ISO 9001</span>
             <span class="lam-htag">✓ {isAR ? 'الحد الأدنى 50' : 'MOQ 50'}</span>
           </div>
@@ -189,8 +195,8 @@ const catNav = [
               {isEN ? 'Get a Free Quote' : isAR ? 'احصل على عرض سعر مجاني' : 'Ücretsiz Teklif Al'}
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="#catalogue" class="lam-btn lam-btn--ghost">
-              {isEN ? 'Browse Models' : isAR ? 'استعرض الطرازات' : 'Modelleri Gör'}
+            <a href={getLocalizedRoute('/laminoks-kapilar', lang)} class="lam-btn lam-btn--ghost">
+              {isEN ? '← Page 1' : isAR ? '← الصفحة 1' : '← Sayfa 1'}
             </a>
           </div>
         </div>
@@ -199,7 +205,7 @@ const catNav = [
       <!-- Stats bar -->
       <div class="lam-wrap">
         <div class="lam-statsbar">
-          <div class="lam-sitem"><strong>80<sup>+</sup></strong><span>{isEN ? 'Models' : isAR ? 'طراز' : 'Model'}</span></div>
+          <div class="lam-sitem"><strong>60<sup>+</sup></strong><span>{isEN ? 'Models' : isAR ? 'طراز' : 'Model'}</span></div>
           <div class="lam-sdiv"></div>
           <div class="lam-sitem"><strong>HPL</strong><span>{isEN ? 'Surface' : isAR ? 'سطح' : 'Yüzey'}</span></div>
           <div class="lam-sdiv"></div>
@@ -229,16 +235,16 @@ const catNav = [
         </nav>
 
         <div class="lam-head">
-          <span class="lam-tag">{isEN ? 'Laminox Door Collection' : isAR ? 'مجموعة أبواب لامينوكس' : 'Laminoks Kapı Koleksiyonu'}</span>
+          <span class="lam-tag">{isEN ? 'Laminox Door Collection — Page 2' : isAR ? 'مجموعة أبواب لامينوكس — الصفحة 2' : 'Laminoks Kapı Koleksiyonu — Sayfa 2'}</span>
           <h2 id="catalogue-h2">
-            {isEN ? 'Laminox Interior Door Models' : isAR ? 'طرازات أبواب لامينوكس الداخلية' : 'Laminoks Kapı Modelleri'}
+            {isEN ? 'Laminox Interior Door Models — Extended Series' : isAR ? 'طرازات أبواب لامينوكس الداخلية — السلسلة الموسعة' : 'Laminoks Kapı Modelleri — Geniş Seri'}
           </h2>
           <p>
             {isEN
-              ? 'Browse the full Laminox door collection. Every model is available in multiple colour and finish variants. Click any model to request a wholesale quote.'
+              ? 'Series 211–221 of the Laminox collection. Each model is available in up to six colour and finish variants. Click any model to request a wholesale quote.'
               : isAR
-              ? 'استعرض مجموعة أبواب لامينوكس الكاملة. كل طراز متاح في عدة ألوان ومظاهر. انقر على أي طراز لطلب عرض سعر بالجملة.'
-              : 'Tüm Laminoks kapı koleksiyonunu inceleyin. Her model birden fazla renk ve yüzey varyantında mevcuttur.'}
+              ? 'السلسلة 211-221 من مجموعة لامينوكس. كل طراز متاح في ما يصل إلى ستة ألوان ومظاهر. انقر على أي طراز لطلب عرض سعر بالجملة.'
+              : '211–221 Laminoks serisi. Her model altıya kadar renk ve yüzey varyantında mevcuttur.'}
           </p>
         </div>
 
@@ -252,7 +258,7 @@ const catNav = [
         </div>
 
         <!-- Products Grid -->
-        <div class="lam-grid" id="productsGrid" aria-live="polite" aria-label={isEN ? 'Laminox door models' : isAR ? 'طرازات أبواب لامينوكس' : 'Laminoks kapı modelleri'}></div>
+        <div class="lam-grid" id="productsGrid" aria-live="polite" aria-label={isEN ? 'Laminox door models page 2' : isAR ? 'طرازات أبواب لامينوكس الصفحة 2' : 'Laminoks kapı modelleri sayfa 2'}></div>
 
         <!-- Loading state -->
         <div class="lam-loading" id="loading">
@@ -260,25 +266,25 @@ const catNav = [
           <p>{isEN ? 'Loading Laminox door models…' : isAR ? 'جارٍ تحميل طرازات أبواب لامينوكس…' : 'Laminoks kapı modelleri yükleniyor…'}</p>
         </div>
 
-        <!-- Pagination — Page 1 of 2 -->
+        <!-- Pagination — Page 2 of 2 -->
         <nav class="lam-pagination" aria-label={isEN ? 'Page navigation' : isAR ? 'التنقل بين الصفحات' : 'Sayfa navigasyonu'}>
           <div class="lam-page-info">
-            <span class="lam-page-current">{isEN ? 'Page 1 of 2' : isAR ? 'الصفحة 1 من 2' : 'Sayfa 1 / 2'}</span>
+            <span class="lam-page-current">{isEN ? 'Page 2 of 2' : isAR ? 'الصفحة 2 من 2' : 'Sayfa 2 / 2'}</span>
             <span class="lam-page-count">{isEN ? '60 models shown' : isAR ? 'يعرض 60 طراز' : '60 model gösteriliyor'}</span>
           </div>
           <div class="lam-page-btns">
-            <span class="lam-page-btn lam-page-btn--disabled" aria-disabled="true">
+            <a href={getLocalizedRoute('/laminoks-kapilar', lang)} class="lam-page-btn">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18L9 12L15 6"/></svg>
-              {isEN ? 'Previous' : isAR ? 'السابق' : 'Önceki'}
-            </span>
-            <a href={getLocalizedRoute('/laminoks-kapilar-2', lang)} class="lam-page-btn">
-              {isEN ? 'Page 2' : isAR ? 'الصفحة 2' : 'Sayfa 2'}
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18L15 12L9 6"/></svg>
+              {isEN ? 'Page 1' : isAR ? 'الصفحة 1' : 'Sayfa 1'}
             </a>
+            <span class="lam-page-btn lam-page-btn--disabled" aria-disabled="true">
+              {isEN ? 'Next' : isAR ? 'التالي' : 'Sonraki'}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18L15 12L9 6"/></svg>
+            </span>
           </div>
           <div class="lam-page-dots" aria-hidden="true">
+            <a href={getLocalizedRoute('/laminoks-kapilar', lang)} class="lam-dot"></a>
             <span class="lam-dot lam-dot--active"></span>
-            <a href={getLocalizedRoute('/laminoks-kapilar-2', lang)} class="lam-dot"></a>
           </div>
         </nav>
       </div>
@@ -293,36 +299,36 @@ const catNav = [
         <article class="lam-article">
           <h2 id="content-h2">
             {isEN
-              ? 'What Is a Laminox Door? Why Choose HPL Laminate?'
+              ? 'Laminox Door Series 211–221: Premium HPL Collection'
               : isAR
-              ? 'ما هي أبواب لامينوكس؟ لماذا تختار طبقة HPL؟'
-              : 'Laminoks Kapı Nedir? Neden HPL Laminat Tercih Edilir?'}
+              ? 'سلسلة أبواب لامينوكس 211–221: مجموعة HPL الفاخرة'
+              : 'Laminoks Kapı 211–221 Serisi: Premium HPL Koleksiyonu'}
           </h2>
 
           <p>
             {isEN
-              ? (<><strong>Laminox interior doors</strong> are manufactured with a solid MDF core wrapped in a <em>high-pressure melamine (HPL) laminate</em> surface. At <strong>CihanPan Door</strong>, our Kayseri factory produces the full 80+ model Laminox collection for wholesale buyers in the USA, Europe and the Middle East.</>)
+              ? (<><strong>CihanPan Door's</strong> extended Laminox collection covers series 211 through 221, each engineered with a solid MDF core beneath a <em>high-pressure melamine (HPL) laminate</em> surface. This second page adds 60 models to our full 80+ model catalogue, offering even greater design flexibility for wholesale buyers in the USA, Europe and the Middle East.</>)
               : isAR
-              ? (<><strong>أبواب لامينوكس الداخلية</strong> مصنوعة من قلب MDF صلب مغطى بطبقة من <em>الميلامين عالي الضغط (HPL)</em>. في <strong>CihanPan Door</strong>، يقوم مصنعنا في قيصري بإنتاج مجموعة لامينوكس الكاملة التي تضم أكثر من 80 طرازاً للمشترين بالجملة في الولايات المتحدة وأوروبا والشرق الأوسط.</>)
-              : (<><strong>Laminoks kapılar</strong>, MDF özlü <em>yüksek basınçlı melamin (HPL) laminat</em> yüzeyli kapılardır. <strong>CihanPan Door</strong> olarak Kayseri fabrikamızda 80+ model Laminoks koleksiyonunu toptan satış için üretiyoruz.</>)}
+              ? (<>تغطي مجموعة لامينوكس الموسعة من <strong>CihanPan Door</strong> السلسلة من 211 إلى 221، كل منها مصنوع بقلب MDF صلب تحت طبقة من <em>الميلامين عالي الضغط (HPL)</em>. هذه الصفحة الثانية تضيف 60 طرازاً إلى كتالوجنا الكامل الذي يضم أكثر من 80 طراز، مما يوفر مرونة تصميمية أكبر للمشترين بالجملة في الولايات المتحدة وأوروبا والشرق الأوسط.</>)
+              : (<><strong>CihanPan Door'un</strong> genişletilmiş Laminoks koleksiyonu 211 ila 221 serisini kapsar; her biri <em>yüksek basınçlı melamin (HPL) laminat</em> yüzeyli masif MDF öz ile üretilmiştir. Bu ikinci sayfa, 80+ model kataloğumuza 60 model daha ekleyerek toptan alıcılara daha fazla tasarım esnekliği sunar.</>)}
           </p>
 
-          <h3>{isEN ? 'Advantages of Laminox Doors' : isAR ? 'مزايا أبواب لامينوكس' : 'Laminoks Kapının Avantajları'}</h3>
+          <h3>{isEN ? 'Series 211–221 Highlights' : isAR ? 'أبرز مميزات السلسلة 211–221' : '211–221 Serisi Öne Çıkanlar'}</h3>
           <ul class="lam-checklist">
-            <li><strong>{isEN ? 'Superior Scratch Resistance:' : isAR ? 'مقاومة فائقة للخدش:' : 'Üstün Çizilme Direnci:'}</strong> {isEN ? 'HPL surface withstands daily wear, keys and sharp objects far better than standard laminates.' : isAR ? 'سطح HPL يتحمل الاستخدام اليومي والمفاتيح والأجسام الحادة بشكل أفضل بكثير من الطبقات العادية.' : 'HPL yüzey, standart laminatlara kıyasla günlük kullanımda anahtarlara ve keskin nesnelere çok daha dayanıklıdır.'}</li>
-            <li><strong>{isEN ? 'Impact Resistant:' : isAR ? 'مقاومة الصدمات:' : 'Darbe Dayanımı:'}</strong> {isEN ? 'Solid MDF core absorbs impact without denting or delaminating.' : isAR ? 'القلب الصلب من MDF يمتص الصدمات دون تشوه أو تقشر.' : 'Masif MDF özlü, çökme veya kabarmaya yol açmadan darbeyi emer.'}</li>
-            <li><strong>{isEN ? 'Premium Aesthetic:' : isAR ? 'مظهر فاخر:' : 'Premium Estetik:'}</strong> {isEN ? 'Rich wood-grain and solid-colour textures — available in matte and gloss finishes.' : isAR ? 'أنسجة خشبية وألوان صلبة غنية — متاحة بمظهر مطفأ ولامع.' : 'Zengin ahşap dokulu ve düz renkli yüzeyler — mat ve parlak finish seçenekleri.'}</li>
-            <li><strong>{isEN ? 'Dimensional Stability:' : isAR ? 'استقرار الأبعاد:' : 'Boyutsal Kararlılık:'}</strong> {isEN ? 'MDF core resists expansion and contraction across temperature changes.' : isAR ? 'قلب MDF يقاوم التمدد والانكماش مع تغيرات درجة الحرارة.' : 'MDF öz, sıcaklık değişimlerinde genleşme ve büzülmeye karşı dirençlidir.'}</li>
-            <li><strong>{isEN ? 'Easy Maintenance:' : isAR ? 'سهولة الصيانة:' : 'Kolay Bakım:'}</strong> {isEN ? 'Non-porous surface cleans with a damp cloth — no painting or sealing required.' : isAR ? 'السطح غير المسامي يُنظف بقطعة قماش مبللة دون الحاجة للطلاء أو التشطيب.' : 'Gözeneksiz yüzey nemli bezle temizlenir — boya veya vernikleme gerekmez.'}</li>
+            <li><strong>{isEN ? 'Wider Colour Range:' : isAR ? 'نطاق ألوان أوسع:' : 'Geniş Renk Yelpazesi:'}</strong> {isEN ? 'Models 211–221 introduce additional tones including Viktorya Ceviz, Sonomo, Isparta Ceviz, Kordoba and more — ideal for premium hotel and hospitality projects.' : isAR ? 'الطرازات 211-221 تضيف ألواناً إضافية تشمل Viktorya Ceviz وSonomo وIsparta Ceviz وKordoba وغيرها — مثالية للمشاريع الفندقية والضيافة الفاخرة.' : '211–221 modelleri Viktorya Ceviz, Sonomo, Isparta Ceviz, Kordoba ve daha fazlasını ekler — premium otel ve konaklama projeleri için idealdir.'}</li>
+            <li><strong>{isEN ? 'Two-Tone Finishes:' : isAR ? 'تشطيبات ثنائية اللون:' : 'İki Renkli Yüzeyler:'}</strong> {isEN ? 'Many series 211–221 models feature dual-colour HPL combinations for sophisticated design contrast.' : isAR ? 'كثير من طرازات السلسلة 211-221 تتميز بتركيبات HPL ثنائية اللون لتحقيق تباين تصميمي راقٍ.' : '211–221 modellerinin çoğu, sofistike tasarım kontrastı için çift renkli HPL kombinasyonlarına sahiptir.'}</li>
+            <li><strong>{isEN ? 'Consistent HPL Quality:' : isAR ? 'جودة HPL متسقة:' : 'Tutarlı HPL Kalitesi:'}</strong> {isEN ? 'Every model maintains the same scratch-resistant, impact-proof HPL surface as the series 201–210 collection.' : isAR ? 'كل طراز يحافظ على نفس سطح HPL المقاوم للخدش والصدم كمجموعة السلسلة 201-210.' : 'Her model, 201–210 serisiyle aynı çizilmez, darbeye dayanıklı HPL yüzeyini korur.'}</li>
+            <li><strong>{isEN ? 'Matching Frames Available:' : isAR ? 'إطارات متوافقة متاحة:' : 'Uyumlu Kasalar Mevcut:'}</strong> {isEN ? 'All series 211–221 models can be paired with matching HPL-wrapped door frames for a complete, unified installation.' : isAR ? 'جميع طرازات السلسلة 211-221 يمكن إقرانها بإطارات أبواب مغطاة بـ HPL متوافقة للحصول على تركيب متكامل وموحد.' : '211–221 seri modelleri, eksiksiz bir kurulum için eşleşen HPL kaplı kapı kasaları ile birleştirilebilir.'}</li>
+            <li><strong>{isEN ? 'Custom Dimensions:' : isAR ? 'أبعاد مخصصة:' : 'Özel Boyutlar:'}</strong> {isEN ? 'Non-standard heights, widths and glass apertures are available for bespoke architectural projects.' : isAR ? 'الارتفاعات والأعراض غير القياسية وفتحات الزجاج متاحة للمشاريع المعمارية المخصصة.' : 'Standart dışı yükseklik, genişlik ve cam açıklıkları mimari projeler için mevcuttur.'}</li>
           </ul>
 
           <h3>{isEN ? 'Ideal Applications' : isAR ? 'التطبيقات المثالية' : 'İdeal Kullanım Alanları'}</h3>
-          <p>{isEN ? 'Laminox doors excel in high-traffic and high-visibility environments:' : isAR ? 'تتميز أبواب لامينوكس في البيئات عالية الحركة والبيئات البارزة:' : 'Laminoks kapılar yüksek trafik ve göz önünde olan alanlarda üstün performans sunar:'}</p>
+          <p>{isEN ? 'Series 211–221 is particularly suited for:' : isAR ? 'السلسلة 211-221 مناسبة بشكل خاص لـ:' : '211–221 serisi özellikle şunlar için uygundur:'}</p>
           <ul class="lam-checklist">
-            <li><strong>{isEN ? 'Hotels & Hospitality:' : isAR ? 'الفنادق والضيافة:' : 'Otel ve Konaklama:'}</strong> {isEN ? 'Durable finish survives heavy guest turnover with minimal maintenance.' : isAR ? 'المظهر المتين يصمد أمام كثافة حركة الضيوف مع الحد الأدنى من الصيانة.' : 'Dayanıklı yüzey, yoğun misafir trafiğinde minimum bakımla dayanır.'}</li>
-            <li><strong>{isEN ? 'Hospitals & Healthcare:' : isAR ? 'المستشفيات والرعاية الصحية:' : 'Hastane ve Sağlık:'}</strong> {isEN ? 'Easy-clean surface meets hygiene standards in clinical environments.' : isAR ? 'السطح سهل التنظيف يلبي معايير النظافة في البيئات السريرية.' : 'Kolay temizlenen yüzey, klinik ortamların hijyen standartlarını karşılar.'}</li>
-            <li><strong>{isEN ? 'Commercial Buildings:' : isAR ? 'المباني التجارية:' : 'Ticari Binalar:'}</strong> {isEN ? 'Professional aesthetic for offices, retail and public buildings.' : isAR ? 'مظهر احترافي للمكاتب والمحلات التجارية والمباني العامة.' : 'Ofis, perakende ve kamu binaları için profesyonel estetik.'}</li>
-            <li><strong>{isEN ? 'Upscale Residential:' : isAR ? 'السكن الراقي:' : 'Üst Segment Konut:'}</strong> {isEN ? 'Premium finish elevates residential interiors over standard options.' : isAR ? 'المظهر الفاخر يرفع مستوى الديكور الداخلي فوق الخيارات المعتادة.' : 'Premium görünüm, konut iç mekanlarını standart seçeneklerin üzerine taşır.'}</li>
+            <li><strong>{isEN ? 'Hotels & Hospitality:' : isAR ? 'الفنادق والضيافة:' : 'Otel ve Konaklama:'}</strong> {isEN ? 'Durable HPL finish survives heavy guest turnover with minimal maintenance cost.' : isAR ? 'المظهر المتين بـ HPL يصمد أمام كثافة حركة الضيوف بتكلفة صيانة منخفضة.' : 'Dayanıklı HPL yüzey, minimum bakım maliyetiyle yoğun misafir trafiğine dayanır.'}</li>
+            <li><strong>{isEN ? 'Hospitals & Healthcare:' : isAR ? 'المستشفيات والرعاية الصحية:' : 'Hastane ve Sağlık:'}</strong> {isEN ? 'Easy-clean, antibacterial-compatible surface for clinical environments.' : isAR ? 'سطح سهل التنظيف ومتوافق مع المواد المضادة للبكتيريا للبيئات السريرية.' : 'Klinik ortamlar için kolay temizlenen, antibakteriyal uyumlu yüzey.'}</li>
+            <li><strong>{isEN ? 'Commercial Buildings:' : isAR ? 'المباني التجارية:' : 'Ticari Binalar:'}</strong> {isEN ? 'Professional two-tone and wood-grain aesthetics for offices, retail and public spaces.' : isAR ? 'مظهر احترافي ثنائي اللون ونسيج خشبي للمكاتب والمحلات التجارية والمساحات العامة.' : 'Ofis, perakende ve kamusal alanlar için iki renkli ve ahşap dokulu profesyonel estetik.'}</li>
+            <li><strong>{isEN ? 'Upscale Residential:' : isAR ? 'السكن الراقي:' : 'Üst Segment Konut:'}</strong> {isEN ? 'Premium extended colour palette elevates high-end residential interiors.' : isAR ? 'لوحة الألوان الموسعة الفاخرة ترفع مستوى الديكور الداخلي للسكن الراقي.' : 'Premium genişletilmiş renk paleti üst segment konut iç mekanlarını dönüştürür.'}</li>
           </ul>
 
           <h3>{isEN ? 'Technical Specifications' : isAR ? 'المواصفات التقنية' : 'Teknik Özellikler'}</h3>
@@ -330,7 +336,7 @@ const catNav = [
             <li>{isEN ? 'Surface: High-Pressure Melamine (HPL) laminate' : isAR ? 'السطح: طبقة الميلامين عالي الضغط (HPL)' : 'Yüzey: Yüksek Basınçlı Melamin (HPL) laminat'}</li>
             <li>{isEN ? 'Core: Solid MDF' : isAR ? 'القلب: MDF صلب' : 'Öz: Masif MDF'}</li>
             <li>{isEN ? 'Standard size: 70×200 cm — custom sizes available' : isAR ? 'المقاس القياسي: 70×200 سم — أحجام مخصصة متاحة' : 'Standart boyut: 70×200 cm — özel boyut mevcut'}</li>
-            <li>{isEN ? 'Finish options: Matte, Gloss, Textured wood-grain' : isAR ? 'خيارات المظهر: مطفأ، لامع، نسيج خشبي' : 'Finish seçenekleri: Mat, Parlak, Dokulu ahşap desen'}</li>
+            <li>{isEN ? 'Finish options: Matte, Gloss, Textured wood-grain, Two-tone' : isAR ? 'خيارات المظهر: مطفأ، لامع، نسيج خشبي، ثنائي اللون' : 'Finish seçenekleri: Mat, Parlak, Dokulu ahşap desen, İki renkli'}</li>
             <li>CE & ISO 9001 {isEN ? 'certified' : isAR ? 'معتمد' : 'sertifikalı'}</li>
             <li>{isEN ? '5-year manufacturer warranty' : isAR ? 'ضمان المصنّع 5 سنوات' : '5 yıl üretici garantisi'}</li>
           </ul>
@@ -339,7 +345,7 @@ const catNav = [
         <!-- Sidebar -->
         <aside class="lam-sidebar">
           <div class="lam-kpis">
-            <div class="lam-kpi"><strong>80<sup>+</sup></strong><span>{isEN ? 'Models' : isAR ? 'طراز' : 'Model'}</span></div>
+            <div class="lam-kpi"><strong>60<sup>+</sup></strong><span>{isEN ? 'Models' : isAR ? 'طراز' : 'Model'}</span></div>
             <div class="lam-kpi"><strong>HPL</strong><span>{isEN ? 'Surface' : isAR ? 'سطح' : 'Yüzey'}</span></div>
             <div class="lam-kpi"><strong>CE</strong><span>{isEN ? 'Certified' : isAR ? 'معتمد' : 'Sertifikalı'}</span></div>
             <div class="lam-kpi"><strong>5yr</strong><span>{isEN ? 'Warranty' : isAR ? 'ضمان' : 'Garanti'}</span></div>
@@ -368,7 +374,7 @@ const catNav = [
             <ul class="lam-feat-list">
               <li>🪵 {isEN ? 'HPL scratch-resistant surface' : isAR ? 'سطح HPL مقاوم للخدش' : 'HPL çizilmez yüzey'}</li>
               <li>💪 {isEN ? 'Solid MDF core' : isAR ? 'قلب MDF صلب' : 'Masif MDF öz'}</li>
-              <li>🎨 {isEN ? 'Matt & gloss finish options' : isAR ? 'خيار مطفأ ولامع' : 'Mat ve parlak yüzey seçeneği'}</li>
+              <li>🎨 {isEN ? 'Two-tone & wood-grain finishes' : isAR ? 'تشطيبات ثنائية اللون ونسيج خشبي' : 'İki renkli ve ahşap desen'}</li>
               <li>📐 {isEN ? 'Custom sizes available' : isAR ? 'أحجام مخصصة متاحة' : 'Özel ölçü mevcut'}</li>
               <li>🏨 {isEN ? 'Hotel & commercial grade' : isAR ? 'درجة الفنادق والتجارية' : 'Otel ve ticari sınıf'}</li>
               <li>♻️ {isEN ? 'Eco-friendly materials' : isAR ? 'مواد صديقة للبيئة' : 'Çevre dostu malzeme'}</li>
@@ -389,20 +395,20 @@ const catNav = [
         </div>
         <div class="lam-faqs">
           {(isEN ? [
-            { q: 'What is a Laminox door?',                                  a: 'Laminox doors feature a high-pressure melamine (HPL) laminate surface over a solid MDF core. This delivers superior scratch resistance, dimensional stability and an attractive premium finish — ideal for hotels, hospitals and commercial buildings.' },
-            { q: 'What is the difference between Laminox and PVC doors?',    a: 'PVC doors use a flexible plastic laminate and are more economical. Laminox doors have a rigid HPL surface over MDF — significantly more scratch and impact resistant, with richer textures suited for premium projects.' },
-            { q: 'Are Laminox doors suitable for humid environments?',       a: 'Laminox doors have good moisture resistance but are best suited for interior spaces with normal to moderate humidity. For very wet areas like shower rooms, PVC doors are recommended.' },
-            { q: 'What is the MOQ for wholesale Laminox door orders?',       a: 'Minimum order quantity is 50 units. Volume discounts apply from 200 units. Custom dimensions, veneers and private-label options are available for larger bulk orders.' },
+            { q: 'Can I order custom sizes for Laminox doors?',                        a: 'Yes. CihanPan Door produces Laminox doors in custom dimensions to suit residential, hotel and commercial project requirements. Standard size is 70×200 cm; custom widths and heights are available on request with a minimum order of 50 units.' },
+            { q: 'What colour options are in the series 211–221 collection?',           a: 'Series 211–221 offers up to six colour variants per model including Antrasit, Beyaz, Saruhan, Kapucino, Venge, ABD Ceviz, Gri Meşe, Viktorya Ceviz, Sonomo, Isparta Ceviz, Kordoba and more — in matte and textured wood-grain finishes.' },
+            { q: 'What are the MOQ and lead times for bulk Laminox orders?',           a: 'Minimum order quantity is 50 units. Standard lead time is 15–25 business days after order confirmation. Volume discounts apply from 200 units. Private-label and veneer-wrap options available for larger orders.' },
+            { q: 'How does Page 2 differ from Page 1 of the Laminox collection?',      a: 'Page 1 covers series 201–210 (60 models) and Page 2 covers series 211–221 (60 models). Together they form the complete 120-model Laminox wholesale collection. The HPL quality, specifications and pricing are identical across both pages.' },
           ] : isAR ? [
-            { q: 'ما هي أبواب لامينوكس؟',                                    a: 'أبواب لامينوكس مصنوعة من سطح الميلامين عالي الضغط (HPL) على قلب MDF صلب. توفر مقاومة فائقة للخدش واستقراراً بالأبعاد ومظهراً فاخراً — مثالية للفنادق والمستشفيات والمباني التجارية.' },
-            { q: 'ما الفرق بين أبواب لامينوكس وأبواب PVC؟',                  a: 'أبواب PVC تستخدم طبقة بلاستيكية مرنة وأكثر اقتصادية. أبواب لامينوكس تملك سطح HPL صلب على MDF — أكثر مقاومة للخدش والصدم بشكل ملحوظ، بأنسجة أغنى ومناسبة للمشاريع الراقية.' },
-            { q: 'هل أبواب لامينوكس مناسبة للبيئات الرطبة؟',                 a: 'أبواب لامينوكس تتمتع بمقاومة جيدة للرطوبة بفضل سطح HPL، لكنها مناسبة للمساحات الداخلية ذات الرطوبة العادية إلى المعتدلة. للمناطق شديدة الرطوبة كالحمامات، يُنصح بأبواب PVC.' },
-            { q: 'ما هو الحد الأدنى للطلب في مشتريات الجملة؟',               a: 'الحد الأدنى للطلب 50 وحدة. تسري خصومات الحجم من 200 وحدة. الأبعاد المخصصة وخيارات التشطيب والعلامة التجارية الخاصة متاحة للطلبات الكبيرة.' },
+            { q: 'هل يمكنني طلب أحجام مخصصة لأبواب لامينوكس؟',                       a: 'نعم. تنتج CihanPan Door أبواب لامينوكس بأبعاد مخصصة لتلائم متطلبات المشاريع السكنية والفندقية والتجارية. المقاس القياسي 70×200 سم؛ الأعراض والارتفاعات المخصصة متاحة عند الطلب بحد أدنى 50 وحدة.' },
+            { q: 'ما خيارات الألوان في مجموعة السلسلة 211-221؟',                       a: 'السلسلة 211-221 تقدم ما يصل إلى ستة ألوان لكل طراز تشمل Antrasit وBeyaz وSaruhan وKapucino وVenge وABD Ceviz وGri Meşe وViktorya Ceviz وSonomo وIsparta Ceviz وKordoba وغيرها — بمظهر مطفأ ونسيج خشبي.' },
+            { q: 'ما هو الحد الأدنى للطلب وأوقات التسليم للطلبات الكبيرة؟',           a: 'الحد الأدنى للطلب 50 وحدة. مدة التسليم القياسية 15-25 يوم عمل بعد تأكيد الطلب. تسري خصومات الحجم من 200 وحدة. خيارات العلامة التجارية الخاصة والتشطيبات المخصصة متاحة للطلبات الكبيرة.' },
+            { q: 'كيف تختلف الصفحة 2 عن الصفحة 1 من مجموعة لامينوكس؟',               a: 'الصفحة 1 تغطي السلسلة 201-210 (60 طراز) والصفحة 2 تغطي السلسلة 211-221 (60 طراز). معاً تشكلان مجموعة لامينوكس الكاملة بالجملة التي تضم 120 طرازاً. جودة HPL والمواصفات والأسعار متطابقة في الصفحتين.' },
           ] : [
-            { q: 'Laminoks kapı nedir?',                                     a: 'Laminoks kapılar, MDF özlü yüksek basınçlı melamin (HPL) laminat yüzeyli kapılardır. Üstün çizilme direnci, boyutsal kararlılık ve premium görünüm sunar. Otel, hastane ve ticari binalar için idealdir.' },
-            { q: 'Laminoks ile PVC arasındaki fark nedir?',                  a: 'PVC kapılar esnek plastik kaplama ile daha ekonomiktir. Laminoks kapılar MDF üzerinde sert HPL yüzeye sahiptir — çok daha fazla çizilme ve darbe direnci ile premium projeler için uygundur.' },
-            { q: 'Laminoks kapılar nemli ortamlara uygun mu?',              a: 'Laminoks kapılar HPL yüzey sayesinde iyi nem direncine sahiptir ancak normal ila orta nemli iç mekanlara uygundur. Banyo gibi çok nemli ortamlar için PVC kapılar önerilir.' },
-            { q: 'Toptan siparişlerde MOQ nedir?',                           a: 'Minimum sipariş miktarı 50 adettir. 200+ adet için hacim indirimleri geçerlidir. Büyük toplu siparişler için özel ölçü, kaplama ve özel etiket seçenekleri mevcuttur.' },
+            { q: 'Laminoks kapılar için özel boyut sipariş edebilir miyim?',            a: 'Evet. CihanPan Door, konut, otel ve ticari proje gereksinimlerine uygun özel boyutlarda Laminoks kapı üretir. Standart boyut 70×200 cm; özel genişlik ve yükseklikler minimum 50 adet siparişle mevcut.' },
+            { q: '211–221 koleksiyonunda hangi renk seçenekleri var?',                  a: '211–221 serisi model başına altıya kadar renk varyantı sunar: Antrasit, Beyaz, Saruhan, Kapucino, Venge, ABD Ceviz, Gri Meşe, Viktorya Ceviz, Sonomo, Isparta Ceviz, Kordoba ve daha fazlası — mat ve dokulu ahşap desen finish.' },
+            { q: 'Toptan siparişlerde MOQ ve teslimat süresi nedir?',                   a: 'Minimum sipariş miktarı 50 adettir. Standart teslimat süresi sipariş onayından 15–25 iş günüdür. 200+ adet için hacim indirimleri geçerlidir. Büyük siparişler için özel etiket ve kaplama seçenekleri mevcuttur.' },
+            { q: "Sayfa 2, Sayfa 1'den nasıl farklıdır?",                              a: 'Sayfa 1, 201–210 serisini (60 model) kapsar; Sayfa 2 ise 211–221 serisini (60 model). Birlikte tam 120 modellik toptan Laminoks koleksiyonunu oluştururlar. Her iki sayfada HPL kalitesi, teknik özellikler ve fiyatlandırma aynıdır.' },
           ]).map(item => (
             <details class="lam-faq">
               <summary class="lam-faq__q">
@@ -446,8 +452,8 @@ const catNav = [
             {isEN ? 'Get a Free Quote' : isAR ? 'احصل على عرض سعر مجاني' : 'Ücretsiz Teklif Al'}
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href={getLocalizedRoute('/urunlerimiz', lang)} class="lam-btn lam-btn--ghost">
-            {isEN ? 'All Products' : isAR ? 'جميع المنتجات' : 'Tüm Ürünler'}
+          <a href={getLocalizedRoute('/laminoks-kapilar', lang)} class="lam-btn lam-btn--ghost">
+            {isEN ? '← Back to Page 1' : isAR ? '← العودة للصفحة 1' : "← Sayfa 1'e Dön"}
           </a>
         </div>
       </div>
@@ -459,7 +465,7 @@ const catNav = [
 </I18nLayout>
 
 <style>
-  /* ── TOKENS ── */
+  /* ── TOKENS — laminoks-kapilar.astro ile özdeş ── */
   .lam {
     --navy:     #0f2347;
     --navy-mid: #1a3a6e;
@@ -730,16 +736,17 @@ const catNav = [
 
 <script is:inline>
   const fileNames = [
-    "CihanpanDoor-Laminoks-Serisi-201-A-Beyaz.webp","CihanpanDoor-Laminoks-Serisi-201-B-Gri-Mese.webp","CihanpanDoor-Laminoks-Serisi-201-C-Saruhan.webp","CihanpanDoor-Laminoks-Serisi-201-D-Kapucino.webp","CihanpanDoor-Laminoks-Serisi-201-E-Tanganika.webp","CihanpanDoor-Laminoks-Serisi-201-F-Antrasit.webp",
-    "CihanpanDoor-Laminoks-Serisi-202-A-Elma-Siyah.webp","CihanpanDoor-Laminoks-Serisi-202-B-Isparta-Ceviz-Beyaz.webp","CihanpanDoor-Laminoks-Serisi-202-C-Acik-Otantik-Siyah.webp","CihanpanDoor-Laminoks-Serisi-202-D-Saruhan-Antrasit.webp","CihanpanDoor-Laminoks-Serisi-202-E-Tanganika-Antrasit.webp","CihanpanDoor-Laminoks-Serisi-202-F-Antrasit-Beyaz.webp",
-    "CihanpanDoor-Laminoks-Serisi-203-A-ABD-Ceviz.webp","CihanpanDoor-Laminoks-Serisi-203-B-Viktorya-Ceviz-Kapucino.webp","CihanpanDoor-Laminoks-Serisi-203-C-Elma.webp","CihanpanDoor-Laminoks-Serisi-203-D-Antrasit.webp","CihanpanDoor-Laminoks-Serisi-203-E-Kordoba.webp","CihanpanDoor-Laminoks-Serisi-203-F-Beyaz.webp",
-    "CihanpanDoor-Laminoks-Serisi-204-A-Viktorya-Ceviz-Kapucino.webp","CihanpanDoor-Laminoks-Serisi-204-B-Kapucino-Venge.webp","CihanpanDoor-Laminoks-Serisi-204-C-Gri-Mese-Beyaz.webp","CihanpanDoor-Laminoks-Serisi-204-D-Beyaz-Antrasit.webp","CihanpanDoor-Laminoks-Serisi-204-E-Elma.webp","CihanpanDoor-Laminoks-Serisi-204-F-ABD-Ceviz-Beyaz.webp",
-    "CihanpanDoor-Laminoks-Serisi-205-A-Tuna-Ceviz-Viktorya-Ceviz.webp","CihanpanDoor-Laminoks-Serisi-205-B-Sedir-Antrasit.webp","CihanpanDoor-Laminoks-Serisi-205-C-ABD-Ceviz-Beyaz.webp","CihanpanDoor-Laminoks-Serisi-205-D-ABD-Kardoba.webp","CihanpanDoor-Laminoks-Serisi-205-E-Antrasit-Beyaz.webp","CihanpanDoor-Laminoks-Serisi-205-F-Acik-Otantik.webp",
-    "CihanpanDoor-Laminoks-Serisi-206-A-Gri-Mese-Antrasit.webp","CihanpanDoor-Laminoks-Serisi-206-B-Beyaz.webp","CihanpanDoor-Laminoks-Serisi-206-C-Tuna-Ceviz.webp","CihanpanDoor-Laminoks-Serisi-206-D-Saruhan-Kapucino.webp","CihanpanDoor-Laminoks-Serisi-206-E-Beyaz-Antrasit.webp","CihanpanDoor-Laminoks-Serisi-206-F-Elma-Beyaz.webp",
-    "CihanpanDoor-Laminoks-Serisi-207-A-Tuna-Ceviz-Beyaz.webp","CihanpanDoor-Laminoks-Serisi-207-B-Metalik-Ceviz.webp","CihanpanDoor-Laminoks-Serisi-207-C-Mistik.webp","CihanpanDoor-Laminoks-Serisi-207-D-ABD-Ceviz.webp","CihanpanDoor-Laminoks-Serisi-207-E-Tangonika.webp","CihanpanDoor-Laminoks-Serisi-207-F-Antrasit-Beyaz.webp",
-    "CihanpanDoor-Laminoks-Serisi-208-A-Antrasit-Beyaz.webp","CihanpanDoor-Laminoks-Serisi-208-B-ABD-Ceviz.webp","CihanpanDoor-Laminoks-Serisi-208-C-Kapucino.webp","CihanpanDoor-Laminoks-Serisi-208-D-Tanganika-Beyaz.webp","CihanpanDoor-Laminoks-Serisi-208-E-Saruhan.webp","CihanpanDoor-Laminoks-Serisi-208-F-Isparta-Ceviz.webp",
-    "CihanpanDoor-Laminoks-Serisi-209-A-Venge.webp","CihanpanDoor-Laminoks-Serisi-209-B-Gri-Mese.webp","CihanpanDoor-Laminoks-Serisi-209-C-ABD-Ceviz.webp","CihanpanDoor-Laminoks-Serisi-209-D-Elma.webp","CihanpanDoor-Laminoks-Serisi-209-E-Antrasit-Beyaz.webp","CihanpanDoor-Laminoks-Serisi-209-F-Tanganika.webp",
-    "CihanpanDoor-Laminoks-Serisi-210-A-Sedir-Antrasit.webp","CihanpanDoor-Laminoks-Serisi-210-B-Acik-Otantik.webp","CihanpanDoor-Laminoks-Serisi-210-C-ABD-Ceviz.webp","CihanpanDoor-Laminoks-Serisi-210-D-Antrasit-Beyaz.webp","CihanpanDoor-Laminoks-Serisi-210-E-Metalik-Ceviz.webp","CihanpanDoor-Laminoks-Serisi-210-F-Kapucino.webp",
+    "CihanpanDoor-Laminoks-Serisi-211-A-Saruhan.webp","CihanpanDoor-Laminoks-Serisi-211-B-Tuna-Ceviz-Kapucino.webp","CihanpanDoor-Laminoks-Serisi-211-C-Viktorya-Ceviz-Siyah.webp","CihanpanDoor-Laminoks-Serisi-211-D-Antrasit-Beyaz.webp","CihanpanDoor-Laminoks-Serisi-211-E-Gri-Mese.webp","CihanpanDoor-Laminoks-Serisi-211-F-Elma.webp",
+    "CihanpanDoor-Laminoks-Serisi-212-A-Metalik-Ceviz.webp","CihanpanDoor-Laminoks-Serisi-212-B-Tanganiko-Kapucino.webp","CihanpanDoor-Laminoks-Serisi-212-C-ABD-Ceviz.webp","CihanpanDoor-Laminoks-Serisi-212-D-Venge.webp","CihanpanDoor-Laminoks-Serisi-212-E-Antrasit-Beyaz.webp","CihanpanDoor-Laminoks-Serisi-212-F-Elma-Siyah.webp",
+    "CihanpanDoor-Laminoks-Serisi-213-A-Antrasit-Saruhan-Siyah.webp","CihanpanDoor-Laminoks-Serisi-213-B-Sedir-Antrasit-Beyaz.webp","CihanpanDoor-Laminoks-Serisi-213-C-Beyaz-ABD-Ceviz.webp","CihanpanDoor-Laminoks-Serisi-213-D-Antrasit-Mistik.webp","CihanpanDoor-Laminoks-Serisi-213-E-Elma-Siyah-Beyaz.webp","CihanpanDoor-Laminoks-Serisi-213-F-Acik-Otantik-Siyah-Kapucino.webp",
+    "CihanpanDoor-Laminoks-Serisi-214-A-Saruhan-Antrasit.webp","CihanpanDoor-Laminoks-Serisi-214-B-Sonomo-Tuna-Ceviz.webp","CihanpanDoor-Laminoks-Serisi-214-C-Venge.webp","CihanpanDoor-Laminoks-Serisi-214-D-Elma.webp","CihanpanDoor-Laminoks-Serisi-214-E-Beyaz-Siyah.webp","CihanpanDoor-Laminoks-Serisi-214-F-ABD-Ceviz.webp",
+    "CihanpanDoor-Laminoks-Serisi-215-A-Mistik-Siyah.webp","CihanpanDoor-Laminoks-Serisi-215-B-Kapucino-Tuna-Ceviz.webp","CihanpanDoor-Laminoks-Serisi-215-C-Beyaz-ABD-Ceviz.webp","CihanpanDoor-Laminoks-Serisi-215-D-Sedir-Artrasit.webp","CihanpanDoor-Laminoks-Serisi-215-E-Beyaz-Artrasit.webp","CihanpanDoor-Laminoks-Serisi-215-F-Beyaz-Venge.webp",
+    "CihanpanDoor-Laminoks-Serisi-216-A-Kapucino-Venge.webp","CihanpanDoor-Laminoks-Serisi-216-B-Saruhan-Antrasit.webp","CihanpanDoor-Laminoks-Serisi-216-C-Beyaz-Antrasit.webp","CihanpanDoor-Laminoks-Serisi-216-D-ABD-Ceviz.webp","CihanpanDoor-Laminoks-Serisi-216-E-Gri-Mese-Beyaz.webp","CihanpanDoor-Laminoks-Serisi-216-F-Elma-Siyah.webp",
+    "CihanpanDoor-Laminoks-Serisi-217-A-Antrasit.webp","CihanpanDoor-Laminoks-Serisi-217-B-Kapucino.webp","CihanpanDoor-Laminoks-Serisi-217-C-ABD-Ceviz.webp","CihanpanDoor-Laminoks-Serisi-217-D-Kardoba.webp","CihanpanDoor-Laminoks-Serisi-217-E-Beyaz.webp","CihanpanDoor-Laminoks-Serisi-217-F-Metalik-Ceviz.webp",
+    "CihanpanDoor-Laminoks-Serisi-218-A-Antrasit.webp","CihanpanDoor-Laminoks-Serisi-218-B-Beyaz-Antrasit.webp","CihanpanDoor-Laminoks-Serisi-218-C-Sonomo-Antrasit.webp","CihanpanDoor-Laminoks-Serisi-218-D-Isparta-Ceviz.webp","CihanpanDoor-Laminoks-Serisi-218-E-ABD-Ceviz.webp","CihanpanDoor-Laminoks-Serisi-218-F-ABD-Kapucino.webp",
+    "CihanpanDoor-Laminoks-Serisi-219-A-Gri-Mese.webp","CihanpanDoor-Laminoks-Serisi-219-B-Saruhan.webp","CihanpanDoor-Laminoks-Serisi-219-C-Kapucino.webp","CihanpanDoor-Laminoks-Serisi-219-D-Beyaz.webp","CihanpanDoor-Laminoks-Serisi-219-E-Tanganika.webp","CihanpanDoor-Laminoks-Serisi-219-F-Antrasit.webp",
+    "CihanpanDoor-Laminoks-Serisi-220-A-Gri-Elma.webp","CihanpanDoor-Laminoks-Serisi-220-A-Isparta-Ceviz.webp","CihanpanDoor-Laminoks-Serisi-220-C-Viktorya-Ceviz-Antrasit.webp","CihanpanDoor-Laminoks-Serisi-220-D-Tuna-Ceviz.webp","CihanpanDoor-Laminoks-Serisi-220-E-Kordoba.webp","CihanpanDoor-Laminoks-Serisi-220-F-Saruhan.webp",
+    "CihanpanDoor-Laminoks-Serisi-221-A-Beyaz.webp","CihanpanDoor-Laminoks-Serisi-221-B-Saruhan.webp","CihanpanDoor-Laminoks-Serisi-221-C-Metalik-Ceviz.webp","CihanpanDoor-Laminoks-Serisi-221-D-Tanganika.webp","CihanpanDoor-Laminoks-Serisi-221-E-Tuna-Ceviz.webp","CihanpanDoor-Laminoks-Serisi-221-F-Gri-Mese.webp",
   ];
 
   function parseFileName(fn) {
