@@ -1,14 +1,14 @@
 ---
-// src/pages/tr/hastane-kapilari.astro
+// src/pages/ar/hastane-kapilari.astro
 import I18nLayout from '../../layouts/I18nLayout.astro';
 import I18nHeader from '../../components/I18nHeader.astro';
 import I18nFooter from '../../components/I18nFooter.astro';
 import { getLocalizedRoute } from '../../i18n/utils';
 
-const lang = 'tr';
+const lang = 'ar';
 
 const baseUrl    = 'https://cihanpandoor.netlify.app';
-const pageUrl    = baseUrl;
+const pageUrl    = `${baseUrl}/ar`;
 const currentUrl = `${pageUrl}/hastane-kapilari`;
 
 // ── FILE LIST ─────────────────────────────────────────────────────────
@@ -27,28 +27,28 @@ const modelCount = fileNames.length;
 const hospitalSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "Hastane ve Sağlık Tesisi Kapıları — Hijyenik Seri | CihanPan Door",
-  "description": "Kayseri'den toptan hijyenik hastane kapıları. Antibakteriyel PVC/HPL yüzey, 30–60 dk yangın dayanımı, CE belgeli.",
+  "name": "أبواب المستشفيات والمرافق الصحية — السلسلة الصحية | CihanPan Door",
+  "description": "أبواب مستشفيات صحية بالجملة من قيصري، تركيا. سطح PVC/HPL مضاد للبكتيريا، مقاومة للحريق 30–60 دقيقة، شهادة CE.",
   "url": currentUrl,
-  "inLanguage": "tr-TR",
+  "inLanguage": "ar-SA",
   "mainEntity": {
     "@type": "ItemList",
-    "name": "Hastane Kapı Modelleri",
+    "name": "موديلات أبواب المستشفيات",
     "numberOfItems": modelCount,
     "itemListElement": [
       {
         "@type": "Product",
-        "name": "Hastane Kapısı — Hijyenik Seri",
-        "description": "Antibakteriyel PVC/HPL kaplı hastane kapısı. Çarpma yapmaz, kolay temizlenebilir, 30–60 dk yangın dayanımı, CE belgeli.",
+        "name": "باب مستشفى — السلسلة الصحية",
+        "description": "باب مستشفى مغلف بـ PVC/HPL مضاد للبكتيريا. مقاوم للرطوبة، سهل التنظيف، مقاومة للحريق 30–60 دقيقة، شهادة CE.",
         "brand": { "@type": "Brand", "name": "CihanPan Door" },
         "manufacturer": { "@type": "Organization", "name": "CihanPan Door", "url": baseUrl },
-        "material": "Antibakteriyel PVC/HPL Kaplama / MDF",
-        "category": "Hastane Kapısı",
+        "material": "طلاء PVC/HPL مضاد للبكتيريا / MDF",
+        "category": "باب مستشفى",
         "additionalProperty": [
-          { "@type": "PropertyValue", "name": "Antibakteriyel",    "value": "Evet" },
-          { "@type": "PropertyValue", "name": "Yangın Dayanımı",   "value": "30–60 dk" },
-          { "@type": "PropertyValue", "name": "Hijyen Sertifikası","value": "CE" },
-          { "@type": "PropertyValue", "name": "Ses Yalıtımı",      "value": "32–42 dB" },
+          { "@type": "PropertyValue", "name": "مضاد للبكتيريا",      "value": "نعم" },
+          { "@type": "PropertyValue", "name": "مقاومة الحريق",        "value": "30–60 دقيقة" },
+          { "@type": "PropertyValue", "name": "شهادة النظافة",         "value": "CE" },
+          { "@type": "PropertyValue", "name": "عزل صوتي",             "value": "32–42 dB" },
         ],
         "offers": {
           "@type": "AggregateOffer",
@@ -75,10 +75,10 @@ const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "Hastane kapıları neden özel olmalıdır?",                 "acceptedAnswer": { "@type": "Answer", "text": "Hastane kapıları antibakteriyel, kolay temizlenebilir ve hijyenik olmalıdır. Sık dezenfektan kullanımına dayanıklı, nem geçirmez, ses yalıtımlı ve yangın güvenlikli malzemelerden üretilmelidir." }},
-    { "@type": "Question", "name": "Hastane kapıları hangi alanlarda kullanılır?",           "acceptedAnswer": { "@type": "Answer", "text": "Hasta odaları, poliklinikler, ameliyathaneler, laboratuvarlar, röntgen odaları, yoğun bakım, acil servis ve sterilizasyon ünitelerinde kullanılır." }},
-    { "@type": "Question", "name": "Hastane kapıları hangi sertifikalara sahip olmalıdır?", "acceptedAnswer": { "@type": "Answer", "text": "CE belgesi, yangın dayanım sertifikası (EN 1634), antibakteriyel test raporu, ses yalıtım sertifikası gereklidir. Tüm CihanPan Door hastane modelleri CE belgeli ve tam belgelidir." }},
-    { "@type": "Question", "name": "Toptan siparişlerde MOQ nedir?",                        "acceptedAnswer": { "@type": "Answer", "text": "Minimum sipariş miktarı 50 adettir. 100+ adet için hacim indirimleri geçerlidir." }},
+    { "@type": "Question", "name": "لماذا تحتاج المستشفيات إلى أبواب متخصصة؟",        "acceptedAnswer": { "@type": "Answer", "text": "يجب أن تلبي أبواب المستشفيات معايير صارمة للنظافة: أسطح مضادة للبكتيريا، ومقاومة للتنظيف المتكرر بالمطهرات، وبناء مقاوم للرطوبة، وعزل صوتي لراحة المرضى، ومقاومة للحريق من أجل السلامة." }},
+    { "@type": "Question", "name": "أين تُستخدم أبواب المستشفيات؟",                   "acceptedAnswer": { "@type": "Answer", "text": "تُستخدم أبواب المستشفيات في غرف المرضى والعيادات الخارجية وغرف العمليات والمختبرات وغرف الأشعة السينية ووحدات العناية المركزة وأقسام الطوارئ ووحدات التعقيم." }},
+    { "@type": "Question", "name": "ما الشهادات التي يجب أن تحملها أبواب المستشفيات؟", "acceptedAnswer": { "@type": "Answer", "text": "يجب أن تحمل أبواب المستشفيات شهادة CE وشهادة مقاومة الحريق (EN 1634) وتقرير اختبار مضاد للبكتيريا وشهادة عزل صوتي. جميع موديلات CihanPan Door حاصلة على شهادة CE." }},
+    { "@type": "Question", "name": "ما هو الحد الأدنى لكميات الطلب بالجملة؟",         "acceptedAnswer": { "@type": "Answer", "text": "الحد الأدنى لكمية الطلب 50 وحدة. تُطبق خصومات الحجم من 100 وحدة فأكثر. تتوفر مقاسات مخصصة وخيارات تزجيج وأنظمة إغلاق تلقائي وحلول ذات علامة تجارية خاصة للمشاريع الكبيرة." }},
   ]
 };
 
@@ -86,9 +86,9 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Ana Sayfa",        "item": pageUrl },
-    { "@type": "ListItem", "position": 2, "name": "Ürünler",          "item": `${pageUrl}/urunlerimiz` },
-    { "@type": "ListItem", "position": 3, "name": "Hastane Kapıları", "item": currentUrl },
+    { "@type": "ListItem", "position": 1, "name": "الرئيسية",          "item": pageUrl },
+    { "@type": "ListItem", "position": 2, "name": "المنتجات",           "item": `${pageUrl}/urunlerimiz` },
+    { "@type": "ListItem", "position": 3, "name": "أبواب المستشفيات",  "item": currentUrl },
   ]
 };
 
@@ -96,13 +96,13 @@ const allSchemas = [hospitalSchema, faqSchema, breadcrumbSchema];
 
 // ── CATEGORY NAV ──────────────────────────────────────────────────────
 const catNav = [
-  { slug: '/urunlerimiz',               label: 'Tümü',             active: false },
-  { slug: '/pvc-kapilar',               label: 'PVC Kapılar',       active: false },
-  { slug: '/laminoks-kapilar',          label: 'Laminoks Kapılar',  active: false },
-  { slug: '/elitpan-doors',             label: 'Elitpan Kapılar',   active: false },
-  { slug: '/hastane-kapilari',          label: 'Hastane Kapıları',  active: true  },
-  { slug: '/otel-kapilari',             label: 'Otel Kapıları',     active: false },
-  { slug: '/yangina-dayanikli-kapilar', label: 'Yangın Kapıları',   active: false },
+  { slug: '/urunlerimiz',               label: 'الكل',                  active: false },
+  { slug: '/pvc-kapilar',               label: 'أبواب PVC',             active: false },
+  { slug: '/laminoks-kapilar',          label: 'أبواب لامينوكس',        active: false },
+  { slug: '/elitpan-doors',             label: 'أبواب إليتبان',          active: false },
+  { slug: '/hastane-kapilari',          label: 'أبواب المستشفيات',      active: true  },
+  { slug: '/otel-kapilari',             label: 'أبواب الفنادق',          active: false },
+  { slug: '/yangina-dayanikli-kapilar', label: 'أبواب مقاومة للحريق',   active: false },
 ];
 
 // ── SSR PRODUCT LIST ──────────────────────────────────────────────────
@@ -124,28 +124,29 @@ const hospitalProducts: HospitalProduct[] = fileNames.map((fn, i) => {
     id:       `hospital-${model}`,
     model,
     color,
-    label:    `Hastane ${model} · ${color}`,
-    features: i < 3 ? 'Hijyenik · CE Belgeli' : 'Antibakteriyel · Yangın Güvenlikli',
+    label:    `باب مستشفى ${model} · ${color}`,
+    features: i < 3 ? 'صحي · شهادة CE' : 'مضاد للبكتيريا · مقاوم للحريق',
     image:    `/assets/img/hospital-doors/${fn}`,
-    alt:      `CihanPan Door Hastane Serisi ${model} ${color} — Hijyenik Sağlık Tesisi Kapısı`,
+    alt:      `CihanPan Door سلسلة المستشفيات ${model} ${color} — باب رعاية صحية`,
   };
 });
 ---
 
 <I18nLayout
-  title="Hastane ve Sağlık Tesisi Kapıları — Hijyenik Seri | Toptan | CihanPan Door"
-  description="Kayseri'den toptan hijyenik hastane kapıları. Antibakteriyel yüzey, yangın güvenlikli, CE sertifikalı."
-  keywords="hastane kapısı, hijyenik kapı, antibakteriyel kapı, yangın dayanımlı kapı, sağlık tesisi kapısı toptan kayseri"
+  title="أبواب المستشفيات والمرافق الصحية — السلسلة الصحية | بالجملة | CihanPan Door"
+  description="أبواب مستشفيات صحية بالجملة من قيصري، تركيا. سطح مضاد للبكتيريا، مقاوم للحريق، شهادة CE."
+  keywords="أبواب مستشفيات بالجملة تركيا، باب رعاية صحية مضاد للبكتيريا، باب مقاوم للحريق قيصري، باب مستشفى شهادة CE"
   canonical={currentUrl}
   schema={allSchemas}
-  ogTitle="Hastane Kapıları — Hijyenik Seri | CihanPan Door"
-  ogDescription="Antibakteriyel, yangın güvenlikli hijyenik hastane kapıları. Fabrikadan doğrudan."
+  ogTitle="أبواب المستشفيات — السلسلة الصحية | CihanPan Door"
+  ogDescription="أبواب مستشفيات صحية مضادة للبكتيريا ومقاومة للحريق. مباشرة من المصنع."
   ogImage="/assets/img/og/hospital-doors-og.webp"
-  lang="tr"
+  lang="ar"
+  dir="rtl"
 >
   <I18nHeader />
 
-  <main class="lam" id="main-content">
+  <main class="lam" id="main-content" dir="rtl">
 
     <!-- ══════════════════════════════════════════
          HERO
@@ -157,38 +158,38 @@ const hospitalProducts: HospitalProduct[] = fileNames.map((fn, i) => {
       </div>
       <div class="lam-wrap lam-hero__inner">
         <div>
-          <nav class="lam-breadcrumb" aria-label="Breadcrumb">
-            <a href={pageUrl}>Ana Sayfa</a>
-            <span aria-hidden="true">›</span>
-            <a href={getLocalizedRoute('/urunlerimiz', lang)}>Ürünler</a>
-            <span aria-hidden="true">›</span>
-            <span aria-current="page">Hastane Kapıları</span>
+          <nav class="lam-breadcrumb" aria-label="مسار التنقل">
+            <a href={pageUrl}>الرئيسية</a>
+            <span aria-hidden="true">‹</span>
+            <a href={getLocalizedRoute('/urunlerimiz', lang)}>المنتجات</a>
+            <span aria-hidden="true">‹</span>
+            <span aria-current="page">أبواب المستشفيات</span>
           </nav>
 
           <span class="lam-eyebrow">
             <span class="lam-eyebrow__line"></span>
-            Sağlık Koleksiyonu · Hijyenik Seri
+            مجموعة الرعاية الصحية · السلسلة الصحية
           </span>
           <h1 class="lam-hero__h1" id="lam-h1">
-            <em>Hastane ve Sağlık Tesisi Kapıları</em><br/>Antibakteriyel · Yangın Güvenlikli · CE Belgeli
+            <em>أبواب المستشفيات والمرافق الصحية</em><br/>مضاد للبكتيريا · مقاوم للحريق · شهادة CE
           </h1>
           <p class="lam-hero__lead">
-            Kayseri fabrikasından toptan hastane kapıları. Nem dayanımlı MDF özlü antibakteriyel PVC/HPL kaplama. 30–60 dk yangın dayanımı, 32–42 dB ses yalıtımı. CE ve ISO 9001 sertifikalı.
+            أبواب مستشفيات بالجملة مباشرة من مصنع قيصري، تركيا. طلاء PVC/HPL مضاد للبكتيريا فوق قلب MDF مقاوم للرطوبة. مقاومة للحريق 30–60 دقيقة، عزل صوتي 32–42 ديسيبل. شهادة CE وISO 9001. الحد الأدنى للطلب 50 وحدة.
           </p>
           <div class="lam-hero__tags">
-            <span class="lam-htag">✓ Antibakteriyel Yüzey</span>
-            <span class="lam-htag">✓ 30–60 dk Yangın</span>
-            <span class="lam-htag">✓ 32–42 dB Ses</span>
+            <span class="lam-htag">✓ سطح مضاد للبكتيريا</span>
+            <span class="lam-htag">✓ مقاومة للحريق 30–60 دق</span>
+            <span class="lam-htag">✓ عزل صوتي 32–42 dB</span>
             <span class="lam-htag">✓ CE & ISO 9001</span>
-            <span class="lam-htag">✓ MOQ 50</span>
+            <span class="lam-htag">✓ الحد الأدنى 50</span>
           </div>
           <div class="lam-hero__actions">
             <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--gold">
-              Ücretsiz Teklif Al
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              احصل على عرض مجاني
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
             </a>
-            <a href="#katalog" class="lam-btn lam-btn--ghost">
-              Modelleri Gör
+            <a href="#catalogue" class="lam-btn lam-btn--ghost">
+              تصفح الموديلات
             </a>
           </div>
         </div>
@@ -197,13 +198,13 @@ const hospitalProducts: HospitalProduct[] = fileNames.map((fn, i) => {
       <!-- Stats bar -->
       <div class="lam-wrap">
         <div class="lam-statsbar">
-          <div class="lam-sitem"><strong>{modelCount}</strong><span>Model</span></div>
+          <div class="lam-sitem"><strong>{modelCount}</strong><span>موديل</span></div>
           <div class="lam-sdiv"></div>
-          <div class="lam-sitem"><strong>A+</strong><span>Hijyen</span></div>
+          <div class="lam-sitem"><strong>A+</strong><span>نظافة</span></div>
           <div class="lam-sdiv"></div>
-          <div class="lam-sitem"><strong>60<sup>dk</sup></strong><span>Yangın</span></div>
+          <div class="lam-sitem"><strong>60<sup>دق</sup></strong><span>مقاومة حريق</span></div>
           <div class="lam-sdiv"></div>
-          <div class="lam-sitem"><strong>CE</strong><span>Sertifikalı</span></div>
+          <div class="lam-sitem"><strong>CE</strong><span>معتمد</span></div>
         </div>
       </div>
     </section>
@@ -211,10 +212,10 @@ const hospitalProducts: HospitalProduct[] = fileNames.map((fn, i) => {
     <!-- ══════════════════════════════════════════
          CATEGORY NAV + PRODUCT GRID
     ══════════════════════════════════════════ -->
-    <section class="lam-sec lam-sec--white" id="katalog" aria-labelledby="catalogue-h2">
+    <section class="lam-sec lam-sec--white" id="catalogue" aria-labelledby="catalogue-h2">
       <div class="lam-wrap">
 
-        <nav class="lam-catnav" aria-label="Kapı kategorileri">
+        <nav class="lam-catnav" aria-label="فئات الأبواب">
           {catNav.map(cat => (
             <a
               href={getLocalizedRoute(cat.slug, lang)}
@@ -227,24 +228,24 @@ const hospitalProducts: HospitalProduct[] = fileNames.map((fn, i) => {
         </nav>
 
         <div class="lam-head">
-          <span class="lam-tag">Hastane Kapı Koleksiyonu</span>
-          <h2 id="catalogue-h2">Hastane ve Sağlık Tesisi Kapı Modelleri</h2>
+          <span class="lam-tag">مجموعة أبواب المستشفيات</span>
+          <h2 id="catalogue-h2">موديلات أبواب المستشفيات والمرافق الصحية</h2>
           <p>
-            {modelCount} hijyenik hastane kapısı modeli — 501–506 serisi. Antibakteriyel, yangın güvenlikli ve ses yalıtımlı.
+            {modelCount} موديلات أبواب مستشفيات صحية — السلسلة 501–506. مضادة للبكتيريا، مقاومة للحريق، ومعزولة صوتيًا.
           </p>
         </div>
 
         <!-- Quote CTA -->
         <div class="lam-quote-row">
           <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--navy">
-            Hastane Proje Teklifi Al
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            احصل على عرض مشروع مستشفى
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
           </a>
-          <span class="lam-quote-note">24 saat içinde yanıt · Min. 50 adet</span>
+          <span class="lam-quote-note">رد خلال 24 ساعة · الحد الأدنى 50 وحدة</span>
         </div>
 
         <!-- Products Grid — SSR rendered for SEO -->
-        <div class="lam-grid lam-grid--wide" id="productsGrid" aria-label="Hastane kapı modelleri">
+        <div class="lam-grid lam-grid--wide" id="productsGrid" aria-label="موديلات أبواب المستشفيات">
           {hospitalProducts.map((product, i) => (
             <article class="lam-card" aria-label={product.label}>
               <div class="lam-card__img">
@@ -275,66 +276,66 @@ const hospitalProducts: HospitalProduct[] = fileNames.map((fn, i) => {
       <div class="lam-wrap lam-content-wrap">
 
         <article class="lam-article">
-          <h2 id="content-h2">Hastane Kapıları Neden Özel Çözüm Gerektirir</h2>
+          <h2 id="content-h2">لماذا تتطلب أبواب المستشفيات حلولًا متخصصة</h2>
 
           <p>
-            <strong>CihanPan Door'un hastane serisi</strong>, standart iç kapıların yetersiz kaldığı sağlık ortamları için özel olarak tasarlanmıştır. Her model, dünya genelinde toptan alıcılar için hijyenik, dayanıklı ve güvenli bir kapı çözümü sunan <em>antibakteriyel PVC/HPL kaplama</em> ile nem dayanımlı MDF özü bir arada sunar.
+            <strong>سلسلة المستشفيات من CihanPan Door</strong> مصممة خصيصًا للبيئات الصحية، حيث لا تكفي الأبواب الداخلية العادية. يجمع كل موديل بين <em>طلاء PVC/HPL المضاد للبكتيريا</em> وقلب MDF مقاوم للرطوبة، ليقدم حل باب صحيًا ومتينًا وآمنًا لمشتري الجملة حول العالم.
           </p>
 
-          <h3>Sağlık Ortamları İçin Temel Özellikler</h3>
+          <h3>الميزات الرئيسية للبيئات الصحية</h3>
           <ul class="lam-checklist">
-            <li><strong>Antibakteriyel Yüzey:</strong> Özel kaplama bakteri üremesini engeller — klinik ortamlarda enfeksiyon kontrolü için kritiktir.</li>
-            <li><strong>Dezenfektan Dayanımı:</strong> Yüzey, hastane sınıfı dezenfektanlarla tekrarlanan temizliğe bozulmadan dayanır.</li>
-            <li><strong>Su Dayanımlı Yapı:</strong> Nem dayanımlı MDF öz, yüksek nemli klinik ortamlarda çarpma yapmaz.</li>
-            <li><strong>Ses Yalıtımı 32–42 dB:</strong> Hasta mahremiyetini korur ve koğuşlar ile muayene odaları arasındaki gürültü iletimini azaltır.</li>
-            <li><strong>Yangın Dayanımı 30–60 dk:</strong> Sağlık tesislerinde güvenli tahliye yolları için EN 1634 yangın dayanım standartlarına uygundur.</li>
-            <li><strong>CE Belgeli:</strong> Tüm modeller CE belgeli ve AB sağlık tesisi gereksinimlerine uygundur.</li>
+            <li><strong>سطح مضاد للبكتيريا:</strong> الطلاء المتخصص يثبط نمو البكتيريا — أمر بالغ الأهمية لمكافحة العدوى في البيئات السريرية.</li>
+            <li><strong>مقاومة المطهرات:</strong> يتحمل السطح التنظيف المتكرر بمطهرات المستشفيات دون أن يتدهور.</li>
+            <li><strong>بناء مقاوم للرطوبة:</strong> قلب MDF المقاوم للرطوبة يمنع التقوس في البيئات السريرية عالية الرطوبة.</li>
+            <li><strong>عزل صوتي 32–42 ديسيبل:</strong> يحمي خصوصية المريض ويقلل من انتقال الضوضاء بين الأجنحة وغرف الاستشارات.</li>
+            <li><strong>مقاومة الحريق 30–60 دقيقة:</strong> يلتزم بمعايير مقاومة الحريق EN 1634 لمسارات إخلاء آمنة في المرافق الصحية.</li>
+            <li><strong>شهادة CE:</strong> جميع الموديلات حاصلة على شهادة CE وتمتثل لمتطلبات مرافق الرعاية الصحية الأوروبية.</li>
           </ul>
 
-          <h3>Sağlık Tesisi Kullanım Alanları</h3>
-          <p>CihanPan Door hastane serisi şu alanlarda belirlenmektedir:</p>
+          <h3>تطبيقات الرعاية الصحية</h3>
+          <p>تُستخدم سلسلة مستشفيات CihanPan Door في:</p>
           <ul class="lam-checklist">
-            <li><strong>Hasta Odaları:</strong> Hasta konforu ve mahremiyeti için hijyenik yüzey ve 32+ dB ses yalıtımı.</li>
-            <li><strong>Ameliyathaneler:</strong> Steril ortamla uyumlu yüzey, hermetik sızdırmazlık seçeneği mevcuttur.</li>
-            <li><strong>Poliklinikler:</strong> Yoğun poliklinik alanları için antibakteriyel koruma ile yüksek trafik dayanıklılığı.</li>
-            <li><strong>Laboratuvarlar:</strong> Sık solvent veya reaktif kullanılan laboratuvarlara uygun kimyasal dirençli yüzey.</li>
-            <li><strong>Yoğun Bakım:</strong> Kesintisiz klinik kullanım için düşük bakımlı yüzeyle maksimum hijyen.</li>
-            <li><strong>Acil Servis:</strong> Yoğun geçişli, darbe yoğun acil ortamlar için darbeye dayanıklı yapı.</li>
+            <li><strong>غرف المرضى:</strong> سطح صحي وعزل صوتي 32+ ديسيبل لراحة المريض وخصوصيته.</li>
+            <li><strong>غرف العمليات:</strong> سطح متوافق مع البيئة المعقمة، مع توفر خيارات الإغلاق المحكم.</li>
+            <li><strong>العيادات والخارجيين:</strong> متانة عالية لحركة المرور مع الحماية المضادة للبكتيريا لمناطق العيادات المزدحمة.</li>
+            <li><strong>المختبرات:</strong> سطح مقاوم للمواد الكيميائية مناسب للمختبرات التي تستخدم المذيبات أو الكواشف بشكل متكرر.</li>
+            <li><strong>وحدات العناية المركزة:</strong> أقصى قدر من النظافة بسطح منخفض الصيانة للاستخدام السريري على مدار الساعة.</li>
+            <li><strong>أقسام الطوارئ:</strong> بناء مقاوم للصدمات لبيئات الطوارئ ذات الحركة الكثيفة.</li>
           </ul>
 
-          <h3>Teknik Özellikler</h3>
+          <h3>المواصفات التقنية</h3>
           <ul class="lam-checklist">
-            <li>Yüzey: Antibakteriyel PVC/HPL kaplama</li>
-            <li>Öz: Nem dayanımlı MDF</li>
-            <li>Standart boyutlar: 70×200 cm · 80×200 cm · 140×200 cm (çift kanat) — özel boyut mevcut</li>
-            <li>Yangın dayanımı: 30–60 dakika (EN 1634)</li>
-            <li>Ses yalıtımı: 32–42 dB</li>
-            <li>Aksesuar: Paslanmaz menteşe, antibakteriyel kol, otomatik kapanma</li>
-            <li>CE & ISO 9001 sertifikalı</li>
-            <li>5 yıl üretici garantisi</li>
+            <li>السطح: طلاء PVC/HPL مضاد للبكتيريا</li>
+            <li>القلب: MDF مقاوم للرطوبة</li>
+            <li>الأحجام القياسية: 70×200 سم · 80×200 سم · 140×200 سم (مصراعين) — أحجام مخصصة متاحة</li>
+            <li>مقاومة الحريق: 30–60 دقيقة (EN 1634)</li>
+            <li>العزل الصوتي: 32–42 ديسيبل</li>
+            <li>الأجهزة: مفصلات من الفولاذ المقاوم للصدأ، مقابض مضادة للبكتيريا، إغلاق تلقائي</li>
+            <li>شهادة CE & ISO 9001</li>
+            <li>ضمان المصنّع 5 سنوات</li>
           </ul>
         </article>
 
         <!-- Sidebar -->
         <aside class="lam-sidebar">
           <div class="lam-kpis">
-            <div class="lam-kpi"><strong>{modelCount}</strong><span>Model</span></div>
-            <div class="lam-kpi"><strong>A+</strong><span>Hijyen</span></div>
-            <div class="lam-kpi"><strong>CE</strong><span>Sertifikalı</span></div>
-            <div class="lam-kpi"><strong>5yr</strong><span>Garanti</span></div>
+            <div class="lam-kpi"><strong>{modelCount}</strong><span>موديل</span></div>
+            <div class="lam-kpi"><strong>A+</strong><span>نظافة</span></div>
+            <div class="lam-kpi"><strong>CE</strong><span>معتمد</span></div>
+            <div class="lam-kpi"><strong>5yr</strong><span>ضمان</span></div>
           </div>
 
           <div class="lam-contact-card">
-            <span class="lam-tag">Sağlık Uzmanı</span>
-            <h3>Proje Teklifi Al</h3>
-            <p>Tesis türünüzü, adeti ve gereksinimlerinizi paylaşın — 24 saat içinde yanıt veririz.</p>
+            <span class="lam-tag">متخصص رعاية صحية</span>
+            <h3>احصل على عرض للمشروع</h3>
+            <p>شارك نوع المنشأة والكمية والمتطلبات — يرد متخصص الرعاية الصحية لدينا خلال 24 ساعة.</p>
             <div class="lam-contact-btns">
               <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--gold lam-btn--sm">
-                İletişim Formu
+                نموذج الاتصال
               </a>
               <a href="https://wa.me/905441690038" target="_blank" rel="noopener" class="lam-btn lam-btn--wa lam-btn--sm">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.89 3.488"/></svg>
-                WhatsApp
+                واتساب
               </a>
               <a href="tel:+905441690038" class="lam-btn lam-btn--outline lam-btn--sm">
                 📞 +90 544 169 00 38
@@ -343,14 +344,14 @@ const hospitalProducts: HospitalProduct[] = fileNames.map((fn, i) => {
           </div>
 
           <div class="lam-features-card">
-            <h3>Sertifikalar ve Hizmetler</h3>
+            <h3>الشهادات والخدمات</h3>
             <ul class="lam-feat-list">
-              <li>🏅 CE & ISO 9001 belgeli</li>
-              <li>🔥 Yangın dayanım sertifikası</li>
-              <li>🧪 Antibakteriyel test raporu</li>
-              <li>🔇 Ses yalıtım sertifikası</li>
-              <li>📐 Özel ölçü ve konfigürasyon</li>
-              <li>🤝 Proje danışmanlığı mevcut</li>
+              <li>🏅 شهادة CE & ISO 9001</li>
+              <li>🔥 شهادة مقاومة الحريق</li>
+              <li>🧪 تقرير اختبار مضاد للبكتيريا</li>
+              <li>🔇 شهادة العزل الصوتي</li>
+              <li>📐 مقاسات وتكوينات مخصصة</li>
+              <li>🤝 استشارة مشاريع متاحة</li>
             </ul>
           </div>
         </aside>
@@ -363,15 +364,15 @@ const hospitalProducts: HospitalProduct[] = fileNames.map((fn, i) => {
     <section class="lam-sec lam-sec--white" aria-labelledby="faq-h2">
       <div class="lam-wrap lam-faq-wrap">
         <div class="lam-head">
-          <span class="lam-tag">SSS</span>
-          <h2 id="faq-h2">Sık Sorulan Sorular</h2>
+          <span class="lam-tag">الأسئلة الشائعة</span>
+          <h2 id="faq-h2">الأسئلة المتكررة</h2>
         </div>
         <div class="lam-faqs">
           {[
-            { q: 'Hastane kapıları neden özel olmalıdır?',                 a: 'Hastane kapıları antibakteriyel, kolay temizlenebilir ve hijyenik olmalıdır. Sık dezenfektan kullanımına dayanıklı, nem geçirmez, ses yalıtımlı ve yangın güvenlikli malzemelerden üretilmelidir.' },
-            { q: 'Hastane kapıları hangi alanlarda kullanılır?',           a: 'Hasta odaları, poliklinikler, ameliyathaneler, laboratuvarlar, röntgen odaları, yoğun bakım, acil servis ve sterilizasyon ünitelerinde kullanılır. Her alan için farklı teknik özelliklere sahip modeller mevcuttur.' },
-            { q: 'Hastane kapıları hangi sertifikalara sahip olmalıdır?',  a: 'CE belgesi, yangın dayanım sertifikası (EN 1634), antibakteriyel test raporu, ses yalıtım sertifikası ve ilgili Sağlık Bakanlığı standartlarına uygunluk gereklidir. Tüm CihanPan Door hastane modelleri CE belgeli ve tam belgelidir.' },
-            { q: 'Toptan siparişlerde MOQ nedir?',                        a: 'Minimum sipariş miktarı 50 adettir. 100+ adet için hacim indirimleri geçerlidir. Büyük sağlık tesisi projeleri için özel ölçü, cam açıklık, otomatik kapanma ve özel etiket çözümleri mevcuttur.' },
+            { q: 'لماذا تحتاج المستشفيات إلى أبواب متخصصة؟',         a: 'يجب أن تلبي أبواب المستشفيات معايير صارمة للنظافة: أسطح مضادة للبكتيريا، ومقاومة للتنظيف المتكرر بالمطهرات، وبناء مقاوم للرطوبة، وعزل صوتي لراحة المرضى، ومقاومة للحريق من أجل السلامة. الأبواب الداخلية العادية لا توفر هذه الخصائص.' },
+            { q: 'أين تُستخدم أبواب المستشفيات؟',                    a: 'تُستخدم في غرف المرضى والعيادات الخارجية وغرف العمليات والمختبرات وغرف الأشعة السينية ووحدات العناية المركزة وأقسام الطوارئ ووحدات التعقيم. تتطلب كل منطقة مواصفات تقنية مختلفة.' },
+            { q: 'ما الشهادات التي يجب أن تحملها أبواب المستشفيات؟', a: 'يجب أن تحمل شهادة CE وشهادة مقاومة الحريق (EN 1634) وتقرير اختبار مضاد للبكتيريا وشهادة عزل صوتي. جميع موديلات CihanPan Door حاصلة على شهادة CE وتأتي مع توثيق كامل.' },
+            { q: 'ما هو الحد الأدنى لكميات الطلب بالجملة؟',          a: 'الحد الأدنى لكمية الطلب 50 وحدة. تُطبق خصومات الحجم من 100 وحدة. تتوفر مقاسات مخصصة وخيارات تزجيج وأنظمة إغلاق تلقائي وحلول ذات علامة تجارية خاصة للمشاريع الصحية الكبيرة.' },
           ].map(item => (
             <details class="lam-faq">
               <summary class="lam-faq__q">
@@ -394,21 +395,21 @@ const hospitalProducts: HospitalProduct[] = fileNames.map((fn, i) => {
       <div class="lam-cta__glow" aria-hidden="true"></div>
       <div class="lam-wrap lam-cta__inner">
         <div class="lam-cta__text">
-          <span class="lam-tag lam-tag--gold">Sağlık Tesisi Tedariki</span>
+          <span class="lam-tag lam-tag--gold">توريد المرافق الصحية</span>
           <h2 id="cta-h2">
-            Hastane Kapısı Toptan<br/>Fiyat Teklifi Alın
+            احصل على عرض أسعار بالجملة<br/>لأبواب المستشفيات
           </h2>
           <p>
-            Tesis türünüzü, kapı modellerini ve adeti paylaşın. 24 saat içinde CE, yangın ve antibakteriyel belgeli fiyat teklifi.
+            شارك نوع منشأتك وموديلات الأبواب والكميات. أسعار مباشرة من المصنع مع توثيق CE والحريق والمضاد للبكتيريا خلال 24 ساعة.
           </p>
         </div>
         <div class="lam-cta__btns">
           <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--gold">
-            Ücretsiz Teklif Al
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            احصل على عرض مجاني
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
           </a>
           <a href={getLocalizedRoute('/urunlerimiz', lang)} class="lam-btn lam-btn--ghost">
-            Tüm Ürünler
+            جميع المنتجات
           </a>
         </div>
       </div>
@@ -436,8 +437,9 @@ const hospitalProducts: HospitalProduct[] = fileNames.map((fn, i) => {
     --radius:   14px;
     --green:    #16a34a;
 
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Tajawal', 'Inter', system-ui, sans-serif;
     color: var(--text);
+    direction: rtl;
   }
 
   /* ── LAYOUT ── */
@@ -449,13 +451,13 @@ const hospitalProducts: HospitalProduct[] = fileNames.map((fn, i) => {
   /* ── SECTION HEAD ── */
   .lam-head { text-align: center; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
   .lam-head h2 {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Tajawal', Georgia, serif;
     font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700;
-    color: var(--text); margin: 0.3rem 0 0.7rem; line-height: 1.2;
+    color: var(--text); margin: 0.3rem 0 0.7rem; line-height: 1.4;
   }
-  .lam-head p { color: var(--slate); font-size: 1rem; max-width: 560px; margin-inline: auto; line-height: 1.7; }
+  .lam-head p { color: var(--slate); font-size: 1rem; max-width: 560px; margin-inline: auto; line-height: 1.9; }
 
-  .lam-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .lam-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
   .lam-tag--gold { color: rgba(201,168,76,0.9); }
 
   /* ── BUTTONS ── */
@@ -463,7 +465,7 @@ const hospitalProducts: HospitalProduct[] = fileNames.map((fn, i) => {
     display: inline-flex; align-items: center; gap: 0.5rem;
     font-size: 0.9rem; font-weight: 600; padding: 0.9rem 1.75rem;
     border-radius: 8px; text-decoration: none; white-space: nowrap;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Tajawal', system-ui, sans-serif;
     transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
     cursor: pointer; border: none;
   }
@@ -493,8 +495,8 @@ const hospitalProducts: HospitalProduct[] = fileNames.map((fn, i) => {
   .lam-hero__glow {
     position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 60% 70% at 80% 30%, rgba(201,168,76,0.09) 0%, transparent 65%),
-      radial-gradient(ellipse 50% 80% at 10% 70%, rgba(30,74,138,0.3) 0%, transparent 60%);
+      radial-gradient(ellipse 60% 70% at 20% 30%, rgba(201,168,76,0.09) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 80% at 90% 70%, rgba(30,74,138,0.3) 0%, transparent 60%);
   }
   .lam-hero__inner {
     position: relative; z-index: 1;
@@ -510,17 +512,17 @@ const hospitalProducts: HospitalProduct[] = fileNames.map((fn, i) => {
   .lam-breadcrumb span[aria-current] { color: var(--gold); }
   .lam-eyebrow {
     display: inline-flex; align-items: center; gap: 0.75rem;
-    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em;
+    color: var(--gold); margin-bottom: 1.2rem;
   }
   .lam-eyebrow__line { display: block; width: 28px; height: 1px; background: var(--gold); opacity: 0.5; flex-shrink: 0; }
   .lam-hero__h1 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(2.2rem, 4.5vw, 3.6rem); font-weight: 900;
-    color: var(--white); line-height: 1.1; margin: 0 0 1.2rem;
+    font-family: 'Tajawal', Georgia, serif;
+    font-size: clamp(2rem, 4.5vw, 3.4rem); font-weight: 900;
+    color: var(--white); line-height: 1.3; margin: 0 0 1.2rem;
   }
   .lam-hero__h1 em { font-style: normal; color: var(--gold); }
-  .lam-hero__lead { font-size: 1.05rem; color: rgba(255,255,255,0.65); line-height: 1.8; max-width: 560px; margin: 0 0 1.5rem; }
+  .lam-hero__lead { font-size: 1.05rem; color: rgba(255,255,255,0.65); line-height: 1.9; max-width: 560px; margin: 0 0 1.5rem; }
   .lam-hero__tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
   .lam-htag {
     display: inline-block; padding: 0.3rem 0.85rem;
@@ -538,14 +540,12 @@ const hospitalProducts: HospitalProduct[] = fileNames.map((fn, i) => {
     padding: 1.5rem 2rem; margin-top: 2rem;
   }
   .lam-sitem { display: flex; flex-direction: column; flex: 1; min-width: 80px; padding-inline: 1rem; text-align: center; }
-  .lam-sitem:first-child { padding-left: 0; }
-  .lam-sitem:last-child  { padding-right: 0; }
   .lam-sitem strong {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Tajawal', Georgia, serif;
     font-size: 1.6rem; font-weight: 900; color: var(--gold); line-height: 1; display: block;
   }
   .lam-sitem strong sup { font-size: 0.7em; }
-  .lam-sitem span { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 0.3rem; display: block; }
+  .lam-sitem span { font-size: 0.72rem; letter-spacing: 0.03em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 0.3rem; display: block; }
   .lam-sdiv { width: 1px; height: 32px; background: rgba(255,255,255,0.12); flex-shrink: 0; }
 
   /* ── CATEGORY NAV ── */
@@ -557,7 +557,7 @@ const hospitalProducts: HospitalProduct[] = fileNames.map((fn, i) => {
   .lam-catbtn {
     background: var(--white); color: var(--body); border: 1.5px solid var(--bdr);
     padding: 0.5rem 1.1rem; border-radius: 30px;
-    font-size: 0.875rem; font-weight: 600; font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.875rem; font-weight: 600; font-family: 'Tajawal', system-ui, sans-serif;
     text-decoration: none; transition: all 0.2s; white-space: nowrap;
   }
   .lam-catbtn:hover { border-color: var(--navy); color: var(--navy); }
@@ -594,47 +594,47 @@ const hospitalProducts: HospitalProduct[] = fileNames.map((fn, i) => {
   .lam-card__body { padding: 0.75rem 1rem 1rem; }
   .lam-card__name {
     font-size: 0.82rem; font-weight: 600;
-    color: var(--text); text-align: center; line-height: 1.4; margin: 0 0 0.5rem;
+    color: var(--text); text-align: center; line-height: 1.5; margin: 0 0 0.5rem;
   }
   .lam-card__badge {
     display: block; text-align: center;
     font-size: 0.72rem; font-weight: 600; color: var(--gold);
-    letter-spacing: 0.05em;
+    letter-spacing: 0.02em;
   }
 
   /* ── SEO CONTENT ── */
   .lam-content-wrap { display: grid; grid-template-columns: 1fr 320px; gap: 4rem; align-items: start; }
   .lam-article { background: var(--white); padding: 2.5rem; border-radius: var(--radius); border: 1px solid var(--bdr); }
   .lam-article h2 {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Tajawal', Georgia, serif;
     font-size: clamp(1.6rem, 2.5vw, 2.1rem); font-weight: 700;
-    color: var(--text); margin: 0 0 1.25rem; line-height: 1.2;
+    color: var(--text); margin: 0 0 1.25rem; line-height: 1.4;
   }
-  .lam-article h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; font-weight: 700; color: var(--text); margin: 2rem 0 0.75rem; }
-  .lam-article p  { font-size: 0.95rem; color: var(--body); line-height: 1.8; margin: 0 0 1rem; }
+  .lam-article h3 { font-family: 'Tajawal', Georgia, serif; font-size: 1.2rem; font-weight: 700; color: var(--text); margin: 2rem 0 0.75rem; }
+  .lam-article p  { font-size: 0.95rem; color: var(--body); line-height: 1.9; margin: 0 0 1rem; }
   .lam-article strong { color: var(--navy); }
 
   .lam-checklist { list-style: none; padding: 0; margin: 0 0 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; }
-  .lam-checklist li { font-size: 0.925rem; color: var(--body); line-height: 1.6; padding-left: 1.5rem; position: relative; }
-  .lam-checklist li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+  .lam-checklist li { font-size: 0.925rem; color: var(--body); line-height: 1.7; padding-right: 1.5rem; position: relative; }
+  .lam-checklist li::before { content: '✓'; position: absolute; right: 0; color: var(--green); font-weight: 700; }
 
   /* Sidebar */
   .lam-sidebar { display: flex; flex-direction: column; gap: 1.5rem; position: sticky; top: 90px; }
   .lam-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--bdr); border: 1px solid var(--bdr); border-radius: var(--radius); overflow: hidden; }
   .lam-kpi { background: var(--white); padding: 1.25rem; text-align: center; transition: background 0.2s; }
   .lam-kpi:hover { background: var(--cream); }
-  .lam-kpi strong { display: block; font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; font-weight: 900; color: var(--navy); line-height: 1; margin-bottom: 0.3rem; }
+  .lam-kpi strong { display: block; font-family: 'Tajawal', Georgia, serif; font-size: 1.5rem; font-weight: 900; color: var(--navy); line-height: 1; margin-bottom: 0.3rem; }
   .lam-kpi strong sup { font-size: 0.65em; }
-  .lam-kpi span { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); }
+  .lam-kpi span { font-size: 0.68rem; letter-spacing: 0.03em; text-transform: uppercase; color: var(--slate); }
 
   .lam-contact-card { background: var(--navy); border-radius: var(--radius); padding: 1.75rem; }
   .lam-contact-card .lam-tag { color: rgba(201,168,76,0.85); }
-  .lam-contact-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; font-weight: 700; color: var(--white); margin: 0.3rem 0 0.6rem; }
-  .lam-contact-card p  { font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.6; margin: 0 0 1.25rem; }
+  .lam-contact-card h3 { font-family: 'Tajawal', Georgia, serif; font-size: 1.2rem; font-weight: 700; color: var(--white); margin: 0.3rem 0 0.6rem; }
+  .lam-contact-card p  { font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.7; margin: 0 0 1.25rem; }
   .lam-contact-btns { display: flex; flex-direction: column; gap: 0.6rem; }
 
   .lam-features-card { background: var(--white); border: 1px solid var(--bdr); border-radius: var(--radius); padding: 1.5rem; }
-  .lam-features-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 1rem; }
+  .lam-features-card h3 { font-family: 'Tajawal', Georgia, serif; font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 1rem; }
   .lam-feat-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; }
   .lam-feat-list li { font-size: 0.9rem; color: var(--body); }
 
@@ -653,24 +653,24 @@ const hospitalProducts: HospitalProduct[] = fileNames.map((fn, i) => {
   .lam-faq__q::-webkit-details-marker { display: none; }
   .lam-faq__arrow { flex-shrink: 0; color: var(--slate); transition: transform 0.25s; }
   .lam-faq[open] .lam-faq__arrow { transform: rotate(180deg); color: var(--gold); }
-  .lam-faq__a { padding: 1rem 1.5rem 1.25rem; font-size: 0.925rem; color: var(--body); line-height: 1.75; margin: 0; border-top: 1px solid var(--bdr); }
+  .lam-faq__a { padding: 1rem 1.5rem 1.25rem; font-size: 0.925rem; color: var(--body); line-height: 1.9; margin: 0; border-top: 1px solid var(--bdr); }
 
   /* ── CTA BAND ── */
   .lam-cta { position: relative; background: var(--navy); overflow: hidden; padding: clamp(4rem, 8vw, 6rem) 0; }
   .lam-cta__glow {
     position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 55% 80% at 105% 50%, rgba(201,168,76,0.14) 0%, transparent 65%),
+      radial-gradient(ellipse 55% 80% at -5% 50%, rgba(201,168,76,0.14) 0%, transparent 65%),
       linear-gradient(140deg, #08192e 0%, var(--navy) 100%);
     pointer-events: none;
   }
   .lam-cta__inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap; }
   .lam-cta__text h2 {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Tajawal', Georgia, serif;
     font-size: clamp(1.75rem, 3vw, 2.4rem); font-weight: 700;
-    color: var(--white); margin: 0.35rem 0 0.7rem; line-height: 1.2; white-space: pre-line;
+    color: var(--white); margin: 0.35rem 0 0.7rem; line-height: 1.4; white-space: pre-line;
   }
-  .lam-cta__text p { color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.7; max-width: 420px; margin: 0; }
+  .lam-cta__text p { color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.8; max-width: 420px; margin: 0; }
   .lam-cta__btns { display: flex; gap: 1rem; flex-wrap: wrap; flex-shrink: 0; }
 
   /* ── RESPONSIVE ── */

@@ -1,69 +1,50 @@
 ---
-// src/pages/tr/elitpan-kapilar.astro
+// src/pages/ar/otel-kapilari.astro
 import I18nLayout from '../../layouts/I18nLayout.astro';
 import I18nHeader from '../../components/I18nHeader.astro';
 import I18nFooter from '../../components/I18nFooter.astro';
-import { getLocalizedRoute } from '../../i18n/utils';
+import { getLangFromUrl, useTranslations, getLocalizedRoute } from '../../i18n/utils';
 
-const lang = 'tr';
+const lang  = 'ar';
+const t     = useTranslations(lang);
 
 const baseUrl    = 'https://cihanpandoor.netlify.app';
-const pageUrl    = baseUrl;
-const currentUrl = `${pageUrl}/tr/elitpan-kapilar`;
+const pageUrl    = `${baseUrl}/ar`;
+const currentUrl = `${pageUrl}/otel-kapilari`;
 
 // ── FILE LIST ─────────────────────────────────────────────────────────
 const fileNames = [
-  "CihanpanDoor-Elitpan-Serisi-301.webp",
-  "CihanpanDoor-Elitpan-Serisi-302.webp",
-  "CihanpanDoor-Elitpan-Serisi-303.webp",
-  "CihanpanDoor-Elitpan-Serisi-304.webp",
-  "CihanpanDoor-Elitpan-Serisi-305.webp",
-  "CihanpanDoor-Elitpan-Serisi-306.webp",
-  "CihanpanDoor-Elitpan-Serisi-307.webp",
-  "CihanpanDoor-Elitpan-Serisi-308.webp",
-  "CihanpanDoor-Elitpan-Serisi-309.webp",
-  "CihanpanDoor-Elitpan-Serisi-310.webp",
-  "CihanpanDoor-Elitpan-Serisi-311.webp",
-  "CihanpanDoor-Elitpan-Serisi-312.webp",
-  "CihanpanDoor-Elitpan-Serisi-313.webp",
-  "CihanpanDoor-Elitpan-Serisi-314.webp",
-  "CihanpanDoor-Elitpan-Serisi-315.webp",
-  "CihanpanDoor-Elitpan-Serisi-316.webp",
-  "CihanpanDoor-Elitpan-Serisi-317.webp",
-  "CihanpanDoor-Elitpan-Serisi-318.webp",
-  "CihanpanDoor-Elitpan-Serisi-319.webp",
-  "CihanpanDoor-Elitpan-Serisi-320.webp",
-  "CihanpanDoor-Elitpan-Serisi-321.webp",
-  "CihanpanDoor-Elitpan-Serisi-322.webp",
-  "CihanpanDoor-Elitpan-Serisi-323.webp",
-  "CihanpanDoor-Elitpan-Serisi-324.webp",
-  "CihanpanDoor-Elitpan-Serisi-325.webp",
-  "CihanpanDoor-Elitpan-Serisi-326.webp",
+  "CihanpanDoor-Otel-Serisi-401-Italyan-Ceviz.webp",
+  "CihanpanDoor-Otel-Serisi-402-Kestane.webp",
+  "CihanpanDoor-Otel-Serisi-403-Tik.webp",
+  "CihanpanDoor-Otel-Serisi-404-Yildiz-Metal-Antrasit.webp",
+  "CihanpanDoor-Otel-Serisi-405-Vision-Gri.webp",
+  "CihanpanDoor-Otel-Serisi-406-Dark-Santana.webp",
 ];
 
 const modelCount = fileNames.length;
 
 // ── SCHEMA ────────────────────────────────────────────────────────────
-const elitpanSchema = {
+const hotelSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": `Elitpan UV İç Oda Kapıları — ${modelCount}+ Model | CihanPan Door`,
-  "description": `Kayseri'den toptan UV kaplı Elitpan iç oda kapıları. Antibakteriyel, çizilmez, ${modelCount}+ model, CE belgeli.`,
+  "name": "أبواب الفنادق والضيافة — السلسلة المميزة | CihanPan Door",
+  "description": "أبواب فنادق فاخرة بالجملة من قيصري، تركيا. تشطيبات لامينيت فاخرة، عازلة للصوت، مقاومة للحريق، شهادة CE.",
   "url": currentUrl,
-  "inLanguage": "tr-TR",
+  "inLanguage": "ar-SA",
   "mainEntity": {
     "@type": "ItemList",
-    "name": "Elitpan Kapı Modelleri",
+    "name": "موديلات أبواب الفنادق",
     "numberOfItems": modelCount,
     "itemListElement": [
       {
         "@type": "Product",
-        "name": "Elitpan UV İç Oda Kapısı",
-        "description": "UV kaplı MDF özlü iç kapı. Antibakteriyel, çizilmez, su dayanımlı. CE belgeli, 5 yıl garanti.",
+        "name": "باب فندقي — السلسلة المميزة",
+        "description": "باب فندقي لامينيت فاخر. عازل للصوت لراحة الضيوف، مقاوم للحريق، شهادة CE. متين للاستخدام اليومي المكثف.",
         "brand": { "@type": "Brand", "name": "CihanPan Door" },
         "manufacturer": { "@type": "Organization", "name": "CihanPan Door", "url": baseUrl },
-        "material": "UV Kaplama / MDF",
-        "category": "İç Oda Kapısı",
+        "material": "لامينيت فاخر / MDF",
+        "category": "باب فندقي",
         "offers": {
           "@type": "AggregateOffer",
           "url": currentUrl,
@@ -88,78 +69,72 @@ const elitpanSchema = {
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": [
-    { "@type": "Question", "name": "Elitpan kapı nedir?", "acceptedAnswer": { "@type": "Answer", "text": "Elitpan kapılar, masif MDF özlü UV kür kaplama ile üretilen premium iç kapılardır. UV finish, antibakteriyel, yüksek çizilmez ve su dayanımlı yüzey sağlar — hastane, otel, ticari bina ve üst segment konutlar için idealdir." }},
-    { "@type": "Question", "name": "Elitpan ile Laminoks arasındaki fark nedir?", "acceptedAnswer": { "@type": "Answer", "text": "Her iki seri de masif MDF öz kullanır. Elitpan kapılar olağanüstü parlaklık, renk dayanımı ve antibakteriyel özellik sunan UV kür kaplama kullanır. Laminoks kapılar üstün çizilme ve darbe direnci olan HPL laminat kullanır. Elitpan, premium parlaklık ve hijyen öncelikli olduğunda tercih edilir." }},
-    { "@type": "Question", "name": "Elitpan kapılar nemli ortamlara uygun mu?", "acceptedAnswer": { "@type": "Answer", "text": "Evet. UV kaplama ve nem dayanımlı MDF öz, Elitpan kapıları banyo, mutfak ve orta nemli iç mekanlara uygun hale getirir. Çok nemli ortamlar için kapı kasasına ek sızdırmazlık önerilir." }},
-    { "@type": "Question", "name": "Toptan siparişlerde MOQ nedir?", "acceptedAnswer": { "@type": "Answer", "text": "Minimum sipariş miktarı 50 adettir. 200+ adet için hacim indirimleri geçerlidir. Büyük toplu siparişler için özel ölçü, cam açıklık ve özel etiket seçenekleri mevcuttur." }},
-  ]
+  "mainEntity": []
 };
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": pageUrl },
-    { "@type": "ListItem", "position": 2, "name": "Ürünler",   "item": `${pageUrl}/urunlerimiz` },
-    { "@type": "ListItem", "position": 3, "name": "Elitpan Kapılar", "item": currentUrl },
+    { "@type": "ListItem", "position": 1, "name": "الرئيسية",       "item": pageUrl },
+    { "@type": "ListItem", "position": 2, "name": "المنتجات",       "item": `${pageUrl}/urunlerimiz` },
+    { "@type": "ListItem", "position": 3, "name": "أبواب الفنادق",  "item": currentUrl },
   ]
 };
 
-const allSchemas = [elitpanSchema, faqSchema, breadcrumbSchema];
+const allSchemas = [hotelSchema, faqSchema, breadcrumbSchema];
 
 // ── CATEGORY NAV ──────────────────────────────────────────────────────
 const catNav = [
-  { slug: '/urunlerimiz',               label: 'Tümü',              active: false },
-  { slug: '/pvc-kapilar',               label: 'PVC Kapılar',        active: false },
-  { slug: '/laminoks-kapilar',          label: 'Laminoks Kapılar',   active: false },
-  { slug: '/elitpan-kapilar',           label: 'Elitpan Kapılar',    active: true  },
-  { slug: '/hastane-kapilari',          label: 'Hastane Kapıları',   active: false },
-  { slug: '/otel-kapilari',             label: 'Otel Kapıları',      active: false },
-  { slug: '/yangina-dayanikli-kapilar', label: 'Yangın Kapıları',    active: false },
+  { slug: '/urunlerimiz',               label: 'الكل',                active: false },
+  { slug: '/pvc-kapilar',               label: 'أبواب PVC',           active: false },
+  { slug: '/laminoks-kapilar',          label: 'أبواب لامينوكس',      active: false },
+  { slug: '/elitpan-doors',             label: 'أبواب إليتبان',       active: false },
+  { slug: '/hospital-doors',            label: 'أبواب المستشفيات',    active: false },
+  { slug: '/otel-kapilari',             label: 'أبواب الفنادق',        active: true  },
+  { slug: '/yangina-dayanikli-kapilar', label: 'الأبواب المقاومة للحريق', active: false },
 ];
 
-// ── SSR PRODUCT LIST (for SEO) ────────────────────────────────────────
-interface ElitpanProduct {
+// ── SSR PRODUCT LIST ──────────────────────────────────────────────────
+interface HotelProduct {
   id: string;
   model: string;
+  color: string;
   label: string;
+  badge: string;
   image: string;
   alt: string;
 }
 
-const elitpanProducts: ElitpanProduct[] = fileNames.map((fn) => {
-  const model = fn.replace('.webp', '').split('-').pop()!;
+const hotelProducts: HotelProduct[] = fileNames.map((fn, i) => {
+  const parts = fn.replace('.webp', '').split('-');
+  const model = parts[3];
+  const color = parts.slice(4).join(' ');
   return {
-    id:    `elitpan-${model}`,
+    id:    `hotel-${model}`,
     model,
-    label: `Elitpan ${model}`,
-    image: `/assets/img/elitpan-doors/${fn}`,
-    alt:   `CihanPan Door Elitpan Serisi ${model} — UV İç Kapı`,
+    color,
+    label: `Hotel ${model} · ${color}`,
+    badge: i < 3 ? 'مميز · تصميم أنيق' : 'فاخر · تصميم حصري',
+    image: `/assets/img/hotel-doors/${fn}`,
+    alt:   `CihanPan Door سلسلة الفنادق ${model} ${color} — باب ضيافة فاخر`,
   };
 });
-
-const faqItems = [
-  { q: 'Elitpan kapı nedir?',                          a: 'Elitpan kapılar, masif MDF özlü UV kür kaplama ile üretilen premium iç kapılardır. UV finish, antibakteriyel, yüksek çizilmez ve su dayanımlı yüzey sağlar — hastane, otel, ticari bina ve üst segment konutlar için idealdir.' },
-  { q: 'Elitpan ile Laminoks arasındaki fark nedir?',  a: 'Her iki seri de masif MDF öz kullanır. Elitpan kapılar olağanüstü parlaklık, renk dayanımı ve antibakteriyel özellik sunan UV kür kaplama kullanır. Laminoks kapılar üstün çizilme ve darbe direnci olan HPL laminat kullanır. Elitpan, premium parlaklık ve hijyen öncelikli olduğunda tercih edilir.' },
-  { q: 'Elitpan kapılar nemli ortamlara uygun mu?',    a: 'Evet. UV kaplama ve nem dayanımlı MDF öz, Elitpan kapıları banyo, mutfak ve orta nemli iç mekanlara uygun hale getirir. Çok nemli ortamlar için kapı kasasına ek sızdırmazlık önerilir.' },
-  { q: 'Toptan siparişlerde MOQ nedir?',               a: 'Minimum sipariş miktarı 50 adettir. 200+ adet için hacim indirimleri geçerlidir. Büyük toplu siparişler için özel ölçü, cam açıklık ve özel etiket seçenekleri mevcuttur.' },
-];
 ---
 
 <I18nLayout
-  title={`Elitpan UV İç Oda Kapıları — ${modelCount}+ Model | Toptan | CihanPan Door`}
-  description={`Kayseri'den toptan UV kaplı Elitpan kapılar. Antibakteriyel MDF özlü, ${modelCount}+ model, CE sertifikalı.`}
-  keywords="elitpan kapı, UV kaplı iç kapı, antibakteriyel kapı, toptan elitpan kayseri, CE belgeli kapı"
+  title="أبواب الفنادق والضيافة — السلسلة المميزة | بالجملة | CihanPan Door"
+  description="أبواب فنادق فاخرة بالجملة من قيصري، تركيا. لامينيت فاخر، عازلة للصوت، مقاومة للحريق، شهادة CE وISO 9001."
+  keywords="أبواب فنادق بالجملة تركيا، مصنع أبواب ضيافة قيصري، باب فندقي مميز شهادة CE، باب فندقي عازل للصوت"
   canonical={currentUrl}
   schema={allSchemas}
-  ogTitle={`Elitpan Kapılar — ${modelCount}+ Model | CihanPan Door`}
-  ogDescription="Antibakteriyel UV kaplı Elitpan kapılar. Fabrikadan doğrudan."
-  ogImage="/assets/img/og/elitpan-doors-og.webp"
+  ogTitle="أبواب الفنادق — السلسلة المميزة | CihanPan Door"
+  ogDescription="أبواب فنادق فاخرة عازلة للصوت ومقاومة للحريق. مباشرة من المصنع."
+  ogImage="/assets/img/og/hotel-doors-og.webp"
 >
   <I18nHeader />
 
-  <main class="lam" id="main-content">
+  <main class="lam" id="main-content" dir="rtl">
 
     <!-- ══════════════════════════════════════════
          HERO
@@ -171,38 +146,38 @@ const faqItems = [
       </div>
       <div class="lam-wrap lam-hero__inner">
         <div>
-          <nav class="lam-breadcrumb" aria-label="Breadcrumb">
-            <a href={pageUrl}>Ana Sayfa</a>
+          <nav class="lam-breadcrumb" aria-label="مسار التنقل">
+            <a href={pageUrl}>الرئيسية</a>
             <span aria-hidden="true">›</span>
-            <a href={getLocalizedRoute('/urunlerimiz', lang)}>Ürünler</a>
+            <a href={getLocalizedRoute('/urunlerimiz', lang)}>المنتجات</a>
             <span aria-hidden="true">›</span>
-            <span aria-current="page">Elitpan Kapılar</span>
+            <span aria-current="page">أبواب الفنادق</span>
           </nav>
 
           <span class="lam-eyebrow">
             <span class="lam-eyebrow__line"></span>
-            Premium UV Koleksiyonu · {modelCount}+ Model
+            مجموعة الضيافة · السلسلة المميزة
           </span>
           <h1 class="lam-hero__h1" id="lam-h1">
-            <em>Elitpan İç Oda Kapıları</em><br/>UV Kaplı · Antibakteriyel · Premium Görünüm
+            <em>أبواب الفنادق والضيافة</em><br/>تشطيب فاخر · عازل للصوت · شهادة CE
           </h1>
           <p class="lam-hero__lead">
-            Kayseri fabrikasından toptan Elitpan kapılar. Masif MDF özlü UV kaplama — antibakteriyel, su dayanımlı ve çizilmez performans. CE ve ISO 9001 sertifikalı.
+            أبواب فنادق بالجملة مباشرة من مصنع قيصري، تركيا. تشطيبات لامينيت فاخرة على قلب MDF متين — مصممة لبيئات الضيافة ذات الحركة العالية. شهادة CE وISO 9001. الحد الأدنى للطلب 50 وحدة.
           </p>
           <div class="lam-hero__tags">
-            <span class="lam-htag">✓ UV Kaplı MDF Öz</span>
-            <span class="lam-htag">✓ {modelCount}+ Model</span>
+            <span class="lam-htag">✓ تشطيب لامينيت فاخر</span>
+            <span class="lam-htag">✓ عزل صوتي 32–42 dB</span>
+            <span class="lam-htag">✓ مقاوم للحريق</span>
             <span class="lam-htag">✓ CE & ISO 9001</span>
-            <span class="lam-htag">✓ Antibakteriyel</span>
-            <span class="lam-htag">✓ Min. 50 Adet</span>
+            <span class="lam-htag">✓ MOQ 50</span>
           </div>
           <div class="lam-hero__actions">
             <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--gold">
-              Ücretsiz Teklif Al
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              احصل على عرض سعر مجاني
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
             </a>
             <a href="#catalogue" class="lam-btn lam-btn--ghost">
-              Modelleri Gör
+              تصفح الموديلات
             </a>
           </div>
         </div>
@@ -211,13 +186,13 @@ const faqItems = [
       <!-- Stats bar -->
       <div class="lam-wrap">
         <div class="lam-statsbar">
-          <div class="lam-sitem"><strong>{modelCount}<sup>+</sup></strong><span>Model</span></div>
+          <div class="lam-sitem"><strong>{modelCount}</strong><span>موديل</span></div>
           <div class="lam-sdiv"></div>
-          <div class="lam-sitem"><strong>UV</strong><span>Kaplama</span></div>
+          <div class="lam-sitem"><strong>A+</strong><span>جودة</span></div>
           <div class="lam-sdiv"></div>
-          <div class="lam-sitem"><strong>CE</strong><span>Sertifikalı</span></div>
+          <div class="lam-sitem"><strong>42<sup>dB</sup></strong><span>صوت</span></div>
           <div class="lam-sdiv"></div>
-          <div class="lam-sitem"><strong>Min. 50</strong><span>Adet</span></div>
+          <div class="lam-sitem"><strong>CE</strong><span>معتمد</span></div>
         </div>
       </div>
     </section>
@@ -228,7 +203,7 @@ const faqItems = [
     <section class="lam-sec lam-sec--white" id="catalogue" aria-labelledby="catalogue-h2">
       <div class="lam-wrap">
 
-        <nav class="lam-catnav" aria-label="Kapı kategorileri">
+        <nav class="lam-catnav" aria-label="فئات الأبواب">
           {catNav.map(cat => (
             <a
               href={getLocalizedRoute(cat.slug, lang)}
@@ -241,25 +216,27 @@ const faqItems = [
         </nav>
 
         <div class="lam-head">
-          <span class="lam-tag">Elitpan Kapı Koleksiyonu</span>
-          <h2 id="catalogue-h2">Elitpan Kapı Modelleri</h2>
+          <span class="lam-tag">مجموعة أبواب الفنادق</span>
+          <h2 id="catalogue-h2">
+            موديلات أبواب الفنادق والضيافة
+          </h2>
           <p>
-            Tüm Elitpan UV kapı koleksiyonunu inceleyin — {modelCount} model, 301–326 serisi. Her model birden fazla yüzey varyantında mevcuttur.
+            {`${modelCount} موديلات أبواب فنادق مميزة — السلسلة 401–406. تشطيبات بنقوش خشبية فاخرة وعصرية مصممة لمشاريع الضيافة الراقية.`}
           </p>
         </div>
 
         <!-- Quote CTA -->
         <div class="lam-quote-row">
           <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--navy">
-            Toptan Teklif Al
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            طلب عرض سعر لمشروع فندقي
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
           </a>
-          <span class="lam-quote-note">24 saat içinde yanıt · Min. 50 adet</span>
+          <span class="lam-quote-note">رد خلال 24 ساعة · الحد الأدنى 50 وحدة</span>
         </div>
 
         <!-- Products Grid — SSR rendered for SEO -->
-        <div class="lam-grid" id="productsGrid" aria-label="Elitpan kapı modelleri">
-          {elitpanProducts.map((product, i) => (
+        <div class="lam-grid lam-grid--wide" id="productsGrid" aria-label="موديلات أبواب الفنادق">
+          {hotelProducts.map((product, i) => (
             <article class="lam-card" aria-label={product.label}>
               <div class="lam-card__img">
                 <img
@@ -267,11 +244,14 @@ const faqItems = [
                   alt={product.alt}
                   width="240"
                   height="320"
-                  loading={i < 8 ? 'eager' : 'lazy'}
+                  loading={i < 4 ? 'eager' : 'lazy'}
                   decoding="async"
                 />
               </div>
-              <p class="lam-card__name">{product.label}</p>
+              <div class="lam-card__body">
+                <p class="lam-card__name">{product.label}</p>
+                <span class="lam-card__badge">{product.badge}</span>
+              </div>
             </article>
           ))}
         </div>
@@ -286,79 +266,84 @@ const faqItems = [
       <div class="lam-wrap lam-content-wrap">
 
         <article class="lam-article">
-          <h2 id="content-h2">Elitpan Kapı Nedir? Neden UV Kaplı MDF Tercih Edilir?</h2>
+          <h2 id="content-h2">
+            ما الذي يجعل الباب الفندقي متميزاً؟ نهج CihanPan
+          </h2>
 
           <p>
-            <strong>Elitpan kapılar</strong>, masif MDF özlü, yüzeye ultraviyole ışık altında direkt bağlanan <em>UV kür kaplama</em> ile üretilen iç kapılardır. <strong>CihanPan Door</strong> olarak Kayseri fabrikamızda {modelCount} modellik tam Elitpan koleksiyonunu toptan satış için üretiyoruz.
+            تجمع <strong>سلسلة الفنادق من CihanPan Door</strong> بين فهم متطلبات تصميم الضيافة ودقة التصنيع في مصنعنا بقيصري. كل موديل مبني على قلب MDF متين مغطى بـ<em>تشطيب لامينيت فاخر</em> — مصمم لتحمل ملايين دورات الفتح والإغلاق مع الحفاظ على المظهر الراقي طوال عمر المنشأة.
           </p>
 
-          <h3>Elitpan Kapının Avantajları</h3>
+          <h3>الميزات الرئيسية لبيئات الضيافة</h3>
           <ul class="lam-checklist">
-            <li><strong>Antibakteriyel Yüzey:</strong> UV kür, gözeneksiz, antibakteriyel bir yüzey oluşturur — hastane, klinik ve gıda tesisleri için zorunludur.</li>
-            <li><strong>Üstün Renk Dayanımı:</strong> UV bağlı pigmentler, standart laminatlara kıyasla güneş ışığına ve temizlik maddelerine karşı solmaz.</li>
-            <li><strong>Çizilmez ve Darbeye Dayanıklı:</strong> Sertleştirilmiş UV yüzey, ticari ortamlarda günlük kullanıma, troleylere ve keskin nesnelere dayanır.</li>
-            <li><strong>Su Dayanımlı:</strong> Nem dayanımlı MDF öz ve kapalı UV kaplama, banyo ve mutfaklarda çarpma yapmaz.</li>
-            <li><strong>Kolay Bakım:</strong> Gözeneksiz yüzey temizlenir — ürün ömrü boyunca boya veya vernikleme gerekmez.</li>
-            <li><strong>Yüksek Parlaklık Estetiği:</strong> UV kaplama, lüks otel ve premium konutlarda iç mekanları yükselten derin, tutarlı parlaklık sağlar.</li>
+            <li><strong>تشطيب لامينيت فاخر:</strong> تشطيبات بنقوش خشبية غنية وعصرية — جوز إيطالي، كستناء، تيك، رمادي فيجن والمزيد — ترفع جماليات الممرات والغرف.</li>
+            <li><strong>عزل صوتي 32–42 dB:</strong> يحمي خصوصية الضيوف ويقلل ضجيج الممرات — عامل حاسم للتقييمات الإيجابية وتكرار الحجوزات.</li>
+            <li><strong>متانة للاستخدام المكثف:</strong> قلب MDF والتشطيب اللامينيت يتحملان الاستخدام المستمر النموذجي في الفنادق ذات معدلات الإشغال العالية.</li>
+            <li><strong>الامتثال لسلامة الحريق:</strong> خيارات مقاومة للحريق متاحة لتلبية لوائح البناء في تركيا والاتحاد الأوروبي والشرق الأوسط.</li>
+            <li><strong>سهولة الصيانة:</strong> التشطيب اللامينيت سهل التنظيف — لا يحتاج إلى إعادة طلاء دورية، مما يقلل وقت توقف التدبير المنزلي.</li>
+            <li><strong>جاهز للقفل الإلكتروني:</strong> تحضير مسبق لأنظمة القفل الإلكتروني بطاقة المفتاح وRFID متاح في جميع موديلات سلسلة الفنادق.</li>
           </ul>
 
-          <h3>İdeal Kullanım Alanları</h3>
-          <p>Elitpan kapılar hijyen, estetik ve dayanıklılığın buluştuğu her yerde üstündür:</p>
+          <h3>تطبيقات الضيافة</h3>
+          <p>تُستخدم سلسلة فنادق CihanPan Door في:</p>
           <ul class="lam-checklist">
-            <li><strong>Hastane ve Sağlık:</strong> Antibakteriyel yüzey, klinik ortamların en katı hijyen standartlarını karşılar.</li>
-            <li><strong>Otel ve Konaklama:</strong> Premium parlak yüzey ve dayanıklı yüzey, minimum bakımla yoğun misafir trafiğini kaldırır.</li>
-            <li><strong>Ticari Binalar:</strong> Ofis, perakende alanları ve kamu binaları için modern parlak estetik.</li>
-            <li><strong>Konut Islak Alanları:</strong> Su dayanımlı ve antibakteriyel özellikler Elitpan'ı ideal banyo ve mutfak kapısı yapar.</li>
+            <li><strong>غرف الضيوف في الفنادق:</strong> تشطيب فاخر وعزل صوتي لتجربة ضيوف متميزة في المنشآت من 3 إلى 5 نجوم.</li>
+            <li><strong>الفنادق البوتيكية:</strong> تشطيبات بنقوش خشبية مميزة تكمل مفاهيم التصميم الداخلي الفريدة.</li>
+            <li><strong>الشقق الفندقية:</strong> حل متين للإقامة طويلة المدى مع إشغال يومي مرتفع.</li>
+            <li><strong>المنتجعات السياحية:</strong> حلول توريد بالجملة للمنشآت الكبيرة التي تحتاج إلى مئات الأبواب المتطابقة.</li>
+            <li><strong>النزل والبيوت الضيافة:</strong> خيار مميز فعّال من حيث التكلفة يوفر متانة على مستوى الفنادق بأسعار جملة تنافسية.</li>
+            <li><strong>مرافق المؤتمرات والفعاليات:</strong> أبواب عازلة للصوت مثالية لغرف الاجتماعات والمساحات الوظيفية.</li>
           </ul>
 
-          <h3>Teknik Özellikler</h3>
+          <h3>المواصفات الفنية</h3>
           <ul class="lam-checklist">
-            <li>Yüzey: UV kür kaplama — yüksek parlaklık, antibakteriyel</li>
-            <li>Öz: Masif nem dayanımlı MDF</li>
-            <li>Standart boyut: 70×200 cm · 80×200 cm — özel boyut mevcut</li>
-            <li>Finish seçenekleri: Yüksek parlak, Saten, Dokulu</li>
-            <li>Cam açıklık seçeneği mevcut</li>
-            <li>CE & ISO 9001 sertifikalı</li>
-            <li>5 yıl üretici garantisi</li>
+            <li>السطح: لامينيت فاخر — بنقوش خشبية وتشطيبات عصرية</li>
+            <li>القلب: MDF صلب متين</li>
+            <li>الأحجام القياسية: 80×200 سم · 90×200 سم — أحجام مخصصة متاحة</li>
+            <li>العزل الصوتي: 32–42 dB</li>
+            <li>مقاومة الحريق: اختياري 30–60 دقيقة (EN 1634)</li>
+            <li>الأجهزة: مفصلات للاستخدام الثقيل، نظام مانع للارتطام، تحضير قفل إلكتروني</li>
+            <li>شهادة CE وISO 9001</li>
+            <li>ضمان المصنع 5 سنوات</li>
           </ul>
         </article>
 
         <!-- Sidebar -->
         <aside class="lam-sidebar">
           <div class="lam-kpis">
-            <div class="lam-kpi"><strong>{modelCount}<sup>+</sup></strong><span>Model</span></div>
-            <div class="lam-kpi"><strong>UV</strong><span>Kaplama</span></div>
-            <div class="lam-kpi"><strong>CE</strong><span>Sertifikalı</span></div>
-            <div class="lam-kpi"><strong>5 Yıl</strong><span>Garanti</span></div>
+            <div class="lam-kpi"><strong>{modelCount}</strong><span>موديل</span></div>
+            <div class="lam-kpi"><strong>A+</strong><span>جودة</span></div>
+            <div class="lam-kpi"><strong>CE</strong><span>معتمد</span></div>
+            <div class="lam-kpi"><strong>5yr</strong><span>ضمان</span></div>
           </div>
 
           <div class="lam-contact-card">
-            <span class="lam-tag">İletişim</span>
-            <h3>Teklif Al</h3>
-            <p>Miktar ve gereksinimlerinizi paylaşın — 24 saat içinde yanıt veririz.</p>
+            <span class="lam-tag">متخصص الضيافة</span>
+            <h3>طلب عرض سعر للمشروع</h3>
+            <p>شاركنا نوع منشأتك وعدد الغرف ومتطلباتك — يرد عليك متخصصنا خلال 24 ساعة.</p>
             <div class="lam-contact-btns">
               <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--gold lam-btn--sm">
-                İletişim Formu
+                نموذج الاتصال
               </a>
               <a href="https://wa.me/905441690038" target="_blank" rel="noopener" class="lam-btn lam-btn--wa lam-btn--sm">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.89 3.488"/></svg>
-                WhatsApp
+                واتساب
               </a>
-              <a href="tel:+905441690038" class="lam-btn lam-btn--outline lam-btn--sm">
+              <a href="tel:+905441690038" class="lam-btn lam-btn--outline lam-btn--sm" style="color: white;">
                 📞 +90 544 169 00 38
               </a>
             </div>
           </div>
 
           <div class="lam-features-card">
-            <h3>Öne Çıkan Özellikler</h3>
+            <h3>الميزات الرئيسية</h3>
             <ul class="lam-feat-list">
-              <li>🔬 Antibakteriyel UV yüzey</li>
-              <li>💧 Su dayanımlı MDF öz</li>
-              <li>✨ Parlak ve saten yüzey</li>
-              <li>📐 Özel ölçü mevcut</li>
-              <li>🏨 Otel ve hastane sınıfı</li>
-              <li>♻️ Çevre dostu malzeme</li>
+              <li>✨ تشطيب لامينيت فاخر</li>
+              <li>🔇 عزل صوتي 32–42 dB</li>
+              <li>🔥 خيارات مقاومة للحريق</li>
+              <li>🔑 جاهز للقفل الإلكتروني</li>
+              <li>🏨 توريد بالجملة للمشاريع</li>
+              <li>📐 أحجام وتكوينات مخصصة</li>
             </ul>
           </div>
         </aside>
@@ -371,11 +356,16 @@ const faqItems = [
     <section class="lam-sec lam-sec--white" aria-labelledby="faq-h2">
       <div class="lam-wrap lam-faq-wrap">
         <div class="lam-head">
-          <span class="lam-tag">SSS</span>
-          <h2 id="faq-h2">Sık Sorulan Sorular</h2>
+          <span class="lam-tag">الأسئلة الشائعة</span>
+          <h2 id="faq-h2">الأسئلة المتداولة</h2>
         </div>
         <div class="lam-faqs">
-          {faqItems.map(item => (
+          {([
+            { q: 'ما الذي يجعل الباب مناسباً للاستخدام الفندقي؟',          a: 'يجب أن تتحمل أبواب الفنادق الاستخدام اليومي المستمر في مئات الغرف، وتوفر عزلاً صوتياً متميزاً لخصوصية الضيوف، وتلبي اشتراطات السلامة من الحريق، وتحافظ على مظهر فاخر يعكس هوية المنشأة.' },
+            { q: 'ما خيارات التشطيب المتاحة لأبواب الفنادق؟',               a: 'تتضمن السلسلة (401–406) تشطيبات بنقوش خشبية غنية كالجوز الإيطالي والكستناء والتيك والأنثراسيت المعدني النجمي والرمادي فيجن والسنتانا الداكن. تشطيبات مخصصة وخيارات ألوان RAL متاحة للطلبات الكبيرة.' },
+            { q: 'ما مستوى العزل الصوتي لأبواب الفنادق؟',                   a: 'توفر أبواب فنادق CihanPan Door عزلاً صوتياً من 32 إلى 42 dB حسب الموديل والتكوين. أختام صوتية وإطارات متاحة لتحقيق أقصى أداء في ممرات الغرف.' },
+            { q: 'ما الحد الأدنى للطلب في أوامر أبواب الفنادق بالجملة؟',    a: 'الحد الأدنى للطلب 50 وحدة. خصومات الكميات تسري من 100 وحدة. أبعاد مخصصة وألواح زجاجية وتحضير قفل إلكتروني وحلول علامة خاصة متاحة لمشاريع التجهيز الفندقي الكامل.' },
+          ]).map(item => (
             <details class="lam-faq">
               <summary class="lam-faq__q">
                 {item.q}
@@ -397,21 +387,21 @@ const faqItems = [
       <div class="lam-cta__glow" aria-hidden="true"></div>
       <div class="lam-wrap lam-cta__inner">
         <div class="lam-cta__text">
-          <span class="lam-tag lam-tag--gold">Hemen Başlayın</span>
+          <span class="lam-tag lam-tag--gold">توريد الضيافة</span>
           <h2 id="cta-h2">
-            Elitpan Kapı Toptan<br/>Fiyat Teklifi Alın
+            احصل على عرض سعر بالجملة<br/>لأبواب الفنادق
           </h2>
           <p>
-            Kapı modellerini, adeti ve teslimat noktasını paylaşın. 24 saat içinde CE & ISO belgeli fiyat teklifi.
+            شاركنا نوع منشأتك وعدد الغرف وموديلات الأبواب. أسعار مباشرة من المصنع مع وثائق CE وISO خلال 24 ساعة.
           </p>
         </div>
         <div class="lam-cta__btns">
           <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--gold">
-            Ücretsiz Teklif Al
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            احصل على عرض مجاني
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
           </a>
           <a href={getLocalizedRoute('/urunlerimiz', lang)} class="lam-btn lam-btn--ghost">
-            Tüm Ürünler
+            جميع المنتجات
           </a>
         </div>
       </div>
@@ -423,7 +413,7 @@ const faqItems = [
 </I18nLayout>
 
 <style>
-  /* ── TOKENS ── */
+  /* ── TOKENS — laminoks-doors.astro ile özdeş ── */
   .lam {
     --navy:     #0f2347;
     --navy-mid: #1a3a6e;
@@ -575,6 +565,9 @@ const faqItems = [
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1.25rem; min-height: 300px;
   }
+  .lam-grid--wide {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
   .lam-card {
     background: var(--white); border: 1px solid var(--bdr);
     border-radius: var(--radius); overflow: hidden;
@@ -591,9 +584,15 @@ const faqItems = [
   }
   .lam-card__img img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.35s; }
   .lam-card:hover .lam-card__img img { transform: scale(1.04); }
+  .lam-card__body { padding: 0.75rem 1rem 1rem; }
   .lam-card__name {
-    padding: 0.75rem 1rem; font-size: 0.82rem; font-weight: 600;
-    color: var(--text); text-align: center; line-height: 1.4; margin: 0;
+    font-size: 0.82rem; font-weight: 600;
+    color: var(--text); text-align: center; line-height: 1.4; margin: 0 0 0.5rem;
+  }
+  .lam-card__badge {
+    display: block; text-align: center;
+    font-size: 0.72rem; font-weight: 600; color: var(--gold);
+    letter-spacing: 0.05em;
   }
 
   /* ── SEO CONTENT ── */
@@ -609,8 +608,8 @@ const faqItems = [
   .lam-article strong { color: var(--navy); }
 
   .lam-checklist { list-style: none; padding: 0; margin: 0 0 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; }
-  .lam-checklist li { font-size: 0.925rem; color: var(--body); line-height: 1.6; padding-left: 1.5rem; position: relative; }
-  .lam-checklist li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+  .lam-checklist li { font-size: 0.925rem; color: var(--body); line-height: 1.6; padding-right: 1.5rem; position: relative; }
+  .lam-checklist li::before { content: '✓'; position: absolute; right: 0; color: var(--green); font-weight: 700; }
 
   /* Sidebar */
   .lam-sidebar { display: flex; flex-direction: column; gap: 1.5rem; position: sticky; top: 90px; }
@@ -682,9 +681,10 @@ const faqItems = [
     .lam-quote-row { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
     .lam-cta__inner { flex-direction: column; text-align: center; }
     .lam-cta__btns  { justify-content: center; }
+    .lam-grid--wide { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
   }
   @media (max-width: 480px) {
-    .lam-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    .lam-grid, .lam-grid--wide { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
     .lam-kpis { grid-template-columns: repeat(2, 1fr); }
     .lam-statsbar { padding: 1rem 1.25rem; }
     .lam-sdiv { display: none; }

@@ -1,78 +1,845 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import Breadcrumbs from '../components/Breadcrumbs.astro';
+// src/pages/misyon-vizyon.astro  (TR — ana dil, /tr prefix yok)
+import I18nLayout from '../../layouts/I18nLayout.astro';
+import I18nHeader from '../../components/I18nHeader.astro';
+import I18nFooter from '../../components/I18nFooter.astro';
 
-const breadcrumbItems = [
-  { name: "Ana Sayfa", href: "/" },
-  { name: "Misyon & Vizyon", href: "/misyon-vizyon" }
+const lang = 'tr';
+
+// ── SEO DATA ──────────────────────────────────────────────────────────
+const baseUrl  = 'https://cihanpandoor.netlify.app';
+const pageUrl  = `${baseUrl}/misyon-vizyon`;
+
+// ── SCHEMA ────────────────────────────────────────────────────────────
+const aboutPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "Misyon & Vizyon | CihanPan Door — Kayseri Kapı Üreticisi",
+  "description": "CihanPan Door'un misyonu, vizyonu ve temel değerleri. 1995'ten bu yana Kayseri'de CE, TSE ve ISO 9001 sertifikalı kapı üretimi. Yıllık 600.000 adet üretim kapasitesi.",
+  "url": pageUrl,
+  "inLanguage": "tr",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "CihanPan Door",
+    "url": baseUrl
+  },
+  "about": {
+    "@type": "Organization",
+    "name": "CihanPan Door",
+    "alternateName": "Cihanpan Kapı",
+    "url": baseUrl,
+    "logo": `${baseUrl}/assets/img/logo/header-logo1.webp`,
+    "foundingDate": "1995",
+    "description": "Türkiye'nin önde gelen iç mekan kapı üreticisi ve ihracatçısı. CE, TSE, ISO 9001 sertifikalı. PVC, MDF, Laminoks kapılar — otel, hastane, konut ve ticari projeler için.",
+    "numberOfEmployees": { "@type": "QuantitativeValue", "value": 150 },
+    "areaServed": ["TR", "EU", "ME", "AF"],
+    "hasCredential": [
+      { "@type": "EducationalOccupationalCredential", "name": "CE Sertifikası" },
+      { "@type": "EducationalOccupationalCredential", "name": "TSE Sertifikası" },
+      { "@type": "EducationalOccupationalCredential", "name": "ISO 9001" }
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Organize Sanayi Bölgesi 29. Sokak No:28",
+      "addressLocality": "Kayseri",
+      "addressRegion": "Kayseri",
+      "postalCode": "38070",
+      "addressCountry": "TR"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+90-544-169-0038",
+      "contactType": "Satış",
+      "availableLanguage": ["Turkish", "English", "Arabic", "German"],
+      "areaServed": ["TR", "EU", "ME"]
+    },
+    "sameAs": [
+      "https://www.cihanpandoor.com",
+      "https://www.linkedin.com/company/cihanpan-door"
+    ]
+  }
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": baseUrl },
+    { "@type": "ListItem", "position": 2, "name": "Misyon & Vizyon", "item": pageUrl }
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "CihanPan Door'un misyonu nedir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CihanPan Door'un misyonu; Kayseri'den dünyaya kaliteli ve yenilikçi kapı çözümleri sunarak müşteri beklentilerini aşan ürünler üretmek ve sürdürülebilir üretim anlayışıyla sektöre değer katmaktır."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "CihanPan Door hangi sertifikalara sahiptir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CE, TSE ve ISO 9001 sertifikalarına sahip olan CihanPan Door, Avrupa ve uluslararası kalite standartlarını tam olarak karşılamaktadır. Sertifikalar her sevkiyatta temin edilir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "CihanPan Door kaç ülkeye ihracat yapmaktadır?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CihanPan Door, başta Orta Doğu, Avrupa ve Afrika olmak üzere 25'ten fazla ülkeye toptan kapı ihracatı gerçekleştirmektedir. 2027 yılına kadar 40'tan fazla ülkeye ulaşmayı hedeflemektedir."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "CihanPan Door hangi tür kapılar üretmektedir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PVC kaplı, Laminoks, Elitpan (UV boyalı MDF), hastane tipi, otel tipi ve yangına dayanıklı iç mekan kapıları üretilmektedir. Tüm ürünler özel ölçü ve renk seçenekleriyle sunulmaktadır."
+      }
+    }
+  ]
+};
+
+const schemas = [aboutPageSchema, breadcrumbSchema, faqSchema];
+
+// ── PAGE DATA ─────────────────────────────────────────────────────────
+const values = [
+  { num: '01', title: 'A Sınıfı Kalite',       text: 'Üretim hattımıza yalnızca birinci sınıf hammaddeler girer. Her kapı, sevkiyat öncesinde çok aşamalı kalite kontrolünden geçer.' },
+  { num: '02', title: 'Kanıtlanmış Güvenilirlik', text: '30 yılı aşkın tutarlı üretim ve zamanında ihracat teslimatı — sicilimiz kendi adına konuşur.' },
+  { num: '03', title: 'Müşteri Odaklılık',      text: 'Her toptan satış ortağı için özel hesap yöneticisi, sevkiyat öncesi numune ve satış sonrası destek.' },
+  { num: '04', title: 'Ar-Ge ve İnovasyon',     text: 'CNC teknolojisine ve yeni yüzey kaplamalarına sürekli yatırım, katalogumuzun pazar trendlerinin önünde kalmasını sağlar.' },
+];
+
+const timeline = [
+  { year: '1995', title: "Kayseri'de Kuruluş",           text: "Türkiye'nin üretim merkezi Kayseri'de uzmanlaşmış bir iç mekan kapı atölyesi olarak başladı." },
+  { year: '2003', title: 'Modern Fabrika Açıldı',        text: 'Kayseri Organize Sanayi Bölgesi\'ne taşınarak tam kapasiteli otomatik üretim hatları kuruldu.' },
+  { year: '2010', title: 'Uluslararası İhracata Başlangıç', text: 'Orta Doğu ve Afrika pazarlarına ihracata başlandı — bugün 25\'ten fazla ülkeye ulaşılmaktadır.' },
+  { year: '2018', title: 'ISO 9001 Sertifikası Alındı',  text: 'Mevcut CE ve TSE onaylarına ek olarak ISO 9001 sertifikası elde edildi.' },
+  { year: '2024', title: 'Yıllık 600.000 Adet',          text: 'Yıllık 600.000 kapı seti üretim kapasitesine ulaşıldı — her hacimde toptan siparişe hazır.' },
+];
+
+const certs = [
+  { badge: 'CE',  title: 'CE Sertifikası',  text: 'Avrupa pazarı güvenlik ve kalite standartlarına uygunluğu onaylar' },
+  { badge: 'TSE', title: 'TSE Sertifikası', text: 'Türk Standartları Enstitüsü — Türk üreticiler için zorunlu kalite belgesi' },
+  { badge: 'ISO', title: 'ISO 9001:2015',   text: 'Uluslararası kalite yönetim sistemi — her partide tutarlı üretim' },
+];
+
+const whyUs = [
+  { icon: '🏭', title: 'Doğrudan Fabrika Fiyatı',   text: 'Acente yok, aracı yok. Üreticiden doğrudan satın alırsınız — işiniz için maksimum kâr marjı.' },
+  { icon: '🌍', title: 'İhracata Hazır',              text: 'Tam dokümantasyon: ticari fatura, ambalaj listesi, menşe şahadetnamesi ve CE/ISO sertifikaları dahil.' },
+  { icon: '📦', title: '50 Adet MOQ',                 text: 'Düşük minimum sipariş miktarı, büyük hacme geçmeden önce ürün kalitesini test etmenizi sağlar.' },
+  { icon: '⚙️', title: 'Özel Ölçü ve Yüzey',         text: 'Standart dışı ölçüler, özel renkler, özel marka — tüm toptan siparişlerde mevcut.' },
+  { icon: '🚢', title: 'Esnek Teslim Koşulları',      text: 'EXW, FOB, CIF — nakliyecini ile çalışır veya talep üzerine uçtan uca lojistiği üstleniriz.' },
+  { icon: '🏅', title: 'CE + ISO Sertifikalı',        text: 'Her sevkiyat, gümrüksüz geçiş için CE, TSE ve ISO 9001 belgeleri eşliğinde gelir.' },
 ];
 ---
 
-<Layout title="Misyon & Vizyon | CihanPan Door" description="CihanPan Door'un misyonu, vizyonu ve değerleri.">
-  <Header />
-  <Breadcrumbs items={breadcrumbItems} />
-  <main class="mission-page">
-    <div class="container">
-      <div class="mission-grid">
-        <article class="mission-card">
-          <div class="card-icon">🎯</div>
-          <h2>Misyonumuz</h2>
-          <p>
-            Kayseri'den dünyaya kaliteli ve yenilikçi kapı çözümleri sunarak,
-            müşterilerimizin beklentilerini aşan ürünler üretmek. Sürdürülebilir
-            üretim anlayışı ile sektöre değer katmak.
-          </p>
-        </article>
+<I18nLayout
+  title="Misyon & Vizyon | CihanPan Door — Kayseri Kapı Üreticisi"
+  description="CihanPan Door'un misyonu, vizyonu ve temel değerleri. 1995'ten bu yana CE, TSE ve ISO 9001 sertifikalı kapı üretimi. Orta Doğu, Avrupa ve Afrika'ya ihracat."
+  keywords="CihanPan Door misyon vizyon, Kayseri kapı üreticisi, kapı ihracatçısı Türkiye, CE sertifikalı kapı, TSE kapı, ISO 9001 kapı üretimi, toptan kapı Türkiye"
+  canonical={pageUrl}
+  schema={schemas}
+  ogTitle="Misyon & Vizyon | CihanPan Door"
+  ogDescription="CihanPan Door olarak misyonumuz kaliteli ve yenilikçi kapı çözümleri sunmak, vizyonumuz ise Türkiye'nin lider kapı ihracatçısı olmaktır."
+  ogImage="/assets/img/og/misyon-vizyon-og.webp"
+>
+  <I18nHeader />
 
-        <article class="mission-card">
-          <div class="card-icon">🚀</div>
-          <h2>Vizyonumuz</h2>
-          <p>
-            Türkiye'nin önde gelen kapı üreticilerinden biri olmak ve uluslararası
-            pazarda CihanPan Door markasını güvenilir bir isim haline getirmek.
-            İnovasyon ve kalite standartlarında lider konumda olmak.
-          </p>
-        </article>
+  <main class="mv" id="main-content">
 
-        <article class="mission-card">
-          <div class="card-icon">💎</div>
-          <h2>Değerlerimiz</h2>
-          <ul>
-            <li>Kalite ve mükemmellik</li>
-            <li>Müşteri memnuniyeti</li>
-            <li>Yenilikçilik ve gelişim</li>
-            <li>Dürüstlük ve güvenilirlik</li>
-            <li>Sürdürülebilirlik</li>
-            <li>Ekip çalışması</li>
-          </ul>
-        </article>
+    <!-- ══════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════ -->
+    <section class="mv-hero" aria-labelledby="hero-heading">
+      <div class="mv-hero__grid" aria-hidden="true"></div>
+      <div class="mv-wrap mv-hero__inner">
 
-        <article class="mission-card">
-          <div class="card-icon">🌍</div>
-          <h2>Sürdürülebilirlik</h2>
-          <p>
-            Çevre dostu üretim süreçleri, geri dönüştürülebilir malzemeler ve
-            enerji verimliliği odaklı yaklaşımımızla geleceğe sorumlu adımlar atıyoruz.
+        <div class="mv-hero__copy">
+          <span class="mv-eyebrow">
+            <span class="mv-eyebrow__line"></span>
+            Kayseri, Türkiye · Est. 1995
+          </span>
+
+          <h1 class="mv-hero__h1" id="hero-heading">
+            Kaliteyi Rehber,<br>
+            <em>İnovasyonu İlke</em><br>
+            Olarak Benimsiyoruz
+          </h1>
+
+          <p class="mv-hero__sub">
+            1995'ten bu yana Kayseri'de CE, TSE &amp; ISO 9001 sertifikalı üretim.
+            <strong>Türkiye, Orta Doğu ve Avrupa'ya</strong> 25'ten fazla ülkeye ihracat —
+            yılda <strong>600.000 adet</strong> üretim kapasitesiyle.
           </p>
-        </article>
+
+          <div class="mv-hero__tags">
+            <span class="mv-htag">✓ CE Sertifikalı</span>
+            <span class="mv-htag">✓ ISO 9001</span>
+            <span class="mv-htag">✓ Min. 50 Adet</span>
+            <span class="mv-htag">✓ İhracata Hazır</span>
+          </div>
+
+          <div class="mv-stats">
+            <div class="mv-stat">
+              <strong>30<sup>+</sup></strong>
+              <span>Yıl Üretim</span>
+            </div>
+            <div class="mv-stat-div"></div>
+            <div class="mv-stat">
+              <strong>600K</strong>
+              <span>Adet / Yıl</span>
+            </div>
+            <div class="mv-stat-div"></div>
+            <div class="mv-stat">
+              <strong>25<sup>+</sup></strong>
+              <span>İhracat Ülkesi</span>
+            </div>
+            <div class="mv-stat-div"></div>
+            <div class="mv-stat">
+              <strong>150<sup>+</sup></strong>
+              <span>Çalışan</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mv-hero__badges" aria-label="Kalite sertifikaları">
+          <div class="mv-hb mv-hb--gold" title="CE Sertifikalı">CE</div>
+          <div class="mv-hb" title="TSE Sertifikalı">TSE</div>
+          <div class="mv-hb" title="ISO 9001 Sertifikalı">ISO<br>9001</div>
+        </div>
+
       </div>
-    </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         MİSYON / VİZYON
+    ══════════════════════════════════════════ -->
+    <section class="mv-sec mv-sec--white" aria-labelledby="mv-heading">
+      <div class="mv-wrap">
+        <div class="mv-head">
+          <span class="mv-tag">Yönümüz</span>
+          <h2 id="mv-heading">Misyon &amp; Vizyon</h2>
+          <p>Üretim ve ihracat anlayışımızı şekillendiren değerler ve uzun vadeli hedefler</p>
+        </div>
+        <div class="mv-cards">
+          <div class="mv-card mv-card--blue">
+            <div class="mv-card__bar"></div>
+            <div class="mv-card__icon mv-card__icon--blue" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <h3>Misyonumuz</h3>
+            <p>Kayseri'den dünyaya <strong>kaliteli ve yenilikçi kapı çözümleri</strong> sunarak müşteri beklentilerini aşan ürünler üretmek. Sürdürülebilir üretim anlayışıyla sektöre değer katmak.</p>
+            <ul class="mv-checks">
+              <li>Aracısız, doğrudan fabrika fiyatı</li>
+              <li>50 adetten toptan, büyük hacim fiyatlandırması</li>
+              <li>Özel ölçü, yüzey ve özel marka seçeneği</li>
+            </ul>
+          </div>
+          <div class="mv-card mv-card--gold">
+            <div class="mv-card__bar"></div>
+            <div class="mv-card__icon mv-card__icon--gold" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            </div>
+            <h3>Vizyonumuz</h3>
+            <p>Türkiye'nin önde gelen kapı üreticilerinden biri olarak <strong>uluslararası pazarda CihanPan Door markasını</strong> güvenilir ve tanınan bir isim haline getirmek. İnovasyon ve kalite standartlarında lider konumda olmak.</p>
+            <ul class="mv-checks">
+              <li>CE, TSE &amp; ISO 9001 — her sevkiyatta</li>
+              <li>Sürdürülebilir, çevre dostu üretim</li>
+              <li>2027'ye kadar 40+ ülkeye ihracat</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         DEĞERLER
+    ══════════════════════════════════════════ -->
+    <section class="mv-sec mv-sec--navy" aria-labelledby="values-heading">
+      <div class="mv-wrap">
+        <div class="mv-head mv-head--light">
+          <span class="mv-tag">Temel İlkeler</span>
+          <h2 id="values-heading">Üretim Değerlerimiz</h2>
+          <p>Hammadde seçiminden ihracat teslimatına kadar bizi tanımlayan ilkeler</p>
+        </div>
+        <div class="mv-vals">
+          {values.map(v => (
+            <div class="mv-val">
+              <span class="mv-val__n" aria-hidden="true">{v.num}</span>
+              <div class="mv-val__bar" aria-hidden="true"></div>
+              <h3>{v.title}</h3>
+              <p>{v.text}</p>
+              <div class="mv-val__sweep" aria-hidden="true"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SÜRDÜRÜLEBİLİRLİK
+    ══════════════════════════════════════════ -->
+    <section class="mv-sec mv-sec--cream" aria-labelledby="sustain-heading">
+      <div class="mv-wrap">
+        <div class="mv-head">
+          <span class="mv-tag">Çevre &amp; Gelecek</span>
+          <h2 id="sustain-heading">Sürdürülebilirlik Taahhüdümüz</h2>
+          <p>Sorumlu üretimle hem insanlara hem gezegene değer katıyoruz</p>
+        </div>
+        <div class="mv-sustain">
+          <div class="mv-sustain__card">
+            <div class="mv-sustain__icon">♻️</div>
+            <h3>Geri Dönüştürülebilir Malzeme</h3>
+            <p>Üretimde kullandığımız hammaddelerin büyük bölümü geri dönüştürülebilir nitelikte olup atık miktarını minimize eden üretim hatları kullanıyoruz.</p>
+          </div>
+          <div class="mv-sustain__card">
+            <div class="mv-sustain__icon">⚡</div>
+            <h3>Enerji Verimliliği</h3>
+            <p>Fabrikamızda enerji tüketimini optimize eden akıllı sistemler ve LED aydınlatma altyapısıyla karbon ayak izimizi sürekli azaltıyoruz.</p>
+          </div>
+          <div class="mv-sustain__card">
+            <div class="mv-sustain__icon">🌱</div>
+            <h3>Çevre Dostu Üretim</h3>
+            <p>Çevre dostu boya ve yüzey kaplama sistemleri kullanarak hem iç ortam hava kalitesini hem de doğal kaynakları koruyoruz.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         TARİHSEL SÜREÇ
+    ══════════════════════════════════════════ -->
+    <section class="mv-sec mv-sec--white" aria-labelledby="history-heading">
+      <div class="mv-wrap">
+        <div class="mv-head">
+          <span class="mv-tag">30 Yıllık Üretim</span>
+          <h2 id="history-heading">Türk Kapı Üreticisi Olarak<br>Tarihimiz</h2>
+          <p>CihanPan Door'u küresel ölçekte güvenilir bir toptan tedarikçiye dönüştüren kilometre taşları</p>
+        </div>
+        <div class="mv-tl-wrap">
+          {timeline.map((item) => (
+            <div class="mv-tl">
+              <div class="mv-tl__yr">{item.year}</div>
+              <div class="mv-tl__spine" aria-hidden="true">
+                <div class="mv-tl__line"></div>
+                <div class="mv-tl__dot"></div>
+                <div class="mv-tl__line"></div>
+              </div>
+              <div class="mv-tl__body">
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SERTİFİKALAR
+    ══════════════════════════════════════════ -->
+    <section class="mv-sec mv-sec--cream" aria-labelledby="certs-heading">
+      <div class="mv-wrap">
+        <div class="mv-head">
+          <span class="mv-tag">Uluslararası Standartlar</span>
+          <h2 id="certs-heading">CE, TSE &amp; ISO 9001 Sertifikalı<br>Kapı Üretimi</h2>
+          <p>Her toptan sevkiyat, uluslararası alanda tanınan kalite belgeleriyle desteklenir</p>
+        </div>
+        <div class="mv-certs">
+          {certs.map(c => (
+            <div class="mv-cert">
+              <div class="mv-cert__badge" aria-label={c.title}>{c.badge}</div>
+              <div class="mv-cert__body">
+                <h3>{c.title}</h3>
+                <p>{c.text}</p>
+              </div>
+              <div class="mv-cert__arrow" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p class="mv-certs__note">
+          Tüm sertifikalar talep üzerine sağlanır ve her ihracat paketine dahil edilir.
+          <a href="/iletisim" class="mv-link">Belge talep edin →</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         NEDEN BİZ
+    ══════════════════════════════════════════ -->
+    <section class="mv-sec mv-sec--white" aria-labelledby="whyus-heading">
+      <div class="mv-wrap">
+        <div class="mv-head">
+          <span class="mv-tag">Neden CihanPan Door</span>
+          <h2 id="whyus-heading">Alıcıların Türk Kapı Fabrikamızı<br>Tercih Etme Nedenleri</h2>
+          <p>Kâr marjınızı koruyan ve tedarik zincirinizi kolaylaştıran doğrudan üretici avantajları</p>
+        </div>
+        <div class="mv-why">
+          {whyUs.map(w => (
+            <div class="mv-why__card">
+              <div class="mv-why__icon" aria-hidden="true">{w.icon}</div>
+              <h3>{w.title}</h3>
+              <p>{w.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SSS
+    ══════════════════════════════════════════ -->
+    <section class="mv-sec mv-sec--cream" aria-labelledby="faq-heading">
+      <div class="mv-wrap">
+        <div class="mv-head">
+          <span class="mv-tag">SSS</span>
+          <h2 id="faq-heading">Sıkça Sorulan Sorular</h2>
+          <p>Hakkımızda ve ürünlerimiz hakkında en çok merak edilen sorular</p>
+        </div>
+        <div class="mv-faq">
+          <details class="mv-faq__item">
+            <summary><h3>CihanPan Door'un misyonu nedir?</h3></summary>
+            <p>Kayseri'den dünyaya <strong>kaliteli ve yenilikçi kapı çözümleri</strong> sunarak müşteri beklentilerini aşan ürünler üretmek ve sürdürülebilir üretim anlayışıyla sektöre değer katmaktır.</p>
+          </details>
+          <details class="mv-faq__item">
+            <summary><h3>CihanPan Door hangi sertifikalara sahiptir?</h3></summary>
+            <p><strong>CE, TSE ve ISO 9001</strong> sertifikalarına sahip olan CihanPan Door, Avrupa ve uluslararası kalite standartlarını tam olarak karşılamaktadır. Sertifikalar her sevkiyata dahil edilir.</p>
+          </details>
+          <details class="mv-faq__item">
+            <summary><h3>Toptan sipariş için minimum miktar nedir?</h3></summary>
+            <p>Minimum toptan sipariş miktarı <strong>50 adettir</strong>. Otel, hastane ve konut projeleri gibi büyük ölçekli projeler için özel toplu fiyatlandırma ve proje desteği sunulmaktadır.</p>
+          </details>
+          <details class="mv-faq__item">
+            <summary><h3>CihanPan Door hangi tür kapılar üretmektedir?</h3></summary>
+            <p><strong>PVC kaplı, Laminoks, Elitpan (UV boyalı MDF), hastane tipi, otel tipi ve yangına dayanıklı</strong> iç mekan kapıları üretilmektedir. Tüm siparişlerde özel ölçü ve renk seçeneği mevcuttur. <a href="/urunler" class="mv-link">Tüm ürünler →</a></p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CTA
+    ══════════════════════════════════════════ -->
+    <section class="mv-cta" aria-labelledby="cta-heading">
+      <div class="mv-cta__glow" aria-hidden="true"></div>
+      <div class="mv-wrap mv-cta__inner">
+        <div class="mv-cta__text">
+          <span class="mv-tag mv-tag--gold">Türkiye'den Kaynak Sağlayın</span>
+          <h2 id="cta-heading">Toptan Kapı Fiyat<br/>Teklifi Alın</h2>
+          <p>Miktar, kapı türü ve teslimat noktasını bize bildirin — 24 saat içinde fabrika fiyatlı teklif ve CE/ISO belgeleriyle dönelim.</p>
+        </div>
+        <div class="mv-cta__btns">
+          <a href="/iletisim" class="mv-btn mv-btn--gold">
+            Ücretsiz Teklif Al
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="https://www.cihanpandoor.com/E-Katalog.pdf" target="_blank" rel="noopener noreferrer" class="mv-btn mv-btn--outline">
+            Ürün Kataloğunu İndir
+          </a>
+        </div>
+      </div>
+    </section>
+
   </main>
-  <Footer />
-</Layout>
+
+  <I18nFooter />
+</I18nLayout>
 
 <style>
-  .mission-page { padding: 4rem 0; background: #f8fafc; min-height: 60vh; }
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-  .mission-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-  .mission-card { background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: all 0.3s ease; }
-  .mission-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(8, 145, 178, 0.15); }
-  .card-icon { font-size: 3rem; margin-bottom: 1rem; }
-  .mission-card h2 { font-size: 1.75rem; font-weight: 700; color: #0891b2; margin-bottom: 1rem; }
-  .mission-card p { color: #4a5568; line-height: 1.7; }
-  .mission-card ul { list-style: none; padding: 0; }
-  .mission-card li { color: #4a5568; padding: 0.5rem 0; padding-left: 1.5rem; position: relative; }
-  .mission-card li::before { content: "✓"; color: #10b981; font-weight: bold; position: absolute; left: 0; }
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap');
+
+  .mv {
+    --navy:     #0f2347;
+    --navy-mid: #1a3a6e;
+    --navy-l:   #1e4a8a;
+    --gold:     #c9a84c;
+    --gold-l:   #e2bc6a;
+    --cream:    #faf8f4;
+    --slate:    #607080;
+    --text:     #0f1929;
+    --body:     #3d4f63;
+    --bdr:      #e4eaf4;
+    --white:    #ffffff;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    color: var(--text);
+  }
+
+  .mv-wrap {
+    max-width: 1140px;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+    width: 100%;
+  }
+
+  .mv-sec          { padding-block: clamp(4rem, 8vw, 6.5rem); }
+  .mv-sec--white   { background: var(--white); }
+  .mv-sec--navy    { background: var(--navy); }
+  .mv-sec--cream   { background: var(--cream); }
+
+  .mv-head {
+    text-align: center;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+  .mv-head h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 700;
+    color: var(--text);
+    margin: 0.3rem 0 0.6rem;
+    line-height: 1.2;
+  }
+  .mv-head p {
+    color: var(--slate);
+    font-size: 1rem;
+    max-width: 500px;
+    margin-inline: auto;
+    line-height: 1.7;
+  }
+  .mv-head--light h2 { color: var(--white); }
+  .mv-head--light p  { color: rgba(255,255,255,0.5); }
+
+  .mv-tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+  .mv-tag--gold { color: rgba(201,168,76,0.9); }
+
+  .mv-link {
+    color: var(--navy-l);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    transition: color 0.2s;
+  }
+  .mv-link:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .mv-hero {
+    position: relative;
+    background: var(--navy);
+    padding: calc(70px + clamp(3.5rem, 7vw, 5rem)) 0 clamp(4rem, 8vw, 6rem);
+    overflow: hidden;
+  }
+  .mv-hero__grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+    background-size: 56px 56px;
+    pointer-events: none;
+  }
+  .mv-hero__inner {
+    position: relative; z-index: 1;
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 3rem;
+  }
+  .mv-hero__copy { max-width: 620px; flex: 1; }
+
+  .mv-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.4rem;
+  }
+  .mv-eyebrow__line {
+    display: block; width: 30px; height: 1px;
+    background: var(--gold); opacity: 0.55; flex-shrink: 0;
+  }
+
+  .mv-hero__h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+    font-weight: 900; color: var(--white);
+    line-height: 1.1; margin: 0 0 1.25rem;
+  }
+  .mv-hero__h1 em { font-style: normal; color: var(--gold); }
+
+  .mv-hero__sub {
+    font-size: 1rem; color: rgba(255,255,255,0.65);
+    line-height: 1.8; max-width: 560px; margin: 0 0 1.5rem;
+  }
+  .mv-hero__sub strong { color: rgba(255,255,255,0.9); }
+
+  .mv-hero__tags {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem;
+  }
+  .mv-htag {
+    display: inline-block; padding: 0.3rem 0.85rem;
+    border: 1px solid rgba(201,168,76,0.35);
+    background: rgba(201,168,76,0.08);
+    color: var(--gold-l); font-size: 0.75rem;
+    font-weight: 600; border-radius: 4px; letter-spacing: 0.03em;
+  }
+
+  .mv-stats {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;
+  }
+  .mv-stat { display: flex; flex-direction: column; padding-inline: 1.25rem; }
+  .mv-stat:first-child { padding-left: 0; }
+  .mv-stat strong {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.9rem; font-weight: 900; color: var(--gold); line-height: 1; display: block;
+  }
+  .mv-stat strong sup { font-size: 0.7em; }
+  .mv-stat span {
+    font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.38); margin-top: 0.3rem; display: block;
+  }
+  .mv-stat-div { width: 1px; height: 30px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
+
+  .mv-hero__badges { display: flex; flex-direction: column; gap: 1rem; flex-shrink: 0; }
+  .mv-hb {
+    display: flex; align-items: center; justify-content: center;
+    width: 68px; height: 68px; border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.6); font-size: 0.7rem; font-weight: 800;
+    letter-spacing: 0.04em; text-align: center; line-height: 1.3;
+    background: rgba(255,255,255,0.04); transition: transform 0.3s;
+  }
+  .mv-hb:hover { transform: scale(1.1); }
+  .mv-hb--gold { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.08); }
+
+  /* ── MİSYON / VİZYON CARDS ── */
+  .mv-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .mv-card {
+    position: relative; background: var(--white);
+    border: 1px solid var(--bdr); border-radius: 16px;
+    padding: 2.5rem 2rem 2rem; overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .mv-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(15,35,71,0.1); }
+  .mv-card__bar {
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 4px; border-radius: 16px 16px 0 0;
+  }
+  .mv-card--blue .mv-card__bar { background: linear-gradient(90deg, var(--navy-l), var(--navy-mid)); }
+  .mv-card--gold .mv-card__bar { background: linear-gradient(90deg, var(--gold), var(--gold-l)); }
+  .mv-card__icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 48px; height: 48px; border-radius: 12px; margin-bottom: 1.25rem;
+  }
+  .mv-card__icon--blue { background: rgba(30,74,138,0.1); color: var(--navy-l); }
+  .mv-card__icon--gold { background: rgba(201,168,76,0.12); color: var(--gold); }
+  .mv-card h3 { font-size: 1.2rem; font-weight: 700; color: var(--text); margin: 0 0 0.75rem; }
+  .mv-card p { font-size: 0.925rem; color: var(--body); line-height: 1.75; margin: 0 0 1.25rem; }
+  .mv-checks { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+  .mv-checks li {
+    font-size: 0.875rem; color: var(--body);
+    padding-left: 1.5rem; position: relative;
+  }
+  .mv-checks li::before { content: "✓"; color: var(--gold); font-weight: 700; position: absolute; left: 0; }
+
+  /* ── DEĞERLER ── */
+  .mv-vals {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px; overflow: hidden;
+  }
+  .mv-val {
+    position: relative; padding: 2rem 1.5rem;
+    border-right: 1px solid rgba(255,255,255,0.06); overflow: hidden;
+    transition: background 0.3s;
+  }
+  .mv-val:last-child { border-right: none; }
+  .mv-val:hover { background: rgba(255,255,255,0.04); }
+  .mv-val__n {
+    display: block; font-size: 2.5rem; font-weight: 900;
+    color: rgba(255,255,255,0.06);
+    font-family: 'Playfair Display', Georgia, serif;
+    line-height: 1; margin-bottom: 0.75rem;
+  }
+  .mv-val__bar {
+    width: 24px; height: 2px;
+    background: var(--gold); margin-bottom: 1rem;
+  }
+  .mv-val h3 { font-size: 0.95rem; font-weight: 700; color: var(--white); margin: 0 0 0.5rem; }
+  .mv-val p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.7; margin: 0; }
+  .mv-val__sweep {
+    position: absolute; bottom: 0; right: 0;
+    width: 60px; height: 60px;
+    background: radial-gradient(circle at 100% 100%, rgba(201,168,76,0.1), transparent 70%);
+    pointer-events: none;
+  }
+
+  /* ── SÜRDÜRÜLEBİLİRLİK ── */
+  .mv-sustain { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .mv-sustain__card {
+    background: var(--white); border: 1px solid var(--bdr);
+    border-radius: 14px; padding: 2rem 1.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .mv-sustain__card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(15,35,71,0.09); }
+  .mv-sustain__icon { font-size: 2rem; margin-bottom: 0.85rem; display: block; }
+  .mv-sustain__card h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 0.5rem; }
+  .mv-sustain__card p { font-size: 0.875rem; color: var(--body); line-height: 1.7; margin: 0; }
+
+  /* ── TARİHSEL SÜREÇ ── */
+  .mv-tl-wrap { max-width: 760px; margin-inline: auto; display: flex; flex-direction: column; gap: 0; }
+  .mv-tl { display: grid; grid-template-columns: 80px 36px 1fr; gap: 1rem; align-items: stretch; }
+  .mv-tl__yr {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.1rem; font-weight: 700; color: var(--gold);
+    padding-top: 0.15rem; text-align: right;
+  }
+  .mv-tl__spine {
+    display: flex; flex-direction: column; align-items: center; gap: 0;
+  }
+  .mv-tl__line { flex: 1; width: 2px; background: var(--bdr); min-height: 12px; }
+  .mv-tl__dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--gold); border: 2px solid var(--gold);
+    flex-shrink: 0;
+  }
+  .mv-tl:first-child .mv-tl__line:first-child { background: transparent; }
+  .mv-tl:last-child  .mv-tl__line:last-child  { background: transparent; }
+  .mv-tl__body { padding-bottom: 2rem; }
+  .mv-tl__body h3 { font-size: 0.95rem; font-weight: 700; color: var(--text); margin: 0 0 0.3rem; }
+  .mv-tl__body p  { font-size: 0.875rem; color: var(--body); line-height: 1.7; margin: 0; }
+
+  /* ── SERTİFİKALAR ── */
+  .mv-certs { display: flex; flex-direction: column; gap: 1px; background: var(--bdr); border: 1px solid var(--bdr); border-radius: 16px; overflow: hidden; max-width: 680px; margin-inline: auto; }
+  .mv-cert {
+    display: flex; align-items: center; gap: 1.25rem;
+    background: var(--white); padding: 1.25rem 1.5rem;
+    transition: background 0.2s;
+  }
+  .mv-cert:hover { background: #f3f7fc; }
+  .mv-cert__badge {
+    flex-shrink: 0; width: 54px; height: 54px; border-radius: 12px;
+    background: var(--navy); color: var(--white);
+    font-size: 0.75rem; font-weight: 800; letter-spacing: 0.04em;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .mv-cert__body { flex: 1; }
+  .mv-cert__body h3 { font-size: 0.95rem; font-weight: 600; color: var(--text); margin: 0 0 0.15rem; }
+  .mv-cert__body p  { font-size: 0.85rem; color: var(--slate); margin: 0; }
+  .mv-cert__arrow { flex-shrink: 0; color: var(--bdr); transition: color 0.22s, transform 0.22s; }
+  .mv-cert:hover .mv-cert__arrow { color: var(--navy); transform: translateX(4px); }
+  .mv-certs__note { text-align: center; margin-top: 1.5rem; font-size: 0.875rem; color: var(--slate); }
+
+  /* ── NEDEN BİZ ── */
+  .mv-why { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .mv-why__card {
+    background: var(--white); border: 1px solid var(--bdr);
+    border-radius: 14px; padding: 1.75rem 1.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .mv-why__card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(15,35,71,0.09); }
+  .mv-why__icon { font-size: 1.75rem; margin-bottom: 0.85rem; display: block; }
+  .mv-why__card h3 { font-size: 0.95rem; font-weight: 700; color: var(--text); margin: 0 0 0.5rem; }
+  .mv-why__card p  { font-size: 0.875rem; color: var(--body); line-height: 1.7; margin: 0; }
+
+  /* ── SSS ── */
+  .mv-faq {
+    max-width: 720px; margin-inline: auto;
+    display: flex; flex-direction: column; gap: 1px;
+    background: var(--bdr); border: 1px solid var(--bdr);
+    border-radius: 16px; overflow: hidden;
+  }
+  .mv-faq__item { background: var(--white); padding: 0; }
+  .mv-faq__item summary {
+    padding: 1.25rem 1.75rem; cursor: pointer; list-style: none;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem; transition: background 0.2s;
+  }
+  .mv-faq__item summary:hover { background: #f8fafc; }
+  .mv-faq__item summary::-webkit-details-marker { display: none; }
+  .mv-faq__item summary h3 { font-size: 0.95rem; font-weight: 600; color: var(--text); margin: 0; line-height: 1.4; }
+  .mv-faq__item summary::after {
+    content: '+'; font-size: 1.25rem; color: var(--gold);
+    font-weight: 300; flex-shrink: 0; transition: transform 0.25s;
+  }
+  .mv-faq__item[open] summary::after { transform: rotate(45deg); }
+  .mv-faq__item[open] summary { background: #f8fafc; }
+  .mv-faq__item > p {
+    padding: 0 1.75rem 1.5rem; font-size: 0.9rem;
+    color: var(--body); line-height: 1.75; margin: 0;
+    border-top: 1px solid var(--bdr);
+  }
+  .mv-faq__item > p strong { color: var(--navy); }
+
+  /* ── CTA ── */
+  .mv-cta {
+    position: relative; background: var(--navy);
+    overflow: hidden; padding: clamp(4rem, 8vw, 6rem) 0;
+  }
+  .mv-cta__glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 55% 80% at 105% 50%, rgba(201,168,76,0.14) 0%, transparent 65%),
+      linear-gradient(140deg, #08192e 0%, var(--navy) 100%);
+    pointer-events: none;
+  }
+  .mv-cta__inner {
+    position: relative; z-index: 1;
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 3rem; flex-wrap: wrap;
+  }
+  .mv-cta__text h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.75rem, 3vw, 2.4rem);
+    font-weight: 700; color: var(--white);
+    margin: 0.35rem 0 0.7rem; line-height: 1.2;
+  }
+  .mv-cta__text p { color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.7; max-width: 420px; margin: 0; }
+  .mv-cta__btns { display: flex; gap: 1rem; flex-wrap: wrap; flex-shrink: 0; }
+
+  .mv-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.88rem; font-weight: 600; padding: 0.9rem 1.75rem;
+    border-radius: 8px; text-decoration: none; white-space: nowrap;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
+  }
+  .mv-btn--gold { background: var(--gold); color: var(--navy); font-weight: 700; }
+  .mv-btn--gold:hover { background: var(--gold-l); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(201,168,76,0.35); }
+  .mv-btn--outline { background: transparent; color: rgba(255,255,255,0.8); border: 1.5px solid rgba(255,255,255,0.22); }
+  .mv-btn--outline:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.06); transform: translateY(-2px); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .mv-vals { grid-template-columns: repeat(2, 1fr); }
+    .mv-why  { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .mv-hero__inner  { flex-direction: column; align-items: flex-start; }
+    .mv-hero__badges { flex-direction: row; }
+    .mv-cards        { grid-template-columns: 1fr; }
+    .mv-sustain      { grid-template-columns: 1fr; }
+    .mv-cta__inner   { flex-direction: column; text-align: center; }
+    .mv-cta__text p  { margin-inline: auto; }
+    .mv-cta__btns    { justify-content: center; }
+    .mv-stat-div     { display: none; }
+    .mv-stat         { padding-inline: 0.75rem; }
+    .mv-stat:first-child { padding-left: 0; }
+  }
+  @media (max-width: 560px) {
+    .mv-vals { grid-template-columns: 1fr; background: transparent; gap: 0.75rem; }
+    .mv-val  { border-radius: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.07); }
+    .mv-why  { grid-template-columns: 1fr; }
+    .mv-cert { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .mv-cert__arrow { display: none; }
+    .mv-cta__btns   { flex-direction: column; width: 100%; }
+    .mv-btn         { justify-content: center; }
+    .mv-hero__tags  { gap: 0.4rem; }
+    .mv-htag        { font-size: 0.7rem; }
+  }
 </style>

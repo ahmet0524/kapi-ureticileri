@@ -1,166 +1,66 @@
 ---
-// src/pages/yangina-dayanikli-kapilar.astro
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import Breadcrumbs from '../components/Breadcrumbs.astro';
+// src/pages/tr/yangina-dayanikli-kapilar.astro
+import I18nLayout from '../../layouts/I18nLayout.astro';
+import I18nHeader from '../../components/I18nHeader.astro';
+import I18nFooter from '../../components/I18nFooter.astro';
+import { useTranslations, getLocalizedRoute } from '../../i18n/utils';
 
-const baseUrl = 'https://kapi-ureticileri.vercel.app';
-const currentUrl = `${baseUrl}${Astro.url.pathname}`;
+const lang = 'tr';
+const t    = useTranslations(lang);
 
-const breadcrumbItems = [
-  { name: "Ana Sayfa", href: "/" },
-  { name: "Ürünlerimiz", href: "/urunlerimiz" },
-  { name: "Yangına Dayanıklı Kapılar", href: "/yangina-dayanikli-kapilar" }
+const baseUrl    = 'https://cihanpandoor.netlify.app';
+const pageUrl    = baseUrl;
+const currentUrl = `${pageUrl}/yangina-dayanikli-kapilar`;
+
+// ── FILE LIST ─────────────────────────────────────────────────────────
+const fileNames = [
+  "CihanpanDoor-Yangin-Serisi-601-EI30-White.webp",
+  "CihanpanDoor-Yangin-Serisi-602-EI60-Anthracite.webp",
+  "CihanpanDoor-Yangin-Serisi-603-EI90-Grey.webp",
+  "CihanpanDoor-Yangin-Serisi-604-EI30-Walnut.webp",
+  "CihanpanDoor-Yangin-Serisi-605-EI60-Oak.webp",
+  "CihanpanDoor-Yangin-Serisi-606-EI90-Wenge.webp",
+  "CihanpanDoor-Yangin-Serisi-607-EI30-Cappuccino.webp",
+  "CihanpanDoor-Yangin-Serisi-608-EI60-Black.webp",
 ];
 
-const yanginaSchema = {
+const modelCount = fileNames.length;
+
+// ── SCHEMA ────────────────────────────────────────────────────────────
+const hotelSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "Yangına Dayanıklı Kapılar - Yangın Güvenlik Serisi",
-  "description": "Kayseri'den üretilen yangın güvenlik standartlarına uygun yangına dayanıklı kapı modelleri. EI-30, EI-60, EI-90 sertifikalı, TSE onaylı.",
+  "name": "Yangina Dayanikli Kapilar — EI Sertifikali Seri | CihanPan Door",
+  "description": "Kayseri uretimi yangina dayanikli kapi modelleri. EI-30, EI-60, EI-90 sertifikali, TSE onayli.",
   "url": currentUrl,
+  "inLanguage": "tr-TR",
   "mainEntity": {
     "@type": "ItemList",
-    "name": "Yangına Dayanıklı Kapı Modelleri",
-    "numberOfItems": 3,
+    "name": "Yangina Dayanikli Kapi Modelleri",
+    "numberOfItems": modelCount,
     "itemListElement": [
       {
-        "@type": "ListItem",
-        "position": 1,
-        "item": {
-          "@type": "Product",
-          "name": "EI-30 Yangına Dayanıklı Kapı",
-          "description": "30 dakika yangın dayanımı sağlayan sertifikalı yangın kapısı",
-          "image": [
-            `${baseUrl}/assets/img/yangina-dayanikli-kapi-ei30.webp`,
-            `${baseUrl}/assets/img/yangina-dayanikli-kapi-ei30-2.webp`,
-            `${baseUrl}/assets/img/yangina-dayanikli-kapi-ei30-3.webp`
-          ],
-          "manufacturer": {
-            "@type": "Organization",
-            "name": "CihanPan Door",
-            "url": baseUrl,
-            "logo": `${baseUrl}/assets/img/logo.webp`
-          },
-          "category": "Yangın Kapısı",
-          "material": "Yangın Dayanımlı Çelik",
-          "brand": {
-            "@type": "Brand",
-            "name": "CihanPan Door"
-          },
-          "offers": {
-            "@type": "Offer",
-            "url": currentUrl,
-            "priceCurrency": "TRY",
-            "price": "15000",
-            "availability": "https://schema.org/InStock",
-            "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
-            "seller": {
-              "@type": "Organization",
-              "name": "CihanPan Door",
-              "url": baseUrl
-            }
-          },
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.8",
-            "reviewCount": "52",
-            "bestRating": "5",
-            "worstRating": "1"
-          }
-        }
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "item": {
-          "@type": "Product",
-          "name": "EI-60 Yangına Dayanıklı Kapı",
-          "description": "60 dakika yangın dayanımı sağlayan sertifikalı yangın kapısı",
-          "image": [
-            `${baseUrl}/assets/img/yangina-dayanikli-kapi-ei60.webp`,
-            `${baseUrl}/assets/img/yangina-dayanikli-kapi-ei60-2.webp`,
-            `${baseUrl}/assets/img/yangina-dayanikli-kapi-ei60-3.webp`
-          ],
-          "manufacturer": {
-            "@type": "Organization",
-            "name": "CihanPan Door",
-            "url": baseUrl,
-            "logo": `${baseUrl}/assets/img/logo.webp`
-          },
-          "category": "Yangın Kapısı",
-          "material": "Yangın Dayanımlı Çelik",
-          "brand": {
-            "@type": "Brand",
-            "name": "CihanPan Door"
-          },
-          "offers": {
-            "@type": "Offer",
-            "url": currentUrl,
-            "priceCurrency": "TRY",
-            "price": "22000",
-            "availability": "https://schema.org/InStock",
-            "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
-            "seller": {
-              "@type": "Organization",
-              "name": "CihanPan Door",
-              "url": baseUrl
-            }
-          },
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "48",
-            "bestRating": "5",
-            "worstRating": "1"
-          }
-        }
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "item": {
-          "@type": "Product",
-          "name": "EI-90 Yangına Dayanıklı Kapı",
-          "description": "90 dakika yangın dayanımı sağlayan sertifikalı yangın kapısı",
-          "image": [
-            `${baseUrl}/assets/img/yangina-dayanikli-kapi-ei90.webp`,
-            `${baseUrl}/assets/img/yangina-dayanikli-kapi-ei90-2.webp`,
-            `${baseUrl}/assets/img/yangina-dayanikli-kapi-ei90-3.webp`
-          ],
-          "manufacturer": {
-            "@type": "Organization",
-            "name": "CihanPan Door",
-            "url": baseUrl,
-            "logo": `${baseUrl}/assets/img/logo.webp`
-          },
-          "category": "Yangın Kapısı",
-          "material": "Yangın Dayanımlı Çelik",
-          "brand": {
-            "@type": "Brand",
-            "name": "CihanPan Door"
-          },
-          "offers": {
-            "@type": "Offer",
-            "url": currentUrl,
-            "priceCurrency": "TRY",
-            "price": "28000",
-            "availability": "https://schema.org/InStock",
-            "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
-            "seller": {
-              "@type": "Organization",
-              "name": "CihanPan Door",
-              "url": baseUrl
-            }
-          },
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.7",
-            "reviewCount": "52",
-            "bestRating": "5",
-            "worstRating": "1"
-          }
+        "@type": "Product",
+        "name": "Yangina Dayanikli Kapi — EI Sertifikali",
+        "description": "EI-30, EI-60, EI-90 sertifikali yangina dayanikli kapi. TSE onayli, duman sizdirmaz conta, otomatik kapanma.",
+        "brand": { "@type": "Brand", "name": "CihanPan Door" },
+        "manufacturer": { "@type": "Organization", "name": "CihanPan Door", "url": baseUrl },
+        "material": "Yangin Dayanikli Celik",
+        "category": "Yangina Dayanikli Kapi",
+        "offers": {
+          "@type": "AggregateOffer",
+          "url": currentUrl,
+          "priceCurrency": "TRY",
+          "availability": "https://schema.org/InStock",
+          "offerCount": modelCount.toString(),
+          "businessFunction": "http://purl.org/goodrelations/v1#Sell"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "87",
+          "bestRating": "5",
+          "worstRating": "1"
         }
       }
     ]
@@ -171,1037 +71,634 @@ const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Yangına dayanıklı kapı nedir ve neden tercih edilir?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yangına dayanıklı kapılar, yangın durumunda belirli bir süre alevlerin ve dumanın yayılmasını engelleyen özel sertifikalı kapılardır. EI-30, EI-60, EI-90 gibi sertifikalarla yangın güvenliği sağlar."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Yangına dayanıklı kapı fiyatları ne kadardır?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yangına dayanıklı kapı fiyatları sertifika düzeyine, boyuta ve özelliklerine göre değişiklik gösterir. Detaylı fiyat bilgisi için bizimle iletişime geçebilirsiniz."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Yangına dayanıklı kapı hangi alanlarda kullanılır?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yangına dayanıklı kapılar iş merkezleri, hastaneler, okullar, oteller, AVM'ler ve toplu yaşam alanlarında yangın güvenliği için kullanılır. Yangın merdivenleri ve acil çıkışlarda zorunludur."
-      }
-    }
+    { "@type": "Question", "name": "Yangina dayanikli kapi nedir?",                        "acceptedAnswer": { "@type": "Answer", "text": "Yangina dayanikli kapi, yangin ve dumani belirli bir sure boyunca engelleyen sertifikali bir kapi sistemidir. EI-30, EI-60 ve EI-90 degerleri 30, 60 veya 90 dakikalik yangin ve duman direncini gosterir." }},
+    { "@type": "Question", "name": "EI-30, EI-60 ve EI-90 arasindaki fark nedir?",         "acceptedAnswer": { "@type": "Answer", "text": "Bu degerler kapinin yangin ve dumana kac dakika dayandigini gosterir. EI-30: 30 dakika, EI-60: 60 dakika, EI-90: 90 dakika. Bina sinifina gore dogru sertifika secimi yonetmelik geregi zorunludur." }},
+    { "@type": "Question", "name": "Hangi binalarda yangin kapisi zorunludur?",             "acceptedAnswer": { "@type": "Answer", "text": "Is merkezleri, hastaneler, oteller, okullar, AVM ve apartmanlarda yangin yonetmeligi geregi zorunludur. Yangin kacis yollari ve merdiven kovelari sertifikali yangin kapisi gerektirmektedir." }},
+    { "@type": "Question", "name": "Yangin kapisi siparislerinde MOQ nedir?",               "acceptedAnswer": { "@type": "Answer", "text": "Minimum siparis miktari 10 adettir. 50+ adet icin hacim indirimleri gecerlidir. Tam bina donanim projeleri icin ozel olcu, panik donanimlari, elektrikli kilit hazirligi ve proje belgelendirme mevcut." }},
   ]
-};
-
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "CihanPan Door",
-  "url": baseUrl,
-  "logo": `${baseUrl}/assets/img/logo.webp`,
-  "description": "Kayseri'den yangın güvenlik standartlarına uygun yangına dayanıklı kapı üreticisi - EI-30, EI-60, EI-90 sertifikalı",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Kayseri",
-    "addressCountry": "TR"
-  },
-  "areaServed": ["Turkey", "Europe", "Middle East"],
-  "serviceType": ["Yangın Kapısı Üretimi", "Yangın Güvenlik Çözümleri", "Toptan Satış", "İhracat"]
 };
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
-  "itemListElement": breadcrumbItems.map((item, index) => ({
-    "@type": "ListItem",
-    "position": index + 1,
-    "name": item.name,
-    "item": item.href ? `${baseUrl}${item.href}` : currentUrl
-  }))
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Ana Sayfa",                   "item": pageUrl },
+    { "@type": "ListItem", "position": 2, "name": "Ürünler",                     "item": `${pageUrl}/urunlerimiz` },
+    { "@type": "ListItem", "position": 3, "name": "Yangina Dayanikli Kapilar",   "item": currentUrl },
+  ]
 };
+
+const allSchemas = [hotelSchema, faqSchema, breadcrumbSchema];
+
+// ── CATEGORY NAV ──────────────────────────────────────────────────────
+const catNav = [
+  { slug: '/urunlerimiz',               label: 'Tümü',             active: false },
+  { slug: '/pvc-kapilar',               label: 'PVC Kapılar',       active: false },
+  { slug: '/laminoks-kapilar',          label: 'Laminoks Kapılar',  active: false },
+  { slug: '/elitpan-doors',             label: 'Elitpan Kapılar',   active: false },
+  { slug: '/hospital-doors',            label: 'Hastane Kapıları',  active: false },
+  { slug: '/hotel-doors',               label: 'Otel Kapilari',     active: false },
+  { slug: '/yangina-dayanikli-kapilar', label: 'Yangin Kapilari',   active: true  },
+];
+
+// ── SSR PRODUCT LIST ──────────────────────────────────────────────────
+interface FireProduct {
+  id: string;
+  model: string;
+  color: string;
+  label: string;
+  badge: string;
+  image: string;
+  alt: string;
+}
+
+const fireProducts: FireProduct[] = fileNames.map((fn, i) => {
+  const parts      = fn.replace('.webp', '').split('-');
+  const model      = parts[3];
+  const fireRaw    = parts[4];
+  const color      = parts.slice(5).join(' ');
+  const fireRating = fireRaw.replace('EI', 'EI-');
+  return {
+    id:    `fire-${model}`,
+    model,
+    color,
+    label: `Yangin ${model} - ${color}`,
+    badge: `${fireRating} - TSE Onayli`,
+    image: `/assets/img/yangina-dayanikli-kapilar/${fn}`,
+    alt:   `CihanPan Door Yangin Serisi ${model} ${color} ${fireRating} Sertifikali Yangin Kapisi`,
+  };
+});
 ---
-<Layout
-  title="Yangına Dayanıklı Kapılar | Yangın Güvenlik Serisi Kayseri CihanPan Door"
-  description="Kayseri'nin yangın güvenlik standartlarına uygun yangına dayanıklı kapı koleksiyonu. EI-30, EI-60, EI-90 sertifikalı, TSE onaylı, üretici fiyat avantajı."
-  keywords="yangın kapısı, yangına dayanıklı kapı, yangın güvenlik kapısı, EI-30 kapı, EI-60 kapı, kayseri yangın kapısı üreticisi, TSE onaylı yangın kapısı"
+
+<I18nLayout
+  title="Yangina Dayanikli Kapilar — EI Sertifikali Seri | CihanPan Door"
+  description="Kayseri uretimi yangina dayanikli kapi modelleri. EI-30, EI-60, EI-90 sertifikali, TSE onayli."
+  keywords="yangina dayanikli kapi, yangin kapisi, EI-30 kapi, EI-60 kapi, kayseri yangin kapisi, TSE onayli yangin kapisi"
   canonical={currentUrl}
-  ogImage="/assets/img/og/yangina-dayanikli-kapilar-og.webp"
-  ogTitle="Yangına Dayanıklı Kapılar - Yangın Güvenlik Serisi | CihanPan Door"
-  ogDescription="Yangın güvenlik standartlarına uygun yangına dayanıklı kapı koleksiyonu. EI-30, EI-60, EI-90 sertifikalı, TSE onaylı."
-  ogType="website"
-  ogUrl={currentUrl}
-  twitterCard="summary_large_image"
-  twitterTitle="Yangına Dayanıklı Kapılar | Yangın Güvenlik Serisi"
-  twitterDescription="Yangın güvenlik standartlarına uygun yangına dayanıklı kapı koleksiyonu. Sertifikalı ve güvenli çözümler."
-  twitterImage="/assets/img/og/yangina-dayanikli-kapilar-og.webp"
-  schema={[yanginaSchema, organizationSchema, breadcrumbSchema]}
+  schema={allSchemas}
+  ogTitle="Yangina Dayanikli Kapilar — EI Sertifikali | CihanPan Door"
+  ogDescription="EI-30, EI-60, EI-90 sertifikali yangina dayanikli kapilar. TSE onayli. Fabrikadan dogrudan."
+  ogImage="/assets/img/og/fire-resistant-doors-og.webp"
 >
+  <I18nHeader />
 
-  <Header />
-  <Breadcrumbs items={breadcrumbItems} />
+  <main class="lam" id="main-content">
 
-  <main>
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero-content">
-          <h1 class="hero-title">Yangına Dayanıklı Kapılar</h1>
-          <p class="hero-subtitle">
-            Yangın güvenlik standartlarına uygun sertifikalı kapı koleksiyonumuz
+    <!-- ══════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════ -->
+    <section class="lam-hero" aria-labelledby="lam-h1">
+      <div class="lam-hero__bg" aria-hidden="true">
+        <div class="lam-hero__overlay"></div>
+        <div class="lam-hero__glow"></div>
+      </div>
+      <div class="lam-wrap lam-hero__inner">
+        <div>
+          <nav class="lam-breadcrumb" aria-label="Breadcrumb">
+            <a href={pageUrl}>Ana Sayfa</a>
+            <span aria-hidden="true">›</span>
+            <a href={getLocalizedRoute('/urunlerimiz', lang)}>Ürünler</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">Yangına Dayanıklı Kapılar</span>
+          </nav>
+
+          <span class="lam-eyebrow">
+            <span class="lam-eyebrow__line"></span>
+            Yangin Guvenlik Koleksiyonu · EI Sertifikali
+          </span>
+          <h1 class="lam-hero__h1" id="lam-h1">
+            <em>Yangina Dayanikli Kapilar</em><br/>EI Sertifikali · TSE Onayli · Duman Sizdirmaz
+          </h1>
+          <p class="lam-hero__lead">
+            Kayseri fabrikasindan toptan yangin kapilari. EI-30, EI-60, EI-90 yangin dayanim sertifikali, TSE onayli modeller.
           </p>
-          <div class="hero-badges">
-            <span class="badge">8 Model</span>
-            <span class="badge">TSE Onaylı</span>
-            <span class="badge">EI Sertifikalı</span>
-            <span class="badge">Yangın Güvenliği</span>
+          <div class="lam-hero__tags">
+            <span class="lam-htag">✓ EI-30 / EI-60 / EI-90</span>
+            <span class="lam-htag">✓ TSE Onayli</span>
+            <span class="lam-htag">✓ Duman Sizdirmaz Conta</span>
+            <span class="lam-htag">✓ Otomatik Kapanma</span>
+            <span class="lam-htag">✓ TS EN 1634-1</span>
+          </div>
+          <div class="lam-hero__actions">
+            <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--fire">
+              Yangin Kapisi Teklifi Al
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#catalogue" class="lam-btn lam-btn--ghost">
+              Modelleri Gor
+            </a>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- Products Section -->
-    <section class="products-section">
-      <div class="container">
-        <header class="section-header">
-          <h2>Yangına Dayanıklı Kapı Modelleri</h2>
-          <p>Yangın güvenlik standartlarına uygun sertifikalı kapı çözümleri</p>
-        </header>
-
-        <div class="quote-button-section">
-          <a href="/iletisim" class="btn-quote-main" aria-label="Yangın kapısı için toptan fiyat teklifi al">
-            Yangın Güvenlik Projesi Teklifi Al
-          </a>
-        </div>
-
-        <div class="product-filter-tabs">
-          <a href="/urunlerimiz" class="product-filter-btn">
-            <span>Tümü</span>
-          </a>
-          <a href="/pvc-kapilar" class="product-filter-btn">
-            <span>PVC Kapılar</span>
-          </a>
-          <a href="/laminoks-kapilar" class="product-filter-btn">
-            <span>Laminoks Kapılar</span>
-          </a>
-          <a href="/elitpan-kapilar" class="product-filter-btn">
-            <span>Elitpan Kapılar</span>
-          </a>
-          <a href="/hastane-kapilari" class="product-filter-btn">
-            <span>Hastane Kapıları</span>
-          </a>
-          <a href="/otel-kapilari" class="product-filter-btn">
-            <span>Otel Kapıları</span>
-          </a>
-          <a href="/yangina-dayanikli-kapilar" class="product-filter-btn active">
-            <span>Yangına Dayanıklı Kapılar</span>
-          </a>
-        </div>
-
-        <div class="products-grid" id="productsGrid">
-          <!-- Products will be loaded here -->
-        </div>
-
-        <div class="loading" id="loading">
-          <div class="loading-spinner"></div>
-          <p>Yangın kapısı modelleri yükleniyor...</p>
+      <!-- Stats bar -->
+      <div class="lam-wrap">
+        <div class="lam-statsbar">
+          <div class="lam-sitem"><strong>{modelCount}</strong><span>Model</span></div>
+          <div class="lam-sdiv"></div>
+          <div class="lam-sitem"><strong>TSE</strong><span>Onay</span></div>
+          <div class="lam-sdiv"></div>
+          <div class="lam-sitem"><strong>EI-90</strong><span>Sertifika</span></div>
+          <div class="lam-sdiv"></div>
+          <div class="lam-sitem"><strong>A+</strong><span>Guvenlik</span></div>
         </div>
       </div>
     </section>
 
-    <!-- Product Highlights -->
-    <section class="highlights-section">
-      <div class="container">
-        <div class="content-grid">
-          <article class="highlights-content">
-            <header>
-              <h2>Yangına Dayanıklı Kapılarımızın Özel Özellikleri</h2>
-            </header>
+    <!-- ══════════════════════════════════════════
+         CATEGORY NAV + PRODUCT GRID
+    ══════════════════════════════════════════ -->
+    <section class="lam-sec lam-sec--white" id="catalogue" aria-labelledby="catalogue-h2">
+      <div class="lam-wrap">
 
-            <p>
-              <strong>Yangın güvenlik serisi</strong> kapılarımız, bina güvenlik gereksinimlerini
-              karşılamak için tasarlanmış <em>TSE onaylı ve EI sertifikalı</em> profesyonel
-              çözümlerdir. Her model yangın yönetmeliklerine uygun olarak üretilir.
-            </p>
+        <nav class="lam-catnav" aria-label="Kapi kategorileri">
+          {catNav.map(cat => (
+            <a
+              href={getLocalizedRoute(cat.slug, lang)}
+              class={`lam-catbtn${cat.active ? ' lam-catbtn--active' : ''}`}
+              aria-current={cat.active ? 'page' : undefined}
+            >
+              {cat.label}
+            </a>
+          ))}
+        </nav>
 
-            <h3>Yangın Güvenliği İçin Özel Özellikler</h3>
-            <ul class="advantages-list">
-              <li><strong>Yangın Dayanımı:</strong> EI-30, EI-60, EI-90 sertifikalı modeller</li>
-              <li><strong>TSE Onaylı:</strong> Türk Standartları Enstitüsü sertifikası</li>
-              <li><strong>Duman Sızdırmazlık:</strong> Duman geçişini engelleyen conta sistemi</li>
-              <li><strong>Otomatik Kapanma:</strong> Yangın anında otomatik kapanan sistem</li>
-              <li><strong>Isı Yalıtımı:</strong> Yangın sırasında ısı transferini engelleyen yapı</li>
-              <li><strong>Çelik Konstrüksiyon:</strong> Yüksek sıcaklığa dayanıklı çelik yapı</li>
-            </ul>
+        <div class="lam-head">
+          <span class="lam-tag">Yangin Kapi Koleksiyonu</span>
+          <h2 id="catalogue-h2">
+            Yangina Dayanikli Kapi Modelleri
+          </h2>
+          <p>
+            {modelCount} yangin guvenlik kapisi modeli — 601–608 serisi. EI-30, EI-60 ve EI-90 sertifikali, TSE onayli.
+          </p>
+        </div>
 
-            <h3>Kullanım Alanları</h3>
-            <p>Yangına dayanıklı kapılarımız şu alanlarda kullanım için uygundur:</p>
-            <ul class="advantages-list">
-              <li><strong>AVM ve İş Merkezleri:</strong> Yangın yönetmeliği gereksinimleri</li>
-              <li><strong>Hastaneler:</strong> Hasta güvenliği için kritik alanlar</li>
-              <li><strong>Oteller:</strong> Misafir güvenliği standartları</li>
-              <li><strong>Fabrikalar:</strong> Endüstriyel yangın güvenliği</li>
-              <li><strong>Apartmanlar:</strong> Ortak alan güvenliği</li>
-              <li><strong>Kamu Binaları:</strong> Resmi bina standartları</li>
-            </ul>
+        <!-- Quote CTA -->
+        <div class="lam-quote-row">
+          <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--navy">
+            Yangin Kapisi Proje Teklifi Al
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <span class="lam-quote-note">24 saat icinde yanit · Proje bazli fiyatlandirma</span>
+        </div>
 
-            <h3>Kalite Standartları</h3>
-            <p>Tüm yangın kapılarımız TSE standartlarına ve TS EN 1634-1 normuna uygun olarak
-            üretilir. Yangın güvenlik testlerinden geçmiş, sertifikalı ürünlerdir.
-            Uluslararası projelerde de tercih edilir.</p>
-          </article>
-
-          <aside class="highlights-sidebar">
-            <div class="info-cards">
-              <div class="stat-card">
-                <div class="stat-number">8</div>
-                <div class="stat-label">MODEL</div>
+        <!-- Products Grid — SSR rendered for SEO -->
+        <div class="lam-grid lam-grid--wide" id="productsGrid" aria-label="Yangin kapi modelleri">
+          {fireProducts.map((product, i) => (
+            <article class="lam-card" aria-label={product.label}>
+              <div class="lam-card__img">
+                <img
+                  src={product.image}
+                  alt={product.alt}
+                  width="240"
+                  height="320"
+                  loading={i < 4 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
               </div>
-              <div class="stat-card">
-                <div class="stat-number">TSE</div>
-                <div class="stat-label">ONAY</div>
+              <div class="lam-card__body">
+                <p class="lam-card__name">{product.label}</p>
+                <span class="lam-card__badge">{product.badge}</span>
               </div>
-              <div class="stat-card">
-                <div class="stat-number">EI-90</div>
-                <div class="stat-label">SERTİFİKA</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-number">A+</div>
-                <div class="stat-label">GÜVENLİK</div>
-              </div>
+            </article>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SEO CONTENT + SIDEBAR
+    ══════════════════════════════════════════ -->
+    <section class="lam-sec lam-sec--cream" aria-labelledby="content-h2">
+      <div class="lam-wrap lam-content-wrap">
+
+        <article class="lam-article">
+          <h2 id="content-h2">
+            Sertifikali Bir Yangina Dayanikli Kapi Nedir? CihanPan Yaklasimi
+          </h2>
+
+          <p>
+            <strong>CihanPan Door yangin serisi</strong>, siki yangin guvenligi muhendisligi ile Kayseri fabrikamizin uretim hassasiyetini birlestirmektedir. Her model TS EN 1634-1 standartlarina uygun EI-30, EI-60 ve EI-90 sertifikalari icin tasarlanmistir.
+          </p>
+
+          <h3>Temel Yangin Guvenligi Ozellikleri</h3>
+          <ul class="lam-checklist">
+            <li><strong>EI-30 / EI-60 / EI-90 Sertifikasi:</strong> Turk ve AB yangin yonetmeliklerinde farkli bina sinifi gereksinimlerini karsilamak icin uc yangin direnci seviyesi.</li>
+            <li><strong>TSE Onayli:</strong> Turk Standartlari Enstitusu sertifikasi, TS EN 1634-1 yangin direnci ve duman kontrol testlerine uygunlugu onaylar.</li>
+            <li><strong>Duman Sizdirmaz Conta Sistemi:</strong> Intumesans ve duman conta sistemleri tum sicakliklarinda zehirli gaz ve duman gecisini engelleyerek kacis yollarini korur.</li>
+            <li><strong>Otomatik Kapanma Mekanizmasi:</strong> Yay yuklu veya hidrolik kapi kapatici, kapinin her zaman kapali olmasini saglar ve acik kapi uzerinden yangin yayilmasini onler.</li>
+            <li><strong>Celik Cerceve Konstruksiyonu:</strong> Galvanizli celik cerceve ve kapi kanadi, asiri isi altinda yapisal bozulmaya karsi direnir.</li>
+            <li><strong>Panik Donanimina Hazir:</strong> Acil cikis uyumu icin panik bar ve elektromanyetik acik tutma sistemleriyle uyumludur.</li>
+          </ul>
+
+          <h3>Kullanim Alanlari</h3>
+          <p>CihanPan Door yangin serisi su alanlarda tercih edilir:</p>
+          <ul class="lam-checklist">
+            <li><strong>AVM ve Is Merkezleri:</strong> EI-60 veya EI-90 sertifikasi gerektiren yangin bolmesi kapilari, kacis yollari ve merdiven alanlari.</li>
+            <li><strong>Hastaneler:</strong> Yangin kontrolunun kritik oldugu hasta koridorlari, ameliyathane girisleri ve yogun bakim bolgeleri.</li>
+            <li><strong>Oteller:</strong> Kat koridor yangin kapilari, merdiven girisleri ve servis alani bolmelendirmesi.</li>
+            <li><strong>Endustriyel Tesisler:</strong> Uretim tesisleri, depolar ve proses tesisleri icin agir hizmet yangin bolmesi kapilari.</li>
+            <li><strong>Apartmanlar:</strong> Konut bina kodlari tarafindan zorunlu olan ortak alan yangin kapilari, bodrum girisleri ve tesisat sahtalari.</li>
+            <li><strong>Kamu Binalari:</strong> Kacis yollarinda ve merdiven kovalarinda sertifikali yangin kapilari gerektiren okullar, universiteler ve resmi binalar.</li>
+          </ul>
+
+          <h3>Teknik Ozellikler</h3>
+          <ul class="lam-checklist">
+            <li>Cerceve: Galvanizli yangin dayanikli celik, 1.5 mm et kalinligi</li>
+            <li>Dolgu: Yangin dayanikli mineral yun (yogunluk: 100 kg/m3)</li>
+            <li>Standart boyutlar: 80x200 cm, 90x200 cm — ozel olcu mevcut</li>
+            <li>Yangin dayanimi: EI-30, EI-60, EI-90 (TS EN 1634-1)</li>
+            <li>Aksesuarlar: Yangin mentesesi, otomatik kapama, duman sizdirmaz esik, panik bar</li>
+            <li>TSE onayli · TS EN 1634-1 sertifikali · 2 yil uretici garantisi</li>
+          </ul>
+        </article>
+
+        <!-- Sidebar -->
+        <aside class="lam-sidebar">
+          <div class="lam-kpis">
+            <div class="lam-kpi"><strong>{modelCount}</strong><span>Model</span></div>
+            <div class="lam-kpi"><strong>TSE</strong><span>Onay</span></div>
+            <div class="lam-kpi"><strong>EI-90</strong><span>Sertifika</span></div>
+            <div class="lam-kpi"><strong>A+</strong><span>Guvenlik</span></div>
+          </div>
+
+          <div class="lam-contact-card">
+            <span class="lam-tag">Yangin Guvenligi Uzmani</span>
+            <h3>Yangin Kapisi Teklifi Al</h3>
+            <p>Bina turunuzu, sertifika duzeyini ve kapi sayisini paylasin — 24 saat icinde yanit veririz.</p>
+            <div class="lam-contact-btns">
+              <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--fire lam-btn--sm">
+                Iletisim Formu
+              </a>
+              <a href="https://wa.me/905441690038" target="_blank" rel="noopener" class="lam-btn lam-btn--wa lam-btn--sm">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.89 3.488"/></svg>
+                WhatsApp
+              </a>
+              <a href="tel:+905441690038" class="lam-btn lam-btn--outline lam-btn--sm" style="color: white;">
+                📞 +90 544 169 00 38
+              </a>
             </div>
+          </div>
 
-            <div class="quick-contact">
-              <h3>Yangın Güvenlik Danışmanlığı</h3>
-              <p>Projeniz için özel çözümler:</p>
-              <div class="contact-buttons">
-                <a href="tel:+905441690038" class="btn-contact-phone">Yangın Uzmanı</a>
-                <a href="https://wa.me/905441690038" class="btn-contact-whatsapp">WhatsApp</a>
-              </div>
+          <div class="lam-features-card">
+            <h3>One Cikan Ozellikler</h3>
+            <ul class="lam-feat-list">
+              <li>🔥 EI-30 / EI-60 / EI-90 sertifikali</li>
+              <li>✅ TSE onayli, TS EN 1634-1 uyumlu</li>
+              <li>💨 Duman sizdirmaz conta sistemi</li>
+              <li>⚙️ Otomatik kapanma mekanizmasi</li>
+              <li>📐 Ozel olcu ve cift kanat secenegi</li>
+              <li>🏗️ Proje bazli toplu tedarik</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-              <div class="special-features">
-                <h4>Özel Hizmetler</h4>
-                <ul>
-                  <li>✓ Yangın test raporu</li>
-                  <li>✓ TSE sertifikası</li>
-                  <li>✓ Proje bazlı özelleştirme</li>
-                  <li>✓ Montaj ve bakım desteği</li>
-                </ul>
-              </div>
-            </div>
-          </aside>
+    <!-- ══════════════════════════════════════════
+         FAQ
+    ══════════════════════════════════════════ -->
+    <section class="lam-sec lam-sec--white" aria-labelledby="faq-h2">
+      <div class="lam-wrap lam-faq-wrap">
+        <div class="lam-head">
+          <span class="lam-tag">SSS</span>
+          <h2 id="faq-h2">Sik Sorulan Sorular</h2>
+        </div>
+        <div class="lam-faqs">
+          {[
+            { q: 'Yangina dayanikli kapi nedir?',                         a: 'Yangina dayanikli kapi, yangin ve dumani belirli bir sure boyunca engelleyen sertifikali bir kapi sistemidir. EI-30, EI-60 ve EI-90 degerleri 30, 60 veya 90 dakikalik yangin ve duman direncini gosterir.' },
+            { q: 'EI-30, EI-60 ve EI-90 arasindaki fark nedir?',         a: 'Bu degerler kapinin yangin ve dumana kac dakika dayandigini gosterir. EI-30: 30 dakika, EI-60: 60 dakika, EI-90: 90 dakika. Bina sinifina gore dogru sertifika secimi yonetmelik geregi zorunludur.' },
+            { q: 'Hangi binalarda yangin kapisi zorunludur?',             a: 'Is merkezleri, hastaneler, oteller, okullar, AVM ve apartmanlarda yangin yonetmeligi geregi zorunludur. Yangin kacis yollari ve merdiven kovelari sertifikali yangin kapisi gerektirmektedir.' },
+            { q: 'Yangin kapisi siparislerinde MOQ nedir?',               a: 'Minimum siparis miktari 10 adettir. 50+ adet icin hacim indirimleri gecerlidir. Tam bina donanim projeleri icin ozel olcu, panik donanimlari, elektrikli kilit hazirligi ve proje belgelendirme mevcut.' },
+          ].map(item => (
+            <details class="lam-faq">
+              <summary class="lam-faq__q">
+                {item.q}
+                <span class="lam-faq__arrow" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                </span>
+              </summary>
+              <p class="lam-faq__a">{item.a}</p>
+            </details>
+          ))}
         </div>
       </div>
     </section>
 
-    <!-- Technical Specifications -->
-    <section class="technical-section">
-      <div class="container">
-        <h2>Teknik Özellikler</h2>
-        <div class="tech-grid">
-          <div class="tech-card">
-            <h3>Malzeme Özellikleri</h3>
-            <ul>
-              <li>Yangın dayanımlı çelik kasa</li>
-              <li>Mineral yünlü dolgu</li>
-              <li>Duman sızdırmaz conta</li>
-              <li>Isı dayanımlı boya</li>
-            </ul>
-          </div>
-          <div class="tech-card">
-            <h3>Sertifika Seçenekleri</h3>
-            <ul>
-              <li>EI-30: 30 dakika yangın dayanımı</li>
-              <li>EI-60: 60 dakika yangın dayanımı</li>
-              <li>EI-90: 90 dakika yangın dayanımı</li>
-              <li>TSE onaylı tüm modeller</li>
-            </ul>
-          </div>
-          <div class="tech-card">
-            <h3>Boyut Seçenekleri</h3>
-            <ul>
-              <li>Standart: 80cm x 200cm</li>
-              <li>Geniş: 90cm x 200cm</li>
-              <li>Çift kanat: 140cm x 200cm</li>
-              <li>Özel ölçü üretimi mevcut</li>
-            </ul>
-          </div>
-          <div class="tech-card">
-            <h3>Aksesuarlar</h3>
-            <ul>
-              <li>Yangın menteşeleri</li>
-              <li>Otomatik kapama sistemi</li>
-              <li>Panik bar seçeneği</li>
-              <li>Duman sızdırmaz eşik</li>
-            </ul>
-          </div>
+    <!-- ══════════════════════════════════════════
+         CTA BAND
+    ══════════════════════════════════════════ -->
+    <section class="lam-cta" aria-labelledby="cta-h2">
+      <div class="lam-cta__glow" aria-hidden="true"></div>
+      <div class="lam-wrap lam-cta__inner">
+        <div class="lam-cta__text">
+          <span class="lam-tag lam-tag--fire">Yangin Guvenligi Tedariki</span>
+          <h2 id="cta-h2">
+            Yangina Dayanikli Kapi<br/>Proje Teklifi Alin
+          </h2>
+          <p>
+            Bina turunuzu, sertifika duzeyini ve kapi sayisini paylasin. 24 saat icinde TSE ve EN 1634-1 belgeli fiyat teklifi.
+          </p>
+        </div>
+        <div class="lam-cta__btns">
+          <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--fire">
+            Ucretsiz Teklif Al
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href={getLocalizedRoute('/urunlerimiz', lang)} class="lam-btn lam-btn--ghost">
+            Tum Urunler
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-      <div class="container">
-        <h2>Projeniz İçin Yangın Güvenlik Çözümleri</h2>
-        <p>AVM, hastane, otel ve tüm ticari binalar için yangın güvenlik standartlarına uygun kapı koleksiyonumuzla projelerinizi güvenle tamamlayın</p>
-        <div class="cta-buttons">
-          <a href="tel:+905441690038" class="btn btn-tertiary">Yangın Uzmanı Ara</a>
-          <a href="/iletisim" class="btn btn-primary">Yangın Güvenlik Danışmanlığı</a>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <Footer />
-</Layout>
+  <I18nFooter />
+</I18nLayout>
 
 <style>
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+  /* ── TOKENS ── */
+  .lam {
+    --navy:     #0f2347;
+    --navy-mid: #1a3a6e;
+    --navy-l:   #1e4a8a;
+    --gold:     #c9a84c;
+    --gold-l:   #e2bc6a;
+    --fire:     #c0392b;
+    --fire-l:   #e74c3c;
+    --cream:    #faf8f4;
+    --slate:    #607080;
+    --text:     #0f1929;
+    --body:     #3d4f63;
+    --bdr:      #e4eaf4;
+    --white:    #ffffff;
+    --radius:   14px;
+    --green:    #16a34a;
+
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text);
   }
 
-  .hero {
-    padding: 4rem 0;
-    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-    color: white;
-    text-align: center;
-  }
+  /* ── LAYOUT ── */
+  .lam-wrap { max-width: 1160px; margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 2.5rem); width: 100%; }
+  .lam-sec         { padding-block: clamp(4rem, 8vw, 6.5rem); }
+  .lam-sec--white  { background: var(--white); }
+  .lam-sec--cream  { background: var(--cream); }
 
-  .hero-title {
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 800;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  /* ── SECTION HEAD ── */
+  .lam-head { text-align: center; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+  .lam-head h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700;
+    color: var(--text); margin: 0.3rem 0 0.7rem; line-height: 1.2;
   }
+  .lam-head p { color: var(--slate); font-size: 1rem; max-width: 560px; margin-inline: auto; line-height: 1.7; }
 
-  .hero-subtitle {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    opacity: 0.95;
-    max-width: 800px;
-    margin: 0 auto 2rem;
-    line-height: 1.6;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  .lam-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--fire); margin-bottom: 0.4rem; }
+  .lam-tag--gold { color: rgba(201,168,76,0.9); }
+  .lam-tag--fire { color: rgba(224,90,76,0.9); }
+
+  /* ── BUTTONS ── */
+  .lam-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.9rem; font-weight: 600; padding: 0.9rem 1.75rem;
+    border-radius: 8px; text-decoration: none; white-space: nowrap;
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
+    cursor: pointer; border: none;
   }
+  .lam-btn--gold    { background: var(--gold);  color: var(--navy);  font-weight: 700; }
+  .lam-btn--fire    { background: var(--fire);  color: var(--white); font-weight: 700; }
+  .lam-btn--gold:hover  { background: var(--gold-l); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(201,168,76,0.4); }
+  .lam-btn--fire:hover  { background: var(--fire-l); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(192,57,43,0.4); }
+  .lam-btn--navy    { background: var(--navy);  color: var(--white); font-weight: 700; }
+  .lam-btn--navy:hover  { background: var(--navy-mid); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(15,35,71,0.3); }
+  .lam-btn--ghost   { background: transparent; color: rgba(255,255,255,0.85); border: 1.5px solid rgba(255,255,255,0.25); }
+  .lam-btn--ghost:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+  .lam-btn--wa      { background: #16a34a; color: var(--white); }
+  .lam-btn--wa:hover { background: #15803d; transform: translateY(-2px); }
+  .lam-btn--outline { background: transparent; color: var(--navy); border: 1.5px solid var(--bdr); }
+  .lam-btn--outline:hover { border-color: var(--navy); transform: translateY(-2px); }
+  .lam-btn--sm      { font-size: 0.85rem; padding: 0.65rem 1.25rem; }
 
-  .hero-badges {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+  /* ── HERO ── */
+  .lam-hero {
+    position: relative; min-height: 75vh; display: flex;
+    flex-direction: column; justify-content: center;
+    padding-top: 70px; overflow: hidden;
   }
-
-  .badge {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+  .lam-hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .lam-hero__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(10,26,58,0.96) 0%, rgba(15,35,71,0.88) 60%, rgba(26,58,110,0.82) 100%);
   }
-
-  .products-section {
-    padding: 4rem 0;
-    background: #ffffff;
+  .lam-hero__glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 80% 30%, rgba(192,57,43,0.09) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 80% at 10% 70%, rgba(30,74,138,0.3) 0%, transparent 60%);
   }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: 3rem;
+  .lam-hero__inner {
+    position: relative; z-index: 1;
+    padding-top: clamp(2.5rem, 6vw, 4rem);
+    padding-bottom: clamp(3rem, 6vw, 5rem);
   }
-
-  .section-header h2 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #1a202c;
-    margin-bottom: 1rem;
+  .lam-breadcrumb {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 1.5rem; flex-wrap: wrap;
   }
-
-  .section-header p {
-    font-size: 1.1rem;
-    color: #6b7280;
-    max-width: 600px;
-    margin: 0 auto;
+  .lam-breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+  .lam-breadcrumb a:hover { color: var(--fire-l); }
+  .lam-breadcrumb span[aria-current] { color: var(--fire-l); }
+  .lam-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--fire-l); margin-bottom: 1.2rem;
   }
-
-  .quote-button-section {
-    text-align: center;
-    margin-bottom: 3rem;
+  .lam-eyebrow__line { display: block; width: 28px; height: 1px; background: var(--fire); opacity: 0.6; flex-shrink: 0; }
+  .lam-hero__h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem); font-weight: 900;
+    color: var(--white); line-height: 1.1; margin: 0 0 1.2rem;
   }
-
-  .btn-quote-main {
-    display: inline-block;
-    background: linear-gradient(135deg, #dc2626, #991b1b);
-    color: white;
-    border: none;
-    padding: 1rem 3rem;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
-    text-decoration: none;
+  .lam-hero__h1 em { font-style: normal; color: var(--fire-l); }
+  .lam-hero__lead { font-size: 1.05rem; color: rgba(255,255,255,0.65); line-height: 1.8; max-width: 560px; margin: 0 0 1.5rem; }
+  .lam-hero__tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+  .lam-htag {
+    display: inline-block; padding: 0.3rem 0.85rem;
+    border: 1px solid rgba(192,57,43,0.4); background: rgba(192,57,43,0.10);
+    color: rgba(231,76,60,0.95); font-size: 0.82rem; font-weight: 600; border-radius: 4px;
   }
+  .lam-hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-  .btn-quote-main:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+  /* Stats bar */
+  .lam-statsbar {
+    position: relative; z-index: 1;
+    display: flex; align-items: center; flex-wrap: wrap; gap: 0;
+    background: rgba(255,255,255,0.06); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
+    padding: 1.5rem 2rem; margin-top: 2rem;
   }
-
-  .product-filter-tabs {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 3rem;
+  .lam-sitem { display: flex; flex-direction: column; flex: 1; min-width: 80px; padding-inline: 1rem; text-align: center; }
+  .lam-sitem:first-child { padding-left: 0; }
+  .lam-sitem:last-child  { padding-right: 0; }
+  .lam-sitem strong {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.6rem; font-weight: 900; color: var(--fire-l); line-height: 1; display: block;
   }
+  .lam-sitem strong sup { font-size: 0.7em; }
+  .lam-sitem span { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 0.3rem; display: block; }
+  .lam-sdiv { width: 1px; height: 32px; background: rgba(255,255,255,0.12); flex-shrink: 0; }
 
-  .product-filter-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 600;
-    font-size: 1rem;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-    position: relative;
-    overflow: hidden;
-    text-decoration: none;
-    display: inline-block;
+  /* ── CATEGORY NAV ── */
+  .lam-catnav {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-bottom: 2.5rem; padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--bdr);
   }
-
-  .product-filter-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-    transition: left 0.3s ease;
-    z-index: 1;
+  .lam-catbtn {
+    background: var(--white); color: var(--body); border: 1.5px solid var(--bdr);
+    padding: 0.5rem 1.1rem; border-radius: 30px;
+    font-size: 0.875rem; font-weight: 600; font-family: 'Inter', system-ui, sans-serif;
+    text-decoration: none; transition: all 0.2s; white-space: nowrap;
   }
+  .lam-catbtn:hover { border-color: var(--navy); color: var(--navy); }
+  .lam-catbtn--active { background: var(--fire); color: var(--white); border-color: var(--fire); }
 
-  .product-filter-btn span {
-    position: relative;
-    z-index: 2;
-  }
+  .lam-quote-row { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+  .lam-quote-note { font-size: 0.875rem; color: var(--slate); }
 
-  .product-filter-btn:hover::before {
-    left: 0;
-  }
-
-  .product-filter-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
-  }
-
-  .product-filter-btn.active {
-    background: linear-gradient(135deg, #b91c1c 0%, #7f1d1d 100%);
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(185, 28, 28, 0.4);
-  }
-
-  .products-grid {
+  /* ── PRODUCTS GRID ── */
+  .lam-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    justify-items: center;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.25rem; min-height: 300px;
+  }
+  .lam-grid--wide {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+  .lam-card {
+    background: var(--white); border: 1px solid var(--bdr);
+    border-radius: var(--radius); overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  }
+  .lam-card:hover {
+    transform: translateY(-4px); box-shadow: 0 16px 36px rgba(15,35,71,0.1);
+    border-color: rgba(192,57,43,0.35);
+  }
+  .lam-card__img {
+    aspect-ratio: 3/4; background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; padding: 0.5rem;
+  }
+  .lam-card__img img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.35s; }
+  .lam-card:hover .lam-card__img img { transform: scale(1.04); }
+  .lam-card__body { padding: 0.75rem 1rem 1rem; }
+  .lam-card__name {
+    font-size: 0.82rem; font-weight: 600;
+    color: var(--text); text-align: center; line-height: 1.4; margin: 0 0 0.5rem;
+  }
+  .lam-card__badge {
+    display: block; text-align: center;
+    font-size: 0.72rem; font-weight: 600; color: var(--fire);
+    letter-spacing: 0.05em;
   }
 
-  .product-card {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 16px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    width: 280px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  /* ── SEO CONTENT ── */
+  .lam-content-wrap { display: grid; grid-template-columns: 1fr 320px; gap: 4rem; align-items: start; }
+  .lam-article { background: var(--white); padding: 2.5rem; border-radius: var(--radius); border: 1px solid var(--bdr); }
+  .lam-article h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.6rem, 2.5vw, 2.1rem); font-weight: 700;
+    color: var(--text); margin: 0 0 1.25rem; line-height: 1.2;
   }
+  .lam-article h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; font-weight: 700; color: var(--fire); margin: 2rem 0 0.75rem; }
+  .lam-article p  { font-size: 0.95rem; color: var(--body); line-height: 1.8; margin: 0 0 1rem; }
+  .lam-article strong { color: var(--navy); }
 
-  .product-card:hover {
-    border-color: #dc2626;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(220, 38, 38, 0.15);
+  .lam-checklist { list-style: none; padding: 0; margin: 0 0 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .lam-checklist li { font-size: 0.925rem; color: var(--body); line-height: 1.6; padding-left: 1.5rem; position: relative; }
+  .lam-checklist li::before { content: '✓'; position: absolute; left: 0; color: var(--fire); font-weight: 700; }
+
+  /* Sidebar */
+  .lam-sidebar { display: flex; flex-direction: column; gap: 1.5rem; position: sticky; top: 90px; }
+  .lam-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--bdr); border: 1px solid var(--bdr); border-radius: var(--radius); overflow: hidden; }
+  .lam-kpi { background: var(--white); padding: 1.25rem; text-align: center; transition: background 0.2s; }
+  .lam-kpi:hover { background: var(--cream); }
+  .lam-kpi strong { display: block; font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; font-weight: 900; color: var(--fire); line-height: 1; margin-bottom: 0.3rem; }
+  .lam-kpi strong sup { font-size: 0.65em; }
+  .lam-kpi span { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); }
+
+  .lam-contact-card { background: var(--navy); border-radius: var(--radius); padding: 1.75rem; }
+  .lam-contact-card .lam-tag { color: rgba(231,76,60,0.85); }
+  .lam-contact-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; font-weight: 700; color: var(--white); margin: 0.3rem 0 0.6rem; }
+  .lam-contact-card p  { font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.6; margin: 0 0 1.25rem; }
+  .lam-contact-btns { display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .lam-features-card { background: var(--white); border: 1px solid var(--bdr); border-radius: var(--radius); padding: 1.5rem; }
+  .lam-features-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 1rem; }
+  .lam-feat-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+  .lam-feat-list li { font-size: 0.9rem; color: var(--body); }
+
+  /* ── FAQ ── */
+  .lam-faq-wrap { max-width: 780px; }
+  .lam-faqs { display: flex; flex-direction: column; gap: 0.75rem; }
+  .lam-faq { background: var(--white); border: 1px solid var(--bdr); border-radius: 10px; overflow: hidden; transition: border-color 0.2s; }
+  .lam-faq[open] { border-color: rgba(192,57,43,0.35); }
+  .lam-faq__q {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 1.1rem 1.5rem; cursor: pointer;
+    font-weight: 600; font-size: 0.95rem; color: var(--text);
+    list-style: none; user-select: none; transition: background 0.15s;
   }
+  .lam-faq__q:hover { background: var(--cream); }
+  .lam-faq__q::-webkit-details-marker { display: none; }
+  .lam-faq__arrow { flex-shrink: 0; color: var(--slate); transition: transform 0.25s; }
+  .lam-faq[open] .lam-faq__arrow { transform: rotate(180deg); color: var(--fire); }
+  .lam-faq__a { padding: 1rem 1.5rem 1.25rem; font-size: 0.925rem; color: var(--body); line-height: 1.75; margin: 0; border-top: 1px solid var(--bdr); }
 
-  .product-image {
-    height: 280px;
-    width: 100%;
-    background: #f8fafc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
+  /* ── CTA BAND ── */
+  .lam-cta { position: relative; background: var(--navy); overflow: hidden; padding: clamp(4rem, 8vw, 6rem) 0; }
+  .lam-cta__glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 55% 80% at 105% 50%, rgba(192,57,43,0.18) 0%, transparent 65%),
+      linear-gradient(140deg, #08192e 0%, var(--navy) 100%);
+    pointer-events: none;
   }
-
-  .product-image img {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
-    transition: transform 0.3s ease;
-    border-radius: 8px;
+  .lam-cta__inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap; }
+  .lam-cta__text h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.75rem, 3vw, 2.4rem); font-weight: 700;
+    color: var(--white); margin: 0.35rem 0 0.7rem; line-height: 1.2;
   }
+  .lam-cta__text p { color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.7; max-width: 420px; margin: 0; }
+  .lam-cta__btns { display: flex; gap: 1rem; flex-wrap: wrap; flex-shrink: 0; }
 
-  .product-card:hover .product-image img {
-    transform: scale(1.05);
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .lam-content-wrap { grid-template-columns: 1fr; }
+    .lam-sidebar { position: static; }
+    .lam-kpis { grid-template-columns: repeat(4, 1fr); }
   }
-
-  .product-info {
-    padding: 1.5rem;
-    text-align: center;
-    background: white;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .product-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #111827;
-    line-height: 1.4;
-    margin: 0;
-  }
-
-  .product-features {
-    margin-top: 0.5rem;
-    font-size: 0.85rem;
-    color: #dc2626;
-    font-weight: 500;
-  }
-
-  .loading {
-    text-align: center;
-    padding: 3rem;
-    color: #6b7280;
-  }
-
-  .loading-spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid #f3f4f6;
-    border-top: 4px solid #dc2626;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 1rem;
-  }
-
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-
-  .highlights-section {
-    padding: 5rem 0;
-    background: #f8fafc;
-  }
-
-  .content-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-
-  .highlights-content {
-    background: white;
-    padding: 3rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  }
-
-  .highlights-content h2 {
-    font-size: 2.25rem;
-    font-weight: 800;
-    color: #1a202c;
-    margin-bottom: 1.5rem;
-    line-height: 1.3;
-  }
-
-  .highlights-content h3 {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: #dc2626;
-    margin: 2.5rem 0 1rem;
-    line-height: 1.4;
-  }
-
-  .highlights-content p {
-    color: #4a5568;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-    font-size: 1.05rem;
-  }
-
-  .advantages-list {
-    margin: 1.5rem 0;
-    padding-left: 0;
-    list-style: none;
-  }
-
-  .advantages-list li {
-    margin-bottom: 0.75rem;
-    color: #4a5568;
-    padding-left: 1.5rem;
-    position: relative;
-    line-height: 1.6;
-  }
-
-  .advantages-list li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: #dc2626;
-    font-weight: bold;
-  }
-
-  .highlights-sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .info-cards {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .stat-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    text-align: center;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  }
-
-  .stat-number {
-    font-size: 2rem;
-    font-weight: 800;
-    color: #dc2626;
-    margin-bottom: 0.5rem;
-  }
-
-  .stat-label {
-    color: #6b7280;
-    font-weight: 600;
-    font-size: 0.9rem;
-  }
-
-  .quick-contact {
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  }
-
-  .quick-contact h3 {
-    color: #1a202c;
-    margin-bottom: 1rem;
-    font-size: 1.25rem;
-  }
-
-  .quick-contact p {
-    color: #6b7280;
-    margin-bottom: 1.5rem;
-  }
-
-  .contact-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .btn-contact-phone, .btn-contact-whatsapp {
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 500;
-    text-align: center;
-    transition: all 0.2s ease;
-  }
-
-  .btn-contact-phone {
-    background: #dc2626;
-    color: white;
-  }
-
-  .btn-contact-phone:hover {
-    background: #991b1b;
-    transform: translateY(-1px);
-  }
-
-  .btn-contact-whatsapp {
-    background: #10b981;
-    color: white;
-  }
-
-  .btn-contact-whatsapp:hover {
-    background: #059669;
-    transform: translateY(-1px);
-  }
-
-  .special-features {
-    border-top: 1px solid #e5e7eb;
-    padding-top: 1rem;
-  }
-
-  .special-features h4 {
-    color: #374151;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-  }
-
-  .special-features ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .special-features li {
-    color: #6b7280;
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .technical-section {
-    padding: 4rem 0;
-    background: white;
-  }
-
-  .technical-section h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #1a202c;
-    margin-bottom: 3rem;
-  }
-
-  .tech-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .tech-card {
-    background: #f8fafc;
-    padding: 2rem;
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
-  }
-
-  .tech-card h3 {
-    color: #dc2626;
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-  }
-
-  .tech-card ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .tech-card li {
-    color: #4a5568;
-    margin-bottom: 0.5rem;
-    padding-left: 1rem;
-    position: relative;
-  }
-
-  .tech-card li::before {
-    content: "•";
-    color: #dc2626;
-    position: absolute;
-    left: 0;
-    font-weight: bold;
-  }
-
-  .cta-section {
-    padding: 5rem 0;
-    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-    color: white;
-    text-align: center;
-  }
-
-  .cta-section h2 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
-  }
-
-  .cta-section p {
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .cta-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.05rem;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 180px;
-  }
-
-  .btn-primary {
-    background: #111827;
-    color: white;
-    border: 2px solid #111827;
-  }
-
-  .btn-primary:hover {
-    background: #1f2937;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(17, 24, 39, 0.3);
-  }
-
-  .btn-tertiary {
-    background: #10b981;
-    color: white;
-    border: 2px solid #10b981;
-  }
-
-  .btn-tertiary:hover {
-    background: #059669;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-  }
-
   @media (max-width: 768px) {
-    .content-grid {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-
-    .highlights-content {
-      padding: 2rem;
-    }
-
-    .highlights-content h2 {
-      font-size: 1.75rem;
-    }
-
-    .highlights-content h3 {
-      font-size: 1.5rem;
-    }
-
-    .products-grid {
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .product-card {
-      width: 240px;
-    }
-
-    .product-image {
-      height: 240px;
-    }
-
-    .product-info {
-      padding: 1rem;
-    }
-
-    .product-title {
-      font-size: 1rem;
-    }
-
-    .product-filter-tabs {
-      flex-direction: column;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .product-filter-btn {
-      width: 100%;
-      max-width: 300px;
-      padding: 0.875rem 1.5rem;
-      font-size: 0.95rem;
-    }
-
-    .cta-buttons {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .btn {
-      width: 100%;
-      max-width: 300px;
-    }
-
-    .hero-badges {
-      flex-direction: column;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .badge {
-      width: fit-content;
-    }
-
-    .tech-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-
-    .tech-card {
-      padding: 1.5rem;
-    }
+    .lam-hero { min-height: auto; }
+    .lam-hero__actions { flex-direction: column; }
+    .lam-catnav { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 1rem; scrollbar-width: thin; }
+    .lam-catnav::-webkit-scrollbar { height: 4px; }
+    .lam-catnav::-webkit-scrollbar-thumb { background: var(--bdr); border-radius: 4px; }
+    .lam-quote-row { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .lam-cta__inner { flex-direction: column; text-align: center; }
+    .lam-cta__btns  { justify-content: center; }
+    .lam-grid--wide { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
   }
-
   @media (max-width: 480px) {
-    .hero {
-      padding: 2rem 0;
-    }
-
-    .section-header h2 {
-      font-size: 2rem;
-    }
-
-    .stat-label {
-      font-size: 0.9rem;
-    }
+    .lam-grid, .lam-grid--wide { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    .lam-kpis { grid-template-columns: repeat(2, 1fr); }
+    .lam-statsbar { padding: 1rem 1.25rem; }
+    .lam-sdiv { display: none; }
+    .lam-sitem { padding-inline: 0.5rem; }
   }
 </style>
-
-<script>
-  const yanginModels = [];
-
-  const fileNames = [
-    "CihanpanDoor-Yangin-Serisi-601-EI30-Beyaz.webp",
-    "CihanpanDoor-Yangin-Serisi-602-EI60-Antrasit.webp",
-    "CihanpanDoor-Yangin-Serisi-603-EI90-Gri.webp",
-    "CihanpanDoor-Yangin-Serisi-604-EI30-Ceviz.webp",
-    "CihanpanDoor-Yangin-Serisi-605-EI60-Meşe.webp",
-    "CihanpanDoor-Yangin-Serisi-606-EI90-Wenge.webp",
-    "CihanpanDoor-Yangin-Serisi-607-EI30-Kapucino.webp",
-    "CihanpanDoor-Yangin-Serisi-608-EI60-Siyah.webp"
-  ];
-
-  fileNames.forEach((fileName, index) => {
-    const parts = fileName.replace('.webp', '').split('-');
-    const modelNumber = parts[3];
-    const fireRating = parts[4];
-    const colorInfo = parts[5];
-
-    const displayName = `Yangın ${modelNumber}`;
-    const colorName = colorInfo.replace(/-/g, ' ');
-    const fireRatingText = fireRating.replace('EI', 'EI-');
-
-    yanginModels.push({
-      id: `yangin-${modelNumber}`,
-      name: displayName,
-      category: 'yangin',
-      fireRating: fireRating,
-      image: `/assets/img/yangina-dayanikli-kapilar/${fileName}`,
-      fallbackImage: `https://picsum.photos/300/400?random=${index + 600}`,
-      altText: `CihanPan Door Yangına Dayanıklı Kapı Model ${modelNumber} ${colorName} ${fireRatingText} Sertifikalı - TSE Onaylı Yangın Kapısı`,
-      features: `${fireRatingText} • TSE Onaylı`,
-      colorInfo: colorName,
-      description: `Yangın kapısı model ${modelNumber} ${colorName}. ${fireRatingText} yangın dayanım sertifikası ile TSE onaylı. Bina yangın güvenliği için profesyonel çözüm. Kayseri üretimi, toptan satış avantajı.`,
-      seoKeywords: `yangın kapısı model ${modelNumber}, ${fireRatingText} yangın kapısı, TSE onaylı yangın kapısı, yangın güvenlik kapısı ${colorName.toLowerCase()}, kayseri yangın kapısı üreticisi`,
-      schemaData: {
-        "@type": "Product",
-        "name": `Yangın Kapısı Model ${modelNumber} - ${colorName} ${fireRatingText}`,
-        "description": `${fireRatingText} yangın dayanım sertifikalı yangın güvenlik kapısı`,
-        "brand": "CihanPan Door",
-        "material": "Yangın Dayanımlı Çelik",
-        "category": "Yangına Dayanıklı Kapılar",
-        "color": colorName
-      }
-    });
-  });
-
-  function renderProducts() {
-    const grid = document.getElementById('productsGrid');
-    const loading = document.getElementById('loading');
-
-    loading.style.display = 'block';
-    grid.innerHTML = '';
-
-    setTimeout(() => {
-      if (yanginModels.length === 0) {
-        grid.innerHTML = `
-          <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
-            <h3 style="color: #6b7280; margin-bottom: 1rem;">Bu kategoride henüz ürün bulunmuyor</h3>
-            <p style="color: #9ca3af;">Yakında yeni yangın kapısı modelleri eklenecek.</p>
-          </div>
-        `;
-      } else {
-        yanginModels.forEach((product) => {
-          const card = createProductCard(product);
-          grid.appendChild(card);
-        });
-      }
-
-      loading.style.display = 'none';
-    }, 300);
-  }
-
-  function createProductCard(product) {
-    const card = document.createElement('article');
-    card.className = 'product-card';
-    card.setAttribute('aria-label', `${product.name} ${product.colorInfo} yangın kapısı modeli`);
-
-    card.innerHTML = `
-      <div class="product-image">
-        <img src="${product.image}"
-             alt="${product.altText}"
-             title="${product.name} ${product.colorInfo} - CihanPan Door Yangın Kapısı"
-             loading="lazy"
-             width="300"
-             height="300"
-             onerror="this.src='${product.fallbackImage}'; this.alt='${product.name} Yangın Kapısı Örneği';">
-      </div>
-      <div class="product-info">
-        <h3 class="product-title">${product.name}</h3>
-        <div class="product-features">${product.features}</div>
-        <div style="font-size: 0.8rem; color: #6b7280; margin-top: 0.25rem;">${product.colorInfo}</div>
-      </div>
-    `;
-
-    return card;
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    renderProducts();
-  });
-</script>

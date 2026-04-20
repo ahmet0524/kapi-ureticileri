@@ -1,77 +1,59 @@
 ---
-// src/pages/tr/elitpan-kapilar.astro
+// src/pages/ar/yangina-dayanikli-kapilar.astro
 import I18nLayout from '../../layouts/I18nLayout.astro';
 import I18nHeader from '../../components/I18nHeader.astro';
 import I18nFooter from '../../components/I18nFooter.astro';
-import { getLocalizedRoute } from '../../i18n/utils';
+import { useTranslations, getLocalizedRoute } from '../../i18n/utils';
 
-const lang = 'tr';
+const lang = 'ar';
+const t    = useTranslations(lang);
 
 const baseUrl    = 'https://cihanpandoor.netlify.app';
-const pageUrl    = baseUrl;
-const currentUrl = `${pageUrl}/tr/elitpan-kapilar`;
+const pageUrl    = `${baseUrl}/ar`;
+const currentUrl = `${pageUrl}/yangina-dayanikli-kapilar`;
 
 // ── FILE LIST ─────────────────────────────────────────────────────────
 const fileNames = [
-  "CihanpanDoor-Elitpan-Serisi-301.webp",
-  "CihanpanDoor-Elitpan-Serisi-302.webp",
-  "CihanpanDoor-Elitpan-Serisi-303.webp",
-  "CihanpanDoor-Elitpan-Serisi-304.webp",
-  "CihanpanDoor-Elitpan-Serisi-305.webp",
-  "CihanpanDoor-Elitpan-Serisi-306.webp",
-  "CihanpanDoor-Elitpan-Serisi-307.webp",
-  "CihanpanDoor-Elitpan-Serisi-308.webp",
-  "CihanpanDoor-Elitpan-Serisi-309.webp",
-  "CihanpanDoor-Elitpan-Serisi-310.webp",
-  "CihanpanDoor-Elitpan-Serisi-311.webp",
-  "CihanpanDoor-Elitpan-Serisi-312.webp",
-  "CihanpanDoor-Elitpan-Serisi-313.webp",
-  "CihanpanDoor-Elitpan-Serisi-314.webp",
-  "CihanpanDoor-Elitpan-Serisi-315.webp",
-  "CihanpanDoor-Elitpan-Serisi-316.webp",
-  "CihanpanDoor-Elitpan-Serisi-317.webp",
-  "CihanpanDoor-Elitpan-Serisi-318.webp",
-  "CihanpanDoor-Elitpan-Serisi-319.webp",
-  "CihanpanDoor-Elitpan-Serisi-320.webp",
-  "CihanpanDoor-Elitpan-Serisi-321.webp",
-  "CihanpanDoor-Elitpan-Serisi-322.webp",
-  "CihanpanDoor-Elitpan-Serisi-323.webp",
-  "CihanpanDoor-Elitpan-Serisi-324.webp",
-  "CihanpanDoor-Elitpan-Serisi-325.webp",
-  "CihanpanDoor-Elitpan-Serisi-326.webp",
+  "CihanpanDoor-Yangin-Serisi-601-EI30-White.webp",
+  "CihanpanDoor-Yangin-Serisi-602-EI60-Anthracite.webp",
+  "CihanpanDoor-Yangin-Serisi-603-EI90-Grey.webp",
+  "CihanpanDoor-Yangin-Serisi-604-EI30-Walnut.webp",
+  "CihanpanDoor-Yangin-Serisi-605-EI60-Oak.webp",
+  "CihanpanDoor-Yangin-Serisi-606-EI90-Wenge.webp",
+  "CihanpanDoor-Yangin-Serisi-607-EI30-Cappuccino.webp",
+  "CihanpanDoor-Yangin-Serisi-608-EI60-Black.webp",
 ];
 
 const modelCount = fileNames.length;
 
 // ── SCHEMA ────────────────────────────────────────────────────────────
-const elitpanSchema = {
+const hotelSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": `Elitpan UV İç Oda Kapıları — ${modelCount}+ Model | CihanPan Door`,
-  "description": `Kayseri'den toptan UV kaplı Elitpan iç oda kapıları. Antibakteriyel, çizilmez, ${modelCount}+ model, CE belgeli.`,
+  "name": "أبواب مقاومة للحريق — سلسلة EI المعتمدة | CihanPan Door",
+  "description": "أبواب مقاومة للحريق من قيصري، تركيا. معتمدة EI-30 وEI-60 وEI-90، معتمدة TSE، مانعة للدخان. مباشرة من المصنع للمشاريع التجارية والفندقية والمباني العامة.",
   "url": currentUrl,
-  "inLanguage": "tr-TR",
+  "inLanguage": "ar",
   "mainEntity": {
     "@type": "ItemList",
-    "name": "Elitpan Kapı Modelleri",
+    "name": "موديلات الأبواب المقاومة للحريق",
     "numberOfItems": modelCount,
     "itemListElement": [
       {
         "@type": "Product",
-        "name": "Elitpan UV İç Oda Kapısı",
-        "description": "UV kaplı MDF özlü iç kapı. Antibakteriyel, çizilmez, su dayanımlı. CE belgeli, 5 yıl garanti.",
+        "name": "باب مقاوم للحريق — سلسلة EI المعتمدة",
+        "description": "باب مقاوم للحريق معتمد من EI-30 إلى EI-90. معتمد TSE، نظام تغليف مانع للدخان، إغلاق تلقائي.",
         "brand": { "@type": "Brand", "name": "CihanPan Door" },
         "manufacturer": { "@type": "Organization", "name": "CihanPan Door", "url": baseUrl },
-        "material": "UV Kaplama / MDF",
-        "category": "İç Oda Kapısı",
+        "material": "فولاذ مقاوم للحريق",
+        "category": "باب مقاوم للحريق",
         "offers": {
           "@type": "AggregateOffer",
           "url": currentUrl,
-          "priceCurrency": "USD",
+          "priceCurrency": "TRY",
           "availability": "https://schema.org/InStock",
           "offerCount": modelCount.toString(),
-          "businessFunction": "http://purl.org/goodrelations/v1#Sell",
-          "eligibleCustomerType": "http://purl.org/goodrelations/v1#Business"
+          "businessFunction": "http://purl.org/goodrelations/v1#Sell"
         },
         "aggregateRating": {
           "@type": "AggregateRating",
@@ -89,10 +71,10 @@ const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "Elitpan kapı nedir?", "acceptedAnswer": { "@type": "Answer", "text": "Elitpan kapılar, masif MDF özlü UV kür kaplama ile üretilen premium iç kapılardır. UV finish, antibakteriyel, yüksek çizilmez ve su dayanımlı yüzey sağlar — hastane, otel, ticari bina ve üst segment konutlar için idealdir." }},
-    { "@type": "Question", "name": "Elitpan ile Laminoks arasındaki fark nedir?", "acceptedAnswer": { "@type": "Answer", "text": "Her iki seri de masif MDF öz kullanır. Elitpan kapılar olağanüstü parlaklık, renk dayanımı ve antibakteriyel özellik sunan UV kür kaplama kullanır. Laminoks kapılar üstün çizilme ve darbe direnci olan HPL laminat kullanır. Elitpan, premium parlaklık ve hijyen öncelikli olduğunda tercih edilir." }},
-    { "@type": "Question", "name": "Elitpan kapılar nemli ortamlara uygun mu?", "acceptedAnswer": { "@type": "Answer", "text": "Evet. UV kaplama ve nem dayanımlı MDF öz, Elitpan kapıları banyo, mutfak ve orta nemli iç mekanlara uygun hale getirir. Çok nemli ortamlar için kapı kasasına ek sızdırmazlık önerilir." }},
-    { "@type": "Question", "name": "Toptan siparişlerde MOQ nedir?", "acceptedAnswer": { "@type": "Answer", "text": "Minimum sipariş miktarı 50 adettir. 200+ adet için hacim indirimleri geçerlidir. Büyük toplu siparişler için özel ölçü, cam açıklık ve özel etiket seçenekleri mevcuttur." }},
+    { "@type": "Question", "name": "ما هو الباب المقاوم للحريق؟",                              "acceptedAnswer": { "@type": "Answer", "text": "الباب المقاوم للحريق هو نظام باب معتمد يمنع انتشار الحريق والدخان لفترة محددة. تشير تقييمات EI-30 وEI-60 وEI-90 إلى 30 أو 60 أو 90 دقيقة من مقاومة الحريق والدخان." }},
+    { "@type": "Question", "name": "ما الفرق بين EI-30 وEI-60 وEI-90؟",                         "acceptedAnswer": { "@type": "Answer", "text": "تشير هذه التقييمات إلى المدة التي يقاوم فيها الباب الحريق والدخان. EI-30 يوفر 30 دقيقة، وEI-60 يوفر 60 دقيقة، وEI-90 يوفر 90 دقيقة من الحماية وفقًا لمعايير اختبار TS EN 1634-1." }},
+    { "@type": "Question", "name": "أين تكون الأبواب المقاومة للحريق إلزامية؟",                "acceptedAnswer": { "@type": "Answer", "text": "الأبواب المقاومة للحريق إلزامية في المباني التجارية والمستشفيات والفنادق والمدارس ومراكز التسوق والمجمعات السكنية. تشترط لوائح البناء وجود أبواب مقاومة للحريق في مسارات الإخلاء وفتحات الدرج." }},
+    { "@type": "Question", "name": "ما الحد الأدنى لكمية الطلب للأبواب المقاومة للحريق؟",     "acceptedAnswer": { "@type": "Answer", "text": "الحد الأدنى لكمية الطلب هو 10 وحدات. تُطبَّق خصومات الكميات من 50 وحدة فصاعدًا. تتوفر الأبعاد المخصصة وأجهزة الذعر وتجهيزات الأقفال الكهربائية ووثائق المشروع للمشاريع الكاملة." }},
   ]
 };
 
@@ -100,66 +82,67 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": pageUrl },
-    { "@type": "ListItem", "position": 2, "name": "Ürünler",   "item": `${pageUrl}/urunlerimiz` },
-    { "@type": "ListItem", "position": 3, "name": "Elitpan Kapılar", "item": currentUrl },
+    { "@type": "ListItem", "position": 1, "name": "الرئيسية",                   "item": pageUrl },
+    { "@type": "ListItem", "position": 2, "name": "المنتجات",                   "item": `${pageUrl}/urunlerimiz` },
+    { "@type": "ListItem", "position": 3, "name": "أبواب مقاومة للحريق",        "item": currentUrl },
   ]
 };
 
-const allSchemas = [elitpanSchema, faqSchema, breadcrumbSchema];
+const allSchemas = [hotelSchema, faqSchema, breadcrumbSchema];
 
 // ── CATEGORY NAV ──────────────────────────────────────────────────────
 const catNav = [
-  { slug: '/urunlerimiz',               label: 'Tümü',              active: false },
-  { slug: '/pvc-kapilar',               label: 'PVC Kapılar',        active: false },
-  { slug: '/laminoks-kapilar',          label: 'Laminoks Kapılar',   active: false },
-  { slug: '/elitpan-kapilar',           label: 'Elitpan Kapılar',    active: true  },
-  { slug: '/hastane-kapilari',          label: 'Hastane Kapıları',   active: false },
-  { slug: '/otel-kapilari',             label: 'Otel Kapıları',      active: false },
-  { slug: '/yangina-dayanikli-kapilar', label: 'Yangın Kapıları',    active: false },
+  { slug: '/urunlerimiz',               label: 'جميع المنتجات',    active: false },
+  { slug: '/pvc-kapilar',               label: 'أبواب PVC',         active: false },
+  { slug: '/laminoks-kapilar',          label: 'أبواب لامينوكس',    active: false },
+  { slug: '/elitpan-doors',             label: 'أبواب إيليتبان',    active: false },
+  { slug: '/hospital-doors',            label: 'أبواب المستشفيات',  active: false },
+  { slug: '/hotel-doors',               label: 'أبواب الفنادق',     active: false },
+  { slug: '/yangina-dayanikli-kapilar', label: 'أبواب الحريق',      active: true  },
 ];
 
-// ── SSR PRODUCT LIST (for SEO) ────────────────────────────────────────
-interface ElitpanProduct {
+// ── SSR PRODUCT LIST ──────────────────────────────────────────────────
+interface FireProduct {
   id: string;
   model: string;
+  color: string;
   label: string;
+  badge: string;
   image: string;
   alt: string;
 }
 
-const elitpanProducts: ElitpanProduct[] = fileNames.map((fn) => {
-  const model = fn.replace('.webp', '').split('-').pop()!;
+const fireProducts: FireProduct[] = fileNames.map((fn, i) => {
+  const parts      = fn.replace('.webp', '').split('-');
+  const model      = parts[3];
+  const fireRaw    = parts[4];
+  const color      = parts.slice(5).join(' ');
+  const fireRating = fireRaw.replace('EI', 'EI-');
   return {
-    id:    `elitpan-${model}`,
+    id:    `fire-${model}`,
     model,
-    label: `Elitpan ${model}`,
-    image: `/assets/img/elitpan-doors/${fn}`,
-    alt:   `CihanPan Door Elitpan Serisi ${model} — UV İç Kapı`,
+    color,
+    label: `باب حريق ${model} - ${color}`,
+    badge: `${fireRating} - معتمد TSE`,
+    image: `/assets/img/yangina-dayanikli-kapilar/${fn}`,
+    alt:   `CihanPan Door سلسلة الحريق ${model} ${color} باب حريق معتمد ${fireRating}`,
   };
 });
-
-const faqItems = [
-  { q: 'Elitpan kapı nedir?',                          a: 'Elitpan kapılar, masif MDF özlü UV kür kaplama ile üretilen premium iç kapılardır. UV finish, antibakteriyel, yüksek çizilmez ve su dayanımlı yüzey sağlar — hastane, otel, ticari bina ve üst segment konutlar için idealdir.' },
-  { q: 'Elitpan ile Laminoks arasındaki fark nedir?',  a: 'Her iki seri de masif MDF öz kullanır. Elitpan kapılar olağanüstü parlaklık, renk dayanımı ve antibakteriyel özellik sunan UV kür kaplama kullanır. Laminoks kapılar üstün çizilme ve darbe direnci olan HPL laminat kullanır. Elitpan, premium parlaklık ve hijyen öncelikli olduğunda tercih edilir.' },
-  { q: 'Elitpan kapılar nemli ortamlara uygun mu?',    a: 'Evet. UV kaplama ve nem dayanımlı MDF öz, Elitpan kapıları banyo, mutfak ve orta nemli iç mekanlara uygun hale getirir. Çok nemli ortamlar için kapı kasasına ek sızdırmazlık önerilir.' },
-  { q: 'Toptan siparişlerde MOQ nedir?',               a: 'Minimum sipariş miktarı 50 adettir. 200+ adet için hacim indirimleri geçerlidir. Büyük toplu siparişler için özel ölçü, cam açıklık ve özel etiket seçenekleri mevcuttur.' },
-];
 ---
 
 <I18nLayout
-  title={`Elitpan UV İç Oda Kapıları — ${modelCount}+ Model | Toptan | CihanPan Door`}
-  description={`Kayseri'den toptan UV kaplı Elitpan kapılar. Antibakteriyel MDF özlü, ${modelCount}+ model, CE sertifikalı.`}
-  keywords="elitpan kapı, UV kaplı iç kapı, antibakteriyel kapı, toptan elitpan kayseri, CE belgeli kapı"
+  title="أبواب مقاومة للحريق — سلسلة EI المعتمدة | CihanPan Door تركيا"
+  description="أبواب مقاومة للحريق من قيصري، تركيا. معتمدة EI-30 وEI-60 وEI-90، معتمدة TSE، مانعة للدخان. مباشرة من المصنع للمشاريع التجارية والفندقية والمباني العامة."
+  keywords="أبواب مقاومة للحريق تركيا، باب حريق EI-30 EI-60 EI-90، مصنع أبواب حريق قيصري، باب حريق معتمد TSE"
   canonical={currentUrl}
   schema={allSchemas}
-  ogTitle={`Elitpan Kapılar — ${modelCount}+ Model | CihanPan Door`}
-  ogDescription="Antibakteriyel UV kaplı Elitpan kapılar. Fabrikadan doğrudan."
-  ogImage="/assets/img/og/elitpan-doors-og.webp"
+  ogTitle="أبواب مقاومة للحريق — سلسلة EI المعتمدة | CihanPan Door"
+  ogDescription="أبواب مقاومة للحريق معتمدة EI-30 إلى EI-90. معتمدة TSE، مانعة للدخان. مباشرة من المصنع في قيصري."
+  ogImage="/assets/img/og/fire-resistant-doors-og.webp"
 >
   <I18nHeader />
 
-  <main class="lam" id="main-content">
+  <main class="lam" id="main-content" dir="rtl">
 
     <!-- ══════════════════════════════════════════
          HERO
@@ -171,38 +154,38 @@ const faqItems = [
       </div>
       <div class="lam-wrap lam-hero__inner">
         <div>
-          <nav class="lam-breadcrumb" aria-label="Breadcrumb">
-            <a href={pageUrl}>Ana Sayfa</a>
-            <span aria-hidden="true">›</span>
-            <a href={getLocalizedRoute('/urunlerimiz', lang)}>Ürünler</a>
-            <span aria-hidden="true">›</span>
-            <span aria-current="page">Elitpan Kapılar</span>
+          <nav class="lam-breadcrumb" aria-label="مسار التنقل">
+            <a href={pageUrl}>الرئيسية</a>
+            <span aria-hidden="true">‹</span>
+            <a href={getLocalizedRoute('/urunlerimiz', lang)}>المنتجات</a>
+            <span aria-hidden="true">‹</span>
+            <span aria-current="page">أبواب مقاومة للحريق</span>
           </nav>
 
           <span class="lam-eyebrow">
             <span class="lam-eyebrow__line"></span>
-            Premium UV Koleksiyonu · {modelCount}+ Model
+            مجموعة السلامة من الحرائق · سلسلة EI المعتمدة
           </span>
           <h1 class="lam-hero__h1" id="lam-h1">
-            <em>Elitpan İç Oda Kapıları</em><br/>UV Kaplı · Antibakteriyel · Premium Görünüm
+            <em>أبواب مقاومة للحريق</em><br/>معتمدة EI · معتمدة TSE · مانعة للدخان
           </h1>
           <p class="lam-hero__lead">
-            Kayseri fabrikasından toptan Elitpan kapılar. Masif MDF özlü UV kaplama — antibakteriyel, su dayanımlı ve çizilmez performans. CE ve ISO 9001 sertifikalı.
+            أبواب مقاومة للحريق مباشرة من مصنعنا في قيصري، تركيا. موديلات معتمدة EI-30 وEI-60 وEI-90، معتمدة TSE.
           </p>
           <div class="lam-hero__tags">
-            <span class="lam-htag">✓ UV Kaplı MDF Öz</span>
-            <span class="lam-htag">✓ {modelCount}+ Model</span>
-            <span class="lam-htag">✓ CE & ISO 9001</span>
-            <span class="lam-htag">✓ Antibakteriyel</span>
-            <span class="lam-htag">✓ Min. 50 Adet</span>
+            <span class="lam-htag">✓ EI-30 / EI-60 / EI-90</span>
+            <span class="lam-htag">✓ معتمدة TSE</span>
+            <span class="lam-htag">✓ تغليف مانع للدخان</span>
+            <span class="lam-htag">✓ نظام الإغلاق التلقائي</span>
+            <span class="lam-htag">✓ TS EN 1634-1</span>
           </div>
           <div class="lam-hero__actions">
-            <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--gold">
-              Ücretsiz Teklif Al
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--fire">
+              احصل على عرض سعر
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
             </a>
             <a href="#catalogue" class="lam-btn lam-btn--ghost">
-              Modelleri Gör
+              تصفح الموديلات
             </a>
           </div>
         </div>
@@ -211,13 +194,13 @@ const faqItems = [
       <!-- Stats bar -->
       <div class="lam-wrap">
         <div class="lam-statsbar">
-          <div class="lam-sitem"><strong>{modelCount}<sup>+</sup></strong><span>Model</span></div>
+          <div class="lam-sitem"><strong>{modelCount}</strong><span>موديل</span></div>
           <div class="lam-sdiv"></div>
-          <div class="lam-sitem"><strong>UV</strong><span>Kaplama</span></div>
+          <div class="lam-sitem"><strong>TSE</strong><span>اعتماد</span></div>
           <div class="lam-sdiv"></div>
-          <div class="lam-sitem"><strong>CE</strong><span>Sertifikalı</span></div>
+          <div class="lam-sitem"><strong>EI-90</strong><span>شهادة</span></div>
           <div class="lam-sdiv"></div>
-          <div class="lam-sitem"><strong>Min. 50</strong><span>Adet</span></div>
+          <div class="lam-sitem"><strong>A+</strong><span>أمان</span></div>
         </div>
       </div>
     </section>
@@ -228,7 +211,7 @@ const faqItems = [
     <section class="lam-sec lam-sec--white" id="catalogue" aria-labelledby="catalogue-h2">
       <div class="lam-wrap">
 
-        <nav class="lam-catnav" aria-label="Kapı kategorileri">
+        <nav class="lam-catnav" aria-label="فئات الأبواب">
           {catNav.map(cat => (
             <a
               href={getLocalizedRoute(cat.slug, lang)}
@@ -241,25 +224,27 @@ const faqItems = [
         </nav>
 
         <div class="lam-head">
-          <span class="lam-tag">Elitpan Kapı Koleksiyonu</span>
-          <h2 id="catalogue-h2">Elitpan Kapı Modelleri</h2>
+          <span class="lam-tag">مجموعة أبواب الحريق</span>
+          <h2 id="catalogue-h2">
+            موديلات الأبواب المقاومة للحريق
+          </h2>
           <p>
-            Tüm Elitpan UV kapı koleksiyonunu inceleyin — {modelCount} model, 301–326 serisi. Her model birden fazla yüzey varyantında mevcuttur.
+            {modelCount} موديلات أبواب مقاومة للحريق — السلسلة 601–608. معتمدة EI-30 وEI-60 وEI-90، معتمدة TSE.
           </p>
         </div>
 
         <!-- Quote CTA -->
         <div class="lam-quote-row">
           <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--navy">
-            Toptan Teklif Al
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            طلب عرض سعر مشروع أبواب الحريق
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
           </a>
-          <span class="lam-quote-note">24 saat içinde yanıt · Min. 50 adet</span>
+          <span class="lam-quote-note">رد خلال 24 ساعة · تسعير حسب المشروع</span>
         </div>
 
         <!-- Products Grid — SSR rendered for SEO -->
-        <div class="lam-grid" id="productsGrid" aria-label="Elitpan kapı modelleri">
-          {elitpanProducts.map((product, i) => (
+        <div class="lam-grid lam-grid--wide" id="productsGrid" aria-label="موديلات أبواب الحريق">
+          {fireProducts.map((product, i) => (
             <article class="lam-card" aria-label={product.label}>
               <div class="lam-card__img">
                 <img
@@ -267,11 +252,14 @@ const faqItems = [
                   alt={product.alt}
                   width="240"
                   height="320"
-                  loading={i < 8 ? 'eager' : 'lazy'}
+                  loading={i < 4 ? 'eager' : 'lazy'}
                   decoding="async"
                 />
               </div>
-              <p class="lam-card__name">{product.label}</p>
+              <div class="lam-card__body">
+                <p class="lam-card__name">{product.label}</p>
+                <span class="lam-card__badge">{product.badge}</span>
+              </div>
             </article>
           ))}
         </div>
@@ -286,79 +274,82 @@ const faqItems = [
       <div class="lam-wrap lam-content-wrap">
 
         <article class="lam-article">
-          <h2 id="content-h2">Elitpan Kapı Nedir? Neden UV Kaplı MDF Tercih Edilir?</h2>
+          <h2 id="content-h2">
+            ما هو الباب المقاوم للحريق المعتمد؟ نهج CihanPan
+          </h2>
 
           <p>
-            <strong>Elitpan kapılar</strong>, masif MDF özlü, yüzeye ultraviyole ışık altında direkt bağlanan <em>UV kür kaplama</em> ile üretilen iç kapılardır. <strong>CihanPan Door</strong> olarak Kayseri fabrikamızda {modelCount} modellik tam Elitpan koleksiyonunu toptan satış için üretiyoruz.
+            تجمع <strong>سلسلة حريق CihanPan Door</strong> بين هندسة السلامة من الحرائق الصارمة ودقة التصنيع في مصنعنا بقيصري. كل موديل مصمم للحصول على شهادات EI-30 وEI-60 وEI-90 وفقًا لمعايير TS EN 1634-1.
           </p>
 
-          <h3>Elitpan Kapının Avantajları</h3>
+          <h3>مميزات السلامة من الحرائق الرئيسية</h3>
           <ul class="lam-checklist">
-            <li><strong>Antibakteriyel Yüzey:</strong> UV kür, gözeneksiz, antibakteriyel bir yüzey oluşturur — hastane, klinik ve gıda tesisleri için zorunludur.</li>
-            <li><strong>Üstün Renk Dayanımı:</strong> UV bağlı pigmentler, standart laminatlara kıyasla güneş ışığına ve temizlik maddelerine karşı solmaz.</li>
-            <li><strong>Çizilmez ve Darbeye Dayanıklı:</strong> Sertleştirilmiş UV yüzey, ticari ortamlarda günlük kullanıma, troleylere ve keskin nesnelere dayanır.</li>
-            <li><strong>Su Dayanımlı:</strong> Nem dayanımlı MDF öz ve kapalı UV kaplama, banyo ve mutfaklarda çarpma yapmaz.</li>
-            <li><strong>Kolay Bakım:</strong> Gözeneksiz yüzey temizlenir — ürün ömrü boyunca boya veya vernikleme gerekmez.</li>
-            <li><strong>Yüksek Parlaklık Estetiği:</strong> UV kaplama, lüks otel ve premium konutlarda iç mekanları yükselten derin, tutarlı parlaklık sağlar.</li>
+            <li><strong>شهادة EI-30 / EI-60 / EI-90:</strong> ثلاثة مستويات لمقاومة الحريق — 30 و60 و90 دقيقة — لتلبية متطلبات فئات المباني المختلفة وفق أنظمة الحريق التركية والأوروبية.</li>
+            <li><strong>معتمدة TSE:</strong> تؤكد شهادة معهد المعايير التركية الامتثال لاختبارات مقاومة الحريق والتحكم في الدخان TS EN 1634-1.</li>
+            <li><strong>نظام التغليف المانع للدخان:</strong> تمنع حشوات التمدد الحراري ومانعة الدخان مرور الغازات السامة والدخان في جميع درجات الحرارة، مما يحمي مسارات الإخلاء.</li>
+            <li><strong>آلية الإغلاق التلقائي:</strong> يضمن أداة الإغلاق ذات النابض أو الهيدروليكية إغلاق الباب دائمًا — مما يمنع انتشار الحريق عبر الأبواب المفتوحة.</li>
+            <li><strong>هيكل الإطار الفولاذي:</strong> يقاوم الإطار والصفيحة الفولاذية المجلفنة التشوه الهيكلي تحت الحرارة الشديدة.</li>
+            <li><strong>جاهز لأجهزة الذعر:</strong> متوافق مع أشرطة الذعر وأنظمة التوقف الكهرومغناطيسية للامتثال لمخرج الطوارئ.</li>
           </ul>
 
-          <h3>İdeal Kullanım Alanları</h3>
-          <p>Elitpan kapılar hijyen, estetik ve dayanıklılığın buluştuğu her yerde üstündür:</p>
+          <h3>تطبيقات الاستخدام</h3>
+          <p>تُستخدم سلسلة حريق CihanPan Door في:</p>
           <ul class="lam-checklist">
-            <li><strong>Hastane ve Sağlık:</strong> Antibakteriyel yüzey, klinik ortamların en katı hijyen standartlarını karşılar.</li>
-            <li><strong>Otel ve Konaklama:</strong> Premium parlak yüzey ve dayanıklı yüzey, minimum bakımla yoğun misafir trafiğini kaldırır.</li>
-            <li><strong>Ticari Binalar:</strong> Ofis, perakende alanları ve kamu binaları için modern parlak estetik.</li>
-            <li><strong>Konut Islak Alanları:</strong> Su dayanımlı ve antibakteriyel özellikler Elitpan'ı ideal banyo ve mutfak kapısı yapar.</li>
+            <li><strong>مراكز التسوق والمباني التجارية:</strong> أبواب قسم الحريق ومسارات الإخلاء وأغلفة فتحات الدرج التي تتطلب شهادة EI-60 أو EI-90.</li>
+            <li><strong>المستشفيات والرعاية الصحية:</strong> ممرات المرضى ومداخل غرف العمليات ومناطق الرعاية المركزة حيث احتواء الحريق أمر بالغ الأهمية.</li>
+            <li><strong>الفنادق والضيافة:</strong> أبواب حريق ممرات الطوابق ومداخل فتحات الدرج وتقسيم مناطق الخدمة.</li>
+            <li><strong>المنشآت الصناعية:</strong> أبواب قسم الحريق الثقيلة لمصانع التصنيع والمستودعات ومنشآت العمليات.</li>
+            <li><strong>المباني السكنية:</strong> أبواب حريق المناطق المشتركة ومداخل الطوابق السفلية وأغلفة أعمدة الخدمات المطلوبة بموجب قوانين البناء السكني.</li>
+            <li><strong>المباني العامة:</strong> المدارس والجامعات والمباني الحكومية التي تتطلب أبوابًا معتمدة في مسارات الإخلاء وفتحات الدرج.</li>
           </ul>
 
-          <h3>Teknik Özellikler</h3>
+          <h3>المواصفات التقنية</h3>
           <ul class="lam-checklist">
-            <li>Yüzey: UV kür kaplama — yüksek parlaklık, antibakteriyel</li>
-            <li>Öz: Masif nem dayanımlı MDF</li>
-            <li>Standart boyut: 70×200 cm · 80×200 cm — özel boyut mevcut</li>
-            <li>Finish seçenekleri: Yüksek parlak, Saten, Dokulu</li>
-            <li>Cam açıklık seçeneği mevcut</li>
-            <li>CE & ISO 9001 sertifikalı</li>
-            <li>5 yıl üretici garantisi</li>
+            <li>الإطار: فولاذ مقاوم للحريق مجلفن، سماكة 1.5 مم</li>
+            <li>الحشو: صوف معدني مقاوم للحريق (الكثافة: 100 كجم/م³)</li>
+            <li>المقاسات القياسية: 80×200 سم، 90×200 سم — مقاسات مخصصة متاحة</li>
+            <li>مقاومة الحريق: EI-30، EI-60، EI-90 (TS EN 1634-1)</li>
+            <li>الملحقات: مفصلات حريق، مغلق تلقائي، عتبة مانعة للدخان، شريط ذعر</li>
+            <li>معتمدة TSE · شهادة TS EN 1634-1 · ضمان المصنع لمدة سنتين</li>
           </ul>
         </article>
 
         <!-- Sidebar -->
         <aside class="lam-sidebar">
           <div class="lam-kpis">
-            <div class="lam-kpi"><strong>{modelCount}<sup>+</sup></strong><span>Model</span></div>
-            <div class="lam-kpi"><strong>UV</strong><span>Kaplama</span></div>
-            <div class="lam-kpi"><strong>CE</strong><span>Sertifikalı</span></div>
-            <div class="lam-kpi"><strong>5 Yıl</strong><span>Garanti</span></div>
+            <div class="lam-kpi"><strong>{modelCount}</strong><span>موديل</span></div>
+            <div class="lam-kpi"><strong>TSE</strong><span>اعتماد</span></div>
+            <div class="lam-kpi"><strong>EI-90</strong><span>شهادة</span></div>
+            <div class="lam-kpi"><strong>A+</strong><span>أمان</span></div>
           </div>
 
           <div class="lam-contact-card">
-            <span class="lam-tag">İletişim</span>
-            <h3>Teklif Al</h3>
-            <p>Miktar ve gereksinimlerinizi paylaşın — 24 saat içinde yanıt veririz.</p>
+            <span class="lam-tag">متخصص السلامة من الحرائق</span>
+            <h3>احصل على عرض سعر أبواب الحريق</h3>
+            <p>شارك نوع المبنى ومستوى الشهادة المطلوبة وعدد الأبواب — سيرد متخصصنا خلال 24 ساعة.</p>
             <div class="lam-contact-btns">
-              <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--gold lam-btn--sm">
-                İletişim Formu
+              <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--fire lam-btn--sm">
+                نموذج التواصل
               </a>
               <a href="https://wa.me/905441690038" target="_blank" rel="noopener" class="lam-btn lam-btn--wa lam-btn--sm">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.89 3.488"/></svg>
-                WhatsApp
+                واتساب
               </a>
-              <a href="tel:+905441690038" class="lam-btn lam-btn--outline lam-btn--sm">
+              <a href="tel:+905441690038" class="lam-btn lam-btn--outline lam-btn--sm" style="color: white;">
                 📞 +90 544 169 00 38
               </a>
             </div>
           </div>
 
           <div class="lam-features-card">
-            <h3>Öne Çıkan Özellikler</h3>
+            <h3>الميزات الرئيسية</h3>
             <ul class="lam-feat-list">
-              <li>🔬 Antibakteriyel UV yüzey</li>
-              <li>💧 Su dayanımlı MDF öz</li>
-              <li>✨ Parlak ve saten yüzey</li>
-              <li>📐 Özel ölçü mevcut</li>
-              <li>🏨 Otel ve hastane sınıfı</li>
-              <li>♻️ Çevre dostu malzeme</li>
+              <li>🔥 معتمدة EI-30 / EI-60 / EI-90</li>
+              <li>✅ معتمدة TSE، متوافقة مع TS EN 1634-1</li>
+              <li>💨 نظام تغليف مانع للدخان</li>
+              <li>⚙️ آلية الإغلاق التلقائي</li>
+              <li>📐 مقاسات مخصصة وخيار الصفيحة المزدوجة</li>
+              <li>🏗️ توريد مجمّع للمشاريع</li>
             </ul>
           </div>
         </aside>
@@ -371,11 +362,16 @@ const faqItems = [
     <section class="lam-sec lam-sec--white" aria-labelledby="faq-h2">
       <div class="lam-wrap lam-faq-wrap">
         <div class="lam-head">
-          <span class="lam-tag">SSS</span>
-          <h2 id="faq-h2">Sık Sorulan Sorular</h2>
+          <span class="lam-tag">الأسئلة الشائعة</span>
+          <h2 id="faq-h2">الأسئلة المتكررة</h2>
         </div>
         <div class="lam-faqs">
-          {faqItems.map(item => (
+          {[
+            { q: 'ما هو الباب المقاوم للحريق؟',                              a: 'الباب المقاوم للحريق هو نظام باب معتمد يمنع انتشار الحريق والدخان لفترة محددة. تشير تقييمات EI-30 وEI-60 وEI-90 إلى 30 أو 60 أو 90 دقيقة من مقاومة الحريق والدخان.' },
+            { q: 'ما الفرق بين EI-30 وEI-60 وEI-90؟',                         a: 'تشير هذه التقييمات إلى المدة التي يقاوم فيها الباب الحريق والدخان. EI-30 يوفر 30 دقيقة، وEI-60 يوفر 60 دقيقة، وEI-90 يوفر 90 دقيقة من الحماية وفقًا لمعايير اختبار TS EN 1634-1.' },
+            { q: 'أين تكون الأبواب المقاومة للحريق إلزامية؟',                a: 'الأبواب المقاومة للحريق إلزامية في المباني التجارية والمستشفيات والفنادق والمدارس ومراكز التسوق والمجمعات السكنية. تشترط لوائح البناء التركية وجود أبواب مقاومة للحريق في مسارات الإخلاء وفتحات الدرج.' },
+            { q: 'ما الحد الأدنى لكمية الطلب للأبواب المقاومة للحريق؟',     a: 'الحد الأدنى لكمية الطلب هو 10 وحدات. تُطبَّق خصومات الكميات من 50 وحدة فصاعدًا. تتوفر الأبعاد المخصصة وأجهزة الذعر وتجهيزات الأقفال الكهربائية ووثائق شهادة المشروع للمشاريع الكاملة.' },
+          ].map(item => (
             <details class="lam-faq">
               <summary class="lam-faq__q">
                 {item.q}
@@ -397,21 +393,21 @@ const faqItems = [
       <div class="lam-cta__glow" aria-hidden="true"></div>
       <div class="lam-wrap lam-cta__inner">
         <div class="lam-cta__text">
-          <span class="lam-tag lam-tag--gold">Hemen Başlayın</span>
+          <span class="lam-tag lam-tag--fire">توريد السلامة من الحرائق</span>
           <h2 id="cta-h2">
-            Elitpan Kapı Toptan<br/>Fiyat Teklifi Alın
+            احصل على عرض سعر مشروع<br/>أبواب مقاومة للحريق
           </h2>
           <p>
-            Kapı modellerini, adeti ve teslimat noktasını paylaşın. 24 saat içinde CE & ISO belgeli fiyat teklifi.
+            شارك نوع المبنى ومستوى الشهادة وعدد الأبواب. عرض سعر مع وثائق TSE وEN 1634-1 خلال 24 ساعة.
           </p>
         </div>
         <div class="lam-cta__btns">
-          <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--gold">
-            Ücretsiz Teklif Al
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--fire">
+            احصل على عرض مجاني
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
           </a>
           <a href={getLocalizedRoute('/urunlerimiz', lang)} class="lam-btn lam-btn--ghost">
-            Tüm Ürünler
+            جميع المنتجات
           </a>
         </div>
       </div>
@@ -430,6 +426,8 @@ const faqItems = [
     --navy-l:   #1e4a8a;
     --gold:     #c9a84c;
     --gold-l:   #e2bc6a;
+    --fire:     #c0392b;
+    --fire-l:   #e74c3c;
     --cream:    #faf8f4;
     --slate:    #607080;
     --text:     #0f1929;
@@ -458,8 +456,9 @@ const faqItems = [
   }
   .lam-head p { color: var(--slate); font-size: 1rem; max-width: 560px; margin-inline: auto; line-height: 1.7; }
 
-  .lam-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .lam-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--fire); margin-bottom: 0.4rem; }
   .lam-tag--gold { color: rgba(201,168,76,0.9); }
+  .lam-tag--fire { color: rgba(224,90,76,0.9); }
 
   /* ── BUTTONS ── */
   .lam-btn {
@@ -471,7 +470,9 @@ const faqItems = [
     cursor: pointer; border: none;
   }
   .lam-btn--gold    { background: var(--gold);  color: var(--navy);  font-weight: 700; }
+  .lam-btn--fire    { background: var(--fire);  color: var(--white); font-weight: 700; }
   .lam-btn--gold:hover  { background: var(--gold-l); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(201,168,76,0.4); }
+  .lam-btn--fire:hover  { background: var(--fire-l); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(192,57,43,0.4); }
   .lam-btn--navy    { background: var(--navy);  color: var(--white); font-weight: 700; }
   .lam-btn--navy:hover  { background: var(--navy-mid); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(15,35,71,0.3); }
   .lam-btn--ghost   { background: transparent; color: rgba(255,255,255,0.85); border: 1.5px solid rgba(255,255,255,0.25); }
@@ -496,7 +497,7 @@ const faqItems = [
   .lam-hero__glow {
     position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 60% 70% at 80% 30%, rgba(201,168,76,0.09) 0%, transparent 65%),
+      radial-gradient(ellipse 60% 70% at 80% 30%, rgba(192,57,43,0.09) 0%, transparent 65%),
       radial-gradient(ellipse 50% 80% at 10% 70%, rgba(30,74,138,0.3) 0%, transparent 60%);
   }
   .lam-hero__inner {
@@ -509,26 +510,26 @@ const faqItems = [
     font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 1.5rem; flex-wrap: wrap;
   }
   .lam-breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
-  .lam-breadcrumb a:hover { color: var(--gold-l); }
-  .lam-breadcrumb span[aria-current] { color: var(--gold); }
+  .lam-breadcrumb a:hover { color: var(--fire-l); }
+  .lam-breadcrumb span[aria-current] { color: var(--fire-l); }
   .lam-eyebrow {
     display: inline-flex; align-items: center; gap: 0.75rem;
     font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
+    text-transform: uppercase; color: var(--fire-l); margin-bottom: 1.2rem;
   }
-  .lam-eyebrow__line { display: block; width: 28px; height: 1px; background: var(--gold); opacity: 0.5; flex-shrink: 0; }
+  .lam-eyebrow__line { display: block; width: 28px; height: 1px; background: var(--fire); opacity: 0.6; flex-shrink: 0; order: -1; }
   .lam-hero__h1 {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(2.2rem, 4.5vw, 3.6rem); font-weight: 900;
     color: var(--white); line-height: 1.1; margin: 0 0 1.2rem;
   }
-  .lam-hero__h1 em { font-style: normal; color: var(--gold); }
+  .lam-hero__h1 em { font-style: normal; color: var(--fire-l); }
   .lam-hero__lead { font-size: 1.05rem; color: rgba(255,255,255,0.65); line-height: 1.8; max-width: 560px; margin: 0 0 1.5rem; }
   .lam-hero__tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
   .lam-htag {
     display: inline-block; padding: 0.3rem 0.85rem;
-    border: 1px solid rgba(201,168,76,0.35); background: rgba(201,168,76,0.08);
-    color: var(--gold-l); font-size: 0.82rem; font-weight: 600; border-radius: 4px;
+    border: 1px solid rgba(192,57,43,0.4); background: rgba(192,57,43,0.10);
+    color: rgba(231,76,60,0.95); font-size: 0.82rem; font-weight: 600; border-radius: 4px;
   }
   .lam-hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
@@ -541,11 +542,11 @@ const faqItems = [
     padding: 1.5rem 2rem; margin-top: 2rem;
   }
   .lam-sitem { display: flex; flex-direction: column; flex: 1; min-width: 80px; padding-inline: 1rem; text-align: center; }
-  .lam-sitem:first-child { padding-left: 0; }
-  .lam-sitem:last-child  { padding-right: 0; }
+  .lam-sitem:first-child { padding-right: 0; }
+  .lam-sitem:last-child  { padding-left: 0; }
   .lam-sitem strong {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.6rem; font-weight: 900; color: var(--gold); line-height: 1; display: block;
+    font-size: 1.6rem; font-weight: 900; color: var(--fire-l); line-height: 1; display: block;
   }
   .lam-sitem strong sup { font-size: 0.7em; }
   .lam-sitem span { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 0.3rem; display: block; }
@@ -564,7 +565,7 @@ const faqItems = [
     text-decoration: none; transition: all 0.2s; white-space: nowrap;
   }
   .lam-catbtn:hover { border-color: var(--navy); color: var(--navy); }
-  .lam-catbtn--active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+  .lam-catbtn--active { background: var(--fire); color: var(--white); border-color: var(--fire); }
 
   .lam-quote-row { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
   .lam-quote-note { font-size: 0.875rem; color: var(--slate); }
@@ -575,6 +576,9 @@ const faqItems = [
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1.25rem; min-height: 300px;
   }
+  .lam-grid--wide {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
   .lam-card {
     background: var(--white); border: 1px solid var(--bdr);
     border-radius: var(--radius); overflow: hidden;
@@ -582,7 +586,7 @@ const faqItems = [
   }
   .lam-card:hover {
     transform: translateY(-4px); box-shadow: 0 16px 36px rgba(15,35,71,0.1);
-    border-color: rgba(201,168,76,0.35);
+    border-color: rgba(192,57,43,0.35);
   }
   .lam-card__img {
     aspect-ratio: 3/4; background: var(--cream);
@@ -591,9 +595,15 @@ const faqItems = [
   }
   .lam-card__img img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.35s; }
   .lam-card:hover .lam-card__img img { transform: scale(1.04); }
+  .lam-card__body { padding: 0.75rem 1rem 1rem; }
   .lam-card__name {
-    padding: 0.75rem 1rem; font-size: 0.82rem; font-weight: 600;
-    color: var(--text); text-align: center; line-height: 1.4; margin: 0;
+    font-size: 0.82rem; font-weight: 600;
+    color: var(--text); text-align: center; line-height: 1.4; margin: 0 0 0.5rem;
+  }
+  .lam-card__badge {
+    display: block; text-align: center;
+    font-size: 0.72rem; font-weight: 600; color: var(--fire);
+    letter-spacing: 0.05em;
   }
 
   /* ── SEO CONTENT ── */
@@ -604,25 +614,25 @@ const faqItems = [
     font-size: clamp(1.6rem, 2.5vw, 2.1rem); font-weight: 700;
     color: var(--text); margin: 0 0 1.25rem; line-height: 1.2;
   }
-  .lam-article h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; font-weight: 700; color: var(--text); margin: 2rem 0 0.75rem; }
+  .lam-article h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; font-weight: 700; color: var(--fire); margin: 2rem 0 0.75rem; }
   .lam-article p  { font-size: 0.95rem; color: var(--body); line-height: 1.8; margin: 0 0 1rem; }
   .lam-article strong { color: var(--navy); }
 
   .lam-checklist { list-style: none; padding: 0; margin: 0 0 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; }
-  .lam-checklist li { font-size: 0.925rem; color: var(--body); line-height: 1.6; padding-left: 1.5rem; position: relative; }
-  .lam-checklist li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+  .lam-checklist li { font-size: 0.925rem; color: var(--body); line-height: 1.6; padding-right: 1.5rem; padding-left: 0; position: relative; }
+  .lam-checklist li::before { content: '✓'; position: absolute; right: 0; left: auto; color: var(--fire); font-weight: 700; }
 
   /* Sidebar */
   .lam-sidebar { display: flex; flex-direction: column; gap: 1.5rem; position: sticky; top: 90px; }
   .lam-kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--bdr); border: 1px solid var(--bdr); border-radius: var(--radius); overflow: hidden; }
   .lam-kpi { background: var(--white); padding: 1.25rem; text-align: center; transition: background 0.2s; }
   .lam-kpi:hover { background: var(--cream); }
-  .lam-kpi strong { display: block; font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; font-weight: 900; color: var(--navy); line-height: 1; margin-bottom: 0.3rem; }
+  .lam-kpi strong { display: block; font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; font-weight: 900; color: var(--fire); line-height: 1; margin-bottom: 0.3rem; }
   .lam-kpi strong sup { font-size: 0.65em; }
   .lam-kpi span { font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); }
 
   .lam-contact-card { background: var(--navy); border-radius: var(--radius); padding: 1.75rem; }
-  .lam-contact-card .lam-tag { color: rgba(201,168,76,0.85); }
+  .lam-contact-card .lam-tag { color: rgba(231,76,60,0.85); }
   .lam-contact-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.2rem; font-weight: 700; color: var(--white); margin: 0.3rem 0 0.6rem; }
   .lam-contact-card p  { font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.6; margin: 0 0 1.25rem; }
   .lam-contact-btns { display: flex; flex-direction: column; gap: 0.6rem; }
@@ -636,7 +646,7 @@ const faqItems = [
   .lam-faq-wrap { max-width: 780px; }
   .lam-faqs { display: flex; flex-direction: column; gap: 0.75rem; }
   .lam-faq { background: var(--white); border: 1px solid var(--bdr); border-radius: 10px; overflow: hidden; transition: border-color 0.2s; }
-  .lam-faq[open] { border-color: rgba(201,168,76,0.35); }
+  .lam-faq[open] { border-color: rgba(192,57,43,0.35); }
   .lam-faq__q {
     display: flex; align-items: center; justify-content: space-between; gap: 1rem;
     padding: 1.1rem 1.5rem; cursor: pointer;
@@ -646,7 +656,7 @@ const faqItems = [
   .lam-faq__q:hover { background: var(--cream); }
   .lam-faq__q::-webkit-details-marker { display: none; }
   .lam-faq__arrow { flex-shrink: 0; color: var(--slate); transition: transform 0.25s; }
-  .lam-faq[open] .lam-faq__arrow { transform: rotate(180deg); color: var(--gold); }
+  .lam-faq[open] .lam-faq__arrow { transform: rotate(180deg); color: var(--fire); }
   .lam-faq__a { padding: 1rem 1.5rem 1.25rem; font-size: 0.925rem; color: var(--body); line-height: 1.75; margin: 0; border-top: 1px solid var(--bdr); }
 
   /* ── CTA BAND ── */
@@ -654,7 +664,7 @@ const faqItems = [
   .lam-cta__glow {
     position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 55% 80% at 105% 50%, rgba(201,168,76,0.14) 0%, transparent 65%),
+      radial-gradient(ellipse 55% 80% at 105% 50%, rgba(192,57,43,0.18) 0%, transparent 65%),
       linear-gradient(140deg, #08192e 0%, var(--navy) 100%);
     pointer-events: none;
   }
@@ -679,12 +689,13 @@ const faqItems = [
     .lam-catnav { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 1rem; scrollbar-width: thin; }
     .lam-catnav::-webkit-scrollbar { height: 4px; }
     .lam-catnav::-webkit-scrollbar-thumb { background: var(--bdr); border-radius: 4px; }
-    .lam-quote-row { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .lam-quote-row { flex-direction: column; align-items: flex-end; gap: 0.75rem; }
     .lam-cta__inner { flex-direction: column; text-align: center; }
     .lam-cta__btns  { justify-content: center; }
+    .lam-grid--wide { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
   }
   @media (max-width: 480px) {
-    .lam-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    .lam-grid, .lam-grid--wide { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
     .lam-kpis { grid-template-columns: repeat(2, 1fr); }
     .lam-statsbar { padding: 1rem 1.25rem; }
     .lam-sdiv { display: none; }
