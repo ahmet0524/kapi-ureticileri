@@ -1,84 +1,85 @@
 ---
-// src/pages/tr/kalite.astro
+// src/pages/ar/kalite.astro
 import I18nLayout from '../../layouts/I18nLayout.astro';
 import I18nHeader from '../../components/I18nHeader.astro';
 import I18nFooter from '../../components/I18nFooter.astro';
 import { getLocalizedRoute } from '../../i18n/utils';
 
-const lang     = 'tr';
-const baseUrl  = 'https://cihanpandoor.netlify.app';
-const currentUrl = `${baseUrl}/tr/kalite`;
+const lang       = 'ar';
+const baseUrl    = 'https://cihanpandoor.netlify.app';
+const pageUrl    = `${baseUrl}/ar`;
+const currentUrl = `${pageUrl}/kalite`;
 
 // ── SCHEMA ────────────────────────────────────────────────────────────
 const pageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Kalite Politikası — CihanPan Door",
-  "description": "CihanPan Door kalite standartları, sertifikaları ve taahhütleri. CE, ISO 9001, yangın dayanımı ve antibakteriyel testler. 5 yıl garanti.",
+  "name": "سياسة الجودة — CihanPan Door",
+  "description": "معايير الجودة والشهادات والالتزامات لـ CihanPan Door. اختبارات CE وISO 9001 ومقاومة الحريق والمضادة للبكتيريا. ضمان 5 سنوات.",
   "url": currentUrl,
-  "inLanguage": "tr-TR",
+  "inLanguage": "ar-SA",
 };
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Ana Sayfa",         "item": `${baseUrl}/tr` },
-    { "@type": "ListItem", "position": 2, "name": "Kalite Politikası", "item": currentUrl },
+    { "@type": "ListItem", "position": 1, "name": "الرئيسية",    "item": pageUrl },
+    { "@type": "ListItem", "position": 2, "name": "سياسة الجودة", "item": currentUrl },
   ]
 };
 
 // ── CONTENT ───────────────────────────────────────────────────────────
 const controlSteps = [
-  'Üretime başlamadan hammadde kalite kontrolü',
-  'Her üretim aşamasında süreç içi denetimler',
-  'Bitmiş ürün boyut ve yüzey testleri',
-  'Yangın dayanımı ve ses yalıtımı sertifikasyon testleri',
-  'Sevkiyat öncesi muayene ve ambalaj doğrulaması',
-  'Teslimat sonrası müşteri memnuniyeti takibi',
+  'فحص المواد الخام قبل بدء الإنتاج',
+  'عمليات تدقيق الجودة في كل مرحلة من مراحل الإنتاج',
+  'اختبارات الأبعاد والسطح للمنتج النهائي',
+  'اختبارات شهادات مقاومة الحريق والعزل الصوتي',
+  'الفحص قبل الشحن والتحقق من التعبئة',
+  'متابعة رضا العملاء بعد التسليم',
 ];
 
 const certs = [
-  { label: 'CE Sertifikası',                      desc: 'Tüm ürünler AB yapı ürünleri yönetmeliğine (CPR 305/2011) uygundur.' },
-  { label: 'ISO 9001 Kalite Yönetimi',            desc: 'Fabrika süreçleri ISO 9001:2015 standardı kapsamında yıllık olarak denetlenmektedir.' },
-  { label: 'Yangın Dayanımı — EN 1634',           desc: 'Hastane ve otel kapı serileri 30 ve 60 dakikalık yangın dayanımı için EN 1634\'e göre test edilmiştir.' },
-  { label: 'Antibakteriyel Test Raporu',          desc: 'Elitpan (UV) ve hastane serisi yüzeyleri ISO 22196\'ya göre bakteri inhibisyonu açısından test edilmiştir.' },
-  { label: 'Ses Yalıtımı Sertifikası',            desc: 'Otel ve hastane kapıları EN ISO 10140\'a göre 32–42 dB akustik performans için sertifikalandırılmıştır.' },
-  { label: 'Çevre Dostu Üretim Belgesi',          desc: 'MDF özler FSC sertifikalı tedarikçilerden temin edilmektedir; üretim atıkları tamamen geri dönüştürülür.' },
+  { label: 'شهادة CE',                         desc: 'جميع المنتجات تتوافق مع لوائح منتجات البناء الأوروبية (CPR 305/2011).' },
+  { label: 'إدارة الجودة ISO 9001',             desc: 'تخضع عمليات المصنع لعمليات تدقيق سنوية وفق معيار إدارة الجودة ISO 9001:2015.' },
+  { label: 'مقاومة الحريق — EN 1634',           desc: 'تم اختبار سلاسل أبواب المستشفيات والفنادق وفق EN 1634 لتقييمات مقاومة الحريق لمدة 30 و60 دقيقة.' },
+  { label: 'تقرير الاختبار المضاد للبكتيريا',   desc: 'تم اختبار أسطح سلسلة Elitpan (UV) والمستشفيات لتثبيط البكتيريا وفق ISO 22196.' },
+  { label: 'شهادة العزل الصوتي',               desc: 'تم اعتماد أبواب الفنادق والمستشفيات للأداء الصوتي 32–42 ديسيبل وفق EN ISO 10140.' },
+  { label: 'شهادة الإنتاج الصديق للبيئة',       desc: 'يتم الحصول على أنوية MDF من موردين حاصلين على شهادة FSC؛ ونفايات الإنتاج تُعاد تدويرها بالكامل.' },
 ];
 
 const commitments = [
-  { icon: '🏭', title: 'Üretim Kalitesi',        body: 'CNC hassasiyetinde makineler ve deneyimli ekibimizle tüm kapı serilerinde sıfır hatalı üretim.' },
-  { icon: '🪵', title: 'Malzeme Kalitesi',       body: 'Birinci sınıf MDF özler, sertifikalı HPL ve UV laminatlar — hammadde seçiminde taviz yok.' },
-  { icon: '🤝', title: 'Hizmet Kalitesi',        body: 'Satış öncesi teknik danışmanlık, ihracat evrak desteği ve satış sonrası garanti hizmeti.' },
-  { icon: '🛡️', title: '5 Yıl Garanti',         body: 'Tüm kapı modelleri hata, yüzey bozulması ve renk solmasını kapsayan 5 yıl üretici garantisi ile sunulur.' },
-  { icon: '📦', title: 'Zamanında Teslimat',     body: '15–25 iş günü standart üretim süresi; tüm sevkiyatlar CE/ISO belgeleriyle takip edilir ve belgelenir.' },
-  { icon: '♻️', title: 'Sürdürülebilirlik',      body: 'FSC sertifikalı hammaddeler, su bazlı yapıştırıcılar ve fabrika genelinde sıfır atık üretim uygulamaları.' },
+  { icon: '🏭', title: 'جودة الإنتاج',         body: 'آلات CNC دقيقة وفريق خبير يضمنان إنتاجاً خالياً من العيوب في جميع سلاسل الأبواب.' },
+  { icon: '🪵', title: 'جودة المواد',           body: 'أنوية MDF من الدرجة الأولى، لمينات HPL وUV معتمدة — لا تنازل في اختيار المواد الخام.' },
+  { icon: '🤝', title: 'جودة الخدمة',          body: 'استشارة تقنية ما قبل البيع، ودعم وثائق التصدير، وخدمة ضمان ما بعد البيع.' },
+  { icon: '🛡️', title: 'ضمان 5 سنوات',        body: 'تأتي جميع نماذج الأبواب بضمان المصنّع لمدة 5 سنوات يغطي العيوب وتدهور السطح وبهت الألوان.' },
+  { icon: '📦', title: 'التسليم في الموعد',    body: 'مهلة إنتاج قياسية 15–25 يوم عمل؛ يتم تتبع جميع الشحنات وتوثيقها بوثائق CE/ISO.' },
+  { icon: '♻️', title: 'الاستدامة',            body: 'مواد خام معتمدة من FSC، ومواد لاصقة على أساس مائي، وممارسات إنتاج بدون نفايات في جميع أنحاء المصنع.' },
 ];
 
 const goals = [
-  'Her siparişte %100 müşteri memnuniyeti',
-  'Tüm hatlarda sıfır hata üretim hedefi',
-  'Yıllık ISO denetimleriyle sürekli iyileştirme',
-  'Dünya genelindeki her proje için zamanında teslimat',
-  'Yenilikçi kapı çözümleri için süregelen Ar-Ge',
-  'CE ve uluslararası sertifikasyon kapsamını genişletme',
+  'رضا العملاء بنسبة 100% في كل طلب',
+  'هدف إنتاج بدون عيوب في جميع خطوط الإنتاج',
+  'التحسين المستمر من خلال عمليات تدقيق ISO السنوية',
+  'التسليم في الموعد لكل مشروع حول العالم',
+  'البحث والتطوير المستمر لحلول أبواب مبتكرة',
+  'توسيع نطاق شهادة CE والشهادات الدولية',
 ];
 ---
 
 <I18nLayout
-  title="Kalite Politikası — CE & ISO 9001 Sertifikalı | CihanPan Door"
-  description="CihanPan Door kalite standartları, sertifikaları ve taahhütleri. CE, ISO 9001, yangın dayanımı testleri. Tüm kapı modellerinde 5 yıl üretici garantisi."
-  keywords="CihanPan Door kalite politikası, CE belgeli kapı üreticisi, ISO 9001 kapı fabrikası Kayseri"
+  title="سياسة الجودة — معتمد CE وISO 9001 | CihanPan Door"
+  description="معايير الجودة والشهادات والالتزامات لـ CihanPan Door. اختبارات CE وISO 9001 ومقاومة الحريق. ضمان المصنع لمدة 5 سنوات على جميع نماذج الأبواب."
+  keywords="سياسة جودة CihanPan Door, مصنع أبواب معتمد CE, مصنع أبواب ISO 9001 قيصري"
   canonical={currentUrl}
   schema={[pageSchema, breadcrumbSchema]}
-  ogTitle="Kalite Politikası — CihanPan Door"
-  ogDescription="Kayseri'den CE, ISO 9001 sertifikalı kapı üreticisi. 5 yıl garanti."
+  ogTitle="سياسة الجودة — CihanPan Door"
+  ogDescription="مصنع أبواب معتمد CE وISO 9001 من قيصري، تركيا. ضمان 5 سنوات."
   ogImage="/assets/img/og/quality-og.webp"
 >
   <I18nHeader />
 
-  <main class="lam" id="main-content">
+  <main class="lam" id="main-content" dir="rtl">
 
     <!-- ══════════════════════════════════════════
          HERO
@@ -90,28 +91,28 @@ const goals = [
       </div>
       <div class="lam-wrap lam-hero__inner">
         <div>
-          <nav class="lam-breadcrumb" aria-label="Breadcrumb">
-            <a href={`${baseUrl}/tr`}>Ana Sayfa</a>
-            <span aria-hidden="true">›</span>
-            <span aria-current="page">Kalite Politikası</span>
+          <nav class="lam-breadcrumb" aria-label="مسار التنقل">
+            <a href={pageUrl}>الرئيسية</a>
+            <span aria-hidden="true">‹</span>
+            <span aria-current="page">سياسة الجودة</span>
           </nav>
           <span class="lam-eyebrow">
             <span class="lam-eyebrow__line"></span>
             CE · ISO 9001 · EN 1634
           </span>
           <h1 class="lam-hero__h1" id="lam-h1">
-            <em>Kalite Politikamız</em><br/>Standartlarımız &amp; Taahhütlerimiz
+            <em>سياسة الجودة لدينا</em><br/>معاييرنا والتزاماتنا
           </h1>
           <p class="lam-hero__lead">
-            CihanPan Door'da kalite bir kontrol noktası değil, üretimin her aşamasına işlenmiş bir felsefedir. CE ve ISO 9001 sertifikalı, yıllık fabrika denetimli, tüm kapı modellerinde 5 yıl garantili.
+            في CihanPan Door، الجودة ليست نقطة تفتيش — بل فلسفة متجذرة في كل مرحلة من مراحل الإنتاج. معتمدون CE وISO 9001، مع تدقيق مصنعي سنوي وضمان 5 سنوات على جميع نماذج الأبواب.
           </p>
           <div class="lam-hero__actions">
             <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--gold">
-              Sertifika İste
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              طلب الشهادات
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
             </a>
             <a href={getLocalizedRoute('/urunlerimiz', lang)} class="lam-btn lam-btn--ghost">
-              Ürünleri Gör
+              عرض المنتجات
             </a>
           </div>
         </div>
@@ -120,13 +121,13 @@ const goals = [
       <!-- Stats bar -->
       <div class="lam-wrap">
         <div class="lam-statsbar">
-          <div class="lam-sitem"><strong>CE</strong><span>Sertifikalı</span></div>
+          <div class="lam-sitem"><strong>CE</strong><span>معتمد</span></div>
           <div class="lam-sdiv"></div>
           <div class="lam-sitem"><strong>ISO</strong><span>9001</span></div>
           <div class="lam-sdiv"></div>
-          <div class="lam-sitem"><strong>5<sup>yr</sup></strong><span>Garanti</span></div>
+          <div class="lam-sitem"><strong>5<sup>سنوات</sup></strong><span>ضمان</span></div>
           <div class="lam-sdiv"></div>
-          <div class="lam-sitem"><strong>0</strong><span>Hata Hedefi</span></div>
+          <div class="lam-sitem"><strong>0</strong><span>هدف العيوب</span></div>
         </div>
       </div>
     </section>
@@ -138,10 +139,10 @@ const goals = [
       <div class="lam-wrap lam-two-col">
 
         <div>
-          <span class="lam-tag">Sürecimiz</span>
-          <h2 id="ctrl-h2">Her Aşamada Kalite Kontrolü</h2>
+          <span class="lam-tag">عمليتنا</span>
+          <h2 id="ctrl-h2">مراقبة الجودة في كل مرحلة</h2>
           <p>
-            Hammadde seçiminden son sevkiyata kadar her kapı, titiz çok aşamalı bir muayene sürecinden geçmektedir. Kalite ekibimiz ve üçüncü taraf denetçiler, hiçbir ürünün tam spesifikasyonu karşılamadan fabrikayı terk etmemesini sağlar.
+            من اختيار المواد الخام حتى الشحن النهائي، تمر كل باب بعملية فحص متعددة المراحل صارمة. يضمن فريق الجودة لدينا والمدققون الخارجيون أن لا منتج يغادر المصنع دون استيفاء المواصفات الكاملة.
           </p>
           <ul class="lam-checklist lam-checklist--lg">
             {controlSteps.map(step => <li>{step}</li>)}
@@ -151,9 +152,9 @@ const goals = [
         <div class="lam-qual-aside">
           <div class="lam-qual-card lam-qual-card--navy">
             <div class="lam-qual-icon">🏆</div>
-            <h3>Kalite Anlayışımız</h3>
+            <h3>فلسفتنا في الجودة</h3>
             <p>
-              Kalite sona eklenmez — hammaddenin ilk kesiminden son ambalaj kontrolüne kadar içine işlenir. Her ekip üyesi, müşterilerimize gönderilen standartten sorumludur.
+              الجودة لا تُضاف في النهاية — بل تُبنى منذ أول قطعة من المادة الخام حتى فحص التعبئة الأخير. كل فرد في الفريق مسؤول عن المعيار الذي يصل إلى عملائنا.
             </p>
           </div>
         </div>
@@ -167,10 +168,10 @@ const goals = [
     <section class="lam-sec lam-sec--white" aria-labelledby="cert-h2">
       <div class="lam-wrap">
         <div class="lam-head">
-          <span class="lam-tag">Sertifikalarımız</span>
-          <h2 id="cert-h2">Sertifikalarımız ve Standartlarımız</h2>
+          <span class="lam-tag">شهاداتنا</span>
+          <h2 id="cert-h2">شهاداتنا ومعاييرنا</h2>
           <p>
-            Tüm CihanPan Door ürünleri aşağıdaki uluslararası standartlara göre üretilmekte ve test edilmektedir. İhracat siparişleri için talep üzerine tam belgeler mevcuttur.
+            يتم تصنيع واختبار جميع منتجات CihanPan Door وفق المعايير الدولية التالية. تتوفر الوثائق الكاملة عند الطلب لطلبات التصدير.
           </p>
         </div>
 
@@ -187,10 +188,10 @@ const goals = [
         </div>
 
         <div class="lam-cert-cta">
-          <p>Tedarik süreciniz için sertifika kopyasına ihtiyacınız var mı?</p>
+          <p>هل تحتاج إلى نسخة من شهاداتنا لعملية الشراء الخاصة بك؟</p>
           <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--navy">
-            Belge İste
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            طلب الوثائق
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
           </a>
         </div>
       </div>
@@ -202,8 +203,8 @@ const goals = [
     <section class="lam-sec lam-sec--cream" aria-labelledby="commit-h2">
       <div class="lam-wrap">
         <div class="lam-head">
-          <span class="lam-tag">Taahhütlerimiz</span>
-          <h2 id="commit-h2">Her Müşterimize Verdiğimiz Söz</h2>
+          <span class="lam-tag">التزاماتنا</span>
+          <h2 id="commit-h2">ما نعد به كل عميل</h2>
         </div>
 
         <div class="lam-commit-grid">
@@ -227,18 +228,18 @@ const goals = [
         <div class="lam-qual-aside lam-qual-aside--left">
           <div class="lam-qual-card lam-qual-card--gold">
             <div class="lam-qual-icon">🎯</div>
-            <h3>Kalite Hedeflerimiz</h3>
+            <h3>أهداف الجودة لدينا</h3>
             <p>
-              Ölçer, denetler ve iyileştiririz — her yıl, her sipariş. Hedefimiz minimum standartları karşılamak değil, müşteri beklentilerini sürekli olarak aşmaktır.
+              نقيس ونراجع ونحسّن — كل عام، كل طلب. هدفنا ليس تلبية الحد الأدنى من المعايير، بل تجاوز توقعات العملاء باستمرار.
             </p>
           </div>
         </div>
 
         <div>
-          <span class="lam-tag">Hedefler</span>
-          <h2 id="goals-h2">Sürekli İyileştirme</h2>
+          <span class="lam-tag">الأهداف</span>
+          <h2 id="goals-h2">التحسين المستمر</h2>
           <p>
-            CihanPan Door'da kalite durağan değildir. Yıllık ISO 9001 denetimlerimiz, müşteri geri bildirim döngüleri ve Ar-Ge yatırımımız, üretim, malzeme ve hizmet genelinde sürekli bir iyileştirme döngüsü oluşturur.
+            الجودة في CihanPan Door ليست ثابتة. تدقيقات ISO 9001 السنوية وحلقات تغذية العملاء الراجعة واستثمار البحث والتطوير لدينا تقود دورة تحسين مستمرة عبر الإنتاج والمواد والخدمة.
           </p>
           <ul class="lam-checklist lam-checklist--lg">
             {goals.map(g => <li>{g}</li>)}
@@ -255,21 +256,21 @@ const goals = [
       <div class="lam-cta__glow" aria-hidden="true"></div>
       <div class="lam-wrap lam-cta__inner">
         <div class="lam-cta__text">
-          <span class="lam-tag lam-tag--gold">Bizimle Çalışın</span>
+          <span class="lam-tag lam-tag--gold">اعمل معنا</span>
           <h2 id="cta-h2">
-            CE Sertifikalı Kapı<br/>Tedarik Etmeye Hazır mısınız?
+            هل أنت مستعد لتوريد<br/>أبواب معتمدة CE؟
           </h2>
           <p>
-            Tam CE, ISO 9001 ve yangın dayanımı belgeleriyle birlikte ücretsiz toptan teklif isteyin. 24 saat içinde fabrika doğrudan fiyatlandırması.
+            اطلب عرض سعر جملة مجاني مع وثائق CE وISO 9001 ومقاومة الحريق الكاملة. تسعير مباشر من المصنع خلال 24 ساعة.
           </p>
         </div>
         <div class="lam-cta__btns">
           <a href={getLocalizedRoute('/iletisim', lang)} class="lam-btn lam-btn--gold">
-            Ücretsiz Teklif Al
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            احصل على عرض مجاني
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
           </a>
           <a href={getLocalizedRoute('/urunlerimiz', lang)} class="lam-btn lam-btn--ghost">
-            Tüm Ürünler
+            جميع المنتجات
           </a>
         </div>
       </div>
@@ -381,7 +382,7 @@ const goals = [
     font-size: .78rem; font-weight: 600; letter-spacing: .18em;
     text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
   }
-  .lam-eyebrow__line { display: block; width: 28px; height: 1px; background: var(--gold); opacity: .5; flex-shrink: 0; }
+  .lam-eyebrow__line { display: block; width: 28px; height: 1px; background: var(--gold); opacity: .5; flex-shrink: 0; order: -1; }
   .lam-hero__h1 {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(2.2rem,4.5vw,3.6rem); font-weight: 900;
@@ -398,18 +399,18 @@ const goals = [
     padding: 1.5rem 2rem; margin-top: 2rem;
   }
   .lam-sitem { display: flex; flex-direction: column; flex: 1; min-width: 80px; padding-inline: 1rem; text-align: center; }
-  .lam-sitem:first-child { padding-left: 0; }
-  .lam-sitem:last-child  { padding-right: 0; }
+  .lam-sitem:first-child { padding-right: 0; }
+  .lam-sitem:last-child  { padding-left: 0; }
   .lam-sitem strong { font-family: 'Playfair Display', Georgia, serif; font-size: 1.6rem; font-weight: 900; color: var(--gold); line-height: 1; display: block; }
   .lam-sitem strong sup { font-size: .7em; }
   .lam-sitem span { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-top: .3rem; display: block; }
   .lam-sdiv { width: 1px; height: 32px; background: rgba(255,255,255,.12); flex-shrink: 0; }
 
-  /* ── CHECKLIST ── */
+  /* ── CHECKLIST — RTL ── */
   .lam-checklist { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .6rem; }
   .lam-checklist--lg li { font-size: 0.95rem; }
-  .lam-checklist li { font-size: .9rem; color: var(--body); line-height: 1.6; padding-left: 1.75rem; position: relative; }
-  .lam-checklist li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; font-size: 1rem; }
+  .lam-checklist li { font-size: .9rem; color: var(--body); line-height: 1.6; padding-right: 1.75rem; padding-left: 0; position: relative; }
+  .lam-checklist li::before { content: '✓'; position: absolute; right: 0; left: auto; color: var(--green); font-weight: 700; font-size: 1rem; }
 
   /* ── QUALITY ASIDE ── */
   .lam-qual-aside { display: flex; flex-direction: column; gap: 1.5rem; }
@@ -448,7 +449,7 @@ const goals = [
   .lam-cert-cta { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; padding: 1.75rem 2rem; background: var(--cream); border: 1px solid var(--bdr); border-radius: var(--radius); }
   .lam-cert-cta p { font-size: .95rem; color: var(--body); margin: 0; flex: 1; }
 
-  /* ── COMMITMENTS ── */
+  /* ── COMMITMENTS — RTL ── */
   .lam-commit-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -457,7 +458,8 @@ const goals = [
   .lam-commit-card {
     background: var(--white); border: 1px solid var(--bdr);
     border-radius: var(--radius); padding: 1.75rem;
-    border-left: 4px solid var(--gold);
+    border-right: 4px solid var(--gold);
+    border-left: none;
     transition: transform .25s, box-shadow .25s;
   }
   .lam-commit-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(15,35,71,.08); }

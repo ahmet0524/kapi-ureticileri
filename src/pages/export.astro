@@ -1,0 +1,528 @@
+---
+// src/pages/en/export.astro
+import I18nLayout from '../layouts/I18nLayout.astro';
+import I18nHeader from '../components/I18nHeader.astro';
+import I18nFooter from '../components/I18nFooter.astro';
+import { getLocalizedRoute } from '../i18n/utils';
+
+const lang = 'en';
+
+const baseUrl    = 'https://cihanpandoor.netlify.app';
+const pageUrl    = `${baseUrl}/en`;
+const currentUrl = `${pageUrl}/export`;
+
+// ── SCHEMA ────────────────────────────────────────────────────────────
+const exportSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "International Export | CihanPan Door",
+  "description": "CihanPan Door international export services. Quality door exports to Europe, the Middle East and Africa. CE & ISO 9001 certified. Factory-direct wholesale.",
+  "url": currentUrl,
+  "inLanguage": "en-US",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home",    "item": pageUrl },
+      { "@type": "ListItem", "position": 2, "name": "Export",  "item": currentUrl },
+    ]
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is the minimum export quantity?",      "acceptedAnswer": { "@type": "Answer", "text": "For container-based orders the minimum is 1 full container (approximately 300–400 doors). Special pricing is available for LCL shipments." }},
+    { "@type": "Question", "name": "What is the lead time?",                    "acceptedAnswer": { "@type": "Answer", "text": "Production takes 3–4 weeks after order confirmation. Shipping times vary from 1–3 weeks depending on the destination country." }},
+    { "@type": "Question", "name": "What payment methods do you accept?",       "acceptedAnswer": { "@type": "Answer", "text": "We accept L/C (Letter of Credit), T/T (Bank Transfer), and 30% advance + 70% before shipment." }},
+    { "@type": "Question", "name": "Do you send samples?",                      "acceptedAnswer": { "@type": "Answer", "text": "Yes, we send samples to prospective export customers on a freight-collect basis." }},
+    { "@type": "Question", "name": "Do you manufacture custom designs?",        "acceptedAnswer": { "@type": "Answer", "text": "Yes, we offer project-based custom design and made-to-measure production. Please contact us for minimum order quantities." }},
+  ]
+};
+
+const allSchemas = [exportSchema, faqSchema];
+---
+
+<I18nLayout
+  title="International Export | CihanPan Door"
+  description="CihanPan Door international export services. Quality door exports to Europe, the Middle East and Africa. CE & ISO 9001 certified. Factory-direct wholesale."
+  keywords="door export Turkey, wholesale doors manufacturer Kayseri, CE certified door export, door factory Turkey Europe Middle East Africa"
+  canonical={currentUrl}
+  schema={allSchemas}
+  ogTitle="International Export | CihanPan Door"
+  ogDescription="Quality door exports to Europe, the Middle East and Africa. CE & ISO 9001 certified. Factory-direct pricing."
+  ogImage="/assets/img/og/export-og.webp"
+  lang="en"
+>
+  <I18nHeader />
+
+  <main class="exp" id="main-content">
+
+    <!-- ══════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════ -->
+    <section class="exp-hero" aria-labelledby="exp-h1">
+      <div class="exp-hero__bg" aria-hidden="true">
+        <div class="exp-hero__overlay"></div>
+        <div class="exp-hero__glow"></div>
+      </div>
+      <div class="exp-wrap exp-hero__inner">
+        <nav class="exp-breadcrumb" aria-label="Breadcrumb">
+          <a href={pageUrl}>Home</a>
+          <span aria-hidden="true">›</span>
+          <span aria-current="page">Export</span>
+        </nav>
+
+        <span class="exp-eyebrow">
+          <span class="exp-eyebrow__line"></span>
+          Global Distribution · Factory Direct
+        </span>
+
+        <h1 class="exp-hero__h1" id="exp-h1">
+          🌍 <em>International Export</em><br/>Quality Door Solutions from Kayseri to the World
+        </h1>
+        <p class="exp-hero__lead">
+          CihanPan Door exports to Europe, the Middle East and Africa. ISO 9001 & CE certified.
+          Factory-direct pricing with full customs documentation support.
+        </p>
+        <div class="exp-hero__tags">
+          <span class="exp-htag">✓ 15+ Countries</span>
+          <span class="exp-htag">✓ 50K+ Doors / Year</span>
+          <span class="exp-htag">✓ CE & ISO 9001</span>
+          <span class="exp-htag">✓ MOQ 1 Container</span>
+          <span class="exp-htag">✓ 24h Response</span>
+        </div>
+        <div class="exp-hero__actions">
+          <a href={getLocalizedRoute('/iletisim', lang)} class="exp-btn exp-btn--gold">
+            Request Export Quote
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="mailto:export@cihanpandoor.com" class="exp-btn exp-btn--ghost">
+            export@cihanpandoor.com
+          </a>
+        </div>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="exp-wrap">
+        <div class="exp-statsbar">
+          <div class="exp-sitem"><strong>15+</strong><span>Countries</span></div>
+          <div class="exp-sdiv"></div>
+          <div class="exp-sitem"><strong>50K+</strong><span>Doors / Year</span></div>
+          <div class="exp-sdiv"></div>
+          <div class="exp-sitem"><strong>30%</strong><span>Export Share</span></div>
+          <div class="exp-sdiv"></div>
+          <div class="exp-sitem"><strong>100%</strong><span>Satisfaction</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         INTRO
+    ══════════════════════════════════════════ -->
+    <section class="exp-sec exp-sec--white" aria-labelledby="intro-h2">
+      <div class="exp-wrap exp-intro-wrap">
+        <div class="exp-head">
+          <span class="exp-tag">Global Reach</span>
+          <h2 id="intro-h2">Trusted Export Partner Since Day One</h2>
+          <p>
+            At CihanPan Door, we export to <strong>Europe, the Middle East and Africa</strong>
+            as well as the domestic Turkish market. With production that meets international
+            quality standards, we participate in global projects worldwide. Our ISO 9001
+            and CE certifications make us a reliable business partner across the globe.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         FEATURE CARDS
+    ══════════════════════════════════════════ -->
+    <section class="exp-sec exp-sec--cream" aria-labelledby="features-h2">
+      <div class="exp-wrap">
+        <div class="exp-head">
+          <span class="exp-tag">What We Offer</span>
+          <h2 id="features-h2">Export Services &amp; Coverage</h2>
+        </div>
+
+        <div class="exp-cards">
+
+          <div class="exp-card">
+            <div class="exp-card__icon">📦</div>
+            <h3>Export Services</h3>
+            <ul>
+              <li>Full container and LCL shipments</li>
+              <li>Custom packaging and protection</li>
+              <li>Customs documentation support</li>
+              <li>International logistics solutions</li>
+              <li>Technical documentation preparation</li>
+              <li>Multilingual customer support</li>
+            </ul>
+          </div>
+
+          <div class="exp-card">
+            <div class="exp-card__icon">🌐</div>
+            <h3>Regions We Export To</h3>
+            <ul>
+              <li>European Union countries</li>
+              <li>Middle East markets</li>
+              <li>North Africa</li>
+              <li>Balkan countries</li>
+              <li>Gulf Cooperation Council</li>
+              <li>Central Asian republics</li>
+            </ul>
+          </div>
+
+          <div class="exp-card">
+            <div class="exp-card__icon">✅</div>
+            <h3>Our Export Advantages</h3>
+            <ul>
+              <li>Competitive factory-direct prices</li>
+              <li>On-time delivery guarantee</li>
+              <li>CE certified products</li>
+              <li>English, Arabic and Russian support</li>
+              <li>High-volume order capacity</li>
+              <li>Custom project solutions</li>
+            </ul>
+          </div>
+
+          <div class="exp-card">
+            <div class="exp-card__icon">🤝</div>
+            <h3>Export Process</h3>
+            <ul>
+              <li>1. Quotation &amp; sample dispatch</li>
+              <li>2. Contract &amp; payment schedule</li>
+              <li>3. Production &amp; quality control</li>
+              <li>4. Packaging &amp; documentation</li>
+              <li>5. Shipment &amp; delivery tracking</li>
+              <li>6. After-sales support</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CERTIFICATES
+    ══════════════════════════════════════════ -->
+    <section class="exp-sec exp-sec--white" aria-labelledby="cert-h2">
+      <div class="exp-wrap">
+        <div class="exp-head">
+          <span class="exp-tag">Certifications</span>
+          <h2 id="cert-h2">Our International Certifications</h2>
+        </div>
+
+        <div class="exp-certs">
+          <div class="exp-cert">
+            <div class="exp-cert__icon">🏆</div>
+            <h3>ISO 9001</h3>
+            <p>Quality Management System</p>
+          </div>
+          <div class="exp-cert">
+            <div class="exp-cert__icon">✓</div>
+            <h3>CE Certificate</h3>
+            <p>European Conformity Mark</p>
+          </div>
+          <div class="exp-cert">
+            <div class="exp-cert__icon">🔥</div>
+            <h3>Fire Tests</h3>
+            <p>International Standards (EN 1634)</p>
+          </div>
+          <div class="exp-cert">
+            <div class="exp-cert__icon">🌱</div>
+            <h3>Environmental Certificate</h3>
+            <p>Sustainable Manufacturing</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         FAQ
+    ══════════════════════════════════════════ -->
+    <section class="exp-sec exp-sec--cream" aria-labelledby="faq-h2">
+      <div class="exp-wrap exp-faq-wrap">
+        <div class="exp-head">
+          <span class="exp-tag">FAQ</span>
+          <h2 id="faq-h2">Frequently Asked Questions</h2>
+        </div>
+        <div class="exp-faqs">
+          {[
+            { q: 'What is the minimum export quantity?',    a: 'For container-based orders the minimum is 1 full container (approximately 300–400 doors). Special pricing is available for LCL (less-than-container-load) shipments.' },
+            { q: 'What is the lead time?',                  a: 'Production takes 3–4 weeks after order confirmation. Shipping times vary from 1–3 weeks depending on the destination country.' },
+            { q: 'What payment methods do you accept?',     a: 'We accept L/C (Letter of Credit), T/T (Bank Transfer), and 30% advance + 70% before shipment.' },
+            { q: 'Do you send samples?',                    a: 'Yes, we send samples to prospective export customers on a freight-collect basis.' },
+            { q: 'Do you manufacture custom designs?',      a: 'Yes, we offer project-based custom design and made-to-measure production. Please contact us for minimum order quantities.' },
+          ].map(item => (
+            <details class="exp-faq">
+              <summary class="exp-faq__q">
+                {item.q}
+                <span class="exp-faq__arrow" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                </span>
+              </summary>
+              <p class="exp-faq__a">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         CTA BAND
+    ══════════════════════════════════════════ -->
+    <section class="exp-cta" aria-labelledby="cta-h2">
+      <div class="exp-cta__glow" aria-hidden="true"></div>
+      <div class="exp-wrap exp-cta__inner">
+        <div class="exp-cta__text">
+          <span class="exp-tag exp-tag--gold">Export Enquiries</span>
+          <h2 id="cta-h2">
+            Contact Us for Export
+          </h2>
+          <p>
+            Get tailored price quotes for your international projects and orders.
+            Our export team responds within 24 hours.
+          </p>
+        </div>
+        <div class="exp-cta__btns">
+          <a href={getLocalizedRoute('/iletisim', lang)} class="exp-btn exp-btn--gold">
+            Quote Form
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="mailto:export@cihanpandoor.com" class="exp-btn exp-btn--ghost">
+            export@cihanpandoor.com
+          </a>
+          <a href="https://wa.me/905441690038" target="_blank" rel="noopener" class="exp-btn exp-btn--wa">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.89 3.488"/></svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <I18nFooter />
+</I18nLayout>
+
+<style>
+  /* ── TOKENS — önceki sayfalarla özdeş ── */
+  .exp {
+    --navy:     #0f2347;
+    --navy-mid: #1a3a6e;
+    --navy-l:   #1e4a8a;
+    --gold:     #c9a84c;
+    --gold-l:   #e2bc6a;
+    --cream:    #faf8f4;
+    --slate:    #607080;
+    --text:     #0f1929;
+    --body:     #3d4f63;
+    --bdr:      #e4eaf4;
+    --white:    #ffffff;
+    --radius:   14px;
+    --green:    #16a34a;
+
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text);
+  }
+
+  /* ── LAYOUT ── */
+  .exp-wrap { max-width: 1160px; margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 2.5rem); width: 100%; }
+  .exp-sec        { padding-block: clamp(4rem, 8vw, 6.5rem); }
+  .exp-sec--white { background: var(--white); }
+  .exp-sec--cream { background: var(--cream); }
+
+  /* ── SECTION HEAD ── */
+  .exp-head { text-align: center; margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+  .exp-head h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700;
+    color: var(--text); margin: 0.3rem 0 0.7rem; line-height: 1.2;
+  }
+  .exp-head p { color: var(--slate); font-size: 1rem; max-width: 700px; margin-inline: auto; line-height: 1.7; }
+  .exp-head strong { color: var(--navy); }
+
+  .exp-tag { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .exp-tag--gold { color: rgba(201,168,76,0.9); }
+
+  /* ── BUTTONS ── */
+  .exp-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.9rem; font-weight: 600; padding: 0.9rem 1.75rem;
+    border-radius: 8px; text-decoration: none; white-space: nowrap;
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
+    cursor: pointer; border: none;
+  }
+  .exp-btn--gold  { background: var(--gold);  color: var(--navy); font-weight: 700; }
+  .exp-btn--gold:hover  { background: var(--gold-l); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(201,168,76,0.4); }
+  .exp-btn--ghost { background: transparent; color: rgba(255,255,255,0.85); border: 1.5px solid rgba(255,255,255,0.25); }
+  .exp-btn--ghost:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.07); transform: translateY(-2px); }
+  .exp-btn--wa    { background: var(--green); color: var(--white); }
+  .exp-btn--wa:hover { background: #15803d; transform: translateY(-2px); }
+
+  /* ── HERO ── */
+  .exp-hero {
+    position: relative; min-height: 70vh; display: flex;
+    flex-direction: column; justify-content: center;
+    padding-top: 70px; overflow: hidden;
+  }
+  .exp-hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .exp-hero__overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(10,26,58,0.96) 0%, rgba(15,35,71,0.88) 60%, rgba(26,58,110,0.82) 100%);
+  }
+  .exp-hero__glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 80% 30%, rgba(201,168,76,0.09) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 80% at 10% 70%, rgba(30,74,138,0.3) 0%, transparent 60%);
+  }
+  .exp-hero__inner {
+    position: relative; z-index: 1;
+    padding-top: clamp(2.5rem, 6vw, 4rem);
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+  }
+  .exp-breadcrumb {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-bottom: 1.5rem; flex-wrap: wrap;
+  }
+  .exp-breadcrumb a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+  .exp-breadcrumb a:hover { color: var(--gold-l); }
+  .exp-breadcrumb span[aria-current] { color: var(--gold); }
+  .exp-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
+  }
+  .exp-eyebrow__line { display: block; width: 28px; height: 1px; background: var(--gold); opacity: 0.5; flex-shrink: 0; }
+  .exp-hero__h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2rem, 4.5vw, 3.4rem); font-weight: 900;
+    color: var(--white); line-height: 1.15; margin: 0 0 1.2rem;
+  }
+  .exp-hero__h1 em { font-style: normal; color: var(--gold); }
+  .exp-hero__lead { font-size: 1.05rem; color: rgba(255,255,255,0.65); line-height: 1.8; max-width: 580px; margin: 0 0 1.5rem; }
+  .exp-hero__tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+  .exp-htag {
+    display: inline-block; padding: 0.3rem 0.85rem;
+    border: 1px solid rgba(201,168,76,0.35); background: rgba(201,168,76,0.08);
+    color: var(--gold-l); font-size: 0.82rem; font-weight: 600; border-radius: 4px;
+  }
+  .exp-hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  /* Stats bar */
+  .exp-statsbar {
+    position: relative; z-index: 1;
+    display: flex; align-items: center; flex-wrap: wrap; gap: 0;
+    background: rgba(255,255,255,0.06); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
+    padding: 1.5rem 2rem; margin-top: 2rem;
+  }
+  .exp-sitem { display: flex; flex-direction: column; flex: 1; min-width: 80px; padding-inline: 1rem; text-align: center; }
+  .exp-sitem:first-child { padding-left: 0; }
+  .exp-sitem:last-child  { padding-right: 0; }
+  .exp-sitem strong {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.6rem; font-weight: 900; color: var(--gold); line-height: 1; display: block;
+  }
+  .exp-sitem span { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 0.3rem; display: block; }
+  .exp-sdiv { width: 1px; height: 32px; background: rgba(255,255,255,0.12); flex-shrink: 0; }
+
+  /* ── INTRO ── */
+  .exp-intro-wrap { max-width: 860px; }
+  .exp-intro-wrap .exp-head { text-align: center; }
+  .exp-intro-wrap .exp-head p { font-size: 1.1rem; }
+
+  /* ── FEATURE CARDS ── */
+  .exp-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .exp-card {
+    background: var(--white); border: 1px solid var(--bdr);
+    border-radius: var(--radius); padding: 2rem;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  }
+  .exp-card:hover {
+    transform: translateY(-4px); box-shadow: 0 16px 36px rgba(15,35,71,0.1);
+    border-color: rgba(201,168,76,0.35);
+  }
+  .exp-card__icon { font-size: 2.5rem; margin-bottom: 1rem; line-height: 1; }
+  .exp-card h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.15rem; font-weight: 700; color: var(--text); margin: 0 0 1rem;
+  }
+  .exp-card ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+  .exp-card li { font-size: 0.925rem; color: var(--body); line-height: 1.6; padding-left: 1.5rem; position: relative; }
+  .exp-card li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+
+  /* ── CERTIFICATES ── */
+  .exp-certs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  .exp-cert {
+    text-align: center; padding: 1.75rem 1.5rem;
+    background: var(--cream); border: 2px solid var(--bdr);
+    border-radius: var(--radius);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .exp-cert:hover { border-color: var(--gold); background: var(--white); }
+  .exp-cert__icon { font-size: 2.5rem; margin-bottom: 0.75rem; line-height: 1; }
+  .exp-cert h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem; font-weight: 700; color: var(--text); margin: 0 0 0.4rem; }
+  .exp-cert p  { font-size: 0.875rem; color: var(--slate); margin: 0; }
+
+  /* ── FAQ ── */
+  .exp-faq-wrap { max-width: 800px; }
+  .exp-faqs { display: flex; flex-direction: column; gap: 0.75rem; }
+  .exp-faq { background: var(--white); border: 1px solid var(--bdr); border-radius: 10px; overflow: hidden; transition: border-color 0.2s; }
+  .exp-faq[open] { border-color: rgba(201,168,76,0.35); }
+  .exp-faq__q {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 1.1rem 1.5rem; cursor: pointer;
+    font-weight: 600; font-size: 0.95rem; color: var(--text);
+    list-style: none; user-select: none; transition: background 0.15s;
+  }
+  .exp-faq__q:hover { background: var(--cream); }
+  .exp-faq__q::-webkit-details-marker { display: none; }
+  .exp-faq__arrow { flex-shrink: 0; color: var(--slate); transition: transform 0.25s; }
+  .exp-faq[open] .exp-faq__arrow { transform: rotate(180deg); color: var(--gold); }
+  .exp-faq__a { padding: 1rem 1.5rem 1.25rem; font-size: 0.925rem; color: var(--body); line-height: 1.75; margin: 0; border-top: 1px solid var(--bdr); }
+
+  /* ── CTA BAND ── */
+  .exp-cta { position: relative; background: var(--navy); overflow: hidden; padding: clamp(4rem, 8vw, 6rem) 0; }
+  .exp-cta__glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 55% 80% at 105% 50%, rgba(201,168,76,0.14) 0%, transparent 65%),
+      linear-gradient(140deg, #08192e 0%, var(--navy) 100%);
+    pointer-events: none;
+  }
+  .exp-cta__inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap; }
+  .exp-cta__text h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.75rem, 3vw, 2.4rem); font-weight: 700;
+    color: var(--white); margin: 0.35rem 0 0.7rem; line-height: 1.2;
+  }
+  .exp-cta__text p { color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.7; max-width: 420px; margin: 0; }
+  .exp-cta__btns { display: flex; gap: 1rem; flex-wrap: wrap; flex-shrink: 0; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .exp-hero { min-height: auto; }
+    .exp-hero__actions { flex-direction: column; }
+    .exp-cta__inner { flex-direction: column; text-align: center; }
+    .exp-cta__btns  { justify-content: center; }
+    .exp-statsbar { padding: 1rem 1.25rem; }
+  }
+  @media (max-width: 480px) {
+    .exp-sdiv { display: none; }
+    .exp-sitem { padding-inline: 0.5rem; }
+    .exp-cards { grid-template-columns: 1fr; }
+    .exp-certs { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
