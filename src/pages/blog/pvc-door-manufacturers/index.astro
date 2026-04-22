@@ -1,12 +1,12 @@
 ---
 // src/pages/en/blog/pvc-door-manufacturers/index.astro
-import I18nLayout from '../../../../layouts/I18nLayout.astro';
-import I18nHeader from '../../../../components/I18nHeader.astro';
-import I18nFooter from '../../../../components/I18nFooter.astro';
-import I18nBreadcrumbs from '../../../../components/I18nBreadcrumbs.astro';
-import { getLangFromUrl } from '../../../../i18n/utils';
+import I18nLayout from '../../../layouts/I18nLayout.astro';
+import I18nHeader from '../../../components/I18nHeader.astro';
+import I18nFooter from '../../../components/I18nFooter.astro';
+import I18nBreadcrumbs from '../../../components/I18nBreadcrumbs.astro';
+import { getLangFromUrl } from '../../../i18n/utils';
 
-import { content as enContent } from '../../../../content/blog/pvc-kapi-ihracati/en';
+import { content as enContent } from '../../../content/blog/pvc-kapi-ihracati/en';
 
 const lang = getLangFromUrl(Astro.url); // 'en'
 const c = enContent;

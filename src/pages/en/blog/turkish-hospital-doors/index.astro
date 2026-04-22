@@ -1,0 +1,640 @@
+---
+// src/pages/en/blog/turkish-hospital-doors/index.astro — EN
+import I18nLayout from '../../../../layouts/I18nLayout.astro';
+import I18nHeader from '../../../../components/I18nHeader.astro';
+import I18nFooter from '../../../../components/I18nFooter.astro';
+
+const baseUrl    = 'https://cihanpandoor.netlify.app';
+const currentUrl = `${baseUrl}/en/blog/turkish-hospital-doors`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Turkish Hospital Doors: Hygiene, Safety & Durability Standards",
+  "description": "A complete guide to hospital-grade door systems manufactured in Turkey — covering antibacterial surfaces, lead-lined X-ray doors, fire ratings, and why CihanPan Door is the trusted supplier for healthcare projects worldwide.",
+  "image": `${baseUrl}/assets/img/blog/hastane-kapilari-og.webp`,
+  "datePublished": "2025-02-10",
+  "dateModified": "2025-06-01",
+  "author": { "@type": "Organization", "name": "CihanPan Door", "url": "https://www.cihanpandoor.com" },
+  "publisher": { "@type": "Organization", "name": "CihanPan Door", "logo": { "@type": "ImageObject", "url": `${baseUrl}/assets/img/logo.png` } },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": currentUrl }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What makes a door suitable for hospital use?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Hospital doors must meet stringent hygiene, durability, and safety standards. Key requirements include antibacterial surface coatings, easy-clean smooth finishes, impact-resistant kick-plates, appropriate fire ratings (typically FD30 or FD60), and in specialist areas such as radiology, lead lining for radiation shielding." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do Turkish hospital doors meet international standards?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Leading Turkish manufacturers including CihanPan Door produce hospital doors to EN 1634 fire test standards, ISO 9001 quality management systems, and CE marking requirements. Many products are also tested to BS 8300 accessibility guidelines for healthcare environments." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can CihanPan Door supply lead-lined X-ray room doors?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. CihanPan Door manufactures lead-lined door sets for radiology departments, CT scan rooms, and nuclear medicine areas. Lead equivalency is specified per project — typically 1.0 mm to 3.0 mm Pb — and verified with radiation physics certificates." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the minimum order quantity for hospital door projects?",
+      "acceptedAnswer": { "@type": "Answer", "text": "CihanPan Door works with healthcare projects of all sizes, from single-ward refurbishments to full hospital builds. For export orders, a minimum of one 20-foot container (approximately 100–150 door sets) is typical, though project-specific arrangements are possible." }
+    }
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home",  "item": `${baseUrl}/en` },
+    { "@type": "ListItem", "position": 2, "name": "Blog",  "item": `${baseUrl}/en/blog` },
+    { "@type": "ListItem", "position": 3, "name": "Turkish Hospital Doors", "item": currentUrl }
+  ]
+};
+---
+
+<I18nLayout
+  title="Turkish Hospital Doors: Hygiene, Safety & Durability | CihanPan Door"
+  description="Complete guide to hospital-grade door systems from Turkey — antibacterial finishes, lead-lined X-ray doors, fire ratings, and CE compliance. CihanPan Door supplies healthcare projects in 30+ countries."
+  keywords="hospital doors Turkey, medical grade doors, antibacterial doors, lead lined doors, X-ray room doors, healthcare doors supplier, Turkish door manufacturer, CihanPan Door, fire rated hospital doors, hygiene doors export"
+  canonical={currentUrl}
+  ogTitle="Turkish Hospital Doors: Hygiene, Safety & Durability Standards"
+  ogDescription="How Turkish manufacturers produce hospital-grade doors that meet international hygiene, fire, and radiation-shielding standards — with CihanPan Door leading the sector."
+  ogImage="/assets/img/blog/hastane-kapilari-og.webp"
+  schema={[breadcrumbSchema, articleSchema, faqSchema]}
+>
+
+<I18nHeader />
+
+<main class="art">
+
+  <!-- ══ HERO ══ -->
+  <section class="art-hero">
+    <div class="art-hero__bg" aria-hidden="true">
+      <div class="art-hero__overlay"></div>
+      <div class="art-hero__glow"></div>
+    </div>
+    <div class="art-wrap art-hero__inner">
+      <nav class="art-breadcrumb" aria-label="Breadcrumb">
+        <a href="/en">Home</a>
+        <span aria-hidden="true">›</span>
+        <a href="/en/blog">Blog</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">Turkish Hospital Doors</span>
+      </nav>
+      <div class="art-hero__meta">
+        <span class="art-eyebrow">
+          <span class="art-eyebrow__line"></span>
+          Healthcare · Specification Guide
+        </span>
+        <div class="art-meta">
+          <time datetime="2025-02-10">February 10, 2025</time>
+          <span class="art-meta__dot"></span>
+          <span>⏱ 9 min read</span>
+          <span class="art-meta__dot"></span>
+          <span class="art-cat">Healthcare</span>
+        </div>
+      </div>
+      <h1 class="art-hero__h1">
+        Turkish Hospital Doors:<br />
+        <em>Hygiene, Safety &</em><br />
+        Durability Standards
+      </h1>
+      <p class="art-hero__lead">
+        How Turkish manufacturers engineer doors that survive the toughest environment in any building — the hospital — while meeting international fire, hygiene, and radiation-shielding standards.
+      </p>
+      <div class="art-hero__cta">
+        <a href="https://www.cihanpandoor.com" target="_blank" rel="noopener" class="art-btn art-btn--gold">
+          Visit CihanPan Door
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#what-hospital-doors-need" class="art-btn art-btn--ghost">
+          Read the Guide ↓
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TOC BAR ══ -->
+  <div class="art-toc-bar">
+    <div class="art-wrap">
+      <nav class="art-toc" aria-label="Table of contents">
+        <span class="art-toc__label">Contents:</span>
+        <a href="#what-hospital-doors-need">Requirements</a>
+        <a href="#door-types">Door Types</a>
+        <a href="#lead-lined">X-Ray & Lead-Lined</a>
+        <a href="#fire-rated">Fire Ratings</a>
+        <a href="#cihanpan">CihanPan Door</a>
+        <a href="#buying-guide">Buying Guide</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- ══ ARTICLE BODY ══ -->
+  <article class="art-sec art-sec--white">
+    <div class="art-wrap art-layout">
+
+      <!-- MAIN CONTENT -->
+      <div class="art-content">
+
+        <!-- § 1 -->
+        <section id="what-hospital-doors-need" class="art-section">
+          <h2>What Hospital Doors Must Deliver</h2>
+          <p class="art-lead-p">
+            A hospital door is opened and closed hundreds of times a day, struck by trolleys and wheelchairs, exposed to aggressive cleaning chemicals, and expected to prevent the spread of fire, infection, and — in specialist departments — ionising radiation. No other door in any building type is asked to do more.
+          </p>
+          <p>
+            Specifying correctly requires understanding the distinct performance layers a healthcare door must satisfy simultaneously. Miss one layer and the door either fails inspection, creates an infection risk, or becomes a liability in the event of fire.
+          </p>
+
+          <div class="art-req-grid">
+            <div class="art-req-card">
+              <div class="art-req-card__icon" aria-hidden="true">🦠</div>
+              <strong>Infection Control</strong>
+              <p>Antibacterial surface films, smooth flush profiles with no crevices, and chemical-resistant finishes that withstand repeated disinfection with hospital-grade cleaning agents.</p>
+            </div>
+            <div class="art-req-card">
+              <div class="art-req-card__icon" aria-hidden="true">🔥</div>
+              <strong>Fire Containment</strong>
+              <p>FD30 (30-minute) and FD60 (60-minute) rated door sets in corridors, stairwells, and plant rooms — tested to EN 1634-1 and supplied with certified intumescent seals and closers.</p>
+            </div>
+            <div class="art-req-card">
+              <div class="art-req-card__icon" aria-hidden="true">☢️</div>
+              <strong>Radiation Shielding</strong>
+              <p>Lead-lined door leaves and frames for radiology suites, CT rooms, nuclear medicine, and radiotherapy — specified in millimetres of lead equivalency (mmPb).</p>
+            </div>
+            <div class="art-req-card">
+              <div class="art-req-card__icon" aria-hidden="true">♿</div>
+              <strong>Accessibility</strong>
+              <p>Wider clear openings (min. 900 mm for wheelchair access), low-energy or power-assisted openers, and vision panels at two heights per accessibility standards.</p>
+            </div>
+            <div class="art-req-card">
+              <div class="art-req-card__icon" aria-hidden="true">💪</div>
+              <strong>Impact Resistance</strong>
+              <p>Full-height stainless steel kick-plates, PVC bump guards, and reinforced door edges to withstand the daily impact of beds, trolleys, and medical equipment.</p>
+            </div>
+            <div class="art-req-card">
+              <div class="art-req-card__icon" aria-hidden="true">🔇</div>
+              <strong>Acoustic Performance</strong>
+              <p>Acoustic seals on patient room and consultation room doors to provide speech privacy — typically Rw 32–42 dB depending on application.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- § 2 -->
+        <section id="door-types" class="art-section">
+          <h2>Hospital Door Types by Department</h2>
+          <p>
+            Different areas of a hospital have fundamentally different requirements. A one-size-fits-all approach leads to over-specified (and expensive) doors in low-risk areas, and dangerously under-specified doors where it matters most.
+          </p>
+
+          <div class="art-dept-list">
+            <div class="art-dept">
+              <div class="art-dept__head">
+                <span class="art-dept__num">01</span>
+                <h3>Patient Rooms & Ward Corridors</h3>
+              </div>
+              <p>Standard flush MDF-PVC doors with antibacterial film, vision panel, stainless kick-plate, and FD30 rating where required by layout. Colour-coded finishes assist wayfinding. Typically 900–1000 mm clear opening width.</p>
+            </div>
+            <div class="art-dept">
+              <div class="art-dept__head">
+                <span class="art-dept__num">02</span>
+                <h3>Operating Theatres</h3>
+              </div>
+              <p>Hermetically sealed swing or sliding doors with full perimeter seals, stainless steel cladding, and access control integration. Positive pressure differential management is critical — door seals must be airtight. Special hygienic frames with no exposed fixings.</p>
+            </div>
+            <div class="art-dept">
+              <div class="art-dept__head">
+                <span class="art-dept__num">03</span>
+                <h3>Intensive Care Units (ICU)</h3>
+              </div>
+              <p>Wide double-leaf sets (min. 1200 mm clear) for bed passage, full-length vision panels for patient observation, and acoustic seals. ICU doors often combine FD60 fire rating with acoustic performance and antibacterial finishes.</p>
+            </div>
+            <div class="art-dept">
+              <div class="art-dept__head">
+                <span class="art-dept__num">04</span>
+                <h3>Radiology & Imaging</h3>
+              </div>
+              <p>Lead-lined door sets to shield adjacent areas from ionising radiation. CT, MRI, fluoroscopy, and plain X-ray rooms each have different shielding requirements specified by the radiation physicist. Doors are typically single-leaf 1000 mm wide, with matching lead-lined frames and threshold.</p>
+            </div>
+            <div class="art-dept">
+              <div class="art-dept__head">
+                <span class="art-dept__num">05</span>
+                <h3>Pharmacy & Clean Rooms</h3>
+              </div>
+              <p>Smooth, cleanable surfaces with no recessed handles or projections that could harbour contamination. Positive pressure vestibule doors, interlocked air-lock systems, and ESD (electrostatic discharge) resistant finishes where required.</p>
+            </div>
+            <div class="art-dept">
+              <div class="art-dept__head">
+                <span class="art-dept__num">06</span>
+                <h3>Emergency & Trauma</h3>
+              </div>
+              <p>Heavy-duty impact-resistant doors designed for constant high-traffic use. Power-assisted operation for hands-free entry in emergency situations. Robust stainless steel hardware rated for 1,000,000+ operation cycles.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- § 3 -->
+        <section id="lead-lined" class="art-section">
+          <h2>Lead-Lined Doors: X-Ray & Radiation Shielding</h2>
+          <p>
+            Radiology departments represent the most technically demanding door specification in any hospital project. The door is not merely a physical barrier — it is a radiation shield, and its performance must be verified by a qualified medical physics engineer.
+          </p>
+
+          <div class="art-highlight">
+            <div class="art-highlight__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <p>Lead equivalency for hospital doors is expressed in millimetres of lead (mmPb). A 1.0 mmPb door is suitable for most plain X-ray rooms; CT scanner rooms typically require 2.0–3.0 mmPb. The radiation physicist's report governs the specification — never the architect's assumption.</p>
+          </div>
+
+          <h3>Construction of a Lead-Lined Door</h3>
+          <p>
+            CihanPan Door's lead-lined sets are built around an MDF core with continuous lead sheet bonded between the inner and outer door skins. The lead sheet runs edge-to-edge and top-to-bottom with no gaps — overlapping at joints to prevent radiation streaming. The door face is finished in smooth PVC or laminate for easy cleaning.
+          </p>
+          <ul class="art-list">
+            <li><strong>Lead equivalency range:</strong> 0.5 mmPb to 4.0 mmPb supplied as standard; higher specifications on request.</li>
+            <li><strong>Frame lining:</strong> Matching lead-lined frames and architraves ensure continuous shielding around the full door opening.</li>
+            <li><strong>Vision panel:</strong> Lead glass or barium glass inserts maintain shielding integrity while allowing observation.</li>
+            <li><strong>Certification:</strong> Each door set is supplied with a radiation physics certificate confirming measured attenuation.</li>
+            <li><strong>Weight:</strong> A 1.0 mmPb single-leaf door weighs approximately 60–80 kg — heavy-duty hinges and closers are included as standard.</li>
+          </ul>
+        </section>
+
+        <!-- § 4 -->
+        <section id="fire-rated" class="art-section">
+          <h2>Fire-Rated Hospital Doors: FD30 & FD60</h2>
+          <p>
+            Fire compartmentation is mandatory in all hospital buildings. The door is the weakest point in any fire-rated wall — and the one most frequently left open, propped, or damaged. Turkish manufacturers supply complete certified door sets (leaf, frame, seals, hardware) that have been tested as a system, not as individual components.
+          </p>
+
+          <div class="art-fire-grid">
+            <div class="art-fire-card art-fire-card--fd30">
+              <div class="art-fire-card__badge">FD30</div>
+              <h3>30-Minute Fire Door</h3>
+              <p>Suitable for most ward corridors, patient room doors in compartmented layouts, and general circulation areas. Tested to EN 1634-1. Intumescent strip and smoke seal included.</p>
+              <ul>
+                <li>Ward corridors</li>
+                <li>Patient bedrooms</li>
+                <li>General offices</li>
+                <li>Storage rooms</li>
+              </ul>
+            </div>
+            <div class="art-fire-card art-fire-card--fd60">
+              <div class="art-fire-card__badge">FD60</div>
+              <h3>60-Minute Fire Door</h3>
+              <p>Required at compartment boundaries, stairwell enclosures, plant rooms, and high-risk areas. Heavier construction with additional intumescent layers. Certified self-closing devices mandatory.</p>
+              <ul>
+                <li>Stairwell enclosures</li>
+                <li>Plant & electrical rooms</li>
+                <li>Compartment walls</li>
+                <li>ICU & theatre lobbies</li>
+              </ul>
+            </div>
+          </div>
+
+          <p>
+            All fire-rated door sets are supplied with the EN 1634-1 test certificate, CE Declaration of Performance, and a door schedule showing hardware specifications. Third-party installation inspection is recommended and documentation is provided to support the building's fire safety file.
+          </p>
+        </section>
+
+        <!-- § 5 -->
+        <section id="cihanpan" class="art-section">
+          <h2>CihanPan Door: Healthcare Division</h2>
+          <p>
+            CihanPan Door operates a dedicated healthcare division within its Kayseri manufacturing facility. The division was established in response to growing demand from hospital developers and international healthcare contractors who needed a single supplier capable of covering the full door schedule — from standard ward doors to specialist lead-lined radiology sets.
+          </p>
+
+          <div class="art-brand-block">
+            <div class="art-brand-block__accent" aria-hidden="true"></div>
+            <blockquote class="art-brand-block__quote">
+              "Every hospital door we supply has a person's life on the other side of it. That is not a responsibility we take lightly."
+            </blockquote>
+            <cite class="art-brand-block__cite">— CihanPan Door Healthcare Division, Kayseri</cite>
+            <a href="https://www.cihanpandoor.com" target="_blank" rel="noopener" class="art-brand-block__link">
+              www.cihanpandoor.com
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+
+          <h3>Healthcare Capabilities at a Glance</h3>
+          <ul class="art-list art-list--check">
+            <li><strong>Full door schedule supply</strong> — standard ward, fire-rated, acoustic, lead-lined, and hermetic doors from one manufacturer, simplifying procurement and ensuring finish consistency.</li>
+            <li><strong>In-house lead lining</strong> — lead sheet bonding is performed in-factory, not outsourced, ensuring quality control and competitive lead times.</li>
+            <li><strong>BIM object library</strong> — Revit families available for all standard healthcare door types, supporting the design team from RIBA Stage 2 onward.</li>
+            <li><strong>Project scheduling</strong> — phased delivery aligned to construction programme; doors for each ward block delivered in installation sequence.</li>
+            <li><strong>Post-installation support</strong> — adjustment service and replacement hardware available for the life of the building.</li>
+          </ul>
+        </section>
+
+        <!-- § 6 Buying Guide -->
+        <section id="buying-guide" class="art-section">
+          <h2>Procurement Guide: Specifying Hospital Doors from Turkey</h2>
+
+          <div class="art-steps">
+            <div class="art-step">
+              <div class="art-step__num">1</div>
+              <div class="art-step__body">
+                <strong>Prepare a door schedule</strong>
+                <p>List every door opening: room reference, clear width, clear height, fire rating, acoustic requirement, vision panel, hardware, and any specialist requirements (lead lining, hermetic sealing). A complete schedule dramatically reduces quotation turnaround time.</p>
+              </div>
+            </div>
+            <div class="art-step">
+              <div class="art-step__num">2</div>
+              <div class="art-step__body">
+                <strong>Obtain the radiation physics report early</strong>
+                <p>For any radiology or nuclear medicine areas, the medical physics engineer's shielding report must be issued before door specification is finalised. Lead equivalency cannot be assumed — it must be calculated for each room based on equipment type and workload.</p>
+              </div>
+            </div>
+            <div class="art-step">
+              <div class="art-step__num">3</div>
+              <div class="art-step__body">
+                <strong>Request full system certification</strong>
+                <p>Ask for EN 1634-1 fire test certificates, CE Declarations of Performance, radiation attenuation certificates (for lead-lined doors), and ISO 9001 factory audit reports. Reputable Turkish manufacturers hold all of these as standard.</p>
+              </div>
+            </div>
+            <div class="art-step">
+              <div class="art-step__num">4</div>
+              <div class="art-step__body">
+                <strong>Align delivery with programme</strong>
+                <p>Hospital projects are phased. Agree a delivery schedule by zone or ward rather than a single bulk delivery — this reduces on-site storage requirements and the risk of damage to doors before installation.</p>
+              </div>
+            </div>
+            <div class="art-step">
+              <div class="art-step__num">5</div>
+              <div class="art-step__body">
+                <strong>Plan for installation inspection</strong>
+                <p>Fire-rated and lead-lined doors must be installed correctly to perform as tested. Budget for a third-party installation inspection and ensure the contractor is familiar with the specific system being installed.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="art-cta-inline">
+            <p>Ready to discuss your hospital door schedule?</p>
+            <a href="https://www.cihanpandoor.com" target="_blank" rel="noopener" class="art-btn art-btn--gold">
+              Contact CihanPan Door
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </section>
+
+        <!-- § FAQ -->
+        <section id="faq" class="art-section">
+          <h2>Frequently Asked Questions</h2>
+
+          <div class="art-faq">
+            <details class="art-faq__item">
+              <summary class="art-faq__q">What makes a door suitable for hospital use?</summary>
+              <div class="art-faq__a">
+                <p>Hospital doors must meet stringent hygiene, durability, and safety standards. Key requirements include antibacterial surface coatings, easy-clean smooth finishes, impact-resistant kick-plates, appropriate fire ratings (typically FD30 or FD60), and in specialist areas such as radiology, lead lining for radiation shielding.</p>
+              </div>
+            </details>
+            <details class="art-faq__item">
+              <summary class="art-faq__q">Do Turkish hospital doors meet international standards?</summary>
+              <div class="art-faq__a">
+                <p>Yes. Leading Turkish manufacturers including CihanPan Door produce hospital doors to EN 1634-1 fire test standards, ISO 9001 quality management systems, and CE marking requirements. Many products are also tested to BS 8300 accessibility guidelines for healthcare environments.</p>
+              </div>
+            </details>
+            <details class="art-faq__item">
+              <summary class="art-faq__q">Can CihanPan Door supply lead-lined X-ray room doors?</summary>
+              <div class="art-faq__a">
+                <p>Yes. CihanPan Door manufactures lead-lined door sets for radiology departments, CT scan rooms, and nuclear medicine areas. Lead equivalency is specified per project — typically 1.0 mm to 3.0 mm Pb — and verified with radiation physics certificates.</p>
+              </div>
+            </details>
+            <details class="art-faq__item">
+              <summary class="art-faq__q">What is the lead time for hospital door projects?</summary>
+              <div class="art-faq__a">
+                <p>Standard ward doors typically have a 3–5 week lead time from order confirmation. Specialist doors (lead-lined, hermetic, acoustic) require 5–8 weeks. For large hospital projects, a phased production schedule is agreed at the time of order to align with the construction programme.</p>
+              </div>
+            </details>
+            <details class="art-faq__item">
+              <summary class="art-faq__q">What is the minimum order quantity for hospital door projects?</summary>
+              <div class="art-faq__a">
+                <p>CihanPan Door works with healthcare projects of all sizes, from single-ward refurbishments to full hospital builds. For export orders, a minimum of one 20-foot container (approximately 100–150 door sets) is typical, though project-specific arrangements are possible.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+      </div><!-- /art-content -->
+
+      <!-- SIDEBAR -->
+      <aside class="art-sidebar" aria-label="Article sidebar">
+        <div class="art-sidebar__card art-sidebar__card--cta">
+          <p class="art-sidebar__eyebrow">Healthcare Projects</p>
+          <h3>Get a Hospital Door Quote</h3>
+          <p>Share your door schedule and project details. We respond within 24 hours.</p>
+          <a href="https://www.cihanpandoor.com" target="_blank" rel="noopener" class="art-btn art-btn--gold art-btn--full">
+            Visit cihanpandoor.com
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+
+        <div class="art-sidebar__card">
+          <p class="art-sidebar__eyebrow">Key Specifications</p>
+          <ul class="art-facts">
+            <li><span class="art-facts__label">Fire ratings</span><span class="art-facts__val">FD30 / FD60</span></li>
+            <li><span class="art-facts__label">Lead lining</span><span class="art-facts__val">0.5–4.0 mmPb</span></li>
+            <li><span class="art-facts__label">Acoustic</span><span class="art-facts__val">Rw 32–42 dB</span></li>
+            <li><span class="art-facts__label">Standard</span><span class="art-facts__val">EN 1634-1, CE</span></li>
+            <li><span class="art-facts__label">Lead time</span><span class="art-facts__val">3–8 weeks</span></li>
+            <li><span class="art-facts__label">Min. width</span><span class="art-facts__val">900 mm clear</span></li>
+          </ul>
+        </div>
+
+        <div class="art-sidebar__card">
+          <p class="art-sidebar__eyebrow">Related Articles</p>
+          <ul class="art-related">
+            <li><a href="/en/blog/pvc-door-manufacturers">PVC Door Manufacturers in Turkey</a></li>
+            <li><a href="/en/blog/hotel-doors">Hotel Doors: Comfort & Acoustics</a></li>
+          </ul>
+        </div>
+      </aside>
+
+    </div><!-- /art-layout -->
+  </article>
+
+  <!-- ══ CTA BAND ══ -->
+  <section class="art-cta" aria-labelledby="cta-h2">
+    <div class="art-cta__glow" aria-hidden="true"></div>
+    <div class="art-wrap art-cta__inner">
+      <div class="art-cta__text">
+        <span class="art-tag art-tag--gold">Healthcare Specialists</span>
+        <h2 id="cta-h2">Request a Hospital Door Schedule Quote</h2>
+        <p>From standard ward doors to lead-lined radiology suites — CihanPan Door covers your entire project. Get a full itemised quote within 24 hours.</p>
+      </div>
+      <div class="art-cta__btns">
+        <a href="https://www.cihanpandoor.com" target="_blank" rel="noopener" class="art-btn art-btn--gold">
+          Get a Free Quote
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="/en/hospital-doors" class="art-btn art-btn--ghost">
+          View Hospital Doors
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<I18nFooter />
+
+</I18nLayout>
+
+<style>
+  .art {
+    --navy:     #0f2347;
+    --navy-mid: #1a3a6e;
+    --navy-l:   #1e4a8a;
+    --gold:     #c9a84c;
+    --gold-l:   #e2bc6a;
+    --cream:    #faf8f4;
+    --slate:    #607080;
+    --text:     #0f1929;
+    --body:     #3d4f63;
+    --bdr:      #e4eaf4;
+    --bdr-hover:#c9a84c44;
+    --white:    #ffffff;
+    --radius:   14px;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text);
+  }
+  .art-wrap { max-width: 1160px; margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 2.5rem); width: 100%; }
+  .art-tag { display: inline-block; font-size: .78rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin-bottom: .4rem; }
+  .art-tag--gold { color: rgba(201,168,76,.9); }
+  .art-link { color: var(--navy-l); font-weight: 600; text-decoration: underline; text-decoration-color: var(--bdr); transition: color .2s, text-decoration-color .2s; }
+  .art-link:hover { color: var(--gold); text-decoration-color: var(--gold); }
+  .art-btn { display: inline-flex; align-items: center; gap: .5rem; font-size: .9rem; font-weight: 600; padding: .85rem 1.6rem; border-radius: 8px; text-decoration: none; white-space: nowrap; font-family: inherit; transition: transform .2s, box-shadow .2s, background .2s, border-color .2s, color .2s; }
+  .art-btn--gold  { background: var(--gold); color: var(--navy); font-weight: 700; }
+  .art-btn--gold:hover { background: var(--gold-l); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(201,168,76,.4); }
+  .art-btn--ghost { background: transparent; color: rgba(255,255,255,.85); border: 1.5px solid rgba(255,255,255,.25); }
+  .art-btn--ghost:hover { border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.07); transform: translateY(-2px); }
+  .art-btn--full { width: 100%; justify-content: center; }
+  .art-hero { position: relative; padding-top: 80px; padding-bottom: clamp(4rem, 8vw, 6rem); overflow: hidden; background: var(--navy); }
+  .art-hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .art-hero__overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(10,26,58,.97) 0%, rgba(15,35,71,.88) 60%, rgba(30,74,138,.6) 100%); }
+  .art-hero__glow { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 55% at 90% 30%, rgba(201,168,76,.09) 0%, transparent 65%), radial-gradient(ellipse 45% 70% at 10% 75%, rgba(30,74,138,.3) 0%, transparent 60%); }
+  .art-hero__inner { position: relative; z-index: 1; padding-top: clamp(2rem, 5vw, 3.5rem); max-width: 800px; }
+  .art-breadcrumb { display: flex; gap: .5rem; align-items: center; font-size: .85rem; color: rgba(255,255,255,.4); margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .art-breadcrumb a { color: rgba(255,255,255,.4); text-decoration: none; transition: color .2s; }
+  .art-breadcrumb a:hover { color: var(--gold); }
+  .art-hero__meta { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.25rem; }
+  .art-eyebrow { display: inline-flex; align-items: center; gap: .75rem; font-size: .78rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); }
+  .art-eyebrow__line { display: block; width: 28px; height: 1px; background: var(--gold); opacity: .5; flex-shrink: 0; }
+  .art-meta { display: flex; align-items: center; gap: .6rem; font-size: .85rem; color: rgba(255,255,255,.4); flex-wrap: wrap; }
+  .art-meta__dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+  .art-cat { background: rgba(201,168,76,.15); color: var(--gold); border: 1px solid rgba(201,168,76,.25); font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .2rem .7rem; border-radius: 20px; }
+  .art-hero__h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 5vw, 3.6rem); font-weight: 900; color: var(--white); line-height: 1.1; margin: 0 0 1.25rem; }
+  .art-hero__h1 em { font-style: normal; color: var(--gold); }
+  .art-hero__lead { font-size: 1.05rem; color: rgba(255,255,255,.62); line-height: 1.85; max-width: 620px; margin: 0 0 2rem; }
+  .art-hero__cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .art-toc-bar { background: var(--cream); border-bottom: 1px solid var(--bdr); position: sticky; top: 0; z-index: 10; }
+  .art-toc { display: flex; align-items: center; gap: 1.5rem; overflow-x: auto; padding-block: .9rem; font-size: .82rem; scrollbar-width: none; }
+  .art-toc::-webkit-scrollbar { display: none; }
+  .art-toc__label { font-weight: 700; color: var(--slate); white-space: nowrap; flex-shrink: 0; font-size: .78rem; letter-spacing: .05em; text-transform: uppercase; }
+  .art-toc a { color: var(--body); text-decoration: none; white-space: nowrap; font-weight: 500; transition: color .2s; flex-shrink: 0; }
+  .art-toc a:hover { color: var(--gold); }
+  .art-sec { padding-block: clamp(3.5rem, 7vw, 5.5rem); }
+  .art-sec--white { background: var(--white); }
+  .art-layout { display: grid; grid-template-columns: 1fr 320px; gap: 3.5rem; align-items: start; }
+  .art-content { min-width: 0; }
+  .art-section { margin-bottom: clamp(3rem, 6vw, 4.5rem); padding-bottom: clamp(3rem, 6vw, 4.5rem); border-bottom: 1px solid var(--bdr); }
+  .art-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .art-content h2 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; color: var(--text); margin: 0 0 1.25rem; line-height: 1.2; scroll-margin-top: 60px; }
+  .art-content h3 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.15rem, 2vw, 1.45rem); font-weight: 700; color: var(--navy-mid); margin: 2rem 0 .75rem; line-height: 1.3; }
+  .art-content p { font-size: 1rem; color: var(--body); line-height: 1.85; margin: 0 0 1.25rem; }
+  .art-lead-p { font-size: 1.1rem; color: var(--text); font-weight: 450; line-height: 1.8; }
+  .art-list { margin: 1rem 0 1.5rem 1.25rem; padding: 0; }
+  .art-list li { font-size: .975rem; color: var(--body); line-height: 1.75; margin-bottom: .65rem; }
+  .art-list--check { list-style: none; margin-left: 0; }
+  .art-list--check li { padding-left: 1.75rem; position: relative; }
+  .art-list--check li::before { content: '✓'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+  .art-highlight { display: flex; gap: 1rem; background: rgba(201,168,76,.06); border: 1px solid rgba(201,168,76,.2); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; align-items: flex-start; }
+  .art-highlight__icon { color: var(--gold); flex-shrink: 0; margin-top: .15rem; }
+  .art-highlight p { margin: 0; font-size: .95rem; color: var(--body); line-height: 1.75; }
+  /* Req grid */
+  .art-req-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1.5rem 0; }
+  .art-req-card { background: var(--cream); border: 1px solid var(--bdr); border-radius: var(--radius); padding: 1.4rem; transition: border-color .25s, transform .25s; }
+  .art-req-card:hover { border-color: var(--bdr-hover); transform: translateY(-2px); }
+  .art-req-card__icon { font-size: 1.6rem; margin-bottom: .5rem; display: block; }
+  .art-req-card strong { display: block; font-size: .95rem; color: var(--text); margin-bottom: .4rem; }
+  .art-req-card p { font-size: .855rem; color: var(--body); line-height: 1.65; margin: 0; }
+  /* Dept list */
+  .art-dept-list { display: flex; flex-direction: column; gap: 1.25rem; margin: 1.5rem 0; }
+  .art-dept { background: var(--cream); border: 1px solid var(--bdr); border-radius: var(--radius); padding: 1.5rem; }
+  .art-dept__head { display: flex; align-items: center; gap: .75rem; margin-bottom: .6rem; }
+  .art-dept__num { font-size: .72rem; font-weight: 700; letter-spacing: .15em; color: var(--gold); text-transform: uppercase; flex-shrink: 0; }
+  .art-dept h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.05rem; font-weight: 700; color: var(--text); margin: 0; }
+  .art-dept p { font-size: .88rem; color: var(--body); line-height: 1.72; margin: 0; }
+  /* Fire grid */
+  .art-fire-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 1.5rem 0; }
+  .art-fire-card { border-radius: var(--radius); padding: 1.5rem; border: 2px solid; }
+  .art-fire-card--fd30 { background: rgba(255,165,0,.04); border-color: rgba(255,165,0,.3); }
+  .art-fire-card--fd60 { background: rgba(220,50,50,.04); border-color: rgba(220,50,50,.3); }
+  .art-fire-card__badge { display: inline-block; font-size: .72rem; font-weight: 800; letter-spacing: .15em; padding: .2rem .7rem; border-radius: 20px; margin-bottom: .75rem; }
+  .art-fire-card--fd30 .art-fire-card__badge { background: rgba(255,165,0,.15); color: #b87800; }
+  .art-fire-card--fd60 .art-fire-card__badge { background: rgba(220,50,50,.15); color: #c02020; }
+  .art-fire-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 .5rem; }
+  .art-fire-card p { font-size: .875rem; color: var(--body); line-height: 1.7; margin: 0 0 .75rem; }
+  .art-fire-card ul { margin: 0; padding-left: 1.1rem; }
+  .art-fire-card ul li { font-size: .83rem; color: var(--slate); line-height: 1.7; }
+  /* Brand block */
+  .art-brand-block { position: relative; background: var(--navy); border-radius: var(--radius); padding: 2rem 2rem 2rem 2.5rem; margin: 1.5rem 0; overflow: hidden; }
+  .art-brand-block__accent { position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--gold); border-radius: 4px 0 0 4px; }
+  .art-brand-block__quote { font-family: 'Playfair Display', Georgia, serif; font-size: 1.15rem; font-style: italic; color: rgba(255,255,255,.88); margin: 0 0 .75rem; line-height: 1.65; }
+  .art-brand-block__cite { display: block; font-size: .85rem; color: rgba(255,255,255,.45); margin-bottom: 1.25rem; }
+  .art-brand-block__link { display: inline-flex; align-items: center; gap: .4rem; font-size: .9rem; font-weight: 600; color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(201,168,76,.3); padding-bottom: 1px; transition: border-color .2s; }
+  .art-brand-block__link:hover { border-color: var(--gold); }
+  /* Steps */
+  .art-steps { display: flex; flex-direction: column; gap: 1.25rem; margin: 1.25rem 0; }
+  .art-step { display: flex; gap: 1.25rem; align-items: flex-start; }
+  .art-step__num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: var(--gold); font-weight: 700; font-size: .85rem; display: flex; align-items: center; justify-content: center; margin-top: .15rem; }
+  .art-step__body strong { display: block; font-size: 1rem; color: var(--text); margin-bottom: .35rem; }
+  .art-step__body p { margin: 0; font-size: .9rem; color: var(--body); line-height: 1.75; }
+  .art-cta-inline { background: var(--cream); border: 1px solid var(--bdr); border-radius: var(--radius); padding: 1.75rem; margin: 2rem 0; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+  .art-cta-inline p { margin: 0; font-size: 1rem; font-weight: 600; color: var(--text); }
+  /* FAQ */
+  .art-faq { display: flex; flex-direction: column; gap: .75rem; margin-top: 1.25rem; }
+  .art-faq__item { border: 1px solid var(--bdr); border-radius: 10px; overflow: hidden; transition: border-color .2s; }
+  .art-faq__item[open] { border-color: rgba(201,168,76,.35); }
+  .art-faq__q { cursor: pointer; padding: 1.1rem 1.25rem; font-size: .975rem; font-weight: 600; color: var(--text); list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 1rem; user-select: none; }
+  .art-faq__q::-webkit-details-marker { display: none; }
+  .art-faq__q::after { content: '+'; font-size: 1.2rem; font-weight: 300; color: var(--gold); flex-shrink: 0; transition: transform .25s; }
+  .art-faq__item[open] .art-faq__q::after { transform: rotate(45deg); }
+  .art-faq__a { padding: 0 1.25rem 1.1rem; }
+  .art-faq__a p { margin: 0; font-size: .925rem; color: var(--body); line-height: 1.8; }
+  /* Sidebar */
+  .art-sidebar { position: sticky; top: 60px; display: flex; flex-direction: column; gap: 1.25rem; }
+  .art-sidebar__card { background: var(--cream); border: 1px solid var(--bdr); border-radius: var(--radius); padding: 1.5rem; }
+  .art-sidebar__card--cta { background: var(--navy); border-color: transparent; }
+  .art-sidebar__card--cta h3 { color: var(--white); font-family: 'Playfair Display', Georgia, serif; font-size: 1.15rem; font-weight: 700; margin: .3rem 0 .6rem; }
+  .art-sidebar__card--cta p { color: rgba(255,255,255,.55); font-size: .875rem; line-height: 1.7; margin: 0 0 1.25rem; }
+  .art-sidebar__eyebrow { display: block; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: .75rem; }
+  .art-facts { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .6rem; }
+  .art-facts li { display: flex; justify-content: space-between; align-items: baseline; gap: .5rem; font-size: .85rem; padding-bottom: .6rem; border-bottom: 1px solid var(--bdr); }
+  .art-facts li:last-child { border-bottom: none; padding-bottom: 0; }
+  .art-facts__label { color: var(--slate); flex-shrink: 0; }
+  .art-facts__val { color: var(--text); font-weight: 600; text-align: right; }
+  .art-related { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .6rem; }
+  .art-related li { border-bottom: 1px solid var(--bdr); padding-bottom: .6rem; }
+  .art-related li:last-child { border-bottom: none; padding-bottom: 0; }
+  .art-related a { font-size: .9rem; font-weight: 600; color: var(--navy-l); text-decoration: none; transition: color .2s; display: flex; align-items: center; gap: .4rem; }
+  .art-related a:hover { color: var(--gold); }
+  .art-related a::before { content: '→'; color: var(--gold); font-size: .8rem; }
+  /* CTA band */
+  .art-cta { position: relative; background: var(--navy); overflow: hidden; padding: clamp(4rem, 8vw, 6rem) 0; }
+  .art-cta__glow { position: absolute; inset: 0; background: radial-gradient(ellipse 55% 80% at 105% 50%, rgba(201,168,76,.14) 0%, transparent 65%), linear-gradient(140deg, #08192e 0%, var(--navy) 100%); pointer-events: none; }
+  .art-cta__inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap; }
+  .art-cta__text h2 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.75rem, 3vw, 2.4rem); font-weight: 700; color: var(--white); margin: .35rem 0 .7rem; line-height: 1.2; }
+  .art-cta__text p { color: rgba(255,255,255,.55); font-size: .95rem; line-height: 1.7; max-width: 400px; margin: 0; }
+  .art-cta__btns { display: flex; gap: 1rem; flex-wrap: wrap; flex-shrink: 0; }
+  @media (max-width: 1024px) { .art-layout { grid-template-columns: 1fr; } .art-sidebar { position: static; } }
+  @media (max-width: 768px) { .art-req-grid { grid-template-columns: 1fr; } .art-fire-grid { grid-template-columns: 1fr; } .art-cta__inner { flex-direction: column; text-align: center; } .art-cta__text p { margin-inline: auto; } .art-cta__btns { justify-content: center; } .art-cta-inline { flex-direction: column; } }
+  @media (max-width: 480px) { .art-hero__cta { flex-direction: column; } }
+</style>
