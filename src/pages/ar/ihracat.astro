@@ -1,28 +1,28 @@
 ---
-// src/pages/tr/ihracat.astro
+// src/pages/ar/ihracat.astro
 import I18nLayout from '../../layouts/I18nLayout.astro';
 import I18nHeader from '../../components/I18nHeader.astro';
 import I18nFooter from '../../components/I18nFooter.astro';
 import { getLocalizedRoute } from '../../i18n/utils';
 
-const lang     = 'tr';
+const lang     = 'ar';
 const baseUrl  = 'https://cihanpandoor.netlify.app';
-const pageUrl  = `${baseUrl}/tr`;
+const pageUrl  = `${baseUrl}/ar`;
 const currentUrl = `${pageUrl}/ihracat`;
 
 // ── SCHEMA ────────────────────────────────────────────────────────────
 const exportSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Uluslararası İhracat | CihanPan Door",
-  "description": "CihanPan Door uluslararası ihracat hizmetleri. Avrupa, Orta Doğu ve Afrika'ya kaliteli kapı ihracatı. CE & ISO 9001 sertifikalı. Fabrikadan doğrudan toptan satış.",
+  "name": "التصدير الدولي | CihanPan Door",
+  "description": "خدمات التصدير الدولي من CihanPan Door. تصدير أبواب عالية الجودة إلى أوروبا والشرق الأوسط وأفريقيا. معتمد CE وISO 9001. بيع بالجملة مباشرة من المصنع.",
   "url": currentUrl,
-  "inLanguage": "tr-TR",
+  "inLanguage": "ar-SA",
   "breadcrumb": {
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": pageUrl },
-      { "@type": "ListItem", "position": 2, "name": "İhracat",   "item": currentUrl },
+      { "@type": "ListItem", "position": 1, "name": "الرئيسية", "item": pageUrl },
+      { "@type": "ListItem", "position": 2, "name": "التصدير",  "item": currentUrl },
     ]
   }
 };
@@ -31,11 +31,11 @@ const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "Minimum ihracat miktarı nedir?",          "acceptedAnswer": { "@type": "Answer", "text": "Konteyner bazlı siparişlerde minimum 1 tam konteynerdir (yaklaşık 300–400 kapı). LCL sevkiyatlar için özel fiyatlandırma mevcuttur." }},
-    { "@type": "Question", "name": "Teslimat süresi ne kadardır?",             "acceptedAnswer": { "@type": "Answer", "text": "Sipariş onayından sonra üretim 3–4 hafta sürmektedir. Kargo süreleri hedef ülkeye göre 1–3 hafta arasında değişmektedir." }},
-    { "@type": "Question", "name": "Hangi ödeme yöntemlerini kabul ediyorsunuz?", "acceptedAnswer": { "@type": "Answer", "text": "L/C (Akreditif), T/T (Banka Havalesi) ve %30 peşin + %70 sevkiyat öncesi ödeme yöntemlerini kabul ediyoruz." }},
-    { "@type": "Question", "name": "Numune gönderiyorsunuz mu?",               "acceptedAnswer": { "@type": "Answer", "text": "Evet, potansiyel ihracat müşterilerine freight-collect (alıcı öder) esasıyla numune gönderiyoruz." }},
-    { "@type": "Question", "name": "Özel tasarım üretimi yapıyor musunuz?",    "acceptedAnswer": { "@type": "Answer", "text": "Evet, proje bazlı özel tasarım ve ölçüye göre üretim sunuyoruz. Minimum sipariş miktarları için bizimle iletişime geçin." }},
+    { "@type": "Question", "name": "ما هو الحد الأدنى لكمية التصدير؟",      "acceptedAnswer": { "@type": "Answer", "text": "بالنسبة للطلبات القائمة على الحاويات، الحد الأدنى هو حاوية كاملة واحدة (ما يقارب 300–400 باب). يتوفر تسعير خاص لشحنات LCL." }},
+    { "@type": "Question", "name": "ما هي مدة التسليم؟",                    "acceptedAnswer": { "@type": "Answer", "text": "يستغرق الإنتاج 3–4 أسابيع بعد تأكيد الطلب. تتراوح أوقات الشحن بين 1–3 أسابيع حسب الدولة المقصودة." }},
+    { "@type": "Question", "name": "ما طرق الدفع التي تقبلونها؟",           "acceptedAnswer": { "@type": "Answer", "text": "نقبل خطاب الاعتماد (L/C)، والتحويل المصرفي (T/T)، و30% مقدماً + 70% قبل الشحن." }},
+    { "@type": "Question", "name": "هل ترسلون عينات؟",                      "acceptedAnswer": { "@type": "Answer", "text": "نعم، نرسل عينات إلى عملاء التصدير المحتملين على أساس freight-collect (يدفع المستلم)." }},
+    { "@type": "Question", "name": "هل تصنعون تصاميم مخصصة؟",              "acceptedAnswer": { "@type": "Answer", "text": "نعم، نقدم تصميماً مخصصاً قائماً على المشروع وإنتاجاً وفق المقاس. يرجى التواصل معنا للاستفسار عن الحد الأدنى للكميات." }},
   ]
 };
 
@@ -43,19 +43,19 @@ const allSchemas = [exportSchema, faqSchema];
 ---
 
 <I18nLayout
-  title="Uluslararası İhracat | CihanPan Door"
-  description="CihanPan Door uluslararası ihracat hizmetleri. Avrupa, Orta Doğu ve Afrika'ya kaliteli kapı ihracatı. CE & ISO 9001 sertifikalı. Fabrikadan doğrudan toptan satış."
-  keywords="kapı ihracat Türkiye, toptan kapı üreticisi Kayseri, CE sertifikalı kapı ihracatı, kapı fabrikası Türkiye Avrupa Orta Doğu Afrika"
+  title="التصدير الدولي | CihanPan Door"
+  description="خدمات التصدير الدولي من CihanPan Door. تصدير أبواب عالية الجودة إلى أوروبا والشرق الأوسط وأفريقيا. معتمد CE وISO 9001. بيع بالجملة مباشرة من المصنع."
+  keywords="تصدير أبواب تركيا, أبواب جملة مصنع قيصري, تصدير أبواب معتمدة CE, مصنع أبواب تركيا أوروبا الشرق الأوسط أفريقيا"
   canonical={currentUrl}
   schema={allSchemas}
-  ogTitle="Uluslararası İhracat | CihanPan Door"
-  ogDescription="Avrupa, Orta Doğu ve Afrika'ya kaliteli kapı ihracatı. CE & ISO 9001 sertifikalı. Fabrikadan doğrudan fiyatlandırma."
+  ogTitle="التصدير الدولي | CihanPan Door"
+  ogDescription="تصدير أبواب عالية الجودة إلى أوروبا والشرق الأوسط وأفريقيا. معتمد CE وISO 9001. تسعير مباشر من المصنع."
   ogImage="/assets/img/og/export-og.webp"
-  lang="tr"
+  lang="ar"
 >
   <I18nHeader />
 
-  <main class="exp" id="main-content">
+  <main class="exp" id="main-content" dir="rtl">
 
     <!-- ══════════════════════════════════════════
          HERO
@@ -66,35 +66,35 @@ const allSchemas = [exportSchema, faqSchema];
         <div class="exp-hero__glow"></div>
       </div>
       <div class="exp-wrap exp-hero__inner">
-        <nav class="exp-breadcrumb" aria-label="Breadcrumb">
-          <a href={pageUrl}>Ana Sayfa</a>
-          <span aria-hidden="true">›</span>
-          <span aria-current="page">İhracat</span>
+        <nav class="exp-breadcrumb" aria-label="مسار التنقل">
+          <a href={pageUrl}>الرئيسية</a>
+          <span aria-hidden="true">‹</span>
+          <span aria-current="page">التصدير</span>
         </nav>
 
         <span class="exp-eyebrow">
           <span class="exp-eyebrow__line"></span>
-          Global Dağıtım · Fabrikadan Direkt
+          توزيع عالمي · مباشرة من المصنع
         </span>
 
         <h1 class="exp-hero__h1" id="exp-h1">
-          🌍 <em>Uluslararası İhracat</em><br/>Kayseri'den Dünyaya Kaliteli Kapı Çözümleri
+          🌍 <em>التصدير الدولي</em><br/>حلول أبواب عالية الجودة من قيصري إلى العالم
         </h1>
         <p class="exp-hero__lead">
-          CihanPan Door, Avrupa, Orta Doğu ve Afrika'ya ihracat yapmaktadır. ISO 9001 & CE sertifikalı.
-          Tam gümrük dokümantasyonu desteğiyle fabrikadan doğrudan fiyatlandırma.
+          تُصدّر CihanPan Door إلى أوروبا والشرق الأوسط وأفريقيا. معتمدون ISO 9001 وCE.
+          تسعير مباشر من المصنع مع دعم كامل لوثائق الجمارك.
         </p>
         <div class="exp-hero__tags">
-          <span class="exp-htag">✓ 15+ Ülke</span>
-          <span class="exp-htag">✓ Yılda 50B+ Kapı</span>
+          <span class="exp-htag">✓ أكثر من 15 دولة</span>
+          <span class="exp-htag">✓ أكثر من 50 ألف باب / سنة</span>
           <span class="exp-htag">✓ CE & ISO 9001</span>
-          <span class="exp-htag">✓ Min. 1 Konteyner</span>
-          <span class="exp-htag">✓ 24 Saat Yanıt</span>
+          <span class="exp-htag">✓ حاوية واحدة كحد أدنى</span>
+          <span class="exp-htag">✓ رد خلال 24 ساعة</span>
         </div>
         <div class="exp-hero__actions">
           <a href={getLocalizedRoute('/iletisim', lang)} class="exp-btn exp-btn--gold">
-            İhracat Teklifi İste
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            طلب عرض سعر تصدير
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
           </a>
           <a href="mailto:export@cihanpandoor.com" class="exp-btn exp-btn--ghost">
             export@cihanpandoor.com
@@ -105,13 +105,13 @@ const allSchemas = [exportSchema, faqSchema];
       <!-- Stats bar -->
       <div class="exp-wrap">
         <div class="exp-statsbar">
-          <div class="exp-sitem"><strong>15+</strong><span>Ülke</span></div>
+          <div class="exp-sitem"><strong>15+</strong><span>دولة</span></div>
           <div class="exp-sdiv"></div>
-          <div class="exp-sitem"><strong>50B+</strong><span>Kapı / Yıl</span></div>
+          <div class="exp-sitem"><strong>50K+</strong><span>باب / سنة</span></div>
           <div class="exp-sdiv"></div>
-          <div class="exp-sitem"><strong>%30</strong><span>İhracat Payı</span></div>
+          <div class="exp-sitem"><strong>30%</strong><span>حصة التصدير</span></div>
           <div class="exp-sdiv"></div>
-          <div class="exp-sitem"><strong>%100</strong><span>Memnuniyet</span></div>
+          <div class="exp-sitem"><strong>100%</strong><span>رضا العملاء</span></div>
         </div>
       </div>
     </section>
@@ -122,12 +122,12 @@ const allSchemas = [exportSchema, faqSchema];
     <section class="exp-sec exp-sec--white" aria-labelledby="intro-h2">
       <div class="exp-wrap exp-intro-wrap">
         <div class="exp-head">
-          <span class="exp-tag">Küresel Erişim</span>
-          <h2 id="intro-h2">İlk Günden Beri Güvenilir İhracat Ortağı</h2>
+          <span class="exp-tag">انتشار عالمي</span>
+          <h2 id="intro-h2">شريك تصدير موثوق منذ اليوم الأول</h2>
           <p>
-            CihanPan Door olarak yurt içi Türkiye pazarının yanı sıra <strong>Avrupa, Orta Doğu ve Afrika'ya</strong> ihracat gerçekleştiriyoruz.
-            Uluslararası kalite standartlarını karşılayan üretimimizle dünya genelindeki küresel projelerde yer alıyoruz.
-            ISO 9001 ve CE sertifikalarımız bizi tüm dünyada güvenilir bir iş ortağı kılmaktadır.
+            تُصدّر CihanPan Door إلى <strong>أوروبا والشرق الأوسط وأفريقيا</strong> إضافةً إلى السوق التركية المحلية.
+            بإنتاج يرقى إلى مستوى معايير الجودة الدولية، نشارك في مشاريع عالمية حول العالم.
+            تجعلنا شهادتا ISO 9001 وCE شريكاً تجارياً موثوقاً في جميع أنحاء العالم.
           </p>
         </div>
       </div>
@@ -139,61 +139,61 @@ const allSchemas = [exportSchema, faqSchema];
     <section class="exp-sec exp-sec--cream" aria-labelledby="features-h2">
       <div class="exp-wrap">
         <div class="exp-head">
-          <span class="exp-tag">Neler Sunuyoruz</span>
-          <h2 id="features-h2">İhracat Hizmetleri &amp; Kapsam</h2>
+          <span class="exp-tag">ما نقدمه</span>
+          <h2 id="features-h2">خدمات التصدير &amp; التغطية</h2>
         </div>
 
         <div class="exp-cards">
 
           <div class="exp-card">
             <div class="exp-card__icon">📦</div>
-            <h3>İhracat Hizmetleri</h3>
+            <h3>خدمات التصدير</h3>
             <ul>
-              <li>Tam konteyner ve LCL sevkiyatlar</li>
-              <li>Özel ambalaj ve koruma</li>
-              <li>Gümrük dokümantasyonu desteği</li>
-              <li>Uluslararası lojistik çözümleri</li>
-              <li>Teknik dokümantasyon hazırlama</li>
-              <li>Çok dilli müşteri desteği</li>
+              <li>شحنات حاويات كاملة وLCL</li>
+              <li>تعبئة وحماية مخصصة</li>
+              <li>دعم وثائق الجمارك</li>
+              <li>حلول لوجستية دولية</li>
+              <li>إعداد الوثائق التقنية</li>
+              <li>دعم عملاء متعدد اللغات</li>
             </ul>
           </div>
 
           <div class="exp-card">
             <div class="exp-card__icon">🌐</div>
-            <h3>İhracat Yaptığımız Bölgeler</h3>
+            <h3>المناطق التي نُصدّر إليها</h3>
             <ul>
-              <li>Avrupa Birliği ülkeleri</li>
-              <li>Orta Doğu pazarları</li>
-              <li>Kuzey Afrika</li>
-              <li>Balkan ülkeleri</li>
-              <li>Körfez İşbirliği Konseyi</li>
-              <li>Orta Asya cumhuriyetleri</li>
+              <li>دول الاتحاد الأوروبي</li>
+              <li>أسواق الشرق الأوسط</li>
+              <li>شمال أفريقيا</li>
+              <li>دول البلقان</li>
+              <li>مجلس التعاون الخليجي</li>
+              <li>جمهوريات آسيا الوسطى</li>
             </ul>
           </div>
 
           <div class="exp-card">
             <div class="exp-card__icon">✅</div>
-            <h3>İhracat Avantajlarımız</h3>
+            <h3>مزايا التصدير لدينا</h3>
             <ul>
-              <li>Rekabetçi fabrika doğrudan fiyatları</li>
-              <li>Zamanında teslimat garantisi</li>
-              <li>CE sertifikalı ürünler</li>
-              <li>Türkçe, İngilizce ve Arapça destek</li>
-              <li>Yüksek hacimli sipariş kapasitesi</li>
-              <li>Özel proje çözümleri</li>
+              <li>أسعار تنافسية مباشرة من المصنع</li>
+              <li>ضمان التسليم في الموعد المحدد</li>
+              <li>منتجات معتمدة CE</li>
+              <li>دعم باللغات العربية والتركية والإنجليزية</li>
+              <li>طاقة استيعابية للطلبات الكبيرة</li>
+              <li>حلول مشاريع مخصصة</li>
             </ul>
           </div>
 
           <div class="exp-card">
             <div class="exp-card__icon">🤝</div>
-            <h3>İhracat Süreci</h3>
+            <h3>عملية التصدير</h3>
             <ul>
-              <li>1. Teklif &amp; numune gönderimi</li>
-              <li>2. Sözleşme &amp; ödeme planı</li>
-              <li>3. Üretim &amp; kalite kontrol</li>
-              <li>4. Ambalaj &amp; dokümantasyon</li>
-              <li>5. Sevkiyat &amp; teslimat takibi</li>
-              <li>6. Satış sonrası destek</li>
+              <li>1. عرض السعر &amp; إرسال العينة</li>
+              <li>2. العقد &amp; جدول الدفع</li>
+              <li>3. الإنتاج &amp; مراقبة الجودة</li>
+              <li>4. التعبئة &amp; التوثيق</li>
+              <li>5. الشحن &amp; تتبع التسليم</li>
+              <li>6. الدعم ما بعد البيع</li>
             </ul>
           </div>
 
@@ -207,30 +207,30 @@ const allSchemas = [exportSchema, faqSchema];
     <section class="exp-sec exp-sec--white" aria-labelledby="cert-h2">
       <div class="exp-wrap">
         <div class="exp-head">
-          <span class="exp-tag">Sertifikalar</span>
-          <h2 id="cert-h2">Uluslararası Sertifikalarımız</h2>
+          <span class="exp-tag">الشهادات</span>
+          <h2 id="cert-h2">شهاداتنا الدولية</h2>
         </div>
 
         <div class="exp-certs">
           <div class="exp-cert">
             <div class="exp-cert__icon">🏆</div>
             <h3>ISO 9001</h3>
-            <p>Kalite Yönetim Sistemi</p>
+            <p>نظام إدارة الجودة</p>
           </div>
           <div class="exp-cert">
             <div class="exp-cert__icon">✓</div>
-            <h3>CE Belgesi</h3>
-            <p>Avrupa Uygunluk İşareti</p>
+            <h3>شهادة CE</h3>
+            <p>علامة المطابقة الأوروبية</p>
           </div>
           <div class="exp-cert">
             <div class="exp-cert__icon">🔥</div>
-            <h3>Yangın Testleri</h3>
-            <p>Uluslararası Standartlar (EN 1634)</p>
+            <h3>اختبارات الحريق</h3>
+            <p>المعايير الدولية (EN 1634)</p>
           </div>
           <div class="exp-cert">
             <div class="exp-cert__icon">🌱</div>
-            <h3>Çevre Belgesi</h3>
-            <p>Sürdürülebilir Üretim</p>
+            <h3>الشهادة البيئية</h3>
+            <p>التصنيع المستدام</p>
           </div>
         </div>
       </div>
@@ -242,16 +242,16 @@ const allSchemas = [exportSchema, faqSchema];
     <section class="exp-sec exp-sec--cream" aria-labelledby="faq-h2">
       <div class="exp-wrap exp-faq-wrap">
         <div class="exp-head">
-          <span class="exp-tag">SSS</span>
-          <h2 id="faq-h2">Sık Sorulan Sorular</h2>
+          <span class="exp-tag">الأسئلة الشائعة</span>
+          <h2 id="faq-h2">الأسئلة الأكثر شيوعاً</h2>
         </div>
         <div class="exp-faqs">
           {[
-            { q: 'Minimum ihracat miktarı nedir?',              a: 'Konteyner bazlı siparişlerde minimum 1 tam konteynerdir (yaklaşık 300–400 kapı). LCL (konteynere sığmayan yük) sevkiyatlar için özel fiyatlandırma mevcuttur.' },
-            { q: 'Teslimat süresi ne kadardır?',                a: 'Sipariş onayından sonra üretim 3–4 hafta sürmektedir. Kargo süreleri hedef ülkeye göre 1–3 hafta arasında değişmektedir.' },
-            { q: 'Hangi ödeme yöntemlerini kabul ediyorsunuz?', a: 'L/C (Akreditif), T/T (Banka Havalesi) ve %30 peşin + %70 sevkiyat öncesi ödeme yöntemlerini kabul ediyoruz.' },
-            { q: 'Numune gönderiyorsunuz mu?',                  a: 'Evet, potansiyel ihracat müşterilerine freight-collect (alıcı öder) esasıyla numune gönderiyoruz.' },
-            { q: 'Özel tasarım üretimi yapıyor musunuz?',       a: 'Evet, proje bazlı özel tasarım ve ölçüye göre üretim sunuyoruz. Minimum sipariş miktarları için bizimle iletişime geçin.' },
+            { q: 'ما هو الحد الأدنى لكمية التصدير؟',      a: 'بالنسبة للطلبات القائمة على الحاويات، الحد الأدنى هو حاوية كاملة واحدة (ما يقارب 300–400 باب). يتوفر تسعير خاص لشحنات LCL (الشحن الجزئي للحاوية).' },
+            { q: 'ما هي مدة التسليم؟',                    a: 'يستغرق الإنتاج 3–4 أسابيع بعد تأكيد الطلب. تتراوح أوقات الشحن بين 1–3 أسابيع حسب الدولة المقصودة.' },
+            { q: 'ما طرق الدفع التي تقبلونها؟',           a: 'نقبل خطاب الاعتماد (L/C)، والتحويل المصرفي (T/T)، و30% مقدماً + 70% قبل الشحن.' },
+            { q: 'هل ترسلون عينات؟',                      a: 'نعم، نرسل عينات إلى عملاء التصدير المحتملين على أساس freight-collect (يدفع المستلم رسوم الشحن).' },
+            { q: 'هل تصنعون تصاميم مخصصة؟',              a: 'نعم، نقدم تصميماً مخصصاً قائماً على المشروع وإنتاجاً وفق المقاس. يرجى التواصل معنا للاستفسار عن الحد الأدنى للكميات.' },
           ].map(item => (
             <details class="exp-faq">
               <summary class="exp-faq__q">
@@ -274,26 +274,26 @@ const allSchemas = [exportSchema, faqSchema];
       <div class="exp-cta__glow" aria-hidden="true"></div>
       <div class="exp-wrap exp-cta__inner">
         <div class="exp-cta__text">
-          <span class="exp-tag exp-tag--gold">İhracat Sorguları</span>
+          <span class="exp-tag exp-tag--gold">استفسارات التصدير</span>
           <h2 id="cta-h2">
-            İhracat İçin Bize Ulaşın
+            تواصل معنا للتصدير
           </h2>
           <p>
-            Uluslararası proje ve siparişleriniz için özel fiyat teklifleri alın.
-            İhracat ekibimiz 24 saat içinde yanıt verir.
+            احصل على عروض أسعار مخصصة لمشاريعك وطلباتك الدولية.
+            يرد فريق التصدير لدينا خلال 24 ساعة.
           </p>
         </div>
         <div class="exp-cta__btns">
           <a href={getLocalizedRoute('/iletisim', lang)} class="exp-btn exp-btn--gold">
-            Teklif Formu
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            نموذج عرض السعر
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
           </a>
           <a href="mailto:export@cihanpandoor.com" class="exp-btn exp-btn--ghost">
             export@cihanpandoor.com
           </a>
           <a href="https://wa.me/905441690038" target="_blank" rel="noopener" class="exp-btn exp-btn--wa">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.89 3.488"/></svg>
-            WhatsApp
+            واتساب
           </a>
         </div>
       </div>
@@ -396,7 +396,7 @@ const allSchemas = [exportSchema, faqSchema];
     font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em;
     text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
   }
-  .exp-eyebrow__line { display: block; width: 28px; height: 1px; background: var(--gold); opacity: 0.5; flex-shrink: 0; }
+  .exp-eyebrow__line { display: block; width: 28px; height: 1px; background: var(--gold); opacity: 0.5; flex-shrink: 0; order: -1; }
   .exp-hero__h1 {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(2rem, 4.5vw, 3.4rem); font-weight: 900;
@@ -421,8 +421,8 @@ const allSchemas = [exportSchema, faqSchema];
     padding: 1.5rem 2rem; margin-top: 2rem;
   }
   .exp-sitem { display: flex; flex-direction: column; flex: 1; min-width: 80px; padding-inline: 1rem; text-align: center; }
-  .exp-sitem:first-child { padding-left: 0; }
-  .exp-sitem:last-child  { padding-right: 0; }
+  .exp-sitem:first-child { padding-right: 0; }
+  .exp-sitem:last-child  { padding-left: 0; }
   .exp-sitem strong {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 1.6rem; font-weight: 900; color: var(--gold); line-height: 1; display: block;
@@ -435,7 +435,7 @@ const allSchemas = [exportSchema, faqSchema];
   .exp-intro-wrap .exp-head { text-align: center; }
   .exp-intro-wrap .exp-head p { font-size: 1.1rem; }
 
-  /* ── FEATURE CARDS ── */
+  /* ── FEATURE CARDS — RTL ── */
   .exp-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -456,8 +456,8 @@ const allSchemas = [exportSchema, faqSchema];
     font-size: 1.15rem; font-weight: 700; color: var(--text); margin: 0 0 1rem;
   }
   .exp-card ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
-  .exp-card li { font-size: 0.925rem; color: var(--body); line-height: 1.6; padding-left: 1.5rem; position: relative; }
-  .exp-card li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+  .exp-card li { font-size: 0.925rem; color: var(--body); line-height: 1.6; padding-right: 1.5rem; padding-left: 0; position: relative; }
+  .exp-card li::before { content: '←'; position: absolute; right: 0; left: auto; color: var(--gold); font-weight: 700; }
 
   /* ── CERTIFICATES ── */
   .exp-certs {

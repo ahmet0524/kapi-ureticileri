@@ -1,0 +1,194 @@
+---
+// src/pages/ar/blog/index.astro
+import I18nLayout from '../../../layouts/I18nLayout.astro';
+import I18nHeader from '../../../components/I18nHeader.astro';
+import I18nFooter from '../../../components/I18nFooter.astro';
+import { getLangFromUrl } from '../../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url); // 'ar'
+const baseUrl = 'https://cihanpandoor.netlify.app';
+const currentUrl = `${baseUrl}/ar/blog`;
+
+const allPosts = [
+  {
+    slug: '/ar/blog/pvc-kapi-ihracati',
+    title: 'مصنعو أبواب PVC: حلول جودة من تركيا إلى العالم',
+    excerpt: 'دليل شامل حول أبرز مصنعي أبواب PVC في تركيا. إنتاج أبواب عالية الجودة من قيصري، الأسعار، الموديلات ومعلومات التصدير.',
+    image: '/assets/img/blog/pvc-kapi-ureticileri-og.webp',
+    date: '2025-01-15',
+    readTime: '٨ دقائق قراءة',
+    category: 'التصنيع',
+    featured: true
+  },
+  {
+    slug: '/ar/blog/hastane-kapilari',
+    title: 'أبواب المستشفيات: مواصفات السلسلة الطبية',
+    excerpt: 'دليل تفصيلي حول أبواب المستشفيات المضادة للبكتيريا المصممة خصيصاً للمنشآت الصحية.',
+    image: '/assets/img/blog/hastane-thumb.webp',
+    date: '2025-01-08',
+    readTime: '٨ دقائق قراءة',
+    category: 'المنتجات',
+    featured: false
+  },
+  {
+    slug: '/ar/blog/otel-kapilari',
+    title: 'أبواب الفنادق: الراحة والجماليات',
+    excerpt: 'موديلات الأبواب المثالية ومميزاتها للفنادق ومرافق الإقامة.',
+    image: '/assets/img/blog/otel-thumb.webp',
+    date: '2025-01-05',
+    readTime: '٧ دقائق قراءة',
+    category: 'المنتجات',
+    featured: false
+  }
+];
+
+allPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+const featuredPost = allPosts.find(post => post.featured);
+const regularPosts = allPosts.filter(post => !post.featured);
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "الصفحة الرئيسية", "item": baseUrl },
+    { "@type": "ListItem", "position": 2, "name": "المدونة", "item": currentUrl }
+  ]
+};
+---
+
+<I18nLayout
+  title="المدونة | دليل الأبواب، مقالات PVC والتصدير | CihanPan Door"
+  description="مقالات مدونة حديثة ونصائح خبراء حول تصنيع أبواب PVC، الموديلات، الأسعار، مشاريع الفنادق والمستشفيات."
+  keywords="مدونة أبواب pvc, تصنيع الأبواب, أسعار أبواب pvc, أبواب فنادق, أبواب مستشفيات, دليل الأبواب"
+  canonical={currentUrl}
+  ogTitle="مدونة CihanPan Door | مقالات خبراء من عالم الأبواب"
+  ogDescription="أخبار وأدلة ونصائح تصدير من صناعة أبواب PVC."
+  ogImage="/assets/img/og/blog-og.webp"
+  schema={[breadcrumbSchema]}
+>
+
+<I18nHeader />
+
+<main>
+
+  <!-- ── HERO ── -->
+  <section class="blog-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/ar">الصفحة الرئيسية</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">المدونة</span>
+      </nav>
+      <h1>المدونة</h1>
+      <p>أخبار وأدلة ونصائح خبراء من عالم الأبواب</p>
+    </div>
+  </section>
+
+  <!-- ── FEATURED POST ── -->
+  {featuredPost && (
+    <section class="featured-post-section">
+      <div class="container">
+        <h2 class="section-title">⭐ المقال المميز</h2>
+        <article class="featured-post">
+          <a href={featuredPost.slug} class="featured-link">
+            <div class="featured-image">
+              <img src={featuredPost.image} alt={featuredPost.title} loading="eager" width="600" height="400" />
+              <span class="featured-badge">مميز</span>
+            </div>
+            <div class="featured-content">
+              <div class="blog-meta">
+                <span class="category-badge">{featuredPost.category}</span>
+                <span class="separator">•</span>
+                <time datetime={featuredPost.date}>
+                  {new Date(featuredPost.date).toLocaleDateString('ar-SA', { day: 'numeric', month: 'long', year: 'numeric' })}
+                </time>
+                <span class="separator">•</span>
+                <span>⏱️ {featuredPost.readTime}</span>
+              </div>
+              <h2>{featuredPost.title}</h2>
+              <p>{featuredPost.excerpt}</p>
+              <span class="read-more-btn">اقرأ المقال ←</span>
+            </div>
+          </a>
+        </article>
+      </div>
+    </section>
+  )}
+
+  <!-- ── BLOG GRID ── -->
+  <section class="blog-grid-section">
+    <div class="container">
+      <h2 class="section-title">📖 جميع المقالات ({regularPosts.length})</h2>
+      <div class="blog-grid">
+        {regularPosts.map(post => (
+          <article class="blog-card">
+            <a href={post.slug} class="blog-card-link">
+              <div class="blog-card-image">
+                <img src={post.image} alt={post.title} loading="lazy" width="350" height="220" />
+                <span class="blog-category">{post.category}</span>
+              </div>
+              <div class="blog-card-content">
+                <div class="blog-meta">
+                  <time datetime={post.date}>
+                    {new Date(post.date).toLocaleDateString('ar-SA', { day: 'numeric', month: 'long', year: 'numeric' })}
+                  </time>
+                  <span>•</span>
+                  <span>⏱️ {post.readTime}</span>
+                </div>
+                <h3>{post.title}</h3>
+                <p>{post.excerpt}</p>
+                <span class="read-more">اقرأ المزيد ←</span>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<I18nFooter />
+
+</I18nLayout>
+
+<style>
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.breadcrumb { display: flex; gap: .5rem; align-items: center; font-size: .9rem; color: rgba(255,255,255,.7); margin-bottom: 1.5rem; flex-direction: row-reverse; justify-content: flex-end; }
+.breadcrumb a { color: rgba(255,255,255,.7); text-decoration: none; }
+.breadcrumb a:hover { color: #fff; }
+.blog-hero { padding: 5rem 0 3rem; background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; text-align: center; }
+.blog-hero h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 1rem; font-weight: 800; }
+.blog-hero p { font-size: 1.25rem; opacity: .95; max-width: 600px; margin: 0 auto; }
+.section-title { font-size: 2rem; font-weight: 700; color: #111827; margin-bottom: 2rem; text-align: center; }
+.featured-post-section { padding: 4rem 0 2rem; background: #f9fafb; }
+.featured-post { background: #fff; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,.1); transition: all .3s ease; }
+.featured-post:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,.15); }
+.featured-link { display: grid; grid-template-columns: 1fr 1fr; gap: 0; text-decoration: none; color: inherit; }
+.featured-image { position: relative; height: 400px; overflow: hidden; }
+.featured-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.featured-post:hover .featured-image img { transform: scale(1.05); }
+.featured-badge { position: absolute; top: 1.5rem; right: 1.5rem; background: #f59e0b; color: #fff; padding: .75rem 1.5rem; border-radius: 25px; font-size: .9rem; font-weight: 700; }
+.featured-content { padding: 3rem; display: flex; flex-direction: column; justify-content: center; text-align: right; }
+.blog-meta { display: flex; gap: .75rem; align-items: center; font-size: .9rem; color: #6b7280; margin-bottom: 1rem; flex-wrap: wrap; flex-direction: row-reverse; justify-content: flex-end; }
+.category-badge { background: #667eea; color: #fff; padding: .4rem 1rem; border-radius: 15px; font-weight: 600; font-size: .85rem; }
+.separator { color: #d1d5db; }
+.featured-content h2 { font-size: 2rem; font-weight: 800; color: #111827; margin-bottom: 1rem; line-height: 1.5; }
+.featured-content p { color: #4b5563; line-height: 1.8; font-size: 1.1rem; margin-bottom: 1.5rem; }
+.read-more-btn { display: inline-flex; align-items: center; gap: .5rem; background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; padding: 1rem 2rem; border-radius: 50px; font-weight: 600; transition: all .3s ease; width: fit-content; align-self: flex-start; }
+.blog-grid-section { padding: 4rem 0; }
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem; margin-top: 2rem; }
+.blog-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,.08); transition: all .3s ease; height: 100%; }
+.blog-card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(0,0,0,.15); }
+.blog-card-link { text-decoration: none; color: inherit; display: flex; flex-direction: column; height: 100%; }
+.blog-card-image { position: relative; height: 220px; overflow: hidden; }
+.blog-card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
+.blog-card:hover .blog-card-image img { transform: scale(1.05); }
+.blog-category { position: absolute; top: 1rem; right: 1rem; background: #667eea; color: #fff; padding: .5rem 1rem; border-radius: 20px; font-size: .85rem; font-weight: 600; }
+.blog-card-content { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; text-align: right; }
+.blog-card h3 { font-size: 1.35rem; font-weight: 700; color: #111827; margin-bottom: .75rem; line-height: 1.5; }
+.blog-card p { color: #4b5563; line-height: 1.7; margin-bottom: 1rem; flex: 1; }
+.read-more { color: #667eea; font-weight: 600; font-size: .95rem; margin-top: auto; }
+@media(max-width:1024px) { .featured-link { grid-template-columns: 1fr; } .featured-image { height: 300px; } }
+@media(max-width:768px) { .blog-hero { padding: 3rem 0 2rem; } .blog-grid { grid-template-columns: 1fr; } }
+</style>

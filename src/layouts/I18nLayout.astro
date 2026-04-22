@@ -38,7 +38,8 @@ const canonicalURL = pageCanonical || `${baseUrl}${lang === 'tr' ? currentPath :
 const finalOgTitle = pageOgTitle || pageTitle;
 const finalOgDescription = pageOgDescription || pageDescription;
 
-const alternateLanguages = getAlternateLanguages(currentPath, baseUrl);
+// Tam pathname'i gönderiyoruz (lang prefix dahil) — getTrSlug doğru çalışsın
+const alternateLanguages = getAlternateLanguages(Astro.url.pathname, baseUrl);
 
 alternateLanguages.push({
   lang: 'x-default' as any,

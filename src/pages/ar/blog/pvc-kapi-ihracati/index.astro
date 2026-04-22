@@ -1,24 +1,22 @@
 ---
-// src/pages/blog/pvc-kapi-ihracati.astro
-import I18nLayout from '../../layouts/I18nLayout.astro';
-import I18nHeader from '../../components/I18nHeader.astro';
-import I18nFooter from '../../components/I18nFooter.astro';
-import I18nBreadcrumbs from '../../components/I18nBreadcrumbs.astro';
-import { getLangFromUrl } from '../../i18n/utils';
+// src/pages/ar/blog/pvc-kapi-ihracati/index.astro
+import I18nLayout from '../../../../layouts/I18nLayout.astro';
+import I18nHeader from '../../../../components/I18nHeader.astro';
+import I18nFooter from '../../../../components/I18nFooter.astro';
+import I18nBreadcrumbs from '../../../../components/I18nBreadcrumbs.astro';
+import { getLangFromUrl } from '../../../../i18n/utils';
 
-import { content as trContent } from '../../content/blog/pvc-kapi-ihracati/tr';
-import { content as enContent } from '../../content/blog/pvc-kapi-ihracati/en';
-import { content as arContent } from '../../content/blog/pvc-kapi-ihracati/ar';
+import { content as arContent } from '../../../../content/blog/pvc-kapi-ihracati/ar';
 
-const lang = getLangFromUrl(Astro.url);
-const c = lang === 'tr' ? trContent : lang === 'ar' ? arContent : enContent;
+const lang = getLangFromUrl(Astro.url); // 'ar'
+const c = arContent;
 
 const baseUrl    = 'https://cihanpandoor.netlify.app';
 const currentUrl = `${baseUrl}${Astro.url.pathname}`;
 
 const breadcrumbItems = [
-  { name: c.breadcrumb.home, href: lang === 'en' ? '/' : `/${lang}` },
-  { name: c.breadcrumb.blog, href: lang === 'en' ? '/blog' : `/${lang}/blog` },
+  { name: c.breadcrumb.home, href: '/ar' },
+  { name: c.breadcrumb.blog, href: '/ar/blog' },
   { name: c.breadcrumb.current }
 ];
 
@@ -26,7 +24,7 @@ const breadcrumbItems = [
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "inLanguage": lang === 'tr' ? 'tr-TR' : lang === 'en' ? 'en-US' : 'ar-SA',
+  "inLanguage": "ar-SA",
   "headline": c.hero.h1,
   "description": c.meta.description,
   "image": `${baseUrl}/assets/img/blog/pvc-kapi-ureticileri-og.webp`,
@@ -71,12 +69,6 @@ const breadcrumbSchema = {
   ogImage="/assets/img/blog/pvc-kapi-ureticileri-og.webp"
   ogTitle={c.meta.ogTitle}
   ogDescription={c.meta.ogDescription}
-  ogType="article"
-  ogUrl={currentUrl}
-  twitterCard="summary_large_image"
-  twitterTitle={c.meta.twitterTitle}
-  twitterDescription={c.meta.twitterDescription}
-  twitterImage="/assets/img/blog/pvc-kapi-ureticileri-og.webp"
   schema={[articleSchema, faqSchema, breadcrumbSchema]}
 >
 
@@ -447,7 +439,7 @@ const breadcrumbSchema = {
 </I18nLayout>
 
 <style>
-/* ── (Tüm stiller orijinal dosyadan alındı — değişmedi) ── */
+/* Styles identical to pvc-kapi-ihracati.astro — shared layout */
 .container{max-width:1200px;margin:0 auto;padding:0 20px}
 .blog-article{padding:4rem 0;background:#fff}
 .blog-article .container{display:grid;grid-template-columns:1fr 300px;gap:4rem;align-items:start}
@@ -588,43 +580,24 @@ const breadcrumbSchema = {
 .conclusion{background:linear-gradient(135deg,#fff5f5,#fef2f2);border:2px solid #fca5a5;border-radius:16px;padding:2.5rem;margin:3rem 0}
 .conclusion h2{color:#991b1b;margin-top:0}
 .conclusion p{color:#7f1d1d}
-.article-content a:not(.btn):not(.btn-cta-inline){color:#667eea;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;transition:all .2s ease}
-.article-content a:not(.btn):not(.btn-cta-inline):hover{color:#5a67d8;text-decoration-thickness:2px}
+/* RTL overrides */
+html[dir="rtl"] .highlight-box{border-left:none;border-right:4px solid #667eea}
+html[dir="rtl"] .process-step{border-left:none;border-right:4px solid #667eea;padding:2rem 5rem 2rem 2rem}
+html[dir="rtl"] .step-number{left:auto;right:1.5rem}
+html[dir="rtl"] .checkmark-list li{padding-left:0;padding-right:2rem}
+html[dir="rtl"] .checkmark-list li::before{left:auto;right:0}
+html[dir="rtl"] .price-card .badge{right:auto;left:20px}
 @media(max-width:1024px){
 .blog-article .container{grid-template-columns:1fr}
 .article-sidebar{position:static;grid-column:1;margin-top:3rem}
 }
 @media(max-width:768px){
 .article-header h1{font-size:2rem}
-.article-lead{font-size:1.1rem}
-.content-section h2{font-size:1.75rem}
-.content-section h3{font-size:1.25rem}
 .features-grid,.price-cards,.usage-areas,.model-series{grid-template-columns:1fr}
 .process-step{padding-left:2rem}
 .step-number{position:static;margin-bottom:1rem}
-.inline-cta{padding:2rem 1.5rem}
 .final-cta-section h2{font-size:2rem}
-.final-cta-section p{font-size:1.1rem}
 .cta-buttons{flex-direction:column;align-items:center}
 .btn{width:100%;max-width:300px}
-.articles-grid{grid-template-columns:1fr}
-.contact-grid{grid-template-columns:1fr}
 }
-@media(max-width:480px){
-.blog-article{padding:2rem 0}
-.article-header h1{font-size:1.5rem}
-.article-lead{font-size:1rem}
-.content-section h2{font-size:1.5rem}
-.feature-icon{font-size:2rem}
-.price{font-size:1.5rem}
-.inline-cta h3{font-size:1.25rem}
-.sidebar-widget{padding:1.25rem}
-.stat-value{font-size:1.5rem}
-}
-/* RTL support */
-html[dir="rtl"] .highlight-box { border-left: none; border-right: 4px solid #667eea; }
-html[dir="rtl"] .process-step  { border-left: none; border-right: 4px solid #667eea; padding: 2rem 5rem 2rem 2rem; }
-html[dir="rtl"] .step-number   { left: auto; right: 1.5rem; }
-html[dir="rtl"] .checkmark-list li { padding-left: 0; padding-right: 2rem; }
-html[dir="rtl"] .checkmark-list li::before { left: auto; right: 0; }
 </style>

@@ -1,41 +1,41 @@
 ---
-// src/pages/blog/index.astro  ← EN (defaultLang) blog listesi
-import I18nLayout from '../../layouts/I18nLayout.astro';
-import I18nHeader from '../../components/I18nHeader.astro';
-import I18nFooter from '../../components/I18nFooter.astro';
+// src/pages/tr/blog/index.astro  ← Türkçe blog listesi
+import I18nLayout from '../../../layouts/I18nLayout.astro';
+import I18nHeader from '../../../components/I18nHeader.astro';
+import I18nFooter from '../../../components/I18nFooter.astro';
 
 const baseUrl = 'https://cihanpandoor.netlify.app';
-const currentUrl = `${baseUrl}/blog`;
+const currentUrl = `${baseUrl}/tr/blog`;
 
 const allPosts = [
   {
-    slug: '/blog/pvc-door-manufacturers',
-    title: 'PVC Door Export: From Turkey to the World',
-    excerpt: 'Detailed information about PVC door export from Turkey, export procedures and target markets.',
+    slug: '/tr/blog/pvc-kapi-ihracati',
+    title: "PVC Kapı İhracatı: Türkiye'den Dünyaya",
+    excerpt: 'Türkiye PVC kapı ihracatı hakkında detaylı bilgiler, ihracat prosedürleri ve hedef pazarlar.',
     image: '/assets/img/blog/pvc-kapi-ureticileri-og.webp',
     date: '2025-01-10',
-    readTime: '6 min read',
-    category: 'Export',
+    readTime: '6 dakika',
+    category: 'İhracat',
     featured: true
   },
   {
-    slug: '/blog/hospital-doors',
-    title: 'Hospital Doors: Medical Series Features',
-    excerpt: 'A detailed guide on antibacterial hospital doors specially designed for healthcare facilities.',
+    slug: '/tr/blog/hastane-kapilari',
+    title: 'Hastane Kapıları: Medikal Seri Özellikleri',
+    excerpt: 'Sağlık tesisleri için özel tasarlanmış antibakteriyel hastane kapıları hakkında detaylı rehber.',
     image: '/assets/img/blog/hastane-thumb.webp',
     date: '2025-01-08',
-    readTime: '8 min read',
-    category: 'Products',
+    readTime: '8 dakika',
+    category: 'Ürünler',
     featured: false
   },
   {
-    slug: '/blog/hotel-doors',
-    title: 'Hotel Doors: Comfort and Aesthetics',
-    excerpt: 'Ideal door models and features for hotels and accommodation facilities.',
+    slug: '/tr/blog/otel-kapilari',
+    title: 'Otel Kapıları: Konfor ve Estetik',
+    excerpt: 'Otel ve konaklama tesisleri için ideal kapı modelleri ve özellikleri.',
     image: '/assets/img/blog/otel-thumb.webp',
     date: '2025-01-05',
-    readTime: '7 min read',
-    category: 'Products',
+    readTime: '7 dakika',
+    category: 'Ürünler',
     featured: false
   }
 ];
@@ -48,19 +48,19 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
+    { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": `${baseUrl}/tr` },
     { "@type": "ListItem", "position": 2, "name": "Blog", "item": currentUrl }
   ]
 };
 ---
 
 <I18nLayout
-  title="Blog | Door Guide, PVC & Export Articles | CihanPan Door"
-  description="Latest blog posts and expert advice on PVC door manufacturing, models, prices, hotel and hospital projects."
-  keywords="pvc door blog, door manufacturing, pvc door prices, hotel doors, hospital doors, door guide"
+  title="Blog | Kapı Rehberi, PVC & İhracat Yazıları | CihanPan Door"
+  description="PVC kapı üretimi, modeller, fiyatlar, otel ve hastane projeleri hakkında güncel blog yazıları."
+  keywords="pvc kapı blog, kapı üretimi, pvc kapı fiyatları, otel kapıları, hastane kapıları"
   canonical={currentUrl}
-  ogTitle="CihanPan Door Blog | Expert Articles from the Door World"
-  ogDescription="News, guides and export tips from the PVC door industry."
+  ogTitle="CihanPan Door Blog | Kapı Dünyasından Uzman Yazıları"
+  ogDescription="PVC kapı sektöründen haberler, rehberler ve ihracat ipuçları."
   ogImage="/assets/img/og/blog-og.webp"
   schema={[breadcrumbSchema]}
 >
@@ -69,38 +69,38 @@ const breadcrumbSchema = {
   <section class="blog-hero">
     <div class="container">
       <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="/">Home</a>
+        <a href="/tr">Ana Sayfa</a>
         <span aria-hidden="true">›</span>
         <span aria-current="page">Blog</span>
       </nav>
       <h1>Blog</h1>
-      <p>News, guides and expert advice from the door world</p>
+      <p>Kapı dünyasından haberler, rehberler ve uzman tavsiyeleri</p>
     </div>
   </section>
 
   {featuredPost && (
     <section class="featured-post-section">
       <div class="container">
-        <h2 class="section-title">⭐ Featured Post</h2>
+        <h2 class="section-title">⭐ Öne Çıkan Yazı</h2>
         <article class="featured-post">
           <a href={featuredPost.slug} class="featured-link">
             <div class="featured-image">
               <img src={featuredPost.image} alt={featuredPost.title} loading="eager" width="600" height="400" />
-              <span class="featured-badge">Featured</span>
+              <span class="featured-badge">Öne Çıkan</span>
             </div>
             <div class="featured-content">
               <div class="blog-meta">
                 <span class="category-badge">{featuredPost.category}</span>
                 <span class="separator">•</span>
                 <time datetime={featuredPost.date}>
-                  {new Date(featuredPost.date).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
+                  {new Date(featuredPost.date).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' })}
                 </time>
                 <span class="separator">•</span>
                 <span>⏱️ {featuredPost.readTime}</span>
               </div>
               <h2>{featuredPost.title}</h2>
               <p>{featuredPost.excerpt}</p>
-              <span class="read-more-btn">Read Article →</span>
+              <span class="read-more-btn">Yazıyı Oku →</span>
             </div>
           </a>
         </article>
@@ -110,7 +110,7 @@ const breadcrumbSchema = {
 
   <section class="blog-grid-section">
     <div class="container">
-      <h2 class="section-title">📖 All Posts ({regularPosts.length})</h2>
+      <h2 class="section-title">📖 Tüm Yazılar ({regularPosts.length})</h2>
       <div class="blog-grid">
         {regularPosts.map(post => (
           <article class="blog-card">
@@ -122,14 +122,14 @@ const breadcrumbSchema = {
               <div class="blog-card-content">
                 <div class="blog-meta">
                   <time datetime={post.date}>
-                    {new Date(post.date).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    {new Date(post.date).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' })}
                   </time>
                   <span>•</span>
                   <span>⏱️ {post.readTime}</span>
                 </div>
                 <h3>{post.title}</h3>
                 <p>{post.excerpt}</p>
-                <span class="read-more">Read More →</span>
+                <span class="read-more">Devamını Oku →</span>
               </div>
             </a>
           </article>
